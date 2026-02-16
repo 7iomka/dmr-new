@@ -141,7 +141,10 @@
 		.c-card-details-content { min-height: 0; }
 		.c-card-chevron { transition: transform 0.3s ease; }
 		.card-open .c-card-chevron { transform: rotate(180deg); }
-	</style>
+		.c-sortable-th { cursor: pointer; transition: background-color 0.2s, color 0.2s; }
+		.c-sortable-th:hover { background-color: rgba(0, 176, 116, 0.05); color: #00B074; }
+		.c-sortable-th:hover .c-sort-icon { opacity: 1; color: #00B074; }
+		.dark .c-sortable-th:hover { background-color: rgba(255, 255, 255, 0.03); }
 
 	<?php include __DIR__ . '/partials/mobile-sidebar.php'; ?>
 	<?php include __DIR__ . '/partials/mobile-user-drawer.php'; ?>
