@@ -1,0 +1,28 @@
+<app-page-header
+  title="Wallet (mock page)"
+  subtitle="Новая страница, которая переиспользует общий layout и UI-компоненты"
+  actionLabel="Создать кошелёк"
+/>
+
+<section class="stats-grid">
+  <app-stat-card
+    *ngFor="let stat of walletStats"
+    [label]="stat.label"
+    [value]="stat.value"
+    [change]="stat.change"
+    [isPositive]="stat.isPositive"
+  />
+</section>
+
+<section class="card wallets">
+  <h2>Список кошельков</h2>
+  <div class="wallet-row" *ngFor="let wallet of wallets">
+    <div>
+      <strong>{{ wallet.name }}</strong>
+      <p>{{ wallet.address }}</p>
+    </div>
+    <span>{{ wallet.network }}</span>
+  </div>
+</section>
+
+<app-activity-list title="История wallet" [items]="walletActivity" />

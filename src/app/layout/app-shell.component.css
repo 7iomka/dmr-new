@@ -1,0 +1,44 @@
+.shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.sidebar {
+  padding: 16px;
+}
+
+.logo {
+  color: var(--accent);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.menu-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.menu-link.active,
+.menu-link:hover {
+  color: var(--accent);
+  background: rgba(0, 176, 116, 0.08);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+}

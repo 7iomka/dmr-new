@@ -1,0 +1,17 @@
+<app-page-header
+  title="Дашборд"
+  subtitle="Переписанный шаблон на Angular (standalone компоненты)"
+  actionLabel="Скачать отчёт"
+/>
+
+<section class="stats-grid">
+  <app-stat-card
+    *ngFor="let stat of stats"
+    [label]="stat.label"
+    [value]="stat.value"
+    [change]="stat.change"
+    [isPositive]="stat.isPositive"
+  />
+</section>
+
+<app-activity-list [items]="activity" />
