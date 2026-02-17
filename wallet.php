@@ -8,52 +8,10 @@
 
 		<?php include __DIR__ . '/partials/desktop-sidebar.php'; ?>
 		<div class="flex-1 flex flex-col min-w-0 h-screen relative pb-15 lg:pb-0">
-			<header class="h-16 lg:h-20 border-b border-zinc-200 dark:border-zinc-800 bg-card flex items-center justify-between px-4 lg:px-10 sticky top-0 z-40">
-				<div class="flex items-center min-w-0">
-					<button onclick="toggleSidebar()" class="hidden lg:block p-2 rounded-lg mr-4 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-5 h-5"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
-					</button>
-
-					<div class="lg:hidden">
-						<a class="h-10 flex items-center flex-shrink-0" href="/">
-							<svg width="575" height="243" viewBox="0 0 575 243" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-auto fill-accent">
-								<rect x="0" y="46" width="150" height="150" rx="40" fill="inherit" />
-								<text x="200" y="165" font-family="sans-serif" font-weight="bold" font-size="120">LOGO</text>
-							</svg>
-						</a>
-					</div>
-				</div>
-
-				<div class="flex items-center space-x-2 md:space-x-4">
-					<button onclick="toggleDarkMode()" class="p-2.5 rounded-lg bg-zinc-100 dark:bg-[#1E2023] border border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-yellow-500 hover:opacity-80 transition-all">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun w-[18px] h-[18px] hidden dark:block"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon w-[18px] h-[18px] block dark:hidden"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
-					</button>
-
-					<div class="relative">
-						<button class="p-2.5 rounded-lg bg-zinc-100 dark:bg-[#1E2023] border border-zinc-200 dark:border-zinc-800 text-zinc-500 transition-all relative">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell w-[18px] h-[18px]"><path d="M10.268 21a2 2 0 0 0 3.464 0"></path><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"></path></svg>
-							<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-accent rounded-full border-2 border-white dark:border-[#14171A]"></span>
-						</button>
-					</div>
-
-					<div class="h-8 w-[1px] hidden lg:block bg-zinc-200 dark:bg-zinc-800"></div>
-					<div class="relative hidden lg:block">
-						<div onclick="toggleUserMenu()" class="flex items-center space-x-3 cursor-pointer p-1 pr-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-all">
-							<div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-accent to-emerald-400 p-[2px]"><div class="w-full h-full rounded-md flex items-center justify-center font-bold text-xs bg-card text-zinc-900 dark:text-white">DW</div></div>
-							<div class="text-left"><p class="text-[11px] font-bold leading-none mb-0.5 text-zinc-800 dark:text-zinc-200">Dorin Watsap</p><p class="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">ID: 882194</p></div>
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="user-chevron" class="lucide lucide-chevron-down hidden md:block w-[14px] h-[14px] text-zinc-500 transition-transform"><path d="m6 9 6 6 6-6"></path></svg>
-						</div>
-						<div id="user-dropdown" class="absolute right-0 mt-3 w-64 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-card shadow-2xl overflow-hidden z-50 hidden">
-							<div class="p-4 border-b border-zinc-100 dark:border-zinc-800/50"><p class="text-[10px] font-bold uppercase text-zinc-500 mb-1">Аккаунт</p><p class="text-sm font-bold truncate">lawyer1@awsarhitect.me</p></div>
-							<div class="p-2"><a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"><span class="text-sm font-bold">Мой профиль</span></a></div>
-						</div>
-					</div>
-				</div>
-			</header>
+			<?php include __DIR__ . '/partials/header.php'; ?>
 
 			<main class="flex-1 overflow-y-auto p-4 lg:p-10">
-				<div class="max-w-7xl mx-auto space-y-6 w-full">
+				<div class="max-w-7xl mx-auto space-y-6">
 					<div>
 						<h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white text-left">Кошелёк</h1>
 						<p class="text-zinc-500 text-sm font-medium mt-1">Управляйте балансом, пополнениями и транзакциями.</p>
@@ -63,6 +21,7 @@
 						<div class="max-w-md min-w-0 lg:order-1">
 							<label class="text-[10px] font-bold uppercase tracking-[2px] text-zinc-500 mb-2 block">Адрес вашего кошелька</label>
 							<div class="flex items-center bg-zinc-50 dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 rounded-lg p-2 pl-4 shadow-inner">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="fingerprint" aria-hidden="true" class="lucide lucide-fingerprint w-4 h-4 text-accent mr-3 opacity-70"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path><path d="M14 13.12c0 2.38 0 6.38-1 8.88"></path><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"></path><path d="M2 12a10 10 0 0 1 18-6"></path><path d="M2 16h.01"></path><path d="M21.8 16c.2-2 .131-5.354 0-6"></path><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"></path><path d="M8.65 22c.21-.66.45-1.32.57-2"></path><path d="M9 6.8a6 6 0 0 1 9 5.2v2"></path></svg>
 								<code id="wallet-uuid" class="text-[12px] sm:text-[13px] font-bold text-zinc-800 dark:text-zinc-200 flex-1 font-mono tracking-tight truncate">bb8623ef-3902-4937-95e5-1e64fc6f79c4</code>
 								<button onclick="copyWalletId()" class="ml-3 p-2.5 bg-white dark:bg-zinc-800 rounded-lg text-zinc-500 hover:text-accent transition-all relative border border-zinc-200 dark:border-zinc-700">
 									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy w-4 h-4"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
@@ -75,19 +34,30 @@
 							<p class="text-[10px] font-bold uppercase tracking-[2px] text-zinc-500 mb-2">Общий баланс</p>
 							<h2 class="text-3xl sm:text-5xl font-bold tracking-tighter text-zinc-900 dark:text-white mb-6 whitespace-nowrap">$ 12,450,000.80</h2>
 							<div class="space-y-3 mb-8">
-								<div class="flex items-baseline space-x-2"><span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Доступно к выводу:</span><span class="text-lg font-bold text-accent">$ 482.50</span></div>
-								<div class="flex items-baseline space-x-2 opacity-80"><span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Заблокировано:</span><span class="text-md font-bold text-zinc-900 dark:text-zinc-300">$ 120,000.00</span></div>
+								<div class="flex items-baseline gap-2"><span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Доступно к выводу:</span><span class="text-lg font-bold text-accent">$ 482.50</span></div>
+								<div class="flex items-baseline gap-2 opacity-80"><span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Заблокировано:</span><span class="text-md font-bold text-zinc-900 dark:text-zinc-300">$ 120,000.00</span></div>
 							</div>
 							<div class="grid grid-cols-2 sm:flex flex-wrap gap-3">
-								<button class="col-span-2 flex items-center justify-center space-x-2 px-6 py-3 bg-accent hover:bg-[#009663] text-white text-[11px] font-bold rounded-lg transition-all uppercase tracking-widest"><span>Пополнить</span></button>
-								<button class="flex items-center justify-center space-x-2 px-6 py-3 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest"><span>Перевести</span></button>
-								<button class="flex items-center justify-center space-x-2 px-6 py-3 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest"><span>Вывести</span></button>
+								<button class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-[#009663] text-white text-[11px] font-bold rounded-lg transition-all shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus-circle" aria-hidden="true" class="lucide lucide-plus-circle w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
+									<span>Пополнить</span>
+								</button>
+
+								<button class="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="send" aria-hidden="true" class="lucide lucide-send w-4 h-4"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+									<span>Перевести</span>
+								</button>
+
+								<button class="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right w-4 h-4"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+									<span>Вывести</span>
+								</button>
 							</div>
 						</div>
 					</div>
 
-					<div class="rounded-xl border bg-card border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden js-tabs-container">
-						<div class="px-4 lg:px-6 py-4 border-b flex items-center justify-between gap-2 flex-wrap bg-zinc-100 dark:bg-[#1E2023] border-zinc-200 dark:border-zinc-800">
+					<div class="rounded-xl border bg-card border-zinc-200 dark:border-zinc-800 shadow-sm js-tabs-container">
+						<div class="px-4 lg:px-6 py-4 border-b flex items-center justify-between gap-2 flex-wrap bg-zinc-100 dark:bg-[#1E2023] border-zinc-200 dark:border-zinc-800 rounded-t-[inherit]">
 							<h3 class="text-sm font-bold uppercase tracking-wide text-zinc-900 dark:text-white">Транзакции</h3>
 							<div class="relative flex bg-zinc-200/50 dark:bg-zinc-800/80 p-1 rounded-lg w-fit overflow-x-auto c-no-scrollbar max-w-full">
 								<div class="js-tab-highlight c-transition-slider absolute bg-white dark:bg-zinc-600 rounded-md shadow z-0 h-[calc(100%-8px)] top-[4px] left-0"></div>
@@ -245,7 +215,7 @@
                 <!-- Card 1 -->
                 <div class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
                   <div class="p-4 flex items-center justify-between">
-                    <div class="flex items-center space-x-3 min-w-0">
+                    <div class="flex items-center gap-3 min-w-0">
                       <div class="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-500">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -305,7 +275,7 @@
                 <!-- Card 2 -->
                 <div class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
                   <div class="p-4 flex items-center justify-between">
-                    <div class="flex items-center space-x-3 min-w-0">
+                    <div class="flex items-center gap-3 min-w-0">
                       <div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -364,7 +334,7 @@
               <!-- Pagination (shared) -->
               <div class="px-4 lg:px-6 py-5 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Показано 1-10 из 42 транзакций</p>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center gap-2">
                   <button class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -512,7 +482,7 @@
               <div class="lg:hidden divide-y divide-zinc-100 dark:divide-zinc-800/50">
                 <div class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
                   <div class="p-4 flex items-center justify-between">
-                    <div class="flex items-center space-x-3 min-w-0">
+                    <div class="flex items-center gap-3 min-w-0">
                       <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -565,7 +535,7 @@
 
                 <div class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
                   <div class="p-4 flex items-center justify-between">
-                    <div class="flex items-center space-x-3 min-w-0">
+                    <div class="flex items-center gap-3 min-w-0">
                       <div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -620,7 +590,7 @@
               <!-- Pagination (shared) -->
               <div class="px-4 lg:px-6 py-5 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Показано 1-10 из 42 транзакций</p>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center gap-2">
                   <button class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

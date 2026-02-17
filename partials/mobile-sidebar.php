@@ -127,7 +127,7 @@
 					Аккаунт
 				</p>
 				<div class="space-y-1">
-					<a href="profile.html" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+					<a href="profile.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
             dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
             ">
