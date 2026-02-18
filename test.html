@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реферальная панель - WCAG AAA Optimized</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        zinc: {
+                            850: '#1f2937',
+                            900: '#18181b',
+                            950: '#09090b',
+                        },
+                        accent: {
+                            DEFAULT: '#00B074',
+                            hover: '#009e68',
+                            aaa: '#008557', 
+                            light: 'rgba(0, 176, 116, 0.1)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .level-badge {
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-rendering: optimizeLegibility;
+        }
+
+        .text-shadow {
+            text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .breadcrumb-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .mask-left, .mask-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 70px;
+            pointer-events: none;
+            z-index: 20;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .mask-left {
+            left: 0;
+            background: linear-gradient(to right, white 40%, transparent);
+            justify-content: flex-start;
+        }
+        .dark .mask-left {
+            background: linear-gradient(to right, #18181b 40%, transparent);
+        }
+
+        .mask-right {
+            right: 0;
+            background: linear-gradient(to left, white 40%, transparent);
+            justify-content: flex-end;
+        }
+        .dark .mask-right {
+            background: linear-gradient(to left, #18181b 40%, transparent);
+        }
+
+        /* Общий стиль для кнопок навигации (скролл и назад) */
+        .nav-btn-base {
+            pointer-events: auto;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* Светлая тема */
+        .nav-btn-style {
+            background: white;
+            border: 1px solid #e4e4e7;
+            color: #71717a;
+        }
+        .nav-btn-style:hover:not(:disabled) {
+            background: #f4f4f5;
+            color: #3f3f46;
+            border-color: #d4d4d8;
+        }
+
+        /* Темная тема */
+        .dark .nav-btn-style {
+            background: #27272a;
+            border: 1px solid #3f3f46;
+            color: #a1a1aa;
+        }
+        .dark .nav-btn-style:hover:not(:disabled) {
+            background: #3f3f46;
+            color: #f4f4f5;
+            border-color: #52525b;
+        }
+
+        .nav-btn-base:active:not(:disabled) {
+            transform: scale(0.9);
+        }
+
+        .nav-btn-base:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            filter: grayscale(1);
+        }
+
+        #breadcrumb-container {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 p-4 md:p-8 min-h-screen font-sans transition-colors duration-300">
+
+    <div class="max-w-6xl mx-auto space-y-6">
+
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight">Партнерская программа</h1>
+                <div class="flex items-center gap-2 mt-1">
+                    <span class="px-1.5 py-0.5 rounded bg-accent/10 text-accent text-[10px] font-bold border border-accent/20">WCAG AAA READY</span>
+                    <p class="text-sm text-zinc-500 dark:text-zinc-400">Чистый интерфейс и контрастная навигация</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="toggleTheme()" class="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-500 hover:text-accent transition-all shadow-sm">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+                <div class="flex items-center gap-3 px-4 py-2 bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-full shadow-sm">
+                    <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Вас пригласил:</span>
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center text-[10px] text-white font-bold">A</div>
+                        <span class="text-xs font-semibold">Administrator</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Table Section -->
+        <div class="space-y-4">
+            
+            <!-- Breadcrumbs Navigation -->
+            <div class="flex items-center bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-2 py-2 shadow-sm gap-1 overflow-hidden h-14">
+                
+                <!-- Fixed Root Element (Current User) -->
+                <div class="flex items-center flex-shrink-0 px-2 border-r border-zinc-100 dark:border-zinc-800 h-full">
+                    <button onclick="goToRoot()" id="root-btn" class="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all group">
+                        <i data-lucide="home" id="root-icon" class="w-4 h-4 transition-colors"></i>
+                        <span id="root-label" class="text-sm transition-colors">current_user</span>
+                    </button>
+                </div>
+
+                <!-- Scrollable Path -->
+                <div class="breadcrumb-wrapper h-full">
+                    <div class="mask-left opacity-0" id="m-left">
+                        <button onclick="scrollBreadcrumbs('left')" class="nav-btn-base nav-btn-style ml-1">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div id="breadcrumb-container" class="flex items-center gap-1 overflow-x-auto hide-scrollbar text-sm px-6 h-full">
+                        <!-- Заполняется через JS -->
+                    </div>
+                    <div class="mask-right opacity-0" id="m-right">
+                        <button onclick="scrollBreadcrumbs('right')" class="nav-btn-base nav-btn-style mr-1">
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Back Action -->
+                <div class="flex items-center gap-2 flex-shrink-0 border-l border-zinc-100 dark:border-zinc-800 px-3 h-full">
+                    <button id="back-btn" onclick="goBack()" class="nav-btn-base nav-btn-style">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-zinc-50 dark:bg-zinc-950/50 text-xs text-zinc-500 dark:text-zinc-400 uppercase font-bold tracking-wider border-b border-zinc-200 dark:border-zinc-800">
+                            <tr>
+                                <th class="px-6 py-4">Логин</th>
+                                <th class="px-6 py-4">Полное Имя</th>
+                                <th class="px-6 py-4">Email</th>
+                                <th class="px-6 py-4 text-center">Рефералы</th>
+                                <th class="px-6 py-4 text-center">Статус</th>
+                                <th class="px-6 py-4">Код</th>
+                                <th class="px-6 py-4">Дата</th>
+                                <th class="px-6 py-4 text-right">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body" class="divide-y divide-zinc-100 dark:divide-zinc-800">
+                            <!-- Заполняется через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPath = []; 
+
+        // --- WCAG AAA CONTRAST LOGIC ---
+
+        function hexToRgb(hex) {
+            const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+            hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : null;
+        }
+
+        function getLuminance(r, g, b) {
+            const a = [r, g, b].map(v => {
+                v /= 255;
+                return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+            });
+            return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+        }
+
+        function getContrastRatio(l1, l2) {
+            return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+        }
+
+        function hslToHex(h, s, l) {
+            l /= 100;
+            const a = s * Math.min(l, 1 - l) / 100;
+            const f = n => {
+                const k = (n + h / 30) % 12;
+                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, '0');
+            };
+            return `#${f(0)}${f(8)}${f(4)}`;
+        }
+
+        function getAaaStyle(levelIndex) {
+            const cycleIndex = levelIndex % 23;
+            const hue = (140 - (cycleIndex * (360 / 23)) + 360) % 360;
+            let lightness = 50;
+            
+            const findBestStyle = (h, s, l) => {
+                let currentL = l;
+                const whiteLum = getLuminance(255, 255, 255);
+                const blackLum = getLuminance(0, 0, 0);
+                
+                let check = () => {
+                    let hex = hslToHex(h, s, currentL);
+                    let lum = getLuminance(...Object.values(hexToRgb(hex)));
+                    return { hex, lum, ratioWhite: getContrastRatio(lum, whiteLum), ratioBlack: getContrastRatio(lum, blackLum) };
+                };
+
+                let res = check();
+                if (res.ratioWhite >= 7) return { bg: res.hex, text: 'white' };
+                if (res.ratioBlack >= 7) return { bg: res.hex, text: 'black' };
+
+                if (res.ratioWhite > res.ratioBlack) {
+                    while(currentL > 5 && getContrastRatio(getLuminance(...Object.values(hexToRgb(hslToHex(h, s, currentL)))), whiteLum) < 7) currentL -= 2;
+                    return { bg: hslToHex(h, s, currentL), text: 'white' };
+                } else {
+                    while(currentL < 95 && getContrastRatio(getLuminance(...Object.values(hexToRgb(hslToHex(h, s, currentL)))), blackLum) < 7) currentL += 2;
+                    return { bg: hslToHex(h, s, currentL), text: 'black' };
+                }
+            };
+
+            return findBestStyle(hue, 80, lightness);
+        }
+
+        // --- UI RENDERING ---
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        function scrollBreadcrumbs(direction) {
+            const container = document.getElementById('breadcrumb-container');
+            const offset = 200;
+            if (direction === 'left') {
+                container.scrollLeft -= offset;
+            } else {
+                container.scrollLeft += offset;
+            }
+        }
+
+        function updateScrollMasks() {
+            const container = document.getElementById('breadcrumb-container');
+            const mLeft = document.getElementById('m-left');
+            const mRight = document.getElementById('m-right');
+            
+            if (!container) return;
+            
+            const scrollLeft = container.scrollLeft;
+            const scrollWidth = container.scrollWidth;
+            const clientWidth = container.clientWidth;
+
+            mLeft.style.opacity = scrollLeft > 10 ? "1" : "0";
+            mRight.style.opacity = (scrollLeft + clientWidth < scrollWidth - 10) ? "1" : "0";
+            
+            mLeft.style.pointerEvents = scrollLeft > 10 ? "auto" : "none";
+            mRight.style.pointerEvents = (scrollLeft + clientWidth < scrollWidth - 10) ? "auto" : "none";
+        }
+
+        function renderUI() {
+            renderBreadcrumbs();
+            renderTable();
+            updateBackButton();
+            lucide.createIcons();
+            
+            const container = document.getElementById('breadcrumb-container');
+            setTimeout(() => {
+                container.scrollLeft = container.scrollWidth;
+                updateScrollMasks();
+            }, 50);
+        }
+
+        function updateBackButton() {
+            const backBtn = document.getElementById('back-btn');
+            if (currentPath.length === 0) {
+                backBtn.disabled = true;
+            } else {
+                backBtn.disabled = false;
+            }
+        }
+
+        function goToLevel(index) {
+            currentPath = currentPath.slice(0, index + 1);
+            renderUI();
+        }
+
+        function renderBreadcrumbs() {
+            const container = document.getElementById('breadcrumb-container');
+            const rootBtn = document.getElementById('root-btn');
+            const rootLabel = document.getElementById('root-label');
+            const rootIcon = document.getElementById('root-icon');
+            let html = '';
+
+            if (currentPath.length === 0) {
+                rootLabel.className = "text-sm font-bold text-zinc-900 dark:text-white";
+                rootIcon.className = "w-4 h-4 text-accent";
+                rootBtn.onclick = null;
+                rootBtn.style.cursor = "default";
+                rootBtn.className = "flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all";
+            } else {
+                rootLabel.className = "text-sm font-medium text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white";
+                rootIcon.className = "w-4 h-4 text-zinc-400 group-hover:text-accent";
+                rootBtn.onclick = goToRoot;
+                rootBtn.style.cursor = "pointer";
+                rootBtn.className = "flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all group";
+            }
+
+            currentPath.forEach((step, index) => {
+                const isLast = index === currentPath.length - 1;
+                const style = getAaaStyle(step.level - 1);
+                
+                html += `
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-300 dark:text-zinc-700 flex-shrink-0 mx-1"></i>
+                    <button 
+                        ${isLast ? '' : `onclick="goToLevel(${index})"`} 
+                        class="flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 py-1 px-1.5 rounded-lg transition-colors 
+                               ${isLast ? 'cursor-default' : 'hover:bg-zinc-100 dark:hover:bg-zinc-800 group'}"
+                    >
+                        <span class="level-badge text-[10px] px-1.5 py-0.5 rounded shadow-sm" 
+                              style="background-color: ${style.bg}; color: ${style.text}">L${step.level}</span>
+                        <span class="${isLast ? 'text-zinc-900 dark:text-white font-bold' : 'text-zinc-500 dark:text-zinc-400 font-medium group-hover:text-zinc-900 dark:group-hover:text-white'}">
+                            ${step.name}
+                        </span>
+                    </button>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function renderTable() {
+            const body = document.getElementById('table-body');
+            const nextLevel = currentPath.length + 1;
+            
+            let html = '';
+            for (let i = 1; i <= 3; i++) {
+                const style = getAaaStyle(nextLevel - 1);
+                
+                const refCount = (i === 3) ? 0 : (5 + i); 
+                const hasRef = refCount > 0;
+                const login = `user_l${nextLevel}_id${i}`;
+
+                html += `
+                    <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <span class="level-badge text-[10px] px-2 py-0.5 rounded shadow-sm" 
+                                      style="background-color: ${style.bg}; color: ${style.text}">L${nextLevel}</span>
+                                <span class="text-zinc-900 dark:text-zinc-200 font-semibold">${login}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-zinc-400 italic">User Name</td>
+                        <td class="px-6 py-4 text-zinc-500 text-xs">${login}@test.pro</td>
+                        <td class="px-6 py-4 text-center">
+                            ${refCount === 0 ? 
+                                `<span class="text-zinc-300 dark:text-zinc-600 px-3 font-medium">—</span>` :
+                                `<span class="inline-flex items-center justify-center min-w-[28px] px-2 py-0.5 rounded-md text-[11px] font-bold text-shadow shadow-sm border border-accent/50 bg-accent/10 text-accent">
+                                    ${refCount}
+                                </span>`
+                            }
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            ${hasRef ? `
+                                <span class="inline-flex items-center justify-center min-w-[60px] px-2.5 py-0.5 rounded-md text-[10px] font-bold text-shadow shadow-sm border border-accent/50 bg-accent/10 text-accent">
+                                    ACTIVE
+                                </span>
+                            ` : `
+                                <span class="inline-flex items-center justify-center min-w-[60px] px-2.5 py-0.5 rounded-md text-[10px] font-bold text-shadow shadow-sm border border-amber-400/50 bg-amber-400/10 text-amber-600 dark:text-amber-400">
+                                    PENDING
+                                </span>
+                            `}
+                        </td>
+                        <td class="px-6 py-4 font-mono text-xs font-bold text-zinc-400">ID-${nextLevel}${i}</td>
+                        <td class="px-6 py-4 text-zinc-500 text-xs">18.02.26</td>
+                        <td class="px-6 py-4 text-right">
+                            ${hasRef ? `
+                                <button onclick="goDeeper('${login}', ${nextLevel})" 
+                                        class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-accent hover:text-white transition-all active:scale-90 shadow-sm">
+                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
+                            ` : '<span class="text-zinc-300 dark:text-zinc-600 px-3">—</span>'}
+                        </td>
+                    </tr>
+                `;
+            }
+            body.innerHTML = html;
+        }
+
+        function goDeeper(name, level) {
+            currentPath.push({ name, level });
+            renderUI();
+        }
+
+        function goBack() {
+            if (currentPath.length === 0) return;
+            currentPath.pop();
+            renderUI();
+        }
+
+        function goToRoot() {
+            currentPath = [];
+            renderUI();
+        }
+
+        window.onload = () => {
+            renderUI();
+            document.getElementById('breadcrumb-container').addEventListener('scroll', updateScrollMasks);
+            window.addEventListener('resize', updateScrollMasks);
+        };
+    </script>
+</body>
+</html>

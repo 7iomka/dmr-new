@@ -105,7 +105,7 @@
 						<span class="ml-3 text-sm font-semibold">Выводы</span>
 					</a>
 
-					<a href="report.html" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+					<a href="report.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
             data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent

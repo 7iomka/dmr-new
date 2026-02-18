@@ -12,7 +12,7 @@
 			<?php include __DIR__ . '/partials/header.php'; ?>
 
 			<!-- Main View -->
-			<main class="flex-1 overflow-y-auto p-4 lg:p-10">
+			<main class="flex-1 overflow-y-auto px-4 py-6 lg:p-10">
 				<div class="max-w-7xl mx-auto space-y-6">
 					<!-- Приветствие -->
 					<div>

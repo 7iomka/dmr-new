@@ -10,7 +10,7 @@
 		<div class="flex-1 flex flex-col min-w-0 h-screen relative pb-15 lg:pb-0">
 			<?php include __DIR__ . '/partials/header.php'; ?>
 
-			<main class="flex-1 overflow-y-auto p-4 lg:p-10">
+			<main class="flex-1 overflow-y-auto px-4 py-6 lg:p-10">
 				<div class="max-w-7xl mx-auto space-y-6">
 					<div>
 						<h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white text-left">Кошелёк</h1>

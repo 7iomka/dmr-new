@@ -31,6 +31,25 @@
             }
         }
 
+				@layer utilities {
+					.no-scrollbar::-webkit-scrollbar {
+						display: none;
+					}
+					.no-scrollbar {
+						-ms-overflow-style: none;
+						scrollbar-width: none;
+					}
+					.no-spinner::-webkit-outer-spin-button,
+					.no-spinner::-webkit-inner-spin-button {
+						-webkit-appearance: none;
+						margin: 0;
+					}
+
+					.no-spinner {
+						-moz-appearance: textfield;
+					}
+				}
+
 				@layer components {
 					/* общая база для всех карточек */
 					.card,
@@ -120,15 +139,7 @@
 				width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		}
 
-		.no-spinner::-webkit-outer-spin-button,
-		.no-spinner::-webkit-inner-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
-		}
 
-		.no-spinner {
-			-moz-appearance: textfield;
-		}
 	</style>
 
 	<style>
