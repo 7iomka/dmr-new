@@ -17,8 +17,7 @@
 					</div>
           <!-- Profile Header -->
           <div
-            class="px-4 lg:px-6 py-6 rounded-xl bg-card border border-zinc-200 dark:border-zinc-800 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6 transition-colors">
-
+            class="card-simple flex flex-col md:flex-row items-center md:items-start gap-6">
             <div class="relative">
               <div
                 class="w-24 h-24 rounded-2xl bg-gradient-to-br from-accent to-emerald-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-emerald-500/20">
@@ -70,46 +69,45 @@
             </div>
           </div>
           <!-- Personal Info -->
-          <div class="rounded-xl border bg-card border-zinc-200 dark:border-zinc-800 shadow-sm">
-
-            <div
-              class="px-4 lg:px-6 py-4 border-b flex items-center justify-between gap-2 flex-wrap bg-zinc-100 dark:bg-[#1E2023] border-zinc-200 dark:border-zinc-800 rounded-t-[inherit]">
+          <div class="card">
+            <div class="card-header">
               <h3 class="text-sm font-bold uppercase tracking-wide text-zinc-900 dark:text-white">Персональные данные</h3>
-
             </div>
-            <div class="px-4 lg:px-6 py-4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-              <div>
-                <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">Полное имя</p>
-                <p class="text-sm font-bold tracking-tight">Dorin Watsap</p>
-              </div>
-              <div>
-                <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">E-mail</p>
-                <p class="text-sm font-bold tracking-tight">lawyer1@awsarhitect.me</p>
-              </div>
-              <div>
-                <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">Телефон</p>
-                <p class="text-sm font-bold tracking-tight">+37369586275</p>
-              </div>
-              <div>
-                <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">День рождения</p>
-                <p class="text-sm font-bold tracking-tight">02.07.2001</p>
-              </div>
-              <div>
-                <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">Верификация</p>
-                <div class="flex items-center space-x-1.5">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    data-lucide="check-circle-2" aria-hidden="true"
-                    class="lucide lucide-check-circle-2 text-accent w-[14px] h-[14px]">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                  <span class="text-sm font-bold text-accent">Пройден</span>
+            <div class="card-body">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                <div>
+                  <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">Полное имя</p>
+                  <p class="text-sm font-bold tracking-tight">Dorin Watsap</p>
                 </div>
-              </div>
-              <div>
-                <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">Дата создания</p>
-                <p class="text-sm font-bold tracking-tight">08.12.2025 20:34</p>
+                <div>
+                  <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">E-mail</p>
+                  <p class="text-sm font-bold tracking-tight">lawyer1@awsarhitect.me</p>
+                </div>
+                <div>
+                  <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">Телефон</p>
+                  <p class="text-sm font-bold tracking-tight">+37369586275</p>
+                </div>
+                <div>
+                  <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">День рождения</p>
+                  <p class="text-sm font-bold tracking-tight">02.07.2001</p>
+                </div>
+                <div>
+                  <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">Верификация</p>
+                  <div class="flex items-center space-x-1.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      data-lucide="check-circle-2" aria-hidden="true"
+                      class="lucide lucide-check-circle-2 text-accent w-[14px] h-[14px]">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    <span class="text-sm font-bold text-accent">Верифицирован</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">Дата создания</p>
+                  <p class="text-sm font-bold tracking-tight">08.12.2025 20:34</p>
+                </div>
               </div>
             </div>
 				</div>
@@ -117,59 +115,10 @@
 		</div>
 	</div>
 
-	<style>
-		.c-no-scrollbar::-webkit-scrollbar { display: none; }
-		.c-no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-		.c-copy-tooltip { animation: cFadeInOut 2s forwards; }
-		@keyframes cFadeInOut { 0% { opacity: 0; transform: translateY(5px); } 20%,80% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-5px); } }
-		.c-card-details-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease-out, opacity 0.2s ease-out; opacity: 0; overflow: hidden; }
-		.card-open .c-card-details-wrapper { grid-template-rows: 1fr; opacity: 1; }
-		.c-card-details-content { min-height: 0; }
-		.c-card-chevron { transition: transform 0.3s ease; }
-		.card-open .c-card-chevron { transform: rotate(180deg); }
-		.c-sortable-th { cursor: pointer; transition: background-color 0.2s, color 0.2s; }
-		.c-sortable-th:hover { background-color: rgba(0, 176, 116, 0.05); color: #00B074; }
-		.c-sortable-th:hover .c-sort-icon { opacity: 1; color: #00B074; }
-		.dark .c-sortable-th:hover { background-color: rgba(255, 255, 255, 0.03); }
-	</style>
-
 	<?php include __DIR__ . '/partials/mobile-sidebar.php'; ?>
 	<?php include __DIR__ . '/partials/mobile-user-drawer.php'; ?>
 	<?php include __DIR__ . '/partials/mobile-bottom-nav.php'; ?>
 
-	<script>
-		function toggleCard(cardEl) {
-			cardEl.classList.toggle('card-open');
-		}
-
-		async function copyWalletId() {
-			const walletEl = document.getElementById('wallet-uuid');
-			const statusEl = document.getElementById('copy-status');
-			if (!walletEl) return;
-			const text = walletEl.textContent.trim();
-
-			try {
-				if (navigator.clipboard?.writeText) {
-					await navigator.clipboard.writeText(text);
-				} else {
-					const ta = document.createElement('textarea');
-					ta.value = text;
-					document.body.appendChild(ta);
-					ta.select();
-					document.execCommand('copy');
-					document.body.removeChild(ta);
-				}
-
-				if (statusEl) {
-					statusEl.classList.remove('hidden');
-					statusEl.classList.remove('c-copy-tooltip');
-					void statusEl.offsetWidth;
-					statusEl.classList.add('c-copy-tooltip');
-					setTimeout(() => statusEl.classList.add('hidden'), 1800);
-				}
-			} catch (e) {}
-		}
-	</script>
 	<?php include __DIR__ . '/partials/scripts.php'; ?>
 </body>
 

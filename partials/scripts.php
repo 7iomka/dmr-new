@@ -243,3 +243,105 @@
 			});
 		})();
 	</script>
+
+<script>
+(() => {
+  const DURATION = 1800;
+
+  // Получаем текст для копирования
+  const getText = (btn) => {
+    if (btn.dataset.copyText) return btn.dataset.copyText;
+
+    if (btn.dataset.copyTarget) {
+      const el = document.querySelector(btn.dataset.copyTarget);
+      return el ? (el.value ?? el.textContent ?? '').trim() : '';
+    }
+
+    return '';
+  };
+
+  // Копирование (modern + fallback)
+  const copy = async (text) => {
+    if (!text) throw new Error();
+
+    if (navigator.clipboard?.writeText && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+
+    const ok = document.execCommand('copy');
+    ta.remove();
+
+    if (!ok) throw new Error();
+  };
+
+  // UI состояние
+  const showState = (btn, success) => {
+    const idle = btn.querySelector('[data-copy-idle]');
+    const done = btn.querySelector('[data-copy-success]');
+    const tip  = btn.querySelector('[data-copy-tooltip-el]');
+
+    // переключение контента
+    if (idle && done) {
+      idle.classList.toggle('hidden', success);
+      done.classList.toggle('hidden', !success);
+    }
+
+    // тултип
+    if (tip) {
+      tip.textContent =
+        btn.dataset.copyTooltip ||
+        (success ? 'Скопировано!' : 'Ошибка');
+
+      tip.classList.remove('hidden');
+
+			tip.classList.remove('c-copy-tooltip');
+			void tip.offsetWidth;
+			tip.classList.add('c-copy-tooltip');
+
+      clearTimeout(tip._t);
+      tip._t = setTimeout(() => {
+        tip.classList.add('hidden');
+      }, DURATION);
+    }
+
+    // возврат в idle
+    clearTimeout(btn._t);
+    btn._t = setTimeout(() => {
+      if (idle && done) {
+        idle.classList.remove('hidden');
+        done.classList.add('hidden');
+      }
+    }, DURATION);
+  };
+
+  // Делегирование клика
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('[data-copy]');
+    if (!btn) return;
+
+    e.preventDefault();
+
+    // защита от спама
+    if (btn.dataset.busy) return;
+    btn.dataset.busy = '1';
+
+    try {
+      await copy(getText(btn));
+      showState(btn, true);
+    } catch {
+      showState(btn, false);
+    }
+
+    setTimeout(() => {
+      delete btn.dataset.busy;
+    }, 200);
+  });
+})();
+</script>

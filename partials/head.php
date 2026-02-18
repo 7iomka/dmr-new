@@ -1,3 +1,4 @@
+<?php require 'components/copy-button.php'; ?>
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,6 +31,54 @@
             }
         }
 
+				@layer components {
+					/* общая база для всех карточек */
+					.card,
+					.card-simple {
+						@apply rounded-xl border bg-card border-zinc-200 dark:border-zinc-800 shadow-sm;
+					}
+
+					/* 1) простая карточка */
+					.card-simple {
+						@apply px-4 lg:px-6 py-6;
+					}
+
+					/* 2) карточка со структурой */
+					.card-header {
+						@apply px-4 lg:px-6 py-4 border-b flex items-center justify-between gap-2 flex-wrap
+									bg-zinc-100 dark:bg-[#1E2023]
+									border-zinc-200 dark:border-zinc-800
+									rounded-t-[inherit];
+					}
+
+					/* базовый padding card-body */
+					.card-body {
+						@apply p-4 lg:p-6;
+					}
+
+					/* full-bleed (снимаем паддинги через отрицательные margins) */
+					.card-body-bleed {
+						@apply -m-4 lg:-m-6;
+					}
+					.card-body-bleed-x {
+						@apply -mx-4 lg:-mx-6;
+					}
+					.card-body-bleed-y {
+						@apply -my-4 lg:-my-6;
+					}
+
+					/* inset (возвращаем паддинги обратно внутри bleed-контейнера) */
+					.card-body-inset {
+						@apply p-4 lg:p-6;
+					}
+					.card-body-inset-x {
+						@apply px-4 lg:px-6;
+					}
+					.card-body-inset-y {
+						@apply py-4 lg:py-6;
+					}
+				}
+
     </style>
 
 	<style>
@@ -52,7 +101,8 @@
 
 		/* Custom Scrollbar */
 		::-webkit-scrollbar {
-			width: 6px;
+			width: 3px;
+  		height: 3px;
 		}
 
 		.dark ::-webkit-scrollbar-thumb {
@@ -133,6 +183,9 @@
 			animation: fadeIn 0.5s ease-out forwards;
 		}
 
+		/* Кастомный класс для появления на время тултипа */
+		.c-copy-tooltip { animation: fadeInOut 2s forwards; }
+
 		@keyframes fadeIn {
 			from {
 				opacity: 0;
@@ -143,6 +196,12 @@
 				opacity: 1;
 				transform: translateY(0);
 			}
+		}
+		
+		@keyframes fadeInOut { 
+			0% { opacity: 0; transform: translateY(5px); } 
+			20%, 80% { opacity: 1; transform: translateY(0); } 
+			100% { opacity: 0; transform: translateY(-5px); }
 		}
 	</style>
 </head>

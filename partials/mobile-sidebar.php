@@ -30,7 +30,8 @@
 				<div class="space-y-1">
 					<a href="dashboard.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
-            dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
             ">
 						<div class="flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -47,7 +48,8 @@
 
 					<a href="portfolio.html" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
-            dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
             ">
 						<div class="ml-3 flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -70,7 +72,8 @@
 				<div class="space-y-1">
 					<a href="wallet.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
-            dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
             ">
 						<div class="ml-3 flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -87,7 +90,8 @@
 
 					<a href="withdrawals.html" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
-            dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
             ">
 						<div class="ml-3 flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -103,7 +107,8 @@
 
 					<a href="report.html" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
-            dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
             ">
 						<div class="ml-3 flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -129,7 +134,8 @@
 				<div class="space-y-1">
 					<a href="profile.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
-            dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
             ">
 						<div class="ml-3 flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -143,9 +149,21 @@
 						<span class="ml-3 text-sm font-semibold">Профиль</span>
 					</a>
 
+					<a href="partners.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+              text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
+							dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+              data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+              ">
+							<div class="flex items-center justify-center">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+							</div>
+							<span class="js-sidebar-label text-sm font-semibold">Рефералы</span>
+					</a>
+
 					<a href="settings.html" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
-            dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
+            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
             ">
 						<div class="ml-3 flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
