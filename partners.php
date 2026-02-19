@@ -156,7 +156,7 @@
                                 position: absolute;
                                 top: 0;
                                 bottom: 0;
-                                width: 40px;
+                                width: 70px;
                                 pointer-events: none;
                                 z-index: 20;
                                 transition: opacity 0.3s;
@@ -221,50 +221,84 @@
                             .nav-btn-base:disabled { opacity: 0.3; cursor: not-allowed; filter: grayscale(1); }
                             
                         </style>
+                        <style>
+                            .c-card-details-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease-out, opacity 0.2s ease-out; opacity: 0; overflow: hidden; }
+                            .card-open .c-card-details-wrapper { grid-template-rows: 1fr; opacity: 1; }
+                            .c-card-details-content { min-height: 0; }
+                            .c-card-chevron { transition: transform 0.3s ease; }
+                            .card-open .c-card-chevron { transform: rotate(180deg); }
+                            .c-sortable-th { cursor: pointer; transition: background-color 0.2s, color 0.2s; }
+                            .c-sortable-th:hover { background-color: rgba(0, 176, 116, 0.05); color: #00B074; }
+                            .c-sortable-th:hover .c-sort-icon { opacity: 1; color: #00B074; }
+                            .dark .c-sortable-th:hover { background-color: rgba(255, 255, 255, 0.03); }
+                        </style>
                         <!-- Table Card Section -->
                         <div class="card">
                             <!-- Card Header with Breadcrumbs -->
-                            <div class="card-header">
-                                <!-- Wrapper for the whole breadcrumb bar -->
-                                <div class="flex items-center justify-between gap-2 overflow-hidden h-9 -ml-2 grow">
-                                    
-                                    <!-- Fixed Root Element (Current User) -->
-                                    <div class="flex items-center flex-shrink-0 pr-3 border-r border-zinc-200 dark:border-zinc-700 h-full">
-                                        <button onclick="goToRoot()" id="root-btn" class="flex items-center gap-2 px-2 py-1 rounded-lg transition-all group">
-                                            <i data-lucide="home" id="root-icon" class="w-4 h-4 transition-colors"></i>
-                                            <span id="root-label" class="text-sm transition-colors">Вы</span>
-                                        </button>
-                                    </div>
-
-                                    <!-- Scrollable Path -->
-                                    <div class="breadcrumb-wrapper">
-                                        <div class="mask-left opacity-0" id="m-left">
-                                            <button onclick="scrollBreadcrumbs('left')" class="nav-btn-base nav-btn-style ml-1">
-                                                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                            <div class="card-header !p-0">
+                                <div class="flex flex-col w-full">
+                                    <!-- Line 1: Breadcrumbs -->
+                                    <div class="card-body-inset-x h-14 flex items-center justify-between gap-2 overflow-hidden grow border-b border-zinc-200 dark:border-zinc-800">
+                                        
+                                        <!-- Fixed Root Element (Current User) -->
+                                        <div class="flex items-center flex-shrink-0 pr-3 border-r border-zinc-200 dark:border-zinc-700 h-full">
+                                            <button onclick="goToRoot()" id="root-btn" class="flex items-center gap-2 px-2 py-1 rounded-lg transition-all group">
+                                                <i data-lucide="home" id="root-icon" class="w-4 h-4 transition-colors"></i>
+                                                <span id="root-label" class="text-sm transition-colors">Вы</span>
                                             </button>
                                         </div>
-                                        <div id="breadcrumb-container" class="flex items-center gap-1 overflow-x-auto no-scrollbar text-sm px-4 h-full scroll-smooth">
-                                            <!-- JS fills this -->
+    
+                                        <!-- Scrollable Path -->
+                                        <div class="breadcrumb-wrapper">
+                                            <div class="mask-left opacity-0" id="m-left">
+                                                <button onclick="scrollBreadcrumbs('left')" class="nav-btn-base nav-btn-style ml-1">
+                                                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                                </button>
+                                            </div>
+                                            <div id="breadcrumb-container" class="flex items-center gap-1 overflow-x-auto no-scrollbar text-sm px-4 h-full scroll-smooth">
+                                                <!-- JS fills this -->
+                                            </div>
+                                            <div class="mask-right opacity-0" id="m-right">
+                                                <button onclick="scrollBreadcrumbs('right')" class="nav-btn-base nav-btn-style mr-1">
+                                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="mask-right opacity-0" id="m-right">
-                                            <button onclick="scrollBreadcrumbs('right')" class="nav-btn-base nav-btn-style mr-1">
-                                                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+    
+                                        <!-- Back Action -->
+                                        <div class="flex items-center gap-2 flex-shrink-0 border-l border-zinc-200 dark:border-zinc-700 pl-3 h-full">
+                                            <button id="back-btn" onclick="goBack()" class="nav-btn-base nav-btn-style">
+                                                <i data-lucide="arrow-left" class="w-4 h-4"></i>
                                             </button>
                                         </div>
                                     </div>
-
-                                    <!-- Back Action -->
-                                    <div class="flex items-center gap-2 flex-shrink-0 border-l border-zinc-200 dark:border-zinc-700 pl-3 h-full">
-                                        <button id="back-btn" onclick="goBack()" class="nav-btn-base nav-btn-style">
-                                            <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                                        </button>
+    
+                                    <!-- Line 2: Search & Pagination -->
+                                    <div class="card-body-inset-x py-3 bg-zinc-50/50 dark:bg-white/[0.02] flex flex-col md:flex-row items-center justify-between gap-4">
+                                        <!-- Search -->
+                                        <div class="relative w-full md:w-72">
+                                            <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"></i>
+                                            <input type="text" placeholder="Поиск по логину..." class="w-full h-9 pl-9 pr-4 bg-white dark:bg-[#27272a] border border-zinc-200 dark:border-zinc-700 rounded-lg text-xs font-medium focus:outline-none focus:ring-1 focus:ring-accent/50 transition-all placeholder:text-zinc-500">
+                                        </div>
+                                        
+                                        <!-- Top Pagination (Compact) -->
+                                        <div class="flex items-center gap-3">
+                                            <p class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest hidden sm:block">Страница 1 из 5</p>
+                                            <div class="flex items-center gap-1">
+                                                <button class="nav-btn-base"><i data-lucide="chevron-left" class="w-3.5 h-3.5"></i></button>
+                                                <button class="nav-btn-base !bg-accent !text-white !border-none text-[10px] font-bold">1</button>
+                                                <button class="nav-btn-base text-[10px] font-bold">2</button>
+                                                <button class="nav-btn-base"><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card Body with Table -->
                             <div class="card-body !p-0">
-                                <div class="overflow-x-auto">
+                                <!-- Desktop Table -->
+                                <div class="hidden lg:block overflow-x-auto"">
                                     <table class="w-full text-left border-collapse min-w-[1000px] text-zinc-500 dark:text-zinc-400">
                                         <thead>
                                             <tr class="bg-zinc-50/50 dark:bg-[#1E2023]/50 border-b border-zinc-200 dark:border-zinc-800">
@@ -278,49 +312,33 @@
                                                 <th class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest text-right">Действия</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="table-body" class="divide-y divide-zinc-100 dark:divide-zinc-800/50 text-xs">
+                                        <tbody id="table-body-desktop" class="divide-y divide-zinc-100 dark:divide-zinc-800/50 text-xs">
                                             <!-- JS fills this -->
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                                <!-- Mobile Cards -->
+                                <div id="table-body-mobile" class="lg:hidden divide-y divide-zinc-100 dark:divide-zinc-800/50"></div>
 
-
-                    </div>
-
-                    <!-- Navigation / Tabs -->
-                    <div class="mt-8">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-200 dark:border-zinc-800 pb-1">
-                            <nav class="flex overflow-x-auto no-scrollbar gap-6">
-                                <button class="group relative pb-3 text-sm font-medium text-accent outline-none">
-                                    <span class="flex items-center gap-2">Уровень 1 <span class="bg-accent/10 text-accent text-[10px] px-1.5 py-0.5 rounded-md">8</span></span>
-                                    <span class="absolute bottom-0 left-0 h-0.5 w-full bg-accent"></span>
-                                </button>
-                                <button class="group relative pb-3 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 outline-none transition-colors">
-                                    <span class="flex items-center gap-2">Уровень 2 <span class="bg-zinc-100 dark:bg-zinc-800 text-zinc-500 text-[10px] px-1.5 py-0.5 rounded-md">3</span></span>
-                                    <span class="absolute bottom-0 left-0 h-0.5 w-full bg-transparent group-hover:bg-zinc-300 dark:group-hover:bg-zinc-700 transition-colors"></span>
-                                </button>
-                                <button class="group relative pb-3 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 outline-none transition-colors">
-                                    <span class="flex items-center gap-2">Уровень 3 <span class="bg-zinc-100 dark:bg-zinc-800 text-zinc-500 text-[10px] px-1.5 py-0.5 rounded-md">1</span></span>
-                                    <span class="absolute bottom-0 left-0 h-0.5 w-full bg-transparent group-hover:bg-zinc-300 dark:group-hover:bg-zinc-700 transition-colors"></span>
-                                </button>
-                            </nav>
-                            <div class="flex items-center gap-2 pb-2">
-                                <div class="relative">
-                                    <i data-lucide="search" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-500"></i>
-                                    <input type="text" placeholder="Поиск партнера..." class="pl-8 pr-3 py-1.5 text-xs rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 focus:outline-none focus:border-accent w-full sm:w-48">
+                                <!-- Bottom Pagination -->
+                                <div class="card-body-inset-x py-5 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                    <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Показано 1-5 из 42 партнеров</p>
+                                    <div class="flex items-center gap-2">
+                                        <button class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+                                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                        </button>
+                                        <button class="w-8 h-8 flex items-center justify-center rounded bg-accent text-white text-[10px] font-bold shadow-sm shadow-accent/20">1</button>
+                                        <button class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors cursor-pointer">2</button>
+                                        <button class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors cursor-pointer">3</button>
+                                        <button class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+                                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                                <button class="p-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500">
-                                    <i data-lucide="filter" class="w-3.5 h-3.5"></i>
-                                </button>
                             </div>
                         </div>
-                        <div class="mt-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#14171A] min-h-[200px] flex items-center justify-center text-zinc-400 text-sm border-dashed">
-                            Здесь будет ваша таблица уровней
-                        </div>
                     </div>
+
 				</div>
 			</main>
 		</div>
@@ -334,284 +352,219 @@
 
 	<?php include __DIR__ . '/partials/scripts.php'; ?>
 
-    <script>
-        // Init state
-        let currentPath = []; 
+<script>
+let currentPath = [];
 
-        // --- Logic: Colors & Contrast ---
+// AAA Color Logic
+function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : null;
+}
+function getLuminance(r, g, b) {
+    const a = [r, g, b].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+}
+function getContrastRatio(l1, l2) { return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05); }
+function hslToHex(h, s, l) {
+    l /= 100; const a = s * Math.min(l, 1 - l) / 100;
+    const f = n => {
+        const k = (n + h / 30) % 12;
+        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
+    };
+    return `#${f(0)}${f(8)}${f(4)}`;
+}
 
-        function hexToRgb(hex) {
-            const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-            hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : null;
-        }
+function getAaaStyle(levelIndex) {
+    const hue = (140 - (levelIndex % 23 * (360 / 23)) + 360) % 360;
+    let currentL = 50;
+    const whiteLum = getLuminance(255, 255, 255);
+    const blackLum = getLuminance(0, 0, 0);
+    
+    let hex = hslToHex(hue, 80, currentL);
+    let lum = getLuminance(...Object.values(hexToRgb(hex)));
+    
+    if (getContrastRatio(lum, whiteLum) >= 4.5) return { bg: hex, text: 'white' };
+    if (getContrastRatio(lum, blackLum) >= 4.5) return { bg: hex, text: 'black' };
+    return { bg: '#00B074', text: 'white' };
+}
 
-        function getLuminance(r, g, b) {
-            const a = [r, g, b].map(v => {
-                v /= 255;
-                return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-            });
-            return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
-        }
+function toggleTheme() { document.documentElement.classList.toggle('dark'); }
+function toggleCard(el) { el.classList.toggle('card-open'); }
 
-        function getContrastRatio(l1, l2) {
-            return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
-        }
+function renderUI(shouldScrollToHeader = false) {
+    renderBreadcrumbs();
+    renderContent();
+    lucide.createIcons();
+    updateScrollMasks();
+    scrollToEnd();
+    if (shouldScrollToHeader) checkAndScrollToTop();
+}
 
-        function hslToHex(h, s, l) {
-            l /= 100;
-            const a = s * Math.min(l, 1 - l) / 100;
-            const f = n => {
-                const k = (n + h / 30) % 12;
-                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-                return Math.round(255 * color).toString(16).padStart(2, '0');
-            };
-            return `#${f(0)}${f(8)}${f(4)}`;
-        }
+function checkAndScrollToTop() {
+    const header = document.getElementById('card-header-anchor');
+    if (!header) return;
+    const rect = header.getBoundingClientRect();
+    if (rect.top < 20) header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
-        function getAaaStyle(levelIndex) {
-            const cycleIndex = levelIndex % 23;
-            // Радуга начиная с зеленого и назад
-            const hue = (140 - (cycleIndex * (360 / 23)) + 360) % 360;
-            let lightness = 50;
-            
-            const findBestStyle = (h, s, l) => {
-                let currentL = l;
-                const whiteLum = getLuminance(255, 255, 255);
-                const blackLum = getLuminance(0, 0, 0);
-                
-                let check = () => {
-                    let hex = hslToHex(h, s, currentL);
-                    let lum = getLuminance(...Object.values(hexToRgb(hex)));
-                    return { hex, lum, ratioWhite: getContrastRatio(lum, whiteLum), ratioBlack: getContrastRatio(lum, blackLum) };
-                };
+function scrollToEnd() {
+    const container = document.getElementById('breadcrumb-container');
+    setTimeout(() => { if(container) container.scrollLeft = container.scrollWidth; }, 50);
+}
 
-                let res = check();
-                if (res.ratioWhite >= 7) return { bg: res.hex, text: 'white' };
-                if (res.ratioBlack >= 7) return { bg: res.hex, text: 'black' };
+function renderBreadcrumbs() {
+    const container = document.getElementById('breadcrumb-container');
+    const rootLabel = document.getElementById('root-label');
+    const rootIcon = document.getElementById('root-icon');
+    
+    if (currentPath.length === 0) {
+        rootLabel.className = "text-sm font-bold text-zinc-900 dark:text-white";
+        rootIcon.className = "w-4 h-4 text-accent";
+    } else {
+        rootLabel.className = "text-sm font-medium text-zinc-500 dark:text-zinc-400";
+        rootIcon.className = "w-4 h-4 text-zinc-400";
+    }
 
-                if (res.ratioWhite > res.ratioBlack) {
-                    while(currentL > 5 && getContrastRatio(getLuminance(...Object.values(hexToRgb(hslToHex(h, s, currentL)))), whiteLum) < 7) currentL -= 2;
-                    return { bg: hslToHex(h, s, currentL), text: 'white' };
-                } else {
-                    while(currentL < 95 && getContrastRatio(getLuminance(...Object.values(hexToRgb(hslToHex(h, s, currentL)))), blackLum) < 7) currentL += 2;
-                    return { bg: hslToHex(h, s, currentL), text: 'black' };
-                }
-            };
+    let html = '';
+    currentPath.forEach((step, index) => {
+        const style = getAaaStyle(step.level - 1);
+        const isLast = index === currentPath.length - 1;
+        html += `
+            <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-300 dark:text-zinc-700 mx-1 flex-shrink-0"></i>
+            <button onclick="goToLevel(${index})" class="flex items-center gap-1.5 whitespace-nowrap py-1 px-1.5 rounded-lg transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 group ${isLast ? 'cursor-default' : ''}">
+                <span class="text-[10px] px-1.5 py-0.5 rounded font-bold" style="background:${style.bg}; color:${style.text}">L${step.level}</span>
+                <span class="font-medium ${isLast ? 'text-zinc-900 dark:text-white font-bold' : 'text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white'}">${step.name}</span>
+            </button>
+        `;
+    });
+    container.innerHTML = html;
+    document.getElementById('back-btn').disabled = currentPath.length === 0;
+}
 
-            return findBestStyle(hue, 80, lightness);
-        }
+function renderContent() {
+    const desktopBody = document.getElementById('table-body-desktop');
+    const mobileBody = document.getElementById('table-body-mobile');
+    const nextLvl = currentPath.length + 1;
+    const style = getAaaStyle(nextLvl - 1);
+    let dHtml = '';
+    let mHtml = '';
 
-        // --- UI Rendering ---
+    for (let i = 1; i <= 5; i++) {
+        const login = `user_lvl${nextLvl}_id${i}`;
+        const hasRef = i < 4;
+        const refCount = hasRef ? (10 - i) : 0;
 
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-        }
-
-        function scrollBreadcrumbs(direction) {
-            const container = document.getElementById('breadcrumb-container');
-            const offset = 200;
-            if (direction === 'left') {
-                container.scrollLeft -= offset;
-            } else {
-                container.scrollLeft += offset;
-            }
-        }
-
-        function updateScrollMasks() {
-            const container = document.getElementById('breadcrumb-container');
-            const mLeft = document.getElementById('m-left');
-            const mRight = document.getElementById('m-right');
-            
-            if (!container) return;
-            
-            const scrollLeft = container.scrollLeft;
-            const scrollWidth = container.scrollWidth;
-            const clientWidth = container.clientWidth;
-
-            mLeft.style.opacity = scrollLeft > 10 ? "1" : "0";
-            mRight.style.opacity = (scrollLeft + clientWidth < scrollWidth - 10) ? "1" : "0";
-            
-            mLeft.style.pointerEvents = scrollLeft > 10 ? "auto" : "none";
-            mRight.style.pointerEvents = (scrollLeft + clientWidth < scrollWidth - 10) ? "auto" : "none";
-        }
-
-        function renderUI() {
-            renderBreadcrumbs();
-            renderTable();
-            updateBackButton();
-            lucide.createIcons();
-            
-            const container = document.getElementById('breadcrumb-container');
-            setTimeout(() => {
-                container.scrollLeft = container.scrollWidth;
-                updateScrollMasks();
-            }, 50);
-        }
-
-        function updateBackButton() {
-            const backBtn = document.getElementById('back-btn');
-            if (currentPath.length === 0) {
-                backBtn.disabled = true;
-            } else {
-                backBtn.disabled = false;
-            }
-        }
-
-        function goToLevel(index) {
-            currentPath = currentPath.slice(0, index + 1);
-            renderUI();
-        }
-
-        function renderBreadcrumbs() {
-            const container = document.getElementById('breadcrumb-container');
-            const rootBtn = document.getElementById('root-btn');
-            const rootLabel = document.getElementById('root-label');
-            const rootIcon = document.getElementById('root-icon');
-            let html = '';
-
-            if (currentPath.length === 0) {
-                rootLabel.className = "text-sm font-bold text-zinc-900 dark:text-white";
-                rootIcon.className = "w-4 h-4 text-accent";
-                rootBtn.onclick = null;
-                rootBtn.style.cursor = "default";
-                rootBtn.className = "flex items-center gap-2 px-2 py-1 rounded-lg transition-all";
-            } else {
-                rootLabel.className = "text-sm font-medium text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white";
-                rootIcon.className = "w-4 h-4 text-zinc-400 group-hover:text-accent";
-                rootBtn.onclick = goToRoot;
-                rootBtn.style.cursor = "pointer";
-                rootBtn.className = "flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all group";
-            }
-
-            currentPath.forEach((step, index) => {
-                const isLast = index === currentPath.length - 1;
-                const style = getAaaStyle(step.level - 1);
-                
-                html += `
-                    <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-300 dark:text-zinc-700 flex-shrink-0 mx-1"></i>
-                    <button 
-                        ${isLast ? '' : `onclick="goToLevel(${index})"`} 
-                        class="flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 py-1 px-1.5 rounded-lg transition-colors 
-                               ${isLast ? 'cursor-default' : 'hover:bg-zinc-100 dark:hover:bg-zinc-800 group'}"
-                    >
-                        <span class="level-badge text-[10px] px-1.5 py-0.5 rounded shadow-sm" 
-                              style="background-color: ${style.bg}; color: ${style.text}">L${step.level}</span>
-                        <span class="${isLast ? 'text-zinc-900 dark:text-white font-bold' : 'text-zinc-500 dark:text-zinc-400 font-medium group-hover:text-zinc-900 dark:group-hover:text-white'}">
-                            ${step.name}
+        // Row style: hover:bg-zinc-50 dark:hover:bg-white/[0.02]
+        // Cell style: card-body-inset-x py-5
+        dHtml += `
+            <tr class="hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors">
+                <td class="card-body-inset-x py-5">
+                    <div class="flex items-center gap-3">
+                        <span class="level-badge text-[10px] px-2 py-0.5 rounded shadow-sm" 
+                                style="background-color: ${style.bg}; color: ${style.text}">L${nextLvl}</span>
+                        <span class="text-zinc-900 dark:text-white font-bold">${login}</span>
+                    </div>
+                </td>
+                <td class="card-body-inset-x py-5 text-zinc-400 italic">User Name</td>
+                <td class="card-body-inset-x py-5 text-zinc-500 text-xs font-semibold">${login}@test.pro</td>
+                <td class="card-body-inset-x py-5 text-center">
+                    ${refCount === 0 ? 
+                        `<span class="text-zinc-300 dark:text-zinc-600 px-3 font-medium">—</span>` :
+                        `<span class="inline-flex items-center justify-center min-w-[28px] px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm border border-accent/50 bg-accent-light text-accent">
+                            ${refCount}
+                        </span>`
+                    }
+                </td>
+                <td class="card-body-inset-x py-5 text-center">
+                    ${hasRef ? `
+                        <span class="inline-flex items-center justify-center min-w-[60px] px-2.5 py-0.5 rounded-md text-[10px] font-bold shadow-sm border border-accent/50 bg-accent-light text-accent">
+                            ACTIVE
                         </span>
-                    </button>
-                `;
-            });
+                    ` : `
+                        <span class="inline-flex items-center justify-center min-w-[60px] px-2.5 py-0.5 rounded-md text-[10px] font-bold shadow-sm border border-[var(--color-amber-400-50)] bg-[var(--color-amber-400-10)] text-amber-600 dark:text-amber-400">
+                            PENDING
+                        </span>
+                    `}
+                </td>
+                <td class="card-body-inset-x py-5 font-mono text-xs font-bold text-zinc-400">ID-${nextLvl}${i}</td>
+                <td class="card-body-inset-x py-5 text-zinc-500 text-[11px] font-medium">18.02.26</td>
+                <td class="card-body-inset-x py-5 text-right">
+                    ${hasRef ? `
+                        <button onclick="goDeeper('${login}', ${nextLvl})" 
+                                class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-accent hover:text-white transition-all active:scale-90 shadow-sm cursor-pointer">
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    ` : '<span class="text-zinc-300 dark:text-zinc-600 px-3">—</span>'}
+                </td>
+            </tr>
+            `;
 
-            container.innerHTML = html;
-        }
-
-        function renderTable() {
-            const body = document.getElementById('table-body');
-            const nextLevel = currentPath.length + 1;
-            
-            let html = '';
-            for (let i = 1; i <= 3; i++) {
-                const style = getAaaStyle(nextLevel - 1);
-                
-                const refCount = (i === 3) ? 0 : (5 + i); 
-                const hasRef = refCount > 0;
-                const login = `user_l${nextLevel}_id${i}`;
-
-                // Row style: hover:bg-zinc-50 dark:hover:bg-white/[0.02]
-                // Cell style: card-body-inset-x py-5
-                html += `
-                    <tr class="hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors">
-                        <td class="card-body-inset-x py-5">
-                            <div class="flex items-center gap-3">
-                                <span class="level-badge text-[10px] px-2 py-0.5 rounded shadow-sm" 
-                                      style="background-color: ${style.bg}; color: ${style.text}">L${nextLevel}</span>
-                                <span class="text-zinc-900 dark:text-white font-bold">${login}</span>
+        mHtml += `
+            <div class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
+                <div class="p-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center font-black text-xs shadow-inner" style="background:${style.bg}; color:${style.text}">L${nextLvl}</div>
+                        <div class="min-w-0">
+                            <p class="text-[13px] font-bold dark:text-white uppercase tracking-tight truncate">${login}</p>
+                            <p class="text-[10px] text-zinc-500 font-medium">Рефералов: ${refCount}</p>
+                        </div>
+                    </div>
+                    <div class="text-right pl-3">
+                        <span class="px-2 py-0.5 bg-accent/10 text-accent text-[8px] font-bold uppercase rounded">ACTIVE</span>
+                        <div class="flex items-center justify-end text-[9px] text-zinc-400 uppercase font-bold tracking-tighter mt-1">
+                            <span>Детали</span><i data-lucide="chevron-down" class="w-3 h-3 ml-1 c-card-chevron"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="c-card-details-wrapper">
+                    <div class="c-card-details-content">
+                        <div class="px-4 pb-4 pt-0">
+                            <div class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
+                                <div class="flex justify-between items-center text-[10px] font-bold">
+                                    <span class="uppercase text-zinc-500 tracking-wider">Email:</span>
+                                    <span class="text-zinc-400 font-medium">${login}@test.pro</span>
+                                </div>
+                                <div class="flex justify-between items-center text-[10px] font-bold">
+                                    <span class="uppercase text-zinc-500 tracking-wider">Регистрация:</span>
+                                    <span class="text-zinc-400 font-medium">18.02.2026</span>
+                                </div>
+                                ${hasRef ? `<div class="pt-2 border-t border-zinc-200 dark:border-zinc-800/80"><button onclick="event.stopPropagation(); goDeeper('${login}', ${nextLvl})" class="w-full py-2 flex items-center justify-center gap-2 border border-accent/30 bg-accent/5 text-accent rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-accent/10 transition-colors"><span>Открыть структуру</span><i data-lucide="arrow-right-circle" class="w-3.5 h-3.5"></i></button></div>` : ''}
                             </div>
-                        </td>
-                        <td class="card-body-inset-x py-5 text-zinc-400 italic">User Name</td>
-                        <td class="card-body-inset-x py-5 text-zinc-500 text-xs font-semibold">${login}@test.pro</td>
-                        <td class="card-body-inset-x py-5 text-center">
-                            ${refCount === 0 ? 
-                                `<span class="text-zinc-300 dark:text-zinc-600 px-3 font-medium">—</span>` :
-                                `<span class="inline-flex items-center justify-center min-w-[28px] px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm border border-accent/50 bg-accent-light text-accent">
-                                    ${refCount}
-                                </span>`
-                            }
-                        </td>
-                        <td class="card-body-inset-x py-5 text-center">
-                            ${hasRef ? `
-                                <span class="inline-flex items-center justify-center min-w-[60px] px-2.5 py-0.5 rounded-md text-[10px] font-bold shadow-sm border border-accent/50 bg-accent-light text-accent">
-                                    ACTIVE
-                                </span>
-                            ` : `
-                                <span class="inline-flex items-center justify-center min-w-[60px] px-2.5 py-0.5 rounded-md text-[10px] font-bold shadow-sm border border-[var(--color-amber-400-50)] bg-[var(--color-amber-400-10)] text-amber-600 dark:text-amber-400">
-                                    PENDING
-                                </span>
-                            `}
-                        </td>
-                        <td class="card-body-inset-x py-5 font-mono text-xs font-bold text-zinc-400">ID-${nextLevel}${i}</td>
-                        <td class="card-body-inset-x py-5 text-zinc-500 text-[11px] font-medium">18.02.26</td>
-                        <td class="card-body-inset-x py-5 text-right">
-                            ${hasRef ? `
-                                <button onclick="goDeeper('${login}', ${nextLevel})" 
-                                        class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-accent hover:text-white transition-all active:scale-90 shadow-sm cursor-pointer">
-                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                                </button>
-                            ` : '<span class="text-zinc-300 dark:text-zinc-600 px-3">—</span>'}
-                        </td>
-                    </tr>
-                `;
-            }
-            body.innerHTML = html;
-        }
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    }
+    desktopBody.innerHTML = dHtml;
+    mobileBody.innerHTML = mHtml;
+}
 
-        function goDeeper(name, level) {
-            currentPath.push({ name, level });
-            renderUI();
-        }
+function goDeeper(name, level) { currentPath.push({ name, level }); renderUI(true); }
+function goBack() { currentPath.pop(); renderUI(true); }
+function goToRoot() { currentPath = []; renderUI(true); }
+function goToLevel(idx) { currentPath = currentPath.slice(0, idx + 1); renderUI(true); }
 
-        function goBack() {
-            if (currentPath.length === 0) return;
-            currentPath.pop();
-            renderUI();
-        }
+function scrollBreadcrumbs(dir) {
+    const c = document.getElementById('breadcrumb-container');
+    if(c) c.scrollLeft += (dir === 'left' ? -150 : 150);
+}
 
-        function goToRoot() {
-            currentPath = [];
-            renderUI();
-        }
+function updateScrollMasks() {
+    const c = document.getElementById('breadcrumb-container');
+    if (!c) return;
+    document.getElementById('m-left').style.opacity = c.scrollLeft > 10 ? "1" : "0";
+    document.getElementById('m-right').style.opacity = (c.scrollLeft + c.clientWidth < c.scrollWidth - 10) ? "1" : "0";
+}
 
-        function copyToClipboard(btnElement, text) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-999999px";
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                const icon = btnElement.querySelector('svg');
-                const originalHTML = icon.innerHTML;
-                icon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
-                btnElement.classList.add('text-green-500');
-                setTimeout(() => {
-                    icon.innerHTML = originalHTML;
-                    btnElement.classList.remove('text-green-500');
-                    lucide.createIcons();
-                }, 2000);
-            } catch (err) {}
-            document.body.removeChild(textArea);
-        }
+window.onload = () => {
+    renderUI();
+    const container = document.getElementById('breadcrumb-container');
+    if(container) container.addEventListener('scroll', updateScrollMasks);
+};
 
-        window.onload = () => {
-            renderUI();
-            document.getElementById('breadcrumb-container').addEventListener('scroll', updateScrollMasks);
-            window.addEventListener('resize', updateScrollMasks);
-        };
-    </script>
+</script>
+
 </body>
 
 </html>
