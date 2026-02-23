@@ -41,11 +41,24 @@
                     </svg>
                   </a>
                 </div>
-                <div class="flex-1 flex flex-col justify-center">
+                <div class="flex-1 flex flex-col justify-center items-start gap-4">
                   <h3
                     class="text-3xl xl:text-4xl font-bold tracking-tighter text-zinc-900 dark:text-white whitespace-nowrap">
                     $ 12,450,000.80
                   </h3>
+                  <div>
+                    <a href="deposit.php"
+                      class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-[#009663] text-white text-[11px] font-bold rounded-lg transition-all shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        data-lucide="plus-circle" aria-hidden="true" class="lucide lucide-plus-circle w-4 h-4">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M8 12h8"></path>
+                        <path d="M12 8v8"></path>
+                      </svg>
+                      <span>Пополнить</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -70,24 +83,43 @@
                   </a>
                 </div>
 
-                <div class="space-y-2">
-                  <p class="text-[9px] font-bold uppercase tracking-[1px] text-zinc-400 px-1">Ваша
-                    пригласительная
-                    ссылка</p>
+                <div class="space-y-3">
+                  <div class="group relative">
+                    <label class="text-[10px] font-bold text-zinc-500 uppercase mb-1 block">Ваша
+                      ссылка (платформа)</label>
+                    <div
+                      class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-accent transition-colors">
+                      <div id="ref-link"
+                        class="pl-3 pr-2 py-2 truncate text-xs font-mono text-zinc-600 dark:text-zinc-300 w-full select-all">
+                        https://invest.awsarhitect.me/?ref=A7CA9B55</div>
+                      <?= copyButton([
+                        'text' => 'https://invest.awsarhitect.me/?ref=A7CA9B55',
+                    ]) ?>
+                    </div>
+                  </div>
+                  <div class="group relative">
+                    <label class="text-[10px] font-bold text-zinc-500 uppercase mb-1 block">Ваша
+                      ссылка (продукт)</label>
+                    <div
+                      class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-accent transition-colors">
+                      <div id="ref-link"
+                        class="pl-3 pr-2 py-2 truncate text-xs font-mono text-zinc-600 dark:text-zinc-300 w-full select-all">
+                        https://awsarhitect.me/?ref=A7CA9B55</div>
+                      <?= copyButton([
+                        'text' => 'https://awsarhitect.me/?ref=A7CA9B55',
+                    ]) ?>
+                    </div>
+                  </div>
                   <div
-                    class="flex items-center bg-zinc-50 dark:bg-[#0B0E11] rounded-lg px-3 py-2.5 sm:px-4 sm:py-3 border border-zinc-200 dark:border-zinc-800 mt-4">
-                    <span
-                      class="text-[11px] sm:text-xs font-bold truncate flex-1 opacity-70 tracking-tight text-zinc-600 dark:text-zinc-400">skillcode.io/ref=dw882194</span>
-                    <button onclick="copyToClipboard('skillcode.io/ref=dw88')"
-                      class="ml-2 p-1.5 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md text-zinc-400 hover:text-accent transition-colors">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        data-lucide="copy" aria-hidden="true" class="lucide lucide-copy w-3.5 h-3.5">
-                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
-                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2">
-                        </path>
-                      </svg>
-                    </button>
+                    class="flex justify-between items-center bg-zinc-50 dark:bg-zinc-950/30 rounded-lg px-3 py-2.5 border border-zinc-200 dark:border-zinc-800">
+                    <span class="text-[10px] font-bold text-zinc-500 uppercase">Код:</span>
+                    <div class="flex items-center gap-3">
+                      <span class="font-mono font-bold text-accent text-sm tracking-wider">A7CA9B55</span>
+                      <?= copyButton([
+                        'text' => 'A7CA9B55',
+                        'classOverride' => 'relative text-zinc-400 hover:text-zinc-600 dark:hover:text-white transition-colors',
+                    ]) ?>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -542,6 +574,7 @@
   <?php include __DIR__ . '/partials/mobile-sidebar.php'; ?>
   <?php include __DIR__ . '/partials/mobile-user-drawer.php'; ?>
   <?php include __DIR__ . '/partials/mobile-bottom-nav.php'; ?>
+  <?php include __DIR__ . '/partials/overlays.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
 </body>
 

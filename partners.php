@@ -109,25 +109,37 @@
                 class="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl">
               </div>
 
-              <div class="flex-col h-full justify-between relative z-10">
+              <div class="flex-col gap-4 h-full justify-between relative z-10">
                 <div>
                   <h3 class="font-bold text-lg">Приглашайте друзей</h3>
-                  <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1 mb-4">Получайте бонусы за
+                  <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Получайте бонусы за
                     каждого активного партнера.</p>
                 </div>
-
                 <div class="space-y-3">
                   <div class="group relative">
                     <label class="text-[10px] font-bold text-zinc-500 uppercase mb-1 block">Ваша
-                      ссылка</label>
+                      ссылка (платформа)</label>
                     <div
                       class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-accent transition-colors">
                       <div id="ref-link"
                         class="pl-3 pr-2 py-2 truncate text-xs font-mono text-zinc-600 dark:text-zinc-300 w-full select-all">
-                        https://invest.awsarhitect.me/register?ref=A7CA9B55</div>
+                        https://invest.awsarhitect.me/?ref=A7CA9B55</div>
                       <?= copyButton([
-                          'text' => 'https://invest.awsarhitect.me/register?ref=A7CA9B55',
-                      ]) ?>
+                        'text' => 'https://invest.awsarhitect.me/?ref=A7CA9B55',
+                    ]) ?>
+                    </div>
+                  </div>
+                  <div class="group relative">
+                    <label class="text-[10px] font-bold text-zinc-500 uppercase mb-1 block">Ваша
+                      ссылка (продукт)</label>
+                    <div
+                      class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-accent transition-colors">
+                      <div id="ref-link"
+                        class="pl-3 pr-2 py-2 truncate text-xs font-mono text-zinc-600 dark:text-zinc-300 w-full select-all">
+                        https://awsarhitect.me/?ref=A7CA9B55</div>
+                      <?= copyButton([
+                        'text' => 'https://awsarhitect.me/?ref=A7CA9B55',
+                    ]) ?>
                     </div>
                   </div>
                   <div
@@ -136,9 +148,9 @@
                     <div class="flex items-center gap-3">
                       <span class="font-mono font-bold text-accent text-sm tracking-wider">A7CA9B55</span>
                       <?= copyButton([
-                          'text' => 'A7CA9B55',
-                          'classOverride' => 'relative text-zinc-400 hover:text-zinc-600 dark:hover:text-white transition-colors',
-                      ]) ?>
+                        'text' => 'A7CA9B55',
+                        'classOverride' => 'relative text-zinc-400 hover:text-zinc-600 dark:hover:text-white transition-colors',
+                    ]) ?>
                     </div>
                   </div>
                 </div>
@@ -447,6 +459,7 @@
   <?php include __DIR__ . '/partials/mobile-bottom-nav.php'; ?>
 
 
+  <?php include __DIR__ . '/partials/overlays.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
 
   <script>

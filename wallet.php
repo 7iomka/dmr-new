@@ -61,7 +61,7 @@
                     class="text-md font-bold text-zinc-900 dark:text-zinc-300">$ 120,000.00</span></div>
               </div>
               <div class="grid grid-cols-2 sm:flex flex-wrap gap-3">
-                <button
+                <a href="deposit.php"
                   class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-[#009663] text-white text-[11px] font-bold rounded-lg transition-all shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -71,7 +71,7 @@
                     <path d="M12 8v8"></path>
                   </svg>
                   <span>Пополнить</span>
-                </button>
+                </a>
 
                 <button
                   class="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest">
@@ -874,6 +874,7 @@
     cardEl.classList.toggle('card-open');
   }
   </script>
+  <?php include __DIR__ . '/partials/overlays.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
 </body>
 

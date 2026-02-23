@@ -160,6 +160,7 @@
   <?php include __DIR__ . '/partials/mobile-sidebar.php'; ?>
   <?php include __DIR__ . '/partials/mobile-user-drawer.php'; ?>
   <?php include __DIR__ . '/partials/mobile-bottom-nav.php'; ?>
+  <?php include __DIR__ . '/partials/overlays.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
 </body>
 

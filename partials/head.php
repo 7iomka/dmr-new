@@ -176,12 +176,37 @@
   .overlay {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 220ms cubic-bezier(0.2, 0, 0, 1);
+    will-change: opacity;
   }
 
   .overlay.active {
     opacity: 1;
     pointer-events: auto;
+  }
+
+  /* Красивый фон + виньетка */
+  .overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(1200px 600px at 50% 30%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.55) 100%),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.60));
+  }
+
+  .dark .overlay::before {
+    background:
+      radial-gradient(1200px 600px at 50% 30%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.52) 55%, rgba(0, 0, 0, 0.72) 100%),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.78));
+  }
+
+  /* Лёгкий “glass” эффект (работает там, где поддерживается) */
+  @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .overlay {
+      -webkit-backdrop-filter: blur(2px) saturate(140%);
+      backdrop-filter: blur(2px) saturate(140%);
+    }
   }
 
   #user-swipe-handle {
