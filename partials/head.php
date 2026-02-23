@@ -26,6 +26,10 @@
         }
 
         @layer base {
+
+          body {
+            @apply bg-[#f8f7f5] text-[#1A1D1F] dark:bg-[#0B0E11] dark:text-[#E4E6EB] min-h-screen;
+          }
             button:not(:disabled),
             [role="button"]:not(:disabled) {
                 cursor: pointer;
@@ -66,7 +70,7 @@
 					/* 2) карточка со структурой */
 					.card-header {
 						@apply px-4 lg:px-6 py-4 border-b flex items-center justify-between gap-2 flex-wrap
-									bg-zinc-100 dark:bg-[#1E2023]
+									bg-white dark:bg-[#1E2023]
 									border-zinc-200 dark:border-zinc-800
 									rounded-t-[inherit];
 					}

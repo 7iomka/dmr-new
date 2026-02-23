@@ -3,7 +3,7 @@
 
 <?php include __DIR__ . '/partials/head.php'; ?>
 
-<body class="bg-zinc-50 text-[#1A1D1F] dark:bg-[#0B0E11] dark:text-[#E4E6EB] min-h-screen">
+<body>
   <div id="app" class="flex overflow-hidden min-h-screen">
 
     <?php include __DIR__ . '/partials/desktop-sidebar.php'; ?>

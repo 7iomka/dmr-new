@@ -3,7 +3,7 @@
 
 <?php include __DIR__ . '/partials/head.php'; ?>
 
-<body class="bg-zinc-50 text-[#1A1D1F] dark:bg-[#0B0E11] dark:text-[#E4E6EB] min-h-screen">
+<body>
   <div id="app" class="flex overflow-hidden min-h-screen">
     <?php include __DIR__ . '/partials/desktop-sidebar.php'; ?>
 
@@ -20,9 +20,9 @@
               </div>
 
               <div
-                class="rounded-xl border border-red-300/80 bg-red-100/80 dark:bg-red-500/10 dark:border-red-500/50 px-4 py-4">
+                class="rounded-lg border border-red-300/80 bg-red-100/80 dark:bg-red-500/10 dark:border-red-500/50 px-4 py-4">
                 <div class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-red-700 dark:text-red-400 mt-0.5" xmlns="http://www.w3.org/2000/svg"
+                  <svg class="shrink-0 w-5 h-5 text-red-700 dark:text-red-400 mt-0.5" xmlns="http://www.w3.org/2000/svg"
                     width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path
@@ -32,34 +32,52 @@
                     <line x1="12" x2="12.01" y1="17" y2="17"></line>
                   </svg>
                   <div>
-                    <p class="text-2xl font-extrabold text-red-900 dark:text-red-300">Вывод заблокирован</p>
+                    <p class="text-2xl font-extrabold text-red-900 dark:text-red-300 leading-none">Вывод заблокирован
+                    </p>
                     <p class="text-sm text-red-800/90 dark:text-red-200/90 mt-1">Недостаточный реферальный баланс. Для
                       вывода средств вам нужны реферальные доходы.</p>
                   </div>
                 </div>
               </div>
 
+              <!-- currentStep: 1..3 -->
               <div class="px-2">
-                <div class="grid grid-cols-3 text-center gap-3 text-zinc-500 text-xs sm:text-sm">
-                  <div class="relative">
-                    <div class="absolute left-1/2 top-4 w-full h-px bg-zinc-200 dark:bg-zinc-700"></div>
-                    <div
-                      class="relative z-10 w-8 h-8 rounded-full border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 mx-auto grid place-items-center text-accent">
-                      1</div>
-                    <p class="mt-3">Сумма и назначение</p>
-                  </div>
-                  <div class="relative">
-                    <div class="absolute left-0 top-4 w-full h-px bg-zinc-200 dark:bg-zinc-700"></div>
-                    <div
-                      class="relative z-10 w-8 h-8 rounded-full border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 mx-auto grid place-items-center">
-                      2</div>
-                    <p class="mt-3">Проверьте свой вывод средств</p>
-                  </div>
-                  <div>
-                    <div
-                      class="w-8 h-8 rounded-full border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 mx-auto grid place-items-center">
-                      3</div>
-                    <p class="mt-3">Подтвердите свой вывод средств</p>
+                <div class="relative">
+                  <!-- базовая линия (всегда) -->
+                  <div class="absolute left-0 right-0 top-4 h-px bg-zinc-200 dark:bg-zinc-700"></div>
+
+                  <!-- прогресс-линия (меняй width по шагу) -->
+                  <!-- step=1 -> w-0, step=2 -> w-1/2, step=3 -> w-full -->
+                  <div class="absolute left-0 top-4 h-px bg-accent w-0"></div>
+
+                  <div class="grid grid-cols-3 text-center gap-3 text-zinc-500 text-xs sm:text-sm">
+                    <!-- STEP 1 -->
+                    <div class="relative">
+                      <!-- completed/current styles -->
+                      <div class="relative z-10 w-8 h-8 rounded-full border bg-white dark:bg-zinc-900 mx-auto grid place-items-center
+                    border-accent text-accent">
+                        1
+                      </div>
+                      <p class="mt-3">Сумма и назначение</p>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="relative">
+                      <div class="relative z-10 w-8 h-8 rounded-full border bg-white dark:bg-zinc-900 mx-auto grid place-items-center
+                    border-zinc-300 dark:border-zinc-600 text-zinc-500">
+                        2
+                      </div>
+                      <p class="mt-3">Проверьте свой вывод средств</p>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="relative">
+                      <div class="relative z-10 w-8 h-8 rounded-full border bg-white dark:bg-zinc-900 mx-auto grid place-items-center
+                    border-zinc-300 dark:border-zinc-600 text-zinc-500">
+                        3
+                      </div>
+                      <p class="mt-3">Подтвердите свой вывод средств</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -76,8 +94,8 @@
                 </div>
 
                 <div
-                  class="rounded-xl bg-gradient-to-r from-[#18b889] to-[#0da26e] p-4 text-white flex items-center gap-3">
-                  <div class="w-12 h-12 rounded-xl bg-white/20 grid place-items-center">
+                  class="rounded-lg bg-gradient-to-r from-[#18b889] to-[#0da26e] p-4 text-white flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-lg bg-white/20 grid place-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                       class="lucide lucide-wallet-cards w-6 h-6">
@@ -89,7 +107,7 @@
                   </div>
                   <div>
                     <p class="text-sm font-semibold text-white/90">Доступный баланс</p>
-                    <p class="text-4xl font-black tracking-tight">$10.21</p>
+                    <p class="text-4xl font-bold tracking-tight">$10.21</p>
                   </div>
                 </div>
 
