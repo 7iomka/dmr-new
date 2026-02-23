@@ -32,29 +32,25 @@ function copyButton(array $props = [])
     ob_start();
     ?>
 
-    <button
-        data-copy
-        <?= $text ? 'data-copy-text="' . htmlspecialchars($text) . '"' : '' ?>
-        <?= $target ? 'data-copy-target="' . htmlspecialchars($target) . '"' : '' ?>
-        data-copy-tooltip="<?= htmlspecialchars($tooltip) ?>"
-        class="<?= $class ?>"
-    >
-        <!-- idle -->
-        <span data-copy-idle>
-            <?= $props['idle'] ?? $idleDefault ?>
-        </span>
+<button data-copy <?= $text ? 'data-copy-text="' . htmlspecialchars($text) . '"' : '' ?>
+  <?= $target ? 'data-copy-target="' . htmlspecialchars($target) . '"' : '' ?>
+  data-copy-tooltip="<?= htmlspecialchars($tooltip) ?>" class="<?= $class ?>">
+  <!-- idle -->
+  <span data-copy-idle>
+    <?= $props['idle'] ?? $idleDefault ?>
+  </span>
 
-        <!-- success -->
-        <span data-copy-success class="hidden text-emerald-500">
-            <?= $props['success'] ?? $successDefault ?>
-        </span>
+  <!-- success -->
+  <span data-copy-success class="hidden text-emerald-500">
+    <?= $props['success'] ?? $successDefault ?>
+  </span>
 
-        <!-- tooltip -->
-        <span data-copy-tooltip-el class="hidden absolute -top-8 right-0 text-xs bg-accent text-white px-2 py-1 rounded-md">
-            <?= htmlspecialchars($tooltip) ?>
-        </span>
-    </button>
+  <!-- tooltip -->
+  <span data-copy-tooltip-el class="hidden absolute -top-8 right-0 text-xs bg-accent text-white px-2 py-1 rounded-md">
+    <?= htmlspecialchars($tooltip) ?>
+  </span>
+</button>
 
-    <?php
+<?php
     return ob_get_clean();
 }

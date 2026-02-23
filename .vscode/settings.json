@@ -2,5 +2,9 @@
   "tailwindCSS.includeLanguages": {
     "php": "html"
   },
-  "tailwindCSS.emmetCompletions": true
+  "tailwindCSS.emmetCompletions": true,
+  "editor.formatOnSave": false,
+  "[php]": {
+    "editor.formatOnSave": true
+  }
 }
