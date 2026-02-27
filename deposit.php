@@ -366,102 +366,99 @@
     </div>
   </div>
 
-  <?php include __DIR__ . '/partials/mobile-sidebar.php'; ?>
-  <?php include __DIR__ . '/partials/mobile-user-drawer.php'; ?>
-  <?php include __DIR__ . '/partials/mobile-bottom-nav.php'; ?>
-  <?php include __DIR__ . '/partials/overlays.php'; ?>
+  <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
 
   <script>
-  (function() {
-    const page = document.getElementById('deposit-page');
-    if (!page) return;
+    (function() {
+      const page = document.getElementById('deposit-page');
+      if (!page) return;
 
-    const feeRate = Number(page.dataset.feeRate || 0.03);
-    const amountInput = document.getElementById('deposit-amount');
-    const quickButtons = Array.from(page.querySelectorAll('[data-quick-amounts] button'));
+      const feeRate = Number(page.dataset.feeRate || 0.03);
+      const amountInput = document.getElementById('deposit-amount');
+      const quickButtons = Array.from(page.querySelectorAll('[data-quick-amounts] button'));
 
-    const summaryAmount = page.querySelectorAll('[data-summary-amount]');
-    const summaryFee = page.querySelectorAll('[data-summary-fee]');
-    const summaryTotal = page.querySelectorAll('[data-summary-total]');
+      const summaryAmount = page.querySelectorAll('[data-summary-amount]');
+      const summaryFee = page.querySelectorAll('[data-summary-fee]');
+      const summaryTotal = page.querySelectorAll('[data-summary-total]');
 
-    function formatMoney(value) {
-      return '$' + value.toFixed(2);
-    }
+      function formatMoney(value) {
+        return '$' + value.toFixed(2);
+      }
 
-    function setActiveQuickButton(currentAmount) {
+      function setActiveQuickButton(currentAmount) {
+        quickButtons.forEach((button) => {
+          const active = Number(button.dataset.amount) === currentAmount;
+          button.classList.toggle('bg-accent', active);
+          button.classList.toggle('border-accent', active);
+          button.classList.toggle('text-white', active);
+          button.classList.toggle('text-zinc-700', !active);
+          button.classList.toggle('dark:text-zinc-300', !active);
+        });
+      }
+
+      function updateSummary(amountValue) {
+        const amount = Number.isFinite(amountValue) && amountValue > 0 ? amountValue : 0;
+        const fee = amount * feeRate;
+        const total = amount + fee;
+
+        summaryAmount.forEach((el) => {
+          el.textContent = formatMoney(amount);
+        });
+        summaryFee.forEach((el) => {
+          el.textContent = formatMoney(fee);
+        });
+        summaryTotal.forEach((el) => {
+          el.textContent = formatMoney(total);
+        });
+
+        setActiveQuickButton(amount);
+      }
+
       quickButtons.forEach((button) => {
-        const active = Number(button.dataset.amount) === currentAmount;
-        button.classList.toggle('bg-accent', active);
-        button.classList.toggle('border-accent', active);
-        button.classList.toggle('text-white', active);
-        button.classList.toggle('text-zinc-700', !active);
-        button.classList.toggle('dark:text-zinc-300', !active);
-      });
-    }
-
-    function updateSummary(amountValue) {
-      const amount = Number.isFinite(amountValue) && amountValue > 0 ? amountValue : 0;
-      const fee = amount * feeRate;
-      const total = amount + fee;
-
-      summaryAmount.forEach((el) => {
-        el.textContent = formatMoney(amount);
-      });
-      summaryFee.forEach((el) => {
-        el.textContent = formatMoney(fee);
-      });
-      summaryTotal.forEach((el) => {
-        el.textContent = formatMoney(total);
-      });
-
-      setActiveQuickButton(amount);
-    }
-
-    quickButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const value = Number(button.dataset.amount || 0);
-        amountInput.value = value;
-        updateSummary(value);
-      });
-    });
-
-    amountInput.addEventListener('input', () => {
-      updateSummary(Number(amountInput.value));
-    });
-
-    function setupChoiceGroup(selector) {
-      const items = Array.from(page.querySelectorAll(selector));
-      items.forEach((item) => {
-        item.addEventListener('click', () => {
-          items.forEach((other) => {
-            const active = other === item;
-            other.setAttribute('aria-pressed', active ? 'true' : 'false');
-            other.classList.toggle('border-accent', active);
-            other.classList.toggle('bg-accent/10', active);
-            other.classList.toggle('border-2', active);
-            other.classList.toggle('border', !active);
-
-            const marker = other.querySelector('.absolute.top-3.right-3');
-            if (marker) {
-              marker.classList.toggle('hidden', !active);
-            }
-
-            const radio = other.querySelector('span.w-4.h-4, span.w-5.h-5');
-            if (radio) {
-              radio.classList.toggle('border-accent', active);
-              radio.classList.toggle('border-zinc-300', !active);
-              radio.classList.toggle('dark:border-zinc-600', !active);
-            }
-          });
+        button.addEventListener('click', () => {
+          const value = Number(button.dataset.amount || 0);
+          amountInput.value = value;
+          updateSummary(value);
         });
       });
-    }
 
-    setupChoiceGroup('.provider-option');
-    setupChoiceGroup('.method-option');
-    updateSummary(Number(amountInput.value));
-  })();
+      amountInput.addEventListener('input', () => {
+        updateSummary(Number(amountInput.value));
+      });
+
+      function setupChoiceGroup(selector) {
+        const items = Array.from(page.querySelectorAll(selector));
+        items.forEach((item) => {
+          item.addEventListener('click', () => {
+            items.forEach((other) => {
+              const active = other === item;
+              other.setAttribute('aria-pressed', active ? 'true' : 'false');
+              other.classList.toggle('border-accent', active);
+              other.classList.toggle('bg-accent/10', active);
+              other.classList.toggle('border-2', active);
+              other.classList.toggle('border', !active);
+
+              const marker = other.querySelector('.absolute.top-3.right-3');
+              if (marker) {
+                marker.classList.toggle('hidden', !active);
+              }
+
+              const radio = other.querySelector('span.w-4.h-4, span.w-5.h-5');
+              if (radio) {
+                radio.classList.toggle('border-accent', active);
+                radio.classList.toggle('border-zinc-300', !active);
+                radio.classList.toggle('dark:border-zinc-600', !active);
+              }
+            });
+          });
+        });
+      }
+
+      setupChoiceGroup('.provider-option');
+      setupChoiceGroup('.method-option');
+      updateSummary(Number(amountInput.value));
+    })();
   </script>
 </body>
 

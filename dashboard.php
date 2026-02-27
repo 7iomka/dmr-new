@@ -94,7 +94,7 @@
                         https://invest.awsarhitect.me/?ref=A7CA9B55</div>
                       <?= copyButton([
                         'text' => 'https://invest.awsarhitect.me/?ref=A7CA9B55',
-                    ]) ?>
+                      ]) ?>
                     </div>
                   </div>
                   <div class="group relative">
@@ -107,7 +107,7 @@
                         https://awsarhitect.me/?ref=A7CA9B55</div>
                       <?= copyButton([
                         'text' => 'https://awsarhitect.me/?ref=A7CA9B55',
-                    ]) ?>
+                      ]) ?>
                     </div>
                   </div>
                   <div
@@ -118,7 +118,7 @@
                       <?= copyButton([
                         'text' => 'A7CA9B55',
                         'classOverride' => 'relative text-zinc-400 hover:text-zinc-600 dark:hover:text-white transition-colors',
-                    ]) ?>
+                      ]) ?>
                     </div>
                   </div>
                 </div>
@@ -400,28 +400,28 @@
               </div>
 
               <style>
-              [data-has-shares="false"] .only-has-shares {
-                display: none;
-              }
+                [data-has-shares="false"] .only-has-shares {
+                  display: none;
+                }
 
-              [data-has-shares="true"] .only-no-shares {
-                display: none;
-              }
+                [data-has-shares="true"] .only-no-shares {
+                  display: none;
+                }
               </style>
 
               <script>
-              // Выставляем дефолтный таб до initTabs(), чтобы работал тот же паттерн, что и в "История цен"
-              document.addEventListener('DOMContentLoaded', () => {
-                const holder = document.getElementById('shares_holder');
-                if (!holder) return;
-                const hasShares = holder.dataset.hasShares === "true";
-                const btnShares = holder.querySelector('.js-tab-btn[data-target="shares"]');
-                const btnBuy = holder.querySelector('.js-tab-btn[data-target="buy"]');
-                if (btnShares && btnBuy) {
-                  btnShares.setAttribute('data-active', hasShares ? "true" : "false");
-                  btnBuy.setAttribute('data-active', hasShares ? "false" : "true");
-                }
-              });
+                // Выставляем дефолтный таб до initTabs(), чтобы работал тот же паттерн, что и в "История цен"
+                document.addEventListener('DOMContentLoaded', () => {
+                  const holder = document.getElementById('shares_holder');
+                  if (!holder) return;
+                  const hasShares = holder.dataset.hasShares === "true";
+                  const btnShares = holder.querySelector('.js-tab-btn[data-target="shares"]');
+                  const btnBuy = holder.querySelector('.js-tab-btn[data-target="buy"]');
+                  if (btnShares && btnBuy) {
+                    btnShares.setAttribute('data-active', hasShares ? "true" : "false");
+                    btnBuy.setAttribute('data-active', hasShares ? "false" : "true");
+                  }
+                });
               </script>
             </div>
           </div>
@@ -571,10 +571,7 @@
     </div>
   </div>
 
-  <?php include __DIR__ . '/partials/mobile-sidebar.php'; ?>
-  <?php include __DIR__ . '/partials/mobile-user-drawer.php'; ?>
-  <?php include __DIR__ . '/partials/mobile-bottom-nav.php'; ?>
-  <?php include __DIR__ . '/partials/overlays.php'; ?>
+  <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
 </body>
 

@@ -4,25 +4,25 @@
 <?php include __DIR__ . '/partials/head.php'; ?>
 
 <style>
-.chart-segment {
-  transition: all 0.3s ease;
-  cursor: pointer;
-  stroke-width: 8;
-  opacity: 0.8;
-}
+  .chart-segment {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    stroke-width: 8;
+    opacity: 0.8;
+  }
 
-.chart-segment:hover,
-.chart-segment.active {
-  stroke-width: 11;
-  opacity: 1;
-}
+  .chart-segment:hover,
+  .chart-segment.active {
+    stroke-width: 11;
+    opacity: 1;
+  }
 
-/* Исправленный конфликт стилей: используем !important для победы над специфичностью Tailwind dark: */
-.category-item.active {
-  background-color: rgba(0, 176, 116, 0.08) !important;
-  /* Устанавливаем бордер цвета accent/10 (rgba) */
-  border-color: rgba(0, 176, 116, 0.1) !important;
-}
+  /* Исправленный конфликт стилей: используем !important для победы над специфичностью Tailwind dark: */
+  .category-item.active {
+    background-color: rgba(0, 176, 116, 0.08) !important;
+    /* Устанавливаем бордер цвета accent/10 (rgba) */
+    border-color: rgba(0, 176, 116, 0.1) !important;
+  }
 </style>
 
 <body>
@@ -112,110 +112,106 @@
     </div>
   </div>
 
-  <?php include __DIR__ . '/partials/mobile-sidebar.php'; ?>
-  <?php include __DIR__ . '/partials/mobile-user-drawer.php'; ?>
-  <?php include __DIR__ . '/partials/mobile-bottom-nav.php'; ?>
-
-  <?php include __DIR__ . '/partials/overlays.php'; ?>
+  <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
 
   <script>
-  (function() {
-    const data = [{
-        label: "Выплата по партнерской программе",
-        value: 31.45,
-        color: "#EAB308"
-      },
-      {
-        label: "Патентование",
-        value: 26.05,
-        color: "#6366F1"
-      },
-      {
-        label: "Аренда платформы",
-        value: 11.87,
-        color: "#10B981"
-      },
-      {
-        label: "Заработная плата сотрудников",
-        value: 11.25,
-        color: "#0EA5E9"
-      },
-      {
-        label: "Мероприятие (Россия)",
-        value: 5.16,
-        color: "#D946EF"
-      },
-      {
-        label: "Аренда офисов",
-        value: 4.89,
-        color: "#F97316"
-      },
-      {
-        label: "Транспортные расходы",
-        value: 2.62,
-        color: "#64748B"
-      },
-      {
-        label: "Оплата партнёров компаний инженеров",
-        value: 2.08,
-        color: "#F43F5E"
-      },
-      {
-        label: "Оплата кредита транспортного средства",
-        value: 1.77,
-        color: "#8B5CF6"
-      },
-      {
-        label: "Юридические услуги",
-        value: 1.12,
-        color: "#06B6D4"
-      },
-      {
-        label: "Расходы на транспортные средства",
-        value: 0.77,
-        color: "#84CC16"
-      },
-      {
-        label: "Организация клипов",
-        value: 0.66,
-        color: "#EC4899"
-      },
-      {
-        label: "Товарный знак (Китай)",
-        value: 0.31,
-        color: "#F59E0B"
-      }
-    ];
+    (function() {
+      const data = [{
+          label: "Выплата по партнерской программе",
+          value: 31.45,
+          color: "#EAB308"
+        },
+        {
+          label: "Патентование",
+          value: 26.05,
+          color: "#6366F1"
+        },
+        {
+          label: "Аренда платформы",
+          value: 11.87,
+          color: "#10B981"
+        },
+        {
+          label: "Заработная плата сотрудников",
+          value: 11.25,
+          color: "#0EA5E9"
+        },
+        {
+          label: "Мероприятие (Россия)",
+          value: 5.16,
+          color: "#D946EF"
+        },
+        {
+          label: "Аренда офисов",
+          value: 4.89,
+          color: "#F97316"
+        },
+        {
+          label: "Транспортные расходы",
+          value: 2.62,
+          color: "#64748B"
+        },
+        {
+          label: "Оплата партнёров компаний инженеров",
+          value: 2.08,
+          color: "#F43F5E"
+        },
+        {
+          label: "Оплата кредита транспортного средства",
+          value: 1.77,
+          color: "#8B5CF6"
+        },
+        {
+          label: "Юридические услуги",
+          value: 1.12,
+          color: "#06B6D4"
+        },
+        {
+          label: "Расходы на транспортные средства",
+          value: 0.77,
+          color: "#84CC16"
+        },
+        {
+          label: "Организация клипов",
+          value: 0.66,
+          color: "#EC4899"
+        },
+        {
+          label: "Товарный знак (Китай)",
+          value: 0.31,
+          color: "#F59E0B"
+        }
+      ];
 
-    const svg = document.getElementById('main-svg');
-    const container = document.getElementById('category-container');
-    const circleLength = 2 * Math.PI * 40;
-    let currentOffset = 0;
+      const svg = document.getElementById('main-svg');
+      const container = document.getElementById('category-container');
+      const circleLength = 2 * Math.PI * 40;
+      let currentOffset = 0;
 
-    data.forEach((item, index) => {
-      const dashArrayValue = (item.value / 100) * circleLength;
+      data.forEach((item, index) => {
+        const dashArrayValue = (item.value / 100) * circleLength;
 
-      // SVG Segment
-      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      circle.setAttribute("cx", "50");
-      circle.setAttribute("cy", "50");
-      circle.setAttribute("r", "40");
-      circle.setAttribute("fill", "transparent");
-      circle.setAttribute("stroke", item.color);
-      circle.setAttribute("stroke-dasharray", `${dashArrayValue} ${circleLength}`);
-      circle.setAttribute("stroke-dashoffset", -currentOffset);
-      circle.classList.add("chart-segment");
-      circle.dataset.index = index;
-      svg.appendChild(circle);
+        // SVG Segment
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", "50");
+        circle.setAttribute("cy", "50");
+        circle.setAttribute("r", "40");
+        circle.setAttribute("fill", "transparent");
+        circle.setAttribute("stroke", item.color);
+        circle.setAttribute("stroke-dasharray", `${dashArrayValue} ${circleLength}`);
+        circle.setAttribute("stroke-dashoffset", -currentOffset);
+        circle.classList.add("chart-segment");
+        circle.dataset.index = index;
+        svg.appendChild(circle);
 
-      // List Item
-      const div = document.createElement('div');
-      div.className =
-        "category-item flex items-center justify-between card-simple py-2 transition-all hover:border-accent/30 cursor-pointer group fade-in";
-      div.style.animationDelay = `${index * 0.05}s`;
-      div.dataset.index = index;
-      div.innerHTML = `
+        // List Item
+        const div = document.createElement('div');
+        div.className =
+          "category-item flex items-center justify-between card-simple py-2 transition-all hover:border-accent/30 cursor-pointer group fade-in";
+        div.style.animationDelay = `${index * 0.05}s`;
+        div.dataset.index = index;
+        div.innerHTML = `
                 <div class="flex items-start gap-4 pr-4">
                     <div class="w-2.5 h-2.5 rounded-full mt-1 shrink-0 shadow-sm" style="background-color: ${item.color}"></div>
                     <span class="text-[13px] md:text-sm font-semibold text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors leading-snug">
@@ -226,35 +222,35 @@
                     <span class="text-sm font-bold tabular-nums tracking-tight" style="color: ${item.color}">${item.value.toFixed(2)}%</span>
                 </div>
             `;
-      container.appendChild(div);
+        container.appendChild(div);
 
-      currentOffset += dashArrayValue;
-    });
+        currentOffset += dashArrayValue;
+      });
 
-    // Interactivity
-    const segments = document.querySelectorAll('.chart-segment');
-    const items = document.querySelectorAll('.category-item');
+      // Interactivity
+      const segments = document.querySelectorAll('.chart-segment');
+      const items = document.querySelectorAll('.category-item');
 
-    function highlight(idx) {
-      segments.forEach(s => s.classList.remove('active'));
-      items.forEach(i => i.classList.remove('active'));
-      if (idx !== null) {
-        segments[idx].classList.add('active');
-        items[idx].classList.add('active');
+      function highlight(idx) {
+        segments.forEach(s => s.classList.remove('active'));
+        items.forEach(i => i.classList.remove('active'));
+        if (idx !== null) {
+          segments[idx].classList.add('active');
+          items[idx].classList.add('active');
+        }
       }
-    }
 
-    segments.forEach((s, idx) => {
-      s.onmouseenter = () => highlight(idx);
-      s.onmouseleave = () => highlight(null);
-    });
+      segments.forEach((s, idx) => {
+        s.onmouseenter = () => highlight(idx);
+        s.onmouseleave = () => highlight(null);
+      });
 
-    items.forEach((i, idx) => {
-      i.onmouseenter = () => highlight(idx);
-      i.onmouseleave = () => highlight(null);
-    });
+      items.forEach((i, idx) => {
+        i.onmouseenter = () => highlight(idx);
+        i.onmouseleave = () => highlight(null);
+      });
 
-  })();
+    })();
   </script>
 </body>
 
