@@ -14,7 +14,7 @@
 
       <main class="flex-1 overflow-y-auto px-4 py-6 lg:p-10">
         <div class="max-w-7xl mx-auto space-y-6">
-          <section class="card overflow-hidden flex flex-col max-h-[83vh]">
+          <section id="chat-container" class="card overflow-hidden flex flex-col min-h-[480px] lg:min-h-[600px] max-h-[83vh]">
             <header class="card-header">
               <div class="flex items-center gap-3 min-w-0">
                 <div class="h-10 w-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
@@ -34,20 +34,6 @@
             <div class="grid grid-cols-1 lg:grid-cols-[340px_1fr] flex-1 min-h-0">
               <aside id="chat-list-panel"
                 class="bg-card border-b lg:border-b-0 lg:border-r border-zinc-200 dark:border-zinc-800 flex flex-col min-h-0">
-                <div class="p-4 border-b border-zinc-200 dark:border-zinc-800">
-                  <button id="new-ticket-btn" type="button"
-                    class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-bold text-white hover:bg-emerald-600 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
-                      aria-hidden="true">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M8 12h8"></path>
-                      <path d="M12 8v8"></path>
-                    </svg>
-                    Новое обращение
-                  </button>
-                </div>
-
                 <div id="chat-list" class="p-2 space-y-2 overflow-y-auto">
                   <button type="button" data-chat-item data-chat-target="support-technical" data-chat-title="Общий вопрос"
                     data-chat-subtitle="Чат поддержки"
@@ -97,8 +83,22 @@
                   <div id="chat-empty-state"
                     class="hidden rounded-lg border border-dashed border-zinc-300 dark:border-zinc-700 px-4 py-8 text-center">
                     <p class="text-sm font-semibold text-zinc-700 dark:text-zinc-200">Пока нет обращений</p>
-                    <p class="mt-1 text-xs text-zinc-500">Нажмите «Новое обращение», чтобы начать беседу с поддержкой.</p>
+                    <p class="mt-1 text-xs text-zinc-500">Нажмите «Начать разговор», чтобы начать беседу с поддержкой.</p>
                   </div>
+                </div>
+
+                <div class="p-4 border-t border-zinc-200 dark:border-zinc-800">
+                  <button id="new-ticket-btn" type="button"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-bold text-white hover:bg-emerald-600 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
+                      aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M8 12h8"></path>
+                      <path d="M12 8v8"></path>
+                    </svg>
+                    Начать разговор
+                  </button>
                 </div>
               </aside>
 
@@ -128,13 +128,13 @@
                 </div>
 
 
-                <div id="chat-welcome-screen" class="hidden flex-1 items-center justify-center px-6">
+                <div id="chat-welcome-screen" class="hidden flex flex-1 items-center justify-center px-6 py-6">
                   <div class="max-w-md text-center">
                     <p class="text-lg font-bold text-zinc-900 dark:text-white">Добро пожаловать в чат поддержки</p>
                     <p class="mt-2 text-sm text-zinc-500">Выберите существующий диалог или создайте новое обращение.</p>
                     <button type="button" data-new-ticket-trigger
                       class="mt-4 inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-white hover:bg-emerald-600 transition-colors">
-                      Новое обращение
+                      Начать разговор
                     </button>
                   </div>
                 </div>
@@ -231,6 +231,8 @@
                               <line x1="15" x2="15.01" y1="9" y2="9" />
                             </svg>
                           </button>
+
+                          <span class="h-6 w-px bg-zinc-200 dark:bg-zinc-700 shrink-0 my-auto" aria-hidden="true"></span>
 
                           <button type="submit"
                             class="h-10 w-10 rounded-lg text-zinc-400 hover:text-accent flex items-center justify-center shrink-0 transition-all active:scale-95"
@@ -403,6 +405,8 @@
                         </svg>
                       </button>
 
+                      <span class="h-6 w-px bg-zinc-200 dark:bg-zinc-700 shrink-0 my-auto" aria-hidden="true"></span>
+
                       <button type="submit"
                         class="h-10 w-10 rounded-lg text-zinc-400 hover:text-accent flex items-center justify-center shrink-0 transition-all active:scale-95"
                         aria-label="Отправить сообщение">
@@ -427,6 +431,11 @@
   <?php include __DIR__ . '/../partials/app-shell/index.php'; ?>
   <?php include __DIR__ . '/../partials/scripts.php'; ?>
 
+  <style>
+    .chat-fab-container {
+      display: none !important;
+    }
+  </style>
   <script>
     (function() {
       const listPanel = document.getElementById('chat-list-panel');
@@ -567,9 +576,18 @@
 
       function scrollToBottom(panel) {
         if (!panel) return;
+
+        const maxScrollTop = Math.max(panel.scrollHeight - panel.clientHeight, 0);
         panel.scrollTo({
-          top: panel.scrollHeight,
+          top: maxScrollTop,
           behavior: 'smooth'
+        });
+
+        requestAnimationFrame(() => {
+          const freshMaxScrollTop = Math.max(panel.scrollHeight - panel.clientHeight, 0);
+          if (Math.abs(panel.scrollTop - freshMaxScrollTop) > 1) {
+            panel.scrollTop = freshMaxScrollTop;
+          }
         });
       }
 
@@ -903,21 +921,30 @@ ${text}` : ''}` : text;
         hideActiveStickyChip(panel);
       });
 
+      function shouldShowDetailOnMobile() {
+        const hasActiveConversation = Boolean(activeChatId && getActivePanel());
+        const isNewTicketVisible = !newTicketScreen.classList.contains('hidden');
+        const isWelcomeVisible = !welcomeScreen.classList.contains('hidden');
+        return hasActiveConversation || isNewTicketVisible || isWelcomeVisible;
+      }
+
       function applyLayout() {
         if (isMobile()) {
-          detailPanel.classList.remove('flex');
-          detailPanel.classList.add('hidden');
-          listPanel.classList.remove('hidden');
-        } else {
-          detailPanel.classList.remove('hidden');
-          detailPanel.classList.add('flex');
-          listPanel.classList.remove('hidden');
+          const showDetail = shouldShowDetailOnMobile();
+          listPanel.classList.toggle('hidden', showDetail);
+          detailPanel.classList.toggle('hidden', !showDetail);
+          detailPanel.classList.toggle('flex', showDetail);
+          return;
+        }
 
-          const panel = getActivePanel();
-          if (panel) {
-            scrollToBottom(panel);
-            hideActiveStickyChip(panel);
-          }
+        detailPanel.classList.remove('hidden');
+        detailPanel.classList.add('flex');
+        listPanel.classList.remove('hidden');
+
+        const panel = getActivePanel();
+        if (panel) {
+          scrollToBottom(panel);
+          hideActiveStickyChip(panel);
         }
       }
 
