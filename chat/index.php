@@ -435,6 +435,34 @@
     .chat-fab-container {
       display: none !important;
     }
+
+    .chat-message-enter {
+      /* элемент сразу имеет свою высоту; анимируем только появление */
+      will-change: opacity, transform;
+      transform-origin: bottom;
+      animation: chat-message-enter 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes chat-message-enter {
+
+      /* небольшая "пауза невидимости", потом fade-in + лёгкий подъём снизу */
+      0%,
+      15% {
+        opacity: 0;
+        transform: translateY(1px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .chat-message-enter {
+        animation: none;
+      }
+    }
   </style>
   <script>
     (function() {
@@ -693,6 +721,7 @@
       function appendMessageToGroup(group, text, isMine, timeLabel) {
         const wrap = document.createElement('div');
         wrap.className = `${isMine ? 'ml-auto border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200' : 'border border-accent/30 bg-accent/10 text-zinc-900 dark:text-white'} max-w-md rounded-lg px-4 py-3`;
+        wrap.classList.add('chat-message-enter');
 
         const msg = document.createElement('p');
         msg.className = `text-sm ${isMine ? '' : 'text-zinc-700 dark:text-zinc-200'} whitespace-pre-line`;
