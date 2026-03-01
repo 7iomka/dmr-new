@@ -208,7 +208,7 @@
         // List Item
         const div = document.createElement('div');
         div.className =
-          "category-item flex items-center justify-between card-simple py-2 transition-all hover:border-accent/30 cursor-pointer group fade-in";
+          "category-item flex items-center justify-between card-simple py-2 transition-all hover:border-accent/30 cursor-pointer group animate-in fade-in duration-500";
         div.style.animationDelay = `${index * 0.05}s`;
         div.dataset.index = index;
         div.innerHTML = `

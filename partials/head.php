@@ -12,249 +12,253 @@
   <style type="text/tailwindcss">
     @import "tailwindcss";
 
-        @custom-variant dark (&:where(.dark, .dark *));
+    @custom-variant dark (&:where(.dark, .dark *));
 
-        @theme {
-            --color-card: #ffffff;
-            --color-accent: #00B074;
-            --color-dark-bg: #0B0E11;
-            --color-card-dark: #14171A;
+    @theme {
+        --color-card: #ffffff;
+        --color-accent: #00B074;
+        --color-dark-bg: #0B0E11;
+        --color-card-dark: #14171A;
+    }
+
+    @variant dark {
+        --color-card: #14171A;
+    }
+    
+
+    @layer base {
+
+      body {
+        @apply bg-[#f8f7f5] text-[#1A1D1F] dark:bg-[#0B0E11] dark:text-[#E4E6EB] min-h-screen;
+      }
+        button:not(:disabled),
+        [role="button"]:not(:disabled) {
+            cursor: pointer;
         }
+    }
 
-        @variant dark {
-            --color-card: #14171A;
-        }
+    @layer utilities {
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .no-spinner::-webkit-outer-spin-button,
+      .no-spinner::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 
-        @layer base {
+      .no-spinner {
+        -moz-appearance: textfield;
+      }
+    }
 
-          body {
-            @apply bg-[#f8f7f5] text-[#1A1D1F] dark:bg-[#0B0E11] dark:text-[#E4E6EB] min-h-screen;
-          }
-            button:not(:disabled),
-            [role="button"]:not(:disabled) {
-                cursor: pointer;
-            }
-        }
+    @layer components {
+      /* общая база для всех карточек */
+      .card,
+      .card-simple {
+        @apply rounded-xl border bg-card border-zinc-200 dark:border-zinc-800 shadow-sm;
+      }
 
-				@layer utilities {
-					.no-scrollbar::-webkit-scrollbar {
-						display: none;
-					}
-					.no-scrollbar {
-						-ms-overflow-style: none;
-						scrollbar-width: none;
-					}
-					.no-spinner::-webkit-outer-spin-button,
-					.no-spinner::-webkit-inner-spin-button {
-						-webkit-appearance: none;
-						margin: 0;
-					}
+      /* 1) простая карточка */
+      .card-simple {
+        @apply px-4 lg:px-6 py-6;
+      }
 
-					.no-spinner {
-						-moz-appearance: textfield;
-					}
-				}
+      /* 2) карточка со структурой */
+      .card-header {
+        @apply px-4 lg:px-6 py-4 border-b flex items-center justify-between gap-2 flex-wrap
+              bg-white dark:bg-[#1E2023]
+              border-zinc-200 dark:border-zinc-800
+              rounded-t-[inherit];
+      }
 
-				@layer components {
-					/* общая база для всех карточек */
-					.card,
-					.card-simple {
-						@apply rounded-xl border bg-card border-zinc-200 dark:border-zinc-800 shadow-sm;
-					}
+      /* базовый padding card-body */
+      .card-body {
+        @apply p-4 lg:p-6;
+      }
 
-					/* 1) простая карточка */
-					.card-simple {
-						@apply px-4 lg:px-6 py-6;
-					}
+      /* full-bleed (снимаем паддинги через отрицательные margins) */
+      .card-body-bleed {
+        @apply -m-4 lg:-m-6;
+      }
+      .card-body-bleed-x {
+        @apply -mx-4 lg:-mx-6;
+      }
+      .card-body-bleed-y {
+        @apply -my-4 lg:-my-6;
+      }
 
-					/* 2) карточка со структурой */
-					.card-header {
-						@apply px-4 lg:px-6 py-4 border-b flex items-center justify-between gap-2 flex-wrap
-									bg-white dark:bg-[#1E2023]
-									border-zinc-200 dark:border-zinc-800
-									rounded-t-[inherit];
-					}
+      /* inset (возвращаем паддинги обратно внутри bleed-контейнера) */
+      .card-body-inset {
+        @apply p-4 lg:p-6;
+      }
+      .card-body-inset-x {
+        @apply px-4 lg:px-6;
+      }
+      .card-body-inset-y {
+        @apply py-4 lg:py-6;
+      }
+    }
+  
+  </style>
 
-					/* базовый padding card-body */
-					.card-body {
-						@apply p-4 lg:p-6;
-					}
-
-					/* full-bleed (снимаем паддинги через отрицательные margins) */
-					.card-body-bleed {
-						@apply -m-4 lg:-m-6;
-					}
-					.card-body-bleed-x {
-						@apply -mx-4 lg:-mx-6;
-					}
-					.card-body-bleed-y {
-						@apply -my-4 lg:-my-6;
-					}
-
-					/* inset (возвращаем паддинги обратно внутри bleed-контейнера) */
-					.card-body-inset {
-						@apply p-4 lg:p-6;
-					}
-					.card-body-inset-x {
-						@apply px-4 lg:px-6;
-					}
-					.card-body-inset-y {
-						@apply py-4 lg:py-6;
-					}
-				}
-
-    </style>
 
   <style>
-  body {
-    font-family: 'Inter', sans-serif;
-    transition: background-color 0.3s, color 0.3s;
-  }
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-  .sidebar-transition {
-    transition: width 0.3s ease-in-out;
-  }
+    .sidebar-transition {
+      transition: width 0.3s ease-in-out;
+    }
 
-  .section-content {
-    display: none;
-  }
+    .section-content {
+      display: none;
+    }
 
-  .section-content.active {
-    display: block;
-  }
+    .section-content.active {
+      display: block;
+    }
 
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
-  }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
 
-  .dark ::-webkit-scrollbar-thumb {
-    background: #27272A;
-    border-radius: 10px;
-  }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #27272A;
+      border-radius: 10px;
+    }
 
-  ::-webkit-scrollbar-thumb {
-    background: #E2E8F0;
-    border-radius: 10px;
-  }
+    ::-webkit-scrollbar-thumb {
+      background: #E2E8F0;
+      border-radius: 10px;
+    }
 
-  .c-transition-slider {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+    .c-transition-slider {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
   </style>
 
   <style>
-  /* ===== USER DRAWER (mobile) ===== */
-  #mobile-user-drawer {
-    transform: translateY(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-  }
+    /* ===== USER DRAWER (mobile) ===== */
+    #mobile-user-drawer {
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
 
-  #mobile-user-drawer.active {
-    transform: translateY(0);
-  }
+    #mobile-user-drawer.active {
+      transform: translateY(0);
+    }
 
-  #mobile-user-drawer.dragging {
-    transition: none !important;
-  }
+    #mobile-user-drawer.dragging {
+      transition: none !important;
+    }
 
-  /* ===== MOBILE SIDEBAR DRAWER ===== */
-  #mobile-sidebar-drawer {
-    transform: translateX(-100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-  }
+    /* ===== MOBILE SIDEBAR DRAWER ===== */
+    #mobile-sidebar-drawer {
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
 
-  #mobile-sidebar-drawer.active {
-    transform: translateX(0);
-  }
+    #mobile-sidebar-drawer.active {
+      transform: translateX(0);
+    }
 
-  /* Overlays */
-  .overlay {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 220ms cubic-bezier(0.2, 0, 0, 1);
-    will-change: opacity;
-  }
-
-  .overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Красивый фон + виньетка */
-  .overlay::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(1200px 600px at 50% 30%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.55) 100%),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.60));
-  }
-
-  .dark .overlay::before {
-    background:
-      radial-gradient(1200px 600px at 50% 30%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.52) 55%, rgba(0, 0, 0, 0.72) 100%),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.78));
-  }
-
-  /* Лёгкий “glass” эффект (работает там, где поддерживается) */
-  @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    /* Overlays */
     .overlay {
-      -webkit-backdrop-filter: blur(2px) saturate(140%);
-      backdrop-filter: blur(2px) saturate(140%);
-    }
-  }
-
-  #user-swipe-handle {
-    cursor: grab;
-  }
-
-  #user-swipe-handle:active {
-    cursor: grabbing;
-  }
-
-  /* Плавное появление контента */
-  .fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
-  }
-
-  /* Кастомный класс для появления на время тултипа */
-  .c-copy-tooltip {
-    animation: fadeInOut 2s forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
       opacity: 0;
-      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 220ms cubic-bezier(0.2, 0, 0, 1);
+      will-change: opacity;
     }
 
-    to {
+    .overlay.active {
       opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeInOut {
-    0% {
-      opacity: 0;
-      transform: translateY(5px);
+      pointer-events: auto;
     }
 
-    20%,
-    80% {
-      opacity: 1;
-      transform: translateY(0);
+    /* Красивый фон + виньетка */
+    .overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1200px 600px at 50% 30%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.55) 100%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.60));
     }
 
-    100% {
-      opacity: 0;
-      transform: translateY(-5px);
+    .dark .overlay::before {
+      background:
+        radial-gradient(1200px 600px at 50% 30%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.52) 55%, rgba(0, 0, 0, 0.72) 100%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.78));
     }
-  }
+
+    /* Лёгкий “glass” эффект (работает там, где поддерживается) */
+    @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+      .overlay {
+        -webkit-backdrop-filter: blur(2px) saturate(140%);
+        backdrop-filter: blur(2px) saturate(140%);
+      }
+    }
+
+    #user-swipe-handle {
+      cursor: grab;
+    }
+
+    #user-swipe-handle:active {
+      cursor: grabbing;
+    }
+
+
+    /* Кастомный класс для появления на время тултипа */
+    .c-copy-tooltip {
+      animation: fadeInOut 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      20%,
+      80% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+    }
+  </style>
+
+
+  <!-- Inlined version of tw-animate-css (this only works with Tailwind cdn ver.) -->
+  <style type="text/tailwindcss">
+    @property --tw-animation-delay{syntax:"*";inherits:false;initial-value:0s}@property --tw-animation-direction{syntax:"*";inherits:false;initial-value:normal}@property --tw-animation-duration{syntax:"*";inherits:false}@property --tw-animation-fill-mode{syntax:"*";inherits:false;initial-value:none}@property --tw-animation-iteration-count{syntax:"*";inherits:false;initial-value:1}@property --tw-enter-blur{syntax:"*";inherits:false;initial-value:0}@property --tw-enter-opacity{syntax:"*";inherits:false;initial-value:1}@property --tw-enter-rotate{syntax:"*";inherits:false;initial-value:0}@property --tw-enter-scale{syntax:"*";inherits:false;initial-value:1}@property --tw-enter-translate-x{syntax:"*";inherits:false;initial-value:0}@property --tw-enter-translate-y{syntax:"*";inherits:false;initial-value:0}@property --tw-exit-blur{syntax:"*";inherits:false;initial-value:0}@property --tw-exit-opacity{syntax:"*";inherits:false;initial-value:1}@property --tw-exit-rotate{syntax:"*";inherits:false;initial-value:0}@property --tw-exit-scale{syntax:"*";inherits:false;initial-value:1}@property --tw-exit-translate-x{syntax:"*";inherits:false;initial-value:0}@property --tw-exit-translate-y{syntax:"*";inherits:false;initial-value:0}@theme inline{--animation-delay-0: 0s; --animation-delay-75: 75ms; --animation-delay-100: .1s; --animation-delay-150: .15s; --animation-delay-200: .2s; --animation-delay-300: .3s; --animation-delay-500: .5s; --animation-delay-700: .7s; --animation-delay-1000: 1s; --animation-repeat-0: 0; --animation-repeat-1: 1; --animation-repeat-infinite: infinite; --animation-direction-normal: normal; --animation-direction-reverse: reverse; --animation-direction-alternate: alternate; --animation-direction-alternate-reverse: alternate-reverse; --animation-fill-mode-none: none; --animation-fill-mode-forwards: forwards; --animation-fill-mode-backwards: backwards; --animation-fill-mode-both: both; --percentage-0: 0; --percentage-5: .05; --percentage-10: .1; --percentage-15: .15; --percentage-20: .2; --percentage-25: .25; --percentage-30: .3; --percentage-35: .35; --percentage-40: .4; --percentage-45: .45; --percentage-50: .5; --percentage-55: .55; --percentage-60: .6; --percentage-65: .65; --percentage-70: .7; --percentage-75: .75; --percentage-80: .8; --percentage-85: .85; --percentage-90: .9; --percentage-95: .95; --percentage-100: 1; --percentage-translate-full: 1; --animate-in: enter var(--tw-animation-duration,var(--tw-duration,.15s))var(--tw-ease,ease)var(--tw-animation-delay,0s)var(--tw-animation-iteration-count,1)var(--tw-animation-direction,normal)var(--tw-animation-fill-mode,none); --animate-out: exit var(--tw-animation-duration,var(--tw-duration,.15s))var(--tw-ease,ease)var(--tw-animation-delay,0s)var(--tw-animation-iteration-count,1)var(--tw-animation-direction,normal)var(--tw-animation-fill-mode,none); @keyframes enter { from { opacity: var(--tw-enter-opacity,1); transform: translate3d(var(--tw-enter-translate-x,0),var(--tw-enter-translate-y,0),0)scale3d(var(--tw-enter-scale,1),var(--tw-enter-scale,1),var(--tw-enter-scale,1))rotate(var(--tw-enter-rotate,0)); filter: blur(var(--tw-enter-blur,0)); }}@keyframes exit { to { opacity: var(--tw-exit-opacity,1); transform: translate3d(var(--tw-exit-translate-x,0),var(--tw-exit-translate-y,0),0)scale3d(var(--tw-exit-scale,1),var(--tw-exit-scale,1),var(--tw-exit-scale,1))rotate(var(--tw-exit-rotate,0)); filter: blur(var(--tw-exit-blur,0)); }}--animate-accordion-down: accordion-down var(--tw-animation-duration,var(--tw-duration,.2s))var(--tw-ease,ease-out)var(--tw-animation-delay,0s)var(--tw-animation-iteration-count,1)var(--tw-animation-direction,normal)var(--tw-animation-fill-mode,none); --animate-accordion-up: accordion-up var(--tw-animation-duration,var(--tw-duration,.2s))var(--tw-ease,ease-out)var(--tw-animation-delay,0s)var(--tw-animation-iteration-count,1)var(--tw-animation-direction,normal)var(--tw-animation-fill-mode,none); --animate-collapsible-down: collapsible-down var(--tw-animation-duration,var(--tw-duration,.2s))var(--tw-ease,ease-out)var(--tw-animation-delay,0s)var(--tw-animation-iteration-count,1)var(--tw-animation-direction,normal)var(--tw-animation-fill-mode,none); --animate-collapsible-up: collapsible-up var(--tw-animation-duration,var(--tw-duration,.2s))var(--tw-ease,ease-out)var(--tw-animation-delay,0s)var(--tw-animation-iteration-count,1)var(--tw-animation-direction,normal)var(--tw-animation-fill-mode,none); @keyframes accordion-down { from { height: 0; }to { height: var(--radix-accordion-content-height,var(--bits-accordion-content-height,var(--reka-accordion-content-height,var(--kb-accordion-content-height,var(--ngp-accordion-content-height,auto))))); }}@keyframes accordion-up { from { height: var(--radix-accordion-content-height,var(--bits-accordion-content-height,var(--reka-accordion-content-height,var(--kb-accordion-content-height,var(--ngp-accordion-content-height,auto))))); }to { height: 0; }}@keyframes collapsible-down { from { height: 0; }to { height: var(--radix-collapsible-content-height,var(--bits-collapsible-content-height,var(--reka-collapsible-content-height,var(--kb-collapsible-content-height,auto)))); }}@keyframes collapsible-up { from { height: var(--radix-collapsible-content-height,var(--bits-collapsible-content-height,var(--reka-collapsible-content-height,var(--kb-collapsible-content-height,auto)))); }to { height: 0; }}--animate-caret-blink: caret-blink 1.25s ease-out infinite; @keyframes caret-blink { 0%,70%,100% { opacity: 1; }20%,50% { opacity: 0; }}}@utility animation-duration-*{--tw-animation-duration: calc(--value(number)*1ms); --tw-animation-duration: --value(--animation-duration-*,[duration],"initial",[*]); animation-duration: calc(--value(number)*1ms); animation-duration: --value(--animation-duration-*,[duration],"initial",[*]);}@utility delay-*{animation-delay: calc(--value(number)*1ms); animation-delay: --value(--animation-delay-*,[duration],"initial",[*]); --tw-animation-delay: calc(--value(number)*1ms); --tw-animation-delay: --value(--animation-delay-*,[duration],"initial",[*]);}@utility repeat-*{animation-iteration-count: --value(--animation-repeat-*,number,"initial",[*]); --tw-animation-iteration-count: --value(--animation-repeat-*,number,"initial",[*]);}@utility direction-*{animation-direction: --value(--animation-direction-*,"initial",[*]); --tw-animation-direction: --value(--animation-direction-*,"initial",[*]);}@utility fill-mode-*{animation-fill-mode: --value(--animation-fill-mode-*,"initial",[*]); --tw-animation-fill-mode: --value(--animation-fill-mode-*,"initial",[*]);}@utility running{animation-play-state: running;}@utility paused{animation-play-state: paused;}@utility play-state-*{animation-play-state: --value("initial",[*]);}@utility blur-in{--tw-enter-blur: 20px;}@utility blur-in-*{--tw-enter-blur: calc(--value(number)*1px); --tw-enter-blur: --value(--blur-*,[*]);}@utility blur-out{--tw-exit-blur: 20px;}@utility blur-out-*{--tw-exit-blur: calc(--value(number)*1px); --tw-exit-blur: --value(--blur-*,[*]);}@utility fade-in{--tw-enter-opacity: 0;}@utility fade-in-*{--tw-enter-opacity: calc(--value(number)/100); --tw-enter-opacity: --value(--percentage-*,[*]);}@utility fade-out{--tw-exit-opacity: 0;}@utility fade-out-*{--tw-exit-opacity: calc(--value(number)/100); --tw-exit-opacity: --value(--percentage-*,[*]);}@utility zoom-in{--tw-enter-scale: 0;}@utility zoom-in-*{--tw-enter-scale: calc(--value(number)*1%); --tw-enter-scale: calc(--value(ratio)); --tw-enter-scale: --value(--percentage-*,[*]);}@utility -zoom-in-*{--tw-enter-scale: calc(--value(number)*-1%); --tw-enter-scale: calc(--value(ratio)*-1); --tw-enter-scale: --value(--percentage-*,[*]);}@utility zoom-out{--tw-exit-scale: 0;}@utility zoom-out-*{--tw-exit-scale: calc(--value(number)*1%); --tw-exit-scale: calc(--value(ratio)); --tw-exit-scale: --value(--percentage-*,[*]);}@utility -zoom-out-*{--tw-exit-scale: calc(--value(number)*-1%); --tw-exit-scale: calc(--value(ratio)*-1); --tw-exit-scale: --value(--percentage-*,[*]);}@utility spin-in{--tw-enter-rotate: 30deg;}@utility spin-in-*{--tw-enter-rotate: calc(--value(number)*1deg); --tw-enter-rotate: calc(--value(ratio)*360deg); --tw-enter-rotate: --value(--rotate-*,[*]);}@utility -spin-in{--tw-enter-rotate: -30deg;}@utility -spin-in-*{--tw-enter-rotate: calc(--value(number)*-1deg); --tw-enter-rotate: calc(--value(ratio)*-360deg); --tw-enter-rotate: --value(--rotate-*,[*]);}@utility spin-out{--tw-exit-rotate: 30deg;}@utility spin-out-*{--tw-exit-rotate: calc(--value(number)*1deg); --tw-exit-rotate: calc(--value(ratio)*360deg); --tw-exit-rotate: --value(--rotate-*,[*]);}@utility -spin-out{--tw-exit-rotate: -30deg;}@utility -spin-out-*{--tw-exit-rotate: calc(--value(number)*-1deg); --tw-exit-rotate: calc(--value(ratio)*-360deg); --tw-exit-rotate: --value(--rotate-*,[*]);}@utility slide-in-from-top{--tw-enter-translate-y: -100%;}@utility slide-in-from-top-*{--tw-enter-translate-y: calc(--value(integer)*var(--spacing)*-1); --tw-enter-translate-y: calc(--value(--percentage-*,--percentage-translate-*)*-100%); --tw-enter-translate-y: calc(--value(ratio)*-100%); --tw-enter-translate-y: calc(--value(--translate-*,[percentage],[length])*-1);}@utility slide-in-from-bottom{--tw-enter-translate-y: 100%;}@utility slide-in-from-bottom-*{--tw-enter-translate-y: calc(--value(integer)*var(--spacing)); --tw-enter-translate-y: calc(--value(--percentage-*,--percentage-translate-*)*100%); --tw-enter-translate-y: calc(--value(ratio)*100%); --tw-enter-translate-y: --value(--translate-*,[percentage],[length]);}@utility slide-in-from-left{--tw-enter-translate-x: -100%;}@utility slide-in-from-left-*{--tw-enter-translate-x: calc(--value(integer)*var(--spacing)*-1); --tw-enter-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*-100%); --tw-enter-translate-x: calc(--value(ratio)*-100%); --tw-enter-translate-x: calc(--value(--translate-*,[percentage],[length])*-1);}@utility slide-in-from-right{--tw-enter-translate-x: 100%;}@utility slide-in-from-right-*{--tw-enter-translate-x: calc(--value(integer)*var(--spacing)); --tw-enter-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*100%); --tw-enter-translate-x: calc(--value(ratio)*100%); --tw-enter-translate-x: --value(--translate-*,[percentage],[length]);}@utility slide-in-from-start{&:dir(ltr){ --tw-enter-translate-x: -100%; }&:dir(rtl){ --tw-enter-translate-x: 100%; }}@utility slide-in-from-start-*{&:where(:dir(ltr),[dir="ltr"],[dir="ltr"]*){ --tw-enter-translate-x: calc(--value(integer)*var(--spacing)*-1); --tw-enter-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*-100%); --tw-enter-translate-x: calc(--value(ratio)*-100%); --tw-enter-translate-x: calc(--value(--translate-*,[percentage],[length])*-1); }&:where(:dir(rtl),[dir="rtl"],[dir="rtl"]*){ --tw-enter-translate-x: calc(--value(integer)*var(--spacing)); --tw-enter-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*100%); --tw-enter-translate-x: calc(--value(ratio)*100%); --tw-enter-translate-x: --value(--translate-*,[percentage],[length]); }}@utility slide-in-from-end{&:dir(ltr){ --tw-enter-translate-x: 100%; }&:dir(rtl){ --tw-enter-translate-x: -100%; }}@utility slide-in-from-end-*{&:where(:dir(ltr),[dir="ltr"],[dir="ltr"]*){ --tw-enter-translate-x: calc(--value(integer)*var(--spacing)); --tw-enter-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*100%); --tw-enter-translate-x: calc(--value(ratio)*100%); --tw-enter-translate-x: --value(--translate-*,[percentage],[length]); }&:where(:dir(rtl),[dir="rtl"],[dir="rtl"]*){ --tw-enter-translate-x: calc(--value(integer)*var(--spacing)*-1); --tw-enter-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*-100%); --tw-enter-translate-x: calc(--value(ratio)*-100%); --tw-enter-translate-x: calc(--value(--translate-*,[percentage],[length])*-1); }}@utility slide-out-to-top{--tw-exit-translate-y: -100%;}@utility slide-out-to-top-*{--tw-exit-translate-y: calc(--value(integer)*var(--spacing)*-1); --tw-exit-translate-y: calc(--value(--percentage-*,--percentage-translate-*)*-100%); --tw-exit-translate-y: calc(--value(ratio)*-100%); --tw-exit-translate-y: calc(--value(--translate-*,[percentage],[length])*-1);}@utility slide-out-to-bottom{--tw-exit-translate-y: 100%;}@utility slide-out-to-bottom-*{--tw-exit-translate-y: calc(--value(integer)*var(--spacing)); --tw-exit-translate-y: calc(--value(--percentage-*,--percentage-translate-*)*100%); --tw-exit-translate-y: calc(--value(ratio)*100%); --tw-exit-translate-y: --value(--translate-*,[percentage],[length]);}@utility slide-out-to-left{--tw-exit-translate-x: -100%;}@utility slide-out-to-left-*{--tw-exit-translate-x: calc(--value(integer)*var(--spacing)*-1); --tw-exit-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*-100%); --tw-exit-translate-x: calc(--value(ratio)*-100%); --tw-exit-translate-x: calc(--value(--translate-*,[percentage],[length])*-1);}@utility slide-out-to-right{--tw-exit-translate-x: 100%;}@utility slide-out-to-right-*{--tw-exit-translate-x: calc(--value(integer)*var(--spacing)); --tw-exit-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*100%); --tw-exit-translate-x: calc(--value(ratio)*100%); --tw-exit-translate-x: --value(--translate-*,[percentage],[length]);}@utility slide-out-to-start{&:dir(ltr){ --tw-exit-translate-x: -100%; }&:dir(rtl){ --tw-exit-translate-x: 100%; }}@utility slide-out-to-start-*{&:where(:dir(ltr),[dir="ltr"],[dir="ltr"]*){ --tw-exit-translate-x: calc(--value(integer)*var(--spacing)*-1); --tw-exit-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*-100%); --tw-exit-translate-x: calc(--value(ratio)*-100%); --tw-exit-translate-x: calc(--value(--translate-*,[percentage],[length])*-1); }&:where(:dir(rtl),[dir="rtl"],[dir="rtl"]*){ --tw-exit-translate-x: calc(--value(integer)*var(--spacing)); --tw-exit-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*100%); --tw-exit-translate-x: calc(--value(ratio)*100%); --tw-exit-translate-x: --value(--translate-*,[percentage],[length]); }}@utility slide-out-to-end{&:dir(ltr){ --tw-exit-translate-x: 100%; }&:dir(rtl){ --tw-exit-translate-x: -100%; }}@utility slide-out-to-end-*{&:where(:dir(ltr),[dir="ltr"],[dir="ltr"]*){ --tw-exit-translate-x: calc(--value(integer)*var(--spacing)); --tw-exit-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*100%); --tw-exit-translate-x: calc(--value(ratio)*100%); --tw-exit-translate-x: --value(--translate-*,[percentage],[length]); }&:where(:dir(rtl),[dir="rtl"],[dir="rtl"]*){ --tw-exit-translate-x: calc(--value(integer)*var(--spacing)*-1); --tw-exit-translate-x: calc(--value(--percentage-*,--percentage-translate-*)*-100%); --tw-exit-translate-x: calc(--value(ratio)*-100%); --tw-exit-translate-x: calc(--value(--translate-*,[percentage],[length])*-1); }}
   </style>
 </head>
