@@ -25,11 +25,11 @@
 
               <div class="investments-tabs flex items-center gap-2 p-1 rounded-xl bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
                 <button data-active="false" data-target="shares"
-                  class="js-tab-btn px-4 py-2 text-xs font-semibold rounded-lg border border-transparent text-emerald-700 dark:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent whitespace-nowrap transition-colors">
+                  class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
                   Мои доли
                 </button>
                 <button data-active="true" data-target="buy"
-                  class="js-tab-btn investments-primary-tab px-4 py-2 text-xs font-semibold rounded-lg border border-transparent text-emerald-700 dark:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent whitespace-nowrap transition-colors">
+                  class="js-tab-btn investments-primary-tab px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
                   Купить доли
                 </button>
               </div>
@@ -150,23 +150,6 @@
             </div>
           </div>
 
-          <style>
-            .investments-overview-card .investments-tabs .js-tab-btn[data-active="false"] {
-              background: rgb(255 255 255 / 0.75);
-              border-color: rgb(16 185 129 / 0.3);
-              color: rgb(5 150 105);
-            }
-
-            .dark .investments-overview-card .investments-tabs .js-tab-btn[data-active="false"] {
-              background: rgb(6 78 59 / 0.25);
-              border-color: rgb(16 185 129 / 0.35);
-              color: rgb(110 231 183);
-            }
-
-            .investments-overview-card .investments-tabs .js-tab-btn[data-active="true"] {
-              box-shadow: 0 8px 16px rgb(16 185 129 / 0.18);
-            }
-          </style>
 
           <script>
             document.addEventListener('DOMContentLoaded', () => {
