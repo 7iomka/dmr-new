@@ -21,7 +21,6 @@
             <div class="card-header flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 class="text-sm font-bold uppercase tracking-wider text-zinc-900 dark:text-white">Мои доли</h2>
-                <p class="text-[11px] text-zinc-500 font-semibold mt-1">Покупайте новые доли или включайте рассрочку в одном блоке.</p>
               </div>
 
               <div class="investments-tabs flex items-center gap-2 p-1 rounded-xl border border-accent/50 bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
@@ -38,13 +37,13 @@
 
             <div class="card-body">
               <div class="js-tab-content block" data-id="buy">
-                <div class="grid grid-cols-1 xl:grid-cols-3 gap-4 xl:gap-5">
-                  <div class="xl:col-span-2 space-y-5">
+                <div class="grid grid-cols-1 xl:grid-cols-5 gap-4 xl:gap-5">
+                  <div class="xl:col-span-3 space-y-5">
                     <div
-                      class="p-4 rounded-lg border flex items-center justify-between bg-zinc-50 dark:bg-[#0B0E11] border-zinc-100 dark:border-zinc-800">
+                      class="p-4 rounded-lg border flex items-center justify-between bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800">
                       <div class="flex-1 pr-2">
-                        <p class="text-xs font-bold text-zinc-900 dark:text-zinc-200">Рассрочка</p>
-                        <p class="text-[9px] text-zinc-500 font-medium leading-tight mt-0.5">
+                        <p class="text-sm font-bold text-zinc-900 dark:text-zinc-200">Рассрочка</p>
+                        <p class="text-xs text-zinc-500 font-medium leading-tight mt-0.5">
                           Резервируйте доли для покупки на срок от 2 до 24 месяцев
                         </p>
                       </div>
@@ -96,8 +95,11 @@
                       </div>
                     </div>
 
+                  </div>
+
+                  <div class="xl:col-span-2 space-y-4 xl:space-y-5">
                     <div
-                      class="p-4 rounded-lg border space-y-3 bg-zinc-50 dark:bg-[#0B0E11] border-zinc-100 dark:border-zinc-800">
+                      class="p-4 rounded-lg border space-y-3 bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 xl:sticky xl:top-4">
                       <div class="flex justify-between items-center">
                         <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Доли</span>
                         <span class="text-sm font-bold text-accent">132 806</span>
@@ -114,27 +116,12 @@
                         <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">Общая Сумма</span>
                         <span class="text-2xl font-bold dark:text-white">504 $</span>
                       </div>
-                    </div>
 
-                    <button id="mainBuyButton"
-                      class="w-full py-4 bg-accent hover:bg-[#009663] text-white font-bold rounded-lg shadow-lg shadow-[#00B074]/20 transition-all active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
-                      <i data-lucide="circle-plus" class="w-5 h-5"></i>
-                      <span id="buttonText">Купить 132 806 долей за 504 $</span>
-                    </button>
-                  </div>
-
-                  <div class="xl:col-span-1 space-y-4">
-                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-white/[0.02]">
-                      <p class="text-[10px] uppercase tracking-wider font-bold text-zinc-500">Как это работает</p>
-                      <ul class="mt-3 space-y-2 text-xs font-semibold text-zinc-600 dark:text-zinc-300">
-                        <li>• Укажите сумму или число долей.</li>
-                        <li>• Включите рассрочку при необходимости.</li>
-                        <li>• Подтвердите покупку — контракт создастся автоматически.</li>
-                      </ul>
-                    </div>
-                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-white/[0.02]">
-                      <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider mb-1">Совет</p>
-                      <p class="text-sm font-bold text-zinc-900 dark:text-white leading-snug">Регулярные покупки дают более стабильную среднюю цену портфеля.</p>
+                      <button id="mainBuyButton"
+                        class="w-full py-4 bg-accent hover:bg-[#009663] text-white font-bold rounded-lg shadow-lg shadow-[#00B074]/20 transition-all active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
+                        <i data-lucide="circle-plus" class="w-5 h-5"></i>
+                        <span id="buttonText">Купить 132 806 долей за 504 $</span>
+                      </button>
                     </div>
                   </div>
                 </div>
