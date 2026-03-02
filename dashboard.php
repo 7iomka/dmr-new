@@ -132,17 +132,13 @@
                   <h3 class="text-sm font-bold uppercase tracking-wider text-zinc-900 dark:text-white">
                     Инвестиции</h3>
 
-                  <div class="relative flex bg-zinc-200/50 dark:bg-zinc-800/80 p-1 rounded-lg w-fit">
-                    <div
-                      class="js-tab-highlight c-transition-slider absolute bg-white dark:bg-zinc-600 rounded-md shadow z-0 h-[calc(100%-8px)] top-[4px] left-0">
-                    </div>
-
+                  <div class="investments-tabs flex items-center gap-2 p-1 rounded-xl bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
                     <button data-active="false" data-target="shares"
-                      class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white">
+                      class="js-tab-btn px-4 py-2 text-xs font-semibold rounded-lg border border-transparent text-emerald-700 dark:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent whitespace-nowrap transition-colors">
                       Мои доли
                     </button>
                     <button data-active="true" data-target="buy"
-                      class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white">
+                      class="js-tab-btn px-4 py-2 text-xs font-semibold rounded-lg border border-transparent text-emerald-700 dark:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent whitespace-nowrap transition-colors">
                       Купить доли
                     </button>
                   </div>
@@ -150,13 +146,13 @@
                 <div class="card-body">
                   <!-- TAB: BUY -->
                   <div class="js-tab-content block" data-id="buy">
-                    <div class="space-y-5">
+                    <div class="flex flex-col gap-5">
                       <div
-                        class="p-4 rounded-lg border flex items-center justify-between bg-zinc-50 dark:bg-[#0B0E11] border-zinc-100 dark:border-zinc-800">
+                        class="p-4 rounded-lg border flex items-center justify-between bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800">
                         <div class="flex-1 pr-2">
-                          <p class="text-xs font-bold text-zinc-900 dark:text-zinc-200">
+                          <p class="text-sm font-bold text-zinc-900 dark:text-zinc-200">
                             Рассрочка</p>
-                          <p class="text-[9px] text-zinc-500 font-medium leading-tight mt-0.5">
+                          <p class="text-xs text-zinc-500 font-medium leading-tight mt-0.5">
                             Резервируйте доли для
                             покупки на срок от 2 до 24 месяцев</p>
                         </div>
@@ -169,8 +165,8 @@
                         </button>
                       </div>
 
-                      <div class="space-y-4">
-                        <div class="space-y-2">
+                      <div class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-2">
                           <label for="invest_summ" class="text-[10px] font-bold text-zinc-500 uppercase px-1">Введите
                             Сумму</label>
                           <div class="relative group flex">
@@ -183,7 +179,7 @@
                           </div>
                         </div>
 
-                        <div class="space-y-2">
+                        <div class="flex flex-col gap-2">
                           <label for="shares_count"
                             class="text-[10px] font-bold text-zinc-500 uppercase px-1">Количество
                             долей</label>
@@ -193,7 +189,7 @@
                         </div>
                       </div>
 
-                      <div id="installmentField" class="space-y-2 animate-slide-down hidden">
+                      <div id="installmentField" class="flex flex-col gap-2 animate-slide-down hidden">
                         <label class="text-[10px] font-bold text-zinc-500 uppercase px-1">Срок
                           рассрочки</label>
 
@@ -216,7 +212,7 @@
                       </div>
 
                       <div
-                        class="p-4 rounded-lg border space-y-3 bg-zinc-50 dark:bg-[#0B0E11] border-zinc-100 dark:border-zinc-800">
+                        class="p-4 rounded-lg border flex flex-col gap-3 bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800">
                         <div class="flex justify-between items-center">
                           <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Доли</span>
                           <span class="text-sm font-bold text-accent">132 806</span>
