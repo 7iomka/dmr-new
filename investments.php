@@ -18,11 +18,7 @@
           </div>
 
           <div id="investments_shares_holder" data-has-shares="true" class="card js-tabs-container investments-overview-card">
-            <div class="card-header flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h2 class="text-sm font-bold uppercase tracking-wider text-zinc-900 dark:text-white">Мои доли</h2>
-              </div>
-
+            <div class="card-header">
               <div class="investments-tabs flex items-center gap-2 p-1 rounded-xl bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
                 <button data-active="false" data-target="shares"
                   class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
@@ -848,7 +844,6 @@
       } else {
         setDesktopOpen('88421');
         setMobileOpen('88421');
-        syncInstallmentInUrl('88421');
       }
     })();
   </script>
