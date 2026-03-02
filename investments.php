@@ -24,20 +24,14 @@
                 <p class="text-[11px] text-zinc-500 font-semibold mt-1">Покупайте новые доли или включайте рассрочку в одном блоке.</p>
               </div>
 
-              <div class="investments-tabs relative flex bg-zinc-200/70 dark:bg-zinc-900 p-1 rounded-xl w-fit overflow-x-auto c-no-scrollbar max-w-full">
-                <div class="js-tab-highlight c-transition-slider absolute bg-white dark:bg-zinc-600 rounded-lg shadow z-0 h-[calc(100%-8px)] top-[4px] left-0"></div>
-
+              <div class="investments-tabs flex items-center gap-2 p-1 rounded-xl border border-accent/50 bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
                 <button data-active="false" data-target="shares"
-                  class="js-tab-btn relative z-10 px-4 py-2 text-xs font-semibold rounded-lg text-zinc-600 dark:text-zinc-200 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white whitespace-nowrap">
+                  class="js-tab-btn px-4 py-2 text-xs font-semibold rounded-lg border border-transparent text-emerald-700 dark:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent whitespace-nowrap transition-colors">
                   Мои доли
                 </button>
                 <button data-active="true" data-target="buy"
-                  class="js-tab-btn investments-primary-tab relative z-10 px-4 py-2 text-xs font-semibold rounded-lg text-zinc-700 dark:text-zinc-100 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white whitespace-nowrap">
-                  <span class="inline-flex items-center gap-1.5">
-                    <span class="investments-priority-dot" aria-hidden="true"></span>
-                    <span>Купить доли</span>
-                    <span class="investments-priority-chip">Важно</span>
-                  </span>
+                  class="js-tab-btn investments-primary-tab px-4 py-2 text-xs font-semibold rounded-lg border border-transparent text-emerald-700 dark:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent whitespace-nowrap transition-colors">
+                  Купить доли
                 </button>
               </div>
             </div>
@@ -171,51 +165,19 @@
 
           <style>
             .investments-overview-card .investments-tabs .js-tab-btn[data-active="false"] {
-              border: 1px solid rgb(212 212 216 / 0.8);
+              background: rgb(255 255 255 / 0.75);
+              border-color: rgb(16 185 129 / 0.3);
+              color: rgb(5 150 105);
             }
 
             .dark .investments-overview-card .investments-tabs .js-tab-btn[data-active="false"] {
-              border-color: rgb(82 82 91 / 0.95);
-              color: rgb(228 228 231);
-            }
-
-            .investments-overview-card .investments-tabs .investments-primary-tab .investments-priority-dot {
-              width: 6px;
-              height: 6px;
-              border-radius: 9999px;
-              background: rgb(16 185 129);
-              box-shadow: 0 0 0 4px rgb(16 185 129 / 0.22);
-            }
-
-            .investments-overview-card .investments-tabs .investments-primary-tab .investments-priority-chip {
-              font-size: 9px;
-              line-height: 1;
-              text-transform: uppercase;
-              letter-spacing: 0.08em;
-              padding: 0.2rem 0.35rem;
-              border-radius: 9999px;
-              color: rgb(5 150 105);
-              background: rgb(16 185 129 / 0.12);
-              border: 1px solid rgb(16 185 129 / 0.25);
-            }
-
-            .dark .investments-overview-card .investments-tabs .investments-primary-tab .investments-priority-chip {
-              color: rgb(52 211 153);
-              background: rgb(16 185 129 / 0.2);
-              border-color: rgb(16 185 129 / 0.4);
-            }
-
-            .investments-overview-card .investments-tabs .investments-primary-tab[data-active="false"] {
-              color: rgb(5 150 105);
-              font-weight: 700;
-            }
-
-            .dark .investments-overview-card .investments-tabs .investments-primary-tab[data-active="false"] {
+              background: rgb(6 78 59 / 0.25);
+              border-color: rgb(16 185 129 / 0.35);
               color: rgb(110 231 183);
             }
 
-            .investments-overview-card .investments-tabs .investments-primary-tab[data-active="true"] .investments-priority-chip {
-              opacity: 0.82;
+            .investments-overview-card .investments-tabs .js-tab-btn[data-active="true"] {
+              box-shadow: 0 8px 16px rgb(16 185 129 / 0.18);
             }
           </style>
 
