@@ -23,7 +23,7 @@
                 <h2 class="text-sm font-bold uppercase tracking-wider text-zinc-900 dark:text-white">Мои доли</h2>
               </div>
 
-              <div class="investments-tabs flex items-center gap-2 p-1 rounded-xl border border-accent/50 bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
+              <div class="investments-tabs flex items-center gap-2 p-1 rounded-xl bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
                 <button data-active="false" data-target="shares"
                   class="js-tab-btn px-4 py-2 text-xs font-semibold rounded-lg border border-transparent text-emerald-700 dark:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent whitespace-nowrap transition-colors">
                   Мои доли
@@ -38,7 +38,7 @@
             <div class="card-body">
               <div class="js-tab-content block" data-id="buy">
                 <div class="grid grid-cols-1 xl:grid-cols-5 gap-4 xl:gap-5">
-                  <div class="xl:col-span-3 space-y-5">
+                  <div class="xl:col-span-3 flex flex-col gap-5">
                     <div
                       class="p-4 rounded-lg border flex items-center justify-between bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800">
                       <div class="flex-1 pr-2">
@@ -56,8 +56,8 @@
                       </button>
                     </div>
 
-                    <div class="space-y-4">
-                      <div class="space-y-2">
+                    <div class="flex flex-col gap-4">
+                      <div class="flex flex-col gap-2">
                         <label for="invest_summ" class="text-[10px] font-bold text-zinc-500 uppercase px-1">Введите Сумму</label>
                         <div class="relative group flex">
                           <input id="invest_summ" type="number"
@@ -70,7 +70,7 @@
                         </div>
                       </div>
 
-                      <div class="space-y-2">
+                      <div class="flex flex-col gap-2">
                         <label for="shares_count" class="text-[10px] font-bold text-zinc-500 uppercase px-1">Количество долей</label>
                         <input id="shares_count" type="number"
                           class="no-spinner w-full rounded-lg px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-accent/50 dark:focus:border-accent/50 text-zinc-900 dark:text-white"
@@ -78,7 +78,7 @@
                       </div>
                     </div>
 
-                    <div id="installmentField" class="space-y-2 animate-slide-down hidden">
+                    <div id="installmentField" class="flex flex-col gap-2 animate-slide-down hidden">
                       <label class="text-[10px] font-bold text-zinc-500 uppercase px-1">Срок рассрочки</label>
 
                       <div class="relative">
@@ -97,9 +97,9 @@
 
                   </div>
 
-                  <div class="xl:col-span-2 space-y-4 xl:space-y-5">
+                  <div class="xl:col-span-2 flex flex-col gap-4 xl:gap-5">
                     <div
-                      class="p-4 rounded-lg border space-y-3 bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 xl:sticky xl:top-4">
+                      class="p-4 rounded-lg border flex flex-col gap-3 bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 xl:sticky xl:top-4">
                       <div class="flex justify-between items-center">
                         <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Доли</span>
                         <span class="text-sm font-bold text-accent">132 806</span>
