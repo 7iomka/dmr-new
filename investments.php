@@ -33,7 +33,11 @@
                 </button>
                 <button data-active="true" data-target="buy"
                   class="js-tab-btn investments-primary-tab relative z-10 px-4 py-2 text-xs font-semibold rounded-lg text-zinc-700 dark:text-zinc-100 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white whitespace-nowrap">
-                  Купить доли
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="investments-priority-dot" aria-hidden="true"></span>
+                    <span>Купить доли</span>
+                    <span class="investments-priority-chip">Важно</span>
+                  </span>
                 </button>
               </div>
             </div>
@@ -172,8 +176,33 @@
 
             .dark .investments-overview-card .investments-tabs .js-tab-btn[data-active="false"] {
               border-color: rgb(82 82 91 / 0.95);
-              background: rgb(39 39 42 / 0.55);
               color: rgb(228 228 231);
+            }
+
+            .investments-overview-card .investments-tabs .investments-primary-tab .investments-priority-dot {
+              width: 6px;
+              height: 6px;
+              border-radius: 9999px;
+              background: rgb(16 185 129);
+              box-shadow: 0 0 0 4px rgb(16 185 129 / 0.22);
+            }
+
+            .investments-overview-card .investments-tabs .investments-primary-tab .investments-priority-chip {
+              font-size: 9px;
+              line-height: 1;
+              text-transform: uppercase;
+              letter-spacing: 0.08em;
+              padding: 0.2rem 0.35rem;
+              border-radius: 9999px;
+              color: rgb(5 150 105);
+              background: rgb(16 185 129 / 0.12);
+              border: 1px solid rgb(16 185 129 / 0.25);
+            }
+
+            .dark .investments-overview-card .investments-tabs .investments-primary-tab .investments-priority-chip {
+              color: rgb(52 211 153);
+              background: rgb(16 185 129 / 0.2);
+              border-color: rgb(16 185 129 / 0.4);
             }
 
             .investments-overview-card .investments-tabs .investments-primary-tab[data-active="false"] {
@@ -182,9 +211,11 @@
             }
 
             .dark .investments-overview-card .investments-tabs .investments-primary-tab[data-active="false"] {
-              color: rgb(52 211 153);
-              background: rgb(16 185 129 / 0.16);
-              border-color: rgb(16 185 129 / 0.35);
+              color: rgb(110 231 183);
+            }
+
+            .investments-overview-card .investments-tabs .investments-primary-tab[data-active="true"] .investments-priority-chip {
+              opacity: 0.82;
             }
           </style>
 
