@@ -35,6 +35,14 @@ $faqGroups = [
 ];
 ?>
 
+<style>
+  @keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 176, 116, 0.45); }
+    70% { box-shadow: 0 0 0 14px rgba(0, 176, 116, 0); }
+  }
+  .cta-pulse { animation: ctaPulse 2.1s infinite; }
+</style>
+
 <main class="flex-1 overflow-y-auto">
   <div class="px-4 lg:px-10 py-6 lg:py-10 space-y-12 lg:space-y-16">
     <section class="relative overflow-hidden rounded-xl border border-zinc-200 bg-[linear-gradient(135deg,#f3fbf8_0%,#eef8ff_45%,#f7fbff_100%)] text-zinc-900 dark:border-white/10 dark:bg-[linear-gradient(135deg,#081217_0%,#0a1419_55%,#0b151b_100%)] dark:text-white">
@@ -44,15 +52,8 @@ $faqGroups = [
       <div class="relative max-w-6xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-7 lg:gap-10 p-6 md:p-10 lg:p-12">
         <div class="space-y-5">
           <h1 class="text-3xl md:text-[3.35rem] leading-[1.03] font-bold">Посмотрите на себя из зазеркалья</h1>
-          <p class="text-zinc-700 dark:text-zinc-200 max-w-xl text-lg">Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела.</p>
-          <a href="#" class="inline-flex items-center justify-center px-7 py-3 rounded-lg bg-accent text-white text-[11px] uppercase tracking-[0.12em] font-bold shadow-[0_12px_30px_rgba(0,176,116,0.32)] hover:-translate-y-0.5 transition-all">Инвестировать</a>
-        </div>
 
-        <div class="space-y-3">
-          <div class="rounded-lg overflow-hidden border border-zinc-200 dark:border-white/15 bg-white/70 dark:bg-black/20">
-            <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1400&q=80" alt="Dilan Mirror campaign visual" class="w-full h-[250px] md:h-[300px] object-cover">
-          </div>
-          <div class="grid sm:grid-cols-3 gap-3">
+          <div class="grid sm:grid-cols-3 gap-3 max-w-3xl">
             <div class="rounded-lg bg-white/80 dark:bg-white/10 border border-zinc-200 dark:border-white/15 p-4">
               <p class="text-2xl md:text-3xl font-bold">$2.5M</p>
               <p class="text-xs uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Already Invested</p>
@@ -65,6 +66,15 @@ $faqGroups = [
               <p class="text-2xl md:text-3xl font-bold">15%</p>
               <p class="text-xs uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Projected ROI</p>
             </div>
+          </div>
+
+          <p class="text-zinc-700 dark:text-zinc-200 max-w-xl text-lg">Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела.</p>
+          <a href="#" class="cta-pulse inline-flex items-center justify-center px-9 py-4 rounded-lg bg-accent text-white text-sm uppercase tracking-[0.12em] font-bold shadow-[0_14px_38px_rgba(0,176,116,0.4)] hover:-translate-y-0.5 transition-all">Инвестировать</a>
+        </div>
+
+        <div class="space-y-3">
+          <div class="rounded-lg overflow-hidden border border-zinc-200 dark:border-white/15 bg-white/70 dark:bg-black/20">
+            <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1400&q=80" alt="Dilan Mirror campaign visual" class="w-full h-[340px] md:h-[420px] object-contain bg-black/10 dark:bg-black/35">
           </div>
         </div>
       </div>
@@ -168,7 +178,7 @@ $faqGroups = [
                   <span class="font-semibold text-base md:text-xl leading-snug"><?= $item['q']; ?></span>
                   <i data-lucide="chevron-down" class="w-5 h-5 text-accent dark:text-[#1fe7ad] shrink-0 mt-1 transition-transform duration-300"></i>
                 </button>
-                <div class="faq-panel max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-out pb-0 pr-9 text-zinc-600 dark:text-zinc-300 text-sm md:text-base leading-7" data-faq-panel><?= $item['a']; ?></div>
+                <div class="faq-panel max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-out pb-0 pr-0 text-zinc-600 dark:text-zinc-300 text-sm md:text-base leading-7" data-faq-panel><div class="mt-1 mb-4 p-4 rounded-lg bg-white/70 dark:bg-white/5 border border-zinc-200 dark:border-white/10"><?= $item['a']; ?></div></div>
               </div>
             <?php endforeach; ?>
           </div>
