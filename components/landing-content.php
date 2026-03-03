@@ -37,33 +37,33 @@ $faqGroups = [
 
 <main class="flex-1 overflow-y-auto">
   <div class="px-4 lg:px-10 py-6 lg:py-10 space-y-12 lg:space-y-16">
-    <section class="relative overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#081217_0%,#0a1419_55%,#0b151b_100%)] text-white dark:border-zinc-200 dark:bg-[linear-gradient(135deg,#f3fbf8_0%,#eef8ff_45%,#f7fbff_100%)] dark:text-zinc-900">
-      <div class="absolute inset-0 opacity-65 dark:opacity-45 bg-[linear-gradient(rgba(255,255,255,.09)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.09)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(15,23,42,.13)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.13)_1px,transparent_1px)] bg-[size:120px_120px]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(16,185,129,.18),transparent_38%),radial-gradient(circle_at_75%_35%,rgba(16,185,129,.12),transparent_34%),radial-gradient(circle_at_55%_82%,rgba(34,211,238,.08),transparent_32%)] dark:bg-[radial-gradient(circle_at_18%_20%,rgba(16,185,129,.26),transparent_40%),radial-gradient(circle_at_75%_35%,rgba(16,185,129,.16),transparent_36%),radial-gradient(circle_at_55%_82%,rgba(34,211,238,.11),transparent_34%)]"></div>
+    <section class="relative overflow-hidden rounded-xl border border-zinc-200 bg-[linear-gradient(135deg,#f3fbf8_0%,#eef8ff_45%,#f7fbff_100%)] text-zinc-900 dark:border-white/10 dark:bg-[linear-gradient(135deg,#081217_0%,#0a1419_55%,#0b151b_100%)] dark:text-white">
+      <div class="absolute inset-0 opacity-45 dark:opacity-65 bg-[linear-gradient(rgba(15,23,42,.13)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.13)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,.09)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.09)_1px,transparent_1px)] bg-[size:120px_120px]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(16,185,129,.26),transparent_40%),radial-gradient(circle_at_75%_35%,rgba(16,185,129,.16),transparent_36%),radial-gradient(circle_at_55%_82%,rgba(34,211,238,.11),transparent_34%)] dark:bg-[radial-gradient(circle_at_18%_20%,rgba(16,185,129,.18),transparent_38%),radial-gradient(circle_at_75%_35%,rgba(16,185,129,.12),transparent_34%),radial-gradient(circle_at_55%_82%,rgba(34,211,238,.08),transparent_32%)]"></div>
 
       <div class="relative max-w-6xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-7 lg:gap-10 p-6 md:p-10 lg:p-12">
         <div class="space-y-5">
           <h1 class="text-3xl md:text-[3.35rem] leading-[1.03] font-bold">Посмотрите на себя из зазеркалья</h1>
-          <p class="text-zinc-200 dark:text-zinc-700 max-w-xl text-lg">Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела.</p>
+          <p class="text-zinc-700 dark:text-zinc-200 max-w-xl text-lg">Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела.</p>
           <a href="#" class="inline-flex items-center justify-center px-7 py-3 rounded-lg bg-accent text-white text-[11px] uppercase tracking-[0.12em] font-bold shadow-[0_12px_30px_rgba(0,176,116,0.32)] hover:-translate-y-0.5 transition-all">Инвестировать</a>
         </div>
 
         <div class="space-y-3">
-          <div class="rounded-lg overflow-hidden border border-white/15 dark:border-zinc-200 bg-black/20 dark:bg-white/70">
+          <div class="rounded-lg overflow-hidden border border-zinc-200 dark:border-white/15 bg-white/70 dark:bg-black/20">
             <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1400&q=80" alt="Dilan Mirror campaign visual" class="w-full h-[250px] md:h-[300px] object-cover">
           </div>
           <div class="grid sm:grid-cols-3 gap-3">
-            <div class="rounded-lg bg-white/10 dark:bg-white/80 border border-white/15 dark:border-zinc-200 p-4">
+            <div class="rounded-lg bg-white/80 dark:bg-white/10 border border-zinc-200 dark:border-white/15 p-4">
               <p class="text-2xl md:text-3xl font-bold">$2.5M</p>
-              <p class="text-xs uppercase tracking-wider text-emerald-100/80 dark:text-zinc-600 mt-1">Already Invested</p>
+              <p class="text-xs uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Already Invested</p>
             </div>
-            <div class="rounded-lg bg-white/10 dark:bg-white/80 border border-white/15 dark:border-zinc-200 p-4">
+            <div class="rounded-lg bg-white/80 dark:bg-white/10 border border-zinc-200 dark:border-white/15 p-4">
               <p class="text-2xl md:text-3xl font-bold">850+</p>
-              <p class="text-xs uppercase tracking-wider text-emerald-100/80 dark:text-zinc-600 mt-1">Active Investors</p>
+              <p class="text-xs uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Active Investors</p>
             </div>
-            <div class="rounded-lg bg-white/10 dark:bg-white/80 border border-white/15 dark:border-zinc-200 p-4">
+            <div class="rounded-lg bg-white/80 dark:bg-white/10 border border-zinc-200 dark:border-white/15 p-4">
               <p class="text-2xl md:text-3xl font-bold">15%</p>
-              <p class="text-xs uppercase tracking-wider text-emerald-100/80 dark:text-zinc-600 mt-1">Projected ROI</p>
+              <p class="text-xs uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Projected ROI</p>
             </div>
           </div>
         </div>
