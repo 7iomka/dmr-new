@@ -40,101 +40,82 @@ $faqGroups = [
     0%, 100% { box-shadow: 0 0 0 0 rgba(0, 176, 116, 0.45); }
     70% { box-shadow: 0 0 0 14px rgba(0, 176, 116, 0); }
   }
+
   .cta-pulse { animation: ctaPulse 2.1s infinite; }
 </style>
 
 <main class="flex-1 overflow-y-auto">
-  <div class="px-4 lg:px-10 py-6 lg:py-10 space-y-12 lg:space-y-16">
-    <section class="relative overflow-hidden rounded-xl border border-zinc-200 bg-[linear-gradient(135deg,#f3fbf8_0%,#eef8ff_45%,#f7fbff_100%)] text-zinc-900 dark:border-white/10 dark:bg-[linear-gradient(135deg,#081217_0%,#0a1419_55%,#0b151b_100%)] dark:text-white">
-      <div class="absolute inset-0 opacity-45 dark:opacity-65 bg-[linear-gradient(rgba(15,23,42,.13)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.13)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,.09)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.09)_1px,transparent_1px)] bg-[size:120px_120px]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(16,185,129,.26),transparent_40%),radial-gradient(circle_at_75%_35%,rgba(16,185,129,.16),transparent_36%),radial-gradient(circle_at_55%_82%,rgba(34,211,238,.11),transparent_34%)] dark:bg-[radial-gradient(circle_at_18%_20%,rgba(16,185,129,.18),transparent_38%),radial-gradient(circle_at_75%_35%,rgba(16,185,129,.12),transparent_34%),radial-gradient(circle_at_55%_82%,rgba(34,211,238,.08),transparent_32%)]"></div>
+  <div class="px-4 lg:px-8 xl:px-10 py-6 lg:py-10 space-y-10 lg:space-y-14">
+    <section class="relative overflow-hidden rounded-xl border border-zinc-200 bg-[linear-gradient(160deg,#f8fbfd_0%,#ecf8f4_46%,#f7fbff_100%)] dark:border-white/10 dark:bg-[#071015]">
+      <div class="absolute inset-0 opacity-40 dark:opacity-70 bg-[linear-gradient(rgba(15,23,42,.11)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.11)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] bg-[size:110px_110px]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(16,185,129,.2),transparent_36%),radial-gradient(circle_at_70%_22%,rgba(16,185,129,.12),transparent_32%)] dark:bg-[radial-gradient(circle_at_15%_20%,rgba(16,185,129,.28),transparent_40%),radial-gradient(circle_at_70%_22%,rgba(34,211,238,.12),transparent_34%)]"></div>
 
-      <div class="relative max-w-6xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-7 lg:gap-10 p-6 md:p-10 lg:p-12">
+      <div class="relative max-w-6xl mx-auto grid xl:grid-cols-[0.94fr_1.06fr] gap-6 lg:gap-8 p-5 md:p-8 xl:p-10">
         <div class="space-y-5">
-          <h1 class="text-3xl md:text-[3.35rem] leading-[1.03] font-bold">Посмотрите на себя из зазеркалья</h1>
+          <h1 class="text-3xl md:text-5xl leading-[1.02] font-bold text-zinc-900 dark:text-white">Посмотрите на себя из зазеркалья</h1>
 
-          <div class="grid sm:grid-cols-3 gap-3 max-w-3xl">
-            <div class="rounded-lg bg-white/80 dark:bg-white/10 border border-zinc-200 dark:border-white/15 p-4">
-              <p class="text-2xl md:text-3xl font-bold">$2.5M</p>
-              <p class="text-xs uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Already Invested</p>
+          <div class="grid sm:grid-cols-3 gap-2.5 md:gap-3">
+            <div class="rounded-lg border border-zinc-200 bg-white/80 dark:border-white/15 dark:bg-white/10 p-3 md:p-4">
+              <p class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">$2.5M</p>
+              <p class="text-[11px] uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Already Invested</p>
             </div>
-            <div class="rounded-lg bg-white/80 dark:bg-white/10 border border-zinc-200 dark:border-white/15 p-4">
-              <p class="text-2xl md:text-3xl font-bold">850+</p>
-              <p class="text-xs uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Active Investors</p>
+            <div class="rounded-lg border border-zinc-200 bg-white/80 dark:border-white/15 dark:bg-white/10 p-3 md:p-4">
+              <p class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">850+</p>
+              <p class="text-[11px] uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Active Investors</p>
             </div>
-            <div class="rounded-lg bg-white/80 dark:bg-white/10 border border-zinc-200 dark:border-white/15 p-4">
-              <p class="text-2xl md:text-3xl font-bold">15%</p>
-              <p class="text-xs uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Projected ROI</p>
+            <div class="rounded-lg border border-zinc-200 bg-white/80 dark:border-white/15 dark:bg-white/10 p-3 md:p-4">
+              <p class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">15%</p>
+              <p class="text-[11px] uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Projected ROI</p>
             </div>
           </div>
 
-          <p class="text-zinc-700 dark:text-zinc-200 max-w-xl text-lg">Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела.</p>
+          <p class="text-lg text-zinc-700 dark:text-zinc-200 max-w-xl">Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела.</p>
           <a href="#" class="cta-pulse inline-flex items-center justify-center px-9 py-4 rounded-lg bg-accent text-white text-sm uppercase tracking-[0.12em] font-bold shadow-[0_14px_38px_rgba(0,176,116,0.4)] hover:-translate-y-0.5 transition-all">Инвестировать</a>
         </div>
 
-        <div class="space-y-3">
-          <div class="rounded-lg overflow-hidden border border-zinc-200 dark:border-white/15 bg-white/70 dark:bg-black/20">
-            <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1400&q=80" alt="Dilan Mirror campaign visual" class="w-full h-[340px] md:h-[420px] object-contain bg-black/10 dark:bg-black/35">
-          </div>
+        <div class="rounded-lg overflow-hidden border border-zinc-200 bg-white/70 dark:border-white/15 dark:bg-black/20">
+          <img src="https://ik.imagekit.io/dilanmirror/dmr/dmr3.png" alt="Dilan Mirror campaign visual" class="w-full h-[360px] md:h-[520px] object-contain bg-black/5 dark:bg-black/35">
         </div>
       </div>
     </section>
 
-    <section class="max-w-6xl mx-auto space-y-8">
-      <div class="text-center space-y-3">
-        <p class="text-[11px] uppercase tracking-[0.16em] text-accent font-semibold">Referral</p>
-        <h2 class="text-2xl md:text-4xl font-bold">Реферальная программа «до 40%» — просто и понятно</h2>
-        <p class="text-zinc-600 dark:text-zinc-300 max-w-3xl mx-auto">Вы получаете доход от ближайших рекомендаций и от роста вашей структуры. Чем сильнее ваша команда, тем заметнее результат.</p>
-      </div>
+    <section class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-5 lg:gap-6">
+      <article class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0b1218] p-5 md:p-6">
+        <p class="text-[11px] uppercase tracking-[0.14em] text-accent font-semibold">Referral</p>
+        <h2 class="mt-2 text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Реферальная программа «до 40%» — просто и понятно</h2>
+        <p class="mt-3 text-zinc-600 dark:text-zinc-300">Вы получаете доход от ближайших рекомендаций и от роста вашей структуры. Чем сильнее ваша команда, тем заметнее результат.</p>
 
-      <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 items-start">
-        <div class="space-y-4">
-          <div class="flex items-center gap-3">
-            <span class="shrink-0 w-9 h-9 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 grid place-items-center font-bold">1</span>
-            <p class="font-semibold">Первые три уровня дают фиксированный доход: <span class="font-bold">10% + 5% + 2%</span>.</p>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="shrink-0 w-9 h-9 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 grid place-items-center font-bold">2</span>
-            <p class="font-semibold">После этого остаётся дополнительная часть — до <span class="font-bold">23%</span> — она распределяется вглубь команды.</p>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="shrink-0 w-9 h-9 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 grid place-items-center font-bold">3</span>
-            <p class="font-semibold">Если команда большая, система автоматически и равномерно делит эту часть между глубокими уровнями.</p>
-          </div>
+        <div class="mt-5 space-y-3">
+          <div class="flex items-center gap-3"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/15 text-accent dark:text-emerald-300 grid place-items-center text-sm font-bold">1</span><p class="font-semibold text-zinc-800 dark:text-zinc-100">Первые три уровня дают фиксированный доход: <span class="font-bold">10% + 5% + 2%</span>.</p></div>
+          <div class="flex items-center gap-3"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/15 text-accent dark:text-emerald-300 grid place-items-center text-sm font-bold">2</span><p class="font-semibold text-zinc-800 dark:text-zinc-100">После этого остаётся дополнительная часть — до <span class="font-bold">23%</span> — она распределяется вглубь команды.</p></div>
+          <div class="flex items-center gap-3"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/15 text-accent dark:text-emerald-300 grid place-items-center text-sm font-bold">3</span><p class="font-semibold text-zinc-800 dark:text-zinc-100">Если команда большая, система автоматически и равномерно делит эту часть между глубокими уровнями.</p></div>
         </div>
+      </article>
 
-        <div class="relative rounded-xl p-6 bg-[linear-gradient(155deg,rgba(16,185,129,.10),rgba(34,211,238,.08),rgba(255,255,255,.4))] dark:bg-[linear-gradient(155deg,rgba(16,185,129,.14),rgba(34,211,238,.08),rgba(255,255,255,.03))]">
-          <p class="text-xs uppercase tracking-wider text-zinc-500 mb-4">Как распределяется доход</p>
-          <div class="space-y-4">
-            <div>
-              <div class="flex justify-between text-sm mb-1 font-semibold"><span>Ближайшие уровни</span><span>17%</span></div>
-              <div class="h-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-[42.5%] bg-gradient-to-r from-emerald-500 to-emerald-400"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between text-sm mb-1 font-semibold"><span>Глубина команды</span><span>до 23%</span></div>
-              <div class="h-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-[57.5%] bg-gradient-to-r from-cyan-400 to-emerald-300"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between text-sm mb-1 font-semibold"><span>Максимальный потолок</span><span>до 40%</span></div>
-              <div class="h-3 rounded-lg bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-full bg-gradient-to-r from-emerald-500 via-cyan-400 to-emerald-300"></div></div>
-            </div>
-          </div>
+      <article class="rounded-lg border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-[#0a1116] p-5 md:p-6">
+        <h3 class="text-sm uppercase tracking-[0.14em] text-zinc-500">Fast & Reliable Rewards</h3>
+        <h4 class="mt-2 text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">Путь инвестора в 4 шага</h4>
+        <div class="mt-5 grid sm:grid-cols-2 gap-3 text-sm">
+          <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-3"><p class="font-bold text-zinc-900 dark:text-white">1. Регистрация</p><p class="text-zinc-600 dark:text-zinc-300 mt-1">Создаёте аккаунт и проходите базовую верификацию.</p></div>
+          <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-3"><p class="font-bold text-zinc-900 dark:text-white">2. Инвестиция в доли</p><p class="text-zinc-600 dark:text-zinc-300 mt-1">Выбираете сумму и фиксируете участие в раунде.</p></div>
+          <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-3"><p class="font-bold text-zinc-900 dark:text-white">3. Рост экосистемы</p><p class="text-zinc-600 dark:text-zinc-300 mt-1">Следите за новостями, отчётами и активностью комьюнити.</p></div>
+          <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-3"><p class="font-bold text-zinc-900 dark:text-white">4. Конвертация</p><p class="text-zinc-600 dark:text-zinc-300 mt-1">На следующем этапе доли переходят в акционерную модель.</p></div>
         </div>
-      </div>
+      </article>
     </section>
 
     <section id="news" class="max-w-6xl mx-auto space-y-4">
       <div class="flex items-center justify-between gap-4">
-        <h2 class="text-2xl md:text-4xl font-bold">Последние новости и обновления</h2>
+        <h2 class="text-2xl md:text-4xl font-bold text-zinc-900 dark:text-white">Последние новости и обновления</h2>
         <a href="#" class="text-xs md:text-sm uppercase tracking-wider font-semibold text-accent hover:underline">Все новости</a>
       </div>
 
-      <div class="relative">
+      <div class="relative rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0a1116] p-3 md:p-4">
         <div class="overflow-hidden" data-news-viewport>
           <div class="flex transition-transform duration-300" data-news-track>
             <?php foreach ($newsItems as $item): ?>
               <article class="min-w-full md:min-w-[50%] xl:min-w-[33.3333%] p-2">
-                <a href="<?= $item['link']; ?>" class="group block h-full rounded-xl overflow-hidden border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#10161b]">
+                <a href="<?= $item['link']; ?>" class="group block h-full rounded-lg overflow-hidden border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#10161b]">
                   <div class="h-44 relative bg-[linear-gradient(155deg,#eef7f3_0%,#e7f2f7_50%,#ffffff_100%)] dark:bg-[linear-gradient(155deg,#111a1f_0%,#0f1917_50%,#0c1116_100%)]">
                     <div class="absolute inset-0 opacity-35 bg-[radial-gradient(circle_at_20%_20%,#10b981_0%,transparent_45%),radial-gradient(circle_at_80%_40%,#22d3ee_0%,transparent_40%)]"></div>
                     <div class="absolute left-3 top-3 flex items-center gap-2 text-[10px]">
@@ -158,7 +139,17 @@ $faqGroups = [
       </div>
     </section>
 
-    <section id="faq" class="max-w-6xl mx-auto rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-900 px-4 md:px-8 py-8 md:py-10 dark:border-white/10 dark:bg-[#071015] dark:text-white">
+    <section class="max-w-6xl mx-auto rounded-lg border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-[#0a1116] p-5 md:p-6">
+      <h3 class="text-sm uppercase tracking-[0.14em] text-accent font-semibold">Why now</h3>
+      <h4 class="mt-2 text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Почему инвесторы заходят сейчас</h4>
+      <div class="mt-5 grid md:grid-cols-3 gap-3">
+        <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-4"><p class="font-bold text-zinc-900 dark:text-white">Ограниченный пул</p><p class="text-sm text-zinc-600 dark:text-zinc-300 mt-1">В продаже только 15% — это создаёт дефицит предложения.</p></div>
+        <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-4"><p class="font-bold text-zinc-900 dark:text-white">Прозрачная реферальная модель</p><p class="text-sm text-zinc-600 dark:text-zinc-300 mt-1">Система «до 40%» объяснима и масштабируется с глубиной сети.</p></div>
+        <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-4"><p class="font-bold text-zinc-900 dark:text-white">Сильное комьюнити</p><p class="text-sm text-zinc-600 dark:text-zinc-300 mt-1">Наблюдательный комитет и регулярные новости повышают доверие к проекту.</p></div>
+      </div>
+    </section>
+
+    <section id="faq" class="max-w-6xl mx-auto rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-900 px-4 md:px-8 py-8 md:py-10 dark:border-white/10 dark:bg-[#071015] dark:text-white">
       <div class="space-y-5">
         <h2 class="text-3xl md:text-5xl leading-none font-bold text-accent dark:text-[#33f7b5]">Frequently Asked Questions</h2>
 
@@ -189,7 +180,7 @@ $faqGroups = [
     <section id="committee" class="max-w-6xl mx-auto space-y-6">
       <div class="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 class="text-2xl md:text-4xl font-bold">Наблюдательный комитет</h2>
+          <h2 class="text-2xl md:text-4xl font-bold text-zinc-900 dark:text-white">Наблюдательный комитет</h2>
           <p class="text-zinc-600 dark:text-zinc-300 mt-1">Около 100 участников. Клик по аватару открывает подробную информацию.</p>
         </div>
       </div>
