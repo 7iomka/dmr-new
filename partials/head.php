@@ -6,7 +6,7 @@
   <title>Skill Code Pro Exchange - Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap">
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style type="text/tailwindcss">
@@ -109,7 +109,7 @@
 
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Noto Sans', 'Noto Sans SC', sans-serif;
       transition: background-color 0.3s, color 0.3s;
     }
 

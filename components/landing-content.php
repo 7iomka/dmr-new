@@ -1,94 +1,66 @@
 <?php
 $newsItems = [
-  ['title' => 'Раунд A открыт: старт размещения долей', 'date' => '03.03.2026', 'category' => 'Инвестиции', 'excerpt' => 'Открыт ранний доступ для инвесторов. На рынок выведено только 15% долей компании.', 'link' => '#', 'accent' => 'from-emerald-400/30 to-cyan-300/20'],
-  ['title' => 'Реферальная сеть: рост активности +28%', 'date' => '27.02.2026', 'category' => 'Партнёрка', 'excerpt' => 'Обновлена логика аналитики по глубине уровней и прозрачности распределения дохода.', 'link' => '#', 'accent' => 'from-emerald-300/30 to-lime-300/20'],
-  ['title' => 'Запуск ежемесячного investor report', 'date' => '22.02.2026', 'category' => 'Отчётность', 'excerpt' => 'Единый формат отчётности по росту, метрикам спроса и динамике оборота.', 'link' => '#', 'accent' => 'from-sky-300/30 to-emerald-300/20'],
-  ['title' => 'Обновлены юридические документы', 'date' => '15.02.2026', 'category' => 'Юридический блок', 'excerpt' => 'Актуализированы условия владения долями, конвертации в акции и пользовательские политики.', 'link' => '#', 'accent' => 'from-zinc-300/20 to-emerald-200/20'],
-  ['title' => 'Новый этап масштабирования продукта', 'date' => '10.02.2026', 'category' => 'Продукт', 'excerpt' => 'Добавлены новые сценарии воронки инвестиций и расширены региональные команды.', 'link' => '#', 'accent' => 'from-teal-300/30 to-cyan-200/20'],
-  ['title' => 'Комитет расширен до 100+ участников', 'date' => '05.02.2026', 'category' => 'Комьюнити', 'excerpt' => 'В наблюдательный комитет вошли эксперты из новых стран и отраслей.', 'link' => '#', 'accent' => 'from-emerald-300/30 to-yellow-200/20'],
+  ['title' => 'Открыт ранний раунд инвестиций', 'date' => '03.03.2026', 'category' => 'Инвестиции', 'excerpt' => 'В открытую продажу выведено только 15% долей. Это ограниченное окно для раннего входа.', 'link' => '#'],
+  ['title' => 'Обновлена партнёрская программа', 'date' => '28.02.2026', 'category' => 'Партнёрка', 'excerpt' => 'Сделали систему вознаграждений более прозрачной и понятной для новых участников.', 'link' => '#'],
+  ['title' => 'Запущен формат ежемесячных отчётов', 'date' => '21.02.2026', 'category' => 'Отчётность', 'excerpt' => 'Ключевые метрики развития теперь доступны в регулярных апдейтах.', 'link' => '#'],
+  ['title' => 'Расширена география комитета', 'date' => '16.02.2026', 'category' => 'Комьюнити', 'excerpt' => 'В наблюдательный комитет вошли новые представители из разных стран.', 'link' => '#'],
+  ['title' => 'Юридический пакет обновлён', 'date' => '11.02.2026', 'category' => 'Правовая база', 'excerpt' => 'Актуализированы документы по долям, акционерной модели и пользовательским условиям.', 'link' => '#'],
+  ['title' => 'Рост активности инвесторов +31%', 'date' => '05.02.2026', 'category' => 'Продукт', 'excerpt' => 'Увеличилось число новых подключений и повторных инвестиций.', 'link' => '#'],
 ];
 
 $faqGroups = [
   [
-    'title' => 'Инвестиционный блок',
+    'title' => 'Про инвестиции',
     'items' => [
-      ['q' => 'Что я получаю, когда инвестирую?', 'a' => 'Вы приобретаете доли компании. Далее, по дорожной карте и корпоративной структуре, эти доли конвертируются в акции.'],
-      ['q' => 'Почему в продаже только 15%?', 'a' => 'Это контролируемый объём текущего раунда: ограниченное предложение помогает сохранять структуру капитала и стратегическую управляемость.'],
-      ['q' => 'Кнопка «Инвестировать» куда ведёт?', 'a' => 'Сейчас это заглушка на регистрацию. После запуска страницы регистрации ссылка будет заменена на целевой flow.'],
+      ['q' => 'Что я получаю, когда инвестирую?', 'a' => 'Вы получаете доли компании. Позже, по плану развития, эти доли переходят в акции.'],
+      ['q' => 'Почему на продажу выставлено только 15%?', 'a' => 'Мы открыли ограниченный объём для раннего раунда, чтобы сохранить управляемую структуру капитала.'],
+      ['q' => 'Кнопка «Инвестировать» уже рабочая?', 'a' => 'Пока это заглушка на будущую регистрацию. После запуска регистрации ссылка станет рабочей.'],
     ],
   ],
   [
-    'title' => 'Реферальная модель',
+    'title' => 'Про реферальную программу',
     'items' => [
-      ['q' => 'Как работает «до 40%»?', 'a' => 'База: 10% + 5% + 2%. Остальные 23% распределяются по глубине структуры.'],
-      ['q' => 'Что при глубине до 23 уровней?', 'a' => 'Каждый уровень после базовых трёх получает по 1%.'],
-      ['q' => 'Что при глубине выше 23 уровней?', 'a' => 'Оставшиеся 23% распределяются равномерно между уровнями: 23/n% (для уровней после базовых трёх).'],
+      ['q' => 'Что значит «до 40%» простыми словами?', 'a' => 'Первые три рекомендации дают вам 10%, 5% и 2%. Дальше остаётся ещё до 23%, который распределяется по вашей расширяющейся сети.'],
+      ['q' => 'Если сеть очень глубокая?', 'a' => 'Доход не пропадает: оставшийся процент автоматически делится между уровнями глубже, чтобы система оставалась справедливой.'],
+      ['q' => 'Это работает только для маленькой сети?', 'a' => 'Нет, модель рассчитана и на небольшие, и на большие структуры. Вы зарабатываете как с близких, так и с дальних уровней.'],
     ],
   ],
   [
-    'title' => 'Новости и платформа',
+    'title' => 'Про платформу',
     'items' => [
-      ['q' => 'Сколько новостей выводится на лендинге?', 'a' => 'На главном лендинге показываются 6 последних новостей в слайдере.'],
-      ['q' => 'Можно раскрывать несколько FAQ одновременно?', 'a' => 'Да, аккордеон мульти-раскрываемый — вы можете держать открытыми несколько ответов.'],
+      ['q' => 'Сколько новостей отображается на лендинге?', 'a' => 'Показываются 6 последних новостей, рядом есть ссылка на полный список.'],
+      ['q' => 'Можно открывать несколько вопросов FAQ сразу?', 'a' => 'Да, аккордеон мульти-режима: можно раскрыть несколько ответов одновременно.'],
     ],
   ],
 ];
 ?>
 
-<main class="flex-1 overflow-y-auto px-3 py-4 lg:px-8 lg:py-8">
-  <div class="max-w-[1220px] mx-auto space-y-8 lg:space-y-12">
-    <section class="relative overflow-hidden rounded-[2rem] border border-white/60 dark:border-white/10 bg-gradient-to-br from-white via-emerald-50/40 to-zinc-100 dark:from-[#0e1216] dark:via-[#101a16] dark:to-[#0b0e11] shadow-[0_20px_80px_rgba(0,0,0,0.08)]">
-      <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-emerald-400/20 blur-3xl"></div>
-      <div class="absolute -bottom-20 -right-10 w-64 h-64 rounded-full bg-cyan-300/20 blur-3xl"></div>
-      <div class="relative p-6 md:p-10 lg:p-12 grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
+<main class="flex-1 overflow-y-auto">
+  <div class="px-4 lg:px-10 py-6 lg:py-10 space-y-12 lg:space-y-16">
+    <section class="relative overflow-hidden rounded-[2.2rem] px-6 py-10 md:px-10 lg:px-14 lg:py-14 bg-[linear-gradient(135deg,#f8fffb_0%,#ecf8f3_35%,#edf3f8_100%)] dark:bg-[linear-gradient(135deg,#0d1317_0%,#0f1b17_38%,#0c1116_100%)]">
+      <div class="absolute -left-20 -top-20 w-64 h-64 rounded-full bg-emerald-400/15 blur-3xl"></div>
+      <div class="absolute -right-20 top-10 w-72 h-72 rounded-full bg-cyan-300/15 blur-3xl"></div>
+      <div class="absolute inset-0 opacity-[0.18] bg-[radial-gradient(circle_at_20%_20%,#10b981_0%,transparent_50%),radial-gradient(circle_at_80%_30%,#22d3ee_0%,transparent_45%)]"></div>
+
+      <div class="relative max-w-6xl mx-auto grid lg:grid-cols-[1.08fr_0.92fr] gap-10 items-center">
         <div class="space-y-5">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-[11px] uppercase tracking-[0.18em] font-bold text-emerald-700 dark:text-emerald-300">Early Investment Access · Round A</div>
-          <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-[1.05] text-zinc-900 dark:text-white">Инвестируйте в доли сегодня — получите акции в будущем</h1>
-          <p class="text-zinc-600 dark:text-zinc-300 max-w-2xl text-sm md:text-base">Вы входите в компанию на этапе роста: текущая инвестиция оформляется в долях, которые затем конвертируются в акции. В размещении только <span class="font-bold text-zinc-900 dark:text-white">15% общего пула</span> — ограниченное предложение для ранних инвесторов.</p>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 dark:bg-white/10 text-[11px] uppercase tracking-[0.16em] font-semibold text-emerald-700 dark:text-emerald-300">Round A • Limited Access</div>
+          <h1 class="text-3xl md:text-5xl leading-tight font-bold text-zinc-900 dark:text-white">Инвестируйте в доли сейчас — получите акции на следующем этапе</h1>
+          <p class="text-zinc-600 dark:text-zinc-300 max-w-2xl">Вы входите в проект на раннем этапе роста. Текущая инвестиция оформляется в долях, которые позже конвертируются в акции. В этом раунде в открытом доступе только <span class="font-bold text-zinc-900 dark:text-white">15% общего объёма</span>.</p>
           <div class="flex flex-wrap items-center gap-3">
-            <a href="#" class="inline-flex items-center justify-center px-7 py-3 rounded-xl bg-accent text-white text-[11px] uppercase tracking-[0.14em] font-bold shadow-[0_14px_35px_rgba(0,176,116,0.35)] hover:-translate-y-0.5 transition-all">Инвестировать (регистрация)</a>
-            <span class="text-xs text-zinc-500 dark:text-zinc-400">* временная ссылка-заглушка</span>
-          </div>
-          <div class="grid grid-cols-3 gap-3 pt-2 max-w-xl">
-            <div class="rounded-xl p-3 bg-white/80 dark:bg-white/5 border border-zinc-200/70 dark:border-white/10">
-              <p class="text-[10px] uppercase tracking-wider text-zinc-500">Пул раунда</p>
-              <p class="text-xl font-extrabold text-zinc-900 dark:text-white">15%</p>
-            </div>
-            <div class="rounded-xl p-3 bg-white/80 dark:bg-white/5 border border-zinc-200/70 dark:border-white/10">
-              <p class="text-[10px] uppercase tracking-wider text-zinc-500">Конвертация</p>
-              <p class="text-xl font-extrabold text-zinc-900 dark:text-white">Доли → Акции</p>
-            </div>
-            <div class="rounded-xl p-3 bg-white/80 dark:bg-white/5 border border-zinc-200/70 dark:border-white/10">
-              <p class="text-[10px] uppercase tracking-wider text-zinc-500">Формат</p>
-              <p class="text-xl font-extrabold text-zinc-900 dark:text-white">Public landing</p>
-            </div>
+            <a href="#" class="inline-flex items-center justify-center px-7 py-3 rounded-xl bg-accent text-white text-[11px] uppercase tracking-[0.12em] font-bold shadow-[0_12px_30px_rgba(0,176,116,0.35)] hover:-translate-y-0.5 transition-all">Инвестировать (регистрация)</a>
+            <span class="text-xs text-zinc-500">временная ссылка-заглушка</span>
           </div>
         </div>
 
         <div class="relative">
-          <div class="rounded-3xl p-5 md:p-6 border border-zinc-200/80 dark:border-white/10 bg-white/80 dark:bg-white/[0.04] backdrop-blur-xl">
-            <div class="flex items-center justify-between mb-4">
-              <h2 class="font-bold text-zinc-900 dark:text-white">Инфографика раунда</h2>
-              <span class="text-[10px] px-2 py-1 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-bold uppercase">Live demo</span>
-            </div>
-            <div class="space-y-4">
-              <div>
-                <div class="flex justify-between text-xs mb-1"><span class="text-zinc-500">Доступно инвесторам</span><span class="font-bold text-zinc-900 dark:text-white">15%</span></div>
-                <div class="h-3 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-[15%] bg-gradient-to-r from-emerald-400 to-emerald-600"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-xs mb-1"><span class="text-zinc-500">Остаётся в структуре</span><span class="font-bold text-zinc-900 dark:text-white">85%</span></div>
-                <div class="h-3 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-[85%] bg-gradient-to-r from-zinc-400 to-zinc-500 dark:from-zinc-600 dark:to-zinc-700"></div></div>
-              </div>
-              <div class="grid grid-cols-2 gap-3 pt-1">
-                <div class="rounded-xl p-3 bg-zinc-50 dark:bg-black/30 border border-zinc-200/80 dark:border-white/10">
-                  <p class="text-[10px] uppercase tracking-wider text-zinc-500">Этап 1</p>
-                  <p class="text-sm font-bold">Инвестиция в доли</p>
-                </div>
-                <div class="rounded-xl p-3 bg-zinc-50 dark:bg-black/30 border border-zinc-200/80 dark:border-white/10">
-                  <p class="text-[10px] uppercase tracking-wider text-zinc-500">Этап 2</p>
-                  <p class="text-sm font-bold">Конвертация в акции</p>
-                </div>
+          <div class="aspect-square max-w-[420px] mx-auto rounded-full border border-white/60 dark:border-white/15 bg-white/70 dark:bg-white/[0.04] backdrop-blur-md grid place-items-center">
+            <div class="w-[76%] h-[76%] rounded-full border border-emerald-400/40 grid place-items-center relative">
+              <div class="absolute inset-2 rounded-full border border-emerald-400/25"></div>
+              <div class="text-center">
+                <p class="text-xs uppercase tracking-wider text-zinc-500">Доступно сейчас</p>
+                <p class="text-5xl md:text-6xl font-bold text-zinc-900 dark:text-white">15%</p>
+                <p class="text-sm text-zinc-500">ограниченный пул</p>
               </div>
             </div>
           </div>
@@ -96,128 +68,101 @@ $faqGroups = [
       </div>
     </section>
 
-    <section class="grid xl:grid-cols-[1.1fr_0.9fr] gap-4 lg:gap-6">
-      <article class="rounded-[1.6rem] p-6 md:p-8 border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#101419] shadow-sm">
-        <div class="flex items-start justify-between gap-3">
-          <h2 class="text-xl md:text-2xl font-extrabold tracking-tight text-zinc-900 dark:text-white">Реферальная модель «до 40%»</h2>
-          <span class="text-[11px] px-2 py-1 rounded-full bg-accent/10 text-accent font-bold">до 40%</span>
-        </div>
-        <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-300">Базовые уровни фиксированы, глубина поддерживается динамически — модель остаётся предсказуемой и масштабируемой.</p>
+    <section class="max-w-6xl mx-auto space-y-8">
+      <div class="text-center space-y-3">
+        <p class="text-[11px] uppercase tracking-[0.16em] text-accent font-semibold">Referral</p>
+        <h2 class="text-2xl md:text-4xl font-bold">Реферальная программа «до 40%» — без сложной математики</h2>
+        <p class="text-zinc-600 dark:text-zinc-300 max-w-3xl mx-auto">Мы сделали объяснение максимально простым: чем больше растёт ваша команда, тем шире распределяется вознаграждение, а общий лимит сохраняется прозрачным.</p>
+      </div>
 
-        <div class="mt-5 space-y-3">
-          <div class="grid grid-cols-[88px_1fr_58px] items-center gap-3 text-sm">
-            <span class="font-semibold">1 уровень</span>
-            <div class="h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-full bg-emerald-500"></div></div>
-            <span class="font-bold text-right">10%</span>
+      <div class="grid lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 grid place-items-center font-bold">1</span>
+            <p class="font-semibold">Первые три уровня дают фиксированный доход: <span class="font-bold">10% + 5% + 2%</span>.</p>
           </div>
-          <div class="grid grid-cols-[88px_1fr_58px] items-center gap-3 text-sm">
-            <span class="font-semibold">2 уровень</span>
-            <div class="h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-1/2 bg-emerald-400"></div></div>
-            <span class="font-bold text-right">5%</span>
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 grid place-items-center font-bold">2</span>
+            <p class="font-semibold">После этого остаётся дополнительный процент — до <span class="font-bold">23%</span> — который идёт вглубь структуры.</p>
           </div>
-          <div class="grid grid-cols-[88px_1fr_58px] items-center gap-3 text-sm">
-            <span class="font-semibold">3 уровень</span>
-            <div class="h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-[20%] bg-emerald-300"></div></div>
-            <span class="font-bold text-right">2%</span>
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 grid place-items-center font-bold">3</span>
+            <p class="font-semibold">Если уровней много, система автоматически делит вознаграждение между ними справедливо.</p>
           </div>
-          <div class="grid grid-cols-[88px_1fr_58px] items-center gap-3 text-sm">
-            <span class="font-semibold">4...n</span>
-            <div class="h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-[57.5%] bg-gradient-to-r from-cyan-300 to-emerald-300"></div></div>
-            <span class="font-bold text-right">до 23%</span>
-          </div>
+          <div class="pt-2 text-sm text-zinc-600 dark:text-zinc-300">Итог: вы получаете доход не только с ближайших приглашений, но и с дальнейшего развития вашей сети.</div>
         </div>
 
-        <div class="mt-5 grid md:grid-cols-2 gap-3 text-sm">
-          <div class="rounded-xl border border-zinc-200 dark:border-white/10 p-3 bg-zinc-50 dark:bg-black/25">Если <strong>n ≤ 23</strong>: после базовых трёх уровней каждый получает по <strong>1%</strong>.</div>
-          <div class="rounded-xl border border-zinc-200 dark:border-white/10 p-3 bg-zinc-50 dark:bg-black/25">Если <strong>n &gt; 23</strong>: действует формула <strong>23/n%</strong> (равномерно по уровням после базовых трёх).</div>
-        </div>
-      </article>
-
-      <article class="rounded-[1.6rem] p-6 md:p-8 border border-zinc-200 dark:border-white/10 bg-gradient-to-b from-zinc-50 to-white dark:from-[#11171d] dark:to-[#0d1217] shadow-sm">
-        <h3 class="text-lg font-extrabold text-zinc-900 dark:text-white">Динамика глубины</h3>
-        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-2">Пример распределения по уровням с визуализацией остатка 23%.</p>
-        <div class="mt-5 space-y-4">
-          <div class="rounded-xl p-4 border border-zinc-200 dark:border-white/10 bg-white dark:bg-black/20">
-            <p class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">Паттерны</p>
-            <div class="flex flex-wrap gap-2 text-xs font-semibold">
-              <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">10 5 2</span>
-              <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">10 5 2 1</span>
-              <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">10 5 2 1 1</span>
-              <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">10 5 2 1 1 1 … n</span>
+        <div class="relative rounded-[1.8rem] p-6 bg-[linear-gradient(155deg,rgba(16,185,129,.10),rgba(34,211,238,.08),rgba(255,255,255,.4))] dark:bg-[linear-gradient(155deg,rgba(16,185,129,.14),rgba(34,211,238,.08),rgba(255,255,255,.03))]">
+          <p class="text-xs uppercase tracking-wider text-zinc-500 mb-4">Как это выглядит</p>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-sm mb-1 font-semibold"><span>Ближайшие уровни</span><span>17%</span></div>
+              <div class="h-3 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-[42.5%] bg-gradient-to-r from-emerald-500 to-emerald-400"></div></div>
             </div>
-          </div>
-          <div class="h-40 rounded-xl border border-zinc-200 dark:border-white/10 bg-[linear-gradient(to_top,rgba(16,185,129,.08),transparent)] relative overflow-hidden">
-            <div class="absolute inset-x-3 bottom-3 h-28 flex items-end gap-2">
-              <div class="flex-1 rounded-t-md bg-emerald-500/80 h-full"></div>
-              <div class="flex-1 rounded-t-md bg-emerald-400/80 h-[72%]"></div>
-              <div class="flex-1 rounded-t-md bg-emerald-300/80 h-[46%]"></div>
-              <div class="flex-1 rounded-t-md bg-cyan-300/80 h-[38%]"></div>
-              <div class="flex-1 rounded-t-md bg-cyan-200/80 h-[34%]"></div>
-              <div class="flex-1 rounded-t-md bg-cyan-100/80 h-[31%]"></div>
+            <div>
+              <div class="flex justify-between text-sm mb-1 font-semibold"><span>Глубина команды</span><span>до 23%</span></div>
+              <div class="h-3 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-[57.5%] bg-gradient-to-r from-cyan-400 to-emerald-300"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1 font-semibold"><span>Максимальный суммарный потолок</span><span>до 40%</span></div>
+              <div class="h-3 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="h-full w-full bg-gradient-to-r from-emerald-500 via-cyan-400 to-emerald-300"></div></div>
             </div>
           </div>
         </div>
-      </article>
+      </div>
     </section>
 
-    <section class="space-y-4" id="news">
-      <div class="flex items-center justify-between gap-3">
-        <h2 class="text-2xl md:text-3xl font-black tracking-tight">Последние новости и обновления</h2>
-        <a href="#" class="text-xs md:text-sm font-bold text-accent hover:underline uppercase tracking-wider">Все новости</a>
+    <section id="news" class="max-w-6xl mx-auto space-y-4">
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-2xl md:text-4xl font-bold">Последние новости и обновления</h2>
+        <a href="#" class="text-xs md:text-sm uppercase tracking-wider font-semibold text-accent hover:underline">Все новости</a>
       </div>
+
       <div class="relative">
         <div class="overflow-hidden" data-news-viewport>
           <div class="flex transition-transform duration-300" data-news-track>
             <?php foreach ($newsItems as $item): ?>
-              <article class="min-w-full md:min-w-[50%] xl:min-w-[33.3333%] p-1.5">
-                <a href="<?= $item['link']; ?>" class="group block h-full rounded-3xl border border-zinc-200 dark:border-white/10 overflow-hidden bg-white dark:bg-[#0f1419]">
-                  <div class="h-36 bg-gradient-to-br <?= $item['accent']; ?> relative">
-                    <div class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_20%_20%,white,transparent_55%)]"></div>
-                    <div class="absolute left-4 top-4 text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-1 rounded-full bg-black/20 text-white"><?= $item['category']; ?></div>
-                  </div>
-                  <div class="p-4 flex flex-col gap-2">
-                    <p class="text-[11px] font-semibold text-zinc-500"><?= $item['date']; ?></p>
-                    <h3 class="font-bold text-zinc-900 dark:text-white leading-snug group-hover:text-accent transition-colors"><?= $item['title']; ?></h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300"><?= $item['excerpt']; ?></p>
-                    <span class="text-[11px] font-bold uppercase tracking-wider text-accent pt-1">Открыть новость →</span>
+              <article class="min-w-full md:min-w-[50%] xl:min-w-[33.3333%] p-2">
+                <a href="<?= $item['link']; ?>" class="group block h-full">
+                  <div class="h-48 rounded-[1.6rem] overflow-hidden relative bg-[linear-gradient(155deg,#eef7f3_0%,#e7f2f7_50%,#ffffff_100%)] dark:bg-[linear-gradient(155deg,#111a1f_0%,#0f1917_50%,#0c1116_100%)]">
+                    <div class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_20%_20%,#10b981_0%,transparent_45%),radial-gradient(circle_at_80%_40%,#22d3ee_0%,transparent_40%)]"></div>
+                    <div class="absolute left-4 top-4 text-[10px] uppercase tracking-[0.14em] font-semibold px-2 py-1 rounded-full bg-white/70 dark:bg-black/35"><?= $item['category']; ?></div>
+                    <div class="absolute inset-x-4 bottom-4 space-y-1.5">
+                      <p class="text-[11px] text-zinc-500 font-semibold"><?= $item['date']; ?></p>
+                      <h3 class="font-bold text-zinc-900 dark:text-white group-hover:text-accent transition-colors"><?= $item['title']; ?></h3>
+                      <p class="text-sm text-zinc-600 dark:text-zinc-300"><?= $item['excerpt']; ?></p>
+                    </div>
                   </div>
                 </a>
               </article>
             <?php endforeach; ?>
           </div>
         </div>
-        <div class="flex justify-end gap-2 mt-3">
-          <button class="w-10 h-10 rounded-xl border border-zinc-200 dark:border-white/10 hover:border-accent" data-news-prev><i data-lucide="arrow-left" class="w-4 h-4 mx-auto"></i></button>
-          <button class="w-10 h-10 rounded-xl border border-zinc-200 dark:border-white/10 hover:border-accent" data-news-next><i data-lucide="arrow-right" class="w-4 h-4 mx-auto"></i></button>
+        <div class="flex justify-end gap-2 mt-2">
+          <button class="w-10 h-10 rounded-full border border-zinc-200 dark:border-white/15 hover:border-accent" data-news-prev><i data-lucide="arrow-left" class="w-4 h-4 mx-auto"></i></button>
+          <button class="w-10 h-10 rounded-full border border-zinc-200 dark:border-white/15 hover:border-accent" data-news-next><i data-lucide="arrow-right" class="w-4 h-4 mx-auto"></i></button>
         </div>
       </div>
     </section>
 
-    <section class="grid xl:grid-cols-[0.92fr_1.08fr] gap-4 lg:gap-6" id="faq">
-      <div class="rounded-[1.6rem] p-6 md:p-8 border border-zinc-200 dark:border-white/10 bg-gradient-to-b from-white to-zinc-50 dark:from-[#10151b] dark:to-[#0c1116]">
-        <h2 class="text-2xl md:text-3xl font-black tracking-tight">FAQ</h2>
-        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Частые вопросы по инвестициям, рефералке и работе платформы.</p>
-        <div class="mt-5 flex flex-wrap gap-2 text-xs">
-          <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-semibold">Часто задаваемые вопросы</span>
-          <span class="px-3 py-1 rounded-full bg-zinc-800/10 dark:bg-white/10 font-semibold">Мульти-аккордеон</span>
-          <span class="px-3 py-1 rounded-full bg-zinc-800/10 dark:bg-white/10 font-semibold">Группы тем</span>
-        </div>
+    <section id="faq" class="max-w-6xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-start">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.16em] text-accent font-semibold">FAQ</p>
+        <h2 class="mt-2 text-2xl md:text-4xl font-bold">Ответы на частые вопросы</h2>
+        <p class="mt-3 text-zinc-600 dark:text-zinc-300">Ниже собраны самые важные ответы по инвестициям, реферальной программе и работе платформы.</p>
       </div>
-
       <div class="space-y-4">
         <?php foreach ($faqGroups as $group): ?>
-          <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#10161c] overflow-hidden">
-            <div class="px-4 py-3 border-b border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/[0.02]">
-              <h3 class="text-xs uppercase tracking-[0.15em] font-bold text-zinc-500"><?= $group['title']; ?></h3>
-            </div>
-            <div class="divide-y divide-zinc-200 dark:divide-white/10">
+          <div class="rounded-[1.3rem] px-4 py-3 bg-zinc-50/70 dark:bg-white/[0.03]">
+            <h3 class="text-xs uppercase tracking-[0.14em] font-semibold text-zinc-500 mb-2"><?= $group['title']; ?></h3>
+            <div class="space-y-1.5">
               <?php foreach ($group['items'] as $item): ?>
                 <div>
-                  <button class="w-full flex items-center justify-between gap-3 px-4 py-3 text-left" data-faq-btn>
+                  <button class="w-full flex items-center justify-between gap-3 px-2 py-2 text-left" data-faq-btn>
                     <span class="font-semibold text-sm text-zinc-900 dark:text-zinc-100"><?= $item['q']; ?></span>
                     <i data-lucide="plus" class="w-4 h-4 text-zinc-500 transition-transform"></i>
                   </button>
-                  <div class="hidden px-4 pb-4 text-sm text-zinc-600 dark:text-zinc-300" data-faq-panel><?= $item['a']; ?></div>
+                  <div class="hidden px-2 pb-2 text-sm text-zinc-600 dark:text-zinc-300" data-faq-panel><?= $item['a']; ?></div>
                 </div>
               <?php endforeach; ?>
             </div>
@@ -226,32 +171,31 @@ $faqGroups = [
       </div>
     </section>
 
-    <section id="committee" class="rounded-[1.8rem] border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0f1419] p-5 md:p-8 space-y-6">
-      <div class="flex flex-wrap items-end justify-between gap-4">
+    <section id="committee" class="max-w-6xl mx-auto space-y-6">
+      <div class="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 class="text-2xl md:text-3xl font-black tracking-tight">Наблюдательный комитет</h2>
-          <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-1">Около 100 участников. Быстрый обзор + детальная карточка по клику.</p>
+          <h2 class="text-2xl md:text-4xl font-bold">Наблюдательный комитет</h2>
+          <p class="text-zinc-600 dark:text-zinc-300 mt-1">Около 100 участников. Клик по аватару открывает подробную информацию.</p>
         </div>
-        <div class="text-xs font-semibold text-zinc-500">Визуальный формат: preview grid + modal + country focus</div>
       </div>
 
       <div id="committeePreview" class="grid gap-x-6 gap-y-6 [grid-template-columns:repeat(auto-fill,minmax(5.5rem,1fr))]"></div>
       <div class="flex justify-center">
-        <button id="committeeLoadMore" class="px-5 py-2.5 rounded-xl border border-zinc-200 dark:border-white/10 text-sm font-bold hover:border-accent">Показать ещё</button>
+        <button id="committeeLoadMore" class="px-5 py-2.5 rounded-full bg-zinc-100 dark:bg-white/10 text-sm font-semibold hover:bg-zinc-200 dark:hover:bg-white/15">Показать ещё</button>
       </div>
 
-      <div class="grid md:grid-cols-[280px_1fr] gap-4 items-start pt-1">
+      <div class="grid md:grid-cols-[280px_1fr] gap-4 items-start">
         <div>
-          <label for="committeeCountry" class="text-[11px] uppercase tracking-wider font-bold text-zinc-500">Select by country</label>
-          <select id="committeeCountry" class="mt-2 w-full rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-3 py-2 text-sm">
+          <label for="committeeCountry" class="text-[11px] uppercase tracking-wider font-semibold text-zinc-500">Select by country</label>
+          <select id="committeeCountry" class="mt-2 w-full rounded-xl border border-zinc-200 dark:border-white/15 bg-white/70 dark:bg-white/5 px-3 py-2 text-sm">
             <option value="">Выберите страну</option>
           </select>
         </div>
 
         <div id="committeeCarouselWrap" class="hidden">
           <div class="flex justify-end gap-2 mb-2">
-            <button class="w-9 h-9 rounded-lg border border-zinc-200 dark:border-white/10" data-committee-prev><i data-lucide="chevron-left" class="w-4 h-4 mx-auto"></i></button>
-            <button class="w-9 h-9 rounded-lg border border-zinc-200 dark:border-white/10" data-committee-next><i data-lucide="chevron-right" class="w-4 h-4 mx-auto"></i></button>
+            <button class="w-9 h-9 rounded-full border border-zinc-200 dark:border-white/15" data-committee-prev><i data-lucide="chevron-left" class="w-4 h-4 mx-auto"></i></button>
+            <button class="w-9 h-9 rounded-full border border-zinc-200 dark:border-white/15" data-committee-next><i data-lucide="chevron-right" class="w-4 h-4 mx-auto"></i></button>
           </div>
           <div class="overflow-hidden">
             <div id="committeeCarousel" class="flex transition-transform duration-300"></div>
@@ -260,8 +204,8 @@ $faqGroups = [
       </div>
     </section>
 
-    <footer class="rounded-3xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-[#0d1217] px-5 py-6">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <footer class="max-w-6xl mx-auto pt-2 pb-8 border-t border-zinc-200 dark:border-white/10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-5">
         <div class="flex flex-wrap gap-4 text-sm font-semibold">
           <a href="#" class="hover:text-accent">Terms and Conditions</a>
           <a href="#" class="hover:text-accent">Privacy Policy</a>
@@ -276,8 +220,8 @@ $faqGroups = [
 <div id="committeeModal" class="fixed inset-0 z-[90] hidden">
   <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-modal-close></div>
   <div class="absolute inset-0 p-4 flex items-center justify-center">
-    <div class="w-full max-w-md rounded-3xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#111821] p-5 relative">
-      <button class="absolute right-3 top-3 w-9 h-9 rounded-xl border border-zinc-200 dark:border-white/10" data-modal-close><i data-lucide="x" class="w-4 h-4 mx-auto"></i></button>
+    <div class="w-full max-w-md rounded-[1.6rem] bg-white dark:bg-[#111821] p-5 relative">
+      <button class="absolute right-3 top-3 w-9 h-9 rounded-full bg-zinc-100 dark:bg-white/10" data-modal-close><i data-lucide="x" class="w-4 h-4 mx-auto"></i></button>
       <div id="committeeModalBody"></div>
     </div>
   </div>
@@ -321,10 +265,8 @@ $faqGroups = [
     const newsTrack = document.querySelector('[data-news-track]');
     const newsCards = newsTrack ? Array.from(newsTrack.children) : [];
     let newsPage = 0;
-
     const cardsPerView = () => window.innerWidth >= 1280 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
     const maxNewsPage = () => Math.max(0, Math.ceil(newsCards.length / cardsPerView()) - 1);
-
     const updateNews = () => {
       if (!newsTrack) return;
       newsPage = Math.min(newsPage, maxNewsPage());
@@ -335,13 +277,10 @@ $faqGroups = [
       newsPage = Math.max(0, newsPage - 1);
       updateNews();
     });
-
     document.querySelector('[data-news-next]')?.addEventListener('click', () => {
       newsPage = Math.min(maxNewsPage(), newsPage + 1);
       updateNews();
     });
-
-    window.addEventListener('resize', updateNews);
 
     document.querySelectorAll('[data-faq-btn]').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -359,7 +298,6 @@ $faqGroups = [
     const countrySelect = document.getElementById('committeeCountry');
     const carouselWrap = document.getElementById('committeeCarouselWrap');
     const carousel = document.getElementById('committeeCarousel');
-
     let previewCount = 0;
     const batch = 30;
     let filtered = [];
@@ -367,7 +305,7 @@ $faqGroups = [
 
     const memberCard = (m) => `
       <div class="min-w-full md:min-w-[50%] xl:min-w-[33.3333%] p-1.5">
-        <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 p-4 h-full">
+        <div class="rounded-[1.1rem] bg-zinc-50 dark:bg-white/5 p-4 h-full">
           <div class="flex gap-3 items-center mb-3">
             <div class="relative">
               <img src="${m.avatar}" alt="${m.firstName}" class="w-14 h-14 rounded-full object-cover">
@@ -379,7 +317,7 @@ $faqGroups = [
               <p class="text-xs text-zinc-500 font-semibold">ID: ${m.legacyId}</p>
             </div>
           </div>
-          <div class="flex flex-wrap gap-2">${m.socialLinks.map((s) => `<a href="${s.url}" class="w-8 h-8 rounded-lg border border-zinc-200 dark:border-white/10 grid place-items-center"><i data-lucide="${socialIcon(s.type)}" class="w-4 h-4"></i></a>`).join('')}</div>
+          <div class="flex flex-wrap gap-2">${m.socialLinks.map((s) => `<a href="${s.url}" class="w-8 h-8 rounded-lg bg-white dark:bg-white/10 grid place-items-center"><i data-lucide="${socialIcon(s.type)}" class="w-4 h-4"></i></a>`).join('')}</div>
         </div>
       </div>`;
 
@@ -387,8 +325,8 @@ $faqGroups = [
       const next = members.slice(previewCount, previewCount + batch);
       next.forEach((m) => {
         const btn = document.createElement('button');
-        btn.className = 'group relative w-[92px] h-[92px] md:w-[100px] md:h-[100px] mx-auto rounded-2xl overflow-hidden border border-zinc-200 dark:border-white/10 hover:border-accent hover:-translate-y-0.5 transition-all';
-        btn.innerHTML = `<img src="${m.avatar}" alt="${m.firstName}" class="w-full h-full object-cover"><span class="absolute bottom-1 right-1 text-lg">${m.countryFlag}</span><span class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-black/40 to-transparent transition-opacity"></span>`;
+        btn.className = 'group relative w-[92px] h-[92px] md:w-[100px] md:h-[100px] mx-auto rounded-2xl overflow-hidden hover:-translate-y-0.5 transition-all';
+        btn.innerHTML = `<img src="${m.avatar}" alt="${m.firstName}" class="w-full h-full object-cover"><span class="absolute bottom-1 right-1 text-lg">${m.countryFlag}</span><span class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-black/35 to-transparent transition-opacity"></span>`;
         btn.addEventListener('click', () => {
           modalBody.innerHTML = memberCard(m).replace('min-w-full md:min-w-[50%] xl:min-w-[33.3333%] p-1.5', '');
           modal.classList.remove('hidden');
@@ -412,7 +350,6 @@ $faqGroups = [
     });
 
     const perViewCommittee = () => window.innerWidth >= 1280 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
-
     const updateCommitteeCarousel = () => {
       if (!filtered.length) {
         carouselWrap.classList.add('hidden');
@@ -450,6 +387,7 @@ $faqGroups = [
 
     modal.querySelectorAll('[data-modal-close]').forEach((el) => el.addEventListener('click', () => modal.classList.add('hidden')));
 
+    updateNews();
     if (window.lucide) window.lucide.createIcons();
   })();
 </script>
