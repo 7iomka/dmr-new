@@ -3,7 +3,7 @@
   <div class="flex items-center min-w-0">
     <!-- DESKTOP: Sidebar toggle -->
     <button onclick="toggleSidebar()"
-      class="hidden lg:block p-2 rounded-lg mr-4 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+      class="js-desktop-sidebar-toggle hidden lg:block p-2 rounded-lg mr-4 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu"
         aria-hidden="true" class="lucide lucide-menu w-5 h-5">

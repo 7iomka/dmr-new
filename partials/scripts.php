@@ -7,6 +7,7 @@ function toggleDarkMode() {
 
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
+  if (!sidebar) return;
   const labels = document.querySelectorAll('.js-sidebar-label');
   sidebar.classList.toggle('w-64');
   sidebar.classList.toggle('w-20');
