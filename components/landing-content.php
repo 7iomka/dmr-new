@@ -50,7 +50,7 @@ $faqGroups = [
       <div class="absolute inset-0 opacity-40 dark:opacity-70 bg-[linear-gradient(rgba(15,23,42,.11)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.11)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] bg-[size:110px_110px]"></div>
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(16,185,129,.2),transparent_36%),radial-gradient(circle_at_70%_22%,rgba(16,185,129,.12),transparent_32%)] dark:bg-[radial-gradient(circle_at_15%_20%,rgba(16,185,129,.28),transparent_40%),radial-gradient(circle_at_70%_22%,rgba(34,211,238,.12),transparent_34%)]"></div>
 
-      <div class="relative max-w-6xl mx-auto grid xl:grid-cols-[0.94fr_1.06fr] gap-6 lg:gap-8 p-5 md:p-8 xl:p-10">
+      <div class="relative max-w-7xl mx-auto grid xl:grid-cols-[0.94fr_1.06fr] gap-6 lg:gap-8 p-5 md:p-8 xl:p-10">
         <div class="space-y-5">
           <h1 class="text-3xl md:text-5xl leading-[1.02] font-bold text-zinc-900 dark:text-white">Посмотрите на себя из зазеркалья</h1>
 
@@ -79,32 +79,55 @@ $faqGroups = [
       </div>
     </section>
 
-    <section class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-5 lg:gap-6">
-      <article class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0b1218] p-5 md:p-6">
-        <p class="text-[11px] uppercase tracking-[0.14em] text-accent font-semibold">Referral</p>
-        <h2 class="mt-2 text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Реферальная программа «до 40%» — просто и понятно</h2>
-        <p class="mt-3 text-zinc-600 dark:text-zinc-300">Вы получаете доход от ближайших рекомендаций и от роста вашей структуры. Чем сильнее ваша команда, тем заметнее результат.</p>
+    <section class="max-w-7xl mx-auto grid xl:grid-cols-[0.95fr_1.05fr] gap-5 lg:gap-6">
+      <article class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/40 bg-white dark:bg-[#060d12] p-5 md:p-7">
+        <p class="text-[11px] uppercase tracking-[0.16em] text-accent font-semibold">Referral architecture</p>
+        <h2 class="mt-2 text-2xl md:text-4xl font-bold text-zinc-900 dark:text-white">Реферальная программа «до 40%»</h2>
+        <p class="mt-3 text-zinc-600 dark:text-zinc-300 max-w-2xl">Прозрачная механика выплат с фокусом на стабильный рост структуры и понятное распределение для каждого уровня.</p>
 
-        <div class="mt-5 space-y-3">
-          <div class="flex items-center gap-3"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/15 text-accent dark:text-emerald-300 grid place-items-center text-sm font-bold">1</span><p class="font-semibold text-zinc-800 dark:text-zinc-100">Первые три уровня дают фиксированный доход: <span class="font-bold">10% + 5% + 2%</span>.</p></div>
-          <div class="flex items-center gap-3"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/15 text-accent dark:text-emerald-300 grid place-items-center text-sm font-bold">2</span><p class="font-semibold text-zinc-800 dark:text-zinc-100">После этого остаётся дополнительная часть — до <span class="font-bold">23%</span> — она распределяется вглубь команды.</p></div>
-          <div class="flex items-center gap-3"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/15 text-accent dark:text-emerald-300 grid place-items-center text-sm font-bold">3</span><p class="font-semibold text-zinc-800 dark:text-zinc-100">Если команда большая, система автоматически и равномерно делит эту часть между глубокими уровнями.</p></div>
+        <div class="mt-6 grid md:grid-cols-3 gap-3">
+          <div class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/35 bg-zinc-50 dark:bg-[#07151c] p-4">
+            <p class="text-[11px] uppercase tracking-wider text-zinc-500">Уровень 1</p>
+            <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-1">10%</p>
+            <div class="mt-2 h-2 rounded bg-zinc-200 dark:bg-[#0b2430]"><div class="h-2 rounded bg-accent w-full"></div></div>
+          </div>
+          <div class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/35 bg-zinc-50 dark:bg-[#07151c] p-4">
+            <p class="text-[11px] uppercase tracking-wider text-zinc-500">Уровень 2</p>
+            <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-1">5%</p>
+            <div class="mt-2 h-2 rounded bg-zinc-200 dark:bg-[#0b2430]"><div class="h-2 rounded bg-accent w-1/2"></div></div>
+          </div>
+          <div class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/35 bg-zinc-50 dark:bg-[#07151c] p-4">
+            <p class="text-[11px] uppercase tracking-wider text-zinc-500">Уровень 3</p>
+            <p class="text-2xl font-bold text-zinc-900 dark:text-white mt-1">2%</p>
+            <div class="mt-2 h-2 rounded bg-zinc-200 dark:bg-[#0b2430]"><div class="h-2 rounded bg-accent w-[20%]"></div></div>
+          </div>
+        </div>
+
+        <div class="mt-4 rounded-lg border border-zinc-200 dark:border-[#0ca67e]/35 bg-zinc-50 dark:bg-[#07151c] p-4">
+          <div class="flex items-center justify-between text-sm font-semibold">
+            <span class="text-zinc-700 dark:text-zinc-200">Глубина структуры</span>
+            <span class="text-accent">до 23%</span>
+          </div>
+          <div class="mt-2 h-2 rounded bg-zinc-200 dark:bg-[#0b2430]"><div class="h-2 rounded bg-gradient-to-r from-cyan-400 to-accent w-[57.5%]"></div></div>
+          <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-300">При росте глубины команда продолжает участвовать в распределении. Система автоматически делит долю справедливо по активным уровням.</p>
         </div>
       </article>
 
-      <article class="rounded-lg border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-[#0a1116] p-5 md:p-6">
-        <h3 class="text-sm uppercase tracking-[0.14em] text-zinc-500">Fast & Reliable Rewards</h3>
-        <h4 class="mt-2 text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">Путь инвестора в 4 шага</h4>
+      <article class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/40 bg-zinc-50 dark:bg-[#061017] p-5 md:p-7">
+        <h3 class="text-[11px] uppercase tracking-[0.14em] text-zinc-500">Operational philosophy</h3>
+        <h4 class="mt-2 text-2xl md:text-4xl font-bold text-zinc-900 dark:text-white leading-tight">Не просто ещё одна инвестиционная платформа</h4>
+        <p class="mt-3 text-zinc-600 dark:text-zinc-300">Мы строим инфраструктуру вокруг реальной ценности для инвесторов: прозрачные правила, отслеживаемый рост и контролируемые риски.</p>
+
         <div class="mt-5 grid sm:grid-cols-2 gap-3 text-sm">
-          <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-3"><p class="font-bold text-zinc-900 dark:text-white">1. Регистрация</p><p class="text-zinc-600 dark:text-zinc-300 mt-1">Создаёте аккаунт и проходите базовую верификацию.</p></div>
-          <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-3"><p class="font-bold text-zinc-900 dark:text-white">2. Инвестиция в доли</p><p class="text-zinc-600 dark:text-zinc-300 mt-1">Выбираете сумму и фиксируете участие в раунде.</p></div>
-          <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-3"><p class="font-bold text-zinc-900 dark:text-white">3. Рост экосистемы</p><p class="text-zinc-600 dark:text-zinc-300 mt-1">Следите за новостями, отчётами и активностью комьюнити.</p></div>
-          <div class="rounded-lg border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-3"><p class="font-bold text-zinc-900 dark:text-white">4. Конвертация</p><p class="text-zinc-600 dark:text-zinc-300 mt-1">На следующем этапе доли переходят в акционерную модель.</p></div>
+          <div class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/30 bg-white dark:bg-[#08161f] p-4"><p class="text-accent font-semibold text-xs uppercase tracking-wider">01 / Legacy</p><p class="mt-1 font-bold text-zinc-900 dark:text-white">Реальная экспертиза</p><p class="mt-1 text-zinc-600 dark:text-zinc-300">Модель создана практиками рынка с фокусом на жизнеспособность и дисциплину роста.</p></div>
+          <div class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/30 bg-white dark:bg-[#08161f] p-4"><p class="text-accent font-semibold text-xs uppercase tracking-wider">02 / Research</p><p class="mt-1 font-bold text-zinc-900 dark:text-white">Построено вокруг данных</p><p class="mt-1 text-zinc-600 dark:text-zinc-300">Решения по продукту принимаются через аналитику поведения инвесторов и конверсий.</p></div>
+          <div class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/30 bg-white dark:bg-[#08161f] p-4"><p class="text-accent font-semibold text-xs uppercase tracking-wider">03 / Scale</p><p class="mt-1 font-bold text-zinc-900 dark:text-white">Лидирующий план роста</p><p class="mt-1 text-zinc-600 dark:text-zinc-300">Стабильное расширение экосистемы и поддержка международной аудитории.</p></div>
+          <div class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/30 bg-white dark:bg-[#08161f] p-4"><p class="text-accent font-semibold text-xs uppercase tracking-wider">04 / Risk</p><p class="mt-1 font-bold text-zinc-900 dark:text-white">Фокус на качестве</p><p class="mt-1 text-zinc-600 dark:text-zinc-300">Приоритет — качество инфраструктуры и прозрачность правил перед агрессивным масштабом.</p></div>
         </div>
       </article>
     </section>
 
-    <section id="news" class="max-w-6xl mx-auto space-y-4">
+    <section id="news" class="max-w-7xl mx-auto space-y-4">
       <div class="flex items-center justify-between gap-4">
         <h2 class="text-2xl md:text-4xl font-bold text-zinc-900 dark:text-white">Последние новости и обновления</h2>
         <a href="#" class="text-xs md:text-sm uppercase tracking-wider font-semibold text-accent hover:underline">Все новости</a>
@@ -139,7 +162,7 @@ $faqGroups = [
       </div>
     </section>
 
-    <section class="max-w-6xl mx-auto rounded-lg border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-[#0a1116] p-5 md:p-6">
+    <section class="max-w-7xl mx-auto rounded-lg border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-[#0a1116] p-5 md:p-6">
       <h3 class="text-sm uppercase tracking-[0.14em] text-accent font-semibold">Why now</h3>
       <h4 class="mt-2 text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Почему инвесторы заходят сейчас</h4>
       <div class="mt-5 grid md:grid-cols-3 gap-3">
@@ -149,7 +172,7 @@ $faqGroups = [
       </div>
     </section>
 
-    <section id="faq" class="max-w-6xl mx-auto rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-900 px-4 md:px-8 py-8 md:py-10 dark:border-white/10 dark:bg-[#071015] dark:text-white">
+    <section id="faq" class="max-w-7xl mx-auto rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-900 px-4 md:px-8 py-8 md:py-10 dark:border-white/10 dark:bg-[#071015] dark:text-white">
       <div class="space-y-5">
         <h2 class="text-3xl md:text-5xl leading-none font-bold text-accent dark:text-[#33f7b5]">Frequently Asked Questions</h2>
 
@@ -177,7 +200,7 @@ $faqGroups = [
       </div>
     </section>
 
-    <section id="committee" class="max-w-6xl mx-auto space-y-6">
+    <section id="committee" class="max-w-7xl mx-auto space-y-6">
       <div class="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 class="text-2xl md:text-4xl font-bold text-zinc-900 dark:text-white">Наблюдательный комитет</h2>
@@ -212,14 +235,65 @@ $faqGroups = [
       </div>
     </section>
 
-    <footer class="max-w-6xl mx-auto pt-2 pb-8 border-t border-zinc-200 dark:border-white/10">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-5">
-        <div class="flex flex-wrap gap-4 text-sm font-semibold">
-          <a href="#" class="hover:text-accent">Terms and Conditions</a>
-          <a href="#" class="hover:text-accent">Privacy Policy</a>
-          <a href="#" class="hover:text-accent">Contact Us</a>
+    <section class="max-w-7xl mx-auto rounded-lg border border-zinc-200 dark:border-[#0ca67e]/35 bg-white dark:bg-[#061016] p-5 md:p-6">
+      <div class="grid lg:grid-cols-3 gap-4">
+        <div class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/30 bg-zinc-50 dark:bg-[#08151e] p-4">
+          <p class="text-xs uppercase tracking-wider text-zinc-500">Company</p>
+          <p class="mt-2 text-zinc-800 dark:text-zinc-100 font-semibold">Dilan Mirror Ltd.</p>
+          <p class="text-sm mt-2 text-zinc-600 dark:text-zinc-300">Контакты и базовая информация компании. Данные блока пока демонстрационные.</p>
         </div>
-        <p class="text-xs text-zinc-500">© <?= date('Y'); ?> Dilan Mirror Investment. All rights reserved.</p>
+        <div class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/30 bg-[linear-gradient(160deg,#eefcf4,#f7fffb)] dark:bg-[linear-gradient(160deg,#0b1d1b,#08141c)] p-4">
+          <p class="text-xs uppercase tracking-wider text-accent">Start today</p>
+          <p class="mt-2 text-2xl font-bold text-zinc-900 dark:text-white">Ready to get funded?</p>
+          <p class="mt-2 text-zinc-600 dark:text-zinc-300">Присоединяйтесь к ранним инвесторам и участвуйте в росте экосистемы.</p>
+          <div class="mt-4 flex flex-col gap-2">
+            <a href="#" class="w-full text-center rounded-lg bg-accent text-white py-3 font-bold">Инвестировать</a>
+            <a href="#" class="w-full text-center rounded-lg border border-zinc-300 dark:border-white/20 py-3 font-semibold text-zinc-700 dark:text-zinc-100">Contact Support</a>
+          </div>
+        </div>
+        <div class="rounded-lg border border-zinc-200 dark:border-[#0ca67e]/30 bg-zinc-50 dark:bg-[#08151e] p-4">
+          <p class="text-xs uppercase tracking-wider text-zinc-500">Connect with us</p>
+          <div class="mt-3 space-y-2">
+            <a href="#" class="flex items-center justify-between rounded-lg border border-zinc-200 dark:border-white/15 px-3 py-2"><span>Telegram</span><i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            <a href="#" class="flex items-center justify-between rounded-lg border border-zinc-200 dark:border-white/15 px-3 py-2"><span>Instagram</span><i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            <a href="#" class="flex items-center justify-between rounded-lg border border-zinc-200 dark:border-white/15 px-3 py-2"><span>YouTube</span><i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="max-w-7xl mx-auto rounded-lg border border-zinc-200 dark:border-[#0ca67e]/30 bg-zinc-50 dark:bg-[#050b10] px-5 py-6">
+      <div class="grid md:grid-cols-4 gap-4 text-sm">
+        <div>
+          <p class="font-semibold mb-2">Quick Links</p>
+          <ul class="space-y-1.5 text-zinc-600 dark:text-zinc-300">
+            <li><a href="#" class="hover:text-accent">Dashboard Login</a></li>
+            <li><a href="#" class="hover:text-accent">Affiliates Login</a></li>
+            <li><a href="#" class="hover:text-accent">About Us</a></li>
+            <li><a href="#" class="hover:text-accent">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold mb-2">Support</p>
+          <ul class="space-y-1.5 text-zinc-600 dark:text-zinc-300">
+            <li><a href="#" class="hover:text-accent">Help Center</a></li>
+            <li><a href="#" class="hover:text-accent">Refund Policy</a></li>
+            <li><a href="#" class="hover:text-accent">Disclaimers</a></li>
+            <li><a href="#" class="hover:text-accent">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold mb-2">Legal</p>
+          <ul class="space-y-1.5 text-zinc-600 dark:text-zinc-300">
+            <li><a href="#" class="hover:text-accent">Terms and Conditions</a></li>
+            <li><a href="#" class="hover:text-accent">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-accent">Cookie Policy</a></li>
+          </ul>
+        </div>
+        <div class="md:text-right">
+          <p class="text-xs text-zinc-500 mt-1">© <?= date('Y'); ?> Dilan Mirror Investment.</p>
+          <p class="text-xs text-zinc-500">All rights reserved.</p>
+        </div>
       </div>
     </footer>
   </div>
