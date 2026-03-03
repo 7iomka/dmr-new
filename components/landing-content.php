@@ -37,31 +37,39 @@ $faqGroups = [
 
 <main class="flex-1 overflow-y-auto">
   <div class="px-4 lg:px-10 py-6 lg:py-10 space-y-12 lg:space-y-16">
-    <section class="relative overflow-hidden rounded-xl px-6 py-10 md:px-10 lg:px-14 lg:py-14 bg-[linear-gradient(135deg,#f8fffb_0%,#ecf8f3_35%,#edf3f8_100%)] dark:bg-[linear-gradient(135deg,#0d1317_0%,#0f1b17_38%,#0c1116_100%)]">
-      <div class="absolute -left-20 -top-20 w-64 h-64 rounded-full bg-emerald-400/15 blur-3xl"></div>
-      <div class="absolute -right-20 top-10 w-72 h-72 rounded-full bg-cyan-300/15 blur-3xl"></div>
-      <div class="absolute inset-0 opacity-[0.16] bg-[radial-gradient(circle_at_20%_20%,#10b981_0%,transparent_50%),radial-gradient(circle_at_80%_30%,#22d3ee_0%,transparent_45%)]"></div>
+    <section class="relative overflow-hidden rounded-xl bg-[#0f1518] text-white">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,.35),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(34,211,238,.2),transparent_45%)]"></div>
+      <div class="absolute inset-0 opacity-30 bg-[linear-gradient(120deg,rgba(0,0,0,.6),rgba(0,0,0,.25)_42%,rgba(0,0,0,.65))]"></div>
 
-      <div class="relative max-w-6xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-8 items-center">
-        <div class="space-y-5">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/80 dark:bg-white/10 text-[11px] uppercase tracking-[0.16em] font-semibold text-emerald-700 dark:text-emerald-300">Dilan Mirror • Investment</div>
-          <h1 class="text-3xl md:text-5xl leading-tight font-bold text-zinc-900 dark:text-white">Посмотрите на себя из зазеркалья</h1>
-          <p class="text-zinc-700 dark:text-zinc-200 max-w-2xl text-lg">Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела.</p>
+      <div class="relative max-w-6xl mx-auto grid lg:grid-cols-[1.02fr_0.98fr] gap-6 lg:gap-8 p-6 md:p-10 lg:p-12">
+        <div class="space-y-5 lg:pr-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-[11px] uppercase tracking-[0.16em] font-semibold text-emerald-200">Dilan Mirror • Investment</div>
+          <h1 class="text-3xl md:text-5xl leading-tight font-bold">Посмотрите на себя из зазеркалья</h1>
+          <p class="text-emerald-50/90 max-w-2xl text-lg">Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела.</p>
           <a href="#" class="inline-flex items-center justify-center px-7 py-3 rounded-lg bg-accent text-white text-[11px] uppercase tracking-[0.12em] font-bold shadow-[0_12px_30px_rgba(0,176,116,0.3)] hover:-translate-y-0.5 transition-all">Инвестировать</a>
+
+          <div class="grid sm:grid-cols-3 gap-3 pt-2">
+            <div class="rounded-lg bg-white/10 border border-white/15 p-4">
+              <p class="text-2xl md:text-3xl font-bold">$2.5M</p>
+              <p class="text-xs uppercase tracking-wider text-emerald-100/80 mt-1">Already Invested</p>
+            </div>
+            <div class="rounded-lg bg-white/10 border border-white/15 p-4">
+              <p class="text-2xl md:text-3xl font-bold">850+</p>
+              <p class="text-xs uppercase tracking-wider text-emerald-100/80 mt-1">Active Investors</p>
+            </div>
+            <div class="rounded-lg bg-white/10 border border-white/15 p-4">
+              <p class="text-2xl md:text-3xl font-bold">15%</p>
+              <p class="text-xs uppercase tracking-wider text-emerald-100/80 mt-1">Projected ROI</p>
+            </div>
+          </div>
         </div>
 
-        <div class="grid sm:grid-cols-3 gap-3">
-          <div class="rounded-lg bg-white/80 dark:bg-white/5 border border-white/70 dark:border-white/10 p-4">
-            <p class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">$2.5M</p>
-            <p class="text-xs uppercase tracking-wider text-zinc-500 mt-1">Already Invested</p>
-          </div>
-          <div class="rounded-lg bg-white/80 dark:bg-white/5 border border-white/70 dark:border-white/10 p-4">
-            <p class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">850+</p>
-            <p class="text-xs uppercase tracking-wider text-zinc-500 mt-1">Active Investors</p>
-          </div>
-          <div class="rounded-lg bg-white/80 dark:bg-white/5 border border-white/70 dark:border-white/10 p-4">
-            <p class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">15%</p>
-            <p class="text-xs uppercase tracking-wider text-zinc-500 mt-1">Projected ROI</p>
+        <div class="relative rounded-xl overflow-hidden border border-white/15 min-h-[320px] lg:min-h-[460px]">
+          <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1200&q=80" alt="Dilan Mirror showcase" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-[linear-gradient(to_top,rgba(5,12,14,.75),rgba(5,12,14,.25))]"></div>
+          <div class="absolute inset-x-4 bottom-4 rounded-lg bg-black/35 backdrop-blur-sm border border-white/15 p-3">
+            <p class="text-sm font-semibold text-emerald-100">Инвестиционный раунд открыт</p>
+            <p class="text-xs text-emerald-50/80 mt-1">Только 15% долей доступны для ранних инвесторов.</p>
           </div>
         </div>
       </div>
@@ -193,7 +201,7 @@ $faqGroups = [
             <span class="flex items-center gap-2" id="countrySelectValue"><span class="text-base">🌍</span><span>Выберите страну</span></span>
             <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-500"></i>
           </button>
-          <div id="countrySelectMenu" class="hidden absolute z-20 mt-2 w-full rounded-lg border border-zinc-200 dark:border-white/15 bg-white dark:bg-[#121920] shadow-xl max-h-64 overflow-auto"></div>
+          <div id="countrySelectMenu" class="hidden absolute z-20 mt-2 w-full rounded-lg border border-zinc-200 dark:border-white/15 bg-white dark:bg-[#11171c] shadow-xl max-h-64 overflow-auto"></div>
         </div>
 
         <div id="committeeCarouselWrap" class="hidden">
@@ -359,7 +367,7 @@ $faqGroups = [
       btn.innerHTML = `<span class="text-base">${first?.countryFlag || '🌍'}</span><span>${country}</span>`;
       btn.addEventListener('click', () => {
         countrySelectValue.innerHTML = `<span class="text-base">${first?.countryFlag || '🌍'}</span><span>${country}</span>`;
-        countrySelectMenu.classList.add('hidden');
+        closeCountryMenu();
         filtered = members.filter((m) => m.country === country);
         cIndex = 0;
         carousel.innerHTML = filtered.map(memberCard).join('');
@@ -369,13 +377,34 @@ $faqGroups = [
       countrySelectMenu.appendChild(btn);
     });
 
+    const openCountryMenu = () => {
+      countrySelectMenu.classList.remove('hidden');
+      countrySelectMenu.classList.remove('bottom-full', 'mb-2');
+      countrySelectMenu.classList.add('top-full', 'mt-2');
+
+      const triggerRect = countrySelectTrigger.getBoundingClientRect();
+      const estimatedHeight = Math.min(countrySelectMenu.scrollHeight || 256, 256);
+      const spaceBelow = window.innerHeight - triggerRect.bottom;
+      const spaceAbove = triggerRect.top;
+
+      if (spaceBelow < estimatedHeight && spaceAbove > spaceBelow) {
+        countrySelectMenu.classList.remove('top-full', 'mt-2');
+        countrySelectMenu.classList.add('bottom-full', 'mb-2');
+      }
+    };
+
+    const closeCountryMenu = () => {
+      countrySelectMenu.classList.add('hidden');
+    };
+
     countrySelectTrigger?.addEventListener('click', () => {
-      countrySelectMenu.classList.toggle('hidden');
+      if (countrySelectMenu.classList.contains('hidden')) openCountryMenu();
+      else closeCountryMenu();
     });
 
     document.addEventListener('click', (e) => {
       if (!countrySelectTrigger?.contains(e.target) && !countrySelectMenu?.contains(e.target)) {
-        countrySelectMenu?.classList.add('hidden');
+        closeCountryMenu();
       }
     });
 
