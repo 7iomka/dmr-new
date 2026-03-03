@@ -37,18 +37,22 @@ $faqGroups = [
 
 <main class="flex-1 overflow-y-auto">
   <div class="px-4 lg:px-10 py-6 lg:py-10 space-y-12 lg:space-y-16">
-    <section class="relative overflow-hidden rounded-xl bg-[#0f1518] text-white">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,.35),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(34,211,238,.2),transparent_45%)]"></div>
-      <div class="absolute inset-0 opacity-30 bg-[linear-gradient(120deg,rgba(0,0,0,.6),rgba(0,0,0,.25)_42%,rgba(0,0,0,.65))]"></div>
+    <section class="relative overflow-hidden rounded-xl bg-[#071015] text-white border border-white/10">
+      <div class="absolute inset-0 opacity-60 bg-[linear-gradient(rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.07)_1px,transparent_1px)] bg-[size:120px_120px]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(16,185,129,.28),transparent_40%),radial-gradient(circle_at_75%_35%,rgba(16,185,129,.18),transparent_36%),radial-gradient(circle_at_55%_82%,rgba(34,211,238,.12),transparent_34%)]"></div>
 
-      <div class="relative max-w-6xl mx-auto grid lg:grid-cols-[1.02fr_0.98fr] gap-6 lg:gap-8 p-6 md:p-10 lg:p-12">
-        <div class="space-y-5 lg:pr-4">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-[11px] uppercase tracking-[0.16em] font-semibold text-emerald-200">Dilan Mirror • Investment</div>
-          <h1 class="text-3xl md:text-5xl leading-tight font-bold">Посмотрите на себя из зазеркалья</h1>
-          <p class="text-emerald-50/90 max-w-2xl text-lg">Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела.</p>
-          <a href="#" class="inline-flex items-center justify-center px-7 py-3 rounded-lg bg-accent text-white text-[11px] uppercase tracking-[0.12em] font-bold shadow-[0_12px_30px_rgba(0,176,116,0.3)] hover:-translate-y-0.5 transition-all">Инвестировать</a>
+      <div class="relative max-w-6xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-7 lg:gap-10 p-6 md:p-10 lg:p-12">
+        <div class="space-y-5">
+          <h1 class="text-3xl md:text-[3.35rem] leading-[1.03] font-bold">Посмотрите на себя из зазеркалья</h1>
+          <p class="text-zinc-200 max-w-xl text-lg">Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела.</p>
+          <a href="#" class="inline-flex items-center justify-center px-7 py-3 rounded-lg bg-accent text-white text-[11px] uppercase tracking-[0.12em] font-bold shadow-[0_12px_30px_rgba(0,176,116,0.32)] hover:-translate-y-0.5 transition-all">Инвестировать</a>
+        </div>
 
-          <div class="grid sm:grid-cols-3 gap-3 pt-2">
+        <div class="space-y-3">
+          <div class="rounded-lg overflow-hidden border border-white/15 bg-black/20">
+            <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1400&q=80" alt="Dilan Mirror campaign visual" class="w-full h-[250px] md:h-[300px] object-cover">
+          </div>
+          <div class="grid sm:grid-cols-3 gap-3">
             <div class="rounded-lg bg-white/10 border border-white/15 p-4">
               <p class="text-2xl md:text-3xl font-bold">$2.5M</p>
               <p class="text-xs uppercase tracking-wider text-emerald-100/80 mt-1">Already Invested</p>
@@ -61,15 +65,6 @@ $faqGroups = [
               <p class="text-2xl md:text-3xl font-bold">15%</p>
               <p class="text-xs uppercase tracking-wider text-emerald-100/80 mt-1">Projected ROI</p>
             </div>
-          </div>
-        </div>
-
-        <div class="relative rounded-xl overflow-hidden border border-white/15 min-h-[320px] lg:min-h-[460px]">
-          <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=1200&q=80" alt="Dilan Mirror showcase" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute inset-0 bg-[linear-gradient(to_top,rgba(5,12,14,.75),rgba(5,12,14,.25))]"></div>
-          <div class="absolute inset-x-4 bottom-4 rounded-lg bg-black/35 backdrop-blur-sm border border-white/15 p-3">
-            <p class="text-sm font-semibold text-emerald-100">Инвестиционный раунд открыт</p>
-            <p class="text-xs text-emerald-50/80 mt-1">Только 15% долей доступны для ранних инвесторов.</p>
           </div>
         </div>
       </div>
@@ -153,29 +148,29 @@ $faqGroups = [
       </div>
     </section>
 
-    <section id="faq" class="max-w-6xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-start">
-      <div>
-        <p class="text-[11px] uppercase tracking-[0.16em] text-accent font-semibold">FAQ</p>
-        <h2 class="mt-2 text-2xl md:text-4xl font-bold">Ответы на частые вопросы</h2>
-        <p class="mt-3 text-zinc-600 dark:text-zinc-300">Собрали важные ответы по инвестициям, реферальной программе и работе платформы.</p>
-      </div>
-      <div class="space-y-4">
-        <?php foreach ($faqGroups as $group): ?>
-          <div class="rounded-xl border border-zinc-200 dark:border-white/10 overflow-hidden bg-white dark:bg-[#10161b]">
-            <div class="px-4 py-3 border-b border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/[0.03]">
-              <h3 class="text-xs uppercase tracking-[0.14em] font-semibold text-zinc-600 dark:text-zinc-300"><?= $group['title']; ?></h3>
-            </div>
-            <div class="divide-y divide-zinc-200 dark:divide-white/10">
-              <?php foreach ($group['items'] as $item): ?>
-                <div>
-                  <button class="w-full flex items-start justify-between gap-3 px-4 py-3 text-left" data-faq-btn data-open="false">
-                    <span class="font-semibold text-sm text-zinc-900 dark:text-zinc-100 leading-6"><?= $item['q']; ?></span>
-                    <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-500 shrink-0 mt-1 transition-transform duration-200"></i>
-                  </button>
-                  <div class="hidden px-4 pb-4 text-sm leading-6 text-zinc-600 dark:text-zinc-300" data-faq-panel><?= $item['a']; ?></div>
-                </div>
-              <?php endforeach; ?>
-            </div>
+    <section id="faq" class="max-w-6xl mx-auto rounded-xl bg-[#071015] border border-white/10 text-white px-4 md:px-8 py-8 md:py-10">
+      <div class="space-y-5">
+        <h2 class="text-3xl md:text-5xl leading-none font-bold text-[#33f7b5]">Frequently Asked Questions</h2>
+
+        <div class="flex flex-wrap gap-2" id="faqGroupTabs">
+          <?php foreach ($faqGroups as $groupIndex => $group): ?>
+            <button type="button" data-faq-group-btn data-group-index="<?= $groupIndex; ?>" data-active="<?= $groupIndex === 0 ? 'true' : 'false'; ?>" class="px-5 py-2.5 rounded-lg border border-white/25 text-sm md:text-base font-semibold transition-colors data-[active=true]:border-[#1fe7ad] data-[active=true]:text-white data-[active=true]:bg-[#0b1e24] data-[active=false]:text-zinc-300 data-[active=false]:bg-transparent hover:border-[#1fe7ad]/60">
+              <?= $group['title']; ?>
+            </button>
+          <?php endforeach; ?>
+        </div>
+
+        <?php foreach ($faqGroups as $groupIndex => $group): ?>
+          <div data-faq-group-panel="<?= $groupIndex; ?>" class="space-y-1 <?= $groupIndex === 0 ? '' : 'hidden'; ?>">
+            <?php foreach ($group['items'] as $item): ?>
+              <div class="border-b border-white/20">
+                <button class="w-full flex items-start justify-between gap-4 py-5 text-left" data-faq-btn data-open="false">
+                  <span class="font-semibold text-base md:text-[1.85rem] leading-tight md:leading-[1.15] md:font-semibold"><?= $item['q']; ?></span>
+                  <i data-lucide="plus" class="w-6 h-6 text-[#1fe7ad] shrink-0 mt-1 transition-transform duration-200"></i>
+                </button>
+                <div class="hidden pb-5 pr-9 text-zinc-300 text-base leading-7" data-faq-panel><?= $item['a']; ?></div>
+              </div>
+            <?php endforeach; ?>
           </div>
         <?php endforeach; ?>
       </div>
@@ -294,6 +289,18 @@ $faqGroups = [
       updateNews();
     });
 
+    document.querySelectorAll('[data-faq-group-btn]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.groupIndex;
+        document.querySelectorAll('[data-faq-group-btn]').forEach((b) => {
+          b.dataset.active = b === btn ? 'true' : 'false';
+        });
+        document.querySelectorAll('[data-faq-group-panel]').forEach((panel) => {
+          panel.classList.toggle('hidden', panel.dataset.faqGroupPanel !== target);
+        });
+      });
+    });
+
     document.querySelectorAll('[data-faq-btn]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const panel = btn.parentElement.querySelector('[data-faq-panel]');
@@ -301,7 +308,8 @@ $faqGroups = [
         const isOpen = btn.dataset.open === 'true';
         btn.dataset.open = isOpen ? 'false' : 'true';
         panel.classList.toggle('hidden', isOpen);
-        icon.classList.toggle('rotate-180', !isOpen);
+        icon.setAttribute('data-lucide', isOpen ? 'plus' : 'minus');
+        if (window.lucide) window.lucide.createIcons();
       });
     });
 
