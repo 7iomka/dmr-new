@@ -46,24 +46,24 @@ $faqGroups = [
 
 <main class="flex-1 overflow-y-auto">
   <div class="px-4 lg:px-8 xl:px-10 py-6 lg:py-10 space-y-10 lg:space-y-14">
-    <section class="relative overflow-hidden rounded-xl border border-zinc-200 bg-[linear-gradient(160deg,#f8fbfd_0%,#ecf8f4_46%,#f7fbff_100%)] dark:border-white/10 dark:bg-[#071015]">
-      <div class="absolute inset-0 opacity-40 dark:opacity-70 bg-[linear-gradient(rgba(15,23,42,.11)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.11)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] bg-[size:110px_110px]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(16,185,129,.2),transparent_36%),radial-gradient(circle_at_70%_22%,rgba(16,185,129,.12),transparent_32%)] dark:bg-[radial-gradient(circle_at_15%_20%,rgba(16,185,129,.28),transparent_40%),radial-gradient(circle_at_70%_22%,rgba(34,211,238,.12),transparent_34%)]"></div>
+    <section class="relative overflow-hidden rounded-xl border border-zinc-200 bg-[linear-gradient(160deg,#f8fbfd_0%,#ecf8f4_46%,#f7fbff_100%)] dark:border-white/10 dark:bg-[linear-gradient(160deg,#050b10_0%,#071118_55%,#08131a_100%)]">
+      <div class="absolute inset-0 opacity-40 dark:opacity-75 bg-[linear-gradient(rgba(15,23,42,.11)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,.11)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.07)_1px,transparent_1px)] bg-[size:110px_110px]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(16,185,129,.2),transparent_36%),radial-gradient(circle_at_70%_22%,rgba(16,185,129,.12),transparent_32%)] dark:bg-[radial-gradient(circle_at_15%_20%,rgba(16,185,129,.18),transparent_38%),radial-gradient(circle_at_70%_22%,rgba(34,211,238,.08),transparent_32%)]"></div>
 
       <div class="relative max-w-7xl mx-auto grid xl:grid-cols-[0.94fr_1.06fr] gap-6 lg:gap-8 p-5 md:p-8 xl:p-10">
         <div class="space-y-5">
           <h1 class="text-3xl md:text-5xl leading-[1.02] font-bold text-zinc-900 dark:text-white">Посмотрите на себя из зазеркалья</h1>
 
           <div class="grid sm:grid-cols-3 gap-2.5 md:gap-3">
-            <div class="rounded-lg border border-zinc-200 bg-white/80 dark:border-white/15 dark:bg-white/10 p-3 md:p-4">
+            <div class="rounded-lg border border-zinc-200 bg-white/80 dark:border-[#0ca67e]/30 dark:bg-[#08161f] p-3 md:p-4">
               <p class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">$2.5M</p>
               <p class="text-[11px] uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Already Invested</p>
             </div>
-            <div class="rounded-lg border border-zinc-200 bg-white/80 dark:border-white/15 dark:bg-white/10 p-3 md:p-4">
+            <div class="rounded-lg border border-zinc-200 bg-white/80 dark:border-[#0ca67e]/30 dark:bg-[#08161f] p-3 md:p-4">
               <p class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">850+</p>
               <p class="text-[11px] uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Active Investors</p>
             </div>
-            <div class="rounded-lg border border-zinc-200 bg-white/80 dark:border-white/15 dark:bg-white/10 p-3 md:p-4">
+            <div class="rounded-lg border border-zinc-200 bg-white/80 dark:border-[#0ca67e]/30 dark:bg-[#08161f] p-3 md:p-4">
               <p class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">15%</p>
               <p class="text-[11px] uppercase tracking-wider text-zinc-600 dark:text-emerald-100/80 mt-1">Projected ROI</p>
             </div>
@@ -73,8 +73,8 @@ $faqGroups = [
           <a href="#" class="cta-pulse inline-flex items-center justify-center px-9 py-4 rounded-lg bg-accent text-white text-sm uppercase tracking-[0.12em] font-bold shadow-[0_14px_38px_rgba(0,176,116,0.4)] hover:-translate-y-0.5 transition-all">Инвестировать</a>
         </div>
 
-        <div class="rounded-lg overflow-hidden border border-zinc-200 bg-white/70 dark:border-white/15 dark:bg-black/20">
-          <img src="https://ik.imagekit.io/dilanmirror/dmr/dmr3.png" alt="Dilan Mirror campaign visual" class="w-full h-[360px] md:h-[520px] object-contain bg-black/5 dark:bg-black/35">
+        <div class="rounded-lg overflow-hidden border border-zinc-200 bg-white/70 dark:border-[#0ca67e]/30 dark:bg-[#050b10]">
+          <img src="https://ik.imagekit.io/dilanmirror/dmr/dmr3.png" alt="Dilan Mirror campaign visual" class="w-full h-[360px] md:h-[520px] object-contain bg-black/5 dark:bg-[#020608]">
         </div>
       </div>
     </section>
@@ -142,8 +142,8 @@ $faqGroups = [
                   <div class="h-44 relative bg-[linear-gradient(155deg,#eef7f3_0%,#e7f2f7_50%,#ffffff_100%)] dark:bg-[linear-gradient(155deg,#111a1f_0%,#0f1917_50%,#0c1116_100%)]">
                     <div class="absolute inset-0 opacity-35 bg-[radial-gradient(circle_at_20%_20%,#10b981_0%,transparent_45%),radial-gradient(circle_at_80%_40%,#22d3ee_0%,transparent_40%)]"></div>
                     <div class="absolute left-3 top-3 flex items-center gap-2 text-[10px]">
-                      <span class="uppercase tracking-[0.14em] font-semibold px-2 py-1 rounded-lg bg-white/80 dark:bg-black/35"><?= $item['category']; ?></span>
-                      <span class="px-2 py-1 rounded-lg bg-white/80 dark:bg-black/35 text-zinc-600 dark:text-zinc-200 font-semibold"><?= $item['date']; ?></span>
+                      <span class="uppercase tracking-[0.14em] font-semibold px-2 py-1 rounded-lg bg-white/80 dark:bg-[#020608]"><?= $item['category']; ?></span>
+                      <span class="px-2 py-1 rounded-lg bg-white/80 dark:bg-[#020608] text-zinc-600 dark:text-zinc-200 font-semibold"><?= $item['date']; ?></span>
                     </div>
                   </div>
                   <div class="p-4 space-y-2">
@@ -172,7 +172,7 @@ $faqGroups = [
       </div>
     </section>
 
-    <section id="faq" class="max-w-7xl mx-auto rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-900 px-4 md:px-8 py-8 md:py-10 dark:border-white/10 dark:bg-[#071015] dark:text-white">
+    <section id="faq" class="max-w-7xl mx-auto rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-900 px-4 md:px-8 py-8 md:py-10 dark:border-white/10 dark:bg-[linear-gradient(160deg,#050b10_0%,#071118_55%,#08131a_100%)] dark:text-white">
       <div class="space-y-5">
         <h2 class="text-3xl md:text-5xl leading-none font-bold text-accent dark:text-[#33f7b5]">Frequently Asked Questions</h2>
 
