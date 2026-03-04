@@ -10,7 +10,7 @@
     --accent2: #00ffaa;
     --cyan: #0891b2;
     --text: #0f172a;
-    --muted: #475569;
+    --muted: #5f6469;
     --label: #0f766e;
     --surface-1: rgba(15, 23, 42, .04);
     --surface-2: rgba(15, 23, 42, .06);
@@ -43,7 +43,7 @@
     --accent2: #00ffaa;
     --cyan: #22d3ee;
     --text: #e8edf2;
-    --muted: #6b7c8f;
+    --muted: #8b9095;
     --label: #3a8f68;
     --surface-1: rgba(255, 255, 255, .03);
     --surface-2: rgba(255, 255, 255, .05);
@@ -66,14 +66,6 @@
     padding-top: 24px;
   }
 
-  .dm-landing *,
-  .dm-landing *::before,
-  .dm-landing *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
   .dm-landing {
     scroll-behavior: smooth;
   }
@@ -82,7 +74,7 @@
     background: var(--bg);
     color: var(--text);
     font-family: var(--ff-body);
-    font-size: 15px;
+    font-size: var(--text-base);
     line-height: 1.65;
     overflow-x: hidden;
   }
@@ -139,7 +131,7 @@
     align-items: center;
     gap: 6px;
     font-family: var(--ff-head);
-    font-size: 11px;
+    font-size: var(--text-xs);
     font-weight: 700;
     letter-spacing: .14em;
     text-transform: uppercase;
@@ -198,7 +190,7 @@
     color: #000;
     font-family: var(--ff-head);
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     letter-spacing: .1em;
     text-transform: uppercase;
     padding: 14px 32px;
@@ -223,7 +215,7 @@
     color: var(--text);
     font-family: var(--ff-head);
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     letter-spacing: .1em;
     text-transform: uppercase;
     padding: 13px 28px;
@@ -281,7 +273,7 @@
     gap: 10px;
     font-family: var(--ff-head);
     font-weight: 800;
-    font-size: 18px;
+    font-size: var(--text-lg);
     color: var(--text);
     text-decoration: none;
     letter-spacing: -.02em;
@@ -310,7 +302,7 @@
 
   .dm-landing nav a {
     color: var(--muted);
-    font-size: 13px;
+    font-size: var(--text-sm);
     font-weight: 500;
     padding: 6px 14px;
     border-radius: 6px;
@@ -348,12 +340,12 @@
     display: grid;
     place-items: center;
     font-weight: 700;
-    font-size: 11px;
+    font-size: var(--text-xs);
     color: #000;
   }
 
   .avatar-chip span {
-    font-size: 12px;
+    font-size: var(--text-xs);
     font-weight: 600;
   }
 
@@ -420,7 +412,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 11px;
+    font-size: var(--text-xs);
     font-weight: 600;
     color: var(--accent);
     background: rgba(0, 200, 122, .1);
@@ -467,7 +459,7 @@
 
   .hero-desc {
     color: var(--muted);
-    font-size: 17px;
+    font-size: var(--text-lg);
     margin-bottom: 32px;
     max-width: 480px;
     line-height: 1.7;
@@ -502,7 +494,7 @@
   }
 
   .hstat-label {
-    font-size: 10px;
+    font-size: var(--text-xs);
     font-weight: 600;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -565,11 +557,11 @@
   .hero-badge .val {
     font-family: var(--ff-head);
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
 
   .hero-badge .sub {
-    font-size: 10px;
+    font-size: var(--text-xs);
     color: var(--muted);
   }
 
@@ -613,7 +605,7 @@
   }
 
   .stat-label {
-    font-size: 11px;
+    font-size: var(--text-xs);
     color: var(--muted);
     font-weight: 500;
     margin-top: 6px;
@@ -671,7 +663,7 @@
   .tech-card p {
     color: var(--muted);
     margin-top: 8px;
-    font-size: 14px;
+    font-size: var(--text-sm);
     line-height: 1.7;
   }
 
@@ -694,7 +686,7 @@
 
   .phil-num {
     font-family: var(--ff-head);
-    font-size: 11px;
+    font-size: var(--text-xs);
     font-weight: 700;
     color: var(--label);
     letter-spacing: .1em;
@@ -702,13 +694,13 @@
   }
 
   .phil-item h4 {
-    font-size: 14px;
+    font-size: var(--text-sm);
     font-weight: 700;
     margin-bottom: 4px;
   }
 
   .phil-item p {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--muted);
     line-height: 1.6;
   }
@@ -745,7 +737,7 @@
   .ref-desc {
     color: var(--muted);
     margin-bottom: 32px;
-    font-size: 15px;
+    font-size: var(--text-base);
     max-width: 440px;
   }
 
@@ -781,7 +773,7 @@
     place-items: center;
     font-family: var(--ff-head);
     font-weight: 800;
-    font-size: 15px;
+    font-size: var(--text-base);
   }
 
   .lvl-1 {
@@ -804,7 +796,7 @@
   }
 
   .ref-level-body .l-label {
-    font-size: 11px;
+    font-size: var(--text-xs);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .12em;
@@ -814,7 +806,7 @@
   .ref-level-body .l-name {
     font-family: var(--ff-head);
     font-weight: 700;
-    font-size: 15px;
+    font-size: var(--text-base);
     margin: 2px 0 6px;
   }
 
@@ -877,7 +869,7 @@
 
   .pyramid-title {
     font-family: var(--ff-head);
-    font-size: 12px;
+    font-size: var(--text-xs);
     font-weight: 700;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -922,7 +914,7 @@
     border: 2px solid;
     display: grid;
     place-items: center;
-    font-size: 10px;
+    font-size: var(--text-xs);
     font-weight: 700;
     position: relative;
   }
@@ -931,7 +923,7 @@
     border-color: var(--accent);
     background: rgba(0, 200, 122, .15);
     color: var(--accent);
-    font-size: 9px;
+    font-size: var(--text-xs);
   }
 
   .pnode-l1 {
@@ -1020,7 +1012,7 @@
   }
 
   .deep-label {
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--muted);
   }
 
@@ -1055,7 +1047,7 @@
   }
 
   .news-link {
-    font-size: 12px;
+    font-size: var(--text-xs);
     font-weight: 700;
     color: var(--accent);
     text-decoration: none;
@@ -1146,7 +1138,7 @@
   }
 
   .chip {
-    font-size: 10px;
+    font-size: var(--text-xs);
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -1178,13 +1170,13 @@
   }
 
   .news-body h3 {
-    font-size: 14px;
+    font-size: var(--text-lg);
     font-weight: 700;
     line-height: 1.4;
   }
 
   .news-body p {
-    font-size: 12px;
+    font-size: var(--text-sm);
     color: var(--muted);
     line-height: 1.6;
     flex: 1;
@@ -1258,13 +1250,13 @@
   }
 
   .why-card h3 {
-    font-size: 15px;
+    font-size: var(--text-base);
     font-weight: 700;
     margin-bottom: 6px;
   }
 
   .why-card p {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--muted);
     line-height: 1.65;
   }
@@ -1284,7 +1276,7 @@
 
   .faq-tab {
     font-family: var(--ff-head);
-    font-size: 12px;
+    font-size: var(--text-xs);
     font-weight: 700;
     letter-spacing: .08em;
     padding: 8px 20px;
@@ -1341,7 +1333,7 @@
   .faq-q {
     font-family: var(--ff-head);
     font-weight: 600;
-    font-size: 16px;
+    font-size: var(--text-base);
     transition: color .2s;
   }
 
@@ -1388,7 +1380,7 @@
     border-radius: 10px;
     padding: 16px 20px;
     margin-bottom: 16px;
-    font-size: 14px;
+    font-size: var(--text-base);
     color: var(--muted);
     line-height: 1.75;
   }
@@ -1441,7 +1433,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    font-size: 13px;
+    font-size: var(--text-sm);
     display: grid;
     place-items: center;
     background: var(--chip-date-bg);
@@ -1449,7 +1441,7 @@
   }
 
   .cm-name {
-    font-size: 10px;
+    font-size: var(--text-xs);
     font-weight: 600;
     text-align: center;
     color: var(--muted);
@@ -1473,7 +1465,7 @@
     border-radius: 10px;
     cursor: pointer;
     color: var(--text);
-    font-size: 13px;
+    font-size: var(--text-sm);
     font-family: var(--ff-body);
   }
 
@@ -1505,7 +1497,7 @@
     align-items: center;
     gap: 8px;
     padding: 9px 14px;
-    font-size: 13px;
+    font-size: var(--text-sm);
     cursor: pointer;
     transition: background .15s;
   }
@@ -1561,18 +1553,18 @@
   }
 
   .cm-card-body h4 {
-    font-size: 14px;
+    font-size: var(--text-sm);
     font-weight: 700;
   }
 
   .cm-card-body .loc {
-    font-size: 11px;
+    font-size: var(--text-xs);
     color: var(--muted);
     margin: 2px 0 4px;
   }
 
   .cm-card-body .id {
-    font-size: 10px;
+    font-size: var(--text-xs);
     font-weight: 600;
     color: var(--label);
   }
@@ -1759,7 +1751,7 @@
   }
 
   .roi-step-label {
-    font-size: 11px;
+    font-size: var(--text-xs);
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -1780,11 +1772,11 @@
 
   .roi-step-title {
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-base);
   }
 
   .roi-step-sub {
-    font-size: 12px;
+    font-size: var(--text-sm);
     color: var(--muted);
     margin-top: 4px;
   }
@@ -1811,7 +1803,7 @@
 
   .footer-brand p {
     color: var(--muted);
-    font-size: 13px;
+    font-size: var(--text-sm);
     margin: 12px 0 20px;
     line-height: 1.7;
     max-width: 280px;
@@ -1848,7 +1840,7 @@
   .footer-col h4 {
     font-family: var(--ff-head);
     font-weight: 700;
-    font-size: 13px;
+    font-size: var(--text-sm);
     margin-bottom: 16px;
     color: var(--text);
   }
@@ -1861,7 +1853,7 @@
   }
 
   .footer-col a {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--muted);
     text-decoration: none;
     transition: color .15s;
@@ -1881,7 +1873,7 @@
   }
 
   .footer-bottom p {
-    font-size: 12px;
+    font-size: var(--text-xs);
     color: var(--muted);
   }
 
@@ -2253,8 +2245,8 @@
             <p style="margin-top:8px;color:var(--muted);">Только 15% долей компании выставлено в открытую продажу. Ограниченное окно — ранний вход по лучшей цене.</p>
             <div style="margin-top:20px;">
               <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-                <span style="font-size:12px;color:var(--muted);">Доступно для продажи</span>
-                <span style="font-size:12px;font-weight:700;color:var(--accent);">15%</span>
+                <span class="text-xs text-muted">Доступно для продажи</span>
+                <span class="text-xs font-bold text-accent">15%</span>
               </div>
               <div style="height:6px;background:var(--surface-3);border-radius:100px;overflow:hidden;">
                 <div style="width:15%;height:100%;background:var(--accent);border-radius:100px;"></div>
@@ -2272,9 +2264,9 @@
             <h3>Прозрачная структура</h3>
             <p style="margin-top:8px;color:var(--muted);">Все условия документированы. Доли конвертируются в акции по утверждённой модели после завершения этапов развития.</p>
             <div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;">
-              <span class="chip chip-cat" style="font-size:9px;">Доли → Акции</span>
-              <span class="chip chip-cat" style="font-size:9px;">Юридический пакет</span>
-              <span class="chip chip-cat" style="font-size:9px;">Контролируемый рост</span>
+              <span class="chip chip-cat text-xs">Доли → Акции</span>
+              <span class="chip chip-cat text-xs">Юридический пакет</span>
+              <span class="chip chip-cat text-xs">Контролируемый рост</span>
             </div>
           </div>
 
@@ -2289,8 +2281,8 @@
                 </svg>
               </div>
               <div>
-                <div style="font-family:var(--ff-head);font-size:1.8rem;font-weight:800;color:#a855f7;line-height:1;">100+</div>
-                <div style="font-size:11px;color:var(--muted);margin-top:4px;">участников наблюдательного комитета</div>
+                <div class="text-xl font-extrabold leading-none text-violet-500" style="font-family:var(--ff-head);">100+</div>
+                <div class="mt-1 text-xs text-muted">участников наблюдательного комитета</div>
               </div>
             </div>
           </div>
@@ -2359,18 +2351,18 @@
             <div class="card" style="padding:24px;margin-top:8px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
                 <div>
-                  <div style="font-size:12px;color:var(--muted);margin-bottom:4px;">Суммарная глубина структуры</div>
-                  <div style="font-family:var(--ff-head);font-weight:800;font-size:1.5rem;color:var(--accent);">до 23%</div>
+                  <div class="mb-1 text-xs text-muted">Суммарная глубина структуры</div>
+                  <div class="text-xl font-extrabold text-accent" style="font-family:var(--ff-head);">до 23%</div>
                 </div>
                 <div style="text-align:right;">
-                  <div style="font-size:11px;color:var(--muted);">Максимальный пул</div>
-                  <div style="font-family:var(--ff-head);font-weight:800;font-size:1.5rem;">до 40%</div>
+                  <div class="text-xs text-muted">Максимальный пул</div>
+                  <div class="text-xl font-extrabold" style="font-family:var(--ff-head);">до 40%</div>
                 </div>
               </div>
               <div class="deep-bar-wrap" style="height:6px;">
                 <div class="deep-bar"></div>
               </div>
-              <p style="font-size:13px;color:var(--muted);margin-top:12px;line-height:1.6;">
+              <p class="mt-3 text-sm leading-relaxed text-muted">
                 При росте глубины команда продолжает участвовать в распределении. Система автоматически делит долю справедливо по активным уровням.
               </p>
             </div>
@@ -2397,7 +2389,7 @@
               <!-- L1 row label -->
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
                 <div style="flex:1;height:1px;background:var(--border2);"></div>
-                <span style="font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.1em;">L1 · 10%</span>
+                <span class="text-xs font-bold tracking-[0.1em] text-accent">L1 · 10%</span>
                 <div style="flex:1;height:1px;background:var(--border2);"></div>
               </div>
               <!-- L1 nodes -->
@@ -2425,42 +2417,42 @@
               <!-- L2 label -->
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;width:80%;margin-left:auto;margin-right:auto;">
                 <div style="flex:1;height:1px;background:rgba(34,211,238,.2);"></div>
-                <span style="font-size:10px;font-weight:700;color:var(--cyan);letter-spacing:.1em;">L2 · 5%</span>
+                <span class="text-xs font-bold tracking-[0.1em] text-cyan">L2 · 5%</span>
                 <div style="flex:1;height:1px;background:rgba(34,211,238,.2);"></div>
               </div>
               <!-- L2 nodes -->
               <div class="pyramid-row" style="gap:8px;margin-bottom:0;">
-                <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <div class="pnode pnode-l2 h-8 w-8 text-xs">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
-                <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <div class="pnode pnode-l2 h-8 w-8 text-xs">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
-                <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <div class="pnode pnode-l2 h-8 w-8 text-xs">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
-                <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <div class="pnode pnode-l2 h-8 w-8 text-xs">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
-                <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <div class="pnode pnode-l2 h-8 w-8 text-xs">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
-                <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <div class="pnode pnode-l2 h-8 w-8 text-xs">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
@@ -2471,40 +2463,40 @@
               <!-- L3 label -->
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;width:90%;margin-left:auto;margin-right:auto;">
                 <div style="flex:1;height:1px;background:rgba(168,85,247,.2);"></div>
-                <span style="font-size:10px;font-weight:700;color:#a855f7;letter-spacing:.1em;">L3 · 2%</span>
+                <span class="text-xs font-bold tracking-[0.1em] text-violet-500">L3 · 2%</span>
                 <div style="flex:1;height:1px;background:rgba(168,85,247,.2);"></div>
               </div>
               <!-- L3 nodes -->
               <div class="pyramid-row" style="gap:5px;margin-bottom:0;flex-wrap:wrap;">
-                <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
+                <div class="pnode pnode-l3 h-[26px] w-[26px] text-xs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg></div>
-                <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
+                <div class="pnode pnode-l3 h-[26px] w-[26px] text-xs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg></div>
-                <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
+                <div class="pnode pnode-l3 h-[26px] w-[26px] text-xs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg></div>
-                <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
+                <div class="pnode pnode-l3 h-[26px] w-[26px] text-xs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg></div>
-                <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
+                <div class="pnode pnode-l3 h-[26px] w-[26px] text-xs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg></div>
-                <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
+                <div class="pnode pnode-l3 h-[26px] w-[26px] text-xs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg></div>
-                <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
+                <div class="pnode pnode-l3 h-[26px] w-[26px] text-xs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg></div>
-                <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
+                <div class="pnode pnode-l3 h-[26px] w-[26px] text-xs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg></div>
@@ -2513,12 +2505,12 @@
 
             <div style="margin-top:20px;padding:14px 16px;background:var(--surface-1);border:1px solid var(--border);border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
               <div>
-                <div style="font-size:11px;color:var(--muted);">Максимум с реф. структуры</div>
-                <div style="font-family:var(--ff-head);font-weight:800;color:var(--accent);font-size:1.6rem;line-height:1.2;">40%</div>
+                <div class="text-xs text-muted">Максимум с реф. структуры</div>
+                <div class="text-xl font-extrabold leading-tight text-accent" style="font-family:var(--ff-head);">40%</div>
               </div>
               <div style="text-align:right;">
-                <div style="font-size:11px;color:var(--muted);">Глубина</div>
-                <div style="font-family:var(--ff-head);font-weight:800;font-size:1.2rem;">Нет лимита</div>
+                <div class="text-xs text-muted">Глубина</div>
+                <div class="text-lg font-extrabold" style="font-family:var(--ff-head);">Нет лимита</div>
               </div>
             </div>
           </div>
@@ -2563,8 +2555,8 @@
                 </div>
               </div>
               <div class="news-body">
-                <h3>Открыт ранний раунд инвестиций</h3>
-                <p>В открытую продажу выведено только 15% долей. Это ограниченное окно для раннего входа.</p>
+                <h3 class="line-clamp-2">Открыт ранний раунд инвестиций</h3>
+                <p class="line-clamp-3">В открытую продажу выведено только 15% долей. Это ограниченное окно для раннего входа.</p>
               </div>
             </div>
           </div>
@@ -2582,8 +2574,8 @@
                 </div>
               </div>
               <div class="news-body">
-                <h3>Обновлена партнёрская программа с новой аналитикой уровней</h3>
-                <p>Сделали систему вознаграждений более прозрачной и понятной для новых участников.</p>
+                <h3 class="line-clamp-2">Обновлена партнёрская программа с новой аналитикой уровней</h3>
+                <p class="line-clamp-3">Сделали систему вознаграждений более прозрачной и понятной для новых участников.</p>
               </div>
             </div>
           </div>
@@ -2601,8 +2593,8 @@
                 </div>
               </div>
               <div class="news-body">
-                <h3>Запущен формат ежемесячных отчётов</h3>
-                <p>Ключевые метрики развития теперь доступны в регулярных апдейтах с акцентом на рост.</p>
+                <h3 class="line-clamp-2">Запущен формат ежемесячных отчётов</h3>
+                <p class="line-clamp-3">Ключевые метрики развития теперь доступны в регулярных апдейтах с акцентом на рост.</p>
               </div>
             </div>
           </div>
@@ -2622,8 +2614,8 @@
                 </div>
               </div>
               <div class="news-body">
-                <h3>Расширена география комитета</h3>
-                <p>В наблюдательный комитет вошли новые представители из разных стран и отраслей.</p>
+                <h3 class="line-clamp-2">Расширена география комитета</h3>
+                <p class="line-clamp-3">В наблюдательный комитет вошли новые представители из разных стран и отраслей.</p>
               </div>
             </div>
           </div>
@@ -2640,8 +2632,8 @@
                 </div>
               </div>
               <div class="news-body">
-                <h3>Юридический пакет обновлён</h3>
-                <p>Актуализированы документы по долям, акционерной модели и пользовательским условиям.</p>
+                <h3 class="line-clamp-2">Юридический пакет обновлён</h3>
+                <p class="line-clamp-3">Актуализированы документы по долям, акционерной модели и пользовательским условиям.</p>
               </div>
             </div>
           </div>
@@ -2659,8 +2651,8 @@
                 </div>
               </div>
               <div class="news-body">
-                <h3>Рост активности инвесторов +31%</h3>
-                <p>Увеличилось число новых подключений и повторных инвестиций.</p>
+                <h3 class="line-clamp-2">Рост активности инвесторов +31%</h3>
+                <p class="line-clamp-3">Увеличилось число новых подключений и повторных инвестиций.</p>
               </div>
             </div>
           </div>
@@ -2914,7 +2906,6 @@
             Наблюдательный комитет
           </div>
           <h2>100+ участников</h2>
-          <p style="color:var(--muted);margin-top:8px;">Клик по аватару открывает подробную информацию.</p>
         </div>
       </div>
 
@@ -2926,7 +2917,7 @@
       <!-- Country select + carousel -->
       <div class="reveal">
         <div class="country-wrap">
-          <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:8px;">Фильтр по стране</p>
+          <p class="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-muted">Фильтр по стране</p>
           <button class="country-trigger" id="countryTrigger">
             <span id="countryVal" style="display:flex;align-items:center;gap:8px;">🌍 Выберите страну</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -2987,7 +2978,7 @@
                 <path d="M22 2 11 13" />
               </svg>
             </div>
-            <span style="font-weight:600;font-size:14px;">Telegram</span>
+            <span class="text-sm font-semibold">Telegram</span>
           </div>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="m9 18 6-6-6-6" />
@@ -3002,7 +2993,7 @@
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
               </svg>
             </div>
-            <span style="font-weight:600;font-size:14px;">Instagram</span>
+            <span class="text-sm font-semibold">Instagram</span>
           </div>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="m9 18 6-6-6-6" />
@@ -3016,7 +3007,7 @@
                 <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
               </svg>
             </div>
-            <span style="font-weight:600;font-size:14px;">YouTube</span>
+            <span class="text-sm font-semibold">YouTube</span>
           </div>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="m9 18 6-6-6-6" />
@@ -3275,9 +3266,9 @@
 <div style="display:flex;gap:16px;align-items:flex-start;">
   <img src="${m.avatar}" style="width:72px;height:72px;border-radius:14px;object-fit:cover;flex-shrink:0;border:2px solid var(--border2);">
   <div>
-    <h3 style="font-size:18px;">${m.firstName} ${m.lastName} <span style="font-size:18px;">${m.flag}</span></h3>
-    <p style="color:var(--muted);font-size:13px;margin:4px 0 2px;">${m.city}, ${m.country}</p>
-    <p style="font-size:11px;font-weight:700;color:var(--label);">ID: ${m.id}</p>
+    <h3 class="text-lg">${m.firstName} ${m.lastName} <span class="text-lg">${m.flag}</span></h3>
+    <p class="my-[2px] mt-1 text-sm text-muted">${m.city}, ${m.country}</p>
+    <p class="text-xs font-bold" style="color:var(--label);">ID: ${m.id}</p>
     <div style="display:flex;gap:8px;margin-top:12px;">
       ${m.socials.map(s=>`<a href="#" style="width:32px;height:32px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);display:grid;place-items:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${socialSVG[s]||''}</svg></a>`).join('')}
     </div>
@@ -3314,9 +3305,9 @@
       const first = members.find(m => m.country === c);
       const opt = document.createElement('div');
       opt.className = 'country-opt';
-      opt.innerHTML = `<span style="font-size:16px;">${first.flag}</span><span>${c}</span>`;
+      opt.innerHTML = `<span class="text-base">${first.flag}</span><span>${c}</span>`;
       opt.addEventListener('click', () => {
-        document.getElementById('countryVal').innerHTML = `<span style="font-size:16px;">${first.flag}</span><span>${c}</span>`;
+        document.getElementById('countryVal').innerHTML = `<span class="text-base">${first.flag}</span><span>${c}</span>`;
         countryMenu.classList.remove('open');
         renderCarousel(members.filter(m => m.country === c));
       });
