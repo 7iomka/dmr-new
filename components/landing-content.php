@@ -38,97 +38,128 @@ $faqGroups = [
 <style>
   .landing-grid-bg {
     background-image:
-      linear-gradient(to right, rgba(113, 113, 122, 0.08) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(113, 113, 122, 0.08) 1px, transparent 1px);
-    background-size: 26px 26px;
+      linear-gradient(to right, rgba(16, 185, 129, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(16, 185, 129, 0.12) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: radial-gradient(circle at center, black 35%, transparent 90%);
   }
 
-  .dark .landing-grid-bg {
+  .light .landing-grid-bg {
     background-image:
-      linear-gradient(to right, rgba(161, 161, 170, 0.1) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(161, 161, 170, 0.1) 1px, transparent 1px);
+      linear-gradient(to right, rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
   }
 </style>
 
 <main class="flex-1 overflow-y-auto bg-zinc-100 dark:bg-[#04070b]">
-  <div class="mx-auto max-w-7xl px-4 lg:px-8 py-6 lg:py-10 space-y-7 lg:space-y-10">
-    <section class="relative overflow-hidden rounded-3xl border border-zinc-200/80 dark:border-white/10 bg-white dark:bg-[#0b1219]">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8 py-6 lg:py-10 space-y-8 lg:space-y-12">
+    <section class="relative overflow-hidden rounded-3xl border border-zinc-200/80 dark:border-emerald-500/20 bg-white dark:bg-[#0a1218]">
       <div class="absolute inset-0 landing-grid-bg"></div>
-      <div class="absolute -top-32 -left-16 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl"></div>
-      <div class="absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl"></div>
-      <div class="relative p-6 md:p-10 lg:p-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-center">
+      <div class="absolute -top-24 -left-20 h-72 w-72 rounded-full bg-emerald-400/15 blur-3xl"></div>
+      <div class="absolute -bottom-24 right-0 h-72 w-72 rounded-full bg-cyan-400/15 blur-3xl"></div>
+      <div class="relative p-6 md:p-10 lg:p-12 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] items-center">
         <div>
-          <p class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs uppercase tracking-[0.14em] font-semibold text-emerald-700 dark:text-emerald-300">DMR · новая версия лендинга</p>
-          <h1 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">Инвестиционная платформа с фокусом на рост капитала и прозрачную партнёрскую модель.</h1>
-          <p class="mt-4 text-zinc-600 dark:text-zinc-300 md:text-lg leading-7 max-w-2xl">Обновили визуальный стиль, структуру блоков и акценты на главном: ограниченный ранний раунд, ясная механика рефералов и рабочие инструменты для управления командой и отчётностью.</p>
+          <p class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 text-[11px] tracking-[0.22em] uppercase font-semibold text-emerald-600 dark:text-emerald-300">
+            <span class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400"></span> Digital Mirror Asset
+          </p>
+          <h1 class="mt-5 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white">Инвестируйте в<br><span class="text-emerald-600 dark:text-emerald-400">Dilan Mirror</span> нового поколения.</h1>
+          <p class="mt-5 text-zinc-600 dark:text-zinc-300 text-base md:text-lg max-w-xl leading-8">Новая версия лендинга с акцентом на технологичность, метрики, реферальную модель и прозрачный путь от долей к акциям.</p>
           <div class="mt-7 flex flex-wrap gap-3">
-            <a href="investments.php" class="px-5 py-3 rounded-xl bg-accent text-white font-semibold hover:opacity-90">Инвестировать сейчас</a>
-            <a href="#faq" class="px-5 py-3 rounded-xl border border-zinc-300 dark:border-white/20 bg-white/80 dark:bg-white/5 font-semibold text-zinc-800 dark:text-zinc-200">Частые вопросы</a>
+            <a href="deposit.php" class="px-6 py-3 rounded-xl bg-accent text-white text-xs uppercase tracking-[0.2em] font-bold shadow-lg shadow-emerald-600/25">Инвестировать</a>
+            <a href="report.php" class="px-6 py-3 rounded-xl border border-zinc-300 dark:border-white/20 text-xs uppercase tracking-[0.2em] font-bold text-zinc-700 dark:text-zinc-100">Смотреть отчёты</a>
+          </div>
+          <div class="mt-8 grid sm:grid-cols-3 gap-3">
+            <div class="rounded-xl border border-zinc-200 dark:border-white/10 bg-white/85 dark:bg-white/5 p-4">
+              <p class="text-2xl font-bold text-zinc-900 dark:text-white">15%</p><p class="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Ранний раунд</p>
+            </div>
+            <div class="rounded-xl border border-zinc-200 dark:border-white/10 bg-white/85 dark:bg-white/5 p-4">
+              <p class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">40%</p><p class="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Партнёрский потенциал</p>
+            </div>
+            <div class="rounded-xl border border-zinc-200 dark:border-white/10 bg-white/85 dark:bg-white/5 p-4">
+              <p class="text-2xl font-bold text-cyan-600 dark:text-cyan-400">12.4M</p><p class="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Текущий пул</p>
+            </div>
           </div>
         </div>
-        <div class="space-y-4">
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 p-4">
-              <p class="text-xs uppercase tracking-wide text-zinc-500">На продаже долей</p>
-              <p class="mt-2 text-3xl font-bold text-zinc-900 dark:text-white">15%</p>
-              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">Ограниченный пул раннего раунда</p>
-            </div>
-            <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 p-4">
-              <p class="text-xs uppercase tracking-wide text-zinc-500">Реферальная модель</p>
-              <p class="mt-2 text-3xl font-bold text-zinc-900 dark:text-white">до 40%</p>
-              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">С распределением по глубине сети</p>
+
+        <div class="space-y-3">
+          <div class="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-100 to-cyan-100 dark:from-emerald-500/10 dark:to-cyan-500/10 p-4">
+            <div class="rounded-xl border border-zinc-200/70 dark:border-white/10 bg-white/90 dark:bg-[#0c141d] p-5">
+              <p class="text-[11px] uppercase tracking-[0.18em] text-zinc-500">Live round panel</p>
+              <div class="mt-3 space-y-3">
+                <div class="flex justify-between text-sm"><span class="text-zinc-500">Собрано</span><span class="font-semibold text-zinc-900 dark:text-white">$ 12,450,000</span></div>
+                <div class="h-2 rounded-full bg-zinc-200 dark:bg-white/10 overflow-hidden"><div class="h-full w-[72%] bg-gradient-to-r from-emerald-400 to-cyan-400"></div></div>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                  <div class="rounded-lg bg-zinc-100 dark:bg-white/5 p-3"><p class="text-zinc-500">Инвесторов</p><p class="font-bold text-zinc-900 dark:text-white">8 240</p></div>
+                  <div class="rounded-lg bg-zinc-100 dark:bg-white/5 p-3"><p class="text-zinc-500">Конверсия</p><p class="font-bold text-zinc-900 dark:text-white">+31%</p></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 p-5">
-            <p class="text-sm font-semibold text-zinc-900 dark:text-white">Что уже работает в кабинете:</p>
-            <ul class="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="mt-0.5 w-4 h-4 text-emerald-500"></i>Новости и апдейты проекта в формате ленты.</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="mt-0.5 w-4 h-4 text-emerald-500"></i>Гибкая FAQ-секция с независимым раскрытием вопросов.</li>
-              <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="mt-0.5 w-4 h-4 text-emerald-500"></i>Комитет на ~100 участников с фильтрами и карточками.</li>
-            </ul>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="rounded-xl border border-zinc-200 dark:border-white/10 p-4 bg-white/90 dark:bg-white/5"><p class="text-[11px] uppercase text-zinc-500 tracking-wider">Риски</p><p class="text-sm font-semibold mt-1 text-zinc-900 dark:text-white">Юридически покрыты</p></div>
+            <div class="rounded-xl border border-zinc-200 dark:border-white/10 p-4 bg-white/90 dark:bg-white/5"><p class="text-[11px] uppercase text-zinc-500 tracking-wider">Выводы</p><p class="text-sm font-semibold mt-1 text-zinc-900 dark:text-white">Ежемесячно</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="grid lg:grid-cols-3 gap-4">
-      <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0e151d] p-5">
-        <p class="text-xs uppercase tracking-wide text-zinc-500">Этап 1</p>
-        <h3 class="mt-2 text-lg font-bold text-zinc-900 dark:text-white">Капитализация долей</h3>
-        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Фиксируем вход ранних инвесторов и прозрачно формируем структуру владения.</p>
+    <section class="grid md:grid-cols-3 gap-4">
+      <?php foreach ([['AI Mirror Infrastructure', 'Серверная архитектура собирает и проверяет события инвестиций в режиме real-time.'], ['Referral Growth Engine', 'Каскадная модель дохода и прозрачная аналитика по уровням команды в одном экране.'], ['Governance & Committee', 'Глобальный комитет контролирует вектор развития и публичную отчётность.']] as $item): ?>
+        <article class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0d151d] p-5 md:p-6">
+          <div class="w-10 h-10 rounded-lg border border-emerald-500/25 bg-emerald-500/10 grid place-items-center mb-4"><i data-lucide="sparkles" class="w-5 h-5 text-emerald-500"></i></div>
+          <h3 class="text-lg font-bold text-zinc-900 dark:text-white"><?= $item[0]; ?></h3>
+          <p class="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300"><?= $item[1]; ?></p>
+        </article>
+      <?php endforeach; ?>
+    </section>
+
+    <section id="referral" class="grid xl:grid-cols-[1fr_1.1fr] gap-5">
+      <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0d151d] p-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Реферальная структура до 40%</h2>
+        <p class="mt-3 text-zinc-600 dark:text-zinc-300 leading-7">Мы сохранили рабочую механику уровней и переложили её в более строгую визуальную систему из нового концепта.</p>
+        <div class="mt-6 space-y-3">
+          <?php foreach ([[1,'L1 direct', '10%', 'w-10/12', 'bg-emerald-400'], [2,'L2 network', '5%', 'w-6/12', 'bg-cyan-400'], [3,'L3 depth', '2%', 'w-4/12', 'bg-violet-400']] as $level): ?>
+          <div class="rounded-xl border border-zinc-200 dark:border-white/10 p-4">
+            <div class="flex justify-between items-center">
+              <p class="font-semibold text-zinc-900 dark:text-white">#<?= $level[0]; ?> <?= $level[1]; ?></p>
+              <p class="font-bold text-lg text-zinc-900 dark:text-white"><?= $level[2]; ?></p>
+            </div>
+            <div class="mt-3 h-2 rounded-full bg-zinc-200 dark:bg-white/10 overflow-hidden"><div class="h-full <?= $level[3]; ?> <?= $level[4]; ?>"></div></div>
+          </div>
+          <?php endforeach; ?>
+        </div>
       </div>
-      <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0e151d] p-5">
-        <p class="text-xs uppercase tracking-wide text-zinc-500">Этап 2</p>
-        <h3 class="mt-2 text-lg font-bold text-zinc-900 dark:text-white">Рост экосистемы</h3>
-        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Усиливаем реферальный контур и аналитические инструменты внутри платформы.</p>
-      </div>
-      <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0e151d] p-5">
-        <p class="text-xs uppercase tracking-wide text-zinc-500">Этап 3</p>
-        <h3 class="mt-2 text-lg font-bold text-zinc-900 dark:text-white">Конверсия в акции</h3>
-        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">После корпоративных этапов доли переводятся в акции по утверждённой дорожной карте.</p>
+      <div class="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-50 to-cyan-50 dark:from-emerald-500/10 dark:to-cyan-500/10 p-6">
+        <h3 class="text-lg font-bold text-zinc-900 dark:text-white">Пирамида распределения</h3>
+        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-2">Визуализация сохранена в концептуальной форме и показывает логику расширения сети.</p>
+        <div class="mt-6 flex flex-col items-center gap-2 text-xs font-bold text-zinc-700 dark:text-zinc-200">
+          <div class="w-11 h-11 rounded-full border-2 border-emerald-400 bg-emerald-500/20 grid place-items-center">YOU</div>
+          <div class="flex gap-2"><div class="w-10 h-10 rounded-full border border-emerald-400 bg-emerald-500/15"></div><div class="w-10 h-10 rounded-full border border-emerald-400 bg-emerald-500/15"></div><div class="w-10 h-10 rounded-full border border-emerald-400 bg-emerald-500/15"></div></div>
+          <div class="flex gap-2"><div class="w-9 h-9 rounded-full border border-cyan-400 bg-cyan-500/15"></div><div class="w-9 h-9 rounded-full border border-cyan-400 bg-cyan-500/15"></div><div class="w-9 h-9 rounded-full border border-cyan-400 bg-cyan-500/15"></div><div class="w-9 h-9 rounded-full border border-cyan-400 bg-cyan-500/15"></div></div>
+          <div class="flex gap-2"><div class="w-8 h-8 rounded-full border border-violet-400 bg-violet-500/15"></div><div class="w-8 h-8 rounded-full border border-violet-400 bg-violet-500/15"></div><div class="w-8 h-8 rounded-full border border-violet-400 bg-violet-500/15"></div><div class="w-8 h-8 rounded-full border border-violet-400 bg-violet-500/15"></div><div class="w-8 h-8 rounded-full border border-violet-400 bg-violet-500/15"></div></div>
+        </div>
       </div>
     </section>
 
     <section id="news" class="space-y-4">
-      <div class="flex items-center justify-between gap-3">
+      <div class="flex items-end justify-between gap-3">
         <div>
-          <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Новости проекта</h2>
-          <p class="text-zinc-600 dark:text-zinc-300">6 последних обновлений команды и платформы.</p>
+          <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Новости и обновления</h2>
+          <p class="text-zinc-600 dark:text-zinc-300">Слайды из последнего раунда и развития платформы.</p>
         </div>
         <div class="flex gap-2">
-          <button data-news-prev class="w-9 h-9 rounded-lg border border-zinc-300 dark:border-white/15 bg-white dark:bg-white/5"><i data-lucide="chevron-left" class="w-4 h-4 mx-auto"></i></button>
-          <button data-news-next class="w-9 h-9 rounded-lg border border-zinc-300 dark:border-white/15 bg-white dark:bg-white/5"><i data-lucide="chevron-right" class="w-4 h-4 mx-auto"></i></button>
+          <button data-news-prev class="w-10 h-10 rounded-xl border border-zinc-300 dark:border-white/15"><i data-lucide="chevron-left" class="w-4 h-4 mx-auto"></i></button>
+          <button data-news-next class="w-10 h-10 rounded-xl border border-zinc-300 dark:border-white/15"><i data-lucide="chevron-right" class="w-4 h-4 mx-auto"></i></button>
         </div>
       </div>
       <div class="overflow-hidden">
         <div data-news-track class="flex transition-transform duration-300">
           <?php foreach ($newsItems as $news): ?>
-            <article class="w-full md:w-1/2 xl:w-1/3 flex-shrink-0 p-1.5">
-              <div class="h-full rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0e151d] p-5">
-                <p class="text-xs text-zinc-500"><?= $news['date']; ?> · <?= $news['category']; ?></p>
-                <h3 class="mt-3 text-lg font-bold text-zinc-900 dark:text-white leading-snug"><?= $news['title']; ?></h3>
-                <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300 leading-6"><?= $news['excerpt']; ?></p>
-                <a href="<?= $news['link']; ?>" class="mt-4 inline-flex text-sm font-semibold text-accent">Подробнее →</a>
+            <article class="min-w-full md:min-w-[50%] xl:min-w-[33.333%] p-1.5">
+              <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0d151d] p-5 h-full">
+                <p class="text-xs uppercase tracking-[0.15em] text-emerald-600 dark:text-emerald-300 font-semibold"><?= $news['category']; ?> · <?= $news['date']; ?></p>
+                <h3 class="mt-2 text-lg font-bold text-zinc-900 dark:text-white"><?= $news['title']; ?></h3>
+                <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300 leading-7"><?= $news['excerpt']; ?></p>
               </div>
             </article>
           <?php endforeach; ?>
@@ -136,26 +167,21 @@ $faqGroups = [
       </div>
     </section>
 
-    <section id="faq" class="space-y-5">
+    <section id="faq" class="space-y-4 rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0d151d] p-5 md:p-6">
       <div>
         <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">FAQ</h2>
+        <p class="text-zinc-600 dark:text-zinc-300">Сохранённая логика табов и мульти-аккордеона.</p>
       </div>
       <div class="flex flex-wrap gap-2">
-        <?php foreach ($faqGroups as $i => $group): ?>
-          <button
-            data-faq-group-btn
-            data-group-index="<?= $i; ?>"
-            data-active="<?= $i === 0 ? 'true' : 'false'; ?>"
-            class="px-4 py-2 rounded-xl text-sm font-semibold border transition-colors">
-            <?= $group['title']; ?>
-          </button>
+        <?php foreach ($faqGroups as $index => $group): ?>
+          <button data-faq-group-btn data-group-index="<?= $index; ?>" data-active="<?= $index === 0 ? 'true' : 'false'; ?>" class="px-4 py-2 rounded-lg border text-xs font-bold uppercase tracking-[0.15em]"><?= $group['title']; ?></button>
         <?php endforeach; ?>
       </div>
 
-      <?php foreach ($faqGroups as $i => $group): ?>
-        <div data-faq-group-panel="<?= $i; ?>" class="space-y-3 <?= $i === 0 ? '' : 'hidden'; ?>">
+      <?php foreach ($faqGroups as $groupIndex => $group): ?>
+        <div data-faq-group-panel="<?= $groupIndex; ?>" class="space-y-2 <?= $groupIndex !== 0 ? 'hidden' : ''; ?>">
           <?php foreach ($group['items'] as $item): ?>
-            <div class="rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0e151d] px-4">
+            <div class="rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-4">
               <button data-faq-btn data-open="false" class="w-full py-4 text-left flex items-center justify-between gap-2">
                 <span class="font-semibold text-zinc-900 dark:text-white"><?= $item['q']; ?></span>
                 <i data-lucide="chevron-down" class="w-5 h-5 text-accent transition-transform"></i>
