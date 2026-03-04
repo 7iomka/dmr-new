@@ -104,7 +104,7 @@
 						<div class="card-header">
 							<h3 class="text-sm font-bold uppercase tracking-wide text-zinc-900 dark:text-white">Транзакции</h3>
 							<div
-								class="relative flex bg-zinc-200/50 dark:bg-zinc-800/80 p-1 rounded-lg w-fit overflow-x-auto c-no-scrollbar max-w-full">
+								class="js-tabs-nav relative flex bg-zinc-200/50 dark:bg-zinc-800/80 p-1 rounded-lg w-fit overflow-x-auto c-no-scrollbar max-w-full">
 								<div
 									class="js-tab-highlight c-transition-slider absolute bg-white dark:bg-zinc-600 rounded-md shadow z-0 h-[calc(100%-8px)] top-[4px] left-0">
 								</div>
