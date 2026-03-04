@@ -1,64 +1,64 @@
 <style>
   .dm-landing {
-    --bg: #f3f6f8;
-    --bg2: #e9eef3;
-    --bg3: #dde5ec;
-    --card: #ffffff;
-    --border: rgba(15, 23, 42, .12);
-    --border2: rgba(0, 176, 116, .28);
-    --accent: #00b074;
-    --accent2: #00ffaa;
-    --cyan: #0891b2;
-    --text: #0f172a;
-    --muted: #475569;
-    --label: #0f766e;
-    --surface-1: rgba(15, 23, 42, .04);
-    --surface-2: rgba(15, 23, 42, .06);
-    --surface-3: rgba(15, 23, 42, .08);
-    --surface-strong: rgba(255, 255, 255, .82);
-    --chip-bg: rgba(255, 255, 255, .78);
-    --chip-date-bg: rgba(255, 255, 255, .62);
-    --hero-image-bg: linear-gradient(160deg, #d8f3eb 0%, #e5eff8 100%);
-    --overlay-bg: rgba(255, 255, 255, .88);
-    --header-bg: rgba(243, 246, 248, .9);
-    --scroll-thumb: #9db3a8;
-    --news-card-bg: linear-gradient(135deg, #edf7f2, #e7eef7);
-    --cta-bg: linear-gradient(135deg, #e8f8ef 0%, #e5f7f4 50%, #e8effc 100%);
-    --grid-line: rgba(0, 176, 116, .24);
-    --grid-opacity: .58;
-    --ff-head: 'Noto Sans', 'Noto Sans SC', sans-serif;
-    --ff-body: 'Noto Sans', 'Noto Sans SC', sans-serif;
-    color: var(--text);
-    background: var(--bg);
+    --ld-bg: #f3f6f8;
+    --ld-bg2: #e9eef3;
+    --ld-bg3: #dde5ec;
+    --ld-card: #ffffff;
+    --ld-border: rgba(15, 23, 42, .12);
+    --ld-border2: rgba(0, 176, 116, .28);
+    --ld-accent: #00b074;
+    --ld-accent2: #00ffaa;
+    --ld-cyan: #0891b2;
+    --ld-text: #0f172a;
+    --ld-muted: #475569;
+    --ld-label: #0f766e;
+    --ld-surface-1: rgba(15, 23, 42, .04);
+    --ld-surface-2: rgba(15, 23, 42, .06);
+    --ld-surface-3: rgba(15, 23, 42, .08);
+    --ld-surface-strong: rgba(255, 255, 255, .82);
+    --ld-chip-bg: rgba(255, 255, 255, .78);
+    --ld-chip-date-bg: rgba(255, 255, 255, .62);
+    --ld-hero-image-bg: linear-gradient(160deg, #d8f3eb 0%, #e5eff8 100%);
+    --ld-overlay-bg: rgba(255, 255, 255, .88);
+    --ld-header-bg: rgba(243, 246, 248, .9);
+    --ld-scroll-thumb: #9db3a8;
+    --ld-news-card-bg: linear-gradient(135deg, #edf7f2, #e7eef7);
+    --ld-cta-bg: linear-gradient(135deg, #e8f8ef 0%, #e5f7f4 50%, #e8effc 100%);
+    --ld-grid-line: rgba(0, 176, 116, .24);
+    --ld-grid-opacity: .58;
+    --ld-ff-head: 'Noto Sans', 'Noto Sans SC', sans-serif;
+    --ld-ff-body: 'Noto Sans', 'Noto Sans SC', sans-serif;
+    color: var(--ld-text);
+    background: var(--ld-bg);
   }
 
   .dark .dm-landing {
-    --bg: #060a0d;
-    --bg2: #0b1017;
-    --bg3: #101822;
-    --card: #0e1520;
-    --border: rgba(255, 255, 255, .07);
-    --border2: rgba(0, 200, 130, .18);
-    --accent: #00c87a;
-    --accent2: #00ffaa;
-    --cyan: #22d3ee;
-    --text: #e8edf2;
-    --muted: #6b7c8f;
-    --label: #3a8f68;
-    --surface-1: rgba(255, 255, 255, .03);
-    --surface-2: rgba(255, 255, 255, .05);
-    --surface-3: rgba(255, 255, 255, .07);
-    --surface-strong: rgba(6, 10, 13, .9);
-    --chip-bg: rgba(0, 0, 0, .6);
-    --chip-date-bg: rgba(0, 0, 0, .5);
-    --hero-image-bg: linear-gradient(160deg, #0b1d1b 0%, #081218 100%);
-    --overlay-bg: rgba(6, 10, 13, .9);
-    --header-bg: rgba(6, 10, 13, .85);
-    --scroll-thumb: #1e3a2a;
-    --news-card-bg: linear-gradient(135deg, #0d1f1a, #0c1620);
-    --cta-bg: linear-gradient(135deg, #071a12 0%, #0a1f1a 50%, #071218 100%);
-    --grid-line: rgba(0, 200, 122, .1);
-    --grid-opacity: .3;
+    --ld-bg: #060a0d;
+    --ld-bg2: #0b1017;
+    --ld-bg3: #101822;
+    --ld-card: #0e1520;
+    --ld-border: rgba(255, 255, 255, .07);
+    --ld-border2: rgba(0, 200, 130, .18);
+    --ld-accent: #00c87a;
+    --ld-accent2: #00ffaa;
+    --ld-cyan: #22d3ee;
+    --ld-text: #e8edf2;
+    --ld-muted: #6b7c8f;
+    --ld-label: #3a8f68;
+    --ld-surface-1: rgba(255, 255, 255, .03);
+    --ld-surface-2: rgba(255, 255, 255, .05);
+    --ld-surface-3: rgba(255, 255, 255, .07);
+    --ld-surface-strong: rgba(6, 10, 13, .9);
+    --ld-chip-bg: rgba(0, 0, 0, .6);
+    --ld-chip-date-bg: rgba(0, 0, 0, .5);
+    --ld-hero-image-bg: linear-gradient(160deg, #0b1d1b 0%, #081218 100%);
+    --ld-overlay-bg: rgba(6, 10, 13, .9);
+    --ld-header-bg: rgba(6, 10, 13, .85);
+    --ld-scroll-thumb: #1e3a2a;
+    --ld-news-card-bg: linear-gradient(135deg, #0d1f1a, #0c1620);
+    --ld-cta-bg: linear-gradient(135deg, #071a12 0%, #0a1f1a 50%, #071218 100%);
+    --ld-grid-line: rgba(0, 200, 122, .1);
+    --ld-grid-opacity: .3;
   }
 
   .dm-landing .hero {
@@ -79,9 +79,9 @@
   }
 
   .dm-landing {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--ff-body);
+    background: var(--ld-bg);
+    color: var(--ld-text);
+    font-family: var(--ld-ff-body);
     font-size: 15px;
     line-height: 1.65;
     overflow-x: hidden;
@@ -93,11 +93,11 @@
   }
 
   .dm-landing ::-webkit-scrollbar-track {
-    background: var(--bg2);
+    background: var(--ld-bg2);
   }
 
   .dm-landing ::-webkit-scrollbar-thumb {
-    background: var(--scroll-thumb);
+    background: var(--ld-scroll-thumb);
     border-radius: 4px;
   }
 
@@ -138,12 +138,12 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--ld-accent);
     padding: 5px 12px;
     background: rgba(0, 200, 122, .1);
     border: 1px solid rgba(0, 200, 122, .2);
@@ -159,7 +159,7 @@
   .dm-landing h2,
   .dm-landing h3,
   .dm-landing h4 {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     line-height: 1.1;
   }
 
@@ -179,24 +179,24 @@
   }
 
   .text-accent {
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .text-cyan {
-    color: var(--cyan);
+    color: var(--ld-cyan);
   }
 
   .text-muted {
-    color: var(--muted);
+    color: var(--ld-muted);
   }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--accent);
+    background: var(--ld-accent);
     color: #000;
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-weight: 700;
     font-size: 13px;
     letter-spacing: .1em;
@@ -220,36 +220,36 @@
     align-items: center;
     gap: 8px;
     background: transparent;
-    color: var(--text);
-    font-family: var(--ff-head);
+    color: var(--ld-text);
+    font-family: var(--ld-ff-head);
     font-weight: 700;
     font-size: 13px;
     letter-spacing: .1em;
     text-transform: uppercase;
     padding: 13px 28px;
     border-radius: 8px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--ld-border);
     cursor: pointer;
     text-decoration: none;
     transition: border-color .2s, color .2s;
   }
 
   .btn-ghost:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--ld-accent);
+    color: var(--ld-accent);
   }
 
   /* ── Glassmorphism card ── */
   .card {
-    background: var(--card);
-    border: 1px solid var(--border);
+    background: var(--ld-card);
+    border: 1px solid var(--ld-border);
     border-radius: 16px;
     overflow: hidden;
   }
 
   .card-glow {
-    background: linear-gradient(135deg, rgba(0, 200, 122, .06) 0%, var(--card) 60%);
-    border: 1px solid var(--border2);
+    background: linear-gradient(135deg, rgba(0, 200, 122, .06) 0%, var(--ld-card) 60%);
+    border: 1px solid var(--ld-border2);
   }
 
   /* ── HEADER ── */
@@ -259,10 +259,10 @@
     left: 0;
     right: 0;
     z-index: 100;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--ld-border);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    background: var(--header-bg);
+    background: var(--ld-header-bg);
   }
 
   .header-inner {
@@ -279,10 +279,10 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-weight: 800;
     font-size: 18px;
-    color: var(--text);
+    color: var(--ld-text);
     text-decoration: none;
     letter-spacing: -.02em;
   }
@@ -290,7 +290,7 @@
   .logo-icon {
     width: 36px;
     height: 36px;
-    background: var(--accent);
+    background: var(--ld-accent);
     border-radius: 8px;
     display: grid;
     place-items: center;
@@ -309,7 +309,7 @@
   }
 
   .dm-landing nav a {
-    color: var(--muted);
+    color: var(--ld-muted);
     font-size: 13px;
     font-weight: 500;
     padding: 6px 14px;
@@ -319,8 +319,8 @@
   }
 
   .dm-landing nav a:hover {
-    color: var(--text);
-    background: var(--surface-2);
+    color: var(--ld-text);
+    background: var(--ld-surface-2);
   }
 
   .header-cta {
@@ -333,8 +333,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
+    background: var(--ld-bg3);
+    border: 1px solid var(--ld-border);
     border-radius: 100px;
     padding: 4px 14px 4px 4px;
     cursor: pointer;
@@ -344,7 +344,7 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #22d3ee);
+    background: linear-gradient(135deg, var(--ld-accent), #22d3ee);
     display: grid;
     place-items: center;
     font-weight: 700;
@@ -380,11 +380,11 @@
   .hero-grid {
     position: absolute;
     inset: 0;
-    opacity: var(--grid-opacity);
+    opacity: var(--ld-grid-opacity);
     z-index: 0;
     background-image:
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      linear-gradient(var(--ld-grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ld-grid-line) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
   }
@@ -422,7 +422,7 @@
     gap: 6px;
     font-size: 11px;
     font-weight: 600;
-    color: var(--accent);
+    color: var(--ld-accent);
     background: rgba(0, 200, 122, .1);
     border: 1px solid rgba(0, 200, 122, .2);
     border-radius: 100px;
@@ -434,7 +434,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--accent);
+    background: var(--ld-accent);
     animation: pulse 1.8s infinite;
   }
 
@@ -462,11 +462,11 @@
   }
 
   .dm-landing .hero h1 .line2 {
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .hero-desc {
-    color: var(--muted);
+    color: var(--ld-muted);
     font-size: 17px;
     margin-bottom: 32px;
     max-width: 480px;
@@ -487,17 +487,17 @@
   }
 
   .hstat {
-    background: var(--surface-1);
-    border: 1px solid var(--border);
+    background: var(--ld-surface-1);
+    border: 1px solid var(--ld-border);
     border-radius: 12px;
     padding: 16px 18px;
   }
 
   .hstat-val {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-size: 1.8rem;
     font-weight: 800;
-    color: var(--text);
+    color: var(--ld-text);
     line-height: 1;
   }
 
@@ -506,7 +506,7 @@
     font-weight: 600;
     letter-spacing: .12em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--ld-muted);
     margin-top: 6px;
   }
 
@@ -521,8 +521,8 @@
   .hero-img-wrap {
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid var(--border2);
-    background: var(--hero-image-bg);
+    border: 1px solid var(--ld-border2);
+    background: var(--ld-hero-image-bg);
     position: relative;
   }
 
@@ -538,8 +538,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--overlay-bg);
-    border: 1px solid var(--border2);
+    background: var(--ld-overlay-bg);
+    border: 1px solid var(--ld-border2);
     border-radius: 12px;
     padding: 10px 14px;
     backdrop-filter: blur(8px);
@@ -548,7 +548,7 @@
   .hero-badge svg {
     width: 18px;
     height: 18px;
-    color: var(--accent);
+    color: var(--ld-accent);
     flex-shrink: 0;
   }
 
@@ -563,21 +563,21 @@
   }
 
   .hero-badge .val {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-weight: 700;
     font-size: 14px;
   }
 
   .hero-badge .sub {
     font-size: 10px;
-    color: var(--muted);
+    color: var(--ld-muted);
   }
 
   /* ── STATS BAND ── */
   .stats-band {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: var(--bg2);
+    border-top: 1px solid var(--ld-border);
+    border-bottom: 1px solid var(--ld-border);
+    background: var(--ld-bg2);
     padding: 40px 0;
   }
 
@@ -590,7 +590,7 @@
   .stat-item {
     padding: 20px 32px;
     text-align: center;
-    border-right: 1px solid var(--border);
+    border-right: 1px solid var(--ld-border);
   }
 
   .stat-item:last-child {
@@ -598,23 +598,23 @@
   }
 
   .stat-num {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-size: 2.4rem;
     font-weight: 800;
     line-height: 1;
   }
 
   .stat-num.green {
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .stat-num.cyan {
-    color: var(--cyan);
+    color: var(--ld-cyan);
   }
 
   .stat-label {
     font-size: 11px;
-    color: var(--muted);
+    color: var(--ld-muted);
     font-weight: 500;
     margin-top: 6px;
     text-transform: uppercase;
@@ -634,7 +634,7 @@
   .stat-icon svg {
     width: 18px;
     height: 18px;
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   /* ── MIRROR TECH ── */
@@ -665,11 +665,11 @@
   .tech-icon-big svg {
     width: 28px;
     height: 28px;
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .tech-card p {
-    color: var(--muted);
+    color: var(--ld-muted);
     margin-top: 8px;
     font-size: 14px;
     line-height: 1.7;
@@ -686,17 +686,17 @@
   .phil-item {
     padding: 24px;
     border-radius: 12px;
-    background: var(--surface-1);
-    border: 1px solid var(--border);
+    background: var(--ld-surface-1);
+    border: 1px solid var(--ld-border);
     display: flex;
     gap: 14px;
   }
 
   .phil-num {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-size: 11px;
     font-weight: 700;
-    color: var(--label);
+    color: var(--ld-label);
     letter-spacing: .1em;
     margin-bottom: 4px;
   }
@@ -709,7 +709,7 @@
 
   .phil-item p {
     font-size: 13px;
-    color: var(--muted);
+    color: var(--ld-muted);
     line-height: 1.6;
   }
 
@@ -727,7 +727,7 @@
   .phil-ico svg {
     width: 20px;
     height: 20px;
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   /* ── REFERRAL SECTION ── */
@@ -743,7 +743,7 @@
   }
 
   .ref-desc {
-    color: var(--muted);
+    color: var(--ld-muted);
     margin-bottom: 32px;
     font-size: 15px;
     max-width: 440px;
@@ -759,8 +759,8 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    background: var(--surface-1);
-    border: 1px solid var(--border);
+    background: var(--ld-surface-1);
+    border: 1px solid var(--ld-border);
     border-radius: 12px;
     padding: 18px 20px;
     position: relative;
@@ -769,7 +769,7 @@
   }
 
   .ref-level:hover {
-    border-color: var(--border2);
+    border-color: var(--ld-border2);
   }
 
   .ref-level-num {
@@ -779,19 +779,19 @@
     flex-shrink: 0;
     display: grid;
     place-items: center;
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-weight: 800;
     font-size: 15px;
   }
 
   .lvl-1 {
     background: rgba(0, 200, 122, .15);
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .lvl-2 {
     background: rgba(34, 211, 238, .12);
-    color: var(--cyan);
+    color: var(--ld-cyan);
   }
 
   .lvl-3 {
@@ -808,11 +808,11 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .12em;
-    color: var(--muted);
+    color: var(--ld-muted);
   }
 
   .ref-level-body .l-name {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-weight: 700;
     font-size: 15px;
     margin: 2px 0 6px;
@@ -820,7 +820,7 @@
 
   .ref-bar-wrap {
     height: 6px;
-    background: var(--surface-3);
+    background: var(--ld-surface-3);
     border-radius: 100px;
     overflow: hidden;
   }
@@ -832,11 +832,11 @@
   }
 
   .bar-1 {
-    background: var(--accent);
+    background: var(--ld-accent);
   }
 
   .bar-2 {
-    background: var(--cyan);
+    background: var(--ld-cyan);
   }
 
   .bar-3 {
@@ -844,7 +844,7 @@
   }
 
   .ref-pct {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-weight: 800;
     font-size: 2rem;
     flex-shrink: 0;
@@ -852,11 +852,11 @@
   }
 
   .pct-1 {
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .pct-2 {
-    color: var(--cyan);
+    color: var(--ld-cyan);
   }
 
   .pct-3 {
@@ -869,19 +869,19 @@
   }
 
   .pyramid-card {
-    background: linear-gradient(160deg, rgba(0, 200, 122, .06) 0%, var(--card) 70%);
-    border: 1px solid var(--border2);
+    background: linear-gradient(160deg, rgba(0, 200, 122, .06) 0%, var(--ld-card) 70%);
+    border: 1px solid var(--ld-border2);
     border-radius: 20px;
     padding: 32px;
   }
 
   .pyramid-title {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: .12em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--ld-muted);
     margin-bottom: 28px;
   }
 
@@ -908,7 +908,7 @@
     transform: translateX(-50%);
     width: 1px;
     height: 8px;
-    background: var(--border2);
+    background: var(--ld-border2);
   }
 
   .pyramid-row:last-child::before {
@@ -928,22 +928,22 @@
   }
 
   .pnode-you {
-    border-color: var(--accent);
+    border-color: var(--ld-accent);
     background: rgba(0, 200, 122, .15);
-    color: var(--accent);
+    color: var(--ld-accent);
     font-size: 9px;
   }
 
   .pnode-l1 {
-    border-color: var(--accent);
+    border-color: var(--ld-accent);
     background: rgba(0, 200, 122, .1);
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .pnode-l2 {
-    border-color: var(--cyan);
+    border-color: var(--ld-cyan);
     background: rgba(34, 211, 238, .08);
-    color: var(--cyan);
+    color: var(--ld-cyan);
   }
 
   .pnode-l3 {
@@ -974,7 +974,7 @@
     transform: translateX(-50%);
     width: 1px;
     height: 100%;
-    background: var(--border2);
+    background: var(--ld-border2);
   }
 
   .branch-line {
@@ -993,7 +993,7 @@
     left: 25%;
     right: 25%;
     height: 1px;
-    background: var(--border2);
+    background: var(--ld-border2);
   }
 
   .branch-line::after {
@@ -1003,16 +1003,16 @@
     left: 25%;
     right: 25%;
     height: 20px;
-    border-left: 1px solid var(--border2);
-    border-right: 1px solid var(--border2);
+    border-left: 1px solid var(--ld-border2);
+    border-right: 1px solid var(--ld-border2);
     border-top: none;
   }
 
   .deep-card {
     margin-top: 16px;
     padding: 16px;
-    background: var(--surface-1);
-    border: 1px solid var(--border);
+    background: var(--ld-surface-1);
+    border: 1px solid var(--ld-border);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -1021,19 +1021,19 @@
 
   .deep-label {
     font-size: 12px;
-    color: var(--muted);
+    color: var(--ld-muted);
   }
 
   .deep-val {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-weight: 800;
-    color: var(--accent);
+    color: var(--ld-accent);
     font-size: 1.4rem;
   }
 
   .deep-bar-wrap {
     height: 4px;
-    background: var(--surface-3);
+    background: var(--ld-surface-3);
     border-radius: 100px;
     margin-top: 8px;
     overflow: hidden;
@@ -1043,7 +1043,7 @@
     height: 100%;
     width: 57.5%;
     border-radius: 100px;
-    background: linear-gradient(90deg, var(--cyan), var(--accent));
+    background: linear-gradient(90deg, var(--ld-cyan), var(--ld-accent));
   }
 
   /* ── NEWS ── */
@@ -1057,7 +1057,7 @@
   .news-link {
     font-size: 12px;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--ld-accent);
     text-decoration: none;
     letter-spacing: .08em;
     text-transform: uppercase;
@@ -1092,8 +1092,8 @@
   }
 
   .news-inner {
-    background: var(--card);
-    border: 1px solid var(--border);
+    background: var(--ld-card);
+    border: 1px solid var(--ld-border);
     border-radius: 14px;
     overflow: hidden;
     height: 100%;
@@ -1104,7 +1104,7 @@
   }
 
   .news-inner:hover {
-    border-color: var(--border2);
+    border-color: var(--ld-border2);
     transform: translateY(-2px);
   }
 
@@ -1112,7 +1112,7 @@
     height: 160px;
     position: relative;
     overflow: hidden;
-    background: var(--news-card-bg);
+    background: var(--ld-news-card-bg);
   }
 
   .news-thumb-glow {
@@ -1134,7 +1134,7 @@
   .news-thumb-icon svg {
     width: 80px;
     height: 80px;
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .news-chips {
@@ -1156,16 +1156,16 @@
   }
 
   .chip-cat {
-    background: var(--chip-bg);
+    background: var(--ld-chip-bg);
     border-color: rgba(255, 255, 255, .15);
-    color: var(--text);
+    color: var(--ld-text);
     backdrop-filter: blur(8px);
   }
 
   .chip-date {
-    background: var(--chip-date-bg);
+    background: var(--ld-chip-date-bg);
     border-color: rgba(255, 255, 255, .1);
-    color: var(--muted);
+    color: var(--ld-muted);
     backdrop-filter: blur(8px);
   }
 
@@ -1185,7 +1185,7 @@
 
   .news-body p {
     font-size: 12px;
-    color: var(--muted);
+    color: var(--ld-muted);
     line-height: 1.6;
     flex: 1;
   }
@@ -1201,9 +1201,9 @@
     width: 40px;
     height: 40px;
     border-radius: 8px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--ld-border);
     background: transparent;
-    color: var(--text);
+    color: var(--ld-text);
     cursor: pointer;
     display: grid;
     place-items: center;
@@ -1211,8 +1211,8 @@
   }
 
   .news-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--ld-accent);
+    color: var(--ld-accent);
   }
 
   .news-btn svg {
@@ -1230,13 +1230,13 @@
   .why-card {
     padding: 28px 24px;
     border-radius: 14px;
-    background: var(--surface-1);
-    border: 1px solid var(--border);
+    background: var(--ld-surface-1);
+    border: 1px solid var(--ld-border);
     transition: border-color .2s, transform .2s;
   }
 
   .why-card:hover {
-    border-color: var(--border2);
+    border-color: var(--ld-border2);
     transform: translateY(-3px);
   }
 
@@ -1254,7 +1254,7 @@
   .why-icon svg {
     width: 26px;
     height: 26px;
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .why-card h3 {
@@ -1265,12 +1265,12 @@
 
   .why-card p {
     font-size: 13px;
-    color: var(--muted);
+    color: var(--ld-muted);
     line-height: 1.65;
   }
 
   .why-highlight {
-    color: var(--accent);
+    color: var(--ld-accent);
     font-weight: 700;
   }
 
@@ -1283,15 +1283,15 @@
   }
 
   .faq-tab {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: .08em;
     padding: 8px 20px;
     border-radius: 8px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--ld-border);
     background: transparent;
-    color: var(--muted);
+    color: var(--ld-muted);
     cursor: pointer;
     text-transform: uppercase;
     transition: all .2s;
@@ -1299,13 +1299,13 @@
 
   .faq-tab.active {
     background: rgba(0, 200, 122, .1);
-    border-color: var(--border2);
-    color: var(--accent);
+    border-color: var(--ld-border2);
+    color: var(--ld-accent);
   }
 
   .faq-tab:hover:not(.active) {
     border-color: rgba(255, 255, 255, .15);
-    color: var(--text);
+    color: var(--ld-text);
   }
 
   .faq-group {
@@ -1317,7 +1317,7 @@
   }
 
   .faq-item {
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--ld-border);
   }
 
   .faq-btn {
@@ -1330,16 +1330,16 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--text);
+    color: var(--ld-text);
     text-align: left;
   }
 
   .faq-btn:hover .faq-q {
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .faq-q {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-weight: 600;
     font-size: 16px;
     transition: color .2s;
@@ -1349,8 +1349,8 @@
     width: 28px;
     height: 28px;
     border-radius: 8px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
+    background: var(--ld-surface-2);
+    border: 1px solid var(--ld-border);
     display: grid;
     place-items: center;
     flex-shrink: 0;
@@ -1360,13 +1360,13 @@
   .faq-icon svg {
     width: 14px;
     height: 14px;
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .faq-btn[aria-expanded=true] .faq-icon {
     transform: rotate(45deg);
     background: rgba(0, 200, 122, .15);
-    border-color: var(--border2);
+    border-color: var(--ld-border2);
   }
 
   .faq-panel {
@@ -1389,7 +1389,7 @@
     padding: 16px 20px;
     margin-bottom: 16px;
     font-size: 14px;
-    color: var(--muted);
+    color: var(--ld-muted);
     line-height: 1.75;
   }
 
@@ -1419,13 +1419,13 @@
     height: 80px;
     border-radius: 16px;
     overflow: hidden;
-    border: 2px solid var(--border);
+    border: 2px solid var(--ld-border);
     position: relative;
     transition: border-color .2s;
   }
 
   .cm-member:hover .cm-avatar {
-    border-color: var(--border2);
+    border-color: var(--ld-border2);
   }
 
   .cm-avatar img {
@@ -1444,7 +1444,7 @@
     font-size: 13px;
     display: grid;
     place-items: center;
-    background: var(--chip-date-bg);
+    background: var(--ld-chip-date-bg);
     backdrop-filter: blur(4px);
   }
 
@@ -1452,7 +1452,7 @@
     font-size: 10px;
     font-weight: 600;
     text-align: center;
-    color: var(--muted);
+    color: var(--ld-muted);
   }
 
   /* country select */
@@ -1468,17 +1468,17 @@
     justify-content: space-between;
     width: 100%;
     padding: 10px 14px;
-    background: var(--card);
-    border: 1px solid var(--border);
+    background: var(--ld-card);
+    border: 1px solid var(--ld-border);
     border-radius: 10px;
     cursor: pointer;
-    color: var(--text);
+    color: var(--ld-text);
     font-size: 13px;
-    font-family: var(--ff-body);
+    font-family: var(--ld-ff-body);
   }
 
   .country-trigger:hover {
-    border-color: var(--border2);
+    border-color: var(--ld-border2);
   }
 
   .country-menu {
@@ -1486,8 +1486,8 @@
     top: calc(100% + 6px);
     left: 0;
     right: 0;
-    background: var(--card);
-    border: 1px solid var(--border);
+    background: var(--ld-card);
+    border: 1px solid var(--ld-border);
     border-radius: 12px;
     max-height: 220px;
     overflow-y: auto;
@@ -1511,7 +1511,7 @@
   }
 
   .country-opt:hover {
-    background: var(--surface-1);
+    background: var(--ld-surface-1);
   }
 
   .cm-carousel-wrap {
@@ -1543,8 +1543,8 @@
   }
 
   .cm-card-inner {
-    background: var(--card);
-    border: 1px solid var(--border);
+    background: var(--ld-card);
+    border: 1px solid var(--ld-border);
     border-radius: 14px;
     padding: 20px;
     display: flex;
@@ -1567,14 +1567,14 @@
 
   .cm-card-body .loc {
     font-size: 11px;
-    color: var(--muted);
+    color: var(--ld-muted);
     margin: 2px 0 4px;
   }
 
   .cm-card-body .id {
     font-size: 10px;
     font-weight: 600;
-    color: var(--label);
+    color: var(--ld-label);
   }
 
   .cm-socials {
@@ -1587,8 +1587,8 @@
     width: 28px;
     height: 28px;
     border-radius: 7px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
+    background: var(--ld-surface-2);
+    border: 1px solid var(--ld-border);
     display: grid;
     place-items: center;
   }
@@ -1596,7 +1596,7 @@
   .cm-soc svg {
     width: 12px;
     height: 12px;
-    color: var(--muted);
+    color: var(--ld-muted);
   }
 
   .cm-carousel-controls {
@@ -1610,9 +1610,9 @@
     width: 36px;
     height: 36px;
     border-radius: 8px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--ld-border);
     background: transparent;
-    color: var(--text);
+    color: var(--ld-text);
     cursor: pointer;
     display: grid;
     place-items: center;
@@ -1620,8 +1620,8 @@
   }
 
   .cm-ctrl-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--ld-accent);
+    color: var(--ld-accent);
   }
 
   .cm-ctrl-btn svg {
@@ -1653,8 +1653,8 @@
 
   .modal-box {
     position: relative;
-    background: var(--card);
-    border: 1px solid var(--border);
+    background: var(--ld-card);
+    border: 1px solid var(--ld-border);
     border-radius: 20px;
     padding: 28px;
     max-width: 400px;
@@ -1669,9 +1669,9 @@
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    background: var(--surface-3);
+    background: var(--ld-surface-3);
     border: none;
-    color: var(--text);
+    color: var(--ld-text);
     cursor: pointer;
     display: grid;
     place-items: center;
@@ -1692,8 +1692,8 @@
     overflow: hidden;
     border-radius: 24px;
     padding: 72px 48px;
-    background: var(--cta-bg);
-    border: 1px solid var(--border2);
+    background: var(--ld-cta-bg);
+    border: 1px solid var(--ld-border2);
     margin: 0 0 32px;
   }
 
@@ -1726,7 +1726,7 @@
   }
 
   .cta-inner p {
-    color: var(--muted);
+    color: var(--ld-muted);
     margin-top: 8px;
   }
 
@@ -1751,7 +1751,7 @@
 
   .roi-step {
     padding: 16px;
-    border-right: 1px solid var(--border);
+    border-right: 1px solid var(--ld-border);
   }
 
   .roi-step:last-child {
@@ -1763,7 +1763,7 @@
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--ld-muted);
     margin-bottom: 10px;
   }
 
@@ -1785,7 +1785,7 @@
 
   .roi-step-sub {
     font-size: 12px;
-    color: var(--muted);
+    color: var(--ld-muted);
     margin-top: 4px;
   }
 
@@ -1798,8 +1798,8 @@
 
   /* ── FOOTER ── */
   .dm-landing footer {
-    border-top: 1px solid var(--border);
-    background: var(--bg2);
+    border-top: 1px solid var(--ld-border);
+    background: var(--ld-bg2);
     padding: 48px 0 32px;
   }
 
@@ -1810,7 +1810,7 @@
   }
 
   .footer-brand p {
-    color: var(--muted);
+    color: var(--ld-muted);
     font-size: 13px;
     margin: 12px 0 20px;
     line-height: 1.7;
@@ -1826,8 +1826,8 @@
     width: 36px;
     height: 36px;
     border-radius: 9px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
+    background: var(--ld-surface-2);
+    border: 1px solid var(--ld-border);
     display: grid;
     place-items: center;
     text-decoration: none;
@@ -1835,22 +1835,22 @@
   }
 
   .footer-soc:hover {
-    border-color: var(--border2);
+    border-color: var(--ld-border2);
     background: rgba(0, 200, 122, .08);
   }
 
   .footer-soc svg {
     width: 16px;
     height: 16px;
-    color: var(--muted);
+    color: var(--ld-muted);
   }
 
   .footer-col h4 {
-    font-family: var(--ff-head);
+    font-family: var(--ld-ff-head);
     font-weight: 700;
     font-size: 13px;
     margin-bottom: 16px;
-    color: var(--text);
+    color: var(--ld-text);
   }
 
   .footer-col ul {
@@ -1862,19 +1862,19 @@
 
   .footer-col a {
     font-size: 13px;
-    color: var(--muted);
+    color: var(--ld-muted);
     text-decoration: none;
     transition: color .15s;
   }
 
   .footer-col a:hover {
-    color: var(--accent);
+    color: var(--ld-accent);
   }
 
   .footer-bottom {
     margin-top: 40px;
     padding-top: 24px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--ld-border);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1882,7 +1882,7 @@
 
   .footer-bottom p {
     font-size: 12px;
-    color: var(--muted);
+    color: var(--ld-muted);
   }
 
   /* ── RESPONSIVE ── */
@@ -1932,11 +1932,11 @@
 
     .roi-step {
       border-right: none;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--ld-border);
     }
 
     .roi-step:nth-child(2n+1) {
-      border-right: 1px solid var(--border);
+      border-right: 1px solid var(--ld-border);
     }
 
     .roi-step-wide {
@@ -1960,7 +1960,7 @@
 
     .stat-item {
       border-right: none;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--ld-border);
     }
 
     .phil-grid {
@@ -2180,7 +2180,7 @@
             Технология
           </div>
           <h2 style="margin-bottom:16px;">Умное зеркало<br><span class="text-accent">нового поколения</span></h2>
-          <p style="color:var(--muted);margin-bottom:32px;line-height:1.75;">
+          <p style="color:var(--ld-muted);margin-bottom:32px;line-height:1.75;">
             Dilan Mirror — это технология, позволяющая видеть обратную сторону собственного тела в реальном времени. Революционный продукт, открывающий новое измерение самопознания и заботы о здоровье.
           </p>
 
@@ -2250,27 +2250,27 @@
               </svg>
             </div>
             <h3>Ограниченный раунд</h3>
-            <p style="margin-top:8px;color:var(--muted);">Только 15% долей компании выставлено в открытую продажу. Ограниченное окно — ранний вход по лучшей цене.</p>
+            <p style="margin-top:8px;color:var(--ld-muted);">Только 15% долей компании выставлено в открытую продажу. Ограниченное окно — ранний вход по лучшей цене.</p>
             <div style="margin-top:20px;">
               <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-                <span style="font-size:12px;color:var(--muted);">Доступно для продажи</span>
-                <span style="font-size:12px;font-weight:700;color:var(--accent);">15%</span>
+                <span style="font-size:12px;color:var(--ld-muted);">Доступно для продажи</span>
+                <span style="font-size:12px;font-weight:700;color:var(--ld-accent);">15%</span>
               </div>
-              <div style="height:6px;background:var(--surface-3);border-radius:100px;overflow:hidden;">
-                <div style="width:15%;height:100%;background:var(--accent);border-radius:100px;"></div>
+              <div style="height:6px;background:var(--ld-surface-3);border-radius:100px;overflow:hidden;">
+                <div style="width:15%;height:100%;background:var(--ld-accent);border-radius:100px;"></div>
               </div>
             </div>
           </div>
 
           <div class="card" style="padding:28px;flex:1;">
             <div class="tech-icon-big" style="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.2);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--cyan)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ld-cyan)">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                 <polyline points="22 4 12 14.01 9 11.01" />
               </svg>
             </div>
             <h3>Прозрачная структура</h3>
-            <p style="margin-top:8px;color:var(--muted);">Все условия документированы. Доли конвертируются в акции по утверждённой модели после завершения этапов развития.</p>
+            <p style="margin-top:8px;color:var(--ld-muted);">Все условия документированы. Доли конвертируются в акции по утверждённой модели после завершения этапов развития.</p>
             <div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;">
               <span class="chip chip-cat" style="font-size:9px;">Доли → Акции</span>
               <span class="chip chip-cat" style="font-size:9px;">Юридический пакет</span>
@@ -2289,8 +2289,8 @@
                 </svg>
               </div>
               <div>
-                <div style="font-family:var(--ff-head);font-size:1.8rem;font-weight:800;color:#a855f7;line-height:1;">100+</div>
-                <div style="font-size:11px;color:var(--muted);margin-top:4px;">участников наблюдательного комитета</div>
+                <div style="font-family:var(--ld-ff-head);font-size:1.8rem;font-weight:800;color:#a855f7;line-height:1;">100+</div>
+                <div style="font-size:11px;color:var(--ld-muted);margin-top:4px;">участников наблюдательного комитета</div>
               </div>
             </div>
           </div>
@@ -2300,7 +2300,7 @@
   </section>
 
   <!-- ═══════════════════ REFERRAL ═══════════════════ -->
-  <section class="section" id="referral" style="background:var(--bg2);">
+  <section class="section" id="referral" style="background:var(--ld-bg2);">
     <div class="container">
       <div style="text-align:center;margin-bottom:56px;" class="reveal">
         <div class="tag" style="margin-bottom:14px;">
@@ -2311,7 +2311,7 @@
           Реферальная программа
         </div>
         <h2>Зарабатывайте до <span class="text-accent">40%</span></h2>
-        <p style="color:var(--muted);margin-top:12px;max-width:560px;margin-left:auto;margin-right:auto;">
+        <p style="color:var(--ld-muted);margin-top:12px;max-width:560px;margin-left:auto;margin-right:auto;">
           Прозрачная механика выплат с фокусом на стабильный рост структуры и понятное распределение для каждого уровня.
         </p>
       </div>
@@ -2359,18 +2359,18 @@
             <div class="card" style="padding:24px;margin-top:8px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
                 <div>
-                  <div style="font-size:12px;color:var(--muted);margin-bottom:4px;">Суммарная глубина структуры</div>
-                  <div style="font-family:var(--ff-head);font-weight:800;font-size:1.5rem;color:var(--accent);">до 23%</div>
+                  <div style="font-size:12px;color:var(--ld-muted);margin-bottom:4px;">Суммарная глубина структуры</div>
+                  <div style="font-family:var(--ld-ff-head);font-weight:800;font-size:1.5rem;color:var(--ld-accent);">до 23%</div>
                 </div>
                 <div style="text-align:right;">
-                  <div style="font-size:11px;color:var(--muted);">Максимальный пул</div>
-                  <div style="font-family:var(--ff-head);font-weight:800;font-size:1.5rem;">до 40%</div>
+                  <div style="font-size:11px;color:var(--ld-muted);">Максимальный пул</div>
+                  <div style="font-family:var(--ld-ff-head);font-weight:800;font-size:1.5rem;">до 40%</div>
                 </div>
               </div>
               <div class="deep-bar-wrap" style="height:6px;">
                 <div class="deep-bar"></div>
               </div>
-              <p style="font-size:13px;color:var(--muted);margin-top:12px;line-height:1.6;">
+              <p style="font-size:13px;color:var(--ld-muted);margin-top:12px;line-height:1.6;">
                 При росте глубины команда продолжает участвовать в распределении. Система автоматически делит долю справедливо по активным уровням.
               </p>
             </div>
@@ -2393,12 +2393,12 @@
                 </div>
               </div>
               <!-- connector -->
-              <div style="width:1px;height:20px;background:var(--border2);margin:0 auto;"></div>
+              <div style="width:1px;height:20px;background:var(--ld-border2);margin:0 auto;"></div>
               <!-- L1 row label -->
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                <div style="flex:1;height:1px;background:var(--border2);"></div>
-                <span style="font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.1em;">L1 · 10%</span>
-                <div style="flex:1;height:1px;background:var(--border2);"></div>
+                <div style="flex:1;height:1px;background:var(--ld-border2);"></div>
+                <span style="font-size:10px;font-weight:700;color:var(--ld-accent);letter-spacing:.1em;">L1 · 10%</span>
+                <div style="flex:1;height:1px;background:var(--ld-border2);"></div>
               </div>
               <!-- L1 nodes -->
               <div class="pyramid-row" style="gap:12px;margin-bottom:0;">
@@ -2421,11 +2421,11 @@
                   </svg>
                 </div>
               </div>
-              <div style="width:80%;height:1px;background:var(--border2);margin:8px auto;"></div>
+              <div style="width:80%;height:1px;background:var(--ld-border2);margin:8px auto;"></div>
               <!-- L2 label -->
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;width:80%;margin-left:auto;margin-right:auto;">
                 <div style="flex:1;height:1px;background:rgba(34,211,238,.2);"></div>
-                <span style="font-size:10px;font-weight:700;color:var(--cyan);letter-spacing:.1em;">L2 · 5%</span>
+                <span style="font-size:10px;font-weight:700;color:var(--ld-cyan);letter-spacing:.1em;">L2 · 5%</span>
                 <div style="flex:1;height:1px;background:rgba(34,211,238,.2);"></div>
               </div>
               <!-- L2 nodes -->
@@ -2511,14 +2511,14 @@
               </div>
             </div>
 
-            <div style="margin-top:20px;padding:14px 16px;background:var(--surface-1);border:1px solid var(--border);border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
+            <div style="margin-top:20px;padding:14px 16px;background:var(--ld-surface-1);border:1px solid var(--ld-border);border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
               <div>
-                <div style="font-size:11px;color:var(--muted);">Максимум с реф. структуры</div>
-                <div style="font-family:var(--ff-head);font-weight:800;color:var(--accent);font-size:1.6rem;line-height:1.2;">40%</div>
+                <div style="font-size:11px;color:var(--ld-muted);">Максимум с реф. структуры</div>
+                <div style="font-family:var(--ld-ff-head);font-weight:800;color:var(--ld-accent);font-size:1.6rem;line-height:1.2;">40%</div>
               </div>
               <div style="text-align:right;">
-                <div style="font-size:11px;color:var(--muted);">Глубина</div>
-                <div style="font-family:var(--ff-head);font-weight:800;font-size:1.2rem;">Нет лимита</div>
+                <div style="font-size:11px;color:var(--ld-muted);">Глубина</div>
+                <div style="font-family:var(--ld-ff-head);font-weight:800;font-size:1.2rem;">Нет лимита</div>
               </div>
             </div>
           </div>
@@ -2682,7 +2682,7 @@
   </section>
 
   <!-- ═══════════════════ WHY NOW ═══════════════════ -->
-  <section class="section" style="background:var(--bg2);">
+  <section class="section" style="background:var(--ld-bg2);">
     <div class="container">
       <div style="text-align:center;margin-bottom:48px;" class="reveal">
         <div class="tag" style="margin-bottom:14px;">
@@ -2735,7 +2735,7 @@
         <div class="roi-steps">
           <div class="roi-step">
             <div class="roi-step-label">Шаг 1</div>
-            <div class="roi-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <div class="roi-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ld-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                 <circle cx="9" cy="7" r="4" />
                 <line x1="19" y1="8" x2="19" y2="14" />
@@ -2746,7 +2746,7 @@
           </div>
           <div class="roi-step">
             <div class="roi-step-label">Шаг 2</div>
-            <div class="roi-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <div class="roi-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ld-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
               </svg></div>
             <div class="roi-step-title">Инвестиция</div>
@@ -2754,7 +2754,7 @@
           </div>
           <div class="roi-step roi-step-wide">
             <div class="roi-step-label">Результат</div>
-            <div class="roi-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <div class="roi-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ld-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 3v18h18" />
                 <path d="m19 9-5 5-4-4-3 3" />
               </svg></div>
@@ -2900,7 +2900,7 @@
   </section>
 
   <!-- ═══════════════════ COMMITTEE ═══════════════════ -->
-  <section class="section" id="committee" style="background:var(--bg2);">
+  <section class="section" id="committee" style="background:var(--ld-bg2);">
     <div class="container">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px;" class="reveal">
         <div>
@@ -2914,7 +2914,7 @@
             Наблюдательный комитет
           </div>
           <h2>100+ участников</h2>
-          <p style="color:var(--muted);margin-top:8px;">Клик по аватару открывает подробную информацию.</p>
+          <p style="color:var(--ld-muted);margin-top:8px;">Клик по аватару открывает подробную информацию.</p>
         </div>
       </div>
 
@@ -2926,7 +2926,7 @@
       <!-- Country select + carousel -->
       <div class="reveal">
         <div class="country-wrap">
-          <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:8px;">Фильтр по стране</p>
+          <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--ld-muted);margin-bottom:8px;">Фильтр по стране</p>
           <button class="country-trigger" id="countryTrigger">
             <span id="countryVal" style="display:flex;align-items:center;gap:8px;">🌍 Выберите страну</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -2979,10 +2979,10 @@
 
       <!-- Contact strip -->
       <div class="contact-strip">
-        <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+        <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--ld-text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--ld-border2)'" onmouseout="this.style.borderColor='var(--ld-border)'">
           <div style="display:flex;align-items:center;gap:12px;">
             <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ld-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="m22 2-7 20-4-9-9-4Z" />
                 <path d="M22 2 11 13" />
               </svg>
@@ -2993,10 +2993,10 @@
             <path d="m9 18 6-6-6-6" />
           </svg>
         </a>
-        <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+        <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--ld-text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--ld-border2)'" onmouseout="this.style.borderColor='var(--ld-border)'">
           <div style="display:flex;align-items:center;gap:12px;">
             <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ld-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
@@ -3008,10 +3008,10 @@
             <path d="m9 18 6-6-6-6" />
           </svg>
         </a>
-        <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+        <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--ld-text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--ld-border2)'" onmouseout="this.style.borderColor='var(--ld-border)'">
           <div style="display:flex;align-items:center;gap:12px;">
             <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ld-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
                 <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
               </svg>
@@ -3273,13 +3273,13 @@
 
     const renderMember = m => `
 <div style="display:flex;gap:16px;align-items:flex-start;">
-  <img src="${m.avatar}" style="width:72px;height:72px;border-radius:14px;object-fit:cover;flex-shrink:0;border:2px solid var(--border2);">
+  <img src="${m.avatar}" style="width:72px;height:72px;border-radius:14px;object-fit:cover;flex-shrink:0;border:2px solid var(--ld-border2);">
   <div>
     <h3 style="font-size:18px;">${m.firstName} ${m.lastName} <span style="font-size:18px;">${m.flag}</span></h3>
-    <p style="color:var(--muted);font-size:13px;margin:4px 0 2px;">${m.city}, ${m.country}</p>
-    <p style="font-size:11px;font-weight:700;color:var(--label);">ID: ${m.id}</p>
+    <p style="color:var(--ld-muted);font-size:13px;margin:4px 0 2px;">${m.city}, ${m.country}</p>
+    <p style="font-size:11px;font-weight:700;color:var(--ld-label);">ID: ${m.id}</p>
     <div style="display:flex;gap:8px;margin-top:12px;">
-      ${m.socials.map(s=>`<a href="#" style="width:32px;height:32px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);display:grid;place-items:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${socialSVG[s]||''}</svg></a>`).join('')}
+      ${m.socials.map(s=>`<a href="#" style="width:32px;height:32px;border-radius:8px;background:var(--ld-surface-2);border:1px solid var(--ld-border);display:grid;place-items:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ld-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${socialSVG[s]||''}</svg></a>`).join('')}
     </div>
   </div>
 </div>`;
