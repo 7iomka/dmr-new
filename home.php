@@ -14,6 +14,10 @@
       .home-no-sidebar .js-desktop-sidebar-toggle {
         display: none;
       }
+
+      .home-no-sidebar .js-header-logo-desktop {
+        display: flex;
+      }
     }
   </style>
 

@@ -1,6 +1,7 @@
 <header
-  class="h-16 lg:h-20 border-b border-zinc-200 dark:border-zinc-800 bg-card flex items-center justify-between px-4 lg:px-10 sticky top-0 z-40">
-  <div class="flex items-center min-w-0">
+  class="h-16 lg:h-20 shrink-0 border-b border-zinc-200 dark:border-zinc-800 bg-card px-4 lg:px-10 sticky top-0 z-40">
+  <div class="flex items-center w-full max-w-7xl mx-auto justify-between h-full">
+  <div class="flex items-center min-w-0 js-header-left">
     <!-- DESKTOP: Sidebar toggle -->
     <button onclick="toggleSidebar()"
       class="js-desktop-sidebar-toggle hidden lg:block p-2 rounded-lg mr-4 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
@@ -12,6 +13,15 @@
         <path d="M4 19h16"></path>
       </svg>
     </button>
+
+    <!-- DESKTOP logo for no-sidebar pages -->
+    <a class="js-header-logo-desktop hidden lg:flex h-10 items-center flex-shrink-0 mr-4" href="/home.php">
+      <svg width="575" height="243" viewBox="0 0 575 243" fill="none" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" class="h-full w-auto fill-accent">
+        <rect x="0" y="46" width="150" height="150" rx="40" fill="inherit" />
+        <text x="200" y="165" font-family="sans-serif" font-weight="bold" font-size="120">LOGO</text>
+      </svg>
+    </a>
 
     <!-- MOBILE (<lg): Logo instead of toggleSidebar() button -->
     <div class="lg:hidden">
