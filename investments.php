@@ -17,14 +17,15 @@
             <p class="text-zinc-500 text-sm font-medium mt-1">Просматривайте портфель долей и управляйте всеми рассрочками в одном месте.</p>
           </div>
 
-          <div id="investments_shares_holder" data-has-shares="true" class="card js-tabs-container investments-overview-card">
+          <div id="shares_holder" data-has-shares="true" class="card js-tabs-container">
+            <!-- Header + Tabs -->
             <div class="card-header">
-              <div class="investments-tabs flex items-center gap-2 p-1 rounded-xl bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
-                <button data-active="false" data-target="shares"
+              <div class="js-tabs-nav flex items-center gap-2 p-1 rounded-xl bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
+                <button data-active="true" data-target="shares"
                   class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
                   Мои доли
                 </button>
-                <button data-active="true" data-target="buy"
+                <button data-active="false" data-target="buy"
                   class="js-tab-btn investments-primary-tab px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
                   Купить доли
                 </button>
@@ -32,7 +33,8 @@
             </div>
 
             <div class="card-body">
-              <div class="js-tab-content block" data-id="buy">
+              <!-- TAB: BUY -->
+              <div class="js-tab-content hidden" data-id="buy">
                 <div class="grid grid-cols-1 xl:grid-cols-5 gap-4 xl:gap-5">
                   <div class="xl:col-span-3 flex flex-col gap-5">
                     <div
@@ -123,33 +125,62 @@
                 </div>
               </div>
 
-              <div class="js-tab-content hidden" data-id="shares">
-                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-                  <div class="p-4 rounded-lg bg-zinc-50 dark:bg-white/[0.02] border border-zinc-200 dark:border-zinc-800">
-                    <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">Количество долей</p>
-                    <p class="text-xl font-bold text-zinc-900 dark:text-white leading-none">132 806</p>
-                  </div>
-                  <div class="p-4 rounded-lg bg-zinc-50 dark:bg-white/[0.02] border border-zinc-200 dark:border-zinc-800">
-                    <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">Стоимость портфеля</p>
-                    <p class="text-xl font-bold text-zinc-900 dark:text-white leading-none">$ 504.00</p>
-                  </div>
-                  <div class="p-4 rounded-lg bg-zinc-50 dark:bg-white/[0.02] border border-zinc-200 dark:border-zinc-800">
-                    <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">Текущая цена доли</p>
-                    <p class="text-xl font-bold text-zinc-900 dark:text-white leading-none">$ 0.003795</p>
-                  </div>
-                  <div class="p-4 rounded-lg bg-zinc-50 dark:bg-white/[0.02] border border-zinc-200 dark:border-zinc-800">
-                    <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">Средняя цена покупки</p>
-                    <p class="text-xl font-bold text-zinc-900 dark:text-white leading-none">$ 0.003795</p>
+              <!-- TAB: SHARES -->
+              <div class="js-tab-content hidden block" data-id="shares">
+                <!-- EMPTY STATE (когда долей нет) -->
+                <div
+                  class="only-no-shares p-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0B0E11] text-center">
+                  <p class="text-base font-bold text-zinc-900 dark:text-white">У вас пока нет
+                    долей</p>
+                  <p class="text-sm font-medium text-zinc-500 mt-2">
+                    Купите доли, чтобы открыть портфель и начать отслеживать цену и платежи.
+                  </p>
+                  <button
+                    class="mt-5 inline-flex items-center justify-center px-4 py-3 rounded-lg bg-accent hover:bg-[#009663] text-white font-bold text-xs uppercase js-tab-btn"
+                    data-target="buy" data-active="false">
+                    Купить доли
+                  </button>
+                </div>
+                <!-- NORMAL STATE (когда доли есть) -->
+                <div class="only-has-shares">
+                  <!-- KPI grid -->
+                  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+                    <div class="p-4 rounded-lg bg-zinc-50 dark:bg-white/[0.02] border border-zinc-200 dark:border-zinc-800">
+                      <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">Количество долей</p>
+                      <p class="text-xl font-bold text-zinc-900 dark:text-white leading-none">132 806</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-zinc-50 dark:bg-white/[0.02] border border-zinc-200 dark:border-zinc-800">
+                      <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">Стоимость портфеля</p>
+                      <p class="text-xl font-bold text-zinc-900 dark:text-white leading-none">$ 504.00</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-zinc-50 dark:bg-white/[0.02] border border-zinc-200 dark:border-zinc-800">
+                      <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">Текущая цена доли</p>
+                      <p class="text-xl font-bold text-zinc-900 dark:text-white leading-none">$ 0.003795</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-zinc-50 dark:bg-white/[0.02] border border-zinc-200 dark:border-zinc-800">
+                      <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">Средняя цена покупки</p>
+                      <p class="text-xl font-bold text-zinc-900 dark:text-white leading-none">$ 0.003795</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
+          <style>
+            [data-has-shares="false"] .only-has-shares {
+              display: none;
+            }
+
+            [data-has-shares="true"] .only-no-shares {
+              display: none;
+            }
+          </style>
 
           <script>
+            // Выставляем дефолтный таб до initTabs(), чтобы работал тот же паттерн, что и в "История цен"
             document.addEventListener('DOMContentLoaded', () => {
-              const holder = document.getElementById('investments_shares_holder');
+              const holder = document.getElementById('shares_holder');
               if (!holder) return;
               const hasShares = holder.dataset.hasShares === "true";
               const btnShares = holder.querySelector('.js-tab-btn[data-target="shares"]');
@@ -160,11 +191,13 @@
               }
             });
           </script>
+
+          <!-- Рассрочки -->
           <div class="card js-tabs-container">
             <div class="card-header">
               <h3 class="text-sm font-bold uppercase tracking-wider text-zinc-900 dark:text-white">Рассрочки</h3>
               <div
-                class="relative flex bg-zinc-200/50 dark:bg-zinc-800/80 p-1 rounded-lg w-fit overflow-x-auto c-no-scrollbar max-w-full">
+                class="js-tabs-nav relative flex bg-zinc-200/50 dark:bg-zinc-800/80 p-1 rounded-lg w-fit overflow-x-auto c-no-scrollbar max-w-full">
                 <div class="js-tab-highlight c-transition-slider absolute bg-white dark:bg-zinc-600 rounded-md shadow z-0 h-[calc(100%-8px)] top-[4px] left-0"></div>
                 <button data-active="true" data-target="installments-active"
                   class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white whitespace-nowrap">Активные</button>

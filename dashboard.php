@@ -48,7 +48,7 @@
                   </h3>
                   <div>
                     <a href="deposit.php"
-                      class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-[#009663] text-white text-[11px] font-bold rounded-lg transition-all shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
+                      class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-[#009663] text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         data-lucide="plus-circle" aria-hidden="true" class="lucide lucide-plus-circle w-4 h-4">
@@ -126,18 +126,18 @@
             </div>
 
             <div class="md:col-span-3">
-              <div id="shares_holder" data-has-shares="true" class="card js-tabs-container">
+              <div id="shares_holder" data-has-shares="true" class="card min-h-full js-tabs-container">
                 <!-- Header + Tabs -->
                 <div class="card-header">
                   <h3 class="text-sm font-bold uppercase tracking-wider text-zinc-900 dark:text-white">
                     Инвестиции</h3>
 
-                  <div class="investments-tabs flex items-center gap-2 p-1 rounded-xl bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
-                    <button data-active="false" data-target="shares"
+                  <div class="js-tabs-nav flex items-center gap-2 p-1 rounded-xl bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
+                    <button data-active="true" data-target="shares"
                       class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
                       Мои доли
                     </button>
-                    <button data-active="true" data-target="buy"
+                    <button data-active="false" data-target="buy"
                       class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
                       Купить доли
                     </button>
@@ -145,7 +145,7 @@
                 </div>
                 <div class="card-body">
                   <!-- TAB: BUY -->
-                  <div class="js-tab-content block" data-id="buy">
+                  <div class="js-tab-content hidden" data-id="buy">
                     <div class="flex flex-col gap-5">
                       <div
                         class="p-4 rounded-lg border flex items-center justify-between bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800">
@@ -249,18 +249,18 @@
                   </div>
 
                   <!-- TAB: SHARES -->
-                  <div class="js-tab-content hidden" data-id="shares">
+                  <div class="js-tab-content block" data-id="shares">
                     <!-- EMPTY STATE (когда долей нет) -->
                     <div
-                      class="only-no-shares p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0B0E11] text-center">
-                      <p class="text-sm font-bold text-zinc-900 dark:text-white">У вас пока нет
+                      class="only-no-shares p-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0B0E11] text-center">
+                      <p class="text-base font-bold text-zinc-900 dark:text-white">У вас пока нет
                         долей</p>
-                      <p class="text-[11px] font-bold text-zinc-500 mt-2">
+                      <p class="text-sm font-medium text-zinc-500 mt-2">
                         Купите доли, чтобы открыть портфель и начать отслеживать цену и платежи.
                       </p>
                       <button
-                        class="mt-5 inline-flex items-center justify-center px-4 py-3 rounded-lg bg-accent hover:bg-[#009663] text-white font-bold text-[11px] uppercase js-tab-btn"
-                        data-target="buy" data-active="false">
+                        class="mt-5 inline-flex items-center justify-center px-4 py-3 rounded-lg bg-accent hover:bg-[#009663] text-white font-bold text-xs uppercase js-tab-btn"
+                        data-target="buy">
                         Купить доли
                       </button>
                     </div>
@@ -428,7 +428,7 @@
               <div class="card-header">
                 <h3 class="text-sm font-bold uppercase tracking-wide text-zinc-900 dark:text-white">
                   История цен</h3>
-                <div class="relative flex bg-zinc-200/50 dark:bg-zinc-800/80 p-1 rounded-lg w-fit">
+                <div class="js-tabs-nav relative flex bg-zinc-200/50 dark:bg-zinc-800/80 p-1 rounded-lg w-fit">
                   <div
                     class="js-tab-highlight c-transition-slider absolute bg-white dark:bg-zinc-600 rounded-md shadow z-0 h-[calc(100%-8px)] top-[4px] left-0"
                     style="width: 65px; transform: translateX(4px);"></div>
