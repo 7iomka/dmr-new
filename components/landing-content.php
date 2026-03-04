@@ -1,485 +1,1675 @@
-<?php
-$newsItems = [
-  ['title' => 'Открыт ранний раунд инвестиций', 'date' => '03.03.2026', 'category' => 'Инвестиции', 'excerpt' => 'В открытую продажу выведено только 15% долей. Это ограниченное окно для раннего входа.', 'link' => '#'],
-  ['title' => 'Обновлена партнёрская программа с новой аналитикой уровней', 'date' => '28.02.2026', 'category' => 'Партнёрка', 'excerpt' => 'Сделали систему вознаграждений более прозрачной и понятной для новых участников, включая отчёты по динамике команды.', 'link' => '#'],
-  ['title' => 'Запущен формат ежемесячных отчётов', 'date' => '21.02.2026', 'category' => 'Отчётность', 'excerpt' => 'Ключевые метрики развития теперь доступны в регулярных апдейтах, с акцентом на рост и структуру инвесторов.', 'link' => '#'],
-  ['title' => 'Расширена география комитета', 'date' => '16.02.2026', 'category' => 'Комьюнити', 'excerpt' => 'В наблюдательный комитет вошли новые представители из разных стран и отраслей.', 'link' => '#'],
-  ['title' => 'Юридический пакет обновлён', 'date' => '11.02.2026', 'category' => 'Правовая база', 'excerpt' => 'Актуализированы документы по долям, акционерной модели и пользовательским условиям.', 'link' => '#'],
-  ['title' => 'Рост активности инвесторов +31%', 'date' => '05.02.2026', 'category' => 'Продукт', 'excerpt' => 'Увеличилось число новых подключений и повторных инвестиций. Показатели опубликованы в блоке новостей.', 'link' => '#'],
-];
-
-$faqGroups = [
-  [
-    'title' => 'Про инвестиции',
-    'items' => [
-      ['q' => 'Что я получаю, когда инвестирую?', 'a' => 'Вы получаете доли компании. Позже, по плану развития, эти доли переходят в акции.'],
-      ['q' => 'Почему на продажу выставлено только 15%?', 'a' => 'Мы открыли ограниченный объём для раннего раунда, чтобы сохранить управляемую структуру капитала.'],
-      ['q' => 'Какой сценарий после покупки долей?', 'a' => 'После завершения этапов развития и корпоративных процедур доли конвертируются в акции в рамках утверждённой модели.'],
-    ],
-  ],
-  [
-    'title' => 'Про реферальную программу',
-    'items' => [
-      ['q' => 'Что значит «до 40%» простыми словами?', 'a' => 'Первые три рекомендации дают вам 10%, 5% и 2%. Далее остаётся ещё часть вознаграждения, которая распределяется по вашей растущей структуре.'],
-      ['q' => 'Если сеть очень глубокая?', 'a' => 'Доход не пропадает: оставшийся процент автоматически делится между более глубокими уровнями, чтобы система оставалась справедливой.'],
-      ['q' => 'Это работает только для маленькой сети?', 'a' => 'Нет. Модель рассчитана и на небольшие, и на большие структуры — вы зарабатываете не только с ближних, но и с дальних уровней.'],
-    ],
-  ],
-  [
-    'title' => 'Про платформу',
-    'items' => [
-      ['q' => 'Сколько новостей отображается на лендинге?', 'a' => 'Показываются 6 последних новостей, рядом есть ссылка на полный список.'],
-      ['q' => 'Можно открывать несколько вопросов FAQ сразу?', 'a' => 'Да, аккордеон мульти-режима: можно раскрыть несколько ответов одновременно.'],
-    ],
-  ],
-];
-?>
-
 <style>
-  .landing-grid-bg {
-    background-image:
-      linear-gradient(to right, rgba(16, 185, 129, 0.12) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(16, 185, 129, 0.12) 1px, transparent 1px);
-    background-size: 52px 52px;
-    mask-image: radial-gradient(circle at center, black 35%, transparent 90%);
+.dm-landing {
+  --bg: #f3f6f8;
+  --bg2: #e9eef3;
+  --bg3: #dde5ec;
+  --card: #ffffff;
+  --border: rgba(15,23,42,.12);
+  --border2: rgba(0,176,116,.28);
+  --accent: #00b074;
+  --accent2: #00ffaa;
+  --cyan: #0891b2;
+  --text: #0f172a;
+  --muted: #475569;
+  --label: #0f766e;
+  --ff-head: 'Noto Sans', 'Noto Sans SC', sans-serif;
+  --ff-body: 'Noto Sans', 'Noto Sans SC', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+.dark .dm-landing {
+  --bg: #060a0d;
+  --bg2: #0b1017;
+  --bg3: #101822;
+  --card: #0e1520;
+  --border: rgba(255,255,255,.07);
+  --border2: rgba(0,200,130,.18);
+  --accent: #00c87a;
+  --accent2: #00ffaa;
+  --cyan: #22d3ee;
+  --text: #e8edf2;
+  --muted: #6b7c8f;
+  --label: #3a8f68;
+}
+.dm-landing .hero { min-height: auto; padding-top: 24px; }
+.dm-landing a { color: inherit; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #060a0d;
+    --bg2:      #0b1017;
+    --bg3:      #101822;
+    --card:     #0e1520;
+    --border:   rgba(255,255,255,.07);
+    --border2:  rgba(0,200,130,.18);
+    --accent:   #00c87a;
+    --accent2:  #00ffaa;
+    --cyan:     #22d3ee;
+    --text:     #e8edf2;
+    --muted:    #6b7c8f;
+    --label:    #3a8f68;
+    --ff-head:  'Syne', sans-serif;
+    --ff-body:  'DM Sans', sans-serif;
   }
 
-  .light .landing-grid-bg {
-    background-image:
-      linear-gradient(to right, rgba(16, 185, 129, 0.08) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--ff-body);
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
   }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: #1e3a2a; border-radius: 4px; }
+
+  /* ── Utilities ── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 96px 0; }
+  .section-sm { padding: 64px 0; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--ff-head); font-size: 11px; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); padding: 5px 12px;
+    background: rgba(0,200,122,.1); border: 1px solid rgba(0,200,122,.2);
+    border-radius: 100px;
+  }
+  .tag svg { width: 12px; height: 12px; }
+
+  h1,h2,h3,h4 { font-family: var(--ff-head); line-height: 1.1; }
+  h1 { font-size: clamp(2.8rem,6vw,5.2rem); font-weight: 800; }
+  h2 { font-size: clamp(2rem,4vw,3.2rem); font-weight: 800; }
+  h3 { font-size: clamp(1.1rem,2.5vw,1.5rem); font-weight: 700; }
+
+  .text-accent { color: var(--accent); }
+  .text-cyan   { color: var(--cyan); }
+  .text-muted  { color: var(--muted); }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #000; font-family: var(--ff-head);
+    font-weight: 700; font-size: 13px; letter-spacing: .1em;
+    text-transform: uppercase; padding: 14px 32px; border-radius: 8px;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 8px 32px rgba(0,200,122,.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(0,200,122,.45); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--text); font-family: var(--ff-head);
+    font-weight: 700; font-size: 13px; letter-spacing: .1em;
+    text-transform: uppercase; padding: 13px 28px; border-radius: 8px;
+    border: 1px solid var(--border); cursor: pointer; text-decoration: none;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Glassmorphism card ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .card-glow {
+    background: linear-gradient(135deg, rgba(0,200,122,.06) 0%, var(--card) 60%);
+    border: 1px solid var(--border2);
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    background: rgba(6,10,13,.85);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 68px; max-width: 1280px; margin: 0 auto;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--ff-head); font-weight: 800; font-size: 18px;
+    color: var(--text); text-decoration: none; letter-spacing: -.02em;
+  }
+  .logo-icon {
+    width: 36px; height: 36px; background: var(--accent); border-radius: 8px;
+    display: grid; place-items: center;
+  }
+  .logo-icon svg { width: 20px; height: 20px; color: #000; }
+
+  nav { display: flex; align-items: center; gap: 4px; }
+  nav a {
+    color: var(--muted); font-size: 13px; font-weight: 500;
+    padding: 6px 14px; border-radius: 6px; text-decoration: none;
+    transition: color .15s, background .15s;
+  }
+  nav a:hover { color: var(--text); background: rgba(255,255,255,.05); }
+
+  .header-cta { display: flex; align-items: center; gap: 12px; }
+  .avatar-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 100px; padding: 4px 14px 4px 4px; cursor: pointer;
+  }
+  .avatar-chip .av {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #22d3ee);
+    display: grid; place-items: center; font-weight: 700; font-size: 11px; color: #000;
+  }
+  .avatar-chip span { font-size: 12px; font-weight: 600; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    position: relative; overflow: hidden; padding-top: 68px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 15% 50%, rgba(0,200,122,.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 85% 30%, rgba(34,211,238,.07) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 80% at 50% 110%, rgba(0,200,122,.06) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: .3; z-index: 0;
+    background-image:
+      linear-gradient(rgba(0,200,122,.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,122,.1) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+  }
+  .hero-inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: center; max-width: 1200px; margin: 0 auto; padding: 80px 24px;
+  }
+  .hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .live-dot {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600; color: var(--accent);
+    background: rgba(0,200,122,.1); border: 1px solid rgba(0,200,122,.2);
+    border-radius: 100px; padding: 4px 10px;
+  }
+  .live-dot::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+
+  .hero h1 { margin-bottom: 20px; }
+  .hero h1 .line2 { color: var(--accent); }
+  .hero-desc { color: var(--muted); font-size: 17px; margin-bottom: 32px; max-width: 480px; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 40px; }
+  .hstat {
+    background: rgba(255,255,255,.04); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px;
+  }
+  .hstat-val {
+    font-family: var(--ff-head); font-size: 1.8rem; font-weight: 800; color: var(--text);
+    line-height: 1;
+  }
+  .hstat-label { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+  /* mirror image card */
+  .hero-visual {
+    position: relative; display: flex; flex-direction: column; gap: 12px;
+  }
+  .hero-img-wrap {
+    border-radius: 20px; overflow: hidden; border: 1px solid var(--border2);
+    background: linear-gradient(160deg, #0b1d1b 0%, #081218 100%);
+    position: relative;
+  }
+  .hero-img-wrap img { width: 100%; display: block; height: 420px; object-fit: contain; }
+  .hero-badge {
+    position: absolute; display: flex; align-items: center; gap: 8px;
+    background: rgba(6,10,13,.9); border: 1px solid var(--border2);
+    border-radius: 12px; padding: 10px 14px; backdrop-filter: blur(8px);
+  }
+  .hero-badge svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
+  .hero-badge-top    { top: 16px; right: 16px; }
+  .hero-badge-bottom { bottom: 16px; left: 16px; }
+  .hero-badge .val { font-family: var(--ff-head); font-weight: 700; font-size: 14px; }
+  .hero-badge .sub { font-size: 10px; color: var(--muted); }
+
+  /* ── STATS BAND ── */
+  .stats-band {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: var(--bg2); padding: 40px 0;
+  }
+  .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+  .stat-item {
+    padding: 20px 32px; text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: var(--ff-head); font-size: 2.4rem; font-weight: 800; line-height: 1; }
+  .stat-num.green { color: var(--accent); }
+  .stat-num.cyan  { color: var(--cyan); }
+  .stat-label { font-size: 11px; color: var(--muted); font-weight: 500; margin-top: 6px; text-transform: uppercase; letter-spacing: .1em; }
+  .stat-icon { width: 36px; height: 36px; margin: 0 auto 10px; background: rgba(0,200,122,.1); border-radius: 8px; display: grid; place-items: center; }
+  .stat-icon svg { width: 18px; height: 18px; color: var(--accent); }
+
+  /* ── MIRROR TECH ── */
+  .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .tech-card {
+    padding: 32px; border-radius: 16px; position: relative; overflow: hidden;
+  }
+  .tech-icon-big {
+    width: 56px; height: 56px; border-radius: 14px;
+    display: grid; place-items: center; margin-bottom: 20px;
+    background: rgba(0,200,122,.1); border: 1px solid rgba(0,200,122,.2);
+  }
+  .tech-icon-big svg { width: 28px; height: 28px; color: var(--accent); }
+  .tech-card p { color: var(--muted); margin-top: 8px; font-size: 14px; line-height: 1.7; }
+
+  /* philosophy 4-grid */
+  .phil-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 24px; }
+  .phil-item {
+    padding: 24px; border-radius: 12px;
+    background: rgba(255,255,255,.03); border: 1px solid var(--border);
+    display: flex; gap: 14px;
+  }
+  .phil-num { font-family: var(--ff-head); font-size: 11px; font-weight: 700; color: var(--label); letter-spacing: .1em; margin-bottom: 4px; }
+  .phil-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .phil-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .phil-ico { width: 40px; height: 40px; border-radius: 10px; background: rgba(0,200,122,.08); display: grid; place-items: center; flex-shrink: 0; margin-top: 2px; }
+  .phil-ico svg { width: 20px; height: 20px; color: var(--accent); }
+
+  /* ── REFERRAL SECTION ── */
+  .ref-wrapper { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
+  .ref-title { margin-bottom: 12px; }
+  .ref-desc { color: var(--muted); margin-bottom: 32px; font-size: 15px; max-width: 440px; }
+
+  .ref-levels { display: flex; flex-direction: column; gap: 12px; }
+  .ref-level {
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(255,255,255,.03); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 20px; position: relative; overflow: hidden;
+    transition: border-color .2s;
+  }
+  .ref-level:hover { border-color: var(--border2); }
+  .ref-level-num {
+    width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+    display: grid; place-items: center; font-family: var(--ff-head); font-weight: 800; font-size: 15px;
+  }
+  .lvl-1 { background: rgba(0,200,122,.15); color: var(--accent); }
+  .lvl-2 { background: rgba(34,211,238,.12); color: var(--cyan); }
+  .lvl-3 { background: rgba(168,85,247,.12); color: #a855f7; }
+  .ref-level-body { flex: 1; }
+  .ref-level-body .l-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+  .ref-level-body .l-name { font-family: var(--ff-head); font-weight: 700; font-size: 15px; margin: 2px 0 6px; }
+  .ref-bar-wrap { height: 6px; background: rgba(255,255,255,.07); border-radius: 100px; overflow: hidden; }
+  .ref-bar { height: 100%; border-radius: 100px; transition: width 1s ease; }
+  .bar-1 { background: var(--accent); }
+  .bar-2 { background: var(--cyan); }
+  .bar-3 { background: #a855f7; }
+  .ref-pct {
+    font-family: var(--ff-head); font-weight: 800; font-size: 2rem;
+    flex-shrink: 0; text-align: right;
+  }
+  .pct-1 { color: var(--accent); }
+  .pct-2 { color: var(--cyan); }
+  .pct-3 { color: #a855f7; }
+
+  /* pyramid visual */
+  .ref-visual { position: relative; }
+  .pyramid-card {
+    background: linear-gradient(160deg, rgba(0,200,122,.06) 0%, var(--card) 70%);
+    border: 1px solid var(--border2); border-radius: 20px; padding: 32px;
+  }
+  .pyramid-title { font-family: var(--ff-head); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+
+  .pyramid-tree { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .pyramid-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 8px; position: relative; }
+  .pyramid-row::before {
+    content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+    width: 1px; height: 8px; background: var(--border2);
+  }
+  .pyramid-row:last-child::before { display: none; }
+  .pnode {
+    width: 40px; height: 40px; border-radius: 50%; border: 2px solid;
+    display: grid; place-items: center; font-size: 10px; font-weight: 700; position: relative;
+  }
+  .pnode-you  { border-color: var(--accent); background: rgba(0,200,122,.15); color: var(--accent); font-size: 9px; }
+  .pnode-l1   { border-color: var(--accent); background: rgba(0,200,122,.1); color: var(--accent); }
+  .pnode-l2   { border-color: var(--cyan); background: rgba(34,211,238,.08); color: var(--cyan); }
+  .pnode-l3   { border-color: #a855f7; background: rgba(168,85,247,.07); color: #a855f7; }
+
+  .pnode svg { width: 16px; height: 16px; }
+  .py-connector {
+    width: 100%; height: 20px; position: relative; display: flex; justify-content: center; margin-bottom: 8px;
+  }
+  .py-connector::before {
+    content: ''; position: absolute; left: 50%; top: 0; transform: translateX(-50%);
+    width: 1px; height: 100%; background: var(--border2);
+  }
+  .branch-line { width: 100%; height: 20px; position: relative; margin-bottom: 8px; display: flex; justify-content: center; }
+  .branch-line::before {
+    content: ''; position: absolute;
+    top: 0; left: 25%; right: 25%; height: 1px; background: var(--border2);
+  }
+  .branch-line::after {
+    content: ''; position: absolute;
+    top: 0; left: 25%; right: 25%; height: 20px;
+    border-left: 1px solid var(--border2); border-right: 1px solid var(--border2);
+    border-top: none;
+  }
+
+  .deep-card {
+    margin-top: 16px; padding: 16px; background: rgba(255,255,255,.03);
+    border: 1px solid var(--border); border-radius: 12px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .deep-label { font-size: 12px; color: var(--muted); }
+  .deep-val { font-family: var(--ff-head); font-weight: 800; color: var(--accent); font-size: 1.4rem; }
+  .deep-bar-wrap { height: 4px; background: rgba(255,255,255,.07); border-radius: 100px; margin-top: 8px; overflow: hidden; }
+  .deep-bar { height: 100%; width: 57.5%; border-radius: 100px; background: linear-gradient(90deg, var(--cyan), var(--accent)); }
+
+  /* ── NEWS ── */
+  .news-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+  .news-link { font-size: 12px; font-weight: 700; color: var(--accent); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; }
+  .news-track-wrap { overflow: hidden; border-radius: 16px; }
+  .news-track { display: flex; transition: transform .35s cubic-bezier(.4,0,.2,1); }
+  .news-card { flex-shrink: 0; width: 33.333%; padding: 8px; }
+  @media(max-width:900px){ .news-card { width: 50%; } }
+  @media(max-width:600px){ .news-card { width: 100%; } }
+  .news-inner {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    height: 100%; display: flex; flex-direction: column; cursor: pointer;
+    transition: border-color .2s, transform .2s;
+  }
+  .news-inner:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .news-thumb {
+    height: 160px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #0d1f1a, #0c1620);
+  }
+  .news-thumb-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(0,200,122,.25) 0%, transparent 60%),
+                radial-gradient(circle at 75% 60%, rgba(34,211,238,.12) 0%, transparent 50%);
+  }
+  .news-thumb-icon {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: .15;
+  }
+  .news-thumb-icon svg { width: 80px; height: 80px; color: var(--accent); }
+  .news-chips { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; }
+  .chip {
+    font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px; border: 1px solid;
+  }
+  .chip-cat { background: rgba(0,0,0,.6); border-color: rgba(255,255,255,.15); color: var(--text); backdrop-filter: blur(8px); }
+  .chip-date { background: rgba(0,0,0,.5); border-color: rgba(255,255,255,.1); color: var(--muted); backdrop-filter: blur(8px); }
+  .news-body { padding: 18px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .news-body h3 { font-size: 14px; font-weight: 700; line-height: 1.4; }
+  .news-body p { font-size: 12px; color: var(--muted); line-height: 1.6; flex: 1; }
+  .news-controls { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+  .news-btn {
+    width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border);
+    background: transparent; color: var(--text); cursor: pointer; display: grid; place-items: center;
+    transition: border-color .2s;
+  }
+  .news-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .news-btn svg { width: 16px; height: 16px; }
+
+  /* ── WHY NOW ── */
+  .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .why-card {
+    padding: 28px 24px; border-radius: 14px;
+    background: rgba(255,255,255,.03); border: 1px solid var(--border);
+    transition: border-color .2s, transform .2s;
+  }
+  .why-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .why-icon {
+    width: 52px; height: 52px; border-radius: 14px; margin-bottom: 18px;
+    display: grid; place-items: center;
+    background: rgba(0,200,122,.1); border: 1px solid rgba(0,200,122,.2);
+  }
+  .why-icon svg { width: 26px; height: 26px; color: var(--accent); }
+  .why-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .why-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .why-highlight { color: var(--accent); font-weight: 700; }
+
+  /* ── FAQ ── */
+  .faq-tabs { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+  .faq-tab {
+    font-family: var(--ff-head); font-size: 12px; font-weight: 700; letter-spacing: .08em;
+    padding: 8px 20px; border-radius: 8px; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); cursor: pointer; text-transform: uppercase;
+    transition: all .2s;
+  }
+  .faq-tab.active { background: rgba(0,200,122,.1); border-color: var(--border2); color: var(--accent); }
+  .faq-tab:hover:not(.active) { border-color: rgba(255,255,255,.15); color: var(--text); }
+
+  .faq-group { display: none; }
+  .faq-group.active { display: block; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-btn {
+    width: 100%; display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 16px; padding: 22px 0; background: none; border: none; cursor: pointer;
+    color: var(--text); text-align: left;
+  }
+  .faq-btn:hover .faq-q { color: var(--accent); }
+  .faq-q { font-family: var(--ff-head); font-weight: 600; font-size: 16px; transition: color .2s; }
+  .faq-icon {
+    width: 28px; height: 28px; border-radius: 8px; background: rgba(255,255,255,.05);
+    border: 1px solid var(--border); display: grid; place-items: center; flex-shrink: 0;
+    transition: transform .3s, background .2s;
+  }
+  .faq-icon svg { width: 14px; height: 14px; color: var(--accent); }
+  .faq-btn[aria-expanded=true] .faq-icon { transform: rotate(45deg); background: rgba(0,200,122,.15); border-color: var(--border2); }
+  .faq-panel {
+    max-height: 0; overflow: hidden; transition: max-height .35s ease, opacity .35s ease;
+    opacity: 0;
+  }
+  .faq-panel.open { max-height: 300px; opacity: 1; }
+  .faq-panel-inner {
+    padding: 0 0 22px;
+    background: rgba(0,200,122,.05); border: 1px solid rgba(0,200,122,.12);
+    border-radius: 10px; padding: 16px 20px; margin-bottom: 16px;
+    font-size: 14px; color: var(--muted); line-height: 1.75;
+  }
+
+  /* ── COMMITTEE ── */
+  .committee-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+    gap: 16px; margin-bottom: 24px;
+  }
+  .cm-member {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    cursor: pointer; transition: transform .2s;
+  }
+  .cm-member:hover { transform: translateY(-4px); }
+  .cm-avatar {
+    width: 80px; height: 80px; border-radius: 16px; overflow: hidden;
+    border: 2px solid var(--border); position: relative;
+    transition: border-color .2s;
+  }
+  .cm-member:hover .cm-avatar { border-color: var(--border2); }
+  .cm-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .cm-flag {
+    position: absolute; bottom: 4px; right: 4px;
+    width: 20px; height: 20px; border-radius: 50%; font-size: 13px;
+    display: grid; place-items: center; background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+  }
+  .cm-name { font-size: 10px; font-weight: 600; text-align: center; color: var(--muted); }
+
+  /* country select */
+  .country-wrap { position: relative; max-width: 320px; margin-top: 24px; }
+  .country-trigger {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; padding: 10px 14px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 10px; cursor: pointer; color: var(--text);
+    font-size: 13px; font-family: var(--ff-body);
+  }
+  .country-trigger:hover { border-color: var(--border2); }
+  .country-menu {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; max-height: 220px; overflow-y: auto; z-index: 30; display: none;
+    box-shadow: 0 16px 48px rgba(0,0,0,.5);
+  }
+  .country-menu.open { display: block; }
+  .country-opt {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 14px; font-size: 13px; cursor: pointer; transition: background .15s;
+  }
+  .country-opt:hover { background: rgba(255,255,255,.04); }
+
+  .cm-carousel-wrap { margin-top: 20px; overflow: hidden; }
+  .cm-track { display: flex; transition: transform .35s cubic-bezier(.4,0,.2,1); }
+  .cm-card {
+    flex-shrink: 0; width: 33.333%; padding: 8px;
+  }
+  @media(max-width:900px){ .cm-card { width: 50%; } }
+  @media(max-width:600px){ .cm-card { width: 100%; } }
+  .cm-card-inner {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px; display: flex; gap: 14px; align-items: flex-start;
+  }
+  .cm-card-inner img { width: 56px; height: 56px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+  .cm-card-body h4 { font-size: 14px; font-weight: 700; }
+  .cm-card-body .loc { font-size: 11px; color: var(--muted); margin: 2px 0 4px; }
+  .cm-card-body .id { font-size: 10px; font-weight: 600; color: var(--label); }
+  .cm-socials { display: flex; gap: 6px; margin-top: 10px; }
+  .cm-soc {
+    width: 28px; height: 28px; border-radius: 7px; background: rgba(255,255,255,.05);
+    border: 1px solid var(--border); display: grid; place-items: center;
+  }
+  .cm-soc svg { width: 12px; height: 12px; color: var(--muted); }
+  .cm-carousel-controls { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 12px; }
+  .cm-ctrl-btn {
+    width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+    background: transparent; color: var(--text); cursor: pointer; display: grid; place-items: center;
+    transition: border-color .2s;
+  }
+  .cm-ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .cm-ctrl-btn svg { width: 14px; height: 14px; }
+
+  /* ── MODAL ── */
+  .modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 16px; }
+  .modal.open { display: flex; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.75); backdrop-filter: blur(8px); }
+  .modal-box {
+    position: relative; background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 28px; max-width: 400px; width: 100%; z-index: 1;
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,.07);
+    border: none; color: var(--text); cursor: pointer; display: grid; place-items: center;
+  }
+  .modal-close:hover { background: rgba(255,255,255,.12); }
+  .modal-close svg { width: 14px; height: 14px; }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    position: relative; overflow: hidden; border-radius: 24px; padding: 72px 48px;
+    background: linear-gradient(135deg, #071a12 0%, #0a1f1a 50%, #071218 100%);
+    border: 1px solid var(--border2); margin: 0 0 32px;
+  }
+  .cta-bg { position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,200,122,.12) 0%, transparent 60%);
+  }
+  .cta-grid-bg {
+    position: absolute; inset: 0; opacity: .15;
+    background-image: linear-gradient(rgba(0,200,122,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,122,.2) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .cta-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 32px; }
+  .cta-inner h2 { font-size: clamp(1.6rem,3.5vw,2.6rem); }
+  .cta-inner p { color: var(--muted); margin-top: 8px; }
+  .cta-btns { display: flex; gap: 10px; flex-direction: column; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border); background: var(--bg2); padding: 48px 0 32px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; }
+  .footer-brand p { color: var(--muted); font-size: 13px; margin: 12px 0 20px; line-height: 1.7; max-width: 280px; }
+  .footer-socials { display: flex; gap: 8px; }
+  .footer-soc {
+    width: 36px; height: 36px; border-radius: 9px; background: rgba(255,255,255,.05);
+    border: 1px solid var(--border); display: grid; place-items: center; text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .footer-soc:hover { border-color: var(--border2); background: rgba(0,200,122,.08); }
+  .footer-soc svg { width: 16px; height: 16px; color: var(--muted); }
+  .footer-col h4 { font-family: var(--ff-head); font-weight: 700; font-size: 13px; margin-bottom: 16px; color: var(--text); }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .15s; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .footer-bottom p { font-size: 12px; color: var(--muted); }
+
+  /* ── FAB ── */
+  .fab {
+    position: fixed; bottom: 28px; right: 28px; z-index: 90;
+    width: 52px; height: 52px; border-radius: 50%; background: var(--accent);
+    display: grid; place-items: center; box-shadow: 0 8px 32px rgba(0,200,122,.4);
+    cursor: pointer; border: none; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .fab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 16px 48px rgba(0,200,122,.5); }
+  .fab svg { width: 22px; height: 22px; color: #000; }
+  .fab-badge {
+    position: absolute; top: -2px; right: -2px;
+    width: 20px; height: 20px; border-radius: 50%; background: #ef4444;
+    display: grid; place-items: center; font-size: 10px; font-weight: 700; color: white;
+    border: 2px solid var(--bg);
+  }
+  .fab-ring {
+    position: absolute; inset: -4px; border-radius: 50%;
+    border: 2px solid rgba(0,200,122,.3); animation: ring 2s infinite;
+  }
+  @keyframes ring { 0%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(1.5)} }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+    .hero h1 { font-size: clamp(2.4rem,6vw,3.8rem); }
+    .tech-grid { grid-template-columns: 1fr; }
+    .ref-wrapper { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+    .why-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .cta-inner { grid-template-columns: 1fr; }
+    .cta-btns { flex-direction: row; }
+  }
+  @media(max-width:640px) {
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .phil-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 40px 24px; }
+    nav { display: none; }
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
 </style>
 
-<main class="flex-1 overflow-y-auto bg-zinc-100 dark:bg-[#04070b]">
-  <div class="mx-auto max-w-7xl px-4 lg:px-8 py-6 lg:py-10 space-y-8 lg:space-y-12">
-    <section class="relative overflow-hidden rounded-3xl border border-zinc-200/80 dark:border-emerald-500/20 bg-white dark:bg-[#0a1218]">
-      <div class="absolute inset-0 landing-grid-bg"></div>
-      <div class="absolute -top-24 -left-20 h-72 w-72 rounded-full bg-emerald-400/15 blur-3xl"></div>
-      <div class="absolute -bottom-24 right-0 h-72 w-72 rounded-full bg-cyan-400/15 blur-3xl"></div>
-      <div class="relative p-6 md:p-10 lg:p-12 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] items-center">
-        <div>
-          <p class="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 text-[11px] tracking-[0.22em] uppercase font-semibold text-emerald-600 dark:text-emerald-300">
-            <span class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400"></span> Digital Mirror Asset
-          </p>
-          <h1 class="mt-5 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white">Инвестируйте в<br><span class="text-emerald-600 dark:text-emerald-400">Dilan Mirror</span> нового поколения.</h1>
-          <p class="mt-5 text-zinc-600 dark:text-zinc-300 text-base md:text-lg max-w-xl leading-8">Новая версия лендинга с акцентом на технологичность, метрики, реферальную модель и прозрачный путь от долей к акциям.</p>
-          <div class="mt-7 flex flex-wrap gap-3">
-            <a href="deposit.php" class="px-6 py-3 rounded-xl bg-accent text-white text-xs uppercase tracking-[0.2em] font-bold shadow-lg shadow-emerald-600/25">Инвестировать</a>
-            <a href="report.php" class="px-6 py-3 rounded-xl border border-zinc-300 dark:border-white/20 text-xs uppercase tracking-[0.2em] font-bold text-zinc-700 dark:text-zinc-100">Смотреть отчёты</a>
+<main class="dm-landing">
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="live-dot">Инвестирование открыто</div>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          Проецированный ROI 15%
+        </span>
+      </div>
+
+      <h1>
+        Посмотрите на себя<br>
+        <span class="line2">из зазеркалья</span>
+      </h1>
+
+      <p class="hero-desc">
+        Инвестируйте в проект умного зеркала с технологией, позволяющей показывать обратную сторону тела. Ранний раунд — только 15% долей в продаже.
+      </p>
+
+      <div class="hero-btns">
+        <a href="deposit.php" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Начать инвестировать
+        </a>
+        <a href="#tech" class="btn-ghost">Узнать больше</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hstat">
+          <div class="hstat-val text-accent">$2.5M</div>
+          <div class="hstat-label">Уже инвестировано</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-val">850+</div>
+          <div class="hstat-label">Активных инвесторов</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-val text-cyan">15%</div>
+          <div class="hstat-label">Проецируемый ROI</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="https://ik.imagekit.io/dilanmirror/dmr/dmr3.png" alt="Dilan Mirror">
+        <div class="hero-badge hero-badge-top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <div>
+            <div class="val">Только 15%</div>
+            <div class="sub">долей доступно</div>
           </div>
-          <div class="mt-8 grid sm:grid-cols-3 gap-3">
-            <div class="rounded-xl border border-zinc-200 dark:border-white/10 bg-white/85 dark:bg-white/5 p-4">
-              <p class="text-2xl font-bold text-zinc-900 dark:text-white">15%</p><p class="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Ранний раунд</p>
-            </div>
-            <div class="rounded-xl border border-zinc-200 dark:border-white/10 bg-white/85 dark:bg-white/5 p-4">
-              <p class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">40%</p><p class="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Партнёрский потенциал</p>
-            </div>
-            <div class="rounded-xl border border-zinc-200 dark:border-white/10 bg-white/85 dark:bg-white/5 p-4">
-              <p class="text-2xl font-bold text-cyan-600 dark:text-cyan-400">12.4M</p><p class="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Текущий пул</p>
-            </div>
-          </div>
         </div>
-
-        <div class="space-y-3">
-          <div class="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-100 to-cyan-100 dark:from-emerald-500/10 dark:to-cyan-500/10 p-4">
-            <div class="rounded-xl border border-zinc-200/70 dark:border-white/10 bg-white/90 dark:bg-[#0c141d] p-5">
-              <p class="text-[11px] uppercase tracking-[0.18em] text-zinc-500">Live round panel</p>
-              <div class="mt-3 space-y-3">
-                <div class="flex justify-between text-sm"><span class="text-zinc-500">Собрано</span><span class="font-semibold text-zinc-900 dark:text-white">$ 12,450,000</span></div>
-                <div class="h-2 rounded-full bg-zinc-200 dark:bg-white/10 overflow-hidden"><div class="h-full w-[72%] bg-gradient-to-r from-emerald-400 to-cyan-400"></div></div>
-                <div class="grid grid-cols-2 gap-2 text-xs">
-                  <div class="rounded-lg bg-zinc-100 dark:bg-white/5 p-3"><p class="text-zinc-500">Инвесторов</p><p class="font-bold text-zinc-900 dark:text-white">8 240</p></div>
-                  <div class="rounded-lg bg-zinc-100 dark:bg-white/5 p-3"><p class="text-zinc-500">Конверсия</p><p class="font-bold text-zinc-900 dark:text-white">+31%</p></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-3">
-            <div class="rounded-xl border border-zinc-200 dark:border-white/10 p-4 bg-white/90 dark:bg-white/5"><p class="text-[11px] uppercase text-zinc-500 tracking-wider">Риски</p><p class="text-sm font-semibold mt-1 text-zinc-900 dark:text-white">Юридически покрыты</p></div>
-            <div class="rounded-xl border border-zinc-200 dark:border-white/10 p-4 bg-white/90 dark:bg-white/5"><p class="text-[11px] uppercase text-zinc-500 tracking-wider">Выводы</p><p class="text-sm font-semibold mt-1 text-zinc-900 dark:text-white">Ежемесячно</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid md:grid-cols-3 gap-4">
-      <?php foreach ([['AI Mirror Infrastructure', 'Серверная архитектура собирает и проверяет события инвестиций в режиме real-time.'], ['Referral Growth Engine', 'Каскадная модель дохода и прозрачная аналитика по уровням команды в одном экране.'], ['Governance & Committee', 'Глобальный комитет контролирует вектор развития и публичную отчётность.']] as $item): ?>
-        <article class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0d151d] p-5 md:p-6">
-          <div class="w-10 h-10 rounded-lg border border-emerald-500/25 bg-emerald-500/10 grid place-items-center mb-4"><i data-lucide="sparkles" class="w-5 h-5 text-emerald-500"></i></div>
-          <h3 class="text-lg font-bold text-zinc-900 dark:text-white"><?= $item[0]; ?></h3>
-          <p class="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300"><?= $item[1]; ?></p>
-        </article>
-      <?php endforeach; ?>
-    </section>
-
-    <section id="referral" class="grid xl:grid-cols-[1fr_1.1fr] gap-5">
-      <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0d151d] p-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Реферальная структура до 40%</h2>
-        <p class="mt-3 text-zinc-600 dark:text-zinc-300 leading-7">Мы сохранили рабочую механику уровней и переложили её в более строгую визуальную систему из нового концепта.</p>
-        <div class="mt-6 space-y-3">
-          <?php foreach ([[1,'L1 direct', '10%', 'w-10/12', 'bg-emerald-400'], [2,'L2 network', '5%', 'w-6/12', 'bg-cyan-400'], [3,'L3 depth', '2%', 'w-4/12', 'bg-violet-400']] as $level): ?>
-          <div class="rounded-xl border border-zinc-200 dark:border-white/10 p-4">
-            <div class="flex justify-between items-center">
-              <p class="font-semibold text-zinc-900 dark:text-white">#<?= $level[0]; ?> <?= $level[1]; ?></p>
-              <p class="font-bold text-lg text-zinc-900 dark:text-white"><?= $level[2]; ?></p>
-            </div>
-            <div class="mt-3 h-2 rounded-full bg-zinc-200 dark:bg-white/10 overflow-hidden"><div class="h-full <?= $level[3]; ?> <?= $level[4]; ?>"></div></div>
-          </div>
-          <?php endforeach; ?>
-        </div>
-      </div>
-      <div class="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-50 to-cyan-50 dark:from-emerald-500/10 dark:to-cyan-500/10 p-6">
-        <h3 class="text-lg font-bold text-zinc-900 dark:text-white">Пирамида распределения</h3>
-        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-2">Визуализация сохранена в концептуальной форме и показывает логику расширения сети.</p>
-        <div class="mt-6 flex flex-col items-center gap-2 text-xs font-bold text-zinc-700 dark:text-zinc-200">
-          <div class="w-11 h-11 rounded-full border-2 border-emerald-400 bg-emerald-500/20 grid place-items-center">YOU</div>
-          <div class="flex gap-2"><div class="w-10 h-10 rounded-full border border-emerald-400 bg-emerald-500/15"></div><div class="w-10 h-10 rounded-full border border-emerald-400 bg-emerald-500/15"></div><div class="w-10 h-10 rounded-full border border-emerald-400 bg-emerald-500/15"></div></div>
-          <div class="flex gap-2"><div class="w-9 h-9 rounded-full border border-cyan-400 bg-cyan-500/15"></div><div class="w-9 h-9 rounded-full border border-cyan-400 bg-cyan-500/15"></div><div class="w-9 h-9 rounded-full border border-cyan-400 bg-cyan-500/15"></div><div class="w-9 h-9 rounded-full border border-cyan-400 bg-cyan-500/15"></div></div>
-          <div class="flex gap-2"><div class="w-8 h-8 rounded-full border border-violet-400 bg-violet-500/15"></div><div class="w-8 h-8 rounded-full border border-violet-400 bg-violet-500/15"></div><div class="w-8 h-8 rounded-full border border-violet-400 bg-violet-500/15"></div><div class="w-8 h-8 rounded-full border border-violet-400 bg-violet-500/15"></div><div class="w-8 h-8 rounded-full border border-violet-400 bg-violet-500/15"></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="news" class="space-y-4">
-      <div class="flex items-end justify-between gap-3">
-        <div>
-          <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Новости и обновления</h2>
-          <p class="text-zinc-600 dark:text-zinc-300">Слайды из последнего раунда и развития платформы.</p>
-        </div>
-        <div class="flex gap-2">
-          <button data-news-prev class="w-10 h-10 rounded-xl border border-zinc-300 dark:border-white/15"><i data-lucide="chevron-left" class="w-4 h-4 mx-auto"></i></button>
-          <button data-news-next class="w-10 h-10 rounded-xl border border-zinc-300 dark:border-white/15"><i data-lucide="chevron-right" class="w-4 h-4 mx-auto"></i></button>
-        </div>
-      </div>
-      <div class="overflow-hidden">
-        <div data-news-track class="flex transition-transform duration-300">
-          <?php foreach ($newsItems as $news): ?>
-            <article class="min-w-full md:min-w-[50%] xl:min-w-[33.333%] p-1.5">
-              <div class="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0d151d] p-5 h-full">
-                <p class="text-xs uppercase tracking-[0.15em] text-emerald-600 dark:text-emerald-300 font-semibold"><?= $news['category']; ?> · <?= $news['date']; ?></p>
-                <h3 class="mt-2 text-lg font-bold text-zinc-900 dark:text-white"><?= $news['title']; ?></h3>
-                <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300 leading-7"><?= $news['excerpt']; ?></p>
-              </div>
-            </article>
-          <?php endforeach; ?>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" class="space-y-4 rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0d151d] p-5 md:p-6">
-      <div>
-        <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">FAQ</h2>
-        <p class="text-zinc-600 dark:text-zinc-300">Сохранённая логика табов и мульти-аккордеона.</p>
-      </div>
-      <div class="flex flex-wrap gap-2">
-        <?php foreach ($faqGroups as $index => $group): ?>
-          <button data-faq-group-btn data-group-index="<?= $index; ?>" data-active="<?= $index === 0 ? 'true' : 'false'; ?>" class="px-4 py-2 rounded-lg border text-xs font-bold uppercase tracking-[0.15em]"><?= $group['title']; ?></button>
-        <?php endforeach; ?>
-      </div>
-
-      <?php foreach ($faqGroups as $groupIndex => $group): ?>
-        <div data-faq-group-panel="<?= $groupIndex; ?>" class="space-y-2 <?= $groupIndex !== 0 ? 'hidden' : ''; ?>">
-          <?php foreach ($group['items'] as $item): ?>
-            <div class="rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-4">
-              <button data-faq-btn data-open="false" class="w-full py-4 text-left flex items-center justify-between gap-2">
-                <span class="font-semibold text-zinc-900 dark:text-white"><?= $item['q']; ?></span>
-                <i data-lucide="chevron-down" class="w-5 h-5 text-accent transition-transform"></i>
-              </button>
-              <div data-faq-panel class="max-h-0 opacity-0 overflow-hidden transition-all duration-300">
-                <p class="pb-4 text-zinc-600 dark:text-zinc-300 leading-7"><?= $item['a']; ?></p>
-              </div>
-            </div>
-          <?php endforeach; ?>
-        </div>
-      <?php endforeach; ?>
-    </section>
-
-    <section id="committee" class="space-y-5">
-      <div>
-        <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white">Наблюдательный комитет</h2>
-        <p class="text-zinc-600 dark:text-zinc-300">Кликайте по аватару и фильтруйте по странам.</p>
-      </div>
-
-      <div id="committeePreview" class="grid gap-x-5 gap-y-5 [grid-template-columns:repeat(auto-fill,minmax(5.5rem,1fr))]"></div>
-      <div class="flex justify-center">
-        <button id="committeeLoadMore" class="px-5 py-2.5 rounded-xl bg-zinc-200 dark:bg-white/10 text-sm font-semibold hover:bg-zinc-300 dark:hover:bg-white/15">Показать ещё</button>
-      </div>
-
-      <div class="space-y-4 rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0e151d] p-4 md:p-5">
-        <div class="relative max-w-sm">
-          <p class="text-[11px] uppercase tracking-wider font-semibold text-zinc-500 mb-1.5">Select by country</p>
-          <button id="countrySelectTrigger" type="button" class="w-full flex items-center justify-between gap-2 rounded-xl border border-zinc-200 dark:border-white/15 bg-white dark:bg-white/5 px-3 py-2 text-sm">
-            <span class="flex items-center gap-2" id="countrySelectValue"><span class="text-base">🌍</span><span>Выберите страну</span></span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-500"></i>
-          </button>
-          <div id="countrySelectMenu" class="hidden absolute z-20 mt-2 w-full rounded-xl border border-zinc-200 dark:border-white/15 bg-white dark:bg-[#11171c] shadow-xl max-h-64 overflow-auto"></div>
-        </div>
-
-        <div id="committeeCarouselWrap" class="hidden">
-          <div class="flex justify-end gap-2 mb-2">
-            <button class="w-9 h-9 rounded-lg border border-zinc-200 dark:border-white/15" data-committee-prev><i data-lucide="chevron-left" class="w-4 h-4 mx-auto"></i></button>
-            <button class="w-9 h-9 rounded-lg border border-zinc-200 dark:border-white/15" data-committee-next><i data-lucide="chevron-right" class="w-4 h-4 mx-auto"></i></button>
-          </div>
-          <div class="overflow-hidden">
-            <div id="committeeCarousel" class="flex transition-transform duration-300"></div>
+        <div class="hero-badge hero-badge-bottom">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <div>
+            <div class="val">+31% рост</div>
+            <div class="sub">активности за месяц</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
-</main>
+</section>
 
-<div id="committeeModal" class="fixed inset-0 z-[90] hidden">
-  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-modal-close></div>
-  <div class="absolute inset-0 p-4 flex items-center justify-center">
-    <div class="w-full max-w-md rounded-xl bg-white dark:bg-[#111821] p-5 relative">
-      <button class="absolute right-3 top-3 w-9 h-9 rounded-lg bg-zinc-100 dark:bg-white/10" data-modal-close><i data-lucide="x" class="w-4 h-4 mx-auto"></i></button>
-      <div id="committeeModalBody"></div>
+<!-- ═══════════════════ STATS BAND ═══════════════════ -->
+<div class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="stat-num green" data-count="2.5" data-prefix="$" data-suffix="M">$0M</div>
+        <div class="stat-label">Суммарно инвестировано</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="stat-num" data-count="850" data-suffix="+">0</div>
+        <div class="stat-label">Активных инвесторов</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <div class="stat-num cyan" data-count="15" data-suffix="%">0%</div>
+        <div class="stat-label">Проецируемый ROI</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div class="stat-num green" data-count="40" data-suffix="%">0%</div>
+        <div class="stat-label">Реферальный доход</div>
+      </div>
     </div>
   </div>
 </div>
 
-<script>
-  (() => {
-    const members = [];
-    const firstNames = ['Alex', 'Maria', 'Ivan', 'Sofia', 'Dmitry', 'Nora', 'Liam', 'Emma', 'Noah', 'Olivia'];
-    const lastNames = ['Petrov', 'Johnson', 'Miller', 'Smirnova', 'Kim', 'Brown', 'Garcia', 'Wilson', 'Taylor', 'Lee'];
-    const countries = [
-      { country: 'Russia', city: 'Moscow', flag: '🇷🇺' },
-      { country: 'Germany', city: 'Berlin', flag: '🇩🇪' },
-      { country: 'France', city: 'Paris', flag: '🇫🇷' },
-      { country: 'USA', city: 'New York', flag: '🇺🇸' },
-      { country: 'UAE', city: 'Dubai', flag: '🇦🇪' },
-      { country: 'Turkey', city: 'Istanbul', flag: '🇹🇷' },
-      { country: 'Kazakhstan', city: 'Astana', flag: '🇰🇿' },
-      { country: 'Spain', city: 'Madrid', flag: '🇪🇸' },
-      { country: 'Portugal', city: 'Lisbon', flag: '🇵🇹' },
-      { country: 'Italy', city: 'Milan', flag: '🇮🇹' }
-    ];
-    const socials = ['telegram', 'linkedin', 'twitter', 'facebook', 'instagram', 'vk'];
+<!-- ═══════════════════ TECH SECTION ═══════════════════ -->
+<section class="section" id="tech">
+  <div class="container">
+    <div class="tech-grid reveal">
+      <!-- Left: mirror tech -->
+      <div class="card card-glow" style="padding:40px;">
+        <div class="tag" style="margin-bottom:20px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Технология
+        </div>
+        <h2 style="margin-bottom:16px;">Умное зеркало<br><span class="text-accent">нового поколения</span></h2>
+        <p style="color:var(--muted);margin-bottom:32px;line-height:1.75;">
+          Dilan Mirror — это технология, позволяющая видеть обратную сторону собственного тела в реальном времени. Революционный продукт, открывающий новое измерение самопознания и заботы о здоровье.
+        </p>
 
-    for (let i = 1; i <= 100; i++) {
-      const c = countries[i % countries.length];
-      members.push({
-        avatar: `https://i.pravatar.cc/160?img=${(i % 70) + 1}`,
-        city: c.city,
-        country: c.country,
-        countryFlag: c.flag,
-        firstName: firstNames[i % firstNames.length],
-        lastName: lastNames[(i * 2) % lastNames.length],
-        legacyId: 7000 + i,
-        socialLinks: socials.slice(0, 1 + (i % 3)).map((type) => ({ type, url: '#' }))
-      });
-    }
-
-    const socialIcon = (type) => ({ telegram: 'send', linkedin: 'linkedin', twitter: 'twitter', facebook: 'facebook', instagram: 'instagram', vk: 'circle' }[type] || 'link');
-
-    const newsTrack = document.querySelector('[data-news-track]');
-    const newsCards = newsTrack ? Array.from(newsTrack.children) : [];
-    let newsPage = 0;
-    const cardsPerView = () => window.innerWidth >= 1280 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
-    const maxNewsPage = () => Math.max(0, Math.ceil(newsCards.length / cardsPerView()) - 1);
-    const updateNews = () => {
-      if (!newsTrack) return;
-      newsPage = Math.min(newsPage, maxNewsPage());
-      newsTrack.style.transform = `translateX(-${newsPage * 100}%)`;
-    };
-
-    document.querySelector('[data-news-prev]')?.addEventListener('click', () => {
-      newsPage = Math.max(0, newsPage - 1);
-      updateNews();
-    });
-    document.querySelector('[data-news-next]')?.addEventListener('click', () => {
-      newsPage = Math.min(maxNewsPage(), newsPage + 1);
-      updateNews();
-    });
-
-    document.querySelectorAll('[data-faq-group-btn]').forEach((btn) => {
-      const isActive = btn.dataset.active === 'true';
-      btn.classList.toggle('bg-accent', isActive);
-      btn.classList.toggle('text-white', isActive);
-      btn.classList.toggle('border-accent', isActive);
-      btn.classList.toggle('border-zinc-300', !isActive);
-      btn.classList.toggle('dark:border-white/20', !isActive);
-
-      btn.addEventListener('click', () => {
-        const target = btn.dataset.groupIndex;
-        document.querySelectorAll('[data-faq-group-btn]').forEach((b) => {
-          const active = b === btn;
-          b.dataset.active = active ? 'true' : 'false';
-          b.classList.toggle('bg-accent', active);
-          b.classList.toggle('text-white', active);
-          b.classList.toggle('border-accent', active);
-          b.classList.toggle('border-zinc-300', !active);
-          b.classList.toggle('dark:border-white/20', !active);
-        });
-
-        document.querySelectorAll('[data-faq-group-panel]').forEach((panel) => {
-          const active = panel.dataset.faqGroupPanel === target;
-          panel.classList.toggle('hidden', !active);
-          if (!active) {
-            panel.querySelectorAll('[data-faq-btn]').forEach((qBtn) => {
-              qBtn.dataset.open = 'false';
-              qBtn.querySelector('i')?.classList.remove('rotate-180');
-            });
-            panel.querySelectorAll('[data-faq-panel]').forEach((ans) => {
-              ans.style.maxHeight = '0px';
-              ans.classList.add('opacity-0');
-            });
-          }
-        });
-      });
-    });
-
-    document.querySelectorAll('[data-faq-btn]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const panel = btn.nextElementSibling;
-        const icon = btn.querySelector('i');
-        const isOpen = btn.dataset.open === 'true';
-        btn.dataset.open = isOpen ? 'false' : 'true';
-        icon?.classList.toggle('rotate-180', !isOpen);
-        panel.style.maxHeight = isOpen ? '0px' : `${panel.scrollHeight}px`;
-        panel.classList.toggle('opacity-0', isOpen);
-      });
-    });
-
-    const modal = document.getElementById('committeeModal');
-    const modalBody = document.getElementById('committeeModalBody');
-    const preview = document.getElementById('committeePreview');
-    const loadMoreBtn = document.getElementById('committeeLoadMore');
-
-    const countrySelectValue = document.getElementById('countrySelectValue');
-    const countrySelectTrigger = document.getElementById('countrySelectTrigger');
-    const countrySelectMenu = document.getElementById('countrySelectMenu');
-
-    const carouselWrap = document.getElementById('committeeCarouselWrap');
-    const carousel = document.getElementById('committeeCarousel');
-
-    let previewCount = 0;
-    const batch = 30;
-    let filtered = [];
-    let cIndex = 0;
-
-    const memberCard = (m) => `
-      <div class="min-w-full md:min-w-[50%] xl:min-w-[33.3333%] p-1.5">
-        <div class="rounded-lg bg-zinc-50 dark:bg-white/5 p-4 h-full border border-zinc-200 dark:border-white/10">
-          <div class="flex gap-3 items-center mb-3">
-            <div class="relative">
-              <img src="${m.avatar}" alt="${m.firstName}" class="w-14 h-14 rounded-full object-cover">
-              <span class="absolute -bottom-1 -right-1 text-base">${m.countryFlag}</span>
+        <div class="phil-grid">
+          <div class="phil-item">
+            <div class="phil-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
             </div>
             <div>
-              <p class="font-bold text-zinc-900 dark:text-white">${m.firstName} ${m.lastName}</p>
-              <p class="text-xs text-zinc-500">${m.city}, ${m.country}</p>
-              <p class="text-xs text-zinc-500 font-semibold">ID: ${m.legacyId}</p>
+              <div class="phil-num">01 / Vision</div>
+              <h4>360° обзор тела</h4>
+              <p>Полный угол обзора без слепых зон.</p>
             </div>
           </div>
-          <div class="flex flex-wrap gap-2">${m.socialLinks.map((s) => `<a href="${s.url}" class="w-8 h-8 rounded-lg bg-white dark:bg-white/10 border border-zinc-200 dark:border-white/10 grid place-items-center"><i data-lucide="${socialIcon(s.type)}" class="w-4 h-4"></i></a>`).join('')}</div>
+          <div class="phil-item">
+            <div class="phil-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="phil-num">02 / Research</div>
+              <h4>Реальная экспертиза</h4>
+              <p>Модель создана практиками рынка.</p>
+            </div>
+          </div>
+          <div class="phil-item">
+            <div class="phil-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div>
+              <div class="phil-num">03 / Scale</div>
+              <h4>Данные в центре</h4>
+              <p>Решения на основе аналитики.</p>
+            </div>
+          </div>
+          <div class="phil-item">
+            <div class="phil-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+            </div>
+            <div>
+              <div class="phil-num">04 / Risk</div>
+              <h4>Лидирующий рост</h4>
+              <p>Стабильное расширение экосистемы.</p>
+            </div>
+          </div>
         </div>
-      </div>`;
+      </div>
 
-    const renderPreviewBatch = () => {
-      const next = members.slice(previewCount, previewCount + batch);
-      next.forEach((m) => {
-        const btn = document.createElement('button');
-        btn.className = 'group relative w-[92px] h-[92px] md:w-[100px] md:h-[100px] mx-auto rounded-xl overflow-hidden hover:-translate-y-0.5 transition-all';
-        btn.innerHTML = `<img src="${m.avatar}" alt="${m.firstName}" class="w-full h-full object-cover"><span class="absolute bottom-1 right-1 text-lg">${m.countryFlag}</span><span class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-black/35 to-transparent transition-opacity"></span>`;
-        btn.addEventListener('click', () => {
-          modalBody.innerHTML = memberCard(m).replace('min-w-full md:min-w-[50%] xl:min-w-[33.3333%] p-1.5', '');
-          modal.classList.remove('hidden');
-          if (window.lucide) window.lucide.createIcons();
-        });
-        preview.appendChild(btn);
-      });
-      previewCount += next.length;
-      if (previewCount >= members.length) loadMoreBtn.classList.add('hidden');
-      if (window.lucide) window.lucide.createIcons();
-    };
+      <!-- Right: philosophy -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="card" style="padding:28px;flex:1;">
+          <div class="tech-icon-big">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <h3>Ограниченный раунд</h3>
+          <p style="margin-top:8px;color:var(--muted);">Только 15% долей компании выставлено в открытую продажу. Ограниченное окно — ранний вход по лучшей цене.</p>
+          <div style="margin-top:20px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+              <span style="font-size:12px;color:var(--muted);">Доступно для продажи</span>
+              <span style="font-size:12px;font-weight:700;color:var(--accent);">15%</span>
+            </div>
+            <div style="height:6px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden;">
+              <div style="width:15%;height:100%;background:var(--accent);border-radius:100px;"></div>
+            </div>
+          </div>
+        </div>
 
-    const countriesUnique = [...new Set(members.map((m) => m.country))].sort();
-    countriesUnique.forEach((country) => {
-      const first = members.find((m) => m.country === country);
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-white/5';
-      btn.innerHTML = `<span class="text-base">${first?.countryFlag || '🌍'}</span><span>${country}</span>`;
-      btn.addEventListener('click', () => {
-        countrySelectValue.innerHTML = `<span class="text-base">${first?.countryFlag || '🌍'}</span><span>${country}</span>`;
-        closeCountryMenu();
-        filtered = members.filter((m) => m.country === country);
-        cIndex = 0;
-        carousel.innerHTML = filtered.map(memberCard).join('');
-        updateCommitteeCarousel();
-        if (window.lucide) window.lucide.createIcons();
-      });
-      countrySelectMenu.appendChild(btn);
+        <div class="card" style="padding:28px;flex:1;">
+          <div class="tech-icon-big" style="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.2);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--cyan)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Прозрачная структура</h3>
+          <p style="margin-top:8px;color:var(--muted);">Все условия документированы. Доли конвертируются в акции по утверждённой модели после завершения этапов развития.</p>
+          <div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;">
+            <span class="chip chip-cat" style="font-size:9px;">Доли → Акции</span>
+            <span class="chip chip-cat" style="font-size:9px;">Юридический пакет</span>
+            <span class="chip chip-cat" style="font-size:9px;">Контролируемый рост</span>
+          </div>
+        </div>
+
+        <div class="card" style="padding:28px;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:48px;height:48px;border-radius:12px;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2);display:grid;place-items:center;flex-shrink:0;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div style="font-family:var(--ff-head);font-size:1.8rem;font-weight:800;color:#a855f7;line-height:1;">100+</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:4px;">участников наблюдательного комитета</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ REFERRAL ═══════════════════ -->
+<section class="section" id="referral" style="background:var(--bg2);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px;" class="reveal">
+      <div class="tag" style="margin-bottom:14px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Реферальная программа
+      </div>
+      <h2>Зарабатывайте до <span class="text-accent">40%</span></h2>
+      <p style="color:var(--muted);margin-top:12px;max-width:560px;margin-left:auto;margin-right:auto;">
+        Прозрачная механика выплат с фокусом на стабильный рост структуры и понятное распределение для каждого уровня.
+      </p>
+    </div>
+
+    <div class="ref-wrapper reveal">
+      <!-- Levels -->
+      <div>
+        <div class="ref-levels">
+          <div class="ref-level">
+            <div class="ref-level-num lvl-1">L1</div>
+            <div class="ref-level-body">
+              <div class="l-label">Уровень 1 · Прямые рефералы</div>
+              <div class="l-name">Ваши приглашённые</div>
+              <div class="ref-bar-wrap"><div class="ref-bar bar-1" style="width:100%"></div></div>
+            </div>
+            <div class="ref-pct pct-1">10%</div>
+          </div>
+
+          <div class="ref-level">
+            <div class="ref-level-num lvl-2">L2</div>
+            <div class="ref-level-body">
+              <div class="l-label">Уровень 2 · Команда рефералов</div>
+              <div class="l-name">Их приглашённые</div>
+              <div class="ref-bar-wrap"><div class="ref-bar bar-2" style="width:50%"></div></div>
+            </div>
+            <div class="ref-pct pct-2">5%</div>
+          </div>
+
+          <div class="ref-level">
+            <div class="ref-level-num lvl-3">L3</div>
+            <div class="ref-level-body">
+              <div class="l-label">Уровень 3 · Глубокая сеть</div>
+              <div class="l-name">Расширенная структура</div>
+              <div class="ref-bar-wrap"><div class="ref-bar bar-3" style="width:20%"></div></div>
+            </div>
+            <div class="ref-pct pct-3">2%</div>
+          </div>
+
+          <div class="card" style="padding:24px;margin-top:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <div>
+                <div style="font-size:12px;color:var(--muted);margin-bottom:4px;">Суммарная глубина структуры</div>
+                <div style="font-family:var(--ff-head);font-weight:800;font-size:1.5rem;color:var(--accent);">до 23%</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:11px;color:var(--muted);">Максимальный пул</div>
+                <div style="font-family:var(--ff-head);font-weight:800;font-size:1.5rem;">до 40%</div>
+              </div>
+            </div>
+            <div class="deep-bar-wrap" style="height:6px;"><div class="deep-bar"></div></div>
+            <p style="font-size:13px;color:var(--muted);margin-top:12px;line-height:1.6;">
+              При росте глубины команда продолжает участвовать в распределении. Система автоматически делит долю справедливо по активным уровням.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pyramid visual -->
+      <div class="ref-visual">
+        <div class="pyramid-card">
+          <div class="pyramid-title">Визуализация реферальной структуры</div>
+
+          <div class="pyramid-tree">
+            <!-- YOU -->
+            <div class="pyramid-row">
+              <div class="pnode pnode-you">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+            </div>
+            <!-- connector -->
+            <div style="width:1px;height:20px;background:var(--border2);margin:0 auto;"></div>
+            <!-- L1 row label -->
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <div style="flex:1;height:1px;background:var(--border2);"></div>
+              <span style="font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.1em;">L1 · 10%</span>
+              <div style="flex:1;height:1px;background:var(--border2);"></div>
+            </div>
+            <!-- L1 nodes -->
+            <div class="pyramid-row" style="gap:12px;margin-bottom:0;">
+              <div class="pnode pnode-l1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div class="pnode pnode-l1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div class="pnode pnode-l1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+            </div>
+            <div style="width:80%;height:1px;background:var(--border2);margin:8px auto;"></div>
+            <!-- L2 label -->
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;width:80%;margin-left:auto;margin-right:auto;">
+              <div style="flex:1;height:1px;background:rgba(34,211,238,.2);"></div>
+              <span style="font-size:10px;font-weight:700;color:var(--cyan);letter-spacing:.1em;">L2 · 5%</span>
+              <div style="flex:1;height:1px;background:rgba(34,211,238,.2);"></div>
+            </div>
+            <!-- L2 nodes -->
+            <div class="pyramid-row" style="gap:8px;margin-bottom:0;">
+              <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div class="pnode pnode-l2" style="width:32px;height:32px;font-size:8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+            </div>
+            <div style="width:90%;height:1px;background:rgba(168,85,247,.2);margin:8px auto;"></div>
+            <!-- L3 label -->
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;width:90%;margin-left:auto;margin-right:auto;">
+              <div style="flex:1;height:1px;background:rgba(168,85,247,.2);"></div>
+              <span style="font-size:10px;font-weight:700;color:#a855f7;letter-spacing:.1em;">L3 · 2%</span>
+              <div style="flex:1;height:1px;background:rgba(168,85,247,.2);"></div>
+            </div>
+            <!-- L3 nodes -->
+            <div class="pyramid-row" style="gap:5px;margin-bottom:0;flex-wrap:wrap;">
+              <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="pnode pnode-l3" style="width:26px;height:26px;font-size:7px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:11px;color:var(--muted);">Максимум с реф. структуры</div>
+              <div style="font-family:var(--ff-head);font-weight:800;color:var(--accent);font-size:1.6rem;line-height:1.2;">40%</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px;color:var(--muted);">Глубина</div>
+              <div style="font-family:var(--ff-head);font-weight:800;font-size:1.2rem;">Нет лимита</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ NEWS ═══════════════════ -->
+<section class="section" id="news">
+  <div class="container">
+    <div class="news-header reveal">
+      <div>
+        <div class="tag" style="margin-bottom:10px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+          Обновления
+        </div>
+        <h2>Последние новости</h2>
+      </div>
+      <a href="#" class="news-link">Все новости →</a>
+    </div>
+
+    <div class="news-track-wrap reveal">
+      <div class="news-track" id="newsTrack">
+        <!-- News cards -->
+        <div class="news-card">
+          <div class="news-inner">
+            <div class="news-thumb">
+              <div class="news-thumb-glow"></div>
+              <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+              <div class="news-chips">
+                <span class="chip chip-cat">Инвестиции</span>
+                <span class="chip chip-date">03.03.2026</span>
+              </div>
+            </div>
+            <div class="news-body"><h3>Открыт ранний раунд инвестиций</h3><p>В открытую продажу выведено только 15% долей. Это ограниченное окно для раннего входа.</p></div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-inner">
+            <div class="news-thumb">
+              <div class="news-thumb-glow"></div>
+              <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+              <div class="news-chips">
+                <span class="chip chip-cat">Партнёрка</span>
+                <span class="chip chip-date">28.02.2026</span>
+              </div>
+            </div>
+            <div class="news-body"><h3>Обновлена партнёрская программа с новой аналитикой уровней</h3><p>Сделали систему вознаграждений более прозрачной и понятной для новых участников.</p></div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-inner">
+            <div class="news-thumb">
+              <div class="news-thumb-glow" style="background:radial-gradient(circle at 30% 40%,rgba(34,211,238,.2) 0%,transparent 60%),radial-gradient(circle at 75% 60%,rgba(0,200,122,.1) 0%,transparent 50%);"></div>
+              <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+              <div class="news-chips">
+                <span class="chip chip-cat">Отчётность</span>
+                <span class="chip chip-date">21.02.2026</span>
+              </div>
+            </div>
+            <div class="news-body"><h3>Запущен формат ежемесячных отчётов</h3><p>Ключевые метрики развития теперь доступны в регулярных апдейтах с акцентом на рост.</p></div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-inner">
+            <div class="news-thumb">
+              <div class="news-thumb-glow" style="background:radial-gradient(circle at 30% 40%,rgba(168,85,247,.2) 0%,transparent 60%);"></div>
+              <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="news-chips">
+                <span class="chip chip-cat">Комьюнити</span>
+                <span class="chip chip-date">16.02.2026</span>
+              </div>
+            </div>
+            <div class="news-body"><h3>Расширена география комитета</h3><p>В наблюдательный комитет вошли новые представители из разных стран и отраслей.</p></div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-inner">
+            <div class="news-thumb">
+              <div class="news-thumb-glow"></div>
+              <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="news-chips">
+                <span class="chip chip-cat">Правовая база</span>
+                <span class="chip chip-date">11.02.2026</span>
+              </div>
+            </div>
+            <div class="news-body"><h3>Юридический пакет обновлён</h3><p>Актуализированы документы по долям, акционерной модели и пользовательским условиям.</p></div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-inner">
+            <div class="news-thumb">
+              <div class="news-thumb-glow" style="background:radial-gradient(circle at 30% 40%,rgba(34,211,238,.15) 0%,transparent 60%),radial-gradient(circle at 75% 60%,rgba(0,200,122,.15) 0%,transparent 50%);"></div>
+              <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+              <div class="news-chips">
+                <span class="chip chip-cat">Продукт</span>
+                <span class="chip chip-date">05.02.2026</span>
+              </div>
+            </div>
+            <div class="news-body"><h3>Рост активности инвесторов +31%</h3><p>Увеличилось число новых подключений и повторных инвестиций.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="news-controls">
+      <button class="news-btn" id="newsPrev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="news-btn" id="newsNext">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ WHY NOW ═══════════════════ -->
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;" class="reveal">
+      <div class="tag" style="margin-bottom:14px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Почему сейчас
+      </div>
+      <h2>Инвесторы заходят <span class="text-accent">сегодня</span></h2>
+    </div>
+
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3>Ограниченный пул</h3>
+        <p>В продаже только <span class="why-highlight">15%</span> — это создаёт дефицит предложения и защищает цену доли для ранних инвесторов.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>Прозрачная модель</h3>
+        <p>Реферальная система «до <span class="why-highlight">40%</span>» объяснима, масштабируется с глубиной сети и не требует скрытых условий.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Сильное комьюнити</h3>
+        <p>Наблюдательный комитет из <span class="why-highlight">100+</span> участников и регулярные новости повышают доверие к проекту.</p>
+      </div>
+    </div>
+
+    <!-- ROI infographic strip -->
+    <div class="card" style="margin-top:24px;padding:32px 36px;" class="reveal">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center;">
+        <div style="padding:16px;border-right:1px solid var(--border);">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Шаг 1</div>
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(0,200,122,.1);border:1px solid rgba(0,200,122,.2);display:grid;place-items:center;margin:0 auto 12px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          </div>
+          <div style="font-weight:700;font-size:13px;">Регистрация</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">Создайте аккаунт</div>
+        </div>
+        <div style="padding:16px;border-right:1px solid var(--border);">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Шаг 2</div>
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(0,200,122,.1);border:1px solid rgba(0,200,122,.2);display:grid;place-items:center;margin:0 auto 12px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div style="font-weight:700;font-size:13px;">Инвестиция</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">Покупка долей</div>
+        </div>
+        <div style="padding:16px;border-right:1px solid var(--border);">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Шаг 3</div>
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(0,200,122,.1);border:1px solid rgba(0,200,122,.2);display:grid;place-items:center;margin:0 auto 12px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div style="font-weight:700;font-size:13px;">Реферальная сеть</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">До 40% дохода</div>
+        </div>
+        <div style="padding:16px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Шаг 4</div>
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(0,200,122,.1);border:1px solid rgba(0,200,122,.2);display:grid;place-items:center;margin:0 auto 12px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v6"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20v13a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/></svg>
+          </div>
+          <div style="font-weight:700;font-size:13px;">Конвертация</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">Доли → Акции</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div style="max-width:800px;margin:0 auto;">
+      <div class="reveal" style="margin-bottom:36px;">
+        <div class="tag" style="margin-bottom:14px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+          FAQ
+        </div>
+        <h2>Частые вопросы</h2>
+      </div>
+
+      <div class="faq-tabs reveal">
+        <button class="faq-tab active" data-group="0">Про инвестиции</button>
+        <button class="faq-tab" data-group="1">Про реферальную программу</button>
+        <button class="faq-tab" data-group="2">Про платформу</button>
+      </div>
+
+      <!-- Group 0 -->
+      <div class="faq-group active reveal" data-faq-group="0">
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q">Что я получаю, когда инвестирую?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </button>
+          <div class="faq-panel"><div class="faq-panel-inner">Вы получаете доли компании. Позже, по плану развития, эти доли переходят в акции в рамках утверждённой корпоративной модели.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q">Почему на продажу выставлено только 15%?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </button>
+          <div class="faq-panel"><div class="faq-panel-inner">Мы открыли ограниченный объём для раннего раунда, чтобы сохранить управляемую структуру капитала и обеспечить качественный рост проекта.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q">Какой сценарий после покупки долей?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </button>
+          <div class="faq-panel"><div class="faq-panel-inner">После завершения этапов развития и корпоративных процедур доли конвертируются в акции в рамках утверждённой модели.</div></div>
+        </div>
+      </div>
+
+      <!-- Group 1 -->
+      <div class="faq-group" data-faq-group="1">
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q">Что значит «до 40%» простыми словами?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </button>
+          <div class="faq-panel"><div class="faq-panel-inner">Первые три рекомендации дают вам 10%, 5% и 2%. Далее остаётся часть вознаграждения, которая распределяется по вашей растущей структуре.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q">Если сеть очень глубокая — доход теряется?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </button>
+          <div class="faq-panel"><div class="faq-panel-inner">Доход не пропадает: оставшийся процент автоматически делится между более глубокими уровнями, чтобы система оставалась справедливой для всех участников.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q">Это работает только для маленькой сети?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </button>
+          <div class="faq-panel"><div class="faq-panel-inner">Нет. Модель рассчитана и на небольшие, и на большие структуры — вы зарабатываете не только с ближних, но и с дальних уровней.</div></div>
+        </div>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="faq-group" data-faq-group="2">
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q">Сколько новостей отображается на лендинге?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </button>
+          <div class="faq-panel"><div class="faq-panel-inner">Показываются 6 последних новостей. Рядом есть ссылка на полный список всех обновлений проекта.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span class="faq-q">Можно открывать несколько вопросов FAQ сразу?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </button>
+          <div class="faq-panel"><div class="faq-panel-inner">Да, аккордеон работает в мульти-режиме — можно раскрыть несколько ответов одновременно.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ COMMITTEE ═══════════════════ -->
+<section class="section" id="committee" style="background:var(--bg2);">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px;" class="reveal">
+      <div>
+        <div class="tag" style="margin-bottom:12px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Наблюдательный комитет
+        </div>
+        <h2>100+ участников</h2>
+        <p style="color:var(--muted);margin-top:8px;">Клик по аватару открывает подробную информацию.</p>
+      </div>
+      <button id="loadMoreBtn" class="btn-ghost">Показать ещё</button>
+    </div>
+
+    <div class="committee-grid reveal" id="committeeGrid"></div>
+
+    <!-- Country select + carousel -->
+    <div class="reveal">
+      <div class="country-wrap">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:8px;">Фильтр по стране</p>
+        <button class="country-trigger" id="countryTrigger">
+          <span id="countryVal" style="display:flex;align-items:center;gap:8px;">🌍 Выберите страну</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="country-menu" id="countryMenu"></div>
+      </div>
+
+      <div id="carouselWrap" style="display:none;margin-top:20px;">
+        <div class="cm-carousel-controls">
+          <button class="cm-ctrl-btn" id="cmPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+          <button class="cm-ctrl-btn" id="cmNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+        <div class="cm-carousel-wrap">
+          <div class="cm-track" id="cmTrack"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="cta-section">
+      <div class="cta-bg"></div>
+      <div class="cta-grid-bg"></div>
+      <div class="cta-inner">
+        <div>
+          <h2>Готовы стать частью<br><span class="text-accent">Dilan Mirror?</span></h2>
+          <p>Присоединяйтесь к ранним инвесторам и участвуйте в росте экосистемы. Осталось ограниченное количество долей.</p>
+        </div>
+        <div class="cta-btns">
+          <a href="#" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Инвестировать
+          </a>
+          <a href="#" class="btn-ghost">Поддержка</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact strip -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px;">
+      <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          </div>
+          <span style="font-weight:600;font-size:14px;">Telegram</span>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <span style="font-weight:600;font-size:14px;">Instagram</span>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </div>
+          <span style="font-weight:600;font-size:14px;">YouTube</span>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" style="text-decoration:none;">
+          <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          Dilan Mirror
+        </a>
+        <p>Инвестируйте в проект умного зеркала. Ранний раунд. Ограниченное количество долей.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></a>
+          <a href="#" class="footer-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="footer-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="#">Dashboard Login</a></li>
+          <li><a href="#">Affiliates Login</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Блог</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Поддержка</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Disclaimers</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Юридическое</h4>
+        <ul>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Dilan Mirror Investment. All rights reserved.</p>
+      <p>ID: 882194 · lawyer1@awsarhitect.me</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FAB -->
+<a href="#" class="fab" aria-label="Чат поддержки">
+  <div class="fab-ring"></div>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <div class="fab-badge">99</div>
+</a>
+
+<!-- Member modal -->
+<div class="modal" id="memberModal">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════ DATA ═══════════
+const firstNames = ['Alex','Maria','Ivan','Sofia','Dmitry','Nora','Liam','Emma','Noah','Olivia'];
+const lastNames  = ['Petrov','Johnson','Miller','Smirnova','Kim','Brown','Garcia','Wilson','Taylor','Lee'];
+const countries  = [
+  {country:'Russia',city:'Moscow',flag:'🇷🇺'},
+  {country:'Germany',city:'Berlin',flag:'🇩🇪'},
+  {country:'France',city:'Paris',flag:'🇫🇷'},
+  {country:'USA',city:'New York',flag:'🇺🇸'},
+  {country:'UAE',city:'Dubai',flag:'🇦🇪'},
+  {country:'Turkey',city:'Istanbul',flag:'🇹🇷'},
+  {country:'Kazakhstan',city:'Astana',flag:'🇰🇿'},
+  {country:'Spain',city:'Madrid',flag:'🇪🇸'},
+  {country:'Portugal',city:'Lisbon',flag:'🇵🇹'},
+  {country:'Italy',city:'Milan',flag:'🇮🇹'},
+];
+const socials = ['telegram','linkedin','twitter'];
+
+const members = Array.from({length:100},(_,i)=>{
+  const c = countries[i % countries.length];
+  return {
+    avatar: `https://i.pravatar.cc/160?img=${(i%70)+1}`,
+    city: c.city, country: c.country, flag: c.flag,
+    firstName: firstNames[i%firstNames.length],
+    lastName: lastNames[(i*2)%lastNames.length],
+    id: 7000+i,
+    socials: socials.slice(0,1+(i%3))
+  };
+});
+
+// ═══════════ COUNTER ANIMATION ═══════════
+document.querySelectorAll('[data-count]').forEach(el => {
+  const target = parseFloat(el.dataset.count);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const decimals = String(target).includes('.') ? String(target).split('.')[1].length : 0;
+  let start = null;
+  const duration = 2000;
+  const step = ts => {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const val = (target * ease).toFixed(decimals);
+    el.textContent = prefix + val + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { requestAnimationFrame(step); obs.disconnect(); }
+  }, {threshold:0.5});
+  obs.observe(el);
+});
+
+// ═══════════ SCROLL REVEAL ═══════════
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ═══════════ NEWS SLIDER ═══════════
+let newsPage = 0;
+const track = document.getElementById('newsTrack');
+const cards = track.querySelectorAll('.news-card');
+const perView = () => window.innerWidth >= 900 ? 3 : window.innerWidth >= 600 ? 2 : 1;
+const maxPage = () => Math.max(0, Math.ceil(cards.length / perView()) - 1);
+const updateNews = () => {
+  newsPage = Math.min(newsPage, maxPage());
+  track.style.transform = `translateX(-${newsPage * 100}%)`;
+};
+document.getElementById('newsPrev').addEventListener('click', () => { newsPage = Math.max(0, newsPage-1); updateNews(); });
+document.getElementById('newsNext').addEventListener('click', () => { newsPage = Math.min(maxPage(), newsPage+1); updateNews(); });
+window.addEventListener('resize', updateNews);
+
+// ═══════════ FAQ ═══════════
+document.querySelectorAll('.faq-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const gi = tab.dataset.group;
+    document.querySelectorAll('.faq-group').forEach(g => {
+      g.classList.toggle('active', g.dataset.faqGroup === gi);
     });
+  });
+});
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !expanded);
+    const panel = btn.nextElementSibling;
+    panel.classList.toggle('open', !expanded);
+  });
+});
 
-    const openCountryMenu = () => {
-      countrySelectMenu.classList.remove('hidden');
-      countrySelectMenu.classList.remove('bottom-full', 'mb-2');
-      countrySelectMenu.classList.add('top-full', 'mt-2');
+// ═══════════ COMMITTEE ═══════════
+const grid = document.getElementById('committeeGrid');
+const modal = document.getElementById('memberModal');
+const modalBody = document.getElementById('modalBody');
+let shown = 0;
+const batch = 30;
 
-      const triggerRect = countrySelectTrigger.getBoundingClientRect();
-      const estimatedHeight = Math.min(countrySelectMenu.scrollHeight || 256, 256);
-      const spaceBelow = window.innerHeight - triggerRect.bottom;
-      const spaceAbove = triggerRect.top;
+const socialSVG = {
+  telegram: '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',
+  linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
+  twitter: '<path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>',
+};
 
-      if (spaceBelow < estimatedHeight && spaceAbove > spaceBelow) {
-        countrySelectMenu.classList.remove('top-full', 'mt-2');
-        countrySelectMenu.classList.add('bottom-full', 'mb-2');
-      }
-    };
+const renderMember = m => `
+<div style="display:flex;gap:16px;align-items:flex-start;">
+  <img src="${m.avatar}" style="width:72px;height:72px;border-radius:14px;object-fit:cover;flex-shrink:0;border:2px solid var(--border2);">
+  <div>
+    <h3 style="font-size:18px;">${m.firstName} ${m.lastName} <span style="font-size:18px;">${m.flag}</span></h3>
+    <p style="color:var(--muted);font-size:13px;margin:4px 0 2px;">${m.city}, ${m.country}</p>
+    <p style="font-size:11px;font-weight:700;color:var(--label);">ID: ${m.id}</p>
+    <div style="display:flex;gap:8px;margin-top:12px;">
+      ${m.socials.map(s=>`<a href="#" style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid var(--border);display:grid;place-items:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${socialSVG[s]||''}</svg></a>`).join('')}
+    </div>
+  </div>
+</div>`;
 
-    const closeCountryMenu = () => {
-      countrySelectMenu.classList.add('hidden');
-    };
-
-    countrySelectTrigger?.addEventListener('click', () => {
-      if (countrySelectMenu.classList.contains('hidden')) openCountryMenu();
-      else closeCountryMenu();
+const renderBatch = () => {
+  const next = members.slice(shown, shown+batch);
+  next.forEach(m => {
+    const el = document.createElement('div');
+    el.className = 'cm-member';
+    el.innerHTML = `
+      <div class="cm-avatar">
+        <img src="${m.avatar}" alt="${m.firstName}" loading="lazy">
+        <span class="cm-flag">${m.flag}</span>
+      </div>
+      <div class="cm-name">${m.firstName}</div>`;
+    el.addEventListener('click', () => {
+      modalBody.innerHTML = renderMember(m);
+      modal.classList.add('open');
     });
+    grid.appendChild(el);
+  });
+  shown += next.length;
+  if (shown >= members.length) document.getElementById('loadMoreBtn').style.display='none';
+};
+renderBatch();
+document.getElementById('loadMoreBtn').addEventListener('click', renderBatch);
 
-    document.addEventListener('click', (e) => {
-      if (!countrySelectTrigger?.contains(e.target) && !countrySelectMenu?.contains(e.target)) {
-        closeCountryMenu();
-      }
-    });
+// Country filter
+const countryMenu = document.getElementById('countryMenu');
+const uniqueCountries = [...new Set(members.map(m=>m.country))].sort();
+uniqueCountries.forEach(c => {
+  const first = members.find(m=>m.country===c);
+  const opt = document.createElement('div');
+  opt.className = 'country-opt';
+  opt.innerHTML = `<span style="font-size:16px;">${first.flag}</span><span>${c}</span>`;
+  opt.addEventListener('click', () => {
+    document.getElementById('countryVal').innerHTML = `<span style="font-size:16px;">${first.flag}</span><span>${c}</span>`;
+    countryMenu.classList.remove('open');
+    renderCarousel(members.filter(m=>m.country===c));
+  });
+  countryMenu.appendChild(opt);
+});
+document.getElementById('countryTrigger').addEventListener('click', () => countryMenu.classList.toggle('open'));
+document.addEventListener('click', e => {
+  if (!e.target.closest('.country-wrap')) countryMenu.classList.remove('open');
+});
 
-    const perViewCommittee = () => window.innerWidth >= 1280 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
-    const updateCommitteeCarousel = () => {
-      if (!filtered.length) {
-        carouselWrap.classList.add('hidden');
-        return;
-      }
-      const pages = Math.ceil(filtered.length / perViewCommittee());
-      cIndex = Math.min(cIndex, Math.max(0, pages - 1));
-      carouselWrap.classList.remove('hidden');
-      carousel.style.transform = `translateX(-${cIndex * 100}%)`;
-    };
+// Carousel
+let cmPage = 0;
+let cmData = [];
+const cmTrack = document.getElementById('cmTrack');
+const carouselWrap = document.getElementById('carouselWrap');
+const cmPerView = () => window.innerWidth >= 900 ? 3 : window.innerWidth >= 600 ? 2 : 1;
+const cmMaxPage = () => Math.max(0, Math.ceil(cmData.length / cmPerView()) - 1);
+const updateCarousel = () => {
+  cmPage = Math.min(cmPage, cmMaxPage());
+  cmTrack.style.transform = `translateX(-${cmPage * 100}%)`;
+};
+const renderCarousel = data => {
+  cmData = data; cmPage = 0;
+  cmTrack.innerHTML = data.map(m=>`
+    <div class="cm-card">
+      <div class="cm-card-inner">
+        <img src="${m.avatar}" alt="${m.firstName}" loading="lazy">
+        <div class="cm-card-body">
+          <h4>${m.firstName} ${m.lastName} ${m.flag}</h4>
+          <div class="loc">${m.city}, ${m.country}</div>
+          <div class="id">ID: ${m.id}</div>
+          <div class="cm-socials">${m.socials.map(s=>`<div class="cm-soc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${socialSVG[s]||''}</svg></div>`).join('')}</div>
+        </div>
+      </div>
+    </div>`).join('');
+  carouselWrap.style.display = 'block';
+  updateCarousel();
+};
+document.getElementById('cmPrev').addEventListener('click', () => { cmPage = Math.max(0, cmPage-1); updateCarousel(); });
+document.getElementById('cmNext').addEventListener('click', () => { cmPage = Math.min(cmMaxPage(), cmPage+1); updateCarousel(); });
 
-    document.querySelector('[data-committee-prev]')?.addEventListener('click', () => {
-      cIndex = Math.max(0, cIndex - 1);
-      updateCommitteeCarousel();
-    });
-    document.querySelector('[data-committee-next]')?.addEventListener('click', () => {
-      const pages = Math.ceil(filtered.length / perViewCommittee());
-      cIndex = Math.min(Math.max(0, pages - 1), cIndex + 1);
-      updateCommitteeCarousel();
-    });
-
-    loadMoreBtn?.addEventListener('click', renderPreviewBatch);
-    renderPreviewBatch();
-
-    window.addEventListener('resize', () => {
-      updateNews();
-      updateCommitteeCarousel();
-    });
-
-    modal.querySelectorAll('[data-modal-close]').forEach((el) => el.addEventListener('click', () => modal.classList.add('hidden')));
-
-    updateNews();
-    if (window.lucide) window.lucide.createIcons();
-  })();
+// Modal close
+document.getElementById('modalBackdrop').addEventListener('click', () => modal.classList.remove('open'));
+document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('open'));
+document.addEventListener('keydown', e => { if (e.key==='Escape') modal.classList.remove('open'); });
 </script>
+
+</main>
