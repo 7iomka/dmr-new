@@ -164,57 +164,65 @@
                   </p>
 
                   <div class="phil-grid">
-                    <div class="phil-item">
-                      <div class="phil-ico">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                          <circle cx="12" cy="12" r="3" />
-                        </svg>
+                    <div class="phil-item phil-item-split">
+                      <div class="phil-head">
+                        <div class="phil-ico">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                            <circle cx="12" cy="12" r="3" />
+                          </svg>
+                        </div>
+                        <div>
+                          <div class="phil-num">01 / Vision</div>
+                          <h4>360° обзор тела</h4>
+                        </div>
                       </div>
-                      <div>
-                        <div class="phil-num">01 / Vision</div>
-                        <h4>360° обзор тела</h4>
-                        <p>Полный угол обзора без слепых зон.</p>
-                      </div>
+                      <p class="phil-desc">Полный угол обзора без слепых зон.</p>
                     </div>
-                    <div class="phil-item">
-                      <div class="phil-ico">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
+                    <div class="phil-item phil-item-split">
+                      <div class="phil-head">
+                        <div class="phil-ico">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <div class="phil-num">02 / Research</div>
+                          <h4>Реальная экспертиза</h4>
+                        </div>
                       </div>
-                      <div>
-                        <div class="phil-num">02 / Research</div>
-                        <h4>Реальная экспертиза</h4>
-                        <p>Модель создана практиками рынка.</p>
-                      </div>
+                      <p class="phil-desc">Модель создана практиками рынка.</p>
                     </div>
-                    <div class="phil-item">
-                      <div class="phil-ico">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <rect x="2" y="3" width="20" height="14" rx="2" />
-                          <line x1="8" y1="21" x2="16" y2="21" />
-                          <line x1="12" y1="17" x2="12" y2="21" />
-                        </svg>
+                    <div class="phil-item phil-item-split">
+                      <div class="phil-head">
+                        <div class="phil-ico">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                          </svg>
+                        </div>
+                        <div>
+                          <div class="phil-num">03 / Scale</div>
+                          <h4>Данные в центре</h4>
+                        </div>
                       </div>
-                      <div>
-                        <div class="phil-num">03 / Scale</div>
-                        <h4>Данные в центре</h4>
-                        <p>Решения на основе аналитики.</p>
-                      </div>
+                      <p class="phil-desc">Решения на основе аналитики.</p>
                     </div>
-                    <div class="phil-item">
-                      <div class="phil-ico">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M3 3v18h18" />
-                          <path d="m19 9-5 5-4-4-3 3" />
-                        </svg>
+                    <div class="phil-item phil-item-split">
+                      <div class="phil-head">
+                        <div class="phil-ico">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 3v18h18" />
+                            <path d="m19 9-5 5-4-4-3 3" />
+                          </svg>
+                        </div>
+                        <div>
+                          <div class="phil-num">04 / Risk</div>
+                          <h4>Лидирующий рост</h4>
+                        </div>
                       </div>
-                      <div>
-                        <div class="phil-num">04 / Risk</div>
-                        <h4>Лидирующий рост</h4>
-                        <p>Стабильное расширение экосистемы.</p>
-                      </div>
+                      <p class="phil-desc">Стабильное расширение экосистемы.</p>
                     </div>
                   </div>
                 </div>
