@@ -24,8 +24,6 @@
   --cta-bg: linear-gradient(135deg, #e8f8ef 0%, #e5f7f4 50%, #e8effc 100%);
   --grid-line: rgba(0, 176, 116, 0.24);
   --grid-opacity: 0.58;
-  --ff-head: "Noto Sans", "Noto Sans SC", sans-serif;
-  --ff-body: "Noto Sans", "Noto Sans SC", sans-serif;
 }
 
 .dark .page-main-landing {
@@ -56,38 +54,14 @@
   --grid-opacity: 0.3;
 }
 
-.page-main-landing .hero {
-  min-height: auto;
-  padding-top: 24px;
-}
-
 .page-main-landing {
+  color: var(--text);
+  font-size: var(--text-base);
+  line-height: 1.65;
   scroll-behavior: smooth;
 }
 
-.page-main-landing {
-  color: var(--text);
-  font-family: var(--ff-body);
-  font-size: var(--text-base);
-  line-height: 1.65;
-}
-
-/* ── Scrollbar ── */
-.page-main-landing ::-webkit-scrollbar {
-  width: 4px;
-}
-
-.page-main-landing ::-webkit-scrollbar-track {
-  background: var(--bg2);
-}
-
-.page-main-landing ::-webkit-scrollbar-thumb {
-  background: var(--scroll-thumb);
-  border-radius: 4px;
-}
-
 /* ── Utilities ── */
-
 
 .page-main-landing .section {
   padding: 48px 0;
@@ -115,7 +89,6 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--ff-head);
   font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -136,18 +109,17 @@
 .page-main-landing h2,
 .page-main-landing h3,
 .page-main-landing h4 {
-  font-family: var(--ff-head);
   line-height: 1.1;
 }
 
 .page-main-landing h1 {
   font-size: clamp(2.2rem, 4.8vw, 3.8rem);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .page-main-landing h2 {
   font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .page-main-landing h3 {
@@ -173,7 +145,6 @@
   gap: 8px;
   background: var(--accent);
   color: #000;
-  font-family: var(--ff-head);
   font-weight: 700;
   font-size: var(--text-sm);
   letter-spacing: 0.1em;
@@ -183,7 +154,9 @@
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   box-shadow: 0 8px 32px rgba(0, 200, 122, 0.3);
 }
 
@@ -198,7 +171,6 @@
   gap: 8px;
   background: transparent;
   color: var(--text);
-  font-family: var(--ff-head);
   font-weight: 700;
   font-size: var(--text-sm);
   letter-spacing: 0.1em;
@@ -208,7 +180,9 @@
   border: 1px solid var(--color-border);
   cursor: pointer;
   text-decoration: none;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 }
 
 .btn-ghost:hover {
@@ -225,45 +199,26 @@
 }
 
 .card-glow {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 200, 122, 0.06) 0%,
-    var(--card) 60%
-  );
+  background: linear-gradient(135deg, rgba(0, 200, 122, 0.06) 0%, var(--card) 60%);
   border: 1px solid var(--border2);
 }
 
-
-
 /* ── HERO ── */
 .hero {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 16px;
 }
 
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: radial-gradient(
-      ellipse 70% 60% at 15% 50%,
-      rgba(0, 200, 122, 0.12) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 50% 40% at 85% 30%,
-      rgba(34, 211, 238, 0.07) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 80% 80% at 50% 110%,
-      rgba(0, 200, 122, 0.06) 0%,
-      transparent 50%
-    );
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 50%, rgba(0, 200, 122, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 30%, rgba(34, 211, 238, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 80% at 50% 110%, rgba(0, 200, 122, 0.06) 0%, transparent 50%);
 }
 
 .hero-grid {
@@ -271,14 +226,11 @@
   inset: 0;
   opacity: var(--grid-opacity);
   z-index: 0;
-  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 60px 60px;
-  mask-image: radial-gradient(
-    ellipse 80% 80% at 50% 50%,
-    black 30%,
-    transparent 80%
-  );
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
 }
 
 .hero-inner {
@@ -289,9 +241,8 @@
   gap: 64px;
   align-items: center;
   width: 100%;
-  padding: 80px 0;
+  padding: 50px 0;
 }
-
 
 .hero-eyebrow {
   display: flex;
@@ -299,8 +250,6 @@
   gap: 12px;
   margin-bottom: 20px;
 }
-
-
 
 .live-dot {
   display: flex;
@@ -316,7 +265,7 @@
 }
 
 .live-dot::before {
-  content: "";
+  content: '';
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -337,15 +286,15 @@
   }
 }
 
-.page-main-landing .hero h1 {
+.hero h1 {
   font-size: clamp(2rem, 4.2vw, 3.35rem);
 }
 
-.page-main-landing .hero h1 {
+.hero h1 {
   margin-bottom: 20px;
 }
 
-.page-main-landing .hero h1 .line2 {
+.hero h1 .line2 {
   color: var(--accent);
 }
 
@@ -378,9 +327,8 @@
 }
 
 .hstat-val {
-  font-family: var(--ff-head);
   font-size: 1.8rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text);
   line-height: 1;
 }
@@ -447,7 +395,6 @@
 }
 
 .hero-badge .val {
-  font-family: var(--ff-head);
   font-weight: 700;
   font-size: var(--text-sm);
 }
@@ -482,9 +429,8 @@
 }
 
 .stat-num {
-  font-family: var(--ff-head);
   font-size: 2.4rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -577,7 +523,6 @@
 }
 
 .phil-num {
-  font-family: var(--ff-head);
   font-size: var(--text-xs);
   font-weight: 700;
   color: var(--label);
@@ -663,8 +608,7 @@
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  font-family: var(--ff-head);
-  font-weight: 800;
+  font-weight: 700;
   font-size: var(--text-base);
 }
 
@@ -696,7 +640,6 @@
 }
 
 .ref-level-body .l-name {
-  font-family: var(--ff-head);
   font-weight: 700;
   font-size: var(--text-base);
   margin: 2px 0 6px;
@@ -728,8 +671,7 @@
 }
 
 .ref-pct {
-  font-family: var(--ff-head);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 2rem;
   flex-shrink: 0;
   text-align: right;
@@ -753,18 +695,13 @@
 }
 
 .pyramid-card {
-  background: linear-gradient(
-    160deg,
-    rgba(0, 200, 122, 0.06) 0%,
-    var(--card) 70%
-  );
+  background: linear-gradient(160deg, rgba(0, 200, 122, 0.06) 0%, var(--card) 70%);
   border: 1px solid var(--border2);
   border-radius: 20px;
   padding: 32px;
 }
 
 .pyramid-title {
-  font-family: var(--ff-head);
   font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -789,7 +726,7 @@
 }
 
 .pyramid-row::before {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -8px;
   left: 50%;
@@ -855,7 +792,7 @@
 }
 
 .py-connector::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   top: 0;
@@ -875,7 +812,7 @@
 }
 
 .branch-line::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 25%;
@@ -885,7 +822,7 @@
 }
 
 .branch-line::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 25%;
@@ -913,8 +850,7 @@
 }
 
 .deep-val {
-  font-family: var(--ff-head);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--accent);
   font-size: 1.4rem;
 }
@@ -988,7 +924,9 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: border-color 0.2s, transform 0.2s;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
 }
 
 .news-inner:hover {
@@ -1006,16 +944,9 @@
 .news-thumb-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-      circle at 30% 40%,
-      rgba(0, 200, 122, 0.25) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at 75% 60%,
-      rgba(34, 211, 238, 0.12) 0%,
-      transparent 50%
-    );
+  background:
+    radial-gradient(circle at 30% 40%, rgba(0, 200, 122, 0.25) 0%, transparent 60%),
+    radial-gradient(circle at 75% 60%, rgba(34, 211, 238, 0.12) 0%, transparent 50%);
 }
 
 .news-thumb-icon {
@@ -1128,7 +1059,9 @@
   border-radius: 14px;
   background: var(--surface-1);
   border: 1px solid var(--color-border);
-  transition: border-color 0.2s, transform 0.2s;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
 }
 
 .why-card:hover {
@@ -1179,7 +1112,6 @@
 }
 
 .faq-tab {
-  font-family: var(--ff-head);
   font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1235,7 +1167,6 @@
 }
 
 .faq-q {
-  font-family: var(--ff-head);
   font-weight: 600;
   font-size: var(--text-base);
   transition: color 0.2s;
@@ -1250,7 +1181,9 @@
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  transition: transform 0.3s, background 0.2s;
+  transition:
+    transform 0.3s,
+    background 0.2s;
 }
 
 .faq-icon svg {
@@ -1259,7 +1192,7 @@
   color: var(--accent);
 }
 
-.faq-btn[aria-expanded="true"] .faq-icon {
+.faq-btn[aria-expanded='true'] .faq-icon {
   transform: rotate(45deg);
   background: rgba(0, 200, 122, 0.15);
   border-color: var(--border2);
@@ -1268,7 +1201,9 @@
 .faq-panel {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.35s ease, opacity 0.35s ease;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.35s ease;
   opacity: 0;
 }
 
@@ -1370,7 +1305,6 @@
   cursor: pointer;
   color: var(--text);
   font-size: var(--text-sm);
-  font-family: var(--ff-body);
 }
 
 .country-trigger:hover {
@@ -1608,7 +1542,8 @@
   position: absolute;
   inset: 0;
   opacity: 0.15;
-  background-image: linear-gradient(rgba(0, 200, 122, 0.2) 1px, transparent 1px),
+  background-image:
+    linear-gradient(rgba(0, 200, 122, 0.2) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 200, 122, 0.2) 1px, transparent 1px);
   background-size: 40px 40px;
 }
@@ -1705,7 +1640,7 @@
     padding: 60px 16px;
   }
 
-  .page-main-landing .hero h1 {
+  .hero h1 {
     font-size: clamp(2.4rem, 6vw, 3.8rem);
   }
 
@@ -1797,10 +1732,6 @@
     width: 100%;
   }
 
-  .page-main-landing nav {
-    display: none;
-  }
-
   .roi-steps {
     grid-template-columns: 1fr;
   }
@@ -1838,7 +1769,9 @@
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
 .reveal.visible {

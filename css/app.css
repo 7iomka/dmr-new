@@ -1,0 +1,375 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: TTNorms;
+  src: url('/assets/fonts/TTNorms/TTNorms-Regular.eot');
+  src:
+    url('/assets/fonts/TTNorms/TTNorms-Regular.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/TTNorms/TTNorms-Regular.woff') format('woff'),
+    url('/assets/fonts/TTNorms/TTNorms-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: TTNorms;
+  src: url('/assets/fonts/TTNorms/TTNorms-Bold.eot');
+  src:
+    url('/assets/fonts/TTNorms/TTNorms-Bold.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/TTNorms/TTNorms-Bold.woff') format('woff'),
+    url('/assets/fonts/TTNorms/TTNorms-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: TTNorms;
+  src: url('/assets/fonts/TTNorms/TTNorms-Medium.eot');
+  src:
+    url('/assets/fonts/TTNorms/TTNorms-Medium.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/TTNorms/TTNorms-Medium.woff') format('woff'),
+    url('/assets/fonts/TTNorms/TTNorms-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: TTNorms;
+  src: url('/assets/fonts/TTNorms/TTNorms-Light.eot');
+  src:
+    url('/assets/fonts/TTNorms/TTNorms-Light.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/TTNorms/TTNorms-Light.woff') format('woff'),
+    url('/assets/fonts/TTNorms/TTNorms-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: TTNorms;
+  src: url('/assets/fonts/TTNorms/TTNorms-ExtraBold.eot');
+  src:
+    url('/assets/fonts/TTNorms/TTNorms-ExtraBold.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/TTNorms/TTNorms-ExtraBold.woff') format('woff'),
+    url('/assets/fonts/TTNorms/TTNorms-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'TTNorms', sans-serif;
+  --font-serif: 'TTNorms', sans-serif;
+  --color-card: #ffffff;
+  --color-accent: #00b074;
+  --color-dark-bg: #0b0e11;
+  --color-card-dark: #14171a;
+  --color-muted-foreground: #5f6469;
+  --color-surface-2: rgba(15, 23, 42, 0.06);
+  --color-border: rgba(15, 23, 42, 0.12);
+}
+
+@variant dark {
+  --color-card: #14171a;
+  --color-muted-foreground: #8b9095;
+  --color-surface-2: rgba(255, 255, 255, 0.05);
+  --color-border: rgba(255, 255, 255, 0.07);
+}
+
+@layer base {
+  body {
+    @apply bg-[#f3f6f8] text-[#1A1D1F] dark:bg-dark-bg dark:text-[#E4E6EB] min-h-screen;
+  }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 16px;
+  max-width: calc(var(--container-7xl) + 16px * 2);
+  @media (min-width: 1024px) {
+    padding-inline: 40px;
+    max-width: calc(var(--container-7xl) + 40px * 2);
+  }
+}
+
+@utility page-content-area {
+  @apply flex-1 flex flex-col min-w-0 h-screen relative pb-15 lg:pb-0;
+}
+
+@utility page-rhythm {
+  @apply py-6 lg:py-10;
+}
+
+@utility page-main {
+  @apply container page-rhythm space-y-6;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-spinner::-webkit-outer-spin-button,
+  .no-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .no-spinner {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer components {
+  /* общая база для всех карточек */
+  .card,
+  .card-simple {
+    @apply rounded-xl border bg-card border-zinc-200 dark:border-zinc-800 shadow-sm;
+  }
+  /* 1) простая карточка */
+  .card-simple {
+    @apply px-4 lg:px-6 py-6;
+  }
+  /* 2) карточка со структурой */
+  .card-header {
+    @apply px-4 lg:px-6 py-4 border-b flex items-center justify-between gap-2 flex-wrap bg-white dark:bg-[#1E2023] border-zinc-200 dark:border-zinc-800 rounded-t-[inherit];
+  }
+  /* базовый padding card-body */
+  .card-body {
+    @apply p-4 lg:p-6;
+  }
+  /* full-bleed (снимаем паддинги через отрицательные margins) */
+  .card-body-bleed {
+    @apply -m-4 lg:-m-6;
+  }
+  .card-body-bleed-x {
+    @apply -mx-4 lg:-mx-6;
+  }
+  .card-body-bleed-y {
+    @apply -my-4 lg:-my-6;
+  }
+  /* inset (возвращаем паддинги обратно внутри bleed-контейнера) */
+  .card-body-inset {
+    @apply p-4 lg:p-6;
+  }
+  .card-body-inset-x {
+    @apply px-4 lg:px-6;
+  }
+  .card-body-inset-y {
+    @apply py-4 lg:py-6;
+  }
+}
+
+:root {
+  --sidebar-transition-duration: 0.3s;
+  --sidebar-transition-timing: ease;
+  --sidebar-width: 16rem;
+  --sidebar-width-collapse: 5rem;
+  --sidebar-default-width: 16rem;
+}
+
+body {
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+@media (min-width: 64rem) {
+  body.sidebar-collapse {
+    --sidebar-width: var(--sidebar-width-collapse);
+  }
+  .app-sidebar {
+    width: var(--sidebar-width);
+    transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+  }
+  .page-content-area {
+    padding-inline-start: var(--sidebar-width) !important;
+    transition: padding-inline-start var(--sidebar-transition-duration)
+      var(--sidebar-transition-timing);
+  }
+  body.sidebar-collapse .app-sidebar:hover:not(.animating) {
+    width: var(--sidebar-default-width);
+  }
+  body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-nav-link .sidebar-label,
+  body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-logo-full {
+    display: none;
+  }
+  body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-logo-icon {
+    display: block;
+  }
+  body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-logo-link {
+    padding-left: 0;
+    justify-content: center;
+    width: 100%;
+  }
+  body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-nav-link {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-link-icon {
+    margin: 0;
+  }
+  body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-section-title {
+    position: relative;
+    min-height: 0.875rem;
+    padding-inline: 0;
+    text-align: center;
+  }
+  body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-section-title .sidebar-label {
+    display: none;
+  }
+  body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-section-title::before {
+    content: '...';
+    color: currentColor;
+    font-size: inherit;
+    display: inline-block;
+    position: absolute;
+    inset-inline-start: 50%;
+    inset-block-start: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.sidebar-transition {
+  transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+}
+
+.section-content {
+  display: none;
+}
+
+.section-content.active {
+  display: block;
+}
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+.c-transition-slider {
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== USER DRAWER (mobile) ===== */
+
+#mobile-user-drawer {
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+#mobile-user-drawer.active {
+  transform: translateY(0);
+}
+
+#mobile-user-drawer.dragging {
+  transition: none !important;
+}
+/* ===== MOBILE SIDEBAR DRAWER ===== */
+
+#mobile-sidebar-drawer {
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+#mobile-sidebar-drawer.active {
+  transform: translateX(0);
+}
+/* Overlays */
+
+.overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms cubic-bezier(0.2, 0, 0, 1);
+  will-change: opacity;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Красивый фон + виньетка */
+
+.overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      1200px 600px at 50% 30%,
+      rgba(0, 0, 0, 0.12) 0%,
+      rgba(0, 0, 0, 0.35) 55%,
+      rgba(0, 0, 0, 0.55) 100%
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+}
+
+.dark .overlay::before {
+  background:
+    radial-gradient(
+      1200px 600px at 50% 30%,
+      rgba(0, 0, 0, 0.18) 0%,
+      rgba(0, 0, 0, 0.52) 55%,
+      rgba(0, 0, 0, 0.72) 100%
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.78));
+}
+
+/* Лёгкий “glass” эффект (работает там, где поддерживается) */
+
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .overlay {
+    -webkit-backdrop-filter: blur(2px) saturate(140%);
+    backdrop-filter: blur(2px) saturate(140%);
+  }
+}
+
+#user-swipe-handle {
+  cursor: grab;
+}
+
+#user-swipe-handle:active {
+  cursor: grabbing;
+}
+/* Кастомный класс для появления на время тултипа */
+
+.c-copy-tooltip {
+  animation: customFadeInOut 2s forwards;
+}
+
+@keyframes customFadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  20%,
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}

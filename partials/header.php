@@ -1,5 +1,5 @@
 <header
-  class="relative h-16 lg:h-20 shrink-0 border-b border-zinc-200 dark:border-zinc-800 bg-card sticky top-0 z-40">
+  class="relative h-16 lg:h-20 shrink-0 border-b border-zinc-200 dark:border-zinc-800 bg-card z-40">
 
   <div class="container flex items-center w-full justify-between h-full">
     <div class="flex items-center min-w-0 js-header-left">
@@ -57,12 +57,12 @@
         </button>
       </div>
 
-      <div class="h-8 w-[1px] hidden lg:block bg-zinc-200 dark:bg-zinc-800"></div>
+      <div class="h-8 w-px hidden lg:block bg-zinc-200 dark:bg-zinc-800"></div>
 
       <div class="relative hidden lg:block">
         <div onclick="toggleUserMenu()"
           class="flex items-center gap-3 cursor-pointer p-1 pr-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-all">
-          <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-accent to-emerald-400 p-[2px]">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-accent to-emerald-400 p-0.5">
             <div
               class="w-full h-full rounded-md flex items-center justify-center font-bold text-xs bg-card text-zinc-900 dark:text-white">
               DW

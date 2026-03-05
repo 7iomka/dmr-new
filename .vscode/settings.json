@@ -1,10 +1,22 @@
 {
+  "prettier.requireConfig": true,
+
   "tailwindCSS.includeLanguages": {
     "php": "html"
   },
   "tailwindCSS.emmetCompletions": true,
   "editor.formatOnSave": false,
   "[php]": {
-    "editor.formatOnSave": true
-  }
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "[css]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[postcss]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.embeddedLanguageFormatting": "auto"
 }
