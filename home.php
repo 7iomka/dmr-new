@@ -150,7 +150,7 @@
             <div class="container">
               <div class="tech-grid reveal">
                 <!-- Left: mirror tech -->
-                <div class="card card-glow" style="padding:40px;">
+                <div class="landing-card card-glow" style="padding:40px;">
                   <div class="tag" style="margin-bottom:20px;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <circle cx="11" cy="11" r="8" />
@@ -221,7 +221,7 @@
 
                 <!-- Right: philosophy -->
                 <div style="display:flex;flex-direction:column;gap:16px;">
-                  <div class="card" style="padding:28px;flex:1;">
+                  <div class="landing-card" style="padding:28px;flex:1;">
                     <div class="tech-icon-big">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10" />
@@ -241,7 +241,7 @@
                     </div>
                   </div>
 
-                  <div class="card" style="padding:28px;flex:1;">
+                  <div class="landing-card" style="padding:28px;flex:1;">
                     <div class="tech-icon-big" style="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.2);">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--cyan)">
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
@@ -257,7 +257,7 @@
                     </div>
                   </div>
 
-                  <div class="card" style="padding:28px;">
+                  <div class="landing-card" style="padding:28px;">
                     <div style="display:flex;align-items:center;gap:16px;">
                       <div style="width:48px;height:48px;border-radius:12px;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2);display:grid;place-items:center;flex-shrink:0;">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -335,7 +335,7 @@
                       <div class="ref-pct pct-3">2%</div>
                     </div>
 
-                    <div class="card" style="padding:24px;margin-top:8px;">
+                    <div class="landing-card" style="padding:24px;margin-top:8px;">
                       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
                         <div>
                           <div class="mb-1 text-xs text-muted">Суммарная глубина структуры</div>
@@ -710,7 +710,7 @@
               </div>
 
               <!-- ROI infographic strip -->
-              <div class="card reveal" style="margin-top:24px;padding:24px 16px;">
+              <div class="landing-card reveal" style="margin-top:24px;padding:24px 16px;">
                 <div class="roi-steps">
                   <div class="roi-step">
                     <div class="roi-step-label">Шаг 1</div>
@@ -957,7 +957,7 @@
 
               <!-- Contact strip -->
               <div class="contact-strip">
-                <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+                <a href="#" class="landing-card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
                   <div style="display:flex;align-items:center;gap:12px;">
                     <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -971,7 +971,7 @@
                     <path d="m9 18 6-6-6-6" />
                   </svg>
                 </a>
-                <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+                <a href="#" class="landing-card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
                   <div style="display:flex;align-items:center;gap:12px;">
                     <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -986,7 +986,7 @@
                     <path d="m9 18 6-6-6-6" />
                   </svg>
                 </a>
-                <a href="#" class="card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+                <a href="#" class="landing-card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
                   <div style="display:flex;align-items:center;gap:12px;">
                     <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
