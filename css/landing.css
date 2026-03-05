@@ -1119,6 +1119,7 @@ html:not(.dark) .page-main-landing .faq-icon {
 
 .news-track {
   display: flex;
+  margin-inline: -8px;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1599,6 +1600,7 @@ html:not(.dark) .page-main-landing .country-opt:hover {
 
 .cm-track {
   display: flex;
+  margin-inline: -8px;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
