@@ -21,8 +21,8 @@
 }
 
 .dark .page-main-landing {
-  --section-alt-bg: #0b1017;
-  --card: #0e1520;
+  --section-alt-bg: var(--color-dark-bg);
+  --card: var(--color-card-dark);
   --border: rgba(255, 255, 255, 0.07);
   --border2: rgba(0, 200, 130, 0.18);
   --accent: #00c87a;
@@ -34,10 +34,10 @@
   --surface-3: rgba(255, 255, 255, 0.07);
   --chip-bg: rgba(0, 0, 0, 0.6);
   --chip-date-bg: rgba(0, 0, 0, 0.5);
-  --hero-image-bg: linear-gradient(160deg, #0b1d1b 0%, #081218 100%);
+  --hero-image-bg: linear-gradient(160deg, #151918 0%, #0f1214 100%);
   --overlay-bg: rgba(6, 10, 13, 0.9);
-  --news-card-bg: linear-gradient(135deg, #0d1f1a, #0c1620);
-  --cta-bg: linear-gradient(135deg, #071a12 0%, #0a1f1a 50%, #071218 100%);
+  --news-card-bg: linear-gradient(135deg, #151b18, #14181c);
+  --cta-bg: linear-gradient(135deg, #101614 0%, #131917 50%, #101418 100%);
   --grid-line: rgba(0, 200, 122, 0.1);
   --grid-opacity: 0.3;
 }
