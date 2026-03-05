@@ -1,11 +1,11 @@
 <!-- DESKTOP SIDEBAR -->
 <aside id="sidebar"
-	class="hidden lg:flex flex-col border-r border-zinc-200 dark:border-zinc-800 sidebar-transition w-64 z-50 h-screen sticky top-0 bg-card">
+	class="app-sidebar hidden lg:flex flex-col border-r border-zinc-200 dark:border-zinc-800 sidebar-transition z-50 h-screen fixed inset-y-0 left-0 bg-card">
 	<div class="h-20 px-2 flex items-center justify-between">
-		<a class="h-full pl-4 flex items-center shrink-0" href="/home.php">
-			<img class="h-12 w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">
-			<img class="h-12 w-auto dark:hidden" src="/img/logo-light.svg" alt="Logo">
-			<img class="h-12 w-auto hidden" src="/img/logo-icon-only.svg" alt="Logo">
+		<a class="sidebar-logo-link h-full pl-4 flex items-center shrink-0 transition-all" href="/home.php">
+			<img class="sidebar-logo-full h-12 w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">
+			<img class="sidebar-logo-full h-12 w-auto dark:hidden" src="/img/logo-light.svg" alt="Logo">
+			<img class="sidebar-logo-icon h-12 w-auto hidden" src="/img/logo-icon-only.svg" alt="Logo">
 		</a>
 		<!-- DESKTOP: Sidebar toggle -->
 		<button onclick="toggleSidebar()"
@@ -20,17 +20,17 @@
 		<!-- Основное -->
 		<div>
 			<p
-				class="js-sidebar-label px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
-				Основное
+				class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
+				<span class="sidebar-label">Основное</span>
 			</p>
 
 			<div class="space-y-1">
-				<a href="dashboard.php" data-active="true" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="dashboard.php" data-active="true" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
 					">
-					<div class="flex items-center justify-center">
+					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="lucide lucide-layout-dashboard" aria-hidden="true">
@@ -40,15 +40,15 @@
 							<rect width="7" height="5" x="3" y="16" rx="1"></rect>
 						</svg>
 					</div>
-					<span class="js-sidebar-label text-sm font-semibold">Дашборд</span>
+					<span class="sidebar-label text-sm font-semibold">Дашборд</span>
 				</a>
 
-				<a href="investments.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="investments.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
 					">
-					<div class="flex items-center justify-center">
+					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="lucide lucide-briefcase" aria-hidden="true">
@@ -56,7 +56,7 @@
 							<rect width="20" height="14" x="2" y="6" rx="2"></rect>
 						</svg>
 					</div>
-					<span class="js-sidebar-label text-sm font-semibold">Инвестиции</span>
+					<span class="sidebar-label text-sm font-semibold">Инвестиции</span>
 				</a>
 			</div>
 		</div>
@@ -64,17 +64,17 @@
 		<!-- Финансы -->
 		<div>
 			<p
-				class="js-sidebar-label px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
-				Финансы
+				class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
+				<span class="sidebar-label">Финансы</span>
 			</p>
 
 			<div class="space-y-1">
-				<a href="wallet.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="wallet.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
 					">
-					<div class="flex items-center justify-center">
+					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="lucide lucide-wallet" aria-hidden="true">
@@ -84,15 +84,15 @@
 							<path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path>
 						</svg>
 					</div>
-					<span class="js-sidebar-label text-sm font-semibold">Кошелёк</span>
+					<span class="sidebar-label text-sm font-semibold">Кошелёк</span>
 				</a>
 
-				<a href="withdrawals.html" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="withdrawals.html" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
 					">
-					<div class="flex items-center justify-center">
+					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="lucide lucide-circle-arrow-up" aria-hidden="true">
@@ -101,15 +101,15 @@
 							<path d="M12 16V8"></path>
 						</svg>
 					</div>
-					<span class="js-sidebar-label text-sm font-semibold">Выводы</span>
+					<span class="sidebar-label text-sm font-semibold">Выводы</span>
 				</a>
 
-				<a href="report.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="report.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
 					">
-					<div class="flex items-center justify-center">
+					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="lucide lucide-file-text" aria-hidden="true">
@@ -120,7 +120,7 @@
 							<path d="M16 17H8"></path>
 						</svg>
 					</div>
-					<span class="js-sidebar-label text-sm font-semibold">Отчёт</span>
+					<span class="sidebar-label text-sm font-semibold">Отчёт</span>
 				</a>
 			</div>
 		</div>
@@ -128,17 +128,17 @@
 		<!-- Аккаунт -->
 		<div>
 			<p
-				class="js-sidebar-label px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
-				Аккаунт
+				class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
+				<span class="sidebar-label">Аккаунт</span>
 			</p>
 
 			<div class="space-y-1">
-				<a href="profile.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="profile.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
 					">
-					<div class="flex items-center justify-center">
+					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="lucide lucide-circle-user">
@@ -147,15 +147,15 @@
 							<path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path>
 						</svg>
 					</div>
-					<span class="js-sidebar-label text-sm font-semibold">Профиль</span>
+					<span class="sidebar-label text-sm font-semibold">Профиль</span>
 				</a>
 
-				<a href="partners.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="partners.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
 					">
-					<div class="flex items-center justify-center">
+					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="lucide lucide-users-icon lucide-users">
@@ -165,15 +165,15 @@
 							<circle cx="9" cy="7" r="4" />
 						</svg>
 					</div>
-					<span class="js-sidebar-label text-sm font-semibold">Рефералы</span>
+					<span class="sidebar-label text-sm font-semibold">Рефералы</span>
 				</a>
 
-				<a href="settings.html" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="settings.html" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
 					">
-					<div class="flex items-center justify-center">
+					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 							class="lucide lucide-settings" aria-hidden="true">
@@ -183,7 +183,7 @@
 							<circle cx="12" cy="12" r="3"></circle>
 						</svg>
 					</div>
-					<span class="js-sidebar-label text-sm font-semibold">Настройки</span>
+					<span class="sidebar-label text-sm font-semibold">Настройки</span>
 				</a>
 			</div>
 		</div>

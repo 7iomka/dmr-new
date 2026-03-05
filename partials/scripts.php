@@ -1,16 +1,34 @@
 	<script>
 	  lucide.createIcons();
 
+	  const SIDEBAR_STATE_KEY = 'sidebar-mode';
+
+	  function applySidebarMode(mode) {
+	    document.body.classList.remove('sidebar-fixed', 'sidebar-collapse');
+	    document.body.classList.add(mode === 'collapse' ? 'sidebar-collapse' : 'sidebar-fixed');
+
+	    const sidebarToggleIcon = document.querySelector('.js-desktop-sidebar-toggle i');
+	    if (sidebarToggleIcon) {
+	      sidebarToggleIcon.setAttribute('data-lucide', mode === 'collapse' ? 'chevrons-right' : 'chevrons-left');
+	      sidebarToggleIcon.innerHTML = '';
+	      lucide.createIcons();
+	    }
+	  }
+
+	  function initSidebarMode() {
+	    const savedMode = localStorage.getItem(SIDEBAR_STATE_KEY);
+	    applySidebarMode(savedMode === 'collapse' ? 'collapse' : 'fixed');
+	  }
+
 	  function toggleDarkMode() {
 	    document.documentElement.classList.toggle('dark');
 	  }
 
 	  function toggleSidebar() {
-	    const sidebar = document.getElementById('sidebar');
-	    const labels = document.querySelectorAll('.js-sidebar-label');
-	    sidebar.classList.toggle('w-64');
-	    sidebar.classList.toggle('w-20');
-	    labels.forEach(el => el.classList.toggle('hidden'));
+	    const isCollapse = document.body.classList.contains('sidebar-collapse');
+	    const nextMode = isCollapse ? 'fixed' : 'collapse';
+	    localStorage.setItem(SIDEBAR_STATE_KEY, nextMode);
+	    applySidebarMode(nextMode);
 	  }
 
 	  function toggleUserMenu() {
@@ -83,6 +101,8 @@
 	      if (chevron) chevron.classList.remove('rotate-180');
 	    }
 	  }
+
+	  document.addEventListener('DOMContentLoaded', initSidebarMode);
 	</script>
 
 	<script>

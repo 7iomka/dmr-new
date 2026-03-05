@@ -137,13 +137,88 @@
 
 
   <style>
+    :root {
+      --sidebar-transition-duration: 0.3s;
+      --sidebar-transition-timing: ease;
+      --sidebar-width: 16rem;
+      --sidebar-width-collapse: 5rem;
+      --sidebar-default-width: 16rem;
+    }
+
     body {
       font-family: 'Noto Sans', 'Noto Sans SC', sans-serif;
       transition: background-color 0.3s, color 0.3s;
     }
 
+    @media (min-width: 64rem) {
+      body.sidebar-collapse {
+        --sidebar-width: var(--sidebar-width-collapse);
+      }
+
+      .app-sidebar {
+        width: var(--sidebar-width);
+        transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+      }
+
+      .page-content-area {
+        padding-inline-start: var(--sidebar-width) !important;
+        transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+      }
+
+      body.sidebar-collapse .app-sidebar:hover:not(.animating) {
+        width: var(--sidebar-default-width);
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-nav-link .sidebar-label,
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-logo-full {
+        display: none;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-logo-icon {
+        display: block;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-logo-link {
+        padding-left: 0;
+        justify-content: center;
+        width: 100%;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-nav-link {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-link-icon {
+        margin: 0;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-section-title {
+        position: relative;
+        min-height: 0.875rem;
+        padding-inline: 0;
+        text-align: center;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-section-title .sidebar-label {
+        display: none;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-section-title::before {
+        content: '...';
+        color: currentColor;
+        font-size: inherit;
+        display: inline-block;
+        position: absolute;
+        inset-inline-start: 50%;
+        inset-block-start: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
     .sidebar-transition {
-      transition: width 0.3s ease-in-out;
+      transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
     }
 
     .section-content {
