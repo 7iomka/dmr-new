@@ -1215,8 +1215,7 @@
       <div class="cm-avatar">
         <img src="${m.avatar}" alt="${m.firstName}" loading="lazy">
         <span class="cm-flag">${m.flag}</span>
-      </div>
-      <div class="cm-name">${m.firstName}</div>`;
+      </div>`;
                 el.addEventListener('click', () => {
                   modalBody.innerHTML = renderMember(m);
                   modal.classList.add('open');
