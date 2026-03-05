@@ -1593,7 +1593,7 @@ html:not(.dark) .page-main-landing .country-opt:hover {
 }
 
 .cm-carousel-wrap {
-  margin-top: 20px;
+  margin-top: 10px;
   overflow: hidden;
 }
 
@@ -1681,7 +1681,7 @@ html:not(.dark) .page-main-landing .country-opt:hover {
   display: flex;
   gap: 8px;
   justify-content: flex-end;
-  margin-bottom: 12px;
+  margin-top: 12px;
 }
 
 .cm-ctrl-btn {

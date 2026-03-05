@@ -923,6 +923,9 @@
                 </div>
 
                 <div id="carouselWrap" class="carousel-wrap">
+                  <div class="cm-carousel-wrap">
+                    <div class="cm-track" id="cmTrack"></div>
+                  </div>
                   <div class="cm-carousel-controls">
                     <button class="cm-ctrl-btn" id="cmPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="m15 18-6-6 6-6" />
@@ -930,9 +933,6 @@
                     <button class="cm-ctrl-btn" id="cmNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="m9 18 6-6-6-6" />
                       </svg></button>
-                  </div>
-                  <div class="cm-carousel-wrap">
-                    <div class="cm-track" id="cmTrack"></div>
                   </div>
                 </div>
               </div>
