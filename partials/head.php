@@ -21,14 +21,14 @@
         --color-card-dark: #14171A;
         --color-muted-foreground: #5f6469;
         --color-surface-2: rgba(15, 23, 42, .06);
-        --color-border: var(--color-zinc-200);
-    }
-
-    @variant dark {
+        --color-border: rgba(15, 23, 42, 0.12);
+      }
+      
+      @variant dark {
         --color-card: #14171A;
         --color-muted-foreground: #8b9095;
         --color-surface-2: rgba(255, 255, 255, .05);
-        --color-border: var(--color-zinc-800);
+        --color-border: rgba(255, 255, 255, 0.07);
     }
     
 
