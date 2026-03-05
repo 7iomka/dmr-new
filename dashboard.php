@@ -5,20 +5,17 @@
 
 <body>
   <div id="app" class="flex overflow-hidden min-h-screen">
-
     <?php include __DIR__ . '/partials/desktop-sidebar.php'; ?>
     <!-- CONTENT AREA -->
-    <div class="flex-1 flex flex-col min-w-0 h-screen relative pb-15 lg:pb-0">
+    <div class="page-content-area">
       <?php include __DIR__ . '/partials/header.php'; ?>
 
-      <!-- Main View -->
-      <main class="flex-1 overflow-y-auto px-4 py-6 lg:p-10">
-        <div class="max-w-7xl mx-auto space-y-6">
+      <div class="flex-1 overflow-y-auto">
+        <!-- Main View -->
+        <main class="page-main">
           <!-- Приветствие -->
           <div>
-            <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white text-left">
-              Добро
-              пожаловать, Дорин!</h1>
+            <h1 class=" text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white text-left"> Добро пожаловать, Дорин!</h1>
             <p class="text-zinc-500 text-sm font-medium mt-1">Вот текущее состояние ваших инвестиций.</p>
           </div>
 
@@ -561,9 +558,9 @@
               </div>
             </div>
           </div>
-
-        </div>
-      </main>
+        </main>
+        <?php include __DIR__ . '/partials/footer.php'; ?>
+      </div>
     </div>
   </div>
 

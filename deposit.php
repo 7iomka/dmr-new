@@ -7,11 +7,12 @@
   <div id="app" class="flex overflow-hidden min-h-screen">
     <?php include __DIR__ . '/partials/desktop-sidebar.php'; ?>
 
-    <div class="flex-1 flex flex-col min-w-0 h-screen relative pb-15 lg:pb-0">
+    <div class="page-content-area">
       <?php include __DIR__ . '/partials/header.php'; ?>
 
-      <main class="flex-1 overflow-y-auto px-4 py-6 lg:p-10">
-        <div class="max-w-7xl mx-auto space-y-6" id="deposit-page" data-fee-rate="0.03">
+      <div class="flex-1 overflow-y-auto">
+        <!-- Main View -->
+        <main class="page-main" id="deposit-page" data-fee-rate="0.03">
           <div>
             <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white text-left">Пополнение
             </h1>
@@ -361,7 +362,9 @@
               </div>
             </aside>
           </div>
-        </div>
+        </main>
+        <?php include __DIR__ . '/partials/footer.php'; ?>
+      </div>
       </main>
     </div>
   </div>

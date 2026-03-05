@@ -7,11 +7,11 @@
     <div id="app" class="flex overflow-hidden min-h-screen">
 
         <?php include __DIR__ . '/partials/desktop-sidebar.php'; ?>
-        <div class="flex-1 flex flex-col min-w-0 h-screen relative pb-15 lg:pb-0">
+        <div class="page-content-area">
             <?php include __DIR__ . '/partials/header.php'; ?>
-
-            <main class="flex-1 overflow-y-auto px-4 py-6 lg:p-10">
-                <div class="max-w-7xl mx-auto space-y-6">
+            <div class="flex-1 overflow-y-auto">
+                <!-- Main View -->
+                <main class="page-main">
                     <!-- Header Section -->
                     <div class="flex flex-col items-start md:flex-row md:items-center justify-between gap-4">
                         <div>
@@ -448,153 +448,153 @@
                         </div>
                     </div>
 
-                </div>
-            </main>
+                </main>
+                <?php include __DIR__ . '/partials/footer.php'; ?>
+            </div>
         </div>
-    </div>
 
 
-    <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
-    <?php include __DIR__ . '/partials/scripts.php'; ?>
+        <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
+        <?php include __DIR__ . '/partials/scripts.php'; ?>
 
-    <script>
-        let currentPath = [];
+        <script>
+            let currentPath = [];
 
-        // AAA Color Logic
-        function hexToRgb(hex) {
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return result ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            } : null;
-        }
-
-        function getLuminance(r, g, b) {
-            const a = [r, g, b].map(v => {
-                v /= 255;
-                return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-            });
-            return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
-        }
-
-        function getContrastRatio(l1, l2) {
-            return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
-        }
-
-        function hslToHex(h, s, l) {
-            l /= 100;
-            const a = s * Math.min(l, 1 - l) / 100;
-            const f = n => {
-                const k = (n + h / 30) % 12;
-                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-                return Math.round(255 * color).toString(16).padStart(2, '0');
-            };
-            return `#${f(0)}${f(8)}${f(4)}`;
-        }
-
-        function getAaaStyle(levelIndex) {
-            const hue = (140 - (levelIndex % 23 * (360 / 23)) + 360) % 360;
-            let currentL = 50;
-            const whiteLum = getLuminance(255, 255, 255);
-            const blackLum = getLuminance(0, 0, 0);
-
-            let hex = hslToHex(hue, 80, currentL);
-            let lum = getLuminance(...Object.values(hexToRgb(hex)));
-
-            if (getContrastRatio(lum, whiteLum) >= 4.5) return {
-                bg: hex,
-                text: 'white'
-            };
-            if (getContrastRatio(lum, blackLum) >= 4.5) return {
-                bg: hex,
-                text: 'black'
-            };
-            return {
-                bg: '#00B074',
-                text: 'white'
-            };
-        }
-
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-        }
-
-        function toggleCard(el) {
-            el.classList.toggle('card-open');
-        }
-
-        function renderUI(shouldScrollToHeader = false) {
-            renderBreadcrumbs();
-            renderContent();
-            lucide.createIcons();
-            updateScrollMasks();
-            scrollToEnd();
-            if (shouldScrollToHeader) checkAndScrollToTop();
-        }
-
-        function checkAndScrollToTop() {
-            const header = document.getElementById('card-header-anchor');
-            if (!header) return;
-            const rect = header.getBoundingClientRect();
-            if (rect.top < 20) header.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-
-        function scrollToEnd() {
-            const container = document.getElementById('breadcrumb-container');
-            setTimeout(() => {
-                if (container) container.scrollLeft = container.scrollWidth;
-            }, 50);
-        }
-
-        function renderBreadcrumbs() {
-            const container = document.getElementById('breadcrumb-container');
-            const rootLabel = document.getElementById('root-label');
-            const rootIcon = document.getElementById('root-icon');
-
-            if (currentPath.length === 0) {
-                rootLabel.className = "text-sm font-bold text-zinc-900 dark:text-white";
-                rootIcon.className = "w-4 h-4 text-accent";
-            } else {
-                rootLabel.className = "text-sm font-medium text-zinc-500 dark:text-zinc-400";
-                rootIcon.className = "w-4 h-4 text-zinc-400";
+            // AAA Color Logic
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
             }
 
-            let html = '';
-            currentPath.forEach((step, index) => {
-                const style = getAaaStyle(step.level - 1);
-                const isLast = index === currentPath.length - 1;
-                html += `
+            function getLuminance(r, g, b) {
+                const a = [r, g, b].map(v => {
+                    v /= 255;
+                    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+                });
+                return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+            }
+
+            function getContrastRatio(l1, l2) {
+                return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+            }
+
+            function hslToHex(h, s, l) {
+                l /= 100;
+                const a = s * Math.min(l, 1 - l) / 100;
+                const f = n => {
+                    const k = (n + h / 30) % 12;
+                    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                    return Math.round(255 * color).toString(16).padStart(2, '0');
+                };
+                return `#${f(0)}${f(8)}${f(4)}`;
+            }
+
+            function getAaaStyle(levelIndex) {
+                const hue = (140 - (levelIndex % 23 * (360 / 23)) + 360) % 360;
+                let currentL = 50;
+                const whiteLum = getLuminance(255, 255, 255);
+                const blackLum = getLuminance(0, 0, 0);
+
+                let hex = hslToHex(hue, 80, currentL);
+                let lum = getLuminance(...Object.values(hexToRgb(hex)));
+
+                if (getContrastRatio(lum, whiteLum) >= 4.5) return {
+                    bg: hex,
+                    text: 'white'
+                };
+                if (getContrastRatio(lum, blackLum) >= 4.5) return {
+                    bg: hex,
+                    text: 'black'
+                };
+                return {
+                    bg: '#00B074',
+                    text: 'white'
+                };
+            }
+
+            function toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+            }
+
+            function toggleCard(el) {
+                el.classList.toggle('card-open');
+            }
+
+            function renderUI(shouldScrollToHeader = false) {
+                renderBreadcrumbs();
+                renderContent();
+                lucide.createIcons();
+                updateScrollMasks();
+                scrollToEnd();
+                if (shouldScrollToHeader) checkAndScrollToTop();
+            }
+
+            function checkAndScrollToTop() {
+                const header = document.getElementById('card-header-anchor');
+                if (!header) return;
+                const rect = header.getBoundingClientRect();
+                if (rect.top < 20) header.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+
+            function scrollToEnd() {
+                const container = document.getElementById('breadcrumb-container');
+                setTimeout(() => {
+                    if (container) container.scrollLeft = container.scrollWidth;
+                }, 50);
+            }
+
+            function renderBreadcrumbs() {
+                const container = document.getElementById('breadcrumb-container');
+                const rootLabel = document.getElementById('root-label');
+                const rootIcon = document.getElementById('root-icon');
+
+                if (currentPath.length === 0) {
+                    rootLabel.className = "text-sm font-bold text-zinc-900 dark:text-white";
+                    rootIcon.className = "w-4 h-4 text-accent";
+                } else {
+                    rootLabel.className = "text-sm font-medium text-zinc-500 dark:text-zinc-400";
+                    rootIcon.className = "w-4 h-4 text-zinc-400";
+                }
+
+                let html = '';
+                currentPath.forEach((step, index) => {
+                    const style = getAaaStyle(step.level - 1);
+                    const isLast = index === currentPath.length - 1;
+                    html += `
             <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-300 dark:text-zinc-700 mx-1 flex-shrink-0"></i>
             <button onclick="goToLevel(${index})" class="flex items-center gap-1.5 whitespace-nowrap py-1 px-1.5 rounded-lg transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 group ${isLast ? 'cursor-default' : ''}">
                 <span class="text-[10px] px-1.5 py-0.5 rounded font-bold" style="background:${style.bg}; color:${style.text}">L${step.level}</span>
                 <span class="font-medium ${isLast ? 'text-zinc-900 dark:text-white font-bold' : 'text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white'}">${step.name}</span>
             </button>
         `;
-            });
-            container.innerHTML = html;
-            document.getElementById('back-btn').disabled = currentPath.length === 0;
-        }
+                });
+                container.innerHTML = html;
+                document.getElementById('back-btn').disabled = currentPath.length === 0;
+            }
 
-        function renderContent() {
-            const desktopBody = document.getElementById('table-body-desktop');
-            const mobileBody = document.getElementById('table-body-mobile');
-            const nextLvl = currentPath.length + 1;
-            const style = getAaaStyle(nextLvl - 1);
-            let dHtml = '';
-            let mHtml = '';
+            function renderContent() {
+                const desktopBody = document.getElementById('table-body-desktop');
+                const mobileBody = document.getElementById('table-body-mobile');
+                const nextLvl = currentPath.length + 1;
+                const style = getAaaStyle(nextLvl - 1);
+                let dHtml = '';
+                let mHtml = '';
 
-            for (let i = 1; i <= 5; i++) {
-                const login = `user_lvl${nextLvl}_id${i}`;
-                const hasRef = i < 4;
-                const refCount = hasRef ? (10 - i) : 0;
+                for (let i = 1; i <= 5; i++) {
+                    const login = `user_lvl${nextLvl}_id${i}`;
+                    const hasRef = i < 4;
+                    const refCount = hasRef ? (10 - i) : 0;
 
-                // Row style: hover:bg-zinc-50 dark:hover:bg-white/[0.02]
-                // Cell style: card-body-inset-x py-5
-                dHtml += `
+                    // Row style: hover:bg-zinc-50 dark:hover:bg-white/[0.02]
+                    // Cell style: card-body-inset-x py-5
+                    dHtml += `
             <tr class="hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors">
                 <td class="card-body-inset-x py-5">
                     <div class="flex items-center gap-3">
@@ -637,7 +637,7 @@
             </tr>
             `;
 
-                mHtml += `
+                    mHtml += `
             <div class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
                 <div class="p-4 flex items-center justify-between">
                     <div class="flex items-center gap-3 min-w-0">
@@ -672,53 +672,53 @@
                     </div>
                 </div>
             </div>`;
+                }
+                desktopBody.innerHTML = dHtml;
+                mobileBody.innerHTML = mHtml;
             }
-            desktopBody.innerHTML = dHtml;
-            mobileBody.innerHTML = mHtml;
-        }
 
-        function goDeeper(name, level) {
-            currentPath.push({
-                name,
-                level
-            });
-            renderUI(true);
-        }
+            function goDeeper(name, level) {
+                currentPath.push({
+                    name,
+                    level
+                });
+                renderUI(true);
+            }
 
-        function goBack() {
-            currentPath.pop();
-            renderUI(true);
-        }
+            function goBack() {
+                currentPath.pop();
+                renderUI(true);
+            }
 
-        function goToRoot() {
-            currentPath = [];
-            renderUI(true);
-        }
+            function goToRoot() {
+                currentPath = [];
+                renderUI(true);
+            }
 
-        function goToLevel(idx) {
-            currentPath = currentPath.slice(0, idx + 1);
-            renderUI(true);
-        }
+            function goToLevel(idx) {
+                currentPath = currentPath.slice(0, idx + 1);
+                renderUI(true);
+            }
 
-        function scrollBreadcrumbs(dir) {
-            const c = document.getElementById('breadcrumb-container');
-            if (c) c.scrollLeft += (dir === 'left' ? -150 : 150);
-        }
+            function scrollBreadcrumbs(dir) {
+                const c = document.getElementById('breadcrumb-container');
+                if (c) c.scrollLeft += (dir === 'left' ? -150 : 150);
+            }
 
-        function updateScrollMasks() {
-            const c = document.getElementById('breadcrumb-container');
-            if (!c) return;
-            document.getElementById('m-left').style.opacity = c.scrollLeft > 10 ? "1" : "0";
-            document.getElementById('m-right').style.opacity = (c.scrollLeft + c.clientWidth < c.scrollWidth - 10) ? "1" :
-                "0";
-        }
+            function updateScrollMasks() {
+                const c = document.getElementById('breadcrumb-container');
+                if (!c) return;
+                document.getElementById('m-left').style.opacity = c.scrollLeft > 10 ? "1" : "0";
+                document.getElementById('m-right').style.opacity = (c.scrollLeft + c.clientWidth < c.scrollWidth - 10) ? "1" :
+                    "0";
+            }
 
-        window.onload = () => {
-            renderUI();
-            const container = document.getElementById('breadcrumb-container');
-            if (container) container.addEventListener('scroll', updateScrollMasks);
-        };
-    </script>
+            window.onload = () => {
+                renderUI();
+                const container = document.getElementById('breadcrumb-container');
+                if (container) container.addEventListener('scroll', updateScrollMasks);
+            };
+        </script>
 
 </body>
 

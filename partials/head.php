@@ -19,17 +19,23 @@
         --color-accent: #00B074;
         --color-dark-bg: #0B0E11;
         --color-card-dark: #14171A;
+        --color-muted-foreground: #5f6469;
+        --color-surface-2: rgba(15, 23, 42, .06);
+        --color-border: var(--color-zinc-200);
     }
 
     @variant dark {
         --color-card: #14171A;
+        --color-muted-foreground: #8b9095;
+        --color-surface-2: rgba(255, 255, 255, .05);
+        --color-border: var(--color-zinc-800);
     }
     
 
     @layer base {
 
       body {
-        @apply bg-[#f8f7f5] text-[#1A1D1F] dark:bg-[#0B0E11] dark:text-[#E4E6EB] min-h-screen;
+        @apply bg-[#f3f6f8] text-[#1A1D1F] dark:bg-[#0B0E11] dark:text-[#E4E6EB] min-h-screen;
       }
         button:not(:disabled),
         [role="button"]:not(:disabled) {
@@ -37,7 +43,28 @@
         }
     }
 
+    @utility container {
+      width: 100%;
+      margin-inline: auto;
+      padding-inline: 16px;
+      max-width: calc(var(--container-7xl) + 16px * 2);
+
+      @media (min-width:1024px) {
+        padding-inline: 40px;
+        max-width: calc(var(--container-7xl) + 40px * 2);
+      }
+    }
+
+    @utility page-content-area {
+      @apply flex-1 flex flex-col min-w-0 h-screen relative pb-15 lg:pb-0;
+    }
+
+    @utility page-main {
+      @apply container py-6 lg:py-10 space-y-6;
+    }
+
     @layer utilities {
+      
       .no-scrollbar::-webkit-scrollbar {
         display: none;
       }
@@ -103,6 +130,8 @@
         @apply py-4 lg:py-6;
       }
     }
+
+    
   
   </style>
 
