@@ -150,16 +150,16 @@
             <div class="container">
               <div class="tech-grid reveal">
                 <!-- Left: mirror tech -->
-                <div class="landing-card card-glow" style="padding:40px;">
-                  <div class="tag" style="margin-bottom:20px;">
+                <div class="landing-card card-glow tech-main-card">
+                  <div class="tag tag-mb-20">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <circle cx="11" cy="11" r="8" />
                       <path d="m21 21-4.35-4.35" />
                     </svg>
                     Технология
                   </div>
-                  <h2 style="margin-bottom:16px;">Умное зеркало<br><span class="text-accent">нового поколения</span></h2>
-                  <p style="color:var(--muted);margin-bottom:32px;line-height:1.75;">
+                  <h2 class="mb-16">Умное зеркало<br><span class="text-accent">нового поколения</span></h2>
+                  <p class="text-muted mb-32 lh-175">
                     Dilan Mirror — это технология, позволяющая видеть обратную сторону собственного тела в реальном времени. Революционный продукт, открывающий новое измерение самопознания и заботы о здоровье.
                   </p>
 
@@ -220,8 +220,8 @@
                 </div>
 
                 <!-- Right: philosophy -->
-                <div style="display:flex;flex-direction:column;gap:16px;">
-                  <div class="landing-card" style="padding:28px;flex:1;">
+                <div class="tech-side-stack">
+                  <div class="landing-card tech-side-card">
                     <div class="tech-icon-big">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10" />
@@ -229,37 +229,37 @@
                       </svg>
                     </div>
                     <h3>Ограниченный раунд</h3>
-                    <p style="margin-top:8px;color:var(--muted);">Только 15% долей компании выставлено в открытую продажу. Ограниченное окно — ранний вход по лучшей цене.</p>
-                    <div style="margin-top:20px;">
-                      <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                    <p class="text-muted mt-8">Только 15% долей компании выставлено в открытую продажу. Ограниченное окно — ранний вход по лучшей цене.</p>
+                    <div class="mt-20">
+                      <div class="row-between mb-6">
                         <span class="text-xs text-muted">Доступно для продажи</span>
                         <span class="text-xs font-bold text-accent">15%</span>
                       </div>
-                      <div style="height:6px;background:var(--surface-3);border-radius:100px;overflow:hidden;">
-                        <div style="width:15%;height:100%;background:var(--accent);border-radius:100px;"></div>
+                      <div class="progress-track">
+                        <div class="progress-fill-15"></div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="landing-card" style="padding:28px;flex:1;">
-                    <div class="tech-icon-big" style="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.2);">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--cyan)">
+                  <div class="landing-card tech-side-card">
+                    <div class="tech-icon-big tech-icon-big-cyan">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan">
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                         <polyline points="22 4 12 14.01 9 11.01" />
                       </svg>
                     </div>
                     <h3>Прозрачная структура</h3>
-                    <p style="margin-top:8px;color:var(--muted);">Все условия документированы. Доли конвертируются в акции по утверждённой модели после завершения этапов развития.</p>
-                    <div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;">
+                    <p class="text-muted mt-8">Все условия документированы. Доли конвертируются в акции по утверждённой модели после завершения этапов развития.</p>
+                    <div class="chip-row">
                       <span class="chip chip-cat text-xs">Доли → Акции</span>
                       <span class="chip chip-cat text-xs">Юридический пакет</span>
                       <span class="chip chip-cat text-xs">Контролируемый рост</span>
                     </div>
                   </div>
 
-                  <div class="landing-card" style="padding:28px;">
-                    <div style="display:flex;align-items:center;gap:16px;">
-                      <div style="width:48px;height:48px;border-radius:12px;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2);display:grid;place-items:center;flex-shrink:0;">
+                  <div class="landing-card tech-side-card tech-side-card-last">
+                    <div class="row-center-16">
+                      <div class="violet-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                           <circle cx="9" cy="7" r="4" />
@@ -268,7 +268,7 @@
                         </svg>
                       </div>
                       <div>
-                        <div class="text-xl font-extrabold leading-none text-violet-500" style="font-family:var(--ff-head);">100+</div>
+                        <div class="text-xl font-extrabold leading-none text-violet-500 ff-head">100+</div>
                         <div class="mt-1 text-xs text-muted">участников наблюдательного комитета</div>
                       </div>
                     </div>
@@ -281,8 +281,8 @@
           <!-- ═══════════════════ REFERRAL ═══════════════════ -->
           <section class="section section-alt" id="referral">
             <div class="container">
-              <div style="text-align:center;margin-bottom:56px;" class="reveal">
-                <div class="tag" style="margin-bottom:14px;">
+              <div class="reveal text-center mb-56">
+                <div class="tag tag-mb-14">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
                     <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
@@ -290,7 +290,7 @@
                   Реферальная программа
                 </div>
                 <h2>Зарабатывайте до <span class="text-accent">40%</span></h2>
-                <p style="color:var(--muted);margin-top:12px;max-width:560px;margin-left:auto;margin-right:auto;">
+                <p class="text-muted mt-12 maxw-560 mx-auto">
                   Прозрачная механика выплат с фокусом на стабильный рост структуры и понятное распределение для каждого уровня.
                 </p>
               </div>
@@ -305,7 +305,7 @@
                         <div class="l-label">Уровень 1 · Прямые рефералы</div>
                         <div class="l-name">Ваши приглашённые</div>
                         <div class="ref-bar-wrap">
-                          <div class="ref-bar bar-1" style="width:100%"></div>
+                          <div class="ref-bar bar-1 w-100"></div>
                         </div>
                       </div>
                       <div class="ref-pct pct-1">10%</div>
@@ -317,7 +317,7 @@
                         <div class="l-label">Уровень 2 · Команда рефералов</div>
                         <div class="l-name">Их приглашённые</div>
                         <div class="ref-bar-wrap">
-                          <div class="ref-bar bar-2" style="width:50%"></div>
+                          <div class="ref-bar bar-2 w-50"></div>
                         </div>
                       </div>
                       <div class="ref-pct pct-2">5%</div>
@@ -329,24 +329,24 @@
                         <div class="l-label">Уровень 3 · Глубокая сеть</div>
                         <div class="l-name">Расширенная структура</div>
                         <div class="ref-bar-wrap">
-                          <div class="ref-bar bar-3" style="width:20%"></div>
+                          <div class="ref-bar bar-3 w-20"></div>
                         </div>
                       </div>
                       <div class="ref-pct pct-3">2%</div>
                     </div>
 
-                    <div class="landing-card" style="padding:24px;margin-top:8px;">
-                      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                    <div class="landing-card p-24 mt-8">
+                      <div class="row-between-center mb-12">
                         <div>
                           <div class="mb-1 text-xs text-muted">Суммарная глубина структуры</div>
-                          <div class="text-xl font-extrabold text-accent" style="font-family:var(--ff-head);">до 23%</div>
+                          <div class="text-xl font-extrabold text-accent ff-head">до 23%</div>
                         </div>
-                        <div style="text-align:right;">
+                        <div class="text-right">
                           <div class="text-xs text-muted">Максимальный пул</div>
-                          <div class="text-xl font-extrabold" style="font-family:var(--ff-head);">до 40%</div>
+                          <div class="text-xl font-extrabold ff-head">до 40%</div>
                         </div>
                       </div>
-                      <div class="deep-bar-wrap" style="height:6px;">
+                      <div class="deep-bar-wrap deep-bar-wrap-lg">
                         <div class="deep-bar"></div>
                       </div>
                       <p class="mt-3 text-sm leading-relaxed text-muted">
@@ -372,15 +372,15 @@
                         </div>
                       </div>
                       <!-- connector -->
-                      <div style="width:1px;height:20px;background:var(--border2);margin:0 auto;"></div>
+                      <div class="py-connector-line"></div>
                       <!-- L1 row label -->
-                      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                        <div style="flex:1;height:1px;background:var(--border2);"></div>
+                      <div class="pyramid-label-row">
+                        <div class="line-flex border2"></div>
                         <span class="text-xs font-bold tracking-[0.1em] text-accent">L1 · 10%</span>
-                        <div style="flex:1;height:1px;background:var(--border2);"></div>
+                        <div class="line-flex border2"></div>
                       </div>
                       <!-- L1 nodes -->
-                      <div class="pyramid-row" style="gap:12px;margin-bottom:0;">
+                      <div class="pyramid-row pyramid-row-l1">
                         <div class="pnode pnode-l1">
                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
@@ -400,15 +400,15 @@
                           </svg>
                         </div>
                       </div>
-                      <div style="width:80%;height:1px;background:var(--border2);margin:8px auto;"></div>
+                      <div class="line-80 border2"></div>
                       <!-- L2 label -->
-                      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;width:80%;margin-left:auto;margin-right:auto;">
-                        <div style="flex:1;height:1px;background:rgba(34,211,238,.2);"></div>
+                      <div class="pyramid-label-row l2">
+                        <div class="line-flex cyan"></div>
                         <span class="text-xs font-bold tracking-[0.1em] text-cyan">L2 · 5%</span>
-                        <div style="flex:1;height:1px;background:rgba(34,211,238,.2);"></div>
+                        <div class="line-flex cyan"></div>
                       </div>
                       <!-- L2 nodes -->
-                      <div class="pyramid-row" style="gap:8px;margin-bottom:0;">
+                      <div class="pyramid-row pyramid-row-l2">
                         <div class="pnode pnode-l2 h-8 w-8 text-xs">
                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
                             <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
@@ -446,15 +446,15 @@
                           </svg>
                         </div>
                       </div>
-                      <div style="width:90%;height:1px;background:rgba(168,85,247,.2);margin:8px auto;"></div>
+                      <div class="line-90 violet"></div>
                       <!-- L3 label -->
-                      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;width:90%;margin-left:auto;margin-right:auto;">
-                        <div style="flex:1;height:1px;background:rgba(168,85,247,.2);"></div>
+                      <div class="pyramid-label-row l3">
+                        <div class="line-flex violet"></div>
                         <span class="text-xs font-bold tracking-[0.1em] text-violet-500">L3 · 2%</span>
-                        <div style="flex:1;height:1px;background:rgba(168,85,247,.2);"></div>
+                        <div class="line-flex violet"></div>
                       </div>
                       <!-- L3 nodes -->
-                      <div class="pyramid-row" style="gap:5px;margin-bottom:0;flex-wrap:wrap;">
+                      <div class="pyramid-row pyramid-row-l3">
                         <div class="pnode pnode-l3 h-[26px] w-[26px] text-xs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                             <circle cx="12" cy="7" r="4" />
@@ -490,14 +490,14 @@
                       </div>
                     </div>
 
-                    <div style="margin-top:20px;padding:14px 16px;background:var(--surface-1);border:1px solid var(--border);border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
+                    <div class="ref-summary">
                       <div>
                         <div class="text-xs text-muted">Максимум с реф. структуры</div>
-                        <div class="text-xl font-extrabold leading-tight text-accent" style="font-family:var(--ff-head);">40%</div>
+                        <div class="text-xl font-extrabold leading-tight text-accent ff-head">40%</div>
                       </div>
-                      <div style="text-align:right;">
+                      <div class="text-right">
                         <div class="text-xs text-muted">Глубина</div>
-                        <div class="text-lg font-extrabold" style="font-family:var(--ff-head);">Нет лимита</div>
+                        <div class="text-lg font-extrabold ff-head">Нет лимита</div>
                       </div>
                     </div>
                   </div>
@@ -511,7 +511,7 @@
             <div class="container">
               <div class="news-header reveal">
                 <div>
-                  <div class="tag" style="margin-bottom:10px;">
+                  <div class="tag tag-mb-10">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
                       <path d="M18 14h-8" />
@@ -569,7 +569,7 @@
                   <div class="news-card">
                     <div class="news-inner">
                       <div class="news-thumb">
-                        <div class="news-thumb-glow" style="background:radial-gradient(circle at 30% 40%,rgba(34,211,238,.2) 0%,transparent 60%),radial-gradient(circle at 75% 60%,rgba(0,200,122,.1) 0%,transparent 50%);"></div>
+                        <div class="news-thumb-glow news-thumb-glow-cyan"></div>
                         <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                             <polyline points="14 2 14 8 20 8" />
@@ -588,7 +588,7 @@
                   <div class="news-card">
                     <div class="news-inner">
                       <div class="news-thumb">
-                        <div class="news-thumb-glow" style="background:radial-gradient(circle at 30% 40%,rgba(168,85,247,.2) 0%,transparent 60%);"></div>
+                        <div class="news-thumb-glow news-thumb-glow-violet"></div>
                         <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                             <circle cx="9" cy="7" r="4" />
@@ -627,7 +627,7 @@
                   <div class="news-card">
                     <div class="news-inner">
                       <div class="news-thumb">
-                        <div class="news-thumb-glow" style="background:radial-gradient(circle at 30% 40%,rgba(34,211,238,.15) 0%,transparent 60%),radial-gradient(circle at 75% 60%,rgba(0,200,122,.15) 0%,transparent 50%);"></div>
+                        <div class="news-thumb-glow news-thumb-glow-mix"></div>
                         <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
                             <polyline points="17 6 23 6 23 12" />
@@ -663,8 +663,8 @@
           <!-- ═══════════════════ WHY NOW ═══════════════════ -->
           <section class="section section-alt">
             <div class="container">
-              <div style="text-align:center;margin-bottom:48px;" class="reveal">
-                <div class="tag" style="margin-bottom:14px;">
+              <div class="reveal text-center mb-48">
+                <div class="tag tag-mb-14">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10" />
                     <polyline points="12 6 12 12 16 14" />
@@ -710,7 +710,7 @@
               </div>
 
               <!-- ROI infographic strip -->
-              <div class="landing-card reveal" style="margin-top:24px;padding:24px 16px;">
+              <div class="landing-card reveal mt-24 p-24-16">
                 <div class="roi-steps">
                   <div class="roi-step">
                     <div class="roi-step-label">Шаг 1</div>
@@ -748,9 +748,9 @@
           <!-- ═══════════════════ FAQ ═══════════════════ -->
           <section class="section" id="faq">
             <div class="container">
-              <div style="max-width:800px;">
-                <div class="reveal" style="margin-bottom:36px;">
-                  <div class="tag" style="margin-bottom:14px;">
+              <div class="faq-wrap">
+                <div class="reveal mb-36">
+                  <div class="tag tag-mb-14">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <circle cx="12" cy="12" r="10" />
                       <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
@@ -881,9 +881,9 @@
           <!-- ═══════════════════ COMMITTEE ═══════════════════ -->
           <section class="section section-alt" id="committee">
             <div class="container">
-              <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px;" class="reveal">
+              <div class="reveal committee-head">
                 <div>
-                  <div class="tag" style="margin-bottom:12px;">
+                  <div class="tag tag-mb-12">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                       <circle cx="9" cy="7" r="4" />
@@ -897,7 +897,7 @@
               </div>
 
               <div class="committee-grid reveal" id="committeeGrid"></div>
-              <div class="reveal" style="display:flex;justify-content:center;margin-top:16px;">
+              <div class="reveal load-more-wrap">
                 <button id="loadMoreBtn" class="btn-ghost">Показать ещё</button>
               </div>
 
@@ -906,7 +906,7 @@
                 <div class="country-wrap">
                   <p class="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-muted">Фильтр по стране</p>
                   <button class="country-trigger" id="countryTrigger">
-                    <span id="countryVal" style="display:flex;align-items:center;gap:8px;">🌍 Выберите страну</span>
+                    <span id="countryVal" class="country-val">🌍 Выберите страну</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                       <path d="m6 9 6 6 6-6" />
                     </svg>
@@ -914,7 +914,7 @@
                   <div class="country-menu" id="countryMenu"></div>
                 </div>
 
-                <div id="carouselWrap" style="display:none;margin-top:20px;">
+                <div id="carouselWrap" class="carousel-wrap">
                   <div class="cm-carousel-controls">
                     <button class="cm-ctrl-btn" id="cmPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="m15 18-6-6 6-6" />
@@ -944,11 +944,11 @@
                   </div>
                   <div class="cta-btns">
                     <a href="deposit.php" class="btn-primary">
-                      <i data-lucide="plus" style="width:16px;height:16px;"></i>
+                      <i data-lucide="plus" class="icon-16"></i>
                       Инвестировать
                     </a>
                     <a href="/chat" class="btn-ghost">
-                      <i data-lucide="message-circle" style="width:16px;height:16px;"></i>
+                      <i data-lucide="message-circle" class="icon-16"></i>
                       Поддержка
                     </a>
                   </div>
@@ -957,9 +957,9 @@
 
               <!-- Contact strip -->
               <div class="contact-strip">
-                <a href="#" class="landing-card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
-                  <div style="display:flex;align-items:center;gap:12px;">
-                    <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
+                <a href="#" class="landing-card contact-link">
+                  <div class="contact-link-left">
+                    <div class="contact-link-icon">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="m22 2-7 20-4-9-9-4Z" />
                         <path d="M22 2 11 13" />
@@ -971,9 +971,9 @@
                     <path d="m9 18 6-6-6-6" />
                   </svg>
                 </a>
-                <a href="#" class="landing-card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
-                  <div style="display:flex;align-items:center;gap:12px;">
-                    <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
+                <a href="#" class="landing-card contact-link">
+                  <div class="contact-link-left">
+                    <div class="contact-link-icon">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -986,9 +986,9 @@
                     <path d="m9 18 6-6-6-6" />
                   </svg>
                 </a>
-                <a href="#" class="landing-card" style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);transition:border-color .2s;" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
-                  <div style="display:flex;align-items:center;gap:12px;">
-                    <div style="width:36px;height:36px;background:rgba(0,200,122,.1);border-radius:9px;display:grid;place-items:center;">
+                <a href="#" class="landing-card contact-link">
+                  <div class="contact-link-left">
+                    <div class="contact-link-icon">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
                         <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
@@ -1136,7 +1136,7 @@
             let newsPage = 0;
             const track = document.getElementById('newsTrack');
             const cards = track.querySelectorAll('.news-card');
-            const perView = () => window.innerWidth >= 900 ? 3 : window.innerWidth >= 600 ? 2 : 1;
+            const perView = () => window.innerWidth >= 1280 ? 3 : window.innerWidth >= 768 ? 2 : 1;
             const maxPage = () => Math.max(0, Math.ceil(cards.length / perView()) - 1);
             const updateNews = () => {
               newsPage = Math.min(newsPage, maxPage());
@@ -1186,14 +1186,14 @@
             };
 
             const renderMember = m => `
-<div style="display:flex;gap:16px;align-items:flex-start;">
-  <img src="${m.avatar}" style="width:72px;height:72px;border-radius:14px;object-fit:cover;flex-shrink:0;border:2px solid var(--border2);">
+<div class="member-modal-head">
+  <img src="${m.avatar}" class="member-modal-avatar">
   <div>
     <h3 class="text-lg">${m.firstName} ${m.lastName} <span class="text-lg">${m.flag}</span></h3>
     <p class="my-[2px] mt-1 text-sm text-muted">${m.city}, ${m.country}</p>
-    <p class="text-xs font-bold" style="color:var(--label);">ID: ${m.id}</p>
-    <div style="display:flex;gap:8px;margin-top:12px;">
-      ${m.socials.map(s=>`<a href="#" style="width:32px;height:32px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);display:grid;place-items:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${socialSVG[s]||''}</svg></a>`).join('')}
+    <p class="text-xs font-bold text-label">ID: ${m.id}</p>
+    <div class="member-socials">
+      ${m.socials.map(s=>`<a href="#" class="member-social-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--color-muted-foreground)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${socialSVG[s]||''}</svg></a>`).join('')}
     </div>
   </div>
 </div>`;
@@ -1246,7 +1246,7 @@
             let cmData = [];
             const cmTrack = document.getElementById('cmTrack');
             const carouselWrap = document.getElementById('carouselWrap');
-            const cmPerView = () => window.innerWidth >= 900 ? 3 : window.innerWidth >= 600 ? 2 : 1;
+            const cmPerView = () => window.innerWidth >= 1280 ? 3 : window.innerWidth >= 768 ? 2 : 1;
             const cmMaxPage = () => Math.max(0, Math.ceil(cmData.length / cmPerView()) - 1);
             const updateCarousel = () => {
               cmPage = Math.min(cmPage, cmMaxPage());
