@@ -9,11 +9,12 @@
 
     <?php include __DIR__ . '/../partials/desktop-sidebar.php'; ?>
 
-    <div class="flex-1 flex flex-col min-w-0 h-screen relative pb-15 lg:pb-0">
+    <div class="page-content-area">
       <?php include __DIR__ . '/../partials/header.php'; ?>
 
-      <main class="flex-1 overflow-y-auto px-4 py-6 lg:p-10">
-        <div class="max-w-7xl mx-auto space-y-6">
+      <div class="flex-1 overflow-y-auto">
+        <!-- Main View -->
+        <main class="page-main">
           <section id="chat-container" class="card overflow-hidden flex flex-col min-h-[480px] lg:min-h-[600px] max-h-[83vh]">
             <header class="card-header">
               <div class="flex items-center gap-3 min-w-0">
@@ -423,8 +424,9 @@
               </section>
             </div>
           </section>
-        </div>
-      </main>
+        </main>
+        <?php include __DIR__ . '/../partials/footer.php'; ?>
+      </div>
     </div>
   </div>
 

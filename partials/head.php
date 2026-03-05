@@ -6,7 +6,7 @@
   <title>Skill Code Pro Exchange - Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap">
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style type="text/tailwindcss">
@@ -19,17 +19,23 @@
         --color-accent: #00B074;
         --color-dark-bg: #0B0E11;
         --color-card-dark: #14171A;
-    }
-
-    @variant dark {
+        --color-muted-foreground: #5f6469;
+        --color-surface-2: rgba(15, 23, 42, .06);
+        --color-border: rgba(15, 23, 42, 0.12);
+      }
+      
+      @variant dark {
         --color-card: #14171A;
+        --color-muted-foreground: #8b9095;
+        --color-surface-2: rgba(255, 255, 255, .05);
+        --color-border: rgba(255, 255, 255, 0.07);
     }
     
 
     @layer base {
 
       body {
-        @apply bg-[#f8f7f5] text-[#1A1D1F] dark:bg-[#0B0E11] dark:text-[#E4E6EB] min-h-screen;
+        @apply bg-[#f3f6f8] text-[#1A1D1F] dark:bg-[#0B0E11] dark:text-[#E4E6EB] min-h-screen;
       }
         button:not(:disabled),
         [role="button"]:not(:disabled) {
@@ -37,7 +43,28 @@
         }
     }
 
+    @utility container {
+      width: 100%;
+      margin-inline: auto;
+      padding-inline: 16px;
+      max-width: calc(var(--container-7xl) + 16px * 2);
+
+      @media (min-width:1024px) {
+        padding-inline: 40px;
+        max-width: calc(var(--container-7xl) + 40px * 2);
+      }
+    }
+
+    @utility page-content-area {
+      @apply flex-1 flex flex-col min-w-0 h-screen relative pb-15 lg:pb-0;
+    }
+
+    @utility page-main {
+      @apply container py-6 lg:py-10 space-y-6;
+    }
+
     @layer utilities {
+      
       .no-scrollbar::-webkit-scrollbar {
         display: none;
       }
@@ -103,18 +130,95 @@
         @apply py-4 lg:py-6;
       }
     }
+
+    
   
   </style>
 
 
   <style>
+    :root {
+      --sidebar-transition-duration: 0.3s;
+      --sidebar-transition-timing: ease;
+      --sidebar-width: 16rem;
+      --sidebar-width-collapse: 5rem;
+      --sidebar-default-width: 16rem;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Noto Sans', 'Noto Sans SC', sans-serif;
       transition: background-color 0.3s, color 0.3s;
     }
 
+    @media (min-width: 64rem) {
+      body.sidebar-collapse {
+        --sidebar-width: var(--sidebar-width-collapse);
+      }
+
+      .app-sidebar {
+        width: var(--sidebar-width);
+        transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+      }
+
+      .page-content-area {
+        padding-inline-start: var(--sidebar-width) !important;
+        transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+      }
+
+      body.sidebar-collapse .app-sidebar:hover:not(.animating) {
+        width: var(--sidebar-default-width);
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-nav-link .sidebar-label,
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-logo-full {
+        display: none;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-logo-icon {
+        display: block;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-logo-link {
+        padding-left: 0;
+        justify-content: center;
+        width: 100%;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-nav-link {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-link-icon {
+        margin: 0;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-section-title {
+        position: relative;
+        min-height: 0.875rem;
+        padding-inline: 0;
+        text-align: center;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-section-title .sidebar-label {
+        display: none;
+      }
+
+      body.sidebar-collapse .app-sidebar:not(:hover) .sidebar-section-title::before {
+        content: '...';
+        color: currentColor;
+        font-size: inherit;
+        display: inline-block;
+        position: absolute;
+        inset-inline-start: 50%;
+        inset-block-start: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
     .sidebar-transition {
-      transition: width 0.3s ease-in-out;
+      transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
     }
 
     .section-content {
