@@ -717,9 +717,9 @@
   </div>
 
 
-  <div class="modal" data-modal="payment-confirm" aria-hidden="true">
-    <div class="modal-backdrop" data-modal-overlay data-modal-close></div>
-    <div class="modal-box" role="dialog" aria-modal="true" aria-label="Подтверждение оплаты контракта">
+  <div class="modal animate-in fade-in duration-300" data-modal="payment-confirm" aria-hidden="true">
+    <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
+    <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Подтверждение оплаты контракта">
       <div class="flex items-start justify-between gap-4">
         <h3 class="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">Подтверждение оплаты контракта</h3>
         <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку">
@@ -769,9 +769,9 @@
     </div>
   </div>
 
-  <div class="modal" data-modal="payment-all-confirm" aria-hidden="true">
-    <div class="modal-backdrop" data-modal-overlay data-modal-close></div>
-    <div class="modal-box" role="dialog" aria-modal="true" aria-label="Подтверждение оплаты всего контракта">
+  <div class="modal animate-in fade-in duration-300" data-modal="payment-all-confirm" aria-hidden="true">
+    <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
+    <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Подтверждение оплаты всего контракта">
       <div class="flex items-start justify-between gap-4">
         <h3 class="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">Подтверждение оплаты контракта</h3>
         <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку">
@@ -803,9 +803,9 @@
     </div>
   </div>
 
-  <div class="modal" data-modal="payment-some-months" aria-hidden="true">
-    <div class="modal-backdrop" data-modal-overlay data-modal-close></div>
-    <div class="modal-box" role="dialog" aria-modal="true" aria-label="Оплатить несколько месяцев">
+  <div class="modal animate-in fade-in duration-300" data-modal="payment-some-months" aria-hidden="true">
+    <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
+    <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Оплатить несколько месяцев">
       <div class="flex items-start justify-between gap-4">
         <h3 class="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">Оплатить несколько месяцев</h3>
         <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку"><i data-lucide="x" class="h-5 w-5"></i></button>
@@ -851,9 +851,9 @@
     </div>
   </div>
 
-  <div class="modal" data-modal="contract-cancel" aria-hidden="true">
-    <div class="modal-backdrop" data-modal-overlay data-modal-close></div>
-    <div class="modal-box" role="dialog" aria-modal="true" aria-label="Отменить контракт">
+  <div class="modal animate-in fade-in duration-300" data-modal="contract-cancel" aria-hidden="true">
+    <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
+    <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Отменить контракт">
       <div class="flex items-start justify-between gap-4">
         <h3 class="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">Отменить контракт</h3>
         <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку"><i data-lucide="x" class="h-5 w-5"></i></button>

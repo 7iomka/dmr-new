@@ -191,11 +191,11 @@
 }
 
 @utility modal-backdrop {
-  @apply absolute inset-0 bg-zinc-950/60 backdrop-blur-[2px];
+  @apply absolute inset-0 bg-[rgba(6,6,6,0.9)];
 }
 
 @utility modal-box {
-  @apply relative z-10 my-auto w-full max-w-3xl max-h-[calc(100vh-2rem)] overflow-y-auto rounded-xl border border-zinc-200 bg-white p-5 shadow-2xl dark:border-zinc-800 dark:bg-[#060d16] md:max-h-[calc(100vh-3rem)] md:p-7;
+  @apply relative z-10 my-auto w-full max-w-3xl max-h-[calc(100vh-2rem)] overflow-y-auto rounded-xl border border-zinc-200 bg-card p-5 shadow-2xl dark:border-zinc-800 md:max-h-[calc(100vh-3rem)] md:p-7;
 }
 
 @utility modal-close {
