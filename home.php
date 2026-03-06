@@ -1013,14 +1013,11 @@
           </section>
 
           <!-- Member modal -->
-          <div class="modal modal--member animate-in fade-in duration-300" data-modal="member-details" aria-hidden="true">
+          <div class="modal animate-in fade-in duration-300" data-modal="member-details" aria-hidden="true">
             <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
-            <div class="modal-box modal-box--member animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Детали участника">
-              <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
+            <div class="modal-box p-5 pr-14 max-w-md animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Детали участника">
+              <button class="modal-close absolute right-2 top-2 z-20" type="button" data-modal-close aria-label="Закрыть модалку">
+                <i data-lucide="x" class="h-5 w-5"></i>
               </button>
               <div data-modal-body></div>
             </div>

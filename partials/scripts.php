@@ -101,8 +101,46 @@
 	<script>
 		// ===== GLOBAL MODAL MANAGER (data-attributes) =====
 		(function() {
+			const CLOSE_ANIMATION_MS = 300;
+			const closeTimers = new WeakMap();
 			const getModal = (name) => document.querySelector(`[data-modal="${name}"]`);
 			const getOpenModals = () => Array.from(document.querySelectorAll('.modal.open[data-modal]'));
+
+			function setEnterClasses(modal) {
+				const backdrop = modal.querySelector('.modal-backdrop');
+				const box = modal.querySelector('.modal-box');
+
+				modal.classList.remove('animate-out');
+				modal.classList.add('animate-in');
+
+				if (backdrop) {
+					backdrop.classList.remove('animate-out', 'fade-out');
+					backdrop.classList.add('animate-in', 'fade-in');
+				}
+
+				if (box) {
+					box.classList.remove('animate-out', 'fade-out', 'zoom-out-95');
+					box.classList.add('animate-in', 'fade-in', 'zoom-in-95');
+				}
+			}
+
+			function setExitClasses(modal) {
+				const backdrop = modal.querySelector('.modal-backdrop');
+				const box = modal.querySelector('.modal-box');
+
+				modal.classList.remove('animate-in');
+				modal.classList.add('animate-out');
+
+				if (backdrop) {
+					backdrop.classList.remove('animate-in', 'fade-in');
+					backdrop.classList.add('animate-out', 'fade-out');
+				}
+
+				if (box) {
+					box.classList.remove('animate-in', 'fade-in', 'zoom-in-95');
+					box.classList.add('animate-out', 'fade-out', 'zoom-out-95');
+				}
+			}
 
 			function syncScrollLock() {
 				document.body.style.overflow = getOpenModals().length ? 'hidden' : '';
@@ -111,6 +149,15 @@
 			function open(modalOrName) {
 				const modal = typeof modalOrName === 'string' ? getModal(modalOrName) : modalOrName;
 				if (!modal) return;
+
+				const prevTimer = closeTimers.get(modal);
+				if (prevTimer) {
+					clearTimeout(prevTimer);
+					closeTimers.delete(modal);
+				}
+
+				modal.removeAttribute('data-closing');
+				setEnterClasses(modal);
 				modal.classList.add('open');
 				modal.setAttribute('aria-hidden', 'false');
 				syncScrollLock();
@@ -119,9 +166,21 @@
 			function close(modalOrName) {
 				const modal = typeof modalOrName === 'string' ? getModal(modalOrName) : modalOrName;
 				if (!modal) return;
-				modal.classList.remove('open');
-				modal.setAttribute('aria-hidden', 'true');
-				syncScrollLock();
+				if (modal.getAttribute('data-closing') === 'true') return;
+
+				modal.setAttribute('data-closing', 'true');
+				setExitClasses(modal);
+
+				const timer = setTimeout(() => {
+					modal.classList.remove('open', 'animate-out');
+					modal.setAttribute('aria-hidden', 'true');
+					modal.removeAttribute('data-closing');
+					setEnterClasses(modal);
+					closeTimers.delete(modal);
+					syncScrollLock();
+				}, CLOSE_ANIMATION_MS);
+
+				closeTimers.set(modal, timer);
 			}
 
 			function closeTop() {

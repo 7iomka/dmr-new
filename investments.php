@@ -302,7 +302,7 @@
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap">17569</td>
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap">05.03.2026</td>
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap text-amber-600">до 17.03.2026</td>
-                                  <td class="px-4 py-3 text-right"><button class="px-3 py-2 rounded-md btn-primary font-bold uppercase whitespace-nowrap">Оплатить сейчас</button></td>
+                                  <td class="px-4 py-3 text-right"><button class="px-3 py-2 rounded-md btn-primary font-bold uppercase whitespace-nowrap" data-modal-open="payment-confirm">Оплатить сейчас</button></td>
                                 </tr>
                                 <tr data-payment-item="88421-3">
                                   <td class="px-4 py-3 font-semibold text-zinc-900 dark:text-zinc-100">Платёж #3</td>
@@ -486,7 +486,7 @@
                         <p class="mt-1 text-[11px]">Срок: <span class="font-semibold text-amber-600">до 17.03.2026</span></p>
                         <p class="mt-1 text-[11px]">Сумма: <span class="font-semibold text-zinc-900 dark:text-white">$66.67</span></p>
                         <p class="mt-1 text-[11px]">Доли: <span class="font-semibold text-zinc-900 dark:text-white">17569</span></p>
-                        <button class="mt-3 w-full px-3 py-2.5 rounded-lg btn-primary text-[11px] font-bold uppercase">Оплатить сейчас</button>
+                        <button class="mt-3 w-full px-3 py-2.5 rounded-lg btn-primary text-[11px] font-bold uppercase" data-modal-open="payment-confirm">Оплатить сейчас</button>
                       </div>
 
                       <div data-payment-item="88421-3" class="bg-card rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2">
@@ -713,6 +713,170 @@
         <i data-lucide="x" class="h-4 w-4 text-zinc-400"></i>
         Отменить контракт
       </button>
+    </div>
+  </div>
+
+
+  <div class="modal animate-in fade-in duration-300" data-modal="payment-confirm" data-modal-size="lg" aria-hidden="true">
+    <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
+    <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Подтверждение оплаты контракта">
+      <div class="modal-header">
+        <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white">Подтверждение оплаты контракта</h3>
+        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку">
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">ID контракта</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Доли</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">35 138</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Сумма платежа</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Баланс кошелька</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">350.54 $</p></div>
+        </div>
+
+        <div class="mt-4 rounded-lg border border-zinc-200 bg-zinc-100 px-4 py-3 text-sm text-zinc-500 dark:border-zinc-700 dark:bg-zinc-700/70 dark:text-zinc-400 flex items-center justify-between gap-4">
+          <span>Сумма к списанию</span>
+          <span class="font-bold tabular-nums text-sky-500 dark:text-sky-400">133.33 $</span>
+        </div>
+
+        <div class="alert-info mt-4 text-sm">
+          <i data-lucide="info" class="h-4 w-4 shrink-0"></i>
+          <p>Это действие погасит весь оставшийся баланс по контракту</p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap justify-end gap-3">
+          <button type="button" data-modal-close class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800"><i data-lucide="x" class="h-3.5 w-3.5"></i>Отмена</button>
+          <button type="button" class="inline-flex items-center justify-center gap-2 px-5 py-3 btn-primary text-xs font-bold rounded-lg uppercase tracking-widest"><i data-lucide="check" class="h-3.5 w-3.5"></i>Подтвердить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal animate-in fade-in duration-300" data-modal="payment-all-confirm" data-modal-size="lg" aria-hidden="true">
+    <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
+    <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Подтверждение оплаты всего контракта">
+      <div class="modal-header">
+        <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white">Подтверждение оплаты контракта</h3>
+        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку">
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">ID контракта</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Доли</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">35 138</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Сумма платежа</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Баланс кошелька</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">350.54 $</p></div>
+        </div>
+
+        <div class="mt-4 rounded-lg border border-zinc-200 bg-zinc-100 px-4 py-3 text-sm text-zinc-500 dark:border-zinc-700 dark:bg-zinc-700/70 dark:text-zinc-400 flex items-center justify-between gap-4">
+          <span>Сумма к списанию</span>
+          <span class="font-bold tabular-nums text-sky-500 dark:text-sky-400">133.33 $</span>
+        </div>
+
+        <div class="alert-info mt-4 text-sm">
+          <i data-lucide="info" class="h-4 w-4 shrink-0"></i>
+          <p>Это действие погасит весь оставшийся баланс по контракту</p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap justify-end gap-3">
+          <button type="button" data-modal-close class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800"><i data-lucide="x" class="h-3.5 w-3.5"></i>Отмена</button>
+          <button type="button" class="inline-flex items-center justify-center gap-2 px-5 py-3 btn-primary text-xs font-bold rounded-lg uppercase tracking-widest"><i data-lucide="check" class="h-3.5 w-3.5"></i>Подтвердить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal animate-in fade-in duration-300" data-modal="payment-some-months" data-modal-size="lg" aria-hidden="true">
+    <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
+    <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Оплатить несколько месяцев">
+      <div class="modal-header">
+        <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white">Оплатить несколько месяцев</h3>
+        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку"><i data-lucide="x" class="h-5 w-5"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">ID контракта</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Неоплаченные месяцы</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">2</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Сумма за месяц</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">66.67 $</p></div>
+        </div>
+
+        <div class="mt-5">
+          <label class="block mb-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">Выберите количество месяцев для оплаты</label>
+          <div class="relative">
+            <select class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-[#0B0E11] px-4 py-2.5 text-zinc-700 dark:text-zinc-200 appearance-none outline-none focus:border-primary">
+              <option>2 months</option>
+            </select>
+            <i data-lucide="chevron-down" class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400"></i>
+          </div>
+          <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Доступно 2 - 2 месяцев</p>
+        </div>
+
+        <div class="mt-5 divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Доли</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">35 138</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Сумма платежа</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Баланс кошелька</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">350.54 $</p></div>
+        </div>
+
+        <div class="mt-4 rounded-lg border border-zinc-200 bg-zinc-100 px-4 py-3 text-sm text-zinc-500 dark:border-zinc-700 dark:bg-zinc-700/70 dark:text-zinc-400 flex items-center justify-between gap-4">
+          <span>Сумма к списанию</span>
+          <span class="font-bold tabular-nums text-sky-500 dark:text-sky-400">133.33 $</span>
+        </div>
+
+        <div class="alert-info mt-4 text-sm">
+          <i data-lucide="info" class="h-4 w-4 shrink-0"></i>
+          <p>Это оплатит следующие 2 платежа</p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap justify-end gap-3">
+          <button type="button" data-modal-close class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800"><i data-lucide="x" class="h-3.5 w-3.5"></i>Отмена</button>
+          <button type="button" class="inline-flex items-center justify-center gap-2 px-5 py-3 btn-primary text-xs font-bold rounded-lg uppercase tracking-widest"><i data-lucide="check" class="h-3.5 w-3.5"></i>Подтвердить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal animate-in fade-in duration-300" data-modal="contract-cancel" data-modal-size="lg" aria-hidden="true">
+    <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
+    <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Отменить контракт">
+      <div class="modal-header">
+        <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white">Отменить контракт</h3>
+        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку"><i data-lucide="x" class="h-5 w-5"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="alert-danger text-sm font-semibold">
+          <i data-lucide="triangle-alert" class="h-4 w-4 shrink-0"></i>
+          <p>Внимание: Это действие нельзя отменить</p>
+        </div>
+
+        <div class="mt-5 divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">ID контракта</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Неоплаченные платежи</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">2</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Остаток суммы</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Доли, которые вы сохраните</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">17 569</p></div>
+        </div>
+
+        <div class="alert-warning mt-5 text-sm">
+          <i data-lucide="info" class="h-4 w-4 shrink-0"></i>
+          <div>
+            <p class="mb-2">Отмена этого контракта приведет к:</p>
+            <ul class="list-disc pl-6 space-y-1">
+              <li>Отмене всех неоплаченных платежей</li>
+              <li>Вы сохраните доли, полученные из оплаченных платежей</li>
+              <li>Возврат средств за оплаченные суммы не производится</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap justify-end gap-3">
+          <button type="button" data-modal-close class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800"><i data-lucide="x" class="h-3.5 w-3.5"></i>Отмена</button>
+          <button type="button" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-red-500 bg-red-500 text-xs font-bold uppercase tracking-widest text-white hover:bg-red-600 active:bg-red-700"><i data-lucide="triangle-alert" class="h-3.5 w-3.5"></i>Подтвердить отмену</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1021,6 +1185,11 @@
       const action = btn.dataset.action; // pay_all | pay_some | cancel
       const contractId = state.triggerEl?.dataset.contractId; // 88421
 
+      const modalMap = {
+        pay_all: 'payment-all-confirm',
+        pay_some: 'payment-some-months',
+        cancel: 'contract-cancel',
+      };
 
       console.log('contract actions menu:', {
         action,
@@ -1028,6 +1197,11 @@
       });
 
       closeCurrent();
+
+      const modalName = modalMap[action];
+      if (modalName && window.AppModal) {
+        window.AppModal.open(modalName);
+      }
     });
   </script>
 
