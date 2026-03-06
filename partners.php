@@ -295,12 +295,12 @@
 
                             .c-sortable-th:hover {
                                 background-color: rgba(0, 176, 116, 0.05);
-                                color: #00B074;
+                                color: var(--color-accent);
                             }
 
                             .c-sortable-th:hover .c-sort-icon {
                                 opacity: 1;
-                                color: #00B074;
+                                color: var(--color-accent);
                             }
 
                             .dark .c-sortable-th:hover {
