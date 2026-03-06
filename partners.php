@@ -24,7 +24,7 @@
                             <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Вас
                                 пригласил:</span>
                             <div class="flex items-center gap-2">
-                                <div class="w-6 h-6 rounded-md bg-gradient-to-tr from-accent to-emerald-400 p-[2px]">
+                                <div class="w-6 h-6 rounded-md bg-gradient-to-tr from-primary to-primary-400 p-[2px]">
                                     <div
                                         class="w-full h-full rounded-sm flex items-center justify-center font-bold text-[10px] bg-card text-zinc-900 dark:text-white">
                                         AR</div>
@@ -40,11 +40,11 @@
                         <!-- Card 1: Total Earnings -->
                         <div class="card-simple group relative overflow-hidden">
                             <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                                <i data-lucide="wallet" class="w-16 h-16 text-accent"></i>
+                                <i data-lucide="wallet" class="w-16 h-16 text-primary"></i>
                             </div>
                             <div class="flex flex-col h-full justify-between relative z-10">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <div class="p-1.5 rounded-md bg-accent/10 text-accent">
+                                    <div class="p-1.5 rounded-md bg-primary/10 text-primary">
                                         <i data-lucide="dollar-sign" class="w-4 h-4"></i>
                                     </div>
                                     <span class="text-xs font-bold text-zinc-500 uppercase tracking-widest">Доход</span>
@@ -55,14 +55,14 @@
                                             1,250.00 $</h2>
                                     </div>
                                     <div class="flex items-center gap-2 mt-2 text-xs">
-                                        <span class="text-accent bg-accent/10 px-1.5 py-0.5 rounded font-medium">+250.00
+                                        <span class="text-primary bg-primary/10 px-1.5 py-0.5 rounded font-medium">+250.00
                                             $</span>
                                         <span class="text-zinc-400">за Февраль</span>
                                     </div>
                                 </div>
                                 <div class="mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex justify-between items-center">
                                     <span class="text-[10px] font-bold text-zinc-400 uppercase">Доступно к выводу</span>
-                                    <span class="text-sm font-bold text-accent">482.50 $</span>
+                                    <span class="text-sm font-bold text-primary">482.50 $</span>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                         <div
                             class="card-simple group relative overflow-hidden dark:bg-gradient-to-br dark:from-zinc-900 dark:to-zinc-800 dark:border-zinc-700/50 md:col-span-2 xl:col-span-1">
                             <div
-                                class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-accent/10 dark:bg-accent/20 rounded-full blur-2xl">
+                                class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-primary/10 dark:bg-primary/20 rounded-full blur-2xl">
                             </div>
                             <div
                                 class="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl">
@@ -120,7 +120,7 @@
                                         <label class="text-[10px] font-bold text-zinc-500 uppercase mb-1 block">Ваша
                                             ссылка (платформа)</label>
                                         <div
-                                            class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-accent transition-colors">
+                                            class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-primary transition-colors">
                                             <div id="ref-link"
                                                 class="pl-3 pr-2 py-2 truncate text-xs font-mono text-zinc-600 dark:text-zinc-300 w-full select-all">
                                                 https://invest.awsarhitect.me/?ref=A7CA9B55</div>
@@ -133,7 +133,7 @@
                                         <label class="text-[10px] font-bold text-zinc-500 uppercase mb-1 block">Ваша
                                             ссылка (продукт)</label>
                                         <div
-                                            class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-accent transition-colors">
+                                            class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-primary transition-colors">
                                             <div id="ref-link"
                                                 class="pl-3 pr-2 py-2 truncate text-xs font-mono text-zinc-600 dark:text-zinc-300 w-full select-all">
                                                 https://awsarhitect.me/?ref=A7CA9B55</div>
@@ -146,7 +146,7 @@
                                         class="flex justify-between items-center bg-zinc-50 dark:bg-zinc-950/30 rounded-lg px-3 py-2.5 border border-zinc-200 dark:border-zinc-800">
                                         <span class="text-[10px] font-bold text-zinc-500 uppercase">Код:</span>
                                         <div class="flex items-center gap-3">
-                                            <span class="font-mono font-bold text-accent text-sm tracking-wider">A7CA9B55</span>
+                                            <span class="font-mono font-bold text-primary text-sm tracking-wider">A7CA9B55</span>
                                             <?= copyButton([
                                                 'text' => 'A7CA9B55',
                                                 'classOverride' => 'relative text-zinc-400 hover:text-zinc-600 dark:hover:text-white transition-colors',
@@ -295,12 +295,12 @@
 
                             .c-sortable-th:hover {
                                 background-color: rgba(0, 176, 116, 0.05);
-                                color: var(--color-accent);
+                                color: var(--color-primary);
                             }
 
                             .c-sortable-th:hover .c-sort-icon {
                                 opacity: 1;
-                                color: var(--color-accent);
+                                color: var(--color-primary);
                             }
 
                             .dark .c-sortable-th:hover {
@@ -361,7 +361,7 @@
                                             <i data-lucide="search"
                                                 class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"></i>
                                             <input type="text" placeholder="Поиск по логину..."
-                                                class="w-full h-9 pl-9 pr-4 bg-white dark:bg-[#27272a] border border-zinc-200 dark:border-zinc-700 rounded-lg text-xs font-medium focus:outline-none focus:ring-1 focus:ring-accent/50 transition-all placeholder:text-zinc-500">
+                                                class="w-full h-9 pl-9 pr-4 bg-white dark:bg-[#27272a] border border-zinc-200 dark:border-zinc-700 rounded-lg text-xs font-medium focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-zinc-500">
                                         </div>
 
                                         <!-- Top Pagination (Compact) -->
@@ -371,7 +371,7 @@
                                             <div class="flex items-center gap-1">
                                                 <button class="nav-btn-base"><i data-lucide="chevron-left" class="w-3.5 h-3.5"></i></button>
                                                 <button
-                                                    class="nav-btn-base !bg-accent !text-white !border-none text-[10px] font-bold">1</button>
+                                                    class="nav-btn-base !bg-primary !text-white !border-none text-[10px] font-bold">1</button>
                                                 <button class="nav-btn-base text-[10px] font-bold">2</button>
                                                 <button class="nav-btn-base"><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></button>
                                             </div>
@@ -433,7 +433,7 @@
                                             <i data-lucide="chevron-left" class="w-4 h-4"></i>
                                         </button>
                                         <button
-                                            class="w-8 h-8 flex items-center justify-center rounded bg-accent text-white text-[10px] font-bold shadow-sm shadow-accent/20">1</button>
+                                            class="w-8 h-8 flex items-center justify-center rounded btn-primary text-[10px] font-bold shadow-sm shadow-primary/20">1</button>
                                         <button
                                             class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors cursor-pointer">2</button>
                                         <button
@@ -557,7 +557,7 @@
 
                 if (currentPath.length === 0) {
                     rootLabel.className = "text-sm font-bold text-zinc-900 dark:text-white";
-                    rootIcon.className = "w-4 h-4 text-accent";
+                    rootIcon.className = "w-4 h-4 text-primary";
                 } else {
                     rootLabel.className = "text-sm font-medium text-zinc-500 dark:text-zinc-400";
                     rootIcon.className = "w-4 h-4 text-zinc-400";
@@ -608,14 +608,14 @@
                 <td class="card-body-inset-x py-5 text-center">
                     ${refCount === 0 ? 
                         `<span class="text-zinc-300 dark:text-zinc-600 px-3 font-medium">—</span>` :
-                        `<span class="inline-flex items-center justify-center min-w-[28px] px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm border border-accent/50 bg-accent-light text-accent">
+                        `<span class="inline-flex items-center justify-center min-w-[28px] px-2 py-0.5 rounded-md text-[11px] font-bold shadow-sm border border-primary/50 bg-primary-500/10 text-primary">
                             ${refCount}
                         </span>`
                     }
                 </td>
                 <td class="card-body-inset-x py-5 text-center">
                     ${hasRef ? `
-                        <span class="inline-flex items-center justify-center min-w-[60px] px-2.5 py-0.5 rounded-md text-[10px] font-bold shadow-sm border border-accent/50 bg-accent-light text-accent">
+                        <span class="inline-flex items-center justify-center min-w-[60px] px-2.5 py-0.5 rounded-md text-[10px] font-bold shadow-sm border border-primary/50 bg-primary-500/10 text-primary">
                             ACTIVE
                         </span>
                     ` : `
@@ -629,7 +629,7 @@
                 <td class="card-body-inset-x py-5 text-right">
                     ${hasRef ? `
                         <button onclick="goDeeper('${login}', ${nextLvl})" 
-                                class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-accent hover:text-white transition-all active:scale-90 shadow-sm cursor-pointer">
+                                class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-primary hover:text-white transition-all active:scale-90 shadow-sm cursor-pointer">
                             <i data-lucide="chevron-right" class="w-4 h-4"></i>
                         </button>
                     ` : '<span class="text-zinc-300 dark:text-zinc-600 px-3">—</span>'}
@@ -648,7 +648,7 @@
                         </div>
                     </div>
                     <div class="text-right pl-3">
-                        <span class="px-2 py-0.5 bg-accent/10 text-accent text-[8px] font-bold uppercase rounded">ACTIVE</span>
+                        <span class="px-2 py-0.5 bg-primary/10 text-primary text-[8px] font-bold uppercase rounded">ACTIVE</span>
                         <div class="flex items-center justify-end text-[9px] text-zinc-400 uppercase font-bold tracking-tighter mt-1">
                             <span>Детали</span><i data-lucide="chevron-down" class="w-3 h-3 ml-1 c-card-chevron"></i>
                         </div>
@@ -666,7 +666,7 @@
                                     <span class="uppercase text-zinc-500 tracking-wider">Регистрация:</span>
                                     <span class="text-zinc-400 font-medium">18.02.2026</span>
                                 </div>
-                                ${hasRef ? `<div class="pt-2 border-t border-zinc-200 dark:border-zinc-800/80"><button onclick="event.stopPropagation(); goDeeper('${login}', ${nextLvl})" class="w-full py-2 flex items-center justify-center gap-2 border border-accent/30 bg-accent/5 text-accent rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-accent/10 transition-colors"><span>Открыть структуру</span><i data-lucide="arrow-right-circle" class="w-3.5 h-3.5"></i></button></div>` : ''}
+                                ${hasRef ? `<div class="pt-2 border-t border-zinc-200 dark:border-zinc-800/80"><button onclick="event.stopPropagation(); goDeeper('${login}', ${nextLvl})" class="w-full py-2 flex items-center justify-center gap-2 border border-primary/30 bg-primary/5 text-primary rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-primary/10 transition-colors"><span>Открыть структуру</span><i data-lucide="arrow-right-circle" class="w-3.5 h-3.5"></i></button></div>` : ''}
                             </div>
                         </div>
                     </div>

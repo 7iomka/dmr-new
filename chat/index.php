@@ -18,7 +18,7 @@
           <section id="chat-container" class="card overflow-hidden flex flex-col min-h-[480px] lg:min-h-[600px] max-h-[83vh]">
             <header class="card-header">
               <div class="flex items-center gap-3 min-w-0">
-                <div class="h-10 w-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                <div class="h-10 w-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"
                     aria-hidden="true">
@@ -38,9 +38,9 @@
                 <div id="chat-list" class="p-2 space-y-2 overflow-y-auto">
                   <button type="button" data-chat-item data-chat-target="support-technical" data-chat-title="Общий вопрос"
                     data-chat-subtitle="Чат поддержки"
-                    class="w-full rounded-lg border border-accent/30 bg-accent/5 px-3 py-3 text-left transition-colors hover:border-accent/40">
+                    class="w-full rounded-lg border border-primary/30 bg-primary/5 px-3 py-3 text-left transition-colors hover:border-primary/40">
                     <div class="flex items-start gap-3">
-                      <div class="h-10 w-10 rounded-md bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                      <div class="h-10 w-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"
                           aria-hidden="true">
@@ -59,17 +59,17 @@
 
                   <button type="button" data-chat-item data-chat-target="support-notice" data-chat-title="Отчет об ошибке"
                     data-chat-subtitle="Чат поддержки"
-                    class="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-card px-3 py-3 text-left transition-colors hover:border-accent/40">
+                    class="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-card px-3 py-3 text-left transition-colors hover:border-primary/40">
                     <div class="flex items-start gap-3">
                       <div
-                        class="relative h-10 w-10 rounded-md bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                        class="relative h-10 w-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"
                           aria-hidden="true">
                           <path d="m7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
                         </svg>
                         <span
-                          class="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-md bg-accent text-white text-[10px] leading-[18px] text-center font-bold">2</span>
+                          class="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-md bg-primary text-white text-[10px] leading-[18px] text-center font-bold">2</span>
                       </div>
                       <div class="min-w-0 flex-1">
                         <div class="flex items-center justify-between gap-2">
@@ -90,7 +90,7 @@
 
                 <div class="p-4 border-t border-zinc-200 dark:border-zinc-800">
                   <button id="new-ticket-btn" type="button"
-                    class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-bold text-white hover:bg-emerald-600 transition-colors">
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-bold text-white hover:bg-primary-600 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
                       aria-hidden="true">
@@ -115,7 +115,7 @@
                     </svg>
                   </button>
 
-                  <div class="h-10 w-10 rounded-md bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                  <div class="h-10 w-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"
                       aria-hidden="true">
@@ -134,7 +134,7 @@
                     <p class="text-lg font-bold text-zinc-900 dark:text-white">Добро пожаловать в чат поддержки</p>
                     <p class="mt-2 text-sm text-zinc-500">Выберите существующий диалог или создайте новое обращение.</p>
                     <button type="button" data-new-ticket-trigger
-                      class="mt-4 inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-white hover:bg-emerald-600 transition-colors">
+                      class="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-bold text-white hover:bg-primary-600 transition-colors">
                       Начать разговор
                     </button>
                   </div>
@@ -146,7 +146,7 @@
                       <label for="ticket-topic" class="inline-block text-sm font-semibold text-zinc-900 dark:text-white">Тема обращения</label>
                       <div class="relative">
                         <select id="ticket-topic"
-                          class="w-full border focus:border-accent/50 rounded-lg px-4 py-3 pr-10 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
+                          class="w-full border focus:border-primary/50 rounded-lg px-4 py-3 pr-10 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
                           <option>Техническая проблема</option>
                           <option>Счета и платежи</option>
                           <option>Настройки учетной записи</option>
@@ -195,7 +195,7 @@
                         <div id="ticket-attachment-preview"
                           class="hidden mb-3 items-center justify-between rounded-lg border-t border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-3 py-2">
                           <div class="flex items-center gap-2 min-w-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-accent shrink-0 lucide lucide-paperclip-icon lucide-paperclip" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-primary shrink-0 lucide lucide-paperclip-icon lucide-paperclip" aria-hidden="true">
                               <path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" />
                             </svg>
                             <span id="ticket-attachment-name" class="truncate text-xs font-semibold text-zinc-600 dark:text-zinc-300">file.pdf</span>
@@ -209,10 +209,10 @@
                         </div>
 
                         <form id="new-ticket-form"
-                          class="flex items-end gap-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-2 py-2 focus-within:border-accent/40 transition-colors">
+                          class="flex items-end gap-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-2 py-2 focus-within:border-primary/40 transition-colors">
                           <input id="ticket-file" type="file" class="hidden" />
                           <button id="ticket-file-trigger" type="button"
-                            class="h-10 w-10 rounded-lg text-zinc-400 hover:text-accent flex items-center justify-center shrink-0"
+                            class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0"
                             aria-label="Прикрепить файл">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 lucide lucide-paperclip-icon lucide-paperclip" aria-hidden="true">
                               <path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" />
@@ -223,7 +223,7 @@
                             class="w-full max-h-[320px] resize-none overflow-y-auto bg-transparent px-1 py-2 text-sm leading-6 text-zinc-900 dark:text-white outline-none"></textarea>
 
                           <button id="ticket-emoji-toggle" type="button"
-                            class="h-10 w-10 rounded-lg text-zinc-400 hover:text-accent flex items-center justify-center shrink-0"
+                            class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0"
                             aria-label="Открыть эмодзи">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
                               <circle cx="12" cy="12" r="10" />
@@ -236,7 +236,7 @@
                           <span class="h-6 w-px bg-zinc-200 dark:bg-zinc-700 shrink-0 my-auto" aria-hidden="true"></span>
 
                           <button type="submit"
-                            class="h-10 w-10 rounded-lg text-zinc-400 hover:text-accent flex items-center justify-center shrink-0 transition-all active:scale-95"
+                            class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0 transition-all active:scale-95"
                             aria-label="Создать обращение">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
                               <path d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
@@ -253,9 +253,9 @@
                   <section class="chat-date-group relative space-y-4 pt-2" data-range="25.01.2025">
                     <div class="flex justify-center sticky top-1 z-10" data-date-sticky data-date="25.01.2025"><span class="rounded-md bg-zinc-100/95 dark:bg-zinc-800/95 px-3 py-1 text-xs font-semibold text-zinc-500 shadow-sm transition-opacity duration-200" data-date-chip>25.01.2025</span></div>
                     <div class="sticky_sentinel sticky_sentinel--top h-px" aria-hidden="true"></div>
-                    <div class="max-w-md rounded-lg border border-accent/30 bg-accent/10 text-zinc-900 dark:text-white px-4 py-3">
+                    <div class="max-w-md rounded-lg border border-primary/30 bg-primary/10 text-zinc-900 dark:text-white px-4 py-3">
                       <p class="text-sm text-zinc-700 dark:text-zinc-200">Здравствуйте! Это старт диалога. Если нужна помощь — просто ответьте в этом чате.</p>
-                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-accent/80">14.05.2024</p>
+                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-primary/80">14.05.2024</p>
                     </div>
                     <div class="ml-auto max-w-md rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-4 py-3">
                       <p class="text-sm">Принял, спасибо!</p>
@@ -270,9 +270,9 @@
                       <p class="text-sm">Подскажите, где посмотреть историю начислений?</p>
                       <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">12.01.2026</p>
                     </div>
-                    <div class="max-w-md rounded-lg border border-accent/30 bg-accent/10 text-zinc-900 dark:text-white px-4 py-3">
+                    <div class="max-w-md rounded-lg border border-primary/30 bg-primary/10 text-zinc-900 dark:text-white px-4 py-3">
                       <p class="text-sm text-zinc-700 dark:text-zinc-200">История доступна в разделе «Отчёт» — выгрузил вам свежий файл.</p>
-                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-accent/80">12.01.2026</p>
+                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-primary/80">12.01.2026</p>
                     </div>
                     <div class="ml-auto max-w-md rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-4 py-3">
                       <p class="text-sm">Увидел, спасибо. Можно ещё разбивку по месяцам?</p>
@@ -283,17 +283,17 @@
                   <section class="chat-date-group relative space-y-4 pt-2" data-range="Сегодня">
                     <div class="flex justify-center sticky top-1 z-10" data-date-sticky data-date="Сегодня"><span class="rounded-md bg-zinc-100/95 dark:bg-zinc-800/95 px-3 py-1 text-xs font-semibold text-zinc-500 shadow-sm transition-opacity duration-200" data-date-chip>Сегодня</span></div>
                     <div class="sticky_sentinel sticky_sentinel--top h-px" aria-hidden="true"></div>
-                    <div class="max-w-md rounded-lg border border-accent/30 bg-accent/10 text-zinc-900 dark:text-white px-4 py-3">
+                    <div class="max-w-md rounded-lg border border-primary/30 bg-primary/10 text-zinc-900 dark:text-white px-4 py-3">
                       <p class="text-sm text-zinc-700 dark:text-zinc-200">Поняли вас. Последние начисления добавили в отчёт по аккаунту.</p>
-                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-accent/80">вчера, 19:30</p>
+                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-primary/80">вчера, 19:30</p>
                     </div>
                     <div class="ml-auto max-w-md rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-4 py-3">
                       <p class="text-sm">Проверил, всё корректно 👌</p>
                       <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">вчера, 19:34</p>
                     </div>
-                    <div class="max-w-md rounded-lg border border-accent/30 bg-accent/10 text-zinc-900 dark:text-white px-4 py-3">
+                    <div class="max-w-md rounded-lg border border-primary/30 bg-primary/10 text-zinc-900 dark:text-white px-4 py-3">
                       <p class="text-sm text-zinc-700 dark:text-zinc-200">Дополнительно отправили вам файл с разбивкой по месяцам.</p>
-                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-accent/80">сегодня, 09:12</p>
+                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-primary/80">сегодня, 09:12</p>
                     </div>
                     <div class="ml-auto max-w-md rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-4 py-3">
                       <p class="text-sm">Файл загрузился, благодарю за оперативность.</p>
@@ -306,9 +306,9 @@
                   <section class="chat-date-group relative space-y-4 pt-2" data-range="26.01.2025">
                     <div class="flex justify-center sticky top-1 z-10" data-date-sticky data-date="26.01.2025"><span class="rounded-md bg-zinc-100/95 dark:bg-zinc-800/95 px-3 py-1 text-xs font-semibold text-zinc-500 shadow-sm transition-opacity duration-200" data-date-chip>26.01.2025</span></div>
                     <div class="sticky_sentinel sticky_sentinel--top h-px" aria-hidden="true"></div>
-                    <div class="max-w-md rounded-lg border border-accent/30 bg-accent/10 text-zinc-900 dark:text-white px-4 py-3">
+                    <div class="max-w-md rounded-lg border border-primary/30 bg-primary/10 text-zinc-900 dark:text-white px-4 py-3">
                       <p class="text-sm text-zinc-700 dark:text-zinc-200">Система обнаружила вход в аккаунт с нового устройства.</p>
-                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-accent/80">26.01.2025, 08:05</p>
+                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-primary/80">26.01.2025, 08:05</p>
                     </div>
                     <div class="ml-auto max-w-md rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-4 py-3">
                       <p class="text-sm">Подтверждаю, это был мой вход.</p>
@@ -319,17 +319,17 @@
                   <section class="chat-date-group relative space-y-4 pt-2" data-range="Сегодня">
                     <div class="flex justify-center sticky top-1 z-10" data-date-sticky data-date="Сегодня"><span class="rounded-md bg-zinc-100/95 dark:bg-zinc-800/95 px-3 py-1 text-xs font-semibold text-zinc-500 shadow-sm transition-opacity duration-200" data-date-chip>Сегодня</span></div>
                     <div class="sticky_sentinel sticky_sentinel--top h-px" aria-hidden="true"></div>
-                    <div class="max-w-md rounded-lg border border-accent/30 bg-accent/10 text-zinc-900 dark:text-white px-4 py-3">
+                    <div class="max-w-md rounded-lg border border-primary/30 bg-primary/10 text-zinc-900 dark:text-white px-4 py-3">
                       <p class="text-sm text-zinc-700 dark:text-zinc-200">Поддержка инициировала диалог: зафиксирован вход с нового устройства.</p>
-                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-accent/80">вчера, 18:05</p>
+                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-primary/80">вчера, 18:05</p>
                     </div>
                     <div class="ml-auto max-w-md rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-4 py-3">
                       <p class="text-sm">Это был я, вход подтверждаю.</p>
                       <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">вчера, 18:07</p>
                     </div>
-                    <div class="max-w-md rounded-lg border border-accent/30 bg-accent/10 text-zinc-900 dark:text-white px-4 py-3">
+                    <div class="max-w-md rounded-lg border border-primary/30 bg-primary/10 text-zinc-900 dark:text-white px-4 py-3">
                       <p class="text-sm text-zinc-700 dark:text-zinc-200">Спасибо, отметили вход как безопасный.</p>
-                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-accent/80">вчера, 18:08</p>
+                      <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-primary/80">вчера, 18:08</p>
                     </div>
                   </section>
                 </div>
@@ -365,7 +365,7 @@
                     <div id="attachment-preview"
                       class="hidden mb-3 items-center justify-between rounded-lg border-t border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-3 py-2">
                       <div class="flex items-center gap-2 min-w-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-accent shrink-0 lucide lucide-paperclip-icon lucide-paperclip" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-primary shrink-0 lucide lucide-paperclip-icon lucide-paperclip" aria-hidden="true">
                           <path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" />
                         </svg>
                         <span id="attachment-name" class="truncate text-xs font-semibold text-zinc-600 dark:text-zinc-300">file.pdf</span>
@@ -381,10 +381,10 @@
                     </div>
 
                     <form id="chat-form"
-                      class="flex items-end gap-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-2 py-2 focus-within:border-accent/40 transition-colors">
+                      class="flex items-end gap-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-2 py-2 focus-within:border-primary/40 transition-colors">
                       <input id="chat-file" type="file" class="hidden" />
                       <button id="file-trigger" type="button"
-                        class="h-10 w-10 rounded-lg text-zinc-400 hover:text-accent flex items-center justify-center shrink-0"
+                        class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0"
                         aria-label="Прикрепить файл">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 lucide lucide-paperclip-icon lucide-paperclip" aria-hidden="true">
                           <path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" />
@@ -396,7 +396,7 @@
                         class="w-full max-h-[320px] resize-none overflow-y-auto bg-transparent px-1 py-2 text-sm leading-6 text-zinc-900 dark:text-white outline-none"></textarea>
 
                       <button id="emoji-toggle" type="button"
-                        class="h-10 w-10 rounded-lg text-zinc-400 hover:text-accent flex items-center justify-center shrink-0"
+                        class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0"
                         aria-label="Открыть эмодзи">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
                           <circle cx="12" cy="12" r="10" />
@@ -409,7 +409,7 @@
                       <span class="h-6 w-px bg-zinc-200 dark:bg-zinc-700 shrink-0 my-auto" aria-hidden="true"></span>
 
                       <button type="submit"
-                        class="h-10 w-10 rounded-lg text-zinc-400 hover:text-accent flex items-center justify-center shrink-0 transition-all active:scale-95"
+                        class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0 transition-all active:scale-95"
                         aria-label="Отправить сообщение">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"
@@ -623,12 +623,12 @@
 
       function activateItem(activeItem) {
         getChatItems().forEach(item => {
-          item.classList.remove('border-accent/30', 'bg-accent/5');
+          item.classList.remove('border-primary/30', 'bg-primary/5');
           item.classList.add('border-zinc-200', 'dark:border-zinc-800', 'bg-white', 'dark:bg-card');
         });
         if (!activeItem) return;
         activeItem.classList.remove('border-zinc-200', 'dark:border-zinc-800', 'bg-white', 'dark:bg-card');
-        activeItem.classList.add('border-accent/30', 'bg-accent/5');
+        activeItem.classList.add('border-primary/30', 'bg-primary/5');
       }
 
       function setHeader(topic) {
@@ -722,7 +722,7 @@
 
       function appendMessageToGroup(group, text, isMine, timeLabel) {
         const wrap = document.createElement('div');
-        wrap.className = `${isMine ? 'ml-auto border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200' : 'border border-accent/30 bg-accent/10 text-zinc-900 dark:text-white'} max-w-md rounded-lg px-4 py-3`;
+        wrap.className = `${isMine ? 'ml-auto border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200' : 'border border-primary/30 bg-primary/10 text-zinc-900 dark:text-white'} max-w-md rounded-lg px-4 py-3`;
         wrap.classList.add('chat-message-enter');
 
         const msg = document.createElement('p');
@@ -730,7 +730,7 @@
         msg.textContent = text;
 
         const time = document.createElement('p');
-        time.className = `mt-2 text-[11px] font-semibold uppercase tracking-wide ${isMine ? 'text-zinc-500 dark:text-zinc-400' : 'text-accent/80'}`;
+        time.className = `mt-2 text-[11px] font-semibold uppercase tracking-wide ${isMine ? 'text-zinc-500 dark:text-zinc-400' : 'text-primary/80'}`;
         time.textContent = timeLabel || formatCurrentTime();
 
         wrap.appendChild(msg);
@@ -745,10 +745,10 @@
         button.setAttribute('data-chat-target', targetId);
         button.setAttribute('data-chat-title', topic);
         button.setAttribute('data-chat-subtitle', 'Чат поддержки');
-        button.className = 'w-full rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-card px-3 py-3 text-left transition-colors hover:border-accent/40';
+        button.className = 'w-full rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-card px-3 py-3 text-left transition-colors hover:border-primary/40';
         button.innerHTML = `
         <div class="flex items-start gap-3">
-          <div class="h-10 w-10 rounded-md bg-accent/10 text-accent flex items-center justify-center shrink-0">
+          <div class="h-10 w-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="m7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
           </div>
           <div class="min-w-0 flex-1">

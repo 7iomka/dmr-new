@@ -26,7 +26,7 @@
                   <div class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="w-4 h-4 text-accent">
+                      class="w-4 h-4 text-primary">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                       <path d="M14 2v6h6"></path>
                     </svg>
@@ -48,11 +48,11 @@
 
                   <div class="border-t border-zinc-200 dark:border-zinc-800 pt-4 space-y-1">
                     <p class="text-xl font-bold text-zinc-900 dark:text-white">Общая сумма</p>
-                    <p class="text-2xl font-bold text-accent" data-summary-total>$257.50</p>
+                    <p class="text-2xl font-bold text-primary" data-summary-total>$257.50</p>
                   </div>
 
                   <button
-                    class="w-full h-11 rounded-lg bg-accent hover:bg-accent/90 text-white font-bold inline-flex items-center justify-center gap-2 transition-colors">
+                    class="w-full h-11 rounded-lg btn-primary font-bold inline-flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                       class="w-4 h-4">
@@ -79,7 +79,7 @@
               <section class="card overflow-hidden">
                 <div class="card-header">
                   <div class="flex items-center gap-2">
-                    <span class="text-accent text-base font-bold">$</span>
+                    <span class="text-primary text-base font-bold">$</span>
                     <h3 class="text-sm font-bold uppercase tracking-wide text-zinc-900 dark:text-white">Сумма</h3>
                   </div>
                 </div>
@@ -99,17 +99,17 @@
                     <p class="text-sm text-zinc-500 mb-3">Быстрые суммы:</p>
                     <div class="grid grid-cols-2 lg:grid-cols-3 gap-3" data-quick-amounts>
                       <button type="button" data-amount="50"
-                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-accent/50">$50</button>
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-primary/50">$50</button>
                       <button type="button" data-amount="100"
-                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-accent/50">$100</button>
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-primary/50">$100</button>
                       <button type="button" data-amount="250"
-                        class="h-11 rounded-lg border border-accent bg-accent text-sm font-bold text-white">$250</button>
+                        class="h-11 rounded-lg border border-primary bg-primary text-sm font-bold text-white">$250</button>
                       <button type="button" data-amount="500"
-                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-accent/50">$500</button>
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-primary/50">$500</button>
                       <button type="button" data-amount="1000"
-                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-accent/50">$1000</button>
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-primary/50">$1000</button>
                       <button type="button" data-amount="2500"
-                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-accent/50">$2500</button>
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-primary/50">$2500</button>
                     </div>
                   </div>
                 </div>
@@ -120,7 +120,7 @@
                   <div class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="w-4 h-4 text-accent">
+                      class="w-4 h-4 text-primary">
                       <path d="M4 22h16"></path>
                       <path d="M5 2h14"></path>
                       <path d="M6 2v20"></path>
@@ -139,14 +139,14 @@
                   <h2 class="text-lg font-bold text-zinc-900 dark:text-white">Выберите платёжного провайдера</h2>
                   <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3" data-provider-options>
                     <button type="button" data-provider="TheMerchant" aria-pressed="true"
-                      class="provider-option relative rounded-lg border-2 border-accent bg-accent/10 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors">
+                      class="provider-option relative rounded-lg border-2 border-primary bg-primary/10 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors">
                       <div
-                        class="absolute top-3 right-3 w-6 h-6 rounded-full border-2 border-accent grid place-items-center text-accent text-xs">
+                        class="absolute top-3 right-3 w-6 h-6 rounded-full border-2 border-primary grid place-items-center text-primary text-xs">
                         ✓</div>
                       <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 grid place-items-center mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                          class="w-4 h-4 text-accent">
+                          class="w-4 h-4 text-primary">
                           <path d="M3 7h18"></path>
                           <path d="M3 11h18"></path>
                           <rect x="3" y="4" width="18" height="16" rx="2"></rect>
@@ -157,14 +157,14 @@
                     </button>
 
                     <button type="button" data-provider="Stripe" aria-pressed="false"
-                      class="provider-option relative rounded-lg border border-zinc-200 dark:border-zinc-700 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors hover:border-accent/50">
+                      class="provider-option relative rounded-lg border border-zinc-200 dark:border-zinc-700 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors hover:border-primary/50">
                       <div
                         class="absolute top-3 right-3 w-6 h-6 rounded-full border border-zinc-300 dark:border-zinc-600 hidden grid place-items-center text-zinc-400 text-xs">
                         ✓</div>
                       <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 grid place-items-center mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                          class="w-4 h-4 text-accent">
+                          class="w-4 h-4 text-primary">
                           <path d="M3 7h18"></path>
                           <path d="M3 11h18"></path>
                           <rect x="3" y="4" width="18" height="16" rx="2"></rect>
@@ -175,14 +175,14 @@
                     </button>
 
                     <button type="button" data-provider="Crypto" aria-pressed="false"
-                      class="provider-option relative rounded-lg border border-zinc-200 dark:border-zinc-700 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors hover:border-accent/50">
+                      class="provider-option relative rounded-lg border border-zinc-200 dark:border-zinc-700 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors hover:border-primary/50">
                       <div
                         class="absolute top-3 right-3 w-6 h-6 rounded-full border border-zinc-300 dark:border-zinc-600 hidden grid place-items-center text-zinc-400 text-xs">
                         ✓</div>
                       <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 grid place-items-center mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                          class="w-4 h-4 text-accent">
+                          class="w-4 h-4 text-primary">
                           <path d="M3 7h18"></path>
                           <path d="M3 11h18"></path>
                           <rect x="3" y="4" width="18" height="16" rx="2"></rect>
@@ -201,7 +201,7 @@
                   <div class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="w-4 h-4 text-accent">
+                      class="w-4 h-4 text-primary">
                       <path d="M5 4h14l1 7H4z"></path>
                       <path d="M5 11h14v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"></path>
                       <path d="M9 15h.01"></path>
@@ -215,9 +215,9 @@
                   <h2 class="text-lg font-bold text-zinc-900 dark:text-white">Выберите способ оплаты</h2>
                   <div class="space-y-3" data-method-options>
                     <button type="button" data-method="test" aria-pressed="true"
-                      class="method-option w-full rounded-lg border-2 border-accent bg-accent/10 px-4 py-4 flex items-center gap-4 text-left transition-colors">
-                      <span class="w-4 h-4 rounded-full border-2 border-accent"></span>
-                      <span class="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 grid place-items-center text-accent">
+                      class="method-option w-full rounded-lg border-2 border-primary bg-primary/10 px-4 py-4 flex items-center gap-4 text-left transition-colors">
+                      <span class="w-4 h-4 rounded-full border-2 border-primary"></span>
+                      <span class="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 grid place-items-center text-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="w-4 h-4">
@@ -232,9 +232,9 @@
                     </button>
 
                     <button type="button" data-method="card" aria-pressed="false"
-                      class="method-option w-full rounded-lg border border-zinc-200 dark:border-zinc-700 px-4 py-4 flex items-center gap-4 text-left transition-colors hover:border-accent/50">
+                      class="method-option w-full rounded-lg border border-zinc-200 dark:border-zinc-700 px-4 py-4 flex items-center gap-4 text-left transition-colors hover:border-primary/50">
                       <span class="w-4 h-4 rounded-full border border-zinc-300 dark:border-zinc-600"></span>
-                      <span class="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 grid place-items-center text-accent">
+                      <span class="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 grid place-items-center text-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="w-4 h-4">
@@ -256,7 +256,7 @@
                   <div class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="w-4 h-4 text-accent">
+                      class="w-4 h-4 text-primary">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                       <path d="M14 2v6h6"></path>
                     </svg>
@@ -278,11 +278,11 @@
 
                   <div class="border-t border-zinc-200 dark:border-zinc-800 pt-4 space-y-1">
                     <p class="text-xl font-bold text-zinc-900 dark:text-white">Общая сумма</p>
-                    <p class="text-2xl font-bold text-accent" data-summary-total>$257.50</p>
+                    <p class="text-2xl font-bold text-primary" data-summary-total>$257.50</p>
                   </div>
 
                   <button
-                    class="w-full h-11 rounded-lg bg-accent hover:bg-accent/90 text-white font-bold inline-flex items-center justify-center gap-2 transition-colors">
+                    class="w-full h-11 rounded-lg btn-primary font-bold inline-flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                       class="w-4 h-4">
@@ -313,7 +313,7 @@
                   <div class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="w-4 h-4 text-accent">
+                      class="w-4 h-4 text-primary">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                       <path d="M14 2v6h6"></path>
                     </svg>
@@ -333,11 +333,11 @@
 
                   <div class="border-t border-zinc-200 dark:border-zinc-800 pt-4 space-y-1">
                     <p class="text-xl font-bold text-zinc-900 dark:text-white">Общая сумма</p>
-                    <p class="text-2xl font-bold text-accent" data-summary-total>$257.50</p>
+                    <p class="text-2xl font-bold text-primary" data-summary-total>$257.50</p>
                   </div>
 
                   <button
-                    class="w-full h-11 rounded-lg bg-accent hover:bg-accent/90 text-white font-bold inline-flex items-center justify-center gap-2 transition-colors">
+                    class="w-full h-11 rounded-lg btn-primary font-bold inline-flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                       class="w-4 h-4">
@@ -392,8 +392,8 @@
       function setActiveQuickButton(currentAmount) {
         quickButtons.forEach((button) => {
           const active = Number(button.dataset.amount) === currentAmount;
-          button.classList.toggle('bg-accent', active);
-          button.classList.toggle('border-accent', active);
+          button.classList.toggle('bg-primary', active);
+          button.classList.toggle('border-primary', active);
           button.classList.toggle('text-white', active);
           button.classList.toggle('text-zinc-700', !active);
           button.classList.toggle('dark:text-zinc-300', !active);
@@ -437,8 +437,8 @@
             items.forEach((other) => {
               const active = other === item;
               other.setAttribute('aria-pressed', active ? 'true' : 'false');
-              other.classList.toggle('border-accent', active);
-              other.classList.toggle('bg-accent/10', active);
+              other.classList.toggle('border-primary', active);
+              other.classList.toggle('bg-primary/10', active);
               other.classList.toggle('border-2', active);
               other.classList.toggle('border', !active);
 
@@ -449,7 +449,7 @@
 
               const radio = other.querySelector('span.w-4.h-4, span.w-5.h-5');
               if (radio) {
-                radio.classList.toggle('border-accent', active);
+                radio.classList.toggle('border-primary', active);
                 radio.classList.toggle('border-zinc-300', !active);
                 radio.classList.toggle('dark:border-zinc-600', !active);
               }

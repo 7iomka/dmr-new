@@ -20,13 +20,13 @@
           <div id="shares_holder" data-has-shares="true" class="card js-tabs-container">
             <!-- Header + Tabs -->
             <div class="card-header">
-              <div class="js-tabs-nav flex items-center gap-2 p-1 rounded-xl bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
+              <div class="js-tabs-nav flex items-center gap-2 p-1 rounded-xl bg-primary/[0.06] dark:bg-primary/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
                 <button data-active="true" data-target="shares"
-                  class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
+                  class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
                   Мои доли
                 </button>
                 <button data-active="false" data-target="buy"
-                  class="js-tab-btn investments-primary-tab px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
+                  class="js-tab-btn investments-primary-tab px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
                   Купить доли
                 </button>
               </div>
@@ -59,7 +59,7 @@
                         <label for="invest_summ" class="text-[10px] font-bold text-zinc-500 uppercase px-1">Введите Сумму</label>
                         <div class="relative group flex">
                           <input id="invest_summ" type="number"
-                            class="no-spinner w-full rounded-lg rounded-r-none px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-accent/50 dark:focus:border-accent/50 text-zinc-900 dark:text-white"
+                            class="no-spinner w-full rounded-lg rounded-r-none px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
                             value="504">
                           <div
                             class="border border-zinc-200 dark:border-zinc-800 border-l-0 flex items-center px-4 text-zinc-400 font-bold bg-black/5 dark:bg-white/5 rounded-r-lg">
@@ -71,7 +71,7 @@
                       <div class="flex flex-col gap-2">
                         <label for="shares_count" class="text-[10px] font-bold text-zinc-500 uppercase px-1">Количество долей</label>
                         <input id="shares_count" type="number"
-                          class="no-spinner w-full rounded-lg px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-accent/50 dark:focus:border-accent/50 text-zinc-900 dark:text-white"
+                          class="no-spinner w-full rounded-lg px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
                           value="132806">
                       </div>
                     </div>
@@ -81,7 +81,7 @@
 
                       <div class="relative">
                         <select
-                          class="w-full border focus:border-accent/50 rounded-lg px-4 py-3 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
+                          class="w-full border focus:border-primary/50 rounded-lg px-4 py-3 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
                           <option value="3">3 месяца</option>
                           <option value="6">6 месяцев</option>
                           <option value="12" selected>12 месяцев</option>
@@ -100,7 +100,7 @@
                       class="p-4 rounded-lg border flex flex-col gap-3 bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 xl:sticky xl:top-4">
                       <div class="flex justify-between items-center">
                         <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Доли</span>
-                        <span class="text-sm font-bold text-accent">132 806</span>
+                        <span class="text-sm font-bold text-primary">132 806</span>
                       </div>
 
                       <div class="flex justify-between items-center">
@@ -116,7 +116,7 @@
                       </div>
 
                       <button id="mainBuyButton"
-                        class="w-full py-4 btn-primary text-white font-bold rounded-lg transition-all active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
+                        class="w-full py-4 btn-primary text-white font-bold rounded-lg active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
                         <i data-lucide="circle-plus" class="w-5 h-5"></i>
                         <span id="buttonText">Купить 132 806 долей за 504 $</span>
                       </button>
@@ -220,7 +220,7 @@
                     </thead>
 
                     <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800/50 text-sm">
-                      <tr data-installment-row="88421" data-expanded="true" class="align-top hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors data-[expanded=true]:bg-zinc-50/80 dark:data-[expanded=true]:bg-white/[0.04] data-[expanded=true]:border-accent/70 data-[expanded=true]:dark:border-accent/30">
+                      <tr data-installment-row="88421" data-expanded="true" class="align-top hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors data-[expanded=true]:bg-zinc-50/80 dark:data-[expanded=true]:bg-white/[0.04] data-[expanded=true]:border-primary/70 data-[expanded=true]:dark:border-primary/30">
                         <td class="card-body-inset-x py-5 font-bold text-zinc-900 dark:text-white whitespace-nowrap tabular-nums">
                           <div class="flex flex-col items-start gap-2">
                             <div class="font-bold">88421</div>
@@ -236,7 +236,7 @@
                                 <span>План</span>
                                 <span data-chevron class="inline-flex transition-transform rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                               </button>
-                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88421" aria-expanded="false" class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-white">
+                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88421" aria-expanded="false" class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
                                 <i data-lucide="settings" class="h-4 w-4"></i>
                               </button>
                             </div>
@@ -259,13 +259,13 @@
 
                         <td class="card-body-inset-x py-5">
                           <p class="font-bold tabular-nums whitespace-nowrap">
-                            <span class="text-accent">$66.67</span><span class="text-zinc-400 dark:text-zinc-500"> / </span><span class="text-zinc-900 dark:text-white">$133.33</span>
+                            <span class="text-primary">$66.67</span><span class="text-zinc-400 dark:text-zinc-500"> / </span><span class="text-zinc-900 dark:text-white">$133.33</span>
                           </p>
-                          <p class="mt-1 break-words">Доли: <span class="font-semibold text-accent tabular-nums whitespace-nowrap">17 569</span><span class="text-zinc-400"> / </span><span class="font-semibold text-zinc-900 dark:text-white tabular-nums whitespace-nowrap">52 707</span></p>
+                          <p class="mt-1 break-words">Доли: <span class="font-semibold text-primary tabular-nums whitespace-nowrap">17 569</span><span class="text-zinc-400"> / </span><span class="font-semibold text-zinc-900 dark:text-white tabular-nums whitespace-nowrap">52 707</span></p>
                         </td>
                       </tr>
 
-                      <tr id="inst-payments-88421" data-installment-details="88421" data-expanded="true" class="data-[expanded=true]:bg-zinc-50/70 dark:data-[expanded=true]:bg-white/[0.03] data-[expanded=true]:border-accent/70 data-[expanded=true]:dark:border-accent/30">
+                      <tr id="inst-payments-88421" data-installment-details="88421" data-expanded="true" class="data-[expanded=true]:bg-zinc-50/70 dark:data-[expanded=true]:bg-white/[0.03] data-[expanded=true]:border-primary/70 data-[expanded=true]:dark:border-primary/30">
                         <td colspan="4" class="card-body-inset-x py-6">
                           <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black/30 overflow-hidden animate-in fade-in duration-300">
                             <div class="px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
@@ -288,13 +288,13 @@
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap">$66.67</td>
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap">17569</td>
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap">05.02.2026</td>
-                                  <td class="px-4 py-3 tabular-nums whitespace-nowrap text-accent">
+                                  <td class="px-4 py-3 tabular-nums whitespace-nowrap text-primary">
                                     <div class="flex gap-1">
                                       <i class="h-4 w-4" data-lucide="check-check"></i>
-                                      <span class="text-accent">05.02.2026</span>
+                                      <span class="text-primary">05.02.2026</span>
                                     </div>
                                   </td>
-                                  <td class="px-4 py-3 text-right"><span class="inline-flex items-center rounded-md bg-accent/10 text-accent px-2 py-1 font-bold uppercase">Оплачен</span></td>
+                                  <td class="px-4 py-3 text-right"><span class="inline-flex items-center rounded-md bg-primary/10 text-primary px-2 py-1 font-bold uppercase">Оплачен</span></td>
                                 </tr>
                                 <tr data-payment-item="88421-2" class="bg-white/70 dark:bg-white/[0.02]">
                                   <td class="px-4 py-3 font-semibold text-zinc-900 dark:text-zinc-100">Платёж #2</td>
@@ -302,7 +302,7 @@
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap">17569</td>
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap">05.03.2026</td>
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap text-amber-600">до 17.03.2026</td>
-                                  <td class="px-4 py-3 text-right"><button class="px-3 py-2 rounded-md bg-accent text-white font-bold uppercase whitespace-nowrap">Оплатить сейчас</button></td>
+                                  <td class="px-4 py-3 text-right"><button class="px-3 py-2 rounded-md btn-primary font-bold uppercase whitespace-nowrap">Оплатить сейчас</button></td>
                                 </tr>
                                 <tr data-payment-item="88421-3">
                                   <td class="px-4 py-3 font-semibold text-zinc-900 dark:text-zinc-100">Платёж #3</td>
@@ -318,7 +318,7 @@
                         </td>
                       </tr>
 
-                      <tr data-installment-row="88422" data-expanded="false" class="align-top hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors data-[expanded=true]:bg-zinc-50/80 dark:data-[expanded=true]:bg-white/[0.04] data-[expanded=true]:border-accent/70 data-[expanded=true]:dark:border-accent/30">
+                      <tr data-installment-row="88422" data-expanded="false" class="align-top hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors data-[expanded=true]:bg-zinc-50/80 dark:data-[expanded=true]:bg-white/[0.04] data-[expanded=true]:border-primary/70 data-[expanded=true]:dark:border-primary/30">
                         <td class="card-body-inset-x py-5 font-bold text-zinc-900 dark:text-white whitespace-nowrap tabular-nums">
                           <div class="flex flex-col items-start gap-2">
                             <div class="font-bold">88422</div>
@@ -334,7 +334,7 @@
                                 <span>План</span>
                                 <span data-chevron class="inline-flex transition-transform rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                               </button>
-                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88422" aria-expanded="false" class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-white">
+                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88422" aria-expanded="false" class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
                                 <i data-lucide="settings" class="h-4 w-4"></i>
                               </button>
                             </div>
@@ -353,17 +353,17 @@
                           <p class="mt-1">Следующий: <span class="font-semibold text-zinc-900 dark:text-white tabular-nums whitespace-nowrap">01.03.2026</span></p>
                         </td>
                         <td class="card-body-inset-x py-5">
-                          <p class="font-bold tabular-nums whitespace-nowrap"><span class="text-accent">$0.00</span><span class="text-zinc-400 dark:text-zinc-500"> / </span><span class="text-zinc-900 dark:text-white">$100.00</span></p>
-                          <p class="mt-1">Доли: <span class="font-semibold text-accent tabular-nums whitespace-nowrap">0</span><span class="text-zinc-400"> / </span><span class="font-semibold text-zinc-900 dark:text-white tabular-nums whitespace-nowrap">26 543</span></p>
+                          <p class="font-bold tabular-nums whitespace-nowrap"><span class="text-primary">$0.00</span><span class="text-zinc-400 dark:text-zinc-500"> / </span><span class="text-zinc-900 dark:text-white">$100.00</span></p>
+                          <p class="mt-1">Доли: <span class="font-semibold text-primary tabular-nums whitespace-nowrap">0</span><span class="text-zinc-400"> / </span><span class="font-semibold text-zinc-900 dark:text-white tabular-nums whitespace-nowrap">26 543</span></p>
                         </td>
                       </tr>
-                      <tr id="inst-payments-88422" data-installment-details="88422" data-expanded="false" class="hidden data-[expanded=true]:bg-zinc-50/70 dark:data-[expanded=true]:bg-white/[0.03] data-[expanded=true]:border-accent/70 data-[expanded=true]:dark:border-accent/30">
+                      <tr id="inst-payments-88422" data-installment-details="88422" data-expanded="false" class="hidden data-[expanded=true]:bg-zinc-50/70 dark:data-[expanded=true]:bg-white/[0.03] data-[expanded=true]:border-primary/70 data-[expanded=true]:dark:border-primary/30">
                         <td colspan="4" class="card-body-inset-x py-6">
                           <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black/30 p-4 text-xs">План платежей по контракту 88422</div>
                         </td>
                       </tr>
 
-                      <tr data-installment-row="88423" data-expanded="false" class="align-top hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors data-[expanded=true]:bg-zinc-50/80 dark:data-[expanded=true]:bg-white/[0.04] data-[expanded=true]:border-accent/70 data-[expanded=true]:dark:border-accent/30">
+                      <tr data-installment-row="88423" data-expanded="false" class="align-top hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors data-[expanded=true]:bg-zinc-50/80 dark:data-[expanded=true]:bg-white/[0.04] data-[expanded=true]:border-primary/70 data-[expanded=true]:dark:border-primary/30">
                         <td class="card-body-inset-x py-5 font-bold text-zinc-900 dark:text-white whitespace-nowrap tabular-nums">
                           <div class="flex flex-col items-start gap-2">
                             <div class="font-bold">88423</div>
@@ -379,7 +379,7 @@
                                 <span>План</span>
                                 <span data-chevron class="inline-flex transition-transform rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                               </button>
-                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88423" aria-expanded="false" class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-white">
+                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88423" aria-expanded="false" class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
                                 <i data-lucide="settings" class="h-4 w-4"></i>
                               </button>
                             </div>
@@ -398,11 +398,11 @@
                           <p class="mt-1">Следующий: <span class="font-semibold text-zinc-900 dark:text-white tabular-nums whitespace-nowrap">01.03.2026</span></p>
                         </td>
                         <td class="card-body-inset-x py-5">
-                          <p class="font-bold tabular-nums whitespace-nowrap"><span class="text-accent">$0.00</span><span class="text-zinc-400 dark:text-zinc-500"> / </span><span class="text-zinc-900 dark:text-white">$200.00</span></p>
-                          <p class="mt-1">Доли: <span class="font-semibold text-accent tabular-nums whitespace-nowrap">0</span><span class="text-zinc-400"> / </span><span class="font-semibold text-zinc-900 dark:text-white tabular-nums whitespace-nowrap">53 086</span></p>
+                          <p class="font-bold tabular-nums whitespace-nowrap"><span class="text-primary">$0.00</span><span class="text-zinc-400 dark:text-zinc-500"> / </span><span class="text-zinc-900 dark:text-white">$200.00</span></p>
+                          <p class="mt-1">Доли: <span class="font-semibold text-primary tabular-nums whitespace-nowrap">0</span><span class="text-zinc-400"> / </span><span class="font-semibold text-zinc-900 dark:text-white tabular-nums whitespace-nowrap">53 086</span></p>
                         </td>
                       </tr>
-                      <tr id="inst-payments-88423" data-installment-details="88423" data-expanded="false" class="hidden data-[expanded=true]:bg-zinc-50/70 dark:data-[expanded=true]:bg-white/[0.03] data-[expanded=true]:border-accent/70 data-[expanded=true]:dark:border-accent/30">
+                      <tr id="inst-payments-88423" data-installment-details="88423" data-expanded="false" class="hidden data-[expanded=true]:bg-zinc-50/70 dark:data-[expanded=true]:bg-white/[0.03] data-[expanded=true]:border-primary/70 data-[expanded=true]:dark:border-primary/30">
                         <td colspan="4" class="card-body-inset-x py-6">
                           <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black/30 p-4 text-xs">План платежей по контракту 88423</div>
                         </td>
@@ -433,7 +433,7 @@
                           data-fly-trigger
                           data-fly-menu="contract-actions" data-contract-id="88421"
                           aria-expanded="false"
-                          class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-white">
+                          class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
                           <i data-lucide="settings" class="h-4 w-4"></i>
                         </button>
                       </div>
@@ -459,21 +459,21 @@
                       </div>
                       <div class="bg-card rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2 flex flex-col gap-1">
                         <p>Оплачено / Остаток</p>
-                        <p class="font-semibold tabular-nums"><span class="text-accent">$66.67</span> / <span class="text-zinc-900 dark:text-white">$133.33</span></p>
+                        <p class="font-semibold tabular-nums"><span class="text-primary">$66.67</span> / <span class="text-zinc-900 dark:text-white">$133.33</span></p>
                       </div>
                       <div class="bg-card rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2 flex flex-col gap-1">
                         <p>Доли</p>
-                        <p class="font-semibold tabular-nums"><span class="text-accent">17 569</span> / <span class="text-zinc-900 dark:text-white">52 707</span></p>
+                        <p class="font-semibold tabular-nums"><span class="text-primary">17 569</span> / <span class="text-zinc-900 dark:text-white">52 707</span></p>
                       </div>
                     </div>
 
                     <div id="mobile-plan-88421" data-mobile-plan="88421" class="space-y-3">
                       <div data-payment-item="88421-1" class="bg-card rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2">
                         <div class="flex items-center justify-between">
-                          <p class="text-[11px] font-bold text-zinc-900 dark:text-white">Платёж #1</p><span class="inline-flex items-center rounded-md bg-accent/10 text-accent px-2 py-1 text-[9px] font-bold uppercase">Оплачен</span>
+                          <p class="text-[11px] font-bold text-zinc-900 dark:text-white">Платёж #1</p><span class="inline-flex items-center rounded-md bg-primary/10 text-primary px-2 py-1 text-[9px] font-bold uppercase">Оплачен</span>
                         </div>
                         <p class="mt-1 text-[11px]">Дата выпуска: 05.02.2026</p>
-                        <p class="mt-1 text-[11px]">Дата оплаты: <span class="text-accent">05.02.2026</span></p>
+                        <p class="mt-1 text-[11px]">Дата оплаты: <span class="text-primary">05.02.2026</span></p>
                         <p class="mt-1 text-[11px]">Сумма: <span class="font-semibold text-zinc-900 dark:text-white">$66.67</span></p>
                         <p class="mt-1 text-[11px]">Доли: <span class="font-semibold text-zinc-900 dark:text-white">17569</span></p>
                       </div>
@@ -486,7 +486,7 @@
                         <p class="mt-1 text-[11px]">Срок: <span class="font-semibold text-amber-600">до 17.03.2026</span></p>
                         <p class="mt-1 text-[11px]">Сумма: <span class="font-semibold text-zinc-900 dark:text-white">$66.67</span></p>
                         <p class="mt-1 text-[11px]">Доли: <span class="font-semibold text-zinc-900 dark:text-white">17569</span></p>
-                        <button class="mt-3 w-full px-3 py-2.5 rounded-lg bg-accent text-white text-[11px] font-bold uppercase">Оплатить сейчас</button>
+                        <button class="mt-3 w-full px-3 py-2.5 rounded-lg btn-primary text-[11px] font-bold uppercase">Оплатить сейчас</button>
                       </div>
 
                       <div data-payment-item="88421-3" class="bg-card rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2">
@@ -520,7 +520,7 @@
                           data-fly-trigger
                           data-fly-menu="contract-actions" data-contract-id="88422"
                           aria-expanded="false"
-                          class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-white">
+                          class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
                           <i data-lucide="settings" class="h-4 w-4"></i>
                         </button>
                       </div>
@@ -546,11 +546,11 @@
                       </div>
                       <div class="bg-card rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2 flex flex-col gap-1">
                         <p>Оплачено / Остаток</p>
-                        <p class="font-semibold tabular-nums"><span class="text-accent">$0.00</span> / <span class="text-zinc-900 dark:text-white">$100.00</span></p>
+                        <p class="font-semibold tabular-nums"><span class="text-primary">$0.00</span> / <span class="text-zinc-900 dark:text-white">$100.00</span></p>
                       </div>
                       <div class="bg-card rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2 flex flex-col gap-1">
                         <p>Доли</p>
-                        <p class="font-semibold tabular-nums"><span class="text-accent">0</span> / <span class="text-zinc-900 dark:text-white">26 543</span></p>
+                        <p class="font-semibold tabular-nums"><span class="text-primary">0</span> / <span class="text-zinc-900 dark:text-white">26 543</span></p>
                       </div>
                     </div>
 
@@ -601,7 +601,7 @@
                           data-fly-trigger
                           data-fly-menu="contract-actions" data-contract-id="88423"
                           aria-expanded="false"
-                          class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-white">
+                          class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
                           <i data-lucide="settings" class="h-4 w-4"></i>
                         </button>
                       </div>
@@ -627,11 +627,11 @@
                       </div>
                       <div class="bg-card rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2 flex flex-col gap-1">
                         <p>Оплачено / Остаток</p>
-                        <p class="font-semibold tabular-nums"><span class="text-accent">$0.00</span> / <span class="text-zinc-900 dark:text-white">$200.00</span></p>
+                        <p class="font-semibold tabular-nums"><span class="text-primary">$0.00</span> / <span class="text-zinc-900 dark:text-white">$200.00</span></p>
                       </div>
                       <div class="bg-card rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2 flex flex-col gap-1">
                         <p>Доли</p>
-                        <p class="font-semibold tabular-nums"><span class="text-accent">0</span> / <span class="text-zinc-900 dark:text-white">53 086</span></p>
+                        <p class="font-semibold tabular-nums"><span class="text-primary">0</span> / <span class="text-zinc-900 dark:text-white">53 086</span></p>
                       </div>
                     </div>
 
@@ -796,12 +796,12 @@
         if (shouldFocus) {
           const targetCard = document.querySelector(`[data-mobile-installment="${id}"]`);
           if (targetCard) {
-            targetCard.classList.add('ring-2', 'ring-accent/60', 'rounded-xl');
+            targetCard.classList.add('ring-2', 'ring-primary/60', 'rounded-xl');
             targetCard.scrollIntoView({
               behavior: 'smooth',
               block: 'start'
             });
-            setTimeout(() => targetCard.classList.remove('ring-2', 'ring-accent/60', 'rounded-xl'), 2500);
+            setTimeout(() => targetCard.classList.remove('ring-2', 'ring-primary/60', 'rounded-xl'), 2500);
           }
         }
       }

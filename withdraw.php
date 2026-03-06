@@ -50,14 +50,14 @@
 
                     <!-- прогресс-линия (меняй width по шагу) -->
                     <!-- step=1 -> w-0, step=2 -> w-1/2, step=3 -> w-full -->
-                    <div class="absolute left-0 top-4 h-px bg-accent w-0"></div>
+                    <div class="absolute left-0 top-4 h-px bg-primary w-0"></div>
 
                     <div class="grid grid-cols-3 text-center gap-3 text-zinc-500 text-xs sm:text-sm">
                       <!-- STEP 1 -->
                       <div class="relative">
                         <!-- completed/current styles -->
                         <div class="relative z-10 w-8 h-8 rounded-full border bg-white dark:bg-zinc-900 mx-auto grid place-items-center
-                    border-accent text-accent">
+                    border-primary text-primary">
                           1
                         </div>
                         <p class="mt-3">Сумма и назначение</p>
@@ -91,7 +91,7 @@
                   <div>
                     <label class="block mb-2 text-sm font-semibold text-zinc-800 dark:text-zinc-200">Сумма вывода</label>
                     <input type="number" value="0.00"
-                      class="no-spinner w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-[#0B0E11] px-4 py-2.5 text-zinc-700 dark:text-zinc-200 outline-none focus:border-accent" />
+                      class="no-spinner w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-[#0B0E11] px-4 py-2.5 text-zinc-700 dark:text-zinc-200 outline-none focus:border-primary" />
                     <p class="mt-2 text-sm text-zinc-500">Диапазон сумм: $10.00 - $0.00</p>
                   </div>
 
@@ -118,7 +118,7 @@
                       TRC20</label>
                     <div class="relative">
                       <select
-                        class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-[#0B0E11] px-4 py-2.5 text-zinc-700 dark:text-zinc-200 appearance-none outline-none focus:border-accent">
+                        class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-[#0B0E11] px-4 py-2.5 text-zinc-700 dark:text-zinc-200 appearance-none outline-none focus:border-primary">
                         <option>test - TN3W4H6rK2...oxb3m9</option>
                       </select>
                       <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none"
@@ -127,7 +127,7 @@
                         <path d="m6 9 6 6 6-6"></path>
                       </svg>
                     </div>
-                    <button class="mt-4 text-accent font-semibold text-sm flex items-center gap-2">
+                    <button class="mt-4 text-primary font-semibold text-sm flex items-center gap-2">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="w-4 h-4">
@@ -144,7 +144,7 @@
               <div
                 class="px-4 lg:px-6 py-4 border-t border-zinc-200 dark:border-zinc-800 flex justify-end bg-zinc-50/60 dark:bg-zinc-900/30">
                 <button disabled
-                  class="inline-flex items-center gap-2 rounded-lg bg-accent/60 px-8 py-2.5 text-white font-semibold disabled:opacity-80 disabled:cursor-not-allowed">
+                  class="inline-flex items-center gap-2 rounded-lg bg-primary/60 px-8 py-2.5 text-white font-semibold disabled:opacity-80 disabled:cursor-not-allowed">
                   <span>Следующий</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">

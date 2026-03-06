@@ -25,7 +25,7 @@
 								кошелька</label>
 							<div
 								class="flex items-center bg-zinc-50 dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 rounded-lg p-2 pl-4 shadow-inner">
-								<svg class="lucide lucide-fingerprint w-4 h-4 text-accent mr-3 opacity-70"
+								<svg class="lucide lucide-fingerprint w-4 h-4 text-primary mr-3 opacity-70"
 									xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
 									stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 									data-lucide="fingerprint" aria-hidden="true">
@@ -56,14 +56,14 @@
 							<div class="space-y-3 mb-8">
 								<div class="flex items-baseline gap-2"><span
 										class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Доступно к выводу:</span><span
-										class="text-lg font-bold text-accent">$ 482.50</span></div>
+										class="text-lg font-bold text-primary">$ 482.50</span></div>
 								<div class="flex items-baseline gap-2 opacity-80"><span
 										class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Заблокировано:</span><span
 										class="text-md font-bold text-zinc-900 dark:text-zinc-300">$ 120,000.00</span></div>
 							</div>
 							<div class="grid grid-cols-2 sm:flex flex-wrap gap-3">
 								<a href="deposit.php"
-									class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-[#009663] text-white text-[11px] font-bold rounded-lg transition-all shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
+									class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 btn-primary text-[11px] font-bold rounded-lg shadow-lg shadow-primary-500/20 uppercase tracking-widest">
 									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
 										stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 										data-lucide="plus-circle" aria-hidden="true" class="lucide lucide-plus-circle w-4 h-4">
@@ -250,7 +250,7 @@
 												<td class="card-body-inset-x py-5 font-semibold">MANUAL_DEPOSIT</td>
 												<td class="card-body-inset-x py-5">
 													<span
-														class="px-2 py-0.5 bg-accent/10 text-accent text-[9px] font-bold uppercase rounded">COMPLETED</span>
+														class="px-2 py-0.5 bg-primary/10 text-primary text-[9px] font-bold uppercase rounded">COMPLETED</span>
 												</td>
 												<td class="card-body-inset-x py-5 text-[10px]">ADMIN ADD FUNDS: stripe nu lucra
 													2eff5754-f533-4924-b9e7-e178ad187e10</td>
@@ -299,7 +299,7 @@
 												<td class="px-6 py-5 font-semibold">CARD</td>
 												<td class="px-6 py-5">
 													<span
-														class="px-2 py-0.5 bg-accent/10 text-accent text-[9px] font-bold uppercase rounded">COMPLETED</span>
+														class="px-2 py-0.5 bg-primary/10 text-primary text-[9px] font-bold uppercase rounded">COMPLETED</span>
 												</td>
 												<td class="px-6 py-5 text-[10px]">ADMIN ADD FUNDS</td>
 												<td class="px-6 py-5">06.01.2026 07:55</td>
@@ -354,7 +354,7 @@
 														<div class="flex justify-between items-center">
 															<span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Статус:</span>
 															<span
-																class="px-2 py-0.5 bg-accent/10 text-accent text-[9px] font-bold uppercase rounded">COMPLETED</span>
+																class="px-2 py-0.5 bg-primary/10 text-primary text-[9px] font-bold uppercase rounded">COMPLETED</span>
 														</div>
 														<div class="flex justify-between items-center text-[10px] font-bold">
 															<span class="uppercase text-zinc-500 tracking-wider">Метод:</span>
@@ -456,7 +456,7 @@
 											</svg>
 										</button>
 										<button
-											class="w-8 h-8 flex items-center justify-center rounded bg-accent text-white text-[10px] font-bold">1</button>
+											class="w-8 h-8 flex items-center justify-center rounded btn-primary text-[10px] font-bold">1</button>
 										<button
 											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors">2</button>
 										<button
@@ -578,9 +578,9 @@
 											<tr class="hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors">
 												<td class="px-6 py-5">
 													<span
-														class="px-2 py-1 bg-emerald-500/10 text-emerald-500 text-[9px] font-bold uppercase rounded tracking-wider">Кредит</span>
+														class="px-2 py-1 bg-primary-500/10 text-primary-500 text-[9px] font-bold uppercase rounded tracking-wider">Кредит</span>
 												</td>
-												<td class="card-body-inset-x py-5 font-bold text-emerald-500 whitespace-nowrap">+ 2,000.00</td>
+												<td class="card-body-inset-x py-5 font-bold text-primary-500 whitespace-nowrap">+ 2,000.00</td>
 												<td
 													class="card-body-inset-x py-5 font-semibold text-zinc-900 dark:text-white whitespace-nowrap">
 													12,450,000.80</td>
@@ -628,9 +628,9 @@
 											<tr class="hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors">
 												<td class="card-body-inset-x py-5">
 													<span
-														class="px-2 py-1 bg-emerald-500/10 text-emerald-500 text-[9px] font-bold uppercase rounded tracking-wider">Разблокировано</span>
+														class="px-2 py-1 bg-primary-500/10 text-primary-500 text-[9px] font-bold uppercase rounded tracking-wider">Разблокировано</span>
 												</td>
-												<td class="card-body-inset-x py-5 font-bold text-emerald-500 whitespace-nowrap">1,000.00</td>
+												<td class="card-body-inset-x py-5 font-bold text-primary-500 whitespace-nowrap">1,000.00</td>
 												<td
 													class="card-body-inset-x py-5 font-semibold text-zinc-900 dark:text-white whitespace-nowrap">
 													12,449,550.80</td>
@@ -651,7 +651,7 @@
 										<div class="p-4 flex items-center justify-between">
 											<div class="flex items-center gap-3 min-w-0">
 												<div
-													class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+													class="w-10 h-10 rounded-full bg-primary-500/10 flex items-center justify-center text-primary-500">
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
 														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 														data-lucide="arrow-down-left" aria-hidden="true"
@@ -666,7 +666,7 @@
 												</div>
 											</div>
 											<div class="text-right pl-3">
-												<p class="text-[14px] font-black text-emerald-500 whitespace-nowrap">+ 2,000.00 $</p>
+												<p class="text-[14px] font-black text-primary-500 whitespace-nowrap">+ 2,000.00 $</p>
 												<div
 													class="flex items-center justify-end text-[9px] text-zinc-400 uppercase font-bold tracking-tighter">
 													<span>Детали</span>
@@ -788,7 +788,7 @@
 											</svg>
 										</button>
 										<button
-											class="w-8 h-8 flex items-center justify-center rounded bg-accent text-white text-[10px] font-bold">1</button>
+											class="w-8 h-8 flex items-center justify-center rounded btn-primary text-[10px] font-bold">1</button>
 										<button
 											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors">2</button>
 										<button

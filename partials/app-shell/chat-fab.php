@@ -2,15 +2,15 @@
   <a
     href="/chat"
     class="group relative h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center rounded-full
-           border border-accent/25
+           border border-primary/25
            bg-white/60 dark:bg-zinc-900/40
            backdrop-blur
-           text-accent
+           text-primary
            shadow-sm shadow-black/5 dark:shadow-black/20
            transition
            hover:shadow-md hover:shadow-black/10 dark:hover:shadow-black/30
            hover:-translate-y-0.5
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40
            active:translate-y-0"
     aria-label="Открыть чат поддержки">
     <svg
@@ -31,14 +31,14 @@
     <span class="absolute -top-1 -right-1">
       <!-- ping: строго круг -->
       <span
-        class="absolute inset-0 w-5 h-5 xl:w-6 xl:h-6 rounded-full bg-accent/35 blur-[0.5px] animate-ping"></span>
+        class="absolute inset-0 w-5 h-5 xl:w-6 xl:h-6 rounded-full bg-primary/35 blur-[0.5px] animate-ping"></span>
 
       <!-- badge: строго круг, 2 цифры -->
       <span
         class="relative w-5 h-5 xl:w-6 xl:h-6 rounded-full
                inline-flex items-center justify-center
                text-[11px] xl:text-[12px] font-bold leading-none tabular-nums
-               bg-accent text-white
+               bg-primary text-white
                border border-white/70 dark:border-zinc-900/70
                shadow-sm shadow-black/10">
         99

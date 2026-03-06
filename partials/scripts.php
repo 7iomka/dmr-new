@@ -40,7 +40,7 @@
 			const btnRefs = document.getElementById('btn-refs');
 			const inactiveClass = "px-6 py-2 rounded-lg text-[11px] font-bold transition-all text-zinc-500 hover:text-zinc-400";
 			const activeClass =
-				"px-6 py-2 rounded-lg text-[11px] font-bold transition-all bg-accent text-white shadow-lg shadow-emerald-500/10";
+				"px-6 py-2 rounded-lg text-[11px] font-bold btn-primary shadow-lg shadow-primary-500/10";
 			if (btnInfo) btnInfo.className = inactiveClass;
 			if (btnRefs) btnRefs.className = inactiveClass;
 			if (tab === 'info') {
@@ -72,7 +72,7 @@
 				if (field) field.classList.remove('hidden');
 				if (toggle) {
 					toggle.classList.remove('bg-zinc-400', 'dark:bg-zinc-700');
-					toggle.classList.add('bg-accent');
+					toggle.classList.add('bg-primary');
 				}
 				if (circle) circle.style.transform = 'translateX(1.125rem)';
 				if (buttonText) buttonText.innerText = 'Зарезервировать 132 806 долей';
@@ -80,7 +80,7 @@
 				if (field) field.classList.add('hidden');
 				if (toggle) {
 					toggle.classList.add('bg-zinc-400', 'dark:bg-zinc-700');
-					toggle.classList.remove('bg-accent');
+					toggle.classList.remove('bg-primary');
 				}
 				if (circle) circle.style.transform = 'translateX(0)';
 				if (buttonText) buttonText.innerText = 'Купить 132 806 долей за 504 $';
@@ -260,7 +260,7 @@
 			function openDrawer() {
 				drawer.classList.add('active');
 				overlay.classList.add('active');
-				trigger.classList.add('text-accent');
+				trigger.classList.add('text-primary');
 				document.body.style.overflow = 'hidden';
 				drawer.style.transform = 'translateY(0)';
 			}
@@ -268,7 +268,7 @@
 			function closeDrawer() {
 				drawer.classList.remove('active');
 				overlay.classList.remove('active');
-				trigger.classList.remove('text-accent');
+				trigger.classList.remove('text-primary');
 				document.body.style.overflow = '';
 				drawer.style.transform = 'translateY(100%)';
 			}
@@ -333,14 +333,14 @@
 			function openSidebar() {
 				drawer.classList.add('active');
 				overlay.classList.add('active');
-				trigger.classList.add('text-accent');
+				trigger.classList.add('text-primary');
 				document.body.style.overflow = 'hidden';
 			}
 
 			function closeSidebar() {
 				drawer.classList.remove('active');
 				overlay.classList.remove('active');
-				trigger.classList.remove('text-accent');
+				trigger.classList.remove('text-primary');
 				document.body.style.overflow = '';
 			}
 			trigger.addEventListener('click', (e) => {

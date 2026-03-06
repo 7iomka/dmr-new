@@ -4,8 +4,8 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="flex items-center shrink-0" href="/home.php">
-            <img class="h-12 w-auto hidden dark:block" src="/img/logo-dark.svg" alt="Logo">
-            <img class="h-12 w-auto dark:hidden" src="/img/logo-light.svg" alt="Logo">
+            <img class="h-12 w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">
+            <img class="h-12 w-auto dark:hidden" src="/img/logo-dark.svg" alt="Logo">
           </a>
           <p>Инвестируйте в проект умного зеркала. Ранний раунд. Ограниченное количество долей.</p>
           <div class="footer-socials">
@@ -97,7 +97,7 @@
   }
 
   .footer-soc:hover {
-    @apply bg-accent/10 border-accent/50;
+    @apply bg-primary/10 border-primary/50;
   }
 
   .footer-soc svg {
@@ -129,7 +129,7 @@
   }
 
   .footer-col a:hover {
-    color: var(--color-accent);
+    color: var(--color-primary);
   }
 
   .footer-bottom {
