@@ -63,8 +63,7 @@
                 </div>
               </section>
 
-              <div
-                class="lg:hidden rounded-xl border border-blue-500/60 bg-blue-50 dark:bg-blue-500/10 px-4 py-3 text-blue-600 dark:text-blue-300 flex items-center gap-3">
+              <div class="lg:hidden alert-info">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   class="w-5 h-5 shrink-0">
@@ -98,18 +97,18 @@
                   <div>
                     <p class="text-sm text-zinc-500 mb-3">Быстрые суммы:</p>
                     <div class="grid grid-cols-2 lg:grid-cols-3 gap-3" data-quick-amounts>
-                      <button type="button" data-amount="50"
-                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-primary/50">$50</button>
-                      <button type="button" data-amount="100"
-                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-primary/50">$100</button>
-                      <button type="button" data-amount="250"
-                        class="h-11 rounded-lg border border-primary bg-primary text-sm font-bold text-white">$250</button>
-                      <button type="button" data-amount="500"
-                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-primary/50">$500</button>
-                      <button type="button" data-amount="1000"
-                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-primary/50">$1000</button>
-                      <button type="button" data-amount="2500"
-                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm font-bold text-zinc-700 dark:text-zinc-300 transition-colors hover:border-primary/50">$2500</button>
+                      <button type="button" data-amount="50" data-active="false"
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500 text-sm font-bold text-zinc-700 dark:text-zinc-300 data-[active=true]:text-white transition-colors hover:border-primary-500/50">$50</button>
+                      <button type="button" data-amount="100" data-active="false"
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500 text-sm font-bold text-zinc-700 dark:text-zinc-300 data-[active=true]:text-white transition-colors hover:border-primary-500/50">$100</button>
+                      <button type="button" data-amount="250" data-active="true"
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500 text-sm font-bold text-zinc-700 dark:text-zinc-300 data-[active=true]:text-white transition-colors hover:border-primary-500/50">$250</button>
+                      <button type="button" data-amount="500" data-active="false"
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500 text-sm font-bold text-zinc-700 dark:text-zinc-300 data-[active=true]:text-white transition-colors hover:border-primary-500/50">$500</button>
+                      <button type="button" data-amount="1000" data-active="false"
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500 text-sm font-bold text-zinc-700 dark:text-zinc-300 data-[active=true]:text-white transition-colors hover:border-primary-500/50">$1000</button>
+                      <button type="button" data-amount="2500" data-active="false"
+                        class="h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500 text-sm font-bold text-zinc-700 dark:text-zinc-300 data-[active=true]:text-white transition-colors hover:border-primary-500/50">$2500</button>
                     </div>
                   </div>
                 </div>
@@ -138,12 +137,14 @@
                 <div class="card-body space-y-4">
                   <h2 class="text-lg font-bold text-zinc-900 dark:text-white">Выберите платёжного провайдера</h2>
                   <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3" data-provider-options>
-                    <button type="button" data-provider="TheMerchant" aria-pressed="true"
-                      class="provider-option relative rounded-lg border-2 border-primary bg-primary/10 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors">
+                    <button type="button" data-provider="TheMerchant" aria-pressed="true" data-active="true"
+                      class="provider-option group relative rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-2 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500/10 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors hover:border-primary-500/50">
                       <div
-                        class="absolute top-3 right-3 w-6 h-6 rounded-full border-2 border-primary grid place-items-center text-primary text-xs">
-                        ✓</div>
-                      <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 grid place-items-center mb-4">
+                        class="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/50 group-data-[active=false]:hidden grid place-items-center text-primary">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                      </div>
+                      <div
+                        class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 group-data-[active=true]:bg-primary-100 group-data-[active=true]:dark:bg-primary-900/50 grid place-items-center mb-4 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="w-4 h-4 text-primary">
@@ -156,12 +157,14 @@
                       <p class="text-sm text-zinc-500 mt-1">The Merch ru</p>
                     </button>
 
-                    <button type="button" data-provider="Stripe" aria-pressed="false"
-                      class="provider-option relative rounded-lg border border-zinc-200 dark:border-zinc-700 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors hover:border-primary/50">
+                    <button type="button" data-provider="Stripe" aria-pressed="false" data-active="false"
+                      class="provider-option group relative rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-2 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500/10 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors hover:border-primary-500/50">
                       <div
-                        class="absolute top-3 right-3 w-6 h-6 rounded-full border border-zinc-300 dark:border-zinc-600 hidden grid place-items-center text-zinc-400 text-xs">
-                        ✓</div>
-                      <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 grid place-items-center mb-4">
+                        class="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/50 group-data-[active=false]:hidden grid place-items-center text-primary">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                      </div>
+                      <div
+                        class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 group-data-[active=true]:bg-primary-100 group-data-[active=true]:dark:bg-primary-900/50 grid place-items-center mb-4 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="w-4 h-4 text-primary">
@@ -174,12 +177,14 @@
                       <p class="text-sm text-zinc-500 mt-1">Global payment processor - Stripe</p>
                     </button>
 
-                    <button type="button" data-provider="Crypto" aria-pressed="false"
-                      class="provider-option relative rounded-lg border border-zinc-200 dark:border-zinc-700 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors hover:border-primary/50">
+                    <button type="button" data-provider="Crypto" aria-pressed="false" data-active="false"
+                      class="provider-option group relative rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-2 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500/10 min-h-44 px-4 py-5 flex flex-col items-center justify-center text-center transition-colors hover:border-primary-500/50">
                       <div
-                        class="absolute top-3 right-3 w-6 h-6 rounded-full border border-zinc-300 dark:border-zinc-600 hidden grid place-items-center text-zinc-400 text-xs">
-                        ✓</div>
-                      <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 grid place-items-center mb-4">
+                        class="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/50 group-data-[active=false]:hidden grid place-items-center text-primary">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                      </div>
+                      <div
+                        class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 group-data-[active=true]:bg-primary-100 group-data-[active=true]:dark:bg-primary-900/50 grid place-items-center mb-4 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="w-4 h-4 text-primary">
@@ -214,10 +219,11 @@
                 <div class="card-body space-y-4">
                   <h2 class="text-lg font-bold text-zinc-900 dark:text-white">Выберите способ оплаты</h2>
                   <div class="space-y-3" data-method-options>
-                    <button type="button" data-method="test" aria-pressed="true"
-                      class="method-option w-full rounded-lg border-2 border-primary bg-primary/10 px-4 py-4 flex items-center gap-4 text-left transition-colors">
-                      <span class="w-4 h-4 rounded-full border-2 border-primary"></span>
-                      <span class="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 grid place-items-center text-primary">
+                    <button type="button" data-method="test" aria-pressed="true" data-active="true"
+                      class="method-option group w-full rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-2 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500/10 px-4 py-4 flex items-center gap-4 text-left transition-colors hover:border-primary-500/50">
+                      <span class="w-4 h-4 rounded-full border border-zinc-300 dark:border-zinc-600 group-data-[active=true]:border-2 group-data-[active=true]:border-primary-500"></span>
+                      <span
+                        class="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 group-data-[active=true]:bg-primary-100 group-data-[active=true]:dark:bg-primary-900/50 grid place-items-center text-primary transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="w-4 h-4">
@@ -231,10 +237,11 @@
                       </span>
                     </button>
 
-                    <button type="button" data-method="card" aria-pressed="false"
-                      class="method-option w-full rounded-lg border border-zinc-200 dark:border-zinc-700 px-4 py-4 flex items-center gap-4 text-left transition-colors hover:border-primary/50">
-                      <span class="w-4 h-4 rounded-full border border-zinc-300 dark:border-zinc-600"></span>
-                      <span class="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 grid place-items-center text-primary">
+                    <button type="button" data-method="card" aria-pressed="false" data-active="false"
+                      class="method-option group w-full rounded-lg border border-zinc-300 dark:border-zinc-700 data-[active=true]:border-2 data-[active=true]:border-primary-500 data-[active=true]:bg-primary-500/10 px-4 py-4 flex items-center gap-4 text-left transition-colors hover:border-primary-500/50">
+                      <span class="w-4 h-4 rounded-full border border-zinc-300 dark:border-zinc-600 group-data-[active=true]:border-2 group-data-[active=true]:border-primary-500"></span>
+                      <span
+                        class="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 group-data-[active=true]:bg-primary-100 group-data-[active=true]:dark:bg-primary-900/50 grid place-items-center text-primary transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="w-4 h-4">
@@ -348,8 +355,7 @@
                 </div>
               </section>
 
-              <div
-                class="rounded-xl border border-blue-500/60 bg-blue-50 dark:bg-blue-500/10 px-4 py-3 text-blue-600 dark:text-blue-300 flex items-center gap-3">
+              <div class="alert-info">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   class="w-5 h-5 shrink-0">
@@ -392,11 +398,8 @@
       function setActiveQuickButton(currentAmount) {
         quickButtons.forEach((button) => {
           const active = Number(button.dataset.amount) === currentAmount;
-          button.classList.toggle('bg-primary', active);
-          button.classList.toggle('border-primary', active);
-          button.classList.toggle('text-white', active);
-          button.classList.toggle('text-zinc-700', !active);
-          button.classList.toggle('dark:text-zinc-300', !active);
+          button.dataset.active = active ? 'true' : 'false';
+          button.setAttribute('aria-pressed', active ? 'true' : 'false');
         });
       }
 
@@ -437,22 +440,7 @@
             items.forEach((other) => {
               const active = other === item;
               other.setAttribute('aria-pressed', active ? 'true' : 'false');
-              other.classList.toggle('border-primary', active);
-              other.classList.toggle('bg-primary/10', active);
-              other.classList.toggle('border-2', active);
-              other.classList.toggle('border', !active);
-
-              const marker = other.querySelector('.absolute.top-3.right-3');
-              if (marker) {
-                marker.classList.toggle('hidden', !active);
-              }
-
-              const radio = other.querySelector('span.w-4.h-4, span.w-5.h-5');
-              if (radio) {
-                radio.classList.toggle('border-primary', active);
-                radio.classList.toggle('border-zinc-300', !active);
-                radio.classList.toggle('dark:border-zinc-600', !active);
-              }
+              other.dataset.active = active ? 'true' : 'false';
             });
           });
         });
