@@ -45,7 +45,7 @@
                   </h3>
                   <div>
                     <a href="deposit.php"
-                      class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 btn-primary text-white text-xs font-bold rounded-lg transition-all uppercase tracking-widest">
+                      class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 btn-primary text-white text-xs font-bold rounded-lg uppercase tracking-widest">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         data-lucide="plus-circle" aria-hidden="true" class="lucide lucide-plus-circle w-4 h-4">
@@ -85,7 +85,7 @@
                     <label class="text-[10px] font-bold text-zinc-500 uppercase mb-1 block">Ваша
                       ссылка (платформа)</label>
                     <div
-                      class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-accent transition-colors">
+                      class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-primary transition-colors">
                       <div id="ref-link"
                         class="pl-3 pr-2 py-2 truncate text-xs font-mono text-zinc-600 dark:text-zinc-300 w-full select-all">
                         https://invest.awsarhitect.me/?ref=A7CA9B55</div>
@@ -98,7 +98,7 @@
                     <label class="text-[10px] font-bold text-zinc-500 uppercase mb-1 block">Ваша
                       ссылка (продукт)</label>
                     <div
-                      class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-accent transition-colors">
+                      class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-primary transition-colors">
                       <div id="ref-link"
                         class="pl-3 pr-2 py-2 truncate text-xs font-mono text-zinc-600 dark:text-zinc-300 w-full select-all">
                         https://awsarhitect.me/?ref=A7CA9B55</div>
@@ -111,7 +111,7 @@
                     class="flex justify-between items-center bg-zinc-50 dark:bg-zinc-950/30 rounded-lg px-3 py-2.5 border border-zinc-200 dark:border-zinc-800">
                     <span class="text-[10px] font-bold text-zinc-500 uppercase">Код:</span>
                     <div class="flex items-center gap-3">
-                      <span class="font-mono font-bold text-accent text-sm tracking-wider">A7CA9B55</span>
+                      <span class="font-mono font-bold text-primary text-sm tracking-wider">A7CA9B55</span>
                       <?= copyButton([
                         'text' => 'A7CA9B55',
                         'classOverride' => 'relative text-zinc-400 hover:text-zinc-600 dark:hover:text-white transition-colors',
@@ -129,13 +129,13 @@
                   <h3 class="text-sm font-bold uppercase tracking-wider text-zinc-900 dark:text-white">
                     Инвестиции</h3>
 
-                  <div class="js-tabs-nav flex items-center gap-2 p-1 rounded-xl bg-accent/[0.06] dark:bg-accent/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
+                  <div class="js-tabs-nav flex items-center gap-2 p-1 rounded-xl bg-primary/[0.06] dark:bg-primary/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
                     <button data-active="true" data-target="shares"
-                      class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
+                      class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
                       Мои доли
                     </button>
                     <button data-active="false" data-target="buy"
-                      class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-emerald-500/30 data-[active=false]:text-emerald-700 dark:data-[active=false]:bg-emerald-950/25 dark:data-[active=false]:border-emerald-500/35 dark:data-[active=false]:text-emerald-300 data-[active=true]:bg-accent data-[active=true]:text-white data-[active=true]:border-accent data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
+                      class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
                       Купить доли
                     </button>
                   </div>
@@ -168,7 +168,7 @@
                             Сумму</label>
                           <div class="relative group flex">
                             <input id="invest_summ" type="number"
-                              class="no-spinner w-full rounded-lg rounded-r-none px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-accent/50 dark:focus:border-accent/50 text-zinc-900 dark:text-white"
+                              class="no-spinner w-full rounded-lg rounded-r-none px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
                               value="504">
                             <div
                               class="border border-zinc-200 dark:border-zinc-800 border-l-0 flex items-center px-4 text-zinc-400 font-bold bg-black/5 dark:bg-white/5 rounded-r-lg">
@@ -181,7 +181,7 @@
                             class="text-[10px] font-bold text-zinc-500 uppercase px-1">Количество
                             долей</label>
                           <input id="shares_count" type="number"
-                            class="no-spinner w-full rounded-lg px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-accent/50 dark:focus:border-accent/50 text-zinc-900 dark:text-white"
+                            class="no-spinner w-full rounded-lg px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
                             value="132806">
                         </div>
                       </div>
@@ -192,7 +192,7 @@
 
                         <div class="relative">
                           <select
-                            class="w-full border focus:border-accent/50 rounded-lg px-4 py-3 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
+                            class="w-full border focus:border-primary/50 rounded-lg px-4 py-3 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
                             <option value="3">3 месяца</option>
                             <option value="6">6 месяцев</option>
                             <option value="12" selected>12 месяцев</option>
@@ -212,7 +212,7 @@
                         class="p-4 rounded-lg border flex flex-col gap-3 bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800">
                         <div class="flex justify-between items-center">
                           <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Доли</span>
-                          <span class="text-sm font-bold text-accent">132 806</span>
+                          <span class="text-sm font-bold text-primary">132 806</span>
                         </div>
 
                         <div class="flex justify-between items-center">
@@ -232,7 +232,7 @@
                       </div>
 
                       <button id="mainBuyButton"
-                        class="w-full py-4 btn-primary text-white font-bold rounded-lg transition-all active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
+                        class="w-full py-4 btn-primary text-white font-bold rounded-lg active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           data-lucide="circle-plus" aria-hidden="true" class="lucide lucide-circle-plus w-5 h-5">
@@ -278,7 +278,7 @@
                           class="p-4 rounded-lg bg-zinc-50 dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800">
                           <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">Текущая
                             стоимость</p>
-                          <p class="text-2xl font-bold text-accent leading-none">$ 504.00</p>
+                          <p class="text-2xl font-bold text-primary leading-none">$ 504.00</p>
                           <p class="text-[10px] font-bold text-zinc-500 mt-2">Оценка по
                             текущей цене доли</p>
                         </div>
@@ -382,7 +382,7 @@
 
                           <div
                             class="w-full flex mt-auto items-center justify-center py-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 ">
-                            <span class="text-[10px] font-bold text-accent uppercase">через
+                            <span class="text-[10px] font-bold text-primary uppercase">через
                               15 дней</span>
                           </div>
                         </div>
@@ -466,7 +466,7 @@
                         <span>Цена</span>
                       </div>
                       <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0"></span>
+                        <span class="w-3 h-3 rounded-full bg-primary-500 shrink-0"></span>
                         <span>Проданные акции</span>
                       </div>
                     </div>
@@ -546,7 +546,7 @@
                         <span>Цена</span>
                       </div>
                       <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0"></span>
+                        <span class="w-3 h-3 rounded-full bg-primary-500 shrink-0"></span>
                         <span>Проданные акции</span>
                       </div>
                     </div>

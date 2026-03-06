@@ -20,7 +20,7 @@
   /* Исправленный конфликт стилей: используем !important для победы над специфичностью Tailwind dark: */
   .category-item.active {
     background-color: rgba(0, 176, 116, 0.08) !important;
-    /* Устанавливаем бордер цвета accent/10 (rgba) */
+    /* Устанавливаем бордер цвета primary/10 (rgba) */
     border-color: rgba(0, 176, 116, 0.1) !important;
   }
 </style>
@@ -45,7 +45,7 @@
               <!-- Селект Года -->
               <div class="relative">
                 <select
-                  class="bg-white dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 text-sm font-bold py-2.5 pl-4 pr-10 rounded-xl appearance-none focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all cursor-pointer">
+                  class="bg-white dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 text-sm font-bold py-2.5 pl-4 pr-10 rounded-xl appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer">
                   <option>2025</option>
                   <option>2024</option>
                 </select>
@@ -60,7 +60,7 @@
               <!-- Селект Месяца -->
               <div class="relative">
                 <select
-                  class="bg-white dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 text-sm font-bold py-2.5 pl-4 pr-10 rounded-xl appearance-none focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all cursor-pointer">
+                  class="bg-white dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 text-sm font-bold py-2.5 pl-4 pr-10 rounded-xl appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer">
                   <option>Декабрь</option>
                   <option>Ноябрь</option>
                   <option>Октябрь</option>
@@ -82,12 +82,12 @@
                 <!-- Items will be injected by JS -->
               </div>
               <!-- CTA -->
-              <div class="mt-8 p-5 bg-accent/10 border border-accent/20 rounded-2xl max-w-md mx-auto">
-                <h4 class="text-base font-bold text-accent uppercase  mb-2">Наблюдательный комитет</h4>
+              <div class="mt-8 p-5 bg-primary/10 border border-primary/20 rounded-2xl max-w-md mx-auto">
+                <h4 class="text-base font-bold text-primary uppercase  mb-2">Наблюдательный комитет</h4>
                 <p class="text-sm text-zinc-600 dark:text-zinc-400  mb-4">Заинтересованным партнерам отчёты доступны с
                   указанием точных сумм в долларах.</p>
                 <button
-                  class="px-4 py-3 bg-accent hover:bg-accent/90 text-white text-sm font-bold rounded-lg transition-all w-full">
+                  class="px-4 py-3 btn-primary text-sm font-bold rounded-lg w-full">
                   Подать заявку
                 </button>
               </div>
@@ -209,7 +209,7 @@
         // List Item
         const div = document.createElement('div');
         div.className =
-          "category-item flex items-center justify-between card-simple py-2 transition-all hover:border-accent/30 cursor-pointer group animate-in fade-in duration-500";
+          "category-item flex items-center justify-between card-simple py-2 transition-all hover:border-primary/30 cursor-pointer group animate-in fade-in duration-500";
         div.style.animationDelay = `${index * 0.05}s`;
         div.dataset.index = index;
         div.innerHTML = `

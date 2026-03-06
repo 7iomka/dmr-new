@@ -2,7 +2,7 @@
 	<aside id="mobile-sidebar-drawer"
 		class="lg:hidden fixed top-0 left-0 bottom-0 w-[78%] max-w-[320px] bg-card border-r border-zinc-200 dark:border-zinc-800 z-[103] flex flex-col">
 		<div class="h-16 flex items-center px-4 border-b border-zinc-200 dark:border-zinc-800">
-			<div class="w-10 h-10 bg-accent rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+			<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
 				<!-- logo icon -->
 			</div>
 			<span class="ml-3 font-bold text-sm tracking-tight uppercase text-zinc-900 dark:text-white">
@@ -31,7 +31,7 @@
 					<a href="dashboard.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+            data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
             ">
 						<div class="flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -49,7 +49,7 @@
 					<a href="investments.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+            data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
             ">
 						<div class="flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -73,7 +73,7 @@
 					<a href="wallet.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+            data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
             ">
 						<div class="flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -91,7 +91,7 @@
 					<a href="withdrawals.html" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+            data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
             ">
 						<div class="flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -108,7 +108,7 @@
 					<a href="report.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+            data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
             ">
 						<div class="flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -135,7 +135,7 @@
 					<a href="profile.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+            data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
             ">
 						<div class="flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -152,7 +152,7 @@
 					<a href="partners.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
               text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 							dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-              data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+              data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
               ">
 						<div class="flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -170,7 +170,7 @@
 					<a href="settings.html" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-            data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+            data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
             ">
 						<div class="flex items-center justify-center">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"

@@ -7,7 +7,7 @@
 
 	  <!-- Превьюшка юзера -->
 	  <div class="flex items-center space-x-3 cursor-pointer px-4 rounded-xl transition-all">
-	    <div class="w-12 h-12 rounded-lg bg-gradient-to-tr from-accent to-emerald-400 p-[2px]">
+	    <div class="w-12 h-12 rounded-lg bg-gradient-to-tr from-primary to-primary-400 p-[2px]">
 	      <div
 	        class="w-full h-full rounded-md flex items-center justify-center font-bold text-xs bg-card text-zinc-900 dark:text-white">
 	        DW
@@ -24,7 +24,7 @@
 	    <div class="space-y-2">
 	      <div
 	        class="w-full flex items-center py-2 px-4 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors cursor-pointer group">
-	        <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-4">
+	        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
 	          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 	            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 	            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>

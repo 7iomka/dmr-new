@@ -41,12 +41,12 @@ function copyButton(array $props = [])
   </span>
 
   <!-- success -->
-  <span data-copy-success class="hidden text-emerald-500">
+  <span data-copy-success class="hidden text-primary-500">
     <?= $props['success'] ?? $successDefault ?>
   </span>
 
   <!-- tooltip -->
-  <span data-copy-tooltip-el class="hidden absolute -top-8 right-0 text-xs bg-accent text-white px-2 py-1 rounded-md">
+  <span data-copy-tooltip-el class="hidden absolute -top-8 right-0 text-xs bg-primary text-white px-2 py-1 rounded-md">
     <?= htmlspecialchars($tooltip) ?>
   </span>
 </button>

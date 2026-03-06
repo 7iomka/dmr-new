@@ -20,10 +20,10 @@
           <div class="card-simple flex flex-col md:flex-row items-center md:items-start gap-6">
             <div class="relative">
               <div
-                class="w-24 h-24 rounded-2xl bg-gradient-to-br from-accent to-emerald-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-emerald-500/20">
+                class="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-primary-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-primary-500/20">
                 DW</div>
               <div
-                class="absolute -bottom-2 -right-2 p-1.5 rounded-lg border-4 bg-accent text-white shadow-xl border-white dark:border-[#14171A]">
+                class="absolute -bottom-2 -right-2 p-1.5 rounded-lg border-4 bg-primary text-white shadow-xl border-white dark:border-[#14171A]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   data-lucide="shield-check" aria-hidden="true" class="lucide lucide-shield-check w-4 h-4">
@@ -39,12 +39,12 @@
                 <h1 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Dorin Watsap
                 </h1>
                 <span
-                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-accent/10 text-accent uppercase tracking-wider border border-accent/20 self-center">Активный</span>
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary/10 text-primary uppercase tracking-wider border border-primary/20 self-center">Активный</span>
               </div>
               <div class="flex flex-wrap justify-center md:justify-start gap-3">
 
                 <button
-                  class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-[#009663] text-white text-[11px] font-bold rounded-lg transition-all shadow-lg uppercase tracking-widest">
+                  class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 btn-primary text-[11px] font-bold rounded-lg shadow-lg uppercase tracking-widest">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     data-lucide="settings" aria-hidden="true" class="lucide lucide-settings w-4 h-4">
@@ -59,7 +59,7 @@
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     data-lucide="shield-check" aria-hidden="true"
-                    class="lucide lucide-shield-check w-4 h-4 text-accent">
+                    class="lucide lucide-shield-check w-4 h-4 text-primary">
                     <path
                       d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
                     </path>
@@ -105,11 +105,11 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                       data-lucide="check-circle-2" aria-hidden="true"
-                      class="lucide lucide-check-circle-2 text-accent w-[14px] h-[14px]">
+                      class="lucide lucide-check-circle-2 text-primary w-[14px] h-[14px]">
                       <circle cx="12" cy="12" r="10"></circle>
                       <path d="m9 12 2 2 4-4"></path>
                     </svg>
-                    <span class="text-sm font-bold text-accent">Верифицирован</span>
+                    <span class="text-sm font-bold text-primary">Верифицирован</span>
                   </div>
                 </div>
                 <div>

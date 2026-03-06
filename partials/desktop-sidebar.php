@@ -28,7 +28,7 @@
 				<a href="dashboard.php" data-active="true" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -46,7 +46,7 @@
 				<a href="investments.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -72,7 +72,7 @@
 				<a href="wallet.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -90,7 +90,7 @@
 				<a href="withdrawals.html" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -107,7 +107,7 @@
 				<a href="report.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -136,7 +136,7 @@
 				<a href="profile.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -153,7 +153,7 @@
 				<a href="partners.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -171,7 +171,7 @@
 				<a href="settings.html" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
-					data-[active=true]:bg-accent/10 data-[active=true]:text-accent dark:data-[active=true]:bg-accent/10 dark:data-[active=true]:text-accent
+					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
