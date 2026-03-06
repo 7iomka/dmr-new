@@ -1015,7 +1015,7 @@
           <!-- Member modal -->
           <div class="modal animate-in fade-in duration-300" data-modal="member-details" aria-hidden="true">
             <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
-            <div class="modal-box p-5 pr-14 max-w-3xl animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Детали участника">
+            <div class="modal-box p-5 pr-14 max-w-md animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Детали участника">
               <button class="modal-close absolute right-2 top-2 z-20" type="button" data-modal-close aria-label="Закрыть модалку">
                 <i data-lucide="x" class="h-5 w-5"></i>
               </button>
