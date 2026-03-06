@@ -66,23 +66,28 @@
   --color-surface-2: rgba(15, 23, 42, 0.06);
   --color-border: rgba(15, 23, 42, 0.12);
 
-  /* Accent palette (Tailwind-style scale for consistent UI states) */
-  --color-accent-50: #eefbf4;
-  --color-accent-100: #d6f5e4;
-  --color-accent-200: #aeeccb;
-  --color-accent-300: #7de0ab;
-  --color-accent-400: #48cf88;
-  --color-accent-500: #22be6f;
-  --color-accent-600: #00b074;
-  --color-accent-700: #009663;
-  --color-accent-800: #0b7550;
-  --color-accent-900: #0d6043;
-  --color-accent-950: #063625;
+  /* Primary palette (Tailwind emerald scale) */
+  --color-primary-50: #ecfdf5;
+  --color-primary-100: #d1fae5;
+  --color-primary-200: #a7f3d0;
+  --color-primary-300: #6ee7b7;
+  --color-primary-400: #34d399;
+  --color-primary-500: #10b981;
+  --color-primary-600: #059669;
+  --color-primary-700: #047857;
+  --color-primary-800: #065f46;
+  --color-primary-900: #064e3b;
+  --color-primary-950: #022c22;
 
   /* shadcn-like semantic aliases */
-  --color-accent: var(--color-accent-600);
-  --color-accent-foreground: #ffffff;
-  --color-ring: color-mix(in oklab, var(--color-accent) 55%, transparent);
+  --color-primary: var(--color-primary-500);
+  --color-primary-foreground: #ffffff;
+  --color-ring: color-mix(in oklab, var(--color-primary) 55%, transparent);
+
+  /* Backward compatibility with existing accent utilities */
+  --color-accent: var(--color-primary);
+  --color-accent-foreground: var(--color-primary-foreground);
+
 }
 
 @variant dark {
@@ -183,12 +188,20 @@
   }
 
 
+  .btn-primary {
+    @apply bg-primary-500 dark:bg-primary-600 text-white hover:bg-primary-600 dark:hover:bg-primary-700 active:bg-primary-700 dark:active:bg-primary-800 shadow-lg shadow-primary-500/25;
+  }
+
   .btn-accent {
-    @apply bg-accent text-accent-foreground hover:bg-accent-700 active:bg-accent-800 shadow-lg shadow-accent/20;
+    @apply btn-primary;
+  }
+
+  .chip-primary {
+    @apply bg-primary-500/10 text-primary-700 dark:text-primary-400 border border-primary-500/20;
   }
 
   .chip-accent {
-    @apply bg-accent/10 text-accent border border-accent/20;
+    @apply chip-primary;
   }
 }
 

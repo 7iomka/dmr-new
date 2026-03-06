@@ -1,66 +1,66 @@
-# Color Palette Guide (Accent System)
+# Color Palette Guide (Primary System)
 
 ## Goal
 
-Create a predictable accent scale for all pages (including landing) so designers/developers always know which shade to use for:
-- default accent
+Create a predictable **primary** color system based on Tailwind Emerald so every page (landing + app) uses the same logic for:
+- base button color
 - hover/active states
-- subtle backgrounds
+- soft tinted surfaces
 - focus rings
-- readable text on accent surfaces
+- white text contrast on green-turquoise controls
 
-## Accent scale (Tailwind-style)
+## Primary scale (Tailwind Emerald)
 
-Use only these tokens from `css/app.css`:
+Use this scale from `css/app.css`:
 
-- `accent-50` `#eefbf4`
-- `accent-100` `#d6f5e4`
-- `accent-200` `#aeeccb`
-- `accent-300` `#7de0ab`
-- `accent-400` `#48cf88`
-- `accent-500` `#22be6f`
-- `accent-600` `#00b074` (brand default)
-- `accent-700` `#009663` (hover)
-- `accent-800` `#0b7550` (active/pressed)
-- `accent-900` `#0d6043`
-- `accent-950` `#063625`
+- `primary-50` `#ecfdf5`
+- `primary-100` `#d1fae5`
+- `primary-200` `#a7f3d0`
+- `primary-300` `#6ee7b7`
+- `primary-400` `#34d399`
+- `primary-500` `#10b981`
+- `primary-600` `#059669`
+- `primary-700` `#047857`
+- `primary-800` `#065f46`
+- `primary-900` `#064e3b`
+- `primary-950` `#022c22`
 
 Semantic aliases:
-- `--color-accent` -> default brand (`accent-600`)
-- `--color-accent-foreground` -> text on accent surface (`#fff`)
+- `--color-primary` -> default (`primary-500`)
+- `--color-primary-foreground` -> `#ffffff`
+- `--color-ring` -> ring from `primary`
 
-## Usage rules
+## Universal button approach (recommended)
 
-### Buttons (primary)
-- Base: `bg-accent text-accent-foreground`
-- Hover: `hover:bg-accent-700`
-- Active: `active:bg-accent-800`
-- Shadow: `shadow-accent/20`
+Use `.btn-primary` from `css/app.css` instead of repeating long class chains.
 
-### Accent text/icons
-- Use `text-accent` for key numbers/statuses.
-- For muted accent text on light surfaces, prefer `text-accent-700`.
+It already encodes the desired contrast behavior:
+- light theme base: `bg-primary-500`
+- dark theme base: `dark:bg-primary-600`
+- light hover: `hover:bg-primary-600`
+- dark hover: `dark:hover:bg-primary-700`
+- foreground: `text-white`
 
-### Accent borders and soft surfaces
-- Soft background: `bg-accent/10`
-- Soft border: `border-accent/20`
-- Hover border emphasis: `hover:border-accent/50`
+So you get your preferred pattern (darker step in dark mode) without duplicating classes per button.
 
-### Focus states
-- Use `focus:ring-accent/50` or token `--color-ring`.
+## Secondary usage patterns
 
-## Landing vs other pages
+### Soft blocks / chips
+- use `.chip-primary`
+- or explicit: `bg-primary-500/10 border-primary-500/20`
 
-- Landing can use richer gradients, but all green accents must derive from `accent-*` scale.
-- Body dark background remains global (`--color-dark-bg`) to keep cross-page consistency.
-- If you need new green shades, extend `accent-*` scale first, then consume via utilities.
+### Focus / rings
+- use `focus:ring-primary/50` (or `--color-ring` in custom CSS)
 
-## Do / Don't
+### Text/icons
+- key highlights: `text-primary` or legacy `text-accent` (alias)
 
-Do:
-- use semantic utilities (`bg-accent`, `hover:bg-accent-700`, `text-accent`)
-- use scale values for deterministic states
+## Landing + app consistency
 
-Don't:
-- introduce raw hex in components (`#009663`, `#00B074`, etc.)
-- invent one-off hover shades outside the scale
+- Landing may keep richer gradients, but all green accents should derive from `primary-*` tokens.
+- App pages should use `.btn-primary` for CTA buttons by default.
+- If new shades are needed, extend `primary-*` first, then consume semantically.
+
+## Migration note
+
+Legacy `accent` aliases are kept for compatibility, but new code should prefer `primary` naming.
