@@ -4,7 +4,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="flex items-center shrink-0" href="/home.php">
-            <img class="h-12 w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">
+            <img class="h-12 w-auto hidden dark:block" src="/img/logo-dark.svg" alt="Logo">
             <img class="h-12 w-auto dark:hidden" src="/img/logo-light.svg" alt="Logo">
           </a>
           <p>Инвестируйте в проект умного зеркала. Ранний раунд. Ограниченное количество долей.</p>

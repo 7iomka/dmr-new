@@ -297,7 +297,7 @@
                   </svg>
                   Реферальная программа
                 </div>
-                <h2>Зарабатывайте до <span class="text-accent">40%</span></h2>
+                <h2>Доход от роста вашей команды</h2>
                 <p class="text-muted mt-12 maxw-560 mx-auto">
                   Прозрачная механика выплат с фокусом на стабильный рост структуры и понятное распределение для каждого уровня.
                 </p>
@@ -1013,9 +1013,9 @@
           </section>
 
           <!-- Member modal -->
-          <div class="modal modal--member" data-modal="member-details" aria-hidden="true">
-            <div class="modal-backdrop" data-modal-overlay data-modal-close></div>
-            <div class="modal-box modal-box--member" role="dialog" aria-modal="true" aria-label="Детали участника">
+          <div class="modal modal--member animate-in fade-in duration-300" data-modal="member-details" aria-hidden="true">
+            <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
+            <div class="modal-box modal-box--member animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Детали участника">
               <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="18" y1="6" x2="6" y2="18" />
