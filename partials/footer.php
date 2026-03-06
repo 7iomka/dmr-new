@@ -53,7 +53,6 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Dilan Mirror Investment. All rights reserved.</p>
-        <p>ID: 882194 · lawyer1@awsarhitect.me</p>
       </div>
     </div>
   </footer>
