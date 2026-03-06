@@ -206,6 +206,32 @@
   display: flex;
 }
 
+
+.modal[data-modal-size='xs'] .modal-box {
+  max-width: 24rem;
+}
+
+.modal[data-modal-size='sm'] .modal-box {
+  max-width: 28rem;
+}
+
+.modal[data-modal-size='md'] .modal-box {
+  max-width: 36rem;
+}
+
+.modal[data-modal-size='lg'] .modal-box {
+  max-width: 48rem;
+}
+
+.modal[data-modal-size='xl'] .modal-box {
+  max-width: 64rem;
+}
+
+.modal[data-modal-size='auto'] .modal-box {
+  width: fit-content;
+  max-width: min(100%, 30rem);
+}
+
 @layer components {
   /* общая база для всех карточек */
   .card,

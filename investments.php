@@ -717,7 +717,7 @@
   </div>
 
 
-  <div class="modal animate-in fade-in duration-300" data-modal="payment-confirm" aria-hidden="true">
+  <div class="modal animate-in fade-in duration-300" data-modal="payment-confirm" data-modal-size="lg" aria-hidden="true">
     <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
     <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Подтверждение оплаты контракта">
       <div class="flex items-start justify-between gap-4">
@@ -769,7 +769,7 @@
     </div>
   </div>
 
-  <div class="modal animate-in fade-in duration-300" data-modal="payment-all-confirm" aria-hidden="true">
+  <div class="modal animate-in fade-in duration-300" data-modal="payment-all-confirm" data-modal-size="lg" aria-hidden="true">
     <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
     <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Подтверждение оплаты всего контракта">
       <div class="flex items-start justify-between gap-4">
@@ -803,7 +803,7 @@
     </div>
   </div>
 
-  <div class="modal animate-in fade-in duration-300" data-modal="payment-some-months" aria-hidden="true">
+  <div class="modal animate-in fade-in duration-300" data-modal="payment-some-months" data-modal-size="lg" aria-hidden="true">
     <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
     <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Оплатить несколько месяцев">
       <div class="flex items-start justify-between gap-4">
@@ -851,7 +851,7 @@
     </div>
   </div>
 
-  <div class="modal animate-in fade-in duration-300" data-modal="contract-cancel" aria-hidden="true">
+  <div class="modal animate-in fade-in duration-300" data-modal="contract-cancel" data-modal-size="lg" aria-hidden="true">
     <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
     <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Отменить контракт">
       <div class="flex items-start justify-between gap-4">
