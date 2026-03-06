@@ -116,7 +116,7 @@
                       </div>
 
                       <button id="mainBuyButton"
-                        class="w-full py-4 bg-accent hover:bg-[#009663] text-white font-bold rounded-lg shadow-lg shadow-[#00B074]/20 transition-all active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
+                        class="w-full py-4 bg-accent hover:bg-accent-700 text-white font-bold rounded-lg shadow-lg shadow-accent/20 transition-all active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
                         <i data-lucide="circle-plus" class="w-5 h-5"></i>
                         <span id="buttonText">Купить 132 806 долей за 504 $</span>
                       </button>
@@ -136,7 +136,7 @@
                     Купите доли, чтобы открыть портфель и начать отслеживать цену и платежи.
                   </p>
                   <button
-                    class="mt-5 inline-flex items-center justify-center px-4 py-3 rounded-lg bg-accent hover:bg-[#009663] text-white font-bold text-xs uppercase js-tab-btn"
+                    class="mt-5 inline-flex items-center justify-center px-4 py-3 rounded-lg bg-accent hover:bg-accent-700 text-white font-bold text-xs uppercase js-tab-btn"
                     data-target="buy" data-active="false">
                     Купить доли
                   </button>

@@ -17,3 +17,4 @@
 
 - Use semantic tokens (accent, card, etc.)
 - Never use raw hex in components
+- Color palette details: `docs/color-palette-guide.md`

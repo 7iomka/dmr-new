@@ -45,7 +45,7 @@
                   </h3>
                   <div>
                     <a href="deposit.php"
-                      class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-[#009663] text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
+                      class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-accent-700 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-emerald-500/20 uppercase tracking-widest">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         data-lucide="plus-circle" aria-hidden="true" class="lucide lucide-plus-circle w-4 h-4">
@@ -232,7 +232,7 @@
                       </div>
 
                       <button id="mainBuyButton"
-                        class="w-full py-4 bg-accent hover:bg-[#009663] text-white font-bold rounded-lg shadow-lg shadow-[#00B074]/20 transition-all active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
+                        class="w-full py-4 bg-accent hover:bg-accent-700 text-white font-bold rounded-lg shadow-lg shadow-accent/20 transition-all active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           data-lucide="circle-plus" aria-hidden="true" class="lucide lucide-circle-plus w-5 h-5">
@@ -256,7 +256,7 @@
                         Купите доли, чтобы открыть портфель и начать отслеживать цену и платежи.
                       </p>
                       <button
-                        class="mt-5 inline-flex items-center justify-center px-4 py-3 rounded-lg bg-accent hover:bg-[#009663] text-white font-bold text-xs uppercase js-tab-btn"
+                        class="mt-5 inline-flex items-center justify-center px-4 py-3 rounded-lg bg-accent hover:bg-accent-700 text-white font-bold text-xs uppercase js-tab-btn"
                         data-target="buy">
                         Купить доли
                       </button>

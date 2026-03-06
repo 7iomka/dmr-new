@@ -60,12 +60,29 @@
   --font-sans: 'TTNorms', sans-serif;
   --font-serif: 'TTNorms', sans-serif;
   --color-card: #ffffff;
-  --color-accent: #00b074;
   --color-dark-bg: #0b0e11;
   --color-card-dark: #14171a;
   --color-muted-foreground: #5f6469;
   --color-surface-2: rgba(15, 23, 42, 0.06);
   --color-border: rgba(15, 23, 42, 0.12);
+
+  /* Accent palette (Tailwind-style scale for consistent UI states) */
+  --color-accent-50: #eefbf4;
+  --color-accent-100: #d6f5e4;
+  --color-accent-200: #aeeccb;
+  --color-accent-300: #7de0ab;
+  --color-accent-400: #48cf88;
+  --color-accent-500: #22be6f;
+  --color-accent-600: #00b074;
+  --color-accent-700: #009663;
+  --color-accent-800: #0b7550;
+  --color-accent-900: #0d6043;
+  --color-accent-950: #063625;
+
+  /* shadcn-like semantic aliases */
+  --color-accent: var(--color-accent-600);
+  --color-accent-foreground: #ffffff;
+  --color-ring: color-mix(in oklab, var(--color-accent) 55%, transparent);
 }
 
 @variant dark {
@@ -163,6 +180,15 @@
   }
   .card-body-inset-y {
     @apply py-4 lg:py-6;
+  }
+
+
+  .btn-accent {
+    @apply bg-accent text-accent-foreground hover:bg-accent-700 active:bg-accent-800 shadow-lg shadow-accent/20;
+  }
+
+  .chip-accent {
+    @apply bg-accent/10 text-accent border border-accent/20;
   }
 }
 
