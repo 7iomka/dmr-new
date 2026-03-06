@@ -721,9 +721,9 @@
     <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
     <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Подтверждение оплаты контракта">
       <div class="modal-header">
-        <h3 class="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">Подтверждение оплаты контракта</h3>
+        <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white">Подтверждение оплаты контракта</h3>
         <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку">
-          <i data-lucide="x" class="h-4 w-4"></i>
+          <i data-lucide="x" class="h-5 w-5"></i>
         </button>
       </div>
 
@@ -757,9 +757,9 @@
     <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
     <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Подтверждение оплаты всего контракта">
       <div class="modal-header">
-        <h3 class="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">Подтверждение оплаты контракта</h3>
+        <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white">Подтверждение оплаты контракта</h3>
         <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку">
-          <i data-lucide="x" class="h-4 w-4"></i>
+          <i data-lucide="x" class="h-5 w-5"></i>
         </button>
       </div>
 
@@ -793,8 +793,8 @@
     <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
     <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Оплатить несколько месяцев">
       <div class="modal-header">
-        <h3 class="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">Оплатить несколько месяцев</h3>
-        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку"><i data-lucide="x" class="h-4 w-4"></i></button>
+        <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white">Оплатить несколько месяцев</h3>
+        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку"><i data-lucide="x" class="h-5 w-5"></i></button>
       </div>
 
       <div class="modal-body">
@@ -843,8 +843,8 @@
     <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
     <div class="modal-box animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Отменить контракт">
       <div class="modal-header">
-        <h3 class="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">Отменить контракт</h3>
-        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку"><i data-lucide="x" class="h-4 w-4"></i></button>
+        <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white">Отменить контракт</h3>
+        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку"><i data-lucide="x" class="h-5 w-5"></i></button>
       </div>
 
       <div class="modal-body">
