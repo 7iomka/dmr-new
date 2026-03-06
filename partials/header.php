@@ -10,7 +10,7 @@
 
         <a class="h-10 flex items-center shrink-0" href="/home.php">
           <img class="h-full w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">
-          <img class="h-full w-auto dark:hidden" src="/img/logo-light.svg" alt="Logo">
+          <img class="h-full w-auto dark:hidden" src="/img/logo-dark.svg" alt="Logo">
           <img class="h-full w-auto hidden" src="/img/logo-icon-only.svg" alt="Logo">
         </a>
       </div>
