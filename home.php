@@ -297,7 +297,7 @@
                   </svg>
                   Реферальная программа
                 </div>
-                <h2>Зарабатывайте до <span class="text-accent">40%</span></h2>
+                <h2>Доход от роста вашей команды</h2>
                 <p class="text-muted mt-12 maxw-560 mx-auto">
                   Прозрачная механика выплат с фокусом на стабильный рост структуры и понятное распределение для каждого уровня.
                 </p>
@@ -1013,16 +1013,16 @@
           </section>
 
           <!-- Member modal -->
-          <div class="modal" id="memberModal">
-            <div class="modal-backdrop" id="modalBackdrop"></div>
-            <div class="modal-box">
-              <button class="modal-close" id="modalClose">
+          <div class="modal modal--member animate-in fade-in duration-300" data-modal="member-details" aria-hidden="true">
+            <div class="modal-backdrop animate-in fade-in duration-300" data-modal-overlay data-modal-close></div>
+            <div class="modal-box modal-box--member animate-in zoom-in-95 fade-in duration-300" role="dialog" aria-modal="true" aria-label="Детали участника">
+              <button class="modal-close" type="button" data-modal-close aria-label="Закрыть модалку">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               </button>
-              <div id="modalBody"></div>
+              <div data-modal-body></div>
             </div>
           </div>
 
@@ -1182,8 +1182,8 @@
 
             // ═══════════ COMMITTEE ═══════════
             const grid = document.getElementById('committeeGrid');
-            const modal = document.getElementById('memberModal');
-            const modalBody = document.getElementById('modalBody');
+            const memberModal = document.querySelector('[data-modal="member-details"]');
+            const modalBody = memberModal?.querySelector('[data-modal-body]');
             let shown = 0;
             const batch = 30;
 
@@ -1208,23 +1208,32 @@
 
             const renderBatch = () => {
               const next = members.slice(shown, shown + batch);
-              next.forEach(m => {
-                const el = document.createElement('div');
+              next.forEach((m, idx) => {
+                const el = document.createElement('button');
+                el.type = 'button';
                 el.className = 'cm-member';
+                el.setAttribute('data-member-index', String(shown + idx));
+                el.setAttribute('data-modal-open', 'member-details');
                 el.innerHTML = `
       <div class="cm-avatar">
         <img src="${m.avatar}" alt="${m.firstName}" loading="lazy">
         <span class="cm-flag">${m.flag}</span>
       </div>`;
-                el.addEventListener('click', () => {
-                  modalBody.innerHTML = renderMember(m);
-                  modal.classList.add('open');
-                });
                 grid.appendChild(el);
               });
               shown += next.length;
               if (shown >= members.length) document.getElementById('loadMoreBtn').style.display = 'none';
             };
+
+            grid.addEventListener('click', (e) => {
+              const card = e.target.closest('.cm-member[data-member-index]');
+              if (!card) return;
+              const index = Number(card.getAttribute('data-member-index'));
+              const member = members[index];
+              if (!member || !modalBody) return;
+              modalBody.innerHTML = renderMember(member);
+            });
+
             renderBatch();
             document.getElementById('loadMoreBtn').addEventListener('click', renderBatch);
 
@@ -1286,12 +1295,6 @@
               updateCarousel();
             });
 
-            // Modal close
-            document.getElementById('modalBackdrop').addEventListener('click', () => modal.classList.remove('open'));
-            document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('open'));
-            document.addEventListener('keydown', e => {
-              if (e.key === 'Escape') modal.classList.remove('open');
-            });
           </script>
         </main>
         <?php include __DIR__ . '/partials/footer.php'; ?>

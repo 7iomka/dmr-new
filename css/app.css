@@ -60,12 +60,34 @@
   --font-sans: 'TTNorms', sans-serif;
   --font-serif: 'TTNorms', sans-serif;
   --color-card: #ffffff;
-  --color-accent: #00b074;
   --color-dark-bg: #0b0e11;
   --color-card-dark: #14171a;
   --color-muted-foreground: #5f6469;
   --color-surface-2: rgba(15, 23, 42, 0.06);
   --color-border: rgba(15, 23, 42, 0.12);
+
+  /* Primary palette aliases to built-in Tailwind emerald scale */
+  --color-primary-50: var(--color-emerald-50);
+  --color-primary-100: var(--color-emerald-100);
+  --color-primary-200: var(--color-emerald-200);
+  --color-primary-300: var(--color-emerald-300);
+  --color-primary-400: var(--color-emerald-400);
+  --color-primary-500: var(--color-emerald-500);
+  --color-primary-600: var(--color-emerald-600);
+  --color-primary-700: var(--color-emerald-700);
+  --color-primary-800: var(--color-emerald-800);
+  --color-primary-900: var(--color-emerald-900);
+  --color-primary-950: var(--color-emerald-950);
+
+  /* shadcn-like semantic aliases */
+  --color-primary: var(--color-primary-500);
+  --color-primary-foreground: #ffffff;
+  --color-ring: color-mix(in oklab, var(--color-primary) 55%, transparent);
+
+  /* Backward compatibility with existing accent utilities */
+  --color-accent: var(--color-primary);
+  --color-accent-foreground: var(--color-primary-foreground);
+
 }
 
 @variant dark {
@@ -78,6 +100,7 @@
 @layer base {
   body {
     @apply bg-[#f3f6f8] text-[#1A1D1F] dark:bg-dark-bg dark:text-[#E4E6EB] min-h-screen;
+    font-variant-ligatures: none;
   }
   button:not(:disabled),
   [role='button']:not(:disabled) {
@@ -126,6 +149,23 @@
   }
 }
 
+
+@utility btn-primary {
+  @apply bg-primary-500 dark:bg-primary-600 text-white hover:bg-primary-600 dark:hover:bg-primary-700 active:bg-primary-700 dark:active:bg-primary-800 shadow-lg shadow-primary-500/25;
+}
+
+@utility btn-accent {
+  @apply btn-primary;
+}
+
+@utility chip-primary {
+  @apply bg-primary-500/10 text-primary-700 dark:text-primary-400 border border-primary-500/20;
+}
+
+@utility chip-accent {
+  @apply chip-primary;
+}
+
 @layer components {
   /* общая база для всех карточек */
   .card,
@@ -164,6 +204,7 @@
   .card-body-inset-y {
     @apply py-4 lg:py-6;
   }
+
 }
 
 :root {

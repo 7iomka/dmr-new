@@ -99,6 +99,65 @@
 	</script>
 
 	<script>
+		// ===== GLOBAL MODAL MANAGER (data-attributes) =====
+		(function() {
+			const getModal = (name) => document.querySelector(`[data-modal="${name}"]`);
+			const getOpenModals = () => Array.from(document.querySelectorAll('.modal.open[data-modal]'));
+
+			function syncScrollLock() {
+				document.body.style.overflow = getOpenModals().length ? 'hidden' : '';
+			}
+
+			function open(modalOrName) {
+				const modal = typeof modalOrName === 'string' ? getModal(modalOrName) : modalOrName;
+				if (!modal) return;
+				modal.classList.add('open');
+				modal.setAttribute('aria-hidden', 'false');
+				syncScrollLock();
+			}
+
+			function close(modalOrName) {
+				const modal = typeof modalOrName === 'string' ? getModal(modalOrName) : modalOrName;
+				if (!modal) return;
+				modal.classList.remove('open');
+				modal.setAttribute('aria-hidden', 'true');
+				syncScrollLock();
+			}
+
+			function closeTop() {
+				const openModals = getOpenModals();
+				if (!openModals.length) return;
+				close(openModals[openModals.length - 1]);
+			}
+
+			document.addEventListener('click', (e) => {
+				const openTrigger = e.target.closest('[data-modal-open]');
+				if (openTrigger) {
+					const modalName = openTrigger.getAttribute('data-modal-open');
+					if (modalName) open(modalName);
+				}
+
+				const closeTrigger = e.target.closest('[data-modal-close]');
+				if (closeTrigger) {
+					const modal = closeTrigger.closest('[data-modal]');
+					if (modal) close(modal);
+				}
+			});
+
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape') closeTop();
+			});
+
+			window.AppModal = {
+				open,
+				close,
+				closeTop,
+			};
+		})();
+	</script>
+
+
+	<script>
 		/**
 		 * Инициализация всех систем табов на странице
 		 */
