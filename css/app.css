@@ -148,6 +148,23 @@
   }
 }
 
+
+@utility btn-primary {
+  @apply bg-primary-500 dark:bg-primary-600 text-white hover:bg-primary-600 dark:hover:bg-primary-700 active:bg-primary-700 dark:active:bg-primary-800 shadow-lg shadow-primary-500/25;
+}
+
+@utility btn-accent {
+  @apply btn-primary;
+}
+
+@utility chip-primary {
+  @apply bg-primary-500/10 text-primary-700 dark:text-primary-400 border border-primary-500/20;
+}
+
+@utility chip-accent {
+  @apply chip-primary;
+}
+
 @layer components {
   /* общая база для всех карточек */
   .card,
@@ -187,22 +204,6 @@
     @apply py-4 lg:py-6;
   }
 
-
-  .btn-primary {
-    @apply bg-primary-500 dark:bg-primary-600 text-white hover:bg-primary-600 dark:hover:bg-primary-700 active:bg-primary-700 dark:active:bg-primary-800 shadow-lg shadow-primary-500/25;
-  }
-
-  .btn-accent {
-    @apply btn-primary;
-  }
-
-  .chip-primary {
-    @apply bg-primary-500/10 text-primary-700 dark:text-primary-400 border border-primary-500/20;
-  }
-
-  .chip-accent {
-    @apply chip-primary;
-  }
 }
 
 :root {
