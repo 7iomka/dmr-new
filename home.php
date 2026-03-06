@@ -1272,20 +1272,29 @@
               cmData = data;
               cmPage = 0;
               cmTrack.innerHTML = data.map(m => `
-    <div class="cm-card">
+    <div class="cm-card" data-member-index="${members.indexOf(m)}" data-modal-open="member-details">
       <div class="cm-card-inner">
-        <img src="${m.avatar}" alt="${m.firstName}" loading="lazy">
+        <img src="${m.avatar}" alt="${m.firstName}" loading="lazy" class="member-modal-avatar">
         <div class="cm-card-body">
-          <h4>${m.firstName} ${m.lastName} ${m.flag}</h4>
-          <div class="loc">${m.city}, ${m.country}</div>
-          <div class="id">ID: ${m.id}</div>
-          <div class="cm-socials">${m.socials.map(s=>`<div class="cm-soc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${socialSVG[s]||''}</svg></div>`).join('')}</div>
+          <h4 class="text-lg">${m.firstName} ${m.lastName} <span class="text-lg">${m.flag}</span></h4>
+          <p class="my-[2px] mt-1 text-sm text-muted">${m.city}, ${m.country}</p>
+          <p class="text-xs font-bold text-label">ID: ${m.id}</p>
+          <div class="member-socials">${m.socials.map(s=>`<a href="#" class="member-social-link" aria-label="${s}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--color-muted-foreground)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${socialSVG[s]||''}</svg></a>`).join('')}</div>
         </div>
       </div>
     </div>`).join('');
               carouselWrap.style.display = 'block';
               updateCarousel();
             };
+
+            cmTrack.addEventListener('click', (e) => {
+              const card = e.target.closest('.cm-card[data-member-index]');
+              if (!card || e.target.closest('.member-social-link')) return;
+              const index = Number(card.getAttribute('data-member-index'));
+              const member = members[index];
+              if (!member || !modalBody) return;
+              modalBody.innerHTML = renderMember(member);
+            });
             document.getElementById('cmPrev').addEventListener('click', () => {
               cmPage = Math.max(0, cmPage - 1);
               updateCarousel();
