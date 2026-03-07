@@ -17,8 +17,8 @@
           <a href="news.php" class="text-sm font-semibold text-primary hover:text-primary-700">← К списку новостей</a>
           <article class="card-simple mt-4">
             <div class="text-[10px] uppercase font-bold tracking-[2px] text-zinc-500 mb-3">Новость #<?= $newsId ?></div>
-            <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white mb-4">Детальная новость для demo-auth</h1>
-            <p class="text-zinc-500 leading-relaxed">Эта страница доступна и гостю, и авторизованному пользователю. Контент одинаковый, но навигационная оболочка переключается через demoAuth state.</p>
+            <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white mb-4">Детальная новость</h1>
+            <p class="text-zinc-500 leading-relaxed">Эта страница доступна и гостю, и авторизованному пользователю. Контент одинаковый, но навигационная оболочка переключается по состоянию авторизации.</p>
           </article>
         </main>
       </div>

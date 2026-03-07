@@ -12,8 +12,6 @@
     </div>
 
     <div class="flex items-center gap-2 md:gap-4">
-      <?php include __DIR__ . '/demo-auth-switcher.php'; ?>
-
       <button onclick="toggleDarkMode()"
         class="p-2.5 rounded-lg bg-zinc-100 dark:bg-[#1E2023] border border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-yellow-500 hover:opacity-80 transition-all">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -72,16 +70,11 @@
               <p class="text-sm font-bold truncate">lawyer1@awsarhitect.me</p>
             </div>
             <div class="p-2 border-t border-zinc-100 dark:border-zinc-800/50">
-              <a href="<?= htmlspecialchars(demoAuthUrl('0'), ENT_QUOTES, 'UTF-8') ?>" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors">
-                <span class="text-sm font-bold">Выйти (demo)</span>
+              <a href="logout.php" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors">
+                <span class="text-sm font-bold">Выйти</span>
               </a>
             </div>
           </div>
-        </div>
-      <?php else: ?>
-        <div class="hidden lg:flex items-center gap-2">
-          <a href="news.php" class="px-3 py-2 rounded-lg text-sm font-semibold text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/50">Новости</a>
-          <a href="<?= htmlspecialchars(demoAuthUrl('1'), ENT_QUOTES, 'UTF-8') ?>" class="btn-primary px-3 py-2 rounded-lg text-sm">Войти (demo)</a>
         </div>
       <?php endif; ?>
 

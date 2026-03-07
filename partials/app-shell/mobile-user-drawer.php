@@ -58,7 +58,7 @@
 	            <line x1="21" x2="9" y1="12" y2="12"></line>
 	          </svg>
 	        </div>
-	        <span class="text-sm font-medium">Выйти</span>
+	        <a href="logout.php" class="text-sm font-medium">Выйти</a>
 	      </div>
 	    </div>
 	  </div>

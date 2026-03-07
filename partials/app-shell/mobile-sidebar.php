@@ -16,16 +16,23 @@
       </button>
     </div>
 
-    <div class="flex-1 px-3 py-4 overflow-y-auto space-y-2">
-      <a href="home.php" class="w-full flex items-center p-3 gap-3 rounded-lg text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
-        <span class="text-sm font-semibold">Главная</span>
-      </a>
-      <a href="news.php" class="w-full flex items-center p-3 gap-3 rounded-lg text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
-        <span class="text-sm font-semibold">Новости</span>
-      </a>
-      <a href="<?= htmlspecialchars(demoAuthUrl('1'), ENT_QUOTES, 'UTF-8') ?>" class="w-full flex items-center p-3 gap-3 rounded-lg text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
-        <span class="text-sm font-semibold">Войти (demo)</span>
-      </a>
+    <div class="flex-1 px-3 py-4 overflow-y-auto space-y-6">
+      <div>
+        <p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">Навигация</p>
+        <div class="space-y-1">
+          <a href="home.php" class="w-full flex items-center p-3 gap-3 rounded-lg text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white"><span class="text-sm font-semibold">Главная</span></a>
+          <a href="news.php" class="w-full flex items-center p-3 gap-3 rounded-lg text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white"><span class="text-sm font-semibold">Новости</span></a>
+          <a href="contacts.php" class="w-full flex items-center p-3 gap-3 rounded-lg text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white"><span class="text-sm font-semibold">Контакты</span></a>
+        </div>
+      </div>
+
+      <div>
+        <p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">Аккаунт</p>
+        <div class="space-y-1">
+          <a href="auth-login.php" class="w-full flex items-center p-3 gap-3 rounded-lg text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white"><span class="text-sm font-semibold">Вход</span></a>
+          <a href="auth-register.php" class="w-full flex items-center p-3 gap-3 rounded-lg text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white"><span class="text-sm font-semibold">Регистрация</span></a>
+        </div>
+      </div>
     </div>
   </aside>
 <?php endif; ?>

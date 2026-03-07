@@ -22,6 +22,11 @@ if (!function_exists('demoAuthBootstrap')) {
             $_SESSION['demo_authenticated'] = false;
         }
 
+        demoAuthRedirectCurrentUrlWithoutParam('demoAuth');
+    }
+
+    function demoAuthRedirectCurrentUrlWithoutParam(string $paramName): void
+    {
         $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
         $uriParts = parse_url($requestUri);
         $path = $uriParts['path'] ?? '/';
@@ -30,7 +35,8 @@ if (!function_exists('demoAuthBootstrap')) {
         if (!empty($uriParts['query'])) {
             parse_str($uriParts['query'], $queryParams);
         }
-        unset($queryParams['demoAuth']);
+
+        unset($queryParams[$paramName]);
 
         $newQuery = http_build_query($queryParams);
         $target = $path . ($newQuery !== '' ? '?' . $newQuery : '');
@@ -54,11 +60,6 @@ if (!function_exists('demoAuthBootstrap')) {
         return !shouldUseAppShell();
     }
 
-    function demoAuthStatusLabel(): string
-    {
-        return isDemoAuthenticated() ? 'Authenticated' : 'Guest';
-    }
-
     function demoAuthUrl(string $value): string
     {
         $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
@@ -73,6 +74,27 @@ if (!function_exists('demoAuthBootstrap')) {
         $queryParams['demoAuth'] = $value;
 
         return $path . '?' . http_build_query($queryParams);
+    }
+
+    function demoLogin(string $redirectTo = 'dashboard.php'): void
+    {
+        $_SESSION['demo_authenticated'] = true;
+        header('Location: ' . $redirectTo);
+        exit;
+    }
+
+    function demoLogout(string $redirectTo = 'home.php'): void
+    {
+        $_SESSION['demo_authenticated'] = false;
+        header('Location: ' . $redirectTo);
+        exit;
+    }
+
+    function demoRequirePostAndLogin(string $redirectTo = 'dashboard.php'): void
+    {
+        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
+            demoLogin($redirectTo);
+        }
     }
 }
 
