@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/includes/demo-auth.php'; ?>
 <!doctype html>
 <html lang="ru" class="dark">
 <?php include __DIR__ . '/partials/head.php'; ?>
@@ -530,7 +531,7 @@
                   </div>
                   <h2>Последние новости</h2>
                 </div>
-                <a href="#" class="news-link">Все новости →</a>
+                <a href="news.php" class="news-link">Все новости →</a>
               </div>
 
               <div class="news-track-wrap reveal">

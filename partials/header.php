@@ -1,13 +1,8 @@
-<header
-  class="relative h-16 lg:h-20 shrink-0 border-b border-zinc-200 dark:border-zinc-800 bg-card z-40">
+<header class="relative h-16 lg:h-20 shrink-0 border-b border-zinc-200 dark:border-zinc-800 bg-card z-40">
 
   <div class="container flex items-center w-full justify-between h-full">
     <div class="flex items-center min-w-0 js-header-left">
-
-      <!-- MOBILE (<lg): Logo -->
       <div class="lg:hidden">
-        <!-- Logo link -->
-
         <a class="h-10 flex items-center shrink-0" href="/home.php">
           <img class="h-full w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">
           <img class="h-full w-auto dark:hidden" src="/img/logo-dark.svg" alt="Logo">
@@ -17,6 +12,8 @@
     </div>
 
     <div class="flex items-center gap-2 md:gap-4">
+      <?php include __DIR__ . '/demo-auth-switcher.php'; ?>
+
       <button onclick="toggleDarkMode()"
         class="p-2.5 rounded-lg bg-zinc-100 dark:bg-[#1E2023] border border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-yellow-500 hover:opacity-80 transition-all">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -41,89 +38,52 @@
         </svg>
       </button>
 
-      <div class="relative">
-        <button
-          class="p-2.5 rounded-lg bg-zinc-100 dark:bg-[#1E2023] border border-zinc-200 dark:border-zinc-800 text-zinc-500 transition-all relative">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bell"
-            aria-hidden="true" class="lucide lucide-bell w-[18px] h-[18px]">
-            <path d="M10.268 21a2 2 0 0 0 3.464 0"></path>
-            <path
-              d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326">
-            </path>
-          </svg>
-          <span
-            class="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-[#14171A]"></span>
-        </button>
-      </div>
+      <?php if (shouldUseAppShell()): ?>
+        <div class="relative">
+          <button class="p-2.5 rounded-lg bg-zinc-100 dark:bg-[#1E2023] border border-zinc-200 dark:border-zinc-800 text-zinc-500 transition-all relative">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bell"
+              aria-hidden="true" class="lucide lucide-bell w-[18px] h-[18px]">
+              <path d="M10.268 21a2 2 0 0 0 3.464 0"></path>
+              <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"></path>
+            </svg>
+            <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-[#14171A]"></span>
+          </button>
+        </div>
 
-      <div class="h-8 w-px hidden lg:block bg-zinc-200 dark:bg-zinc-800"></div>
+        <div class="h-8 w-px hidden lg:block bg-zinc-200 dark:bg-zinc-800"></div>
 
-      <div class="relative hidden lg:block">
-        <div onclick="toggleUserMenu()"
-          class="flex items-center gap-3 cursor-pointer p-1 pr-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-all">
-          <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-primary to-primary-400 p-0.5">
-            <div
-              class="w-full h-full rounded-md flex items-center justify-center font-bold text-xs bg-card text-zinc-900 dark:text-white">
-              DW
+        <div class="relative hidden lg:block">
+          <div onclick="toggleUserMenu()" class="flex items-center gap-3 cursor-pointer p-1 pr-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-all">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-primary to-primary-400 p-0.5">
+              <div class="w-full h-full rounded-md flex items-center justify-center font-bold text-xs bg-card text-zinc-900 dark:text-white">DW</div>
+            </div>
+            <div class="text-left">
+              <p class="text-[11px] font-bold leading-none mb-0.5 text-zinc-800 dark:text-zinc-200">Dorin Watsap</p>
+              <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">ID: 882194</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" aria-hidden="true" id="user-chevron" class="lucide lucide-chevron-down hidden md:block w-[14px] h-[14px] text-zinc-500 transition-transform">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </div>
+          <div id="user-dropdown" class="absolute right-0 mt-3 w-64 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-card shadow-2xl overflow-hidden z-50 hidden">
+            <div class="p-4 border-b border-zinc-100 dark:border-zinc-800/50">
+              <p class="text-[10px] font-bold uppercase text-zinc-500 mb-1">Аккаунт</p>
+              <p class="text-sm font-bold truncate">lawyer1@awsarhitect.me</p>
+            </div>
+            <div class="p-2 border-t border-zinc-100 dark:border-zinc-800/50">
+              <a href="<?= htmlspecialchars(demoAuthUrl('0'), ENT_QUOTES, 'UTF-8') ?>" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors">
+                <span class="text-sm font-bold">Выйти (demo)</span>
+              </a>
             </div>
           </div>
-          <div class="text-left">
-            <p class="text-[11px] font-bold leading-none mb-0.5 text-zinc-800 dark:text-zinc-200">Dorin Watsap</p>
-            <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">ID: 882194</p>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            data-lucide="chevron-down" aria-hidden="true" id="user-chevron"
-            class="lucide lucide-chevron-down hidden md:block w-[14px] h-[14px] text-zinc-500 transition-transform">
-            <path d="m6 9 6 6 6-6"></path>
-          </svg>
         </div>
-
-        <!-- User Dropdown -->
-        <div id="user-dropdown"
-          class="absolute right-0 mt-3 w-64 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-card shadow-2xl overflow-hidden z-50 hidden">
-          <div class="p-4 border-b border-zinc-100 dark:border-zinc-800/50">
-            <p class="text-[10px] font-bold uppercase text-zinc-500 mb-1">Аккаунт</p>
-            <p class="text-sm font-bold truncate">lawyer1@awsarhitect.me</p>
-          </div>
-          <div class="p-2">
-            <a href="#"
-              class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="user"
-                aria-hidden="true" class="lucide lucide-user w-4 h-4">
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-              <span class="text-sm font-bold">Мой профиль</span>
-            </a>
-            <a href="#"
-              class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="lock"
-                aria-hidden="true" class="lucide lucide-lock w-4 h-4">
-                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
-              <span class="text-sm font-bold">Безопасность</span>
-            </a>
-          </div>
-          <div class="p-2 border-t border-zinc-100 dark:border-zinc-800/50">
-            <button
-              class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                data-lucide="log-out" aria-hidden="true" class="lucide lucide-log-out w-4 h-4">
-                <path d="m16 17 5-5-5-5"></path>
-                <path d="M21 12H9"></path>
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-              </svg>
-              <span class="text-sm font-bold">Выйти</span>
-            </button>
-          </div>
+      <?php else: ?>
+        <div class="hidden lg:flex items-center gap-2">
+          <a href="news.php" class="px-3 py-2 rounded-lg text-sm font-semibold text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/50">Новости</a>
+          <a href="<?= htmlspecialchars(demoAuthUrl('1'), ENT_QUOTES, 'UTF-8') ?>" class="btn-primary px-3 py-2 rounded-lg text-sm">Войти (demo)</a>
         </div>
-      </div>
+      <?php endif; ?>
 
     </div>
 </header>
