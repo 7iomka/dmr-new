@@ -1,13 +1,11 @@
 	<!-- MOBILE SIDEBAR DRAWER (duplicate of desktop sidebar) -->
 	<aside id="mobile-sidebar-drawer"
 		class="lg:hidden fixed top-0 left-0 bottom-0 w-[78%] max-w-[320px] bg-card border-r border-zinc-200 dark:border-zinc-800 z-[103] flex flex-col">
-		<div class="h-16 flex items-center px-4 border-b border-zinc-200 dark:border-zinc-800">
-			<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
-				<!-- logo icon -->
-			</div>
-			<span class="ml-3 font-bold text-sm tracking-tight uppercase text-zinc-900 dark:text-white">
-				Skill Code
-			</span>
+		<div class="h-16 px-4 flex items-center border-b border-zinc-200 dark:border-zinc-800">
+			<a class="h-10 flex items-center shrink-0" href="/home.php">
+				<img class="h-full w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">
+				<img class="h-full w-auto dark:hidden" src="/img/logo-dark.svg" alt="Logo">
+			</a>
 
 			<button id="mobile-sidebar-close"
 				class="ml-auto p-2 rounded-lg text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
@@ -21,13 +19,13 @@
 			</button>
 		</div>
 
-		<div class="flex-1 px-3 py-4 overflow-y-auto space-y-6">
+		<div class="flex-1 px-3 py-4 pb-10 overflow-y-auto space-y-6">
 			<!-- Основное -->
 			<div>
 				<p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">
 					Основное
 				</p>
-				<div class="space-y-1">
+				<div class="flex flex-col gap-1">
 					<a href="dashboard.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
@@ -69,7 +67,7 @@
 				<p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">
 					Финансы
 				</p>
-				<div class="space-y-1">
+				<div class="flex flex-col gap-1">
 					<a href="wallet.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
@@ -131,7 +129,7 @@
 				<p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">
 					Аккаунт
 				</p>
-				<div class="space-y-1">
+				<div class="flex flex-col gap-1">
 					<a href="profile.php" class="w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
             text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 						dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
@@ -190,7 +188,7 @@
 				<p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">
 					Информация
 				</p>
-				<div class="space-y-1">
+				<div class="flex flex-col gap-1">
 					<a href="home.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary"><i data-lucide="house" class="w-5 h-5"></i><span class="text-sm font-semibold">Главная</span></a>
 					<a href="news.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary"><i data-lucide="newspaper" class="w-5 h-5"></i><span class="text-sm font-semibold">Новости</span></a>
 					<a href="contacts.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary"><i data-lucide="phone" class="w-5 h-5"></i><span class="text-sm font-semibold">Контакты</span></a>

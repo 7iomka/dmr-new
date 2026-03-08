@@ -1,6 +1,6 @@
 <!-- DESKTOP SIDEBAR -->
 <aside id="sidebar"
-	class="app-sidebar hidden lg:flex flex-col border-r gap-4 border-zinc-200 dark:border-zinc-800 sidebar-transition z-50 h-screen fixed inset-y-0 left-0 bg-card">
+	class="app-sidebar hidden lg:flex flex-col border-r border-zinc-200 dark:border-zinc-800 sidebar-transition z-50 h-screen fixed inset-y-0 left-0 bg-card">
 	<div class="relative h-20 px-2 flex items-center justify-between">
 		<a class="sidebar-logo-link h-full pl-4 flex items-center shrink-0 transition-all" href="/home.php">
 			<img class="sidebar-logo-full h-12 w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">
@@ -15,7 +15,7 @@
 	</div>
 
 
-	<div class="flex-1 px-2 overflow-y-auto space-y-8">
+	<div class="flex-1 px-2 py-4 pb-10 overflow-y-auto space-y-8">
 
 		<!-- Основное -->
 		<div>
@@ -24,7 +24,7 @@
 				<span class="sidebar-label">Основное</span>
 			</p>
 
-			<div class="space-y-1">
+			<div class="flex flex-col gap-1">
 				<a href="dashboard.php" data-active="true" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
@@ -68,7 +68,7 @@
 				<span class="sidebar-label">Финансы</span>
 			</p>
 
-			<div class="space-y-1">
+			<div class="flex flex-col gap-1">
 				<a href="wallet.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
@@ -132,7 +132,7 @@
 				<span class="sidebar-label">Аккаунт</span>
 			</p>
 
-			<div class="space-y-1">
+			<div class="flex flex-col gap-1">
 				<a href="profile.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
@@ -193,7 +193,7 @@
 			<p class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
 				<span class="sidebar-label">Информация</span>
 			</p>
-			<div class="space-y-1">
+			<div class="flex flex-col gap-1">
 				<a href="home.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary">
 					<div class="sidebar-link-icon flex items-center justify-center"><i data-lucide="house" class="w-5 h-5"></i></div>
 					<span class="sidebar-label text-sm font-semibold">Главная</span>
