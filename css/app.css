@@ -361,9 +361,8 @@
   .auth-method-btn:hover::before {
     @apply opacity-100;
   }
-
   .auth-method-btn-primary {
-    @apply border-primary-300/70 dark:border-primary-500/45 bg-primary-50 dark:bg-gradient-to-r dark:from-primary-950/45 dark:to-primary-900/35 hover:border-primary-500;
+    @apply border-primary-300/70 dark:border-primary-500/40 bg-gradient-to-r from-primary-50 to-primary-100/70 dark:from-primary-950/35 dark:to-primary-900/25 hover:border-primary-500;
   }
 
   .auth-method-row {
@@ -386,9 +385,8 @@
   .auth-method-btn-primary .auth-method-desc {
     @apply text-zinc-600 dark:text-zinc-300;
   }
-
   .auth-method-btn-primary .auth-method-icon {
-    @apply border-primary-300/70 dark:border-primary-500/60 bg-primary-100 dark:bg-primary-900/45 text-primary-700 dark:text-primary-300;
+    @apply border-primary-300/70 dark:border-primary-600/50 bg-primary-100 dark:bg-primary-900/35 text-primary-700 dark:text-primary-300;
   }
 
   .auth-method-btn-primary .auth-method-arrow {
