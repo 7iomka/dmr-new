@@ -29,19 +29,19 @@
               </div>
 
               <div class="auth-method-list">
-                <a href="auth-forgot-email.php" class="auth-method-btn auth-method-btn-primary">
+                <a href="auth-forgot-email.php" class="group auth-method-btn auth-method-btn-primary">
                   <div class="auth-method-row">
                     <div class="auth-method-left"><span class="auth-method-icon"><i data-lucide="mail" class="h-5 w-5"></i></span><div><p class="auth-method-title">Email OTP</p><p class="auth-method-desc">Код на почту</p></div></div>
                     <i data-lucide="chevron-right" class="auth-method-arrow"></i>
                   </div>
                 </a>
-                <a href="auth-forgot-telegram.php" class="auth-method-btn">
+                <a href="auth-forgot-telegram.php" class="group auth-method-btn">
                   <div class="auth-method-row">
                     <div class="auth-method-left"><span class="auth-method-icon"><i data-lucide="send" class="h-5 w-5"></i></span><div><p class="auth-method-title">Telegram OTP</p><p class="auth-method-desc">Код через Telegram</p></div></div>
                     <i data-lucide="chevron-right" class="auth-method-arrow"></i>
                   </div>
                 </a>
-                <a href="auth-forgot-whatsapp.php" class="auth-method-btn">
+                <a href="auth-forgot-whatsapp.php" class="group auth-method-btn">
                   <div class="auth-method-row">
                     <div class="auth-method-left"><span class="auth-method-icon"><i data-lucide="message-circle" class="h-5 w-5"></i></span><div><p class="auth-method-title">WhatsApp OTP</p><p class="auth-method-desc">Код через WhatsApp</p></div></div>
                     <i data-lucide="chevron-right" class="auth-method-arrow"></i>

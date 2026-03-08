@@ -29,7 +29,7 @@
               </div>
 
               <div class="auth-method-list">
-                <a href="auth-register-email.php" class="auth-method-btn auth-method-btn-primary">
+                <a href="auth-register-email.php" class="group auth-method-btn auth-method-btn-primary">
                   <div class="auth-method-row">
                     <div class="auth-method-left">
                       <span class="auth-method-icon"><i data-lucide="mail" class="h-5 w-5"></i></span>
@@ -42,7 +42,7 @@
                   </div>
                 </a>
 
-                <a href="auth-register-phone.php" class="auth-method-btn">
+                <a href="auth-register-phone.php" class="group auth-method-btn">
                   <div class="auth-method-row">
                     <div class="auth-method-left">
                       <span class="auth-method-icon"><i data-lucide="phone" class="h-5 w-5"></i></span>

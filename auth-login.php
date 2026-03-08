@@ -29,7 +29,7 @@
               </div>
 
               <div class="auth-method-list">
-                <a href="auth-login-password.php" class="auth-method-btn auth-method-btn-primary">
+                <a href="auth-login-password.php" class="group auth-method-btn auth-method-btn-primary">
                   <div class="auth-method-row">
                     <div class="auth-method-left">
                       <span class="auth-method-icon"><i data-lucide="phone" class="h-5 w-5"></i></span>
@@ -42,7 +42,7 @@
                   </div>
                 </a>
 
-                <a href="auth-login-email.php" class="auth-method-btn">
+                <a href="auth-login-email.php" class="group auth-method-btn">
                   <div class="auth-method-row">
                     <div class="auth-method-left">
                       <span class="auth-method-icon"><i data-lucide="mail" class="h-5 w-5"></i></span>
@@ -55,7 +55,7 @@
                   </div>
                 </a>
 
-                <a href="auth-login-telegram.php" class="auth-method-btn">
+                <a href="auth-login-telegram.php" class="group auth-method-btn">
                   <div class="auth-method-row">
                     <div class="auth-method-left">
                       <span class="auth-method-icon"><i data-lucide="send" class="h-5 w-5"></i></span>
@@ -68,7 +68,7 @@
                   </div>
                 </a>
 
-                <a href="auth-login-whatsapp.php" class="auth-method-btn">
+                <a href="auth-login-whatsapp.php" class="group auth-method-btn">
                   <div class="auth-method-row">
                     <div class="auth-method-left">
                       <span class="auth-method-icon"><i data-lucide="message-circle" class="h-5 w-5"></i></span>
