@@ -2,7 +2,7 @@
   <?php include __DIR__ . '/nav-app-mobile-sidebar.php'; ?>
 <?php else: ?>
   <aside id="mobile-sidebar-drawer"
-    class="lg:hidden fixed top-0 left-0 bottom-0 w-[78%] max-w-[320px] bg-card border-r border-zinc-200 dark:border-zinc-800 z-[103] flex flex-col">
+    class="lg:hidden fixed top-0 left-0 bottom-0 w-[320px] max-w-full bg-card border-r border-zinc-200 dark:border-zinc-800 z-[103] flex flex-col">
     <div class="h-16 px-4 flex items-center border-b border-zinc-200 dark:border-zinc-800">
       <a class="h-10 flex items-center shrink-0" href="/home.php">
         <img class="h-full w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">
