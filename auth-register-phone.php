@@ -11,7 +11,13 @@
       <?php include __DIR__ . '/partials/header.php'; ?>
       <div class="flex-1 overflow-y-auto">
         <main class="page-main flex items-center justify-center">
-          <form method="post" class="w-full max-w-xl rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-card p-6 sm:p-8 space-y-5">
+          <form method="post" class="w-full max-w-xl rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-gradient-to-b from-white via-zinc-50/80 to-zinc-100/70 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-950/80 shadow-[0_20px_45px_rgba(2,6,23,0.08)] dark:shadow-[0_20px_45px_rgba(0,0,0,0.45)] p-6 sm:p-8 space-y-5">
+            <div class="flex justify-center -mt-1">
+              <div class="h-14 w-14 rounded-2xl border border-primary-400/40 bg-gradient-to-b from-primary-100 to-primary-200 dark:from-primary-900/40 dark:to-primary-950/60 text-primary-700 dark:text-primary-300 flex items-center justify-center shadow-[0_10px_30px_rgba(16,185,129,0.22)]">
+                <i data-lucide="shield-check" class="w-7 h-7"></i>
+              </div>
+            </div>
+
             <div class="space-y-1">
               <h1 class="text-2xl font-bold text-zinc-900 dark:text-white">Регистрация через телефон</h1>
               <p class="text-sm text-zinc-500">Создайте пароль и подтвердите его.</p>
