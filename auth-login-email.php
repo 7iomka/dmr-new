@@ -17,33 +17,39 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
       <?php include __DIR__ . '/partials/header.php'; ?>
       <div class="flex-1 overflow-y-auto">
         <main class="page-main flex items-center justify-center">
-          <form method="post" class="w-full max-w-xl rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-gradient-to-b from-white via-zinc-50/80 to-zinc-100/70 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-950/80 shadow-[0_20px_45px_rgba(2,6,23,0.08)] dark:shadow-[0_20px_45px_rgba(0,0,0,0.45)] p-6 sm:p-8 space-y-5">
-            <div class="flex justify-center -mt-1">
-              <div class="h-14 w-14 rounded-2xl border border-primary-400/40 bg-gradient-to-b from-primary-100 to-primary-200 dark:from-primary-900/40 dark:to-primary-950/60 text-primary-700 dark:text-primary-300 flex items-center justify-center shadow-[0_10px_30px_rgba(16,185,129,0.22)]">
-                <i data-lucide="shield-check" class="w-7 h-7"></i>
+          <section class="auth-shell">
+            <div class="auth-shell-glow"></div>
+            <div class="auth-card-icon-wrap">
+              <div class="auth-card-icon">
+                <i data-lucide="mail" class="h-8 w-8"></i>
               </div>
             </div>
 
-            <div class="space-y-1">
-              <h1 class="text-2xl font-bold text-zinc-900 dark:text-white">Вход через Email OTP</h1>
-              <p class="text-sm text-zinc-500">Мы отправим одноразовый код подтверждения на почту.</p>
-            </div>
+            <form method="post" class="auth-card">
+              <div class="auth-card-dot auth-card-dot-1"></div>
+              <div class="auth-card-dot auth-card-dot-2"></div>
 
-            <div class="space-y-2">
-              <label class="text-xs font-bold uppercase tracking-[1.5px] text-zinc-500">Email</label>
-              <input name="email" type="email" required placeholder="name@example.com" class="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950/40 px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:border-primary-500">
-            </div>
+              <div class="auth-head">
+                <h1 class="auth-title">Вход через Email OTP</h1>
+                <p class="auth-subtitle">Мы отправим одноразовый код подтверждения на почту.</p>
+              </div>
 
-            <div class="flex flex-col sm:flex-row gap-3">
-              <button type="submit" class="btn-primary rounded-lg px-4 py-3 text-sm font-bold">Продолжить</button>
-              <a href="auth-login.php" class="inline-flex items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800/50">Назад</a>
-            </div>
+              <div class="space-y-2 relative z-10">
+                <label class="auth-label">Email</label>
+                <input name="email" type="email" required placeholder="name@example.com" class="auth-input">
+              </div>
 
-            <div class="pt-4 border-t border-zinc-200 dark:border-zinc-800 text-sm flex flex-wrap gap-x-4 gap-y-2">
-              <a href="auth-forgot.php" class="text-primary hover:text-primary-700">Забыли пароль?</a>
-              <a href="auth-register.php" class="text-primary hover:text-primary-700">Регистрация</a>
-            </div>
-          </form>
+              <div class="auth-actions">
+                <button type="submit" class="btn-primary rounded-xl px-4 py-3 text-sm font-bold">Продолжить</button>
+                <a href="auth-login.php" class="auth-secondary-btn">Назад</a>
+              </div>
+
+              <div class="auth-divider auth-footer justify-start">
+                <a href="auth-forgot.php" class="auth-link">Забыли пароль?</a>
+                <a href="auth-register.php" class="auth-link">Регистрация</a>
+              </div>
+            </form>
+          </section>
         </main>
       </div>
     </div>

@@ -11,80 +11,80 @@
 
       <div class="flex-1 overflow-y-auto">
         <main class="page-main flex items-center justify-center">
-          <section class="relative w-full max-w-2xl">
-            <div class="pointer-events-none absolute inset-x-10 -top-6 h-36 bg-primary-500/10 blur-3xl"></div>
-            <div class="rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-gradient-to-b from-white via-zinc-50/80 to-zinc-100/70 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-950/80 shadow-[0_20px_45px_rgba(2,6,23,0.08)] dark:shadow-[0_20px_45px_rgba(0,0,0,0.45)] p-6 sm:p-8 space-y-6">
-              <div class="flex justify-center -mt-1">
-              <div class="h-14 w-14 rounded-2xl border border-primary-400/40 bg-gradient-to-b from-primary-100 to-primary-200 dark:from-primary-900/40 dark:to-primary-950/60 text-primary-700 dark:text-primary-300 flex items-center justify-center shadow-[0_10px_30px_rgba(16,185,129,0.22)]">
-                <i data-lucide="shield-check" class="w-7 h-7"></i>
+          <section class="auth-shell">
+            <div class="auth-shell-glow"></div>
+            <div class="auth-card-icon-wrap">
+              <div class="auth-card-icon">
+                <i data-lucide="log-in" class="h-8 w-8"></i>
               </div>
             </div>
 
-            <div class="space-y-2">
-                <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
-                  <i data-lucide="shield-check" class="w-6 h-6"></i>
-                </div>
-                <h1 class="text-2xl font-bold text-zinc-900 dark:text-white">Выберите способ входа</h1>
-                <p class="text-sm text-zinc-500">Выберите предпочтительный способ аутентификации.</p>
+            <div class="auth-card">
+              <div class="auth-card-dot auth-card-dot-1"></div>
+              <div class="auth-card-dot auth-card-dot-2"></div>
+
+              <div class="auth-head">
+                <h1 class="auth-title">Выберите способ входа</h1>
+                <p class="auth-subtitle">Выберите предпочтительный способ аутентификации.</p>
               </div>
 
-              <div class="flex flex-col gap-3">
-                <a href="auth-login-password.php" class="group rounded-lg border border-primary-300/60 dark:border-primary-500/40 bg-primary-50 dark:bg-primary-950/20 p-4 hover:border-primary-500 transition-colors">
-                  <div class="flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3 min-w-0">
-                      <span class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0"><i data-lucide="phone" class="w-5 h-5"></i></span>
+              <div class="auth-method-list">
+                <a href="auth-login-password.php" class="auth-method-btn auth-method-btn-primary">
+                  <div class="auth-method-row">
+                    <div class="auth-method-left">
+                      <span class="auth-method-icon"><i data-lucide="phone" class="h-5 w-5"></i></span>
                       <div class="min-w-0">
-                        <p class="text-sm font-semibold text-zinc-900 dark:text-white">Телефон и пароль</p>
-                        <p class="text-xs text-zinc-500">Войти с номером телефона и паролем</p>
+                        <p class="auth-method-title">Телефон и пароль</p>
+                        <p class="auth-method-desc">Войти с номером телефона и паролем</p>
                       </div>
                     </div>
-                    <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-400 group-hover:text-primary transition-colors"></i>
+                    <i data-lucide="chevron-right" class="auth-method-arrow"></i>
                   </div>
                 </a>
 
-                <a href="auth-login-email.php" class="group rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50/60 dark:bg-zinc-900/40 p-4 hover:border-primary-400/60 transition-colors">
-                  <div class="flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3 min-w-0">
-                      <span class="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-500 flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-5 h-5"></i></span>
+                <a href="auth-login-email.php" class="auth-method-btn">
+                  <div class="auth-method-row">
+                    <div class="auth-method-left">
+                      <span class="auth-method-icon"><i data-lucide="mail" class="h-5 w-5"></i></span>
                       <div class="min-w-0">
-                        <p class="text-sm font-semibold text-zinc-900 dark:text-white">Email OTP</p>
-                        <p class="text-xs text-zinc-500">Код подтверждения на почту</p>
+                        <p class="auth-method-title">Email OTP</p>
+                        <p class="auth-method-desc">Код подтверждения на почту</p>
                       </div>
                     </div>
-                    <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-400 group-hover:text-primary transition-colors"></i>
+                    <i data-lucide="chevron-right" class="auth-method-arrow"></i>
                   </div>
                 </a>
 
-                <a href="auth-login-telegram.php" class="group rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50/60 dark:bg-zinc-900/40 p-4 hover:border-primary-400/60 transition-colors">
-                  <div class="flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3 min-w-0">
-                      <span class="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-500 flex items-center justify-center shrink-0"><i data-lucide="send" class="w-5 h-5"></i></span>
+                <a href="auth-login-telegram.php" class="auth-method-btn">
+                  <div class="auth-method-row">
+                    <div class="auth-method-left">
+                      <span class="auth-method-icon"><i data-lucide="send" class="h-5 w-5"></i></span>
                       <div class="min-w-0">
-                        <p class="text-sm font-semibold text-zinc-900 dark:text-white">Telegram OTP</p>
-                        <p class="text-xs text-zinc-500">Код через Telegram</p>
+                        <p class="auth-method-title">Telegram OTP</p>
+                        <p class="auth-method-desc">Код через Telegram-бот</p>
                       </div>
                     </div>
-                    <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-400 group-hover:text-primary transition-colors"></i>
+                    <i data-lucide="chevron-right" class="auth-method-arrow"></i>
                   </div>
                 </a>
 
-                <a href="auth-login-whatsapp.php" class="group rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50/60 dark:bg-zinc-900/40 p-4 hover:border-primary-400/60 transition-colors">
-                  <div class="flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3 min-w-0">
-                      <span class="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-500 flex items-center justify-center shrink-0"><i data-lucide="message-circle" class="w-5 h-5"></i></span>
+                <a href="auth-login-whatsapp.php" class="auth-method-btn">
+                  <div class="auth-method-row">
+                    <div class="auth-method-left">
+                      <span class="auth-method-icon"><i data-lucide="message-circle" class="h-5 w-5"></i></span>
                       <div class="min-w-0">
-                        <p class="text-sm font-semibold text-zinc-900 dark:text-white">WhatsApp OTP</p>
-                        <p class="text-xs text-zinc-500">Код через WhatsApp</p>
+                        <p class="auth-method-title">WhatsApp OTP</p>
+                        <p class="auth-method-desc">Код через WhatsApp</p>
                       </div>
                     </div>
-                    <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-400 group-hover:text-primary transition-colors"></i>
+                    <i data-lucide="chevron-right" class="auth-method-arrow"></i>
                   </div>
                 </a>
               </div>
 
-              <div class="pt-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-3 text-sm">
-                <a href="auth-forgot.php" class="text-primary hover:text-primary-700">Забыли пароль?</a>
-                <span class="text-zinc-500">Нет аккаунта? <a href="auth-register.php" class="text-primary hover:text-primary-700">Зарегистрироваться</a></span>
+              <div class="auth-divider auth-footer">
+                <a href="auth-forgot.php" class="auth-link">Забыли пароль?</a>
+                <span class="auth-muted">Нет аккаунта? <a href="auth-register.php" class="auth-link">Зарегистрироваться</a></span>
               </div>
             </div>
           </section>
