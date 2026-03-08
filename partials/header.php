@@ -76,6 +76,11 @@
             </div>
           </div>
         </div>
+      <?php else: ?>
+        <a href="auth-login.php" class="hidden lg:inline-flex items-center gap-2 btn-primary px-4 py-2.5 rounded-lg text-sm font-bold ml-2 shadow-lg shadow-primary-500/20">
+          <i data-lucide="log-in" class="w-4 h-4"></i>
+          <span>Вход</span>
+        </a>
       <?php endif; ?>
 
     </div>
