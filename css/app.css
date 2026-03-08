@@ -363,7 +363,7 @@
   }
 
   .auth-method-btn-primary {
-    @apply border-primary-300/70 dark:border-primary-400/55 bg-primary-50 dark:bg-gradient-to-r dark:from-primary-200/95 dark:to-primary-100/90 hover:border-primary-500;
+    @apply border-primary-300/70 dark:border-primary-500/45 bg-primary-50 dark:bg-gradient-to-r dark:from-primary-950/45 dark:to-primary-900/35 hover:border-primary-500;
   }
 
   .auth-method-row {
@@ -380,19 +380,19 @@
 
 
   .auth-method-btn-primary .auth-method-title {
-    @apply text-zinc-900;
+    @apply text-zinc-900 dark:text-white;
   }
 
   .auth-method-btn-primary .auth-method-desc {
-    @apply text-zinc-600;
+    @apply text-zinc-600 dark:text-zinc-300;
   }
 
   .auth-method-btn-primary .auth-method-icon {
-    @apply border-primary-300/70 dark:border-primary-400/75 bg-primary-100 dark:bg-primary-200 text-primary-700;
+    @apply border-primary-300/70 dark:border-primary-500/60 bg-primary-100 dark:bg-primary-900/45 text-primary-700 dark:text-primary-300;
   }
 
   .auth-method-btn-primary .auth-method-arrow {
-    @apply text-zinc-600 group-hover:text-zinc-800;
+    @apply text-zinc-600 dark:text-zinc-300 group-hover:text-zinc-800 dark:group-hover:text-primary-300;
   }
 
   .auth-method-title {
