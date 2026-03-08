@@ -45,7 +45,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
               </div>
 
               <div class="auth-divider auth-footer justify-start">
-                <a href="auth-login.php" class="auth-link">Вернуться ко входу</a>
+                <span class="auth-muted">Помните пароль? <a href="auth-login.php" class="auth-link">Вернуться ко входу</a></span>
               </div>
             </form>
           </section>

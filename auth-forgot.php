@@ -50,8 +50,7 @@
               </div>
 
               <div class="auth-divider auth-footer justify-start">
-                <span class="auth-muted">Помните пароль?</span>
-                <a href="auth-login.php" class="auth-link">Вернуться ко входу</a>
+                <span class="auth-muted">Помните пароль? <a href="auth-login.php" class="auth-link">Вернуться ко входу</a></span>
               </div>
             </div>
           </section>

@@ -53,8 +53,7 @@
               </div>
 
               <div class="auth-divider auth-footer justify-start">
-                <span class="auth-muted">Уже есть аккаунт?</span>
-                <a href="auth-login.php" class="auth-link">Войти</a>
+                <span class="auth-muted">Уже есть аккаунт? <a href="auth-login.php" class="auth-link">Войти</a></span>
               </div>
             </form>
           </section>
