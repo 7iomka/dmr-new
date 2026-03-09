@@ -34,9 +34,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 <p class="auth-subtitle">Введите Telegram username или номер для отправки кода.</p>
               </div>
 
-              <div class="space-y-2 relative z-10">
-                <label class="auth-label">Telegram</label>
-                <input name="telegram" type="text" required placeholder="@username или +7..." class="auth-input">
+              <div class="relative z-10 flex flex-col gap-2">
+                <label for="forgot-telegram" class="auth-label">Telegram</label>
+                <input id="forgot-telegram" name="telegram" type="text" required placeholder="@username или +7..." class="auth-input">
               </div>
 
               <div class="auth-actions">

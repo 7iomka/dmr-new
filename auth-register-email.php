@@ -34,18 +34,18 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 <p class="auth-subtitle">Заполните данные, затем подтвердите код из письма.</p>
               </div>
 
-              <div class="space-y-4 relative z-10">
-                <div class="space-y-2">
-                  <label class="auth-label">Имя</label>
-                  <input name="name" type="text" required placeholder="Ваше имя" class="auth-input">
+              <div class="relative z-10 flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                  <label for="register-email-name" class="auth-label">Имя</label>
+                  <input id="register-email-name" name="name" type="text" required placeholder="Ваше имя" class="auth-input">
                 </div>
-                <div class="space-y-2">
-                  <label class="auth-label">Email</label>
-                  <input name="email" type="email" required placeholder="name@example.com" class="auth-input">
+                <div class="flex flex-col gap-2">
+                  <label for="register-email-email" class="auth-label">Email</label>
+                  <input id="register-email-email" name="email" type="email" required placeholder="name@example.com" class="auth-input">
                 </div>
-                <div class="space-y-2">
-                  <label class="auth-label">Пароль</label>
-                  <input name="password" type="password" required placeholder="Создайте пароль" class="auth-input">
+                <div class="flex flex-col gap-2">
+                  <label for="register-email-password" class="auth-label">Пароль</label>
+                  <input id="register-email-password" name="password" type="password" required placeholder="Создайте пароль" class="auth-input">
                 </div>
               </div>
 

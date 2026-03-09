@@ -28,22 +28,22 @@
                 <p class="auth-subtitle">Введите данные аккаунта для демо-регистрации.</p>
               </div>
 
-              <div class="space-y-4 relative z-10">
-                <div class="space-y-2">
-                  <label class="auth-label">Имя</label>
-                  <input name="name" type="text" required placeholder="Ваше имя" class="auth-input">
+              <div class="relative z-10 flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                  <label for="register-phone-name" class="auth-label">Имя</label>
+                  <input id="register-phone-name" name="name" type="text" required placeholder="Ваше имя" class="auth-input">
                 </div>
-                <div class="space-y-2">
-                  <label class="auth-label">Телефон</label>
-                  <input name="phone" type="text" required placeholder="+7 (___) ___-__-__" class="auth-input">
+                <div class="flex flex-col gap-2">
+                  <label for="register-phone-phone" class="auth-label">Телефон</label>
+                  <input id="register-phone-phone" name="phone" type="text" required placeholder="+7 (___) ___-__-__" class="auth-input">
                 </div>
-                <div class="space-y-2">
-                  <label class="auth-label">Пароль</label>
-                  <input name="password" type="password" required placeholder="Создайте пароль" class="auth-input">
+                <div class="flex flex-col gap-2">
+                  <label for="register-phone-password" class="auth-label">Пароль</label>
+                  <input id="register-phone-password" name="password" type="password" required placeholder="Создайте пароль" class="auth-input">
                 </div>
-                <div class="space-y-2">
-                  <label class="auth-label">Подтверждение пароля</label>
-                  <input name="password_confirmation" type="password" required placeholder="Повторите пароль" class="auth-input">
+                <div class="flex flex-col gap-2">
+                  <label for="register-phone-password-confirmation" class="auth-label">Подтверждение пароля</label>
+                  <input id="register-phone-password-confirmation" name="password_confirmation" type="password" required placeholder="Повторите пароль" class="auth-input">
                 </div>
               </div>
 

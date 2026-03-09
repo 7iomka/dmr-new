@@ -34,9 +34,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 <p class="auth-subtitle">Введите WhatsApp номер для отправки одноразового кода.</p>
               </div>
 
-              <div class="space-y-2 relative z-10">
-                <label class="auth-label">WhatsApp</label>
-                <input name="whatsapp" type="text" required placeholder="+7..." class="auth-input">
+              <div class="relative z-10 flex flex-col gap-2">
+                <label for="login-whatsapp" class="auth-label">WhatsApp</label>
+                <input id="login-whatsapp" name="whatsapp" type="text" required placeholder="+7..." class="auth-input">
               </div>
 
               <div class="auth-actions">

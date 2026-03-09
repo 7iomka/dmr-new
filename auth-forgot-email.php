@@ -34,9 +34,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 <p class="auth-subtitle">Введите email для отправки кода подтверждения.</p>
               </div>
 
-              <div class="space-y-2 relative z-10">
-                <label class="auth-label">Email</label>
-                <input name="email" type="email" required placeholder="name@example.com" class="auth-input">
+              <div class="relative z-10 flex flex-col gap-2">
+                <label for="forgot-email" class="auth-label">Email</label>
+                <input id="forgot-email" name="email" type="email" required placeholder="name@example.com" class="auth-input">
               </div>
 
               <div class="auth-actions">

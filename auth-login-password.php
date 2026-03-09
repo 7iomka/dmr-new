@@ -28,14 +28,14 @@
                 <p class="auth-subtitle">Введите номер телефона и пароль.</p>
               </div>
 
-              <div class="space-y-4 relative z-10">
-                <div class="space-y-2">
-                  <label class="auth-label">Телефон</label>
-                  <input name="phone" type="text" required placeholder="+7 (___) ___-__-__" class="auth-input">
+              <div class="relative z-10 flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                  <label for="login-phone" class="auth-label">Телефон</label>
+                  <input id="login-phone" name="phone" type="text" required placeholder="+7 (___) ___-__-__" class="auth-input">
                 </div>
-                <div class="space-y-2">
-                  <label class="auth-label">Пароль</label>
-                  <input name="password" type="password" required placeholder="Введите пароль" class="auth-input">
+                <div class="flex flex-col gap-2">
+                  <label for="login-password" class="auth-label">Пароль</label>
+                  <input id="login-password" name="password" type="password" required placeholder="Введите пароль" class="auth-input">
                 </div>
               </div>
 
