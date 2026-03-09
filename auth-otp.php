@@ -29,17 +29,15 @@ $channelLabel = $channelLabelMap[$channel] ?? 'канал';
         <main class="page-main flex items-center justify-center">
           <section class="auth-shell">
             <div class="auth-shell-glow"></div>
-            <div class="auth-card-icon-wrap">
-              <div class="auth-card-icon">
-                <i data-lucide="shield-check" class="h-8 w-8"></i>
-              </div>
-            </div>
 
             <form method="post" class="auth-card">
               <div class="auth-card-dot auth-card-dot-1"></div>
               <div class="auth-card-dot auth-card-dot-2"></div>
 
               <div class="auth-head">
+                <div class="auth-card-icon">
+                  <i data-lucide="shield-check" class="h-6 w-6"></i>
+                </div>
                 <h1 class="auth-title">Введите код подтверждения</h1>
                 <p class="auth-subtitle">Код отправлен через <?= htmlspecialchars($channelLabel, ENT_QUOTES, 'UTF-8') ?>: <?= htmlspecialchars($target, ENT_QUOTES, 'UTF-8') ?>.</p>
               </div>
@@ -53,7 +51,7 @@ $channelLabel = $channelLabelMap[$channel] ?? 'канал';
               <div class="relative z-10 text-xs text-zinc-500 dark:text-zinc-400">Код действителен 02:00</div>
 
               <div class="auth-actions">
-                <button type="submit" class="btn-primary rounded-xl px-4 py-3 text-sm font-bold">Подтвердить</button>
+                <button type="submit" class="btn-primary rounded-lg px-4 py-3 text-sm font-bold">Подтвердить</button>
                 <a href="<?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? 'auth-otp.php', ENT_QUOTES, 'UTF-8') ?>" class="auth-secondary-btn">Повторно отправить</a>
               </div>
 

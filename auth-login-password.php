@@ -13,17 +13,15 @@
         <main class="page-main flex items-center justify-center">
           <section class="auth-shell">
             <div class="auth-shell-glow"></div>
-            <div class="auth-card-icon-wrap">
-              <div class="auth-card-icon">
-                <i data-lucide="key" class="h-8 w-8"></i>
-              </div>
-            </div>
 
             <form method="post" class="auth-card">
               <div class="auth-card-dot auth-card-dot-1"></div>
               <div class="auth-card-dot auth-card-dot-2"></div>
 
               <div class="auth-head">
+                <div class="auth-card-icon">
+                  <i data-lucide="key" class="h-6 w-6"></i>
+                </div>
                 <h1 class="auth-title">Вход по телефону</h1>
                 <p class="auth-subtitle">Введите номер телефона и пароль.</p>
               </div>
@@ -40,7 +38,7 @@
               </div>
 
               <div class="auth-actions">
-                <button type="submit" class="btn-primary rounded-xl px-4 py-3 text-sm font-bold">Продолжить</button>
+                <button type="submit" class="btn-primary rounded-lg px-4 py-3 text-sm font-bold">Продолжить</button>
                 <a href="auth-login.php" class="auth-secondary-btn">Назад</a>
               </div>
 
