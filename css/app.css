@@ -409,6 +409,39 @@
     @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/35 focus:border-primary-500;
   }
 
+
+  .auth-phone-shell {
+    @apply flex items-center rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 overflow-hidden;
+  }
+
+  .auth-phone-prefix {
+    @apply flex items-center gap-2 pl-3 pr-2 border-r border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 bg-zinc-50/80 dark:bg-zinc-900/70;
+  }
+
+  .auth-phone-country-select {
+    @apply text-sm font-semibold bg-transparent border-0 p-0 pr-4 focus:outline-none;
+  }
+
+  .auth-phone-input {
+    @apply flex-1 border-0 bg-transparent px-3 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none;
+  }
+
+  .auth-input-wrap {
+    @apply relative;
+  }
+
+  .auth-input-icon-left {
+    @apply absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-400 pointer-events-none;
+  }
+
+  .auth-input-icon-btn {
+    @apply absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200;
+  }
+
+  .auth-input-with-icons {
+    @apply auth-input pl-10 pr-10;
+  }
+
   .auth-divider {
     @apply relative z-10 border-t border-zinc-200 dark:border-zinc-800 pt-4;
   }
