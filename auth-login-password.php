@@ -31,25 +31,25 @@
                   <label for="login-phone" class="auth-label">Номер телефона</label>
                   <div class="auth-phone-shell">
                     <div class="auth-phone-prefix">
-                      <span id="login-phone-flag" class="text-base leading-none">🇷🇺</span>
-                      <select id="login-phone-country" class="auth-phone-country-select" aria-label="Код страны">
-                        <option value="+7" data-flag="🇷🇺">+7</option>
-                        <option value="+380" data-flag="🇺🇦">+380</option>
-                        <option value="+375" data-flag="🇧🇾">+375</option>
-                        <option value="+998" data-flag="🇺🇿">+998</option>
-                        <option value="+1" data-flag="🇺🇸">+1</option>
-                      </select>
+                      <button id="phone-country-trigger" type="button" class="auth-phone-country-trigger" aria-haspopup="listbox" aria-expanded="false">
+                        <span id="phone-country-flag" class="text-base leading-none">🇷🇺</span>
+                        <span id="phone-country-code">+7</span>
+                        <i data-lucide="chevron-down" class="auth-phone-country-chevron"></i>
+                      </button>
                     </div>
                     <input id="login-phone" name="phone" type="tel" required placeholder="(999) 123-45-67" class="auth-phone-input" autocomplete="tel" inputmode="tel">
                   </div>
+                  <input id="login-phone-country-hidden" type="hidden" name="phone_country_code" value="+7">
                 </div>
+
                 <div class="flex flex-col gap-2">
                   <label for="login-password" class="auth-label">Пароль</label>
                   <div class="auth-input-wrap">
-                    <span class="auth-input-icon-left"><i data-lucide="lock" class="h-5 w-5"></i></span>
+                    <span class="auth-input-icon-left"><i data-lucide="lock" class="h-4 w-4"></i></span>
                     <input id="login-password" name="password" type="password" required placeholder="••••••••" class="auth-input-with-icons" autocomplete="current-password">
-                    <button id="toggle-password-visibility" type="button" class="auth-input-icon-btn" aria-label="Показать пароль">
-                      <i id="password-eye-icon" data-lucide="eye" class="h-5 w-5"></i>
+                    <button id="toggle-password-visibility" data-visibility="hidden" type="button" class="auth-input-icon-btn" aria-label="Показать пароль">
+                      <i data-eye="show" data-lucide="eye" class="h-4 w-4"></i>
+                      <i data-eye="hide" data-lucide="eye-off" class="h-4 w-4 hidden"></i>
                     </button>
                   </div>
                 </div>
@@ -71,24 +71,116 @@
     </div>
   </div>
 
+  <div id="phone-country-panel" class="auth-phone-country-panel" role="dialog" aria-label="Выбор страны">
+    <input id="phone-country-search" class="auth-phone-country-search" type="text" placeholder="Поиск страны" autocomplete="off">
+    <div id="phone-country-list" class="auth-phone-country-list" role="listbox" aria-label="Список стран"></div>
+  </div>
+
   <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
-  <script>
-    (() => {
-      const country = document.getElementById('login-phone-country');
-      const flag = document.getElementById('login-phone-flag');
-      const phone = document.getElementById('login-phone');
-      const password = document.getElementById('login-password');
-      const toggle = document.getElementById('toggle-password-visibility');
-      const icon = document.getElementById('password-eye-icon');
+  <script type="module">
+    import {computePosition, autoUpdate, offset, flip, shift} from 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10/+esm';
 
-      if (country && flag) {
-        const syncFlag = () => {
-          const selected = country.options[country.selectedIndex];
-          flag.textContent = selected?.dataset.flag || '🌐';
-        };
-        syncFlag();
-        country.addEventListener('change', syncFlag);
+    (() => {
+      const countries = [
+        { name: 'Russia', native: 'Россия', flag: '🇷🇺', code: '+7' },
+        { name: 'Moldova', native: 'Moldova', flag: '🇲🇩', code: '+373' },
+        { name: 'Ukraine', native: 'Україна', flag: '🇺🇦', code: '+380' },
+        { name: 'Belarus', native: 'Беларусь', flag: '🇧🇾', code: '+375' },
+        { name: 'Uzbekistan', native: 'Oʻzbekiston', flag: '🇺🇿', code: '+998' },
+        { name: 'Kazakhstan', native: 'Қазақстан', flag: '🇰🇿', code: '+7' },
+        { name: 'United States', native: 'United States', flag: '🇺🇸', code: '+1' },
+      ];
+
+      const trigger = document.getElementById('phone-country-trigger');
+      const panel = document.getElementById('phone-country-panel');
+      const list = document.getElementById('phone-country-list');
+      const search = document.getElementById('phone-country-search');
+      const flag = document.getElementById('phone-country-flag');
+      const code = document.getElementById('phone-country-code');
+      const hiddenCode = document.getElementById('login-phone-country-hidden');
+      const phone = document.getElementById('login-phone');
+
+      let cleanup = null;
+      let selected = countries[0];
+
+      function renderList(filter = '') {
+        const q = filter.trim().toLowerCase();
+        list.innerHTML = '';
+
+        countries
+          .filter((c) => (`${c.name} ${c.native} ${c.code}`).toLowerCase().includes(q))
+          .forEach((c) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'auth-phone-country-item';
+            btn.setAttribute('role', 'option');
+            btn.innerHTML = `
+              <span class="flex items-center gap-3 min-w-0">
+                <span class="text-base leading-none">${c.flag}</span>
+                <span class="truncate">${c.name} (${c.native})</span>
+              </span>
+              <span class="text-zinc-400 dark:text-zinc-500">${c.code}</span>
+            `;
+            btn.addEventListener('click', () => {
+              selected = c;
+              flag.textContent = c.flag;
+              code.textContent = c.code;
+              hiddenCode.value = c.code;
+              closePanel();
+            });
+            list.appendChild(btn);
+          });
+      }
+
+      async function positionPanel() {
+        if (!trigger || !panel) return;
+        const {x, y} = await computePosition(trigger, panel, {
+          placement: 'bottom-start',
+          strategy: 'fixed',
+          middleware: [offset(8), flip(), shift({padding: 8})],
+        });
+        panel.style.left = `${x}px`;
+        panel.style.top = `${y}px`;
+      }
+
+      function openPanel() {
+        if (!panel || !trigger) return;
+        panel.classList.remove('hidden');
+        trigger.setAttribute('aria-expanded', 'true');
+        cleanup = autoUpdate(trigger, panel, positionPanel);
+        positionPanel();
+        search.value = '';
+        renderList('');
+        setTimeout(() => search.focus(), 0);
+      }
+
+      function closePanel() {
+        panel?.classList.add('hidden');
+        trigger?.setAttribute('aria-expanded', 'false');
+        cleanup?.();
+        cleanup = null;
+      }
+
+      if (trigger && panel && list && search && flag && code && hiddenCode) {
+        renderList();
+        trigger.addEventListener('click', () => {
+          const isOpen = !panel.classList.contains('hidden');
+          if (isOpen) closePanel(); else openPanel();
+        });
+
+        search.addEventListener('input', () => renderList(search.value));
+
+        document.addEventListener('click', (e) => {
+          if (panel.classList.contains('hidden')) return;
+          const insidePanel = panel.contains(e.target);
+          const insideTrigger = trigger.contains(e.target);
+          if (!insidePanel && !insideTrigger) closePanel();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closePanel();
+        });
       }
 
       if (phone) {
@@ -104,16 +196,30 @@
         });
       }
 
-      if (toggle && password && icon) {
+      const password = document.getElementById('login-password');
+      const toggle = document.getElementById('toggle-password-visibility');
+      if (toggle && password) {
+        const showIcon = toggle.querySelector('[data-eye="show"]');
+        const hideIcon = toggle.querySelector('[data-eye="hide"]');
+
+        const syncIcons = () => {
+          const visible = toggle.dataset.visibility === 'visible';
+          showIcon?.classList.toggle('hidden', visible);
+          hideIcon?.classList.toggle('hidden', !visible);
+        };
+
+        syncIcons();
         toggle.addEventListener('click', () => {
-          const hidden = password.type === 'password';
-          password.type = hidden ? 'text' : 'password';
-          icon.setAttribute('data-lucide', hidden ? 'eye-off' : 'eye');
-          toggle.setAttribute('aria-label', hidden ? 'Скрыть пароль' : 'Показать пароль');
-          if (window.lucide) window.lucide.createIcons();
+          const nextVisible = toggle.dataset.visibility !== 'visible';
+          toggle.dataset.visibility = nextVisible ? 'visible' : 'hidden';
+          password.type = nextVisible ? 'text' : 'password';
+          toggle.setAttribute('aria-label', nextVisible ? 'Скрыть пароль' : 'Показать пароль');
+          syncIcons();
         });
       }
     })();
+
+    if (window.lucide) window.lucide.createIcons();
   </script>
 </body>
 

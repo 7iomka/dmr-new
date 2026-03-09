@@ -415,11 +415,31 @@
   }
 
   .auth-phone-prefix {
-    @apply flex items-center gap-2 pl-3 pr-2 border-r border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 bg-zinc-50/80 dark:bg-zinc-900/70;
+    @apply relative inline-flex items-center pl-2.5 pr-1.5 border-r border-zinc-200 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-900/70;
   }
 
-  .auth-phone-country-select {
-    @apply text-sm font-semibold bg-transparent border-0 p-0 pr-4 focus:outline-none;
+  .auth-phone-country-trigger {
+    @apply inline-flex items-center gap-2 rounded-md px-1.5 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800;
+  }
+
+  .auth-phone-country-chevron {
+    @apply h-4 w-4 text-zinc-500 dark:text-zinc-500;
+  }
+
+  .auth-phone-country-panel {
+    @apply z-[200] hidden w-[min(360px,calc(100vw-32px))] rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 shadow-xl overflow-hidden;
+  }
+
+  .auth-phone-country-search {
+    @apply w-full border-b border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none;
+  }
+
+  .auth-phone-country-list {
+    @apply max-h-64 overflow-y-auto;
+  }
+
+  .auth-phone-country-item {
+    @apply w-full flex items-center justify-between gap-3 px-3 py-2.5 text-left text-sm text-zinc-800 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800;
   }
 
   .auth-phone-input {
@@ -431,15 +451,15 @@
   }
 
   .auth-input-icon-left {
-    @apply absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-400 pointer-events-none;
+    @apply absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-500 pointer-events-none;
   }
 
   .auth-input-icon-btn {
-    @apply absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200;
+    @apply absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300;
   }
 
   .auth-input-with-icons {
-    @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 py-3 pl-10 pr-10 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/35 focus:border-primary-500;
+    @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 py-3 pl-9 pr-9 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/35 focus:border-primary-500;
   }
 
   .auth-divider {
