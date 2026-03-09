@@ -439,7 +439,7 @@
   }
 
   .auth-input-with-icons {
-    @apply auth-input pl-10 pr-10;
+    @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 py-3 pl-10 pr-10 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/35 focus:border-primary-500;
   }
 
   .auth-divider {
