@@ -39,12 +39,22 @@ $channelLabel = $channelLabelMap[$channel] ?? 'канал';
                   <i data-lucide="shield-check" class="h-6 w-6"></i>
                 </div>
                 <h1 class="auth-title">Введите код подтверждения</h1>
-                <p class="auth-subtitle">Код отправлен через <?= htmlspecialchars($channelLabel, ENT_QUOTES, 'UTF-8') ?>: <?= htmlspecialchars($target, ENT_QUOTES, 'UTF-8') ?>.</p>
+                <p class="auth-subtitle">Код отправлен на <?= htmlspecialchars($channelLabel, ENT_QUOTES, 'UTF-8') ?>: <?= htmlspecialchars($target, ENT_QUOTES, 'UTF-8') ?>.</p>
               </div>
 
-              <div class="grid grid-cols-6 gap-2 relative z-10">
+              <div class="otp-boxes relative z-10" data-otp-boxes>
                 <?php for ($i = 0; $i < 6; $i++): ?>
-                  <input type="text" maxlength="1" name="otp<?= $i ?>" class="auth-input h-12 px-0 text-center font-semibold">
+                  <input
+                    type="text"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    autocomplete="one-time-code"
+                    maxlength="1"
+                    name="otp<?= $i ?>"
+                    class="otp-box"
+                    data-otp-input
+                    aria-label="Символ кода <?= $i + 1 ?>"
+                  >
                 <?php endfor; ?>
               </div>
 
@@ -69,6 +79,65 @@ $channelLabel = $channelLabelMap[$channel] ?? 'канал';
 
   <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const otpInputs = [...document.querySelectorAll('[data-otp-input]')];
+      if (!otpInputs.length) return;
+
+      otpInputs[0].focus();
+
+      otpInputs.forEach((input, index) => {
+        const syncFilledState = () => {
+          input.dataset.filled = input.value ? 'true' : 'false';
+        };
+
+        syncFilledState();
+
+        input.addEventListener('input', (event) => {
+          const value = (event.target.value || '').replace(/\D/g, '').slice(-1);
+          event.target.value = value;
+          syncFilledState();
+
+          if (value && index < otpInputs.length - 1) {
+            otpInputs[index + 1].focus();
+          }
+        });
+
+        input.addEventListener('keydown', (event) => {
+          if (event.key === 'Backspace' && !input.value && index > 0) {
+            otpInputs[index - 1].focus();
+          }
+
+          if (event.key === 'ArrowLeft' && index > 0) {
+            event.preventDefault();
+            otpInputs[index - 1].focus();
+          }
+
+          if (event.key === 'ArrowRight' && index < otpInputs.length - 1) {
+            event.preventDefault();
+            otpInputs[index + 1].focus();
+          }
+        });
+
+        input.addEventListener('paste', (event) => {
+          event.preventDefault();
+          const pasted = (event.clipboardData?.getData('text') ?? '').replace(/\D/g, '').slice(0, otpInputs.length);
+          if (!pasted) return;
+
+          pasted.split('').forEach((char, offset) => {
+            const target = otpInputs[index + offset];
+            if (target) {
+              target.value = char;
+              target.dataset.filled = 'true';
+            }
+          });
+
+          const nextIndex = Math.min(index + pasted.length, otpInputs.length - 1);
+          otpInputs[nextIndex].focus();
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>

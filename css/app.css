@@ -462,6 +462,18 @@
     @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 py-3 pl-9 pr-9 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/35 focus:border-primary-500;
   }
 
+  .otp-boxes {
+    @apply flex items-center justify-center gap-2;
+  }
+
+  .otp-box {
+    @apply h-[52px] w-[46px] rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-center text-lg font-bold text-zinc-900 dark:text-zinc-100 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500;
+  }
+
+  .otp-box[data-filled='true'] {
+    @apply border-primary-500/80 text-primary-600 dark:text-primary-400 bg-primary-50/70 dark:bg-primary-900/20;
+  }
+
 
   .auth-strength {
     @apply space-y-2;

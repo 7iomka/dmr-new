@@ -34,16 +34,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 
               <div class="relative z-10 flex flex-col gap-4">
                 <div class="flex flex-col gap-2">
-                  <label for="register-email-name" class="auth-label">Имя</label>
-                  <input id="register-email-name" name="name" type="text" required placeholder="Ваше имя" class="auth-input">
-                </div>
-                <div class="flex flex-col gap-2">
                   <label for="register-email-email" class="auth-label">Email</label>
-                  <input id="register-email-email" name="email" type="email" required placeholder="name@example.com" class="auth-input">
-                </div>
-                <div class="flex flex-col gap-2">
-                  <label for="register-email-password" class="auth-label">Пароль</label>
-                  <input id="register-email-password" name="password" type="password" required placeholder="Создайте пароль" class="auth-input">
+                  <div class="auth-input-wrap">
+                    <span class="auth-input-icon-left"><i data-lucide="at-sign" class="h-4 w-4"></i></span>
+                    <input id="register-email-email" name="email" type="email" required placeholder="name@example.com" class="auth-input-with-icons pr-4" value="<?= htmlspecialchars((string) ($_POST['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
+                  </div>
                 </div>
               </div>
 
