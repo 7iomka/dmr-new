@@ -462,6 +462,39 @@
     @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 py-3 pl-9 pr-9 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/35 focus:border-primary-500;
   }
 
+
+  .auth-strength {
+    @apply mt-1.5 space-y-2;
+  }
+
+  .auth-strength-bars {
+    @apply grid grid-cols-4 gap-1;
+  }
+
+  .auth-strength-bar {
+    @apply h-1 rounded-full bg-zinc-200 dark:bg-zinc-700;
+  }
+
+  .auth-strength-bar.active {
+    @apply bg-primary-500 dark:bg-primary-400;
+  }
+
+  .auth-requirements {
+    @apply text-xs text-zinc-500 dark:text-zinc-400 space-y-1;
+  }
+
+  .auth-requirement {
+    @apply flex items-center gap-1.5;
+  }
+
+  .auth-requirement.ok {
+    @apply text-primary-600 dark:text-primary-400;
+  }
+
+  .auth-field-error {
+    @apply mt-1.5 text-xs text-red-600 dark:text-red-400 hidden;
+  }
+
   .auth-divider {
     @apply relative z-10 border-t border-zinc-200 dark:border-zinc-800 pt-4;
   }
