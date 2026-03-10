@@ -31,15 +31,15 @@
                   <label for="login-phone" class="auth-label">Номер телефона</label>
                   <div class="auth-phone-shell">
                     <div class="auth-phone-prefix">
-                      <button id="phone-country-trigger" type="button" class="auth-phone-country-trigger" aria-haspopup="listbox" aria-expanded="false">
-                        <span id="phone-country-flag" class="text-base leading-none">🇷🇺</span>
-                        <span id="phone-country-code">+7</span>
+                      <button data-phone-country-trigger type="button" class="auth-phone-country-trigger" aria-haspopup="listbox" aria-expanded="false">
+                        <span data-phone-country-flag class="text-base leading-none">🇷🇺</span>
+                        <span data-phone-country-code>+7</span>
                         <i data-lucide="chevron-down" class="auth-phone-country-chevron"></i>
                       </button>
                     </div>
                     <input id="login-phone" name="phone" type="tel" required placeholder="(999) 123-45-67" class="auth-phone-input" autocomplete="tel" inputmode="tel">
                   </div>
-                  <input id="login-phone-country-hidden" type="hidden" name="phone_country_code" value="+7">
+                  <input data-phone-country-hidden type="hidden" name="phone_country_code" value="+7">
                 </div>
 
                 <div class="flex flex-col gap-2">
@@ -71,9 +71,9 @@
     </div>
   </div>
 
-  <div id="phone-country-panel" class="auth-phone-country-panel hidden" role="dialog" aria-label="Выбор страны">
-    <input id="phone-country-search" class="auth-phone-country-search" type="text" placeholder="Поиск страны" autocomplete="off">
-    <div id="phone-country-list" class="auth-phone-country-list" role="listbox" aria-label="Список стран"></div>
+  <div data-phone-country-panel class="auth-phone-country-panel hidden" role="dialog" aria-label="Выбор страны">
+    <input data-phone-country-search class="auth-phone-country-search" type="text" placeholder="Поиск страны" autocomplete="off">
+    <div data-phone-country-list class="auth-phone-country-list" role="listbox" aria-label="Список стран"></div>
   </div>
 
   <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
@@ -92,13 +92,13 @@
         { name: 'United States', native: 'United States', flag: '🇺🇸', code: '+1' },
       ];
 
-      const trigger = document.getElementById('phone-country-trigger');
-      const panel = document.getElementById('phone-country-panel');
-      const list = document.getElementById('phone-country-list');
-      const search = document.getElementById('phone-country-search');
-      const flag = document.getElementById('phone-country-flag');
-      const code = document.getElementById('phone-country-code');
-      const hiddenCode = document.getElementById('login-phone-country-hidden');
+      const trigger = document.querySelector('[data-phone-country-trigger]');
+      const panel = document.querySelector('[data-phone-country-panel]');
+      const list = document.querySelector('[data-phone-country-list]');
+      const search = document.querySelector('[data-phone-country-search]');
+      const flag = document.querySelector('[data-phone-country-flag]');
+      const code = document.querySelector('[data-phone-country-code]');
+      const hiddenCode = document.querySelector('[data-phone-country-hidden]');
       const phone = document.getElementById('login-phone');
 
       let cleanup = null;
