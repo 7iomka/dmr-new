@@ -1,5 +1,9 @@
 <?php require_once __DIR__ . '/includes/demo-auth.php'; ?>
-<?php $newsId = max(1, (int) ($_GET['id'] ?? 1)); ?>
+<?php require_once __DIR__ . '/includes/demo-news.php'; ?>
+<?php
+$newsId = max(1, (int) ($_GET['id'] ?? 1));
+$newsItem = getDemoNewsItemById($newsId) ?? getDemoNewsItems()[0];
+?>
 <!doctype html>
 <html lang="ru" class="dark">
 
@@ -14,11 +18,36 @@
 
       <div class="page-body">
         <main class="page-main">
-          <a href="news.php" class="text-sm font-semibold text-primary hover:text-primary-700">← К списку новостей</a>
-          <article class="card-simple mt-4">
-            <div class="text-[10px] uppercase font-bold tracking-[2px] text-zinc-500 mb-3">Новость #<?= $newsId ?></div>
-            <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white mb-4">Детальная новость</h1>
-            <p class="text-zinc-500 leading-relaxed">Эта страница доступна и гостю, и авторизованному пользователю. Контент одинаковый, но навигационная оболочка переключается по состоянию авторизации.</p>
+          <article class="card-simple mt-4 w-full max-w-[1000px] mx-auto overflow-hidden">
+            <a href="news.php" class="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+              <span>К списку новостей</span>
+            </a>
+            <div class="relative aspect-video overflow-hidden rounded-xl">
+              <img src="<?= htmlspecialchars($newsItem['image'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($newsItem['title'], ENT_QUOTES, 'UTF-8') ?>" class="h-full w-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
+              <span class="absolute bottom-1.5 right-1.5 rounded-md border border-white/30 bg-black/65 px-2 py-1 text-[10px] font-bold tracking-[0.08em] text-white backdrop-blur-sm"><?= htmlspecialchars($newsItem['date'], ENT_QUOTES, 'UTF-8') ?></span>
+            </div>
+
+            <div class="mt-5">
+              <div class="text-[10px] uppercase font-bold tracking-[2px] text-zinc-500 mb-3">Новость #<?= (int) $newsItem['id'] ?></div>
+              <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white mb-3"><?= htmlspecialchars($newsItem['title'], ENT_QUOTES, 'UTF-8') ?></h1>
+              <p class="text-zinc-500 leading-relaxed mb-5"><?= htmlspecialchars($newsItem['excerpt'], ENT_QUOTES, 'UTF-8') ?></p>
+
+              <div class="space-y-3 text-zinc-700 dark:text-zinc-200 leading-relaxed">
+                <?php foreach ($newsItem['content'] as $paragraph): ?>
+                  <p><?= htmlspecialchars($paragraph, ENT_QUOTES, 'UTF-8') ?></p>
+                <?php endforeach; ?>
+              </div>
+
+              <div class="mt-6 flex flex-wrap gap-2">
+                <?php foreach ($newsItem['categories'] as $category): ?>
+                  <span class="chip-primary rounded-full px-3 py-1 text-xs font-semibold">#<?= htmlspecialchars($category, ENT_QUOTES, 'UTF-8') ?></span>
+                <?php endforeach; ?>
+              </div>
+            </div>
           </article>
         </main>
       </div>
