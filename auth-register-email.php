@@ -40,6 +40,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                     <input id="register-email-email" name="email" type="email" required placeholder="name@example.com" class="auth-input-with-icons pr-4" value="<?= htmlspecialchars((string) ($_POST['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
                   </div>
                 </div>
+                <div class="flex flex-col gap-2">
+                  <label for="register-email-ref-code" class="auth-label">Реферальный код (необязательно)</label>
+                  <div class="auth-input-wrap">
+                    <span class="auth-input-icon-left"><i data-lucide="code" class="h-4 w-4"></i></span>
+                    <input id="register-email-ref-code" name="ref_code" type="text" placeholder="Введите реферальный код" class="auth-input-with-icons pr-4" value="<?= htmlspecialchars((string) ($_POST['ref_code'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
+                  </div>
+                </div>
               </div>
 
               <div class="auth-actions">
