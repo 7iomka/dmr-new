@@ -71,7 +71,7 @@
     </div>
   </div>
 
-  <div id="phone-country-panel" class="auth-phone-country-panel" role="dialog" aria-label="Выбор страны">
+  <div id="phone-country-panel" class="auth-phone-country-panel hidden" role="dialog" aria-label="Выбор страны">
     <input id="phone-country-search" class="auth-phone-country-search" type="text" placeholder="Поиск страны" autocomplete="off">
     <div id="phone-country-list" class="auth-phone-country-list" role="listbox" aria-label="Список стран"></div>
   </div>
