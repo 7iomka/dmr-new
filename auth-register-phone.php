@@ -80,7 +80,7 @@
                       <i data-eye="hide" data-lucide="eye-off" class="h-4 w-4 hidden"></i>
                     </button>
                   </div>
-                  <p id="register-password-mismatch" class="auth-field-error">Пароли не совпадают.</p>
+                  <p id="register-password-mismatch" class="auth-field-error hidden">Пароли не совпадают.</p>
                 </div>
 
                 <div class="flex flex-col gap-2">
