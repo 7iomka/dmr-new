@@ -415,11 +415,11 @@
   }
 
   .auth-phone-prefix {
-    @apply relative inline-flex items-center pl-2.5 pr-1.5 border-r border-zinc-200 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-900/70;
+    @apply relative inline-flex items-center border-r border-zinc-200 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-900/70;
   }
 
   .auth-phone-country-trigger {
-    @apply inline-flex items-center gap-1 px-2.5 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800;
+    @apply inline-flex items-center gap-1 px-3 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800;
   }
 
   .auth-phone-country-chevron {
