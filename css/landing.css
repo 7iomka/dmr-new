@@ -43,6 +43,7 @@
 }
 
 .page-main-landing {
+  flex: 1;
   color: var(--text);
   font-size: var(--text-base);
   line-height: 1.65;

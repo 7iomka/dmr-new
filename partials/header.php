@@ -1,4 +1,4 @@
-<header class="relative h-16 lg:h-20 shrink-0 border-b border-zinc-200 dark:border-zinc-800 bg-card z-40">
+<header class="page-header">
 
   <div class="container flex items-center w-full justify-between h-full">
     <div class="flex items-center min-w-0 js-header-left">

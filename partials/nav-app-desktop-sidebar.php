@@ -1,6 +1,6 @@
 <!-- DESKTOP SIDEBAR -->
 <aside id="sidebar"
-	class="app-sidebar hidden lg:flex flex-col border-r border-zinc-200 dark:border-zinc-800 sidebar-transition z-50 h-screen fixed inset-y-0 left-0 bg-card">
+	class="page-sidebar">
 	<div class="relative h-20 px-2 flex items-center justify-between">
 		<a class="sidebar-logo-link h-full pl-4 flex items-center shrink-0 transition-all" href="/home.php">
 			<img class="sidebar-logo-full h-12 w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">

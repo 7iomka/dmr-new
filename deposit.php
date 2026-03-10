@@ -11,7 +11,7 @@
     <div class="page-content-area">
       <?php include __DIR__ . '/partials/header.php'; ?>
 
-      <div class="flex-1 overflow-y-auto">
+      <div class="page-body">
         <!-- Main View -->
         <main class="page-main" id="deposit-page" data-fee-rate="0.03">
           <div>
