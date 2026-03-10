@@ -427,7 +427,7 @@
   }
 
   .auth-phone-country-panel {
-    @apply z-[200] hidden w-[min(360px,calc(100vw-32px))] rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 shadow-xl overflow-hidden;
+    @apply fixed left-0 top-0 z-[200] hidden w-[min(360px,calc(100vw-32px))] rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 shadow-xl overflow-hidden;
   }
 
   .auth-phone-country-search {
