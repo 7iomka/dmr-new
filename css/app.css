@@ -87,7 +87,6 @@
   /* Backward compatibility with existing accent utilities */
   --color-accent: var(--color-primary);
   --color-accent-foreground: var(--color-primary-foreground);
-
 }
 
 @variant dark {
@@ -155,7 +154,6 @@
   }
 }
 
-
 @utility btn-primary {
   @apply bg-primary-500 dark:bg-primary-600 text-white hover:bg-primary-600 dark:hover:bg-primary-700 active:bg-primary-700 dark:active:bg-primary-800 shadow-lg shadow-primary-500/25 transition-colors;
 }
@@ -212,7 +210,6 @@
   display: flex;
 }
 
-
 @utility modal-header {
   @apply sticky top-0 z-20 flex items-start justify-between gap-4 border-b border-zinc-200 bg-card px-5 py-4 dark:border-zinc-800 md:px-7;
 }
@@ -220,7 +217,6 @@
 @utility modal-body {
   @apply p-5 md:p-7;
 }
-
 
 .modal[data-modal-size='xs'] .modal-box {
   max-width: 24rem;
@@ -285,10 +281,7 @@
   .card-body-inset-y {
     @apply py-4 lg:py-6;
   }
-
 }
-
-
 
 @layer components {
   .auth-shell {
@@ -373,7 +366,6 @@
     @apply h-10 w-10 shrink-0 rounded-lg border border-zinc-200/70 dark:border-zinc-700 bg-white/80 dark:bg-zinc-900/70 text-zinc-500 dark:text-zinc-300 flex items-center justify-center;
   }
 
-
   .auth-method-btn-primary .auth-method-title {
     @apply text-zinc-900 dark:text-white;
   }
@@ -409,13 +401,12 @@
     @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/35 focus:border-primary-500;
   }
 
-
   .auth-phone-shell {
     @apply flex rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 overflow-hidden;
   }
 
   .auth-phone-prefix {
-    @apply relative inline-flex items-center border-r border-zinc-200 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-900/70;
+    @apply relative inline-flex border-r border-zinc-200 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-900/70;
   }
 
   .auth-phone-country-trigger {
@@ -473,7 +464,6 @@
   .otp-box[data-filled='true'] {
     @apply border-primary-500/80 text-primary-600 dark:text-primary-400 bg-primary-50/70 dark:bg-primary-900/20;
   }
-
 
   .auth-strength {
     @apply space-y-2;
