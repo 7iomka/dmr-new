@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/demo-auth.php'; ?>
 <?php chdir(dirname(__DIR__)); ?>
 <!doctype html>
 <html lang="ru" class="dark">

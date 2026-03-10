@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/includes/demo-auth.php'; ?>
 <!doctype html>
 <html lang="ru" class="dark">
 

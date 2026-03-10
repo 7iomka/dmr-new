@@ -312,6 +312,8 @@
 			const overlay = document.getElementById('user-overlay');
 			const trigger = document.getElementById('user-trigger');
 			const handle = document.getElementById('user-swipe-handle');
+
+			if (!drawer || !overlay || !trigger || !handle) return;
 			let isDragging = false;
 			let startY = 0;
 			let currentY = 0;
@@ -388,6 +390,8 @@
 			const overlay = document.getElementById('sidebar-overlay');
 			const trigger = document.getElementById('sidebar-trigger');
 			const closeBtn = document.getElementById('mobile-sidebar-close');
+
+			if (!drawer || !overlay || !trigger || !closeBtn) return;
 
 			function openSidebar() {
 				drawer.classList.add('active');
