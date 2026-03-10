@@ -1,9 +1,9 @@
 <?php require_once __DIR__ . '/includes/demo-auth.php'; ?>
 <?php
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
-    $target = trim((string) ($_POST['email'] ?? ''));
-    header('Location: auth-otp.php?purpose=register&channel=email&target=' . urlencode($target) . '&back=auth-register-email.php');
-    exit;
+  $target = trim((string) ($_POST['email'] ?? ''));
+  header('Location: auth-otp.php?purpose=register&channel=email&target=' . urlencode($target) . '&back=auth-register-email.php');
+  exit;
 }
 ?>
 <!doctype html>
@@ -51,7 +51,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 
               <div class="auth-actions">
                 <button type="submit" class="btn-primary rounded-lg px-4 py-3 text-sm font-bold">Продолжить</button>
-                <a href="auth-register.php" class="auth-secondary-btn">Назад</a>
+                <a href="auth-register.php" class="btn-secondary px-4 py-3 text-sm font-semibold">Назад</a>
               </div>
 
               <div class="auth-divider auth-footer justify-start">

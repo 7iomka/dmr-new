@@ -6,13 +6,13 @@ $target = (string) ($_GET['target'] ?? '');
 $back = (string) ($_GET['back'] ?? 'auth-login.php');
 
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
-    demoLogin('dashboard.php');
+  demoLogin('dashboard.php');
 }
 
 $channelLabelMap = [
-    'email' => 'Email',
-    'telegram' => 'Telegram',
-    'whatsapp' => 'WhatsApp',
+  'email' => 'Email',
+  'telegram' => 'Telegram',
+  'whatsapp' => 'WhatsApp',
 ];
 $channelLabel = $channelLabelMap[$channel] ?? 'канал';
 ?>
@@ -53,8 +53,7 @@ $channelLabel = $channelLabelMap[$channel] ?? 'канал';
                     name="otp<?= $i ?>"
                     class="otp-box"
                     data-otp-input
-                    aria-label="Символ кода <?= $i + 1 ?>"
-                  >
+                    aria-label="Символ кода <?= $i + 1 ?>">
                 <?php endfor; ?>
               </div>
 
@@ -62,7 +61,7 @@ $channelLabel = $channelLabelMap[$channel] ?? 'канал';
 
               <div class="auth-actions">
                 <button type="submit" class="btn-primary rounded-lg px-4 py-3 text-sm font-bold">Подтвердить</button>
-                <a href="<?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? 'auth-otp.php', ENT_QUOTES, 'UTF-8') ?>" class="auth-secondary-btn">Повторно отправить</a>
+                <a href="<?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? 'auth-otp.php', ENT_QUOTES, 'UTF-8') ?>" class="btn-secondary px-4 py-3 text-sm font-semibold">Повторно отправить</a>
               </div>
 
               <div class="auth-divider auth-footer justify-start">

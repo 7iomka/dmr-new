@@ -13,7 +13,7 @@
 
     <div class="flex items-center gap-2 md:gap-4">
       <button onclick="toggleDarkMode()"
-        class="p-2.5 rounded-lg bg-zinc-100 dark:bg-[#1E2023] border border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-yellow-500 hover:opacity-80 transition-all">
+        class="btn-secondary header-icon-btn header-theme-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sun"
           aria-hidden="true" class="lucide lucide-sun w-[18px] h-[18px] hidden dark:block">
@@ -39,7 +39,7 @@
       <div class="relative" data-language-dropdown>
         <button
           type="button"
-          class="header-language-trigger"
+          class="btn-secondary header-language-trigger"
           data-language-trigger
           aria-haspopup="listbox"
           aria-expanded="false"
@@ -73,14 +73,14 @@
 
       <?php if (shouldUseAppShell()): ?>
         <div class="relative">
-          <button class="p-2.5 rounded-lg bg-zinc-100 dark:bg-[#1E2023] border border-zinc-200 dark:border-zinc-800 text-zinc-500 transition-all relative">
+          <button class="btn-secondary header-icon-btn relative">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bell"
               aria-hidden="true" class="lucide lucide-bell w-[18px] h-[18px]">
               <path d="M10.268 21a2 2 0 0 0 3.464 0"></path>
               <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"></path>
             </svg>
-            <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-[#14171A]"></span>
+            <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-zinc-900"></span>
           </button>
         </div>
 

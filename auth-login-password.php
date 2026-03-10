@@ -57,7 +57,7 @@
 
               <div class="auth-actions">
                 <button type="submit" class="btn-primary rounded-lg px-4 py-3 text-sm font-bold">Продолжить</button>
-                <a href="auth-login.php" class="auth-secondary-btn">Назад</a>
+                <a href="auth-login.php" class="btn-secondary px-4 py-3 text-sm font-semibold">Назад</a>
               </div>
 
               <div class="auth-divider auth-footer justify-start">
@@ -79,17 +79,57 @@
   <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
   <script type="module">
-    import {computePosition, autoUpdate, offset, flip, shift} from 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10/+esm';
+    import {
+      computePosition,
+      autoUpdate,
+      offset,
+      flip,
+      shift
+    } from 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10/+esm';
 
     (() => {
-      const countries = [
-        { name: 'Russia', native: 'Россия', flag: '🇷🇺', code: '+7' },
-        { name: 'Moldova', native: 'Moldova', flag: '🇲🇩', code: '+373' },
-        { name: 'Ukraine', native: 'Україна', flag: '🇺🇦', code: '+380' },
-        { name: 'Belarus', native: 'Беларусь', flag: '🇧🇾', code: '+375' },
-        { name: 'Uzbekistan', native: 'Oʻzbekiston', flag: '🇺🇿', code: '+998' },
-        { name: 'Kazakhstan', native: 'Қазақстан', flag: '🇰🇿', code: '+7' },
-        { name: 'United States', native: 'United States', flag: '🇺🇸', code: '+1' },
+      const countries = [{
+          name: 'Russia',
+          native: 'Россия',
+          flag: '🇷🇺',
+          code: '+7'
+        },
+        {
+          name: 'Moldova',
+          native: 'Moldova',
+          flag: '🇲🇩',
+          code: '+373'
+        },
+        {
+          name: 'Ukraine',
+          native: 'Україна',
+          flag: '🇺🇦',
+          code: '+380'
+        },
+        {
+          name: 'Belarus',
+          native: 'Беларусь',
+          flag: '🇧🇾',
+          code: '+375'
+        },
+        {
+          name: 'Uzbekistan',
+          native: 'Oʻzbekiston',
+          flag: '🇺🇿',
+          code: '+998'
+        },
+        {
+          name: 'Kazakhstan',
+          native: 'Қазақстан',
+          flag: '🇰🇿',
+          code: '+7'
+        },
+        {
+          name: 'United States',
+          native: 'United States',
+          flag: '🇺🇸',
+          code: '+1'
+        },
       ];
 
       const trigger = document.querySelector('[data-phone-country-trigger]');
@@ -135,10 +175,15 @@
 
       async function positionPanel() {
         if (!trigger || !panel) return;
-        const {x, y} = await computePosition(trigger, panel, {
+        const {
+          x,
+          y
+        } = await computePosition(trigger, panel, {
           placement: 'bottom-start',
           strategy: 'fixed',
-          middleware: [offset(8), flip(), shift({padding: 8})],
+          middleware: [offset(8), flip(), shift({
+            padding: 8
+          })],
         });
         panel.style.left = `${x}px`;
         panel.style.top = `${y}px`;
@@ -166,7 +211,8 @@
         renderList();
         trigger.addEventListener('click', () => {
           const isOpen = !panel.classList.contains('hidden');
-          if (isOpen) closePanel(); else openPanel();
+          if (isOpen) closePanel();
+          else openPanel();
         });
 
         search.addEventListener('input', () => renderList(search.value));
