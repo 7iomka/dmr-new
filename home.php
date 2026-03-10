@@ -1,4 +1,6 @@
 <?php require_once __DIR__ . '/includes/demo-auth.php'; ?>
+<?php require_once __DIR__ . '/includes/demo-news.php'; ?>
+<?php require_once __DIR__ . '/components/news-card.php'; ?>
 <!doctype html>
 <html lang="ru" class="dark">
 <?php include __DIR__ . '/partials/head.php'; ?>
@@ -536,122 +538,11 @@
 
               <div class="news-track-wrap reveal">
                 <div class="news-track" id="newsTrack">
-                  <!-- News cards -->
-                  <div class="news-card">
-                    <div class="news-inner">
-                      <div class="news-thumb">
-                        <div class="news-thumb-glow"></div>
-                        <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-                            <polyline points="16 7 22 7 22 13" />
-                          </svg></div>
-                        <div class="news-chips">
-                          <span class="chip chip-cat">Инвестиции</span>
-                          <span class="chip chip-date">03.03.2026</span>
-                        </div>
-                      </div>
-                      <div class="news-body">
-                        <h3 class="line-clamp-2">Открыт ранний раунд инвестиций</h3>
-                        <p class="line-clamp-3">В открытую продажу выведено только 15% долей. Это ограниченное окно для раннего входа.</p>
-                      </div>
+                  <?php foreach (getDemoNewsItems() as $newsItem): ?>
+                    <div class="news-card">
+                      <?php renderNewsCard($newsItem); ?>
                     </div>
-                  </div>
-                  <div class="news-card">
-                    <div class="news-inner">
-                      <div class="news-thumb">
-                        <div class="news-thumb-glow"></div>
-                        <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                          </svg></div>
-                        <div class="news-chips">
-                          <span class="chip chip-cat">Партнёрка</span>
-                          <span class="chip chip-date">28.02.2026</span>
-                        </div>
-                      </div>
-                      <div class="news-body">
-                        <h3 class="line-clamp-2">Обновлена партнёрская программа с новой аналитикой уровней</h3>
-                        <p class="line-clamp-3">Сделали систему вознаграждений более прозрачной и понятной для новых участников.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="news-card">
-                    <div class="news-inner">
-                      <div class="news-thumb">
-                        <div class="news-thumb-glow news-thumb-glow-cyan"></div>
-                        <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <polyline points="14 2 14 8 20 8" />
-                          </svg></div>
-                        <div class="news-chips">
-                          <span class="chip chip-cat">Отчётность</span>
-                          <span class="chip chip-date">21.02.2026</span>
-                        </div>
-                      </div>
-                      <div class="news-body">
-                        <h3 class="line-clamp-2">Запущен формат ежемесячных отчётов</h3>
-                        <p class="line-clamp-3">Ключевые метрики развития теперь доступны в регулярных апдейтах с акцентом на рост.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="news-card">
-                    <div class="news-inner">
-                      <div class="news-thumb">
-                        <div class="news-thumb-glow news-thumb-glow-violet"></div>
-                        <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                          </svg></div>
-                        <div class="news-chips">
-                          <span class="chip chip-cat">Комьюнити</span>
-                          <span class="chip chip-date">16.02.2026</span>
-                        </div>
-                      </div>
-                      <div class="news-body">
-                        <h3 class="line-clamp-2">Расширена география комитета</h3>
-                        <p class="line-clamp-3">В наблюдательный комитет вошли новые представители из разных стран и отраслей.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="news-card">
-                    <div class="news-inner">
-                      <div class="news-thumb">
-                        <div class="news-thumb-glow"></div>
-                        <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                          </svg></div>
-                        <div class="news-chips">
-                          <span class="chip chip-cat">Правовая база</span>
-                          <span class="chip chip-date">11.02.2026</span>
-                        </div>
-                      </div>
-                      <div class="news-body">
-                        <h3 class="line-clamp-2">Юридический пакет обновлён</h3>
-                        <p class="line-clamp-3">Актуализированы документы по долям, акционерной модели и пользовательским условиям.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="news-card">
-                    <div class="news-inner">
-                      <div class="news-thumb">
-                        <div class="news-thumb-glow news-thumb-glow-mix"></div>
-                        <div class="news-thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                            <polyline points="17 6 23 6 23 12" />
-                          </svg></div>
-                        <div class="news-chips">
-                          <span class="chip chip-cat">Продукт</span>
-                          <span class="chip chip-date">05.02.2026</span>
-                        </div>
-                      </div>
-                      <div class="news-body">
-                        <h3 class="line-clamp-2">Рост активности инвесторов +31%</h3>
-                        <p class="line-clamp-3">Увеличилось число новых подключений и повторных инвестиций.</p>
-                      </div>
-                    </div>
-                  </div>
+                  <?php endforeach; ?>
                 </div>
               </div>
               <div class="news-controls">
