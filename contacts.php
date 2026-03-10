@@ -8,7 +8,7 @@
     <?php include __DIR__ . '/partials/desktop-sidebar.php'; ?>
     <div class="page-content-area">
       <?php include __DIR__ . '/partials/header.php'; ?>
-      <div class="flex-1 overflow-y-auto">
+      <div class="page-body">
         <main class="page-main">
           <article class="card-simple max-w-3xl">
             <h1 class="text-2xl font-bold text-zinc-900 dark:text-white mb-4">Контакты</h1>

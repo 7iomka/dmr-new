@@ -1,5 +1,5 @@
   <!-- ═══════════════════ FOOTER ═══════════════════ -->
-  <footer class="app-footer">
+  <footer class="page-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
@@ -56,92 +56,3 @@
       </div>
     </div>
   </footer>
-  <style type="text/tailwindcss">
-
-    /* ── FOOTER ── */
-  .app-footer {
-    @apply border-t border-zinc-200 dark:border-zinc-800 bg-card;
-    padding: 48px 0 32px;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 32px;
-  }
-
-  .footer-brand p {
-    color: var(--color-muted-foreground);
-    font-size: var(--text-sm);
-    margin: 12px 0 20px;
-    line-height: 1.7;
-    max-width: 280px;
-  }
-
-  .footer-socials {
-    display: flex;
-    gap: 8px;
-  }
-
-  .footer-soc {
-    width: 36px;
-    height: 36px;
-    border-radius: 9px;
-    background: var(--color-surface-2);
-    border: 1px solid var(--color-border);
-    display: grid;
-    place-items: center;
-    text-decoration: none;
-    transition: border-color .2s, background .2s;
-  }
-
-  .footer-soc:hover {
-    @apply bg-primary/10 border-primary/50;
-  }
-
-  .footer-soc svg {
-    width: 16px;
-    height: 16px;
-    color: var(--color-muted-foreground);
-  }
-
-  .footer-col h4 {
-    font-family: var(--ff-head);
-    font-weight: 700;
-    font-size: var(--text-sm);
-    margin-bottom: 16px;
-    color: var(--text);
-  }
-
-  .footer-col ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .footer-col a {
-    font-size: var(--text-sm);
-    color: var(--color-muted-foreground);
-    text-decoration: none;
-    transition: color .15s;
-  }
-
-  .footer-col a:hover {
-    color: var(--color-primary);
-  }
-
-  .footer-bottom {
-    margin-top: 40px;
-    padding-top: 24px;
-    border-top: 1px solid var(--color-border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .footer-bottom p {
-    font-size: var(--text-xs);
-    color: var(--color-muted-foreground);
-  }
-  </style>

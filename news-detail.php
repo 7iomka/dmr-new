@@ -12,7 +12,7 @@
     <div class="page-content-area">
       <?php include __DIR__ . '/partials/header.php'; ?>
 
-      <div class="flex-1 overflow-y-auto">
+      <div class="page-body">
         <main class="page-main">
           <a href="news.php" class="text-sm font-semibold text-primary hover:text-primary-700">← К списку новостей</a>
           <article class="card-simple mt-4">

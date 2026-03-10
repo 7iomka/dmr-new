@@ -15,7 +15,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
     <?php include __DIR__ . '/partials/desktop-sidebar.php'; ?>
     <div class="page-content-area">
       <?php include __DIR__ . '/partials/header.php'; ?>
-      <div class="flex-1 overflow-y-auto">
+      <div class="page-body">
         <main class="page-main flex items-center justify-center">
           <section class="auth-shell">
             <div class="auth-shell-glow"></div>

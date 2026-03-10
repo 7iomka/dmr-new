@@ -33,7 +33,7 @@
     <div class="page-content-area">
       <?php include __DIR__ . '/partials/header.php'; ?>
 
-      <div class="flex-1 overflow-y-auto">
+      <div class="page-body">
         <!-- Main View -->
         <main class="page-main">
           <div class="flex flex-col items-start md:flex-row md:items-center justify-between gap-4">

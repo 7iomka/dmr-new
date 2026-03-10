@@ -13,7 +13,7 @@
     <div class="page-content-area">
       <?php include __DIR__ . '/../partials/header.php'; ?>
 
-      <div class="flex-1 overflow-y-auto">
+      <div class="page-body">
         <!-- Main View -->
         <main class="page-main">
           <section id="chat-container" class="card overflow-hidden flex flex-col min-h-[480px] lg:min-h-[600px] max-h-[83vh]">
