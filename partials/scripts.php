@@ -86,6 +86,211 @@
 				if (buttonText) buttonText.innerText = 'Купить 132 806 долей за 504 $';
 			}
 		}
+
+		(function initHeaderLanguageDropdown() {
+			const root = document.querySelector('[data-language-dropdown]');
+			if (!root) return;
+
+			const languages = [
+				{ code: 'EN', nativeLabel: 'English', englishLabel: 'English', flag: '🇺🇸' },
+				{ code: 'RU', nativeLabel: 'Русский', englishLabel: 'Russian', flag: '🇷🇺' },
+				{ code: 'HI', nativeLabel: 'हिन्दी', englishLabel: 'Hindi', flag: '🇮🇳' },
+				{ code: 'VI', nativeLabel: 'Tiếng Việt', englishLabel: 'Vietnamese', flag: '🇻🇳' },
+				{ code: 'FR', nativeLabel: 'Français', englishLabel: 'French', flag: '🇫🇷' },
+				{ code: 'AR', nativeLabel: 'العربية', englishLabel: 'Arabic', flag: '🇸🇦' },
+				{ code: 'ES', nativeLabel: 'Español', englishLabel: 'Spanish', flag: '🇪🇸' },
+				{ code: 'KO', nativeLabel: '한국어', englishLabel: 'Korean', flag: '🇰🇷' },
+				{ code: 'JA', nativeLabel: '日本語', englishLabel: 'Japanese', flag: '🇯🇵' },
+				{ code: 'BN', nativeLabel: 'বাংলা', englishLabel: 'Bengali', flag: '🇧🇩' },
+				{ code: 'ZH', nativeLabel: '中文', englishLabel: 'Chinese', flag: '🇨🇳' },
+				{ code: 'PT', nativeLabel: 'Português', englishLabel: 'Portuguese', flag: '🇵🇹' },
+				{ code: 'ID', nativeLabel: 'Bahasa Indonesia', englishLabel: 'Indonesian', flag: '🇮🇩' },
+				{ code: 'RO', nativeLabel: 'Română', englishLabel: 'Romanian', flag: '🇷🇴' },
+			];
+
+			const trigger = root.querySelector('[data-language-trigger]');
+			const panel = root.querySelector('[data-language-panel]');
+			const list = root.querySelector('[data-language-list]');
+			const flagNode = root.querySelector('[data-language-flag]');
+			const nativeNode = root.querySelector('[data-language-native]');
+			const codeNode = root.querySelector('[data-language-code]');
+			const panelId = panel?.id || 'header-language-menu';
+			const CLOSE_ANIMATION_MS = 140;
+			let closeTimer = null;
+			let isOpen = false;
+			let selectedCode = 'EN';
+			let activeIndex = 0;
+
+			const getSelectedIndex = () => Math.max(0, languages.findIndex((lang) => lang.code === selectedCode));
+			const getOptionNodes = () => Array.from(list.querySelectorAll('[data-language-option]'));
+
+			function syncTriggerLabel() {
+				const current = languages.find((lang) => lang.code === selectedCode) || languages[0];
+				flagNode.textContent = current.flag;
+				nativeNode.textContent = current.nativeLabel;
+				codeNode.textContent = current.code;
+			}
+
+			function updateOptionStates() {
+				getOptionNodes().forEach((node, index) => {
+					const lang = languages[index];
+					const isSelected = lang.code === selectedCode;
+					const isActive = index === activeIndex;
+					node.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+					node.setAttribute('tabindex', isActive ? '0' : '-1');
+					node.classList.toggle('is-selected', isSelected);
+					node.classList.toggle('is-active', isActive);
+					const check = node.querySelector('[data-language-check]');
+					if (check) check.classList.toggle('hidden', !isSelected);
+				});
+			}
+
+			function focusActiveOption() {
+				const options = getOptionNodes();
+				const option = options[activeIndex];
+				if (!option) return;
+				option.focus();
+				option.scrollIntoView({ block: 'nearest' });
+				panel.setAttribute('aria-activedescendant', option.id);
+			}
+
+			function renderList() {
+				list.innerHTML = '';
+				languages.forEach((lang, index) => {
+					const option = document.createElement('button');
+					option.type = 'button';
+					option.id = `${panelId}-option-${lang.code.toLowerCase()}`;
+					option.className = 'header-language-option';
+					option.setAttribute('role', 'option');
+					option.setAttribute('data-language-option', '');
+					option.setAttribute('data-language-code', lang.code);
+					option.innerHTML = `
+						<span class="header-language-option-main">
+							<span class="header-language-option-flag">${lang.flag}</span>
+							<span class="min-w-0">
+								<span class="header-language-option-native">${lang.nativeLabel}</span>
+								<span class="header-language-option-english">${lang.englishLabel}</span>
+							</span>
+						</span>
+						<svg data-language-check class="header-language-option-check hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+					`;
+					option.addEventListener('click', () => {
+						selectedCode = lang.code;
+						activeIndex = index;
+						syncTriggerLabel();
+						updateOptionStates();
+						closeDropdown(true);
+					});
+					option.addEventListener('mouseenter', () => {
+						activeIndex = index;
+						updateOptionStates();
+					});
+					list.appendChild(option);
+				});
+				updateOptionStates();
+			}
+
+			function openDropdown() {
+				if (isOpen) return;
+				clearTimeout(closeTimer);
+				isOpen = true;
+				activeIndex = getSelectedIndex();
+				panel.classList.remove('hidden');
+				requestAnimationFrame(() => panel.classList.add('is-open'));
+				trigger.setAttribute('aria-expanded', 'true');
+				root.setAttribute('data-open', 'true');
+				updateOptionStates();
+				setTimeout(focusActiveOption, 0);
+			}
+
+			function closeDropdown(returnFocus = false) {
+				if (!isOpen) return;
+				isOpen = false;
+				panel.classList.remove('is-open');
+				trigger.setAttribute('aria-expanded', 'false');
+				root.setAttribute('data-open', 'false');
+				clearTimeout(closeTimer);
+				closeTimer = setTimeout(() => {
+					if (!isOpen) panel.classList.add('hidden');
+				}, CLOSE_ANIMATION_MS);
+				if (returnFocus) trigger.focus();
+			}
+
+			function moveActive(step) {
+				const total = languages.length;
+				activeIndex = (activeIndex + step + total) % total;
+				updateOptionStates();
+				focusActiveOption();
+			}
+
+			function selectActive() {
+				const lang = languages[activeIndex];
+				if (!lang) return;
+				selectedCode = lang.code;
+				syncTriggerLabel();
+				updateOptionStates();
+				closeDropdown(true);
+			}
+
+			renderList();
+			syncTriggerLabel();
+			root.setAttribute('data-open', 'false');
+
+			trigger.addEventListener('click', () => {
+				if (isOpen) closeDropdown();
+				else openDropdown();
+			});
+
+			trigger.addEventListener('keydown', (e) => {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					openDropdown();
+					return;
+				}
+				if (e.key === 'ArrowDown') {
+					e.preventDefault();
+					if (!isOpen) openDropdown();
+					else moveActive(1);
+				}
+				if (e.key === 'ArrowUp') {
+					e.preventDefault();
+					if (!isOpen) openDropdown();
+					else moveActive(-1);
+				}
+			});
+
+			panel.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape') {
+					e.preventDefault();
+					closeDropdown(true);
+					return;
+				}
+				if (e.key === 'ArrowDown') {
+					e.preventDefault();
+					moveActive(1);
+					return;
+				}
+				if (e.key === 'ArrowUp') {
+					e.preventDefault();
+					moveActive(-1);
+					return;
+				}
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					selectActive();
+				}
+			});
+
+			document.addEventListener('click', (e) => {
+				if (!isOpen) return;
+				if (!root.contains(e.target)) closeDropdown();
+			});
+
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && isOpen) closeDropdown(true);
+			});
+		})();
+
 		window.onclick = function(event) {
 			if (!event.target.closest('.relative')) {
 				const dropdown = document.getElementById('user-dropdown');

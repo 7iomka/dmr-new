@@ -36,6 +36,41 @@
         </svg>
       </button>
 
+      <div class="relative" data-language-dropdown>
+        <button
+          type="button"
+          class="header-language-trigger"
+          data-language-trigger
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-controls="header-language-menu">
+          <span class="text-base leading-none" data-language-flag>🇺🇸</span>
+          <span class="hidden sm:inline text-sm font-semibold text-zinc-800 dark:text-zinc-100" data-language-native>English</span>
+          <span class="sm:hidden text-xs font-semibold uppercase tracking-wide text-zinc-700 dark:text-zinc-200" data-language-code>EN</span>
+          <svg class="header-language-chevron" data-language-chevron xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
+        </button>
+
+        <div
+          id="header-language-menu"
+          class="header-language-panel"
+          data-language-panel
+          role="listbox"
+          tabindex="-1"
+          aria-label="Выбор языка">
+          <div class="header-language-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M2 12h20"></path>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span>ВЫБЕРИТЕ ЯЗЫК</span>
+          </div>
+          <div class="header-language-list" data-language-list></div>
+        </div>
+      </div>
+
       <?php if (shouldUseAppShell()): ?>
         <div class="relative">
           <button class="p-2.5 rounded-lg bg-zinc-100 dark:bg-[#1E2023] border border-zinc-200 dark:border-zinc-800 text-zinc-500 transition-all relative">
