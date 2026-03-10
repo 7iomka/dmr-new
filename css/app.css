@@ -464,7 +464,7 @@
 
 
   .auth-strength {
-    @apply mt-1.5 space-y-2;
+    @apply space-y-2;
   }
 
   .auth-strength-bars {

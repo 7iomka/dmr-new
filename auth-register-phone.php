@@ -14,7 +14,7 @@
           <section class="auth-shell">
             <div class="auth-shell-glow"></div>
 
-            <form method="post" class="auth-card" id="register-phone-form" novalidate>
+            <form method="post" class="auth-card" id="register-phone-form">
               <div class="auth-card-dot auth-card-dot-1"></div>
               <div class="auth-card-dot auth-card-dot-2"></div>
 
@@ -238,6 +238,14 @@
         };
 
         if (strength) {
+          if (value.length === 0) {
+            ['min', 'max', 'upper', 'lower', 'digit', 'special'].forEach((rule) => {
+              strength.querySelector(`[data-rule="${rule}"]`)?.classList.remove('ok');
+            });
+            bars.forEach((bar) => bar.classList.remove('active'));
+            return rules;
+          }
+
           Object.entries(rules).forEach(([rule, ok]) => {
             strength.querySelector(`[data-rule="${rule}"]`)?.classList.toggle('ok', ok);
           });
@@ -301,8 +309,16 @@
       confirmPassword?.addEventListener('input', () => validateMatch(true));
 
       form?.addEventListener('submit', (e) => {
+        if (form && !form.checkValidity()) {
+          e.preventDefault();
+          form.reportValidity();
+          return;
+        }
+
         const matched = validateMatch(true);
-        if (!matched) e.preventDefault();
+        if (!matched) {
+          e.preventDefault();
+        }
       });
 
       scorePassword(password?.value || '');
