@@ -103,21 +103,90 @@
 				size,
 			} = await import('https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10/+esm');
 
-			const languages = [
-				{ code: 'EN', nativeLabel: 'English', englishLabel: 'English', flag: '🇺🇸' },
-				{ code: 'RU', nativeLabel: 'Русский', englishLabel: 'Russian', flag: '🇷🇺' },
-				{ code: 'HI', nativeLabel: 'हिन्दी', englishLabel: 'Hindi', flag: '🇮🇳' },
-				{ code: 'VI', nativeLabel: 'Tiếng Việt', englishLabel: 'Vietnamese', flag: '🇻🇳' },
-				{ code: 'FR', nativeLabel: 'Français', englishLabel: 'French', flag: '🇫🇷' },
-				{ code: 'AR', nativeLabel: 'العربية', englishLabel: 'Arabic', flag: '🇸🇦' },
-				{ code: 'ES', nativeLabel: 'Español', englishLabel: 'Spanish', flag: '🇪🇸' },
-				{ code: 'KO', nativeLabel: '한국어', englishLabel: 'Korean', flag: '🇰🇷' },
-				{ code: 'JA', nativeLabel: '日本語', englishLabel: 'Japanese', flag: '🇯🇵' },
-				{ code: 'BN', nativeLabel: 'বাংলা', englishLabel: 'Bengali', flag: '🇧🇩' },
-				{ code: 'ZH', nativeLabel: '中文', englishLabel: 'Chinese', flag: '🇨🇳' },
-				{ code: 'PT', nativeLabel: 'Português', englishLabel: 'Portuguese', flag: '🇵🇹' },
-				{ code: 'ID', nativeLabel: 'Bahasa Indonesia', englishLabel: 'Indonesian', flag: '🇮🇩' },
-				{ code: 'RO', nativeLabel: 'Română', englishLabel: 'Romanian', flag: '🇷🇴' },
+			const languages = [{
+					code: 'EN',
+					nativeLabel: 'English',
+					englishLabel: 'English',
+					flag: '🇺🇸'
+				},
+				{
+					code: 'RU',
+					nativeLabel: 'Русский',
+					englishLabel: 'Russian',
+					flag: '🇷🇺'
+				},
+				{
+					code: 'HI',
+					nativeLabel: 'हिन्दी',
+					englishLabel: 'Hindi',
+					flag: '🇮🇳'
+				},
+				{
+					code: 'VI',
+					nativeLabel: 'Tiếng Việt',
+					englishLabel: 'Vietnamese',
+					flag: '🇻🇳'
+				},
+				{
+					code: 'FR',
+					nativeLabel: 'Français',
+					englishLabel: 'French',
+					flag: '🇫🇷'
+				},
+				{
+					code: 'AR',
+					nativeLabel: 'العربية',
+					englishLabel: 'Arabic',
+					flag: '🇸🇦'
+				},
+				{
+					code: 'ES',
+					nativeLabel: 'Español',
+					englishLabel: 'Spanish',
+					flag: '🇪🇸'
+				},
+				{
+					code: 'KO',
+					nativeLabel: '한국어',
+					englishLabel: 'Korean',
+					flag: '🇰🇷'
+				},
+				{
+					code: 'JA',
+					nativeLabel: '日本語',
+					englishLabel: 'Japanese',
+					flag: '🇯🇵'
+				},
+				{
+					code: 'BN',
+					nativeLabel: 'বাংলা',
+					englishLabel: 'Bengali',
+					flag: '🇧🇩'
+				},
+				{
+					code: 'ZH',
+					nativeLabel: '中文',
+					englishLabel: 'Chinese',
+					flag: '🇨🇳'
+				},
+				{
+					code: 'PT',
+					nativeLabel: 'Português',
+					englishLabel: 'Portuguese',
+					flag: '🇵🇹'
+				},
+				{
+					code: 'ID',
+					nativeLabel: 'Bahasa Indonesia',
+					englishLabel: 'Indonesian',
+					flag: '🇮🇩'
+				},
+				{
+					code: 'RO',
+					nativeLabel: 'Română',
+					englishLabel: 'Romanian',
+					flag: '🇷🇴'
+				},
 			];
 
 			const trigger = root.querySelector('[data-language-trigger]');
@@ -127,11 +196,37 @@
 			const codeNode = root.querySelector('[data-language-code]');
 			const panelId = panel?.id || 'header-language-menu';
 			const CLOSE_ANIMATION_MS = 140;
+			const LANGUAGE_OVERLAY_CLASS = 'header-language-overlay';
 			let closeTimer = null;
 			let stopAutoUpdate = null;
 			let isOpen = false;
 			let selectedCode = 'EN';
 			let activeIndex = 0;
+
+			function createOverlay() {
+				const overlayNode = document.createElement('div');
+				overlayNode.className = `overlay fixed inset-0 z-[39] ${LANGUAGE_OVERLAY_CLASS}`;
+				overlayNode.setAttribute('aria-hidden', 'true');
+				overlayNode.addEventListener('click', () => {
+					if (isOpen) closeDropdown(true);
+				});
+				return overlayNode;
+			}
+
+			function mountOverlay() {
+				const existingOverlay = document.querySelector(`.${LANGUAGE_OVERLAY_CLASS}`);
+				if (existingOverlay) existingOverlay.remove();
+				const overlayNode = createOverlay();
+				document.body.appendChild(overlayNode);
+				requestAnimationFrame(() => overlayNode.classList.add('active'));
+			}
+
+			function unmountOverlay() {
+				const overlayNode = document.querySelector(`.${LANGUAGE_OVERLAY_CLASS}`);
+				if (!overlayNode) return;
+				overlayNode.classList.remove('active');
+				overlayNode.remove();
+			}
 
 			const getSelectedIndex = () => Math.max(0, languages.findIndex((lang) => lang.code === selectedCode));
 			const getOptionNodes = () => Array.from(list.querySelectorAll('[data-language-option]'));
@@ -162,7 +257,9 @@
 				const option = options[activeIndex];
 				if (!option) return;
 				option.focus();
-				option.scrollIntoView({ block: 'nearest' });
+				option.scrollIntoView({
+					block: 'nearest'
+				});
 				panel.setAttribute('aria-activedescendant', option.id);
 			}
 
@@ -209,17 +306,28 @@
 					placement: 'bottom-end',
 					middleware: [
 						offset(10),
-						flip({ padding: 12 }),
-						shift({ padding: 12 }),
+						flip({
+							padding: 12
+						}),
+						shift({
+							padding: 12
+						}),
 						size({
 							padding: 12,
-							apply({ availableHeight, rects, elements }) {
+							apply({
+								availableHeight,
+								rects,
+								elements
+							}) {
 								elements.floating.style.maxHeight = `${Math.max(180, Math.floor(availableHeight))}px`;
 								elements.floating.style.minWidth = `${Math.ceil(rects.reference.width)}px`;
 							},
 						}),
 					],
-				}).then(({ x, y }) => {
+				}).then(({
+					x,
+					y
+				}) => {
 					Object.assign(panel.style, {
 						left: `${x}px`,
 						top: `${y}px`,
@@ -238,6 +346,7 @@
 				stopAutoUpdate = autoUpdate(trigger, panel, updateFloatingPosition);
 				panel.classList.remove('hidden');
 				requestAnimationFrame(() => panel.classList.add('is-open'));
+				mountOverlay();
 				trigger.setAttribute('aria-expanded', 'true');
 				root.setAttribute('data-open', 'true');
 				updateOptionStates();
@@ -253,6 +362,7 @@
 				}
 				panel.classList.remove('is-open');
 				trigger.setAttribute('aria-expanded', 'false');
+				unmountOverlay();
 				root.setAttribute('data-open', 'false');
 				clearTimeout(closeTimer);
 				closeTimer = setTimeout(() => {
@@ -328,6 +438,7 @@
 					selectActive();
 				}
 			});
+
 
 			document.addEventListener('click', (e) => {
 				if (!isOpen) return;
