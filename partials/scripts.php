@@ -87,9 +87,21 @@
 			}
 		}
 
-		(function initHeaderLanguageDropdown() {
+		(async function initHeaderLanguageDropdown() {
 			const root = document.querySelector('[data-language-dropdown]');
 			if (!root) return;
+
+			const panel = root.querySelector('[data-language-panel]');
+			if (!panel) return;
+
+			const {
+				computePosition,
+				autoUpdate,
+				offset,
+				flip,
+				shift,
+				size,
+			} = await import('https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10/+esm');
 
 			const languages = [
 				{ code: 'EN', nativeLabel: 'English', englishLabel: 'English', flag: '🇺🇸' },
@@ -109,7 +121,6 @@
 			];
 
 			const trigger = root.querySelector('[data-language-trigger]');
-			const panel = root.querySelector('[data-language-panel]');
 			const list = root.querySelector('[data-language-list]');
 			const flagNode = root.querySelector('[data-language-flag]');
 			const nativeNode = root.querySelector('[data-language-native]');
@@ -117,6 +128,7 @@
 			const panelId = panel?.id || 'header-language-menu';
 			const CLOSE_ANIMATION_MS = 140;
 			let closeTimer = null;
+			let stopAutoUpdate = null;
 			let isOpen = false;
 			let selectedCode = 'EN';
 			let activeIndex = 0;
@@ -190,11 +202,40 @@
 				updateOptionStates();
 			}
 
+
+			function updateFloatingPosition() {
+				computePosition(trigger, panel, {
+					strategy: 'fixed',
+					placement: 'bottom-end',
+					middleware: [
+						offset(10),
+						flip({ padding: 12 }),
+						shift({ padding: 12 }),
+						size({
+							padding: 12,
+							apply({ availableHeight, rects, elements }) {
+								elements.floating.style.maxHeight = `${Math.max(180, Math.floor(availableHeight))}px`;
+								elements.floating.style.minWidth = `${Math.ceil(rects.reference.width)}px`;
+							},
+						}),
+					],
+				}).then(({ x, y }) => {
+					Object.assign(panel.style, {
+						left: `${x}px`,
+						top: `${y}px`,
+					});
+				});
+			}
+
 			function openDropdown() {
 				if (isOpen) return;
 				clearTimeout(closeTimer);
 				isOpen = true;
 				activeIndex = getSelectedIndex();
+				panel.classList.add('hidden');
+				document.body.appendChild(panel);
+				updateFloatingPosition();
+				stopAutoUpdate = autoUpdate(trigger, panel, updateFloatingPosition);
 				panel.classList.remove('hidden');
 				requestAnimationFrame(() => panel.classList.add('is-open'));
 				trigger.setAttribute('aria-expanded', 'true');
@@ -206,12 +247,19 @@
 			function closeDropdown(returnFocus = false) {
 				if (!isOpen) return;
 				isOpen = false;
+				if (stopAutoUpdate) {
+					stopAutoUpdate();
+					stopAutoUpdate = null;
+				}
 				panel.classList.remove('is-open');
 				trigger.setAttribute('aria-expanded', 'false');
 				root.setAttribute('data-open', 'false');
 				clearTimeout(closeTimer);
 				closeTimer = setTimeout(() => {
-					if (!isOpen) panel.classList.add('hidden');
+					if (!isOpen) {
+						panel.classList.add('hidden');
+						root.appendChild(panel);
+					}
 				}, CLOSE_ANIMATION_MS);
 				if (returnFocus) trigger.focus();
 			}
@@ -283,7 +331,7 @@
 
 			document.addEventListener('click', (e) => {
 				if (!isOpen) return;
-				if (!root.contains(e.target)) closeDropdown();
+				if (!root.contains(e.target) && !panel.contains(e.target)) closeDropdown();
 			});
 
 			document.addEventListener('keydown', (e) => {
