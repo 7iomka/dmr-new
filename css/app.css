@@ -601,7 +601,7 @@
   }
 
   .header-language-panel {
-    @apply absolute right-0 top-[calc(100%+10px)] z-[120] w-[min(360px,calc(100vw-32px))] rounded-lg border border-zinc-200 bg-white/95 p-0 shadow-2xl backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95;
+    @apply fixed left-0 top-0 z-[120] w-[min(360px,calc(100vw-32px))] rounded-lg border border-zinc-200 bg-white/95 p-0 shadow-2xl backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95;
     opacity: 0;
     transform: translateY(-6px) scale(0.98);
     transition:
