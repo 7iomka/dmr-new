@@ -36,18 +36,18 @@
         </svg>
       </button>
 
-      <div class="relative" data-language-dropdown>
+      <div class="relative" data-dropdown data-dropdown-id="language-menu" data-dropdown-placement="bottom-end" data-dropdown-offset="10" data-dropdown-overlay="true" data-dropdown-close-ms="140">
         <button
           type="button"
           class="btn-secondary header-language-trigger"
-          data-language-trigger
+          data-dropdown-trigger
           aria-haspopup="listbox"
           aria-expanded="false"
           aria-controls="header-language-menu">
           <span class="text-base leading-none" data-language-flag>🇺🇸</span>
           <span class="hidden sm:inline text-sm font-semibold text-zinc-800 dark:text-zinc-100" data-language-native>English</span>
           <span class="sm:hidden text-xs font-semibold uppercase tracking-wide text-zinc-700 dark:text-zinc-200" data-language-code>EN</span>
-          <svg class="header-language-chevron" data-language-chevron xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg class="header-language-chevron" data-dropdown-chevron xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="m6 9 6 6 6-6"></path>
           </svg>
         </button>
@@ -55,11 +55,14 @@
         <div
           id="header-language-menu"
           class="header-language-panel"
-          data-language-panel
+          data-dropdown-panel
+          data-dropdown-template-id="tpl-language-panel"
           role="listbox"
           tabindex="-1"
-          aria-label="Выбор языка">
-          <div class="header-language-label">
+          aria-label="Выбор языка"></div>
+
+        <template id="tpl-language-panel">
+          <div class="header-language-label" data-dd-part="language-label">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0">
               <circle cx="12" cy="12" r="10"></circle>
               <path d="M2 12h20"></path>
@@ -68,7 +71,20 @@
             <span>Выберите язык</span>
           </div>
           <div class="header-language-list" data-language-list></div>
-        </div>
+        </template>
+
+        <template id="tpl-language-option">
+          <button type="button" class="header-language-option" role="option" data-dd-role="language-option">
+            <span class="header-language-option-main">
+              <span class="header-language-option-flag">{{flag}}</span>
+              <span class="min-w-0">
+                <span class="header-language-option-native">{{nativeLabel}}</span>
+                <span class="header-language-option-english">{{englishLabel}}</span>
+              </span>
+            </span>
+            <svg data-language-check class="header-language-option-check hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+          </button>
+        </template>
 
       </div>
 
@@ -87,8 +103,8 @@
 
         <div class="h-8 w-px hidden lg:block bg-zinc-200 dark:bg-zinc-800"></div>
 
-        <div class="relative hidden lg:block">
-          <div onclick="toggleUserMenu()" class="flex items-center gap-3 cursor-pointer p-1 pr-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-all">
+        <div class="relative hidden lg:block" data-dropdown data-dropdown-id="user-menu" data-dropdown-placement="bottom-end" data-dropdown-offset="12" data-dropdown-overlay="true" data-dropdown-close-ms="140">
+          <button type="button" class="flex items-center gap-3 cursor-pointer p-1 pr-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-all" data-dropdown-trigger aria-haspopup="menu" aria-expanded="false" aria-controls="user-dropdown">
             <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-primary to-primary-400 p-0.5">
               <div class="w-full h-full rounded-md flex items-center justify-center font-bold text-xs bg-card text-zinc-900 dark:text-white">DW</div>
             </div>
@@ -96,11 +112,12 @@
               <p class="text-[11px] font-bold leading-none mb-0.5 text-zinc-800 dark:text-zinc-200">Dorin Watsap</p>
               <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">ID: 882194</p>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" aria-hidden="true" id="user-chevron" class="lucide lucide-chevron-down hidden md:block w-[14px] h-[14px] text-zinc-500 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" aria-hidden="true" data-dropdown-chevron class="lucide lucide-chevron-down hidden md:block w-[14px] h-[14px] text-zinc-500 transition-transform">
               <path d="m6 9 6 6 6-6"></path>
             </svg>
-          </div>
-          <div id="user-dropdown" class="absolute right-0 mt-3 w-64 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-card shadow-2xl overflow-hidden z-50 hidden">
+          </button>
+          <div id="user-dropdown" data-dropdown-panel data-dropdown-template-id="tpl-user-menu" class="header-user-panel" role="menu" tabindex="-1" aria-label="Меню пользователя"></div>
+          <template id="tpl-user-menu">
             <div class="p-4 border-b border-zinc-100 dark:border-zinc-800/50">
               <p class="text-[10px] font-bold uppercase text-zinc-500 mb-1">Аккаунт</p>
               <p class="text-sm font-bold truncate">lawyer1@awsarhitect.me</p>
@@ -110,7 +127,7 @@
                 <span class="text-sm font-bold">Выйти</span>
               </a>
             </div>
-          </div>
+          </template>
         </div>
       <?php else: ?>
         <a href="auth-login.php" class="hidden lg:inline-flex items-center gap-2 btn-primary px-4 py-2.5 rounded-lg text-sm font-bold ml-2 shadow-lg shadow-primary-500/20">

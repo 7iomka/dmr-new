@@ -25,10 +25,7 @@
 		}
 
 		function toggleUserMenu() {
-			const dropdown = document.getElementById('user-dropdown');
-			const chevron = document.getElementById('user-chevron');
-			dropdown.classList.toggle('hidden');
-			chevron.classList.toggle('rotate-180');
+			if (window.AppDropdown) window.AppDropdown.toggle('user-menu');
 		}
 
 		function switchTab(tab) {
@@ -87,12 +84,9 @@
 			}
 		}
 
-		(async function initHeaderLanguageDropdown() {
-			const root = document.querySelector('[data-language-dropdown]');
-			if (!root) return;
-
-			const panel = root.querySelector('[data-language-panel]');
-			if (!panel) return;
+		(async function initHeaderDropdowns() {
+			const roots = Array.from(document.querySelectorAll('[data-dropdown][data-dropdown-id]'));
+			if (!roots.length) return;
 
 			const {
 				computePosition,
@@ -103,361 +97,395 @@
 				size,
 			} = await import('https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10/+esm');
 
-			const languages = [{
-					code: 'EN',
-					nativeLabel: 'English',
-					englishLabel: 'English',
-					flag: '🇺🇸'
-				},
-				{
-					code: 'RU',
-					nativeLabel: 'Русский',
-					englishLabel: 'Russian',
-					flag: '🇷🇺'
-				},
-				{
-					code: 'HI',
-					nativeLabel: 'हिन्दी',
-					englishLabel: 'Hindi',
-					flag: '🇮🇳'
-				},
-				{
-					code: 'VI',
-					nativeLabel: 'Tiếng Việt',
-					englishLabel: 'Vietnamese',
-					flag: '🇻🇳'
-				},
-				{
-					code: 'FR',
-					nativeLabel: 'Français',
-					englishLabel: 'French',
-					flag: '🇫🇷'
-				},
-				{
-					code: 'AR',
-					nativeLabel: 'العربية',
-					englishLabel: 'Arabic',
-					flag: '🇸🇦'
-				},
-				{
-					code: 'ES',
-					nativeLabel: 'Español',
-					englishLabel: 'Spanish',
-					flag: '🇪🇸'
-				},
-				{
-					code: 'KO',
-					nativeLabel: '한국어',
-					englishLabel: 'Korean',
-					flag: '🇰🇷'
-				},
-				{
-					code: 'JA',
-					nativeLabel: '日本語',
-					englishLabel: 'Japanese',
-					flag: '🇯🇵'
-				},
-				{
-					code: 'BN',
-					nativeLabel: 'বাংলা',
-					englishLabel: 'Bengali',
-					flag: '🇧🇩'
-				},
-				{
-					code: 'ZH',
-					nativeLabel: '中文',
-					englishLabel: 'Chinese',
-					flag: '🇨🇳'
-				},
-				{
-					code: 'PT',
-					nativeLabel: 'Português',
-					englishLabel: 'Portuguese',
-					flag: '🇵🇹'
-				},
-				{
-					code: 'ID',
-					nativeLabel: 'Bahasa Indonesia',
-					englishLabel: 'Indonesian',
-					flag: '🇮🇩'
-				},
-				{
-					code: 'RO',
-					nativeLabel: 'Română',
-					englishLabel: 'Romanian',
-					flag: '🇷🇴'
-				},
-			];
+			const instances = new Map();
 
-			const trigger = root.querySelector('[data-language-trigger]');
-			const list = root.querySelector('[data-language-list]');
-			const flagNode = root.querySelector('[data-language-flag]');
-			const nativeNode = root.querySelector('[data-language-native]');
-			const codeNode = root.querySelector('[data-language-code]');
-			const panelId = panel?.id || 'header-language-menu';
-			const CLOSE_ANIMATION_MS = 140;
-			const LANGUAGE_OVERLAY_CLASS = 'header-language-overlay';
-			let closeTimer = null;
-			let stopAutoUpdate = null;
-			let isOpen = false;
-			let selectedCode = 'EN';
-			let activeIndex = 0;
+			const parseBoolean = (value, fallback = true) => {
+				if (value === undefined) return fallback;
+				return value !== 'false';
+			};
 
-			function createOverlay() {
-				const overlayNode = document.createElement('div');
-				overlayNode.className = `overlay fixed inset-0 z-[39] ${LANGUAGE_OVERLAY_CLASS}`;
-				overlayNode.setAttribute('aria-hidden', 'true');
-				overlayNode.addEventListener('click', () => {
-					if (isOpen) closeDropdown(true);
-				});
-				return overlayNode;
-			}
+			const parseNumber = (value, fallback) => {
+				const parsed = Number(value);
+				return Number.isFinite(parsed) ? parsed : fallback;
+			};
 
-			function mountOverlay() {
-				const existingOverlay = document.querySelector(`.${LANGUAGE_OVERLAY_CLASS}`);
-				if (existingOverlay) existingOverlay.remove();
-				const overlayNode = createOverlay();
-				document.body.appendChild(overlayNode);
-				requestAnimationFrame(() => overlayNode.classList.add('active'));
-			}
+			const renderTemplate = (template, vars = {}) => template.replace(/\{\{\s*(\w+)\s*\}\}/g, (_, key) => `${vars[key] ?? ''}`);
 
-			function unmountOverlay() {
-				const overlayNode = document.querySelector(`.${LANGUAGE_OVERLAY_CLASS}`);
-				if (!overlayNode) return;
-				overlayNode.classList.remove('active');
-				overlayNode.remove();
-			}
+			function createDropdownInstance(root) {
+				const id = root.dataset.dropdownId;
+				const trigger = root.querySelector('[data-dropdown-trigger]');
+				const panel = root.querySelector('[data-dropdown-panel]');
+				if (!id || !trigger || !panel) return null;
 
-			const getSelectedIndex = () => Math.max(0, languages.findIndex((lang) => lang.code === selectedCode));
-			const getOptionNodes = () => Array.from(list.querySelectorAll('[data-language-option]'));
+				const config = {
+					id,
+					placement: root.dataset.dropdownPlacement || 'bottom-end',
+					offset: parseNumber(root.dataset.dropdownOffset, 10),
+					overlay: parseBoolean(root.dataset.dropdownOverlay, true),
+					closeMs: parseNumber(root.dataset.dropdownCloseMs, 140),
+					fallbackPlacements: (root.dataset.dropdownFlip || 'top-end,bottom-start').split(',').map((part) => part.trim()).filter(Boolean),
+					padding: parseNumber(root.dataset.dropdownPadding, 12),
+				};
 
-			function syncTriggerLabel() {
-				const current = languages.find((lang) => lang.code === selectedCode) || languages[0];
-				flagNode.textContent = current.flag;
-				nativeNode.textContent = current.nativeLabel;
-				codeNode.textContent = current.code;
-			}
+				const templateId = panel.dataset.dropdownTemplateId;
+				if (templateId) {
+					const templateNode = document.getElementById(templateId);
+					if (templateNode?.content) panel.replaceChildren(templateNode.content.cloneNode(true));
+				}
 
-			function updateOptionStates() {
-				getOptionNodes().forEach((node, index) => {
-					const lang = languages[index];
-					const isSelected = lang.code === selectedCode;
-					const isActive = index === activeIndex;
-					node.setAttribute('aria-selected', isSelected ? 'true' : 'false');
-					node.setAttribute('tabindex', isActive ? '0' : '-1');
-					node.classList.toggle('is-selected', isSelected);
-					node.classList.toggle('is-active', isActive);
-					const check = node.querySelector('[data-language-check]');
-					if (check) check.classList.toggle('hidden', !isSelected);
-				});
-			}
+				panel.classList.add(`dd-${id}__panel`);
+				panel.setAttribute('data-dd-instance', id);
+				trigger.setAttribute('data-dd-instance', id);
+				root.setAttribute('data-open', 'false');
+				panel.setAttribute('data-state', 'closed');
 
-			function focusActiveOption() {
-				const options = getOptionNodes();
-				const option = options[activeIndex];
-				if (!option) return;
-				option.focus();
-				option.scrollIntoView({
-					block: 'nearest'
-				});
-				panel.setAttribute('aria-activedescendant', option.id);
-			}
+				const chevron = root.querySelector('[data-dropdown-chevron]');
+				let isOpen = false;
+				let closeTimer = null;
+				let stopAutoUpdate = null;
 
-			function renderList() {
-				list.innerHTML = '';
-				languages.forEach((lang, index) => {
-					const option = document.createElement('button');
-					option.type = 'button';
-					option.id = `${panelId}-option-${lang.code.toLowerCase()}`;
-					option.className = 'header-language-option';
-					option.setAttribute('role', 'option');
-					option.setAttribute('data-language-option', '');
-					option.setAttribute('data-language-code', lang.code);
-					option.innerHTML = `
-						<span class="header-language-option-main">
-							<span class="header-language-option-flag">${lang.flag}</span>
-							<span class="min-w-0">
-								<span class="header-language-option-native">${lang.nativeLabel}</span>
-								<span class="header-language-option-english">${lang.englishLabel}</span>
-							</span>
-						</span>
-						<svg data-language-check class="header-language-option-check hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
-					`;
-					option.addEventListener('click', () => {
-						selectedCode = lang.code;
-						activeIndex = index;
-						syncTriggerLabel();
-						updateOptionStates();
-						closeDropdown(true);
+				const api = {
+					id,
+					root,
+					trigger,
+					panel,
+					config,
+					isOpen: () => isOpen,
+					onOpenHandlers: [],
+					onCloseHandlers: [],
+					onOpen(handler) {
+						if (typeof handler === 'function') this.onOpenHandlers.push(handler);
+					},
+					onClose(handler) {
+						if (typeof handler === 'function') this.onCloseHandlers.push(handler);
+					},
+				};
+
+				function createOverlay() {
+					const overlayNode = document.createElement('div');
+					overlayNode.className = `overlay fixed inset-0 z-[39] header-dropdown-overlay dd-${id}__overlay`;
+					overlayNode.setAttribute('data-dd-instance', id);
+					overlayNode.setAttribute('aria-hidden', 'true');
+					overlayNode.addEventListener('click', () => {
+						if (isOpen) closeDropdown(true);
 					});
-					option.addEventListener('mouseenter', () => {
-						activeIndex = index;
-						updateOptionStates();
+					return overlayNode;
+				}
+
+				function mountOverlay() {
+					if (!config.overlay) return;
+					const existingOverlay = document.querySelector(`.dd-${id}__overlay`);
+					if (existingOverlay) existingOverlay.remove();
+					const overlayNode = createOverlay();
+					document.body.appendChild(overlayNode);
+					requestAnimationFrame(() => overlayNode.classList.add('active'));
+				}
+
+				function unmountOverlay() {
+					const overlayNode = document.querySelector(`.dd-${id}__overlay`);
+					if (!overlayNode) return;
+					overlayNode.classList.remove('active');
+					overlayNode.remove();
+				}
+
+				function updatePosition() {
+					return computePosition(trigger, panel, {
+						placement: config.placement,
+						strategy: 'fixed',
+						middleware: [
+							offset(config.offset),
+							flip({
+								fallbackPlacements: config.fallbackPlacements,
+								padding: config.padding,
+							}),
+							shift({
+								padding: config.padding,
+							}),
+							size({
+								padding: config.padding,
+								apply({
+									availableWidth,
+									elements
+								}) {
+									elements.floating.style.width = `${Math.min(272, Math.max(220, availableWidth))}px`;
+								},
+							}),
+						],
+					}).then(({
+						x,
+						y
+					}) => {
+						panel.style.left = `${Math.round(x)}px`;
+						panel.style.top = `${Math.round(y)}px`;
 					});
-					list.appendChild(option);
-				});
-				updateOptionStates();
-			}
+				}
 
-
-			function updateFloatingPosition() {
-				computePosition(trigger, panel, {
-					strategy: 'fixed',
-					placement: 'bottom-end',
-					middleware: [
-						offset(10),
-						flip({
-							padding: 12
-						}),
-						shift({
-							padding: 12
-						}),
-						size({
-							padding: 12,
-							apply({
-								availableHeight,
-								rects,
-								elements
-							}) {
-								elements.floating.style.maxHeight = `${Math.max(180, Math.floor(availableHeight))}px`;
-								elements.floating.style.minWidth = `${Math.ceil(rects.reference.width)}px`;
-							},
-						}),
-					],
-				}).then(({
-					x,
-					y
-				}) => {
-					Object.assign(panel.style, {
-						left: `${x}px`,
-						top: `${y}px`,
-					});
-				});
-			}
-
-			function openDropdown() {
-				if (isOpen) return;
-				clearTimeout(closeTimer);
-				isOpen = true;
-				activeIndex = getSelectedIndex();
-				panel.classList.add('hidden');
-				document.body.appendChild(panel);
-				updateFloatingPosition();
-				stopAutoUpdate = autoUpdate(trigger, panel, updateFloatingPosition);
-				panel.classList.remove('hidden');
-				requestAnimationFrame(() => panel.classList.add('is-open'));
-				mountOverlay();
-				trigger.setAttribute('aria-expanded', 'true');
-				root.setAttribute('data-open', 'true');
-				updateOptionStates();
-				setTimeout(focusActiveOption, 0);
-			}
-
-			function closeDropdown(returnFocus = false) {
-				if (!isOpen) return;
-				isOpen = false;
-				if (stopAutoUpdate) {
+				function stopPositioning() {
+					if (!stopAutoUpdate) return;
 					stopAutoUpdate();
 					stopAutoUpdate = null;
 				}
-				panel.classList.remove('is-open');
-				trigger.setAttribute('aria-expanded', 'false');
-				unmountOverlay();
-				root.setAttribute('data-open', 'false');
-				clearTimeout(closeTimer);
-				closeTimer = setTimeout(() => {
-					if (!isOpen) {
-						panel.classList.add('hidden');
-						root.appendChild(panel);
+
+				function startPositioning() {
+					stopPositioning();
+					stopAutoUpdate = autoUpdate(trigger, panel, updatePosition, {
+						animationFrame: true,
+					});
+				}
+
+				function openDropdown({
+					focusPanel = false
+				} = {}) {
+					if (isOpen) return;
+					if (closeTimer) clearTimeout(closeTimer);
+					isOpen = true;
+					root.setAttribute('data-open', 'true');
+					trigger.setAttribute('aria-expanded', 'true');
+					panel.setAttribute('data-state', 'open');
+					panel.classList.remove('is-closing');
+					panel.classList.add('is-open');
+					if (chevron) chevron.classList.add('rotate-180');
+					mountOverlay();
+					updatePosition();
+					startPositioning();
+					api.onOpenHandlers.forEach((handler) => handler(api));
+					if (focusPanel) panel.focus();
+				}
+
+				function closeDropdown(restoreFocus = false) {
+					if (!isOpen) return;
+					isOpen = false;
+					root.setAttribute('data-open', 'false');
+					trigger.setAttribute('aria-expanded', 'false');
+					panel.setAttribute('data-state', 'closed');
+					panel.classList.remove('is-open');
+					panel.classList.add('is-closing');
+					if (chevron) chevron.classList.remove('rotate-180');
+					if (closeTimer) clearTimeout(closeTimer);
+					closeTimer = setTimeout(() => {
+						panel.classList.remove('is-closing');
+						closeTimer = null;
+					}, config.closeMs);
+					unmountOverlay();
+					stopPositioning();
+					api.onCloseHandlers.forEach((handler) => handler(api));
+					if (restoreFocus) trigger.focus();
+				}
+
+				function toggleDropdown() {
+					if (isOpen) closeDropdown();
+					else openDropdown();
+				}
+
+				trigger.addEventListener('click', (e) => {
+					e.preventDefault();
+					toggleDropdown();
+				});
+
+				trigger.addEventListener('keydown', (e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						toggleDropdown();
+						return;
 					}
-				}, CLOSE_ANIMATION_MS);
-				if (returnFocus) trigger.focus();
+					if (e.key === 'ArrowDown') {
+						e.preventDefault();
+						openDropdown({ focusPanel: true });
+					}
+				});
+
+				panel.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape') {
+						e.preventDefault();
+						closeDropdown(true);
+					}
+				});
+
+				document.addEventListener('click', (e) => {
+					if (!isOpen) return;
+					if (!root.contains(e.target) && !panel.contains(e.target)) closeDropdown();
+				});
+
+				document.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape' && isOpen) closeDropdown(true);
+				});
+
+				api.open = openDropdown;
+				api.close = closeDropdown;
+				api.toggle = toggleDropdown;
+				return api;
 			}
 
-			function moveActive(step) {
-				const total = languages.length;
-				activeIndex = (activeIndex + step + total) % total;
-				updateOptionStates();
-				focusActiveOption();
+			roots.forEach((root) => {
+				const instance = createDropdownInstance(root);
+				if (instance) instances.set(instance.id, instance);
+			});
+
+			window.AppDropdown = {
+				get(id) {
+					return instances.get(id) || null;
+				},
+				toggle(id) {
+					const instance = instances.get(id);
+					if (!instance) return;
+					instance.toggle();
+				},
+				open(id, options = {}) {
+					const instance = instances.get(id);
+					if (!instance) return;
+					instance.open(options);
+				},
+				close(id, restoreFocus = false) {
+					const instance = instances.get(id);
+					if (!instance) return;
+					instance.close(restoreFocus);
+				},
+			};
+
+			const languageInstance = instances.get('language-menu');
+			if (languageInstance) {
+				const languages = [
+					{ code: 'EN', nativeLabel: 'English', englishLabel: 'English', flag: '🇺🇸' },
+					{ code: 'RU', nativeLabel: 'Русский', englishLabel: 'Russian', flag: '🇷🇺' },
+					{ code: 'HI', nativeLabel: 'हिन्दी', englishLabel: 'Hindi', flag: '🇮🇳' },
+					{ code: 'VI', nativeLabel: 'Tiếng Việt', englishLabel: 'Vietnamese', flag: '🇻🇳' },
+					{ code: 'FR', nativeLabel: 'Français', englishLabel: 'French', flag: '🇫🇷' },
+					{ code: 'AR', nativeLabel: 'العربية', englishLabel: 'Arabic', flag: '🇸🇦' },
+					{ code: 'ES', nativeLabel: 'Español', englishLabel: 'Spanish', flag: '🇪🇸' },
+					{ code: 'KO', nativeLabel: '한국어', englishLabel: 'Korean', flag: '🇰🇷' },
+					{ code: 'JA', nativeLabel: '日本語', englishLabel: 'Japanese', flag: '🇯🇵' },
+					{ code: 'BN', nativeLabel: 'বাংলা', englishLabel: 'Bengali', flag: '🇧🇩' },
+					{ code: 'ZH', nativeLabel: '中文', englishLabel: 'Chinese', flag: '🇨🇳' },
+					{ code: 'PT', nativeLabel: 'Português', englishLabel: 'Portuguese', flag: '🇵🇹' },
+					{ code: 'ID', nativeLabel: 'Bahasa Indonesia', englishLabel: 'Indonesian', flag: '🇮🇩' },
+					{ code: 'RO', nativeLabel: 'Română', englishLabel: 'Romanian', flag: '🇷🇴' },
+				];
+
+				const list = languageInstance.panel.querySelector('[data-language-list]');
+				const flagNode = languageInstance.root.querySelector('[data-language-flag]');
+				const nativeNode = languageInstance.root.querySelector('[data-language-native]');
+				const codeNode = languageInstance.root.querySelector('[data-language-code]');
+				const optionTplNode = document.getElementById('tpl-language-option');
+				const optionTemplate = optionTplNode ? optionTplNode.innerHTML : '';
+				if (list && optionTemplate) {
+					let selectedCode = 'EN';
+					let activeIndex = 0;
+
+					const panelId = languageInstance.panel.id || 'header-language-menu';
+					const getSelectedIndex = () => Math.max(0, languages.findIndex((lang) => lang.code === selectedCode));
+					const getOptions = () => Array.from(list.querySelectorAll('[data-language-option]'));
+
+					function syncTriggerLabel() {
+						const current = languages.find((lang) => lang.code === selectedCode) || languages[0];
+						if (flagNode) flagNode.textContent = current.flag;
+						if (nativeNode) nativeNode.textContent = current.nativeLabel;
+						if (codeNode) codeNode.textContent = current.code;
+					}
+
+					function updateOptionStates() {
+						getOptions().forEach((node, index) => {
+							const lang = languages[index];
+							const isSelected = lang.code === selectedCode;
+							const isActive = index === activeIndex;
+							node.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+							node.setAttribute('tabindex', isActive ? '0' : '-1');
+							node.classList.toggle('is-selected', isSelected);
+							node.classList.toggle('is-active', isActive);
+							const check = node.querySelector('[data-language-check]');
+							if (check) check.classList.toggle('hidden', !isSelected);
+						});
+					}
+
+					function focusActiveOption() {
+						const option = getOptions()[activeIndex];
+						if (!option) return;
+						option.focus();
+						option.scrollIntoView({ block: 'nearest' });
+						languageInstance.panel.setAttribute('aria-activedescendant', option.id);
+					}
+
+					function moveActive(step) {
+						activeIndex = (activeIndex + step + languages.length) % languages.length;
+						updateOptionStates();
+						focusActiveOption();
+					}
+
+					function selectActive() {
+						const lang = languages[activeIndex];
+						if (!lang) return;
+						selectedCode = lang.code;
+						syncTriggerLabel();
+						updateOptionStates();
+						languageInstance.close(true);
+					}
+
+					list.innerHTML = '';
+					languages.forEach((lang, index) => {
+						const wrap = document.createElement('div');
+						wrap.innerHTML = renderTemplate(optionTemplate, lang).trim();
+						const option = wrap.firstElementChild;
+						if (!option) return;
+						option.id = `${panelId}-option-${lang.code.toLowerCase()}`;
+						option.setAttribute('data-language-option', '');
+						option.setAttribute('data-language-code', lang.code);
+						option.setAttribute('data-dd-instance', languageInstance.id);
+						option.classList.add(`dd-${languageInstance.id}__option`);
+						option.addEventListener('click', () => {
+							selectedCode = lang.code;
+							activeIndex = index;
+							syncTriggerLabel();
+							updateOptionStates();
+							languageInstance.close(true);
+						});
+						option.addEventListener('mouseenter', () => {
+							activeIndex = index;
+							updateOptionStates();
+						});
+						list.appendChild(option);
+					});
+
+					updateOptionStates();
+					syncTriggerLabel();
+
+					languageInstance.onOpen(() => {
+						activeIndex = getSelectedIndex();
+						updateOptionStates();
+						setTimeout(focusActiveOption, 0);
+					});
+
+					languageInstance.trigger.addEventListener('keydown', (e) => {
+						if (e.key === 'ArrowDown') {
+							e.preventDefault();
+							if (!languageInstance.isOpen()) languageInstance.open({ focusPanel: true });
+							else moveActive(1);
+							return;
+						}
+						if (e.key === 'ArrowUp') {
+							e.preventDefault();
+							if (!languageInstance.isOpen()) languageInstance.open({ focusPanel: true });
+							else moveActive(-1);
+						}
+					});
+
+					languageInstance.panel.addEventListener('keydown', (e) => {
+						if (e.key === 'ArrowDown') {
+							e.preventDefault();
+							moveActive(1);
+							return;
+						}
+						if (e.key === 'ArrowUp') {
+							e.preventDefault();
+							moveActive(-1);
+							return;
+						}
+						if (e.key === 'Enter' || e.key === ' ') {
+							e.preventDefault();
+							selectActive();
+						}
+					});
+				}
 			}
-
-			function selectActive() {
-				const lang = languages[activeIndex];
-				if (!lang) return;
-				selectedCode = lang.code;
-				syncTriggerLabel();
-				updateOptionStates();
-				closeDropdown(true);
-			}
-
-			renderList();
-			syncTriggerLabel();
-			root.setAttribute('data-open', 'false');
-
-			trigger.addEventListener('click', () => {
-				if (isOpen) closeDropdown();
-				else openDropdown();
-			});
-
-			trigger.addEventListener('keydown', (e) => {
-				if (e.key === 'Enter' || e.key === ' ') {
-					e.preventDefault();
-					openDropdown();
-					return;
-				}
-				if (e.key === 'ArrowDown') {
-					e.preventDefault();
-					if (!isOpen) openDropdown();
-					else moveActive(1);
-				}
-				if (e.key === 'ArrowUp') {
-					e.preventDefault();
-					if (!isOpen) openDropdown();
-					else moveActive(-1);
-				}
-			});
-
-			panel.addEventListener('keydown', (e) => {
-				if (e.key === 'Escape') {
-					e.preventDefault();
-					closeDropdown(true);
-					return;
-				}
-				if (e.key === 'ArrowDown') {
-					e.preventDefault();
-					moveActive(1);
-					return;
-				}
-				if (e.key === 'ArrowUp') {
-					e.preventDefault();
-					moveActive(-1);
-					return;
-				}
-				if (e.key === 'Enter' || e.key === ' ') {
-					e.preventDefault();
-					selectActive();
-				}
-			});
-
-
-			document.addEventListener('click', (e) => {
-				if (!isOpen) return;
-				if (!root.contains(e.target) && !panel.contains(e.target)) closeDropdown();
-			});
-
-			document.addEventListener('keydown', (e) => {
-				if (e.key === 'Escape' && isOpen) closeDropdown(true);
-			});
 		})();
-
-		window.onclick = function(event) {
-			if (!event.target.closest('.relative')) {
-				const dropdown = document.getElementById('user-dropdown');
-				if (dropdown) dropdown.classList.add('hidden');
-				const chevron = document.getElementById('user-chevron');
-				if (chevron) chevron.classList.remove('rotate-180');
-			}
-		}
 
 		document.addEventListener('DOMContentLoaded', initSidebarMode);
 	</script>
