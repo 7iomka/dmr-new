@@ -730,10 +730,22 @@
 
       <div class="modal-body">
         <div class="divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">ID контракта</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Доли</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">35 138</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Сумма платежа</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Баланс кошелька</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">350.54 $</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">ID контракта</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Доли</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">35 138</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Сумма платежа</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Баланс кошелька</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">350.54 $</p>
+          </div>
         </div>
 
         <div class="mt-4 rounded-lg border border-zinc-200 bg-zinc-100 px-4 py-3 text-sm text-zinc-500 dark:border-zinc-700 dark:bg-zinc-700/70 dark:text-zinc-400 flex items-center justify-between gap-4">
@@ -766,10 +778,22 @@
 
       <div class="modal-body">
         <div class="divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">ID контракта</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Доли</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">35 138</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Сумма платежа</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Баланс кошелька</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">350.54 $</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">ID контракта</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Доли</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">35 138</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Сумма платежа</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Баланс кошелька</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">350.54 $</p>
+          </div>
         </div>
 
         <div class="mt-4 rounded-lg border border-zinc-200 bg-zinc-100 px-4 py-3 text-sm text-zinc-500 dark:border-zinc-700 dark:bg-zinc-700/70 dark:text-zinc-400 flex items-center justify-between gap-4">
@@ -800,9 +824,18 @@
 
       <div class="modal-body">
         <div class="divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">ID контракта</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Неоплаченные месяцы</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">2</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Сумма за месяц</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">66.67 $</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">ID контракта</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Неоплаченные месяцы</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">2</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Сумма за месяц</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">66.67 $</p>
+          </div>
         </div>
 
         <div class="mt-5">
@@ -817,9 +850,18 @@
         </div>
 
         <div class="mt-5 divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Доли</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">35 138</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Сумма платежа</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Баланс кошелька</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">350.54 $</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Доли</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">35 138</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Сумма платежа</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Баланс кошелька</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">350.54 $</p>
+          </div>
         </div>
 
         <div class="mt-4 rounded-lg border border-zinc-200 bg-zinc-100 px-4 py-3 text-sm text-zinc-500 dark:border-zinc-700 dark:bg-zinc-700/70 dark:text-zinc-400 flex items-center justify-between gap-4">
@@ -855,10 +897,22 @@
         </div>
 
         <div class="mt-5 divide-y divide-zinc-200 dark:divide-zinc-800 border-y border-zinc-200 dark:border-zinc-800">
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">ID контракта</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Неоплаченные платежи</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">2</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Остаток суммы</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p></div>
-          <div class="flex items-center justify-between gap-4 py-3 text-sm"><p class="text-zinc-500 dark:text-zinc-400">Доли, которые вы сохраните</p><p class="font-semibold tabular-nums text-zinc-900 dark:text-white">17 569</p></div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">ID контракта</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">09022700</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Неоплаченные платежи</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">2</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Остаток суммы</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">133.33 $</p>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3 text-sm">
+            <p class="text-zinc-500 dark:text-zinc-400">Доли, которые вы сохраните</p>
+            <p class="font-semibold tabular-nums text-zinc-900 dark:text-white">17 569</p>
+          </div>
         </div>
 
         <div class="alert-warning mt-5 text-sm">
@@ -1143,7 +1197,9 @@
       positionCurrent();
 
       // если иконки lucide внутри меню/кнопок
-      if (window.lucide) window.lucide.createIcons();
+      if (window.lucide) window.lucide.createIcons({
+        inTemplates: true
+      });
     }
 
     // 1) клики по триггерам

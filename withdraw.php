@@ -18,7 +18,7 @@
             <section class="card overflow-hidden">
               <div class="card-body space-y-6 lg:space-y-8">
                 <div class="text-center">
-                  <h1 class="text-3xl font-extrabold text-zinc-900 dark:text-white">Создать вывод средств</h1>
+                  <h1 class="text-3xl font-bold text-zinc-900 dark:text-white">Создать вывод средств</h1>
                   <p class="mt-2 text-sm text-zinc-500">Безопасный вывод средств через USDT (TRC20)</p>
                 </div>
 
@@ -35,7 +35,7 @@
                       <line x1="12" x2="12.01" y1="17" y2="17"></line>
                     </svg>
                     <div>
-                      <p class="text-2xl font-extrabold text-red-900 dark:text-red-300 leading-none">Вывод заблокирован
+                      <p class="text-2xl font-bold text-red-900 dark:text-red-300 leading-none">Вывод заблокирован
                       </p>
                       <p class="text-sm text-red-800/90 dark:text-red-200/90 mt-1">Недостаточный реферальный баланс. Для
                         вывода средств вам нужны реферальные доходы.</p>
@@ -87,7 +87,7 @@
 
                 <div
                   class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/30 p-4 sm:p-6 lg:p-8 space-y-5">
-                  <h2 class="text-2xl font-extrabold text-zinc-900 dark:text-white">Сумма и назначение</h2>
+                  <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Сумма и назначение</h2>
 
                   <div>
                     <label class="block mb-2 text-sm font-semibold text-zinc-800 dark:text-zinc-200">Сумма вывода</label>
@@ -99,14 +99,7 @@
                   <div
                     class="rounded-lg bg-gradient-to-r from-[#18b889] to-[#0da26e] p-4 text-white flex items-center gap-3">
                     <div class="w-12 h-12 rounded-lg bg-white/20 grid place-items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-wallet-cards w-6 h-6">
-                        <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                        <path d="M3 9h18"></path>
-                        <path d="M7 15h.01"></path>
-                        <path d="M11 15h2"></path>
-                      </svg>
+                      <i data-lucide="wallet-cards" class="w-6 h-6"></i>
                     </div>
                     <div>
                       <p class="text-sm font-semibold text-white/90">Доступный баланс</p>
@@ -122,20 +115,10 @@
                         class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-[#0B0E11] px-4 py-2.5 text-zinc-700 dark:text-zinc-200 appearance-none outline-none focus:border-primary">
                         <option>test - TN3W4H6rK2...oxb3m9</option>
                       </select>
-                      <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none"
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m6 9 6 6 6-6"></path>
-                      </svg>
+                      <i data-lucide="chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none"></i>
                     </div>
                     <button class="mt-4 text-primary font-semibold text-sm flex items-center gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="w-4 h-4">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M8 12h8"></path>
-                        <path d="M12 8v8"></path>
-                      </svg>
+                      <i data-lucide="plus-circle" class="w-4 h-4"></i>
                       <span>Добавить новый адрес TRC20</span>
                     </button>
                   </div>
@@ -145,13 +128,9 @@
               <div
                 class="px-4 lg:px-6 py-4 border-t border-zinc-200 dark:border-zinc-800 flex justify-end bg-zinc-50/60 dark:bg-zinc-900/30">
                 <button disabled
-                  class="inline-flex items-center gap-2 rounded-lg bg-primary/60 px-8 py-2.5 text-white font-semibold disabled:opacity-80 disabled:cursor-not-allowed">
-                  <span>Следующий</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
-                  </svg>
+                  class="btn-primary min-w-[150px] inline-flex justify-center items-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold disabled:opacity-80 disabled:pointer-events-none disabled:cursor-not-allowed">
+                  <span>Далее</span>
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 </button>
               </div>
             </section>

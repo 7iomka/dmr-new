@@ -368,7 +368,9 @@
       });
 
       scorePassword(password?.value || '');
-      if (window.lucide) window.lucide.createIcons();
+      if (window.lucide) window.lucide.createIcons({
+        inTemplates: true
+      });
     })();
   </script>
 </body>

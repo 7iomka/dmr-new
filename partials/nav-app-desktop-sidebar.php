@@ -31,14 +31,7 @@
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="lucide lucide-layout-dashboard" aria-hidden="true">
-							<rect width="7" height="9" x="3" y="3" rx="1"></rect>
-							<rect width="7" height="5" x="14" y="3" rx="1"></rect>
-							<rect width="7" height="9" x="14" y="12" rx="1"></rect>
-							<rect width="7" height="5" x="3" y="16" rx="1"></rect>
-						</svg>
+						<i data-lucide="layout-dashboard" class="w-5 h-5"></i>
 					</div>
 					<span class="sidebar-label text-sm font-semibold">Дашборд</span>
 				</a>
@@ -49,12 +42,7 @@
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="lucide lucide-briefcase" aria-hidden="true">
-							<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-							<rect width="20" height="14" x="2" y="6" rx="2"></rect>
-						</svg>
+						<i data-lucide="briefcase" class="w-5 h-5"></i>
 					</div>
 					<span class="sidebar-label text-sm font-semibold">Инвестиции</span>
 				</a>
@@ -75,14 +63,7 @@
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="lucide lucide-wallet" aria-hidden="true">
-							<path
-								d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1">
-							</path>
-							<path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path>
-						</svg>
+						<i data-lucide="wallet" class="w-5 h-5"></i>
 					</div>
 					<span class="sidebar-label text-sm font-semibold">Кошелёк</span>
 				</a>
@@ -93,13 +74,7 @@
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="lucide lucide-circle-arrow-up" aria-hidden="true">
-							<circle cx="12" cy="12" r="10"></circle>
-							<path d="m16 12-4-4-4 4"></path>
-							<path d="M12 16V8"></path>
-						</svg>
+						<i data-lucide="circle-arrow-up" class="w-5 h-5"></i>
 					</div>
 					<span class="sidebar-label text-sm font-semibold">Выводы</span>
 				</a>
@@ -110,15 +85,7 @@
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="lucide lucide-file-text" aria-hidden="true">
-							<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
-							<path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-							<path d="M10 9H8"></path>
-							<path d="M16 13H8"></path>
-							<path d="M16 17H8"></path>
-						</svg>
+						<i data-lucide="file-text" class="w-5 h-5"></i>
 					</div>
 					<span class="sidebar-label text-sm font-semibold">Отчёт</span>
 				</a>
@@ -139,13 +106,7 @@
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="lucide lucide-circle-user">
-							<circle cx="12" cy="12" r="10"></circle>
-							<circle cx="12" cy="10" r="3"></circle>
-							<path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path>
-						</svg>
+						<i data-lucide="circle-user" class="w-5 h-5"></i>
 					</div>
 					<span class="sidebar-label text-sm font-semibold">Профиль</span>
 				</a>
@@ -156,14 +117,7 @@
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="lucide lucide-users-icon lucide-users">
-							<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-							<path d="M16 3.128a4 4 0 0 1 0 7.744" />
-							<path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-							<circle cx="9" cy="7" r="4" />
-						</svg>
+						<i data-lucide="users" class="w-5 h-5"></i>
 					</div>
 					<span class="sidebar-label text-sm font-semibold">Рефералы</span>
 				</a>
@@ -174,14 +128,7 @@
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
 					">
 					<div class="sidebar-link-icon flex items-center justify-center">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="lucide lucide-settings" aria-hidden="true">
-							<path
-								d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z">
-							</path>
-							<circle cx="12" cy="12" r="3"></circle>
-						</svg>
+						<i data-lucide="settings" class="w-5 h-5"></i>
 					</div>
 					<span class="sidebar-label text-sm font-semibold">Настройки</span>
 				</a>

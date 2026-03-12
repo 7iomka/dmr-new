@@ -20,11 +20,7 @@
             <header class="card-header">
               <div class="flex items-center gap-3 min-w-0">
                 <div class="h-10 w-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"
-                    aria-hidden="true">
-                    <path d="m7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
-                  </svg>
+                  <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i>
                 </div>
                 <div class="min-w-0">
                   <h1 class="text-xl lg:text-2xl font-bold text-zinc-900 dark:text-white">Чат поддержки</h1>
@@ -42,11 +38,7 @@
                     class="w-full rounded-lg border border-primary/30 bg-primary/5 px-3 py-3 text-left transition-colors hover:border-primary/40">
                     <div class="flex items-start gap-3">
                       <div class="h-10 w-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"
-                          aria-hidden="true">
-                          <path d="m7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
-                        </svg>
+                        <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i>
                       </div>
                       <div class="min-w-0 flex-1">
                         <div class="flex items-center justify-between gap-2">
@@ -64,11 +56,7 @@
                     <div class="flex items-start gap-3">
                       <div
                         class="relative h-10 w-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"
-                          aria-hidden="true">
-                          <path d="m7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
-                        </svg>
+                        <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i>
                         <span
                           class="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-md bg-primary text-white text-[10px] leading-[18px] text-center font-bold">2</span>
                       </div>
@@ -92,13 +80,7 @@
                 <div class="p-4 border-t border-zinc-200 dark:border-zinc-800">
                   <button id="new-ticket-btn" type="button"
                     class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-bold text-white hover:bg-primary-600 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
-                      aria-hidden="true">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M8 12h8"></path>
-                      <path d="M12 8v8"></path>
-                    </svg>
+                    <i data-lucide="plus-circle" class="h-4 w-4" aria-hidden="true"></i>
                     Начать разговор
                   </button>
                 </div>
@@ -109,19 +91,11 @@
                   <button id="chat-back" type="button"
                     class="lg:hidden h-9 w-9 rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-500 flex items-center justify-center"
                     aria-label="Вернуться к списку диалогов">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
-                      aria-hidden="true">
-                      <path d="m15 18-6-6 6-6"></path>
-                    </svg>
+                    <i data-lucide="chevron-left" class="h-4 w-4" aria-hidden="true"></i>
                   </button>
 
                   <div class="h-10 w-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"
-                      aria-hidden="true">
-                      <path d="m7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
-                    </svg>
+                    <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i>
                   </div>
                   <div class="min-w-0">
                     <p id="chat-title" class="text-base font-bold text-zinc-900 dark:text-white">Общий вопрос</p>
@@ -155,11 +129,9 @@
                           <option>Отчет об ошибке</option>
                           <option selected>Общий вопрос</option>
                         </select>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                          class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 w-4 h-4 pointer-events-none" aria-hidden="true">
-                          <path d="m6 9 6 6 6-6"></path>
-                        </svg>
+                        <i data-lucide="chevron-down"
+                          class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 w-4 h-4 pointer-events-none"
+                          aria-hidden="true"></i>
                       </div>
                     </div>
 
@@ -196,16 +168,11 @@
                         <div id="ticket-attachment-preview"
                           class="hidden mb-3 items-center justify-between rounded-lg border-t border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-3 py-2">
                           <div class="flex items-center gap-2 min-w-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-primary shrink-0 lucide lucide-paperclip-icon lucide-paperclip" aria-hidden="true">
-                              <path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" />
-                            </svg>
+                            <i data-lucide="paperclip" class="h-4 w-4 text-primary shrink-0" aria-hidden="true"></i>
                             <span id="ticket-attachment-name" class="truncate text-xs font-semibold text-zinc-600 dark:text-zinc-300">file.pdf</span>
                           </div>
                           <button id="ticket-attachment-remove" type="button" class="rounded-lg p-1.5 text-zinc-400 hover:text-red-500" aria-label="Удалить файл">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
-                              <path d="M18 6 6 18"></path>
-                              <path d="m6 6 12 12"></path>
-                            </svg>
+                            <i data-lucide="x" class="h-4 w-4" aria-hidden="true"></i>
                           </button>
                         </div>
 
@@ -215,9 +182,7 @@
                           <button id="ticket-file-trigger" type="button"
                             class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0"
                             aria-label="Прикрепить файл">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 lucide lucide-paperclip-icon lucide-paperclip" aria-hidden="true">
-                              <path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" />
-                            </svg>
+                            <i data-lucide="paperclip" class="h-5 w-5" aria-hidden="true"></i>
                           </button>
 
                           <textarea id="ticket-first-message" rows="1" placeholder="Введите сообщение..."
@@ -226,12 +191,7 @@
                           <button id="ticket-emoji-toggle" type="button"
                             class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0"
                             aria-label="Открыть эмодзи">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-                              <circle cx="12" cy="12" r="10" />
-                              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                              <line x1="9" x2="9.01" y1="9" y2="9" />
-                              <line x1="15" x2="15.01" y1="9" y2="9" />
-                            </svg>
+                            <i data-lucide="smile" class="h-5 w-5" aria-hidden="true"></i>
                           </button>
 
                           <span class="h-6 w-px bg-zinc-200 dark:bg-zinc-700 shrink-0 my-auto" aria-hidden="true"></span>
@@ -239,10 +199,7 @@
                           <button type="submit"
                             class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0 transition-all active:scale-95"
                             aria-label="Создать обращение">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-                              <path d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
-                              <path d="M6 12h16" />
-                            </svg>
+                            <i data-lucide="send-horizontal" class="h-5 w-5" aria-hidden="true"></i>
                           </button>
                         </form>
                       </div>
@@ -366,18 +323,11 @@
                     <div id="attachment-preview"
                       class="hidden mb-3 items-center justify-between rounded-lg border-t border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-3 py-2">
                       <div class="flex items-center gap-2 min-w-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-primary shrink-0 lucide lucide-paperclip-icon lucide-paperclip" aria-hidden="true">
-                          <path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" />
-                        </svg>
+                        <i data-lucide="paperclip" class="h-4 w-4 text-primary shrink-0" aria-hidden="true"></i>
                         <span id="attachment-name" class="truncate text-xs font-semibold text-zinc-600 dark:text-zinc-300">file.pdf</span>
                       </div>
                       <button id="attachment-remove" type="button" class="rounded-lg p-1.5 text-zinc-400 hover:text-red-500" aria-label="Удалить файл">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"
-                          aria-hidden="true">
-                          <path d="M18 6 6 18"></path>
-                          <path d="m6 6 12 12"></path>
-                        </svg>
+                        <i data-lucide="x" class="h-4 w-4" aria-hidden="true"></i>
                       </button>
                     </div>
 
@@ -387,9 +337,7 @@
                       <button id="file-trigger" type="button"
                         class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0"
                         aria-label="Прикрепить файл">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 lucide lucide-paperclip-icon lucide-paperclip" aria-hidden="true">
-                          <path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" />
-                        </svg>
+                        <i data-lucide="paperclip" class="h-5 w-5" aria-hidden="true"></i>
                       </button>
 
                       <label for="chat-message" class="sr-only">Сообщение</label>
@@ -399,12 +347,7 @@
                       <button id="emoji-toggle" type="button"
                         class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0"
                         aria-label="Открыть эмодзи">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                          <line x1="9" x2="9.01" y1="9" y2="9" />
-                          <line x1="15" x2="15.01" y1="9" y2="9" />
-                        </svg>
+                        <i data-lucide="smile" class="h-5 w-5" aria-hidden="true"></i>
                       </button>
 
                       <span class="h-6 w-px bg-zinc-200 dark:bg-zinc-700 shrink-0 my-auto" aria-hidden="true"></span>
@@ -412,12 +355,7 @@
                       <button type="submit"
                         class="h-10 w-10 rounded-lg text-zinc-400 hover:text-primary flex items-center justify-center shrink-0 transition-all active:scale-95"
                         aria-label="Отправить сообщение">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"
-                          aria-hidden="true">
-                          <path d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
-                          <path d="M6 12h16" />
-                        </svg>
+                        <i data-lucide="send-horizontal" class="h-5 w-5" aria-hidden="true"></i>
                       </button>
                     </form>
                   </div>
@@ -440,7 +378,6 @@
     }
 
     .chat-message-enter {
-      /* элемент сразу имеет свою высоту; анимируем только появление */
       will-change: opacity, transform;
       transform-origin: bottom;
       animation: chat-message-enter 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -448,7 +385,6 @@
 
     @keyframes chat-message-enter {
 
-      /* небольшая "пауза невидимости", потом fade-in + лёгкий подъём снизу */
       0%,
       15% {
         opacity: 0;
@@ -750,7 +686,7 @@
         button.innerHTML = `
         <div class="flex items-start gap-3">
           <div class="h-10 w-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="m7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+            <i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i>
           </div>
           <div class="min-w-0 flex-1">
             <div class="flex items-center justify-between gap-2">
@@ -882,6 +818,7 @@
           attachmentName.textContent = selectedFile.name;
           attachmentPreview.classList.remove('hidden');
           attachmentPreview.classList.add('flex');
+          if (window.lucide?.createIcons) window.lucide.createIcons();
         }
       });
 
@@ -891,6 +828,7 @@
           ticketAttachmentName.textContent = ticketSelectedFile.name;
           ticketAttachmentPreview.classList.remove('hidden');
           ticketAttachmentPreview.classList.add('flex');
+          if (window.lucide?.createIcons) window.lucide.createIcons();
         }
       });
 
@@ -916,8 +854,7 @@
         const panel = getActivePanel();
         if (!panel) return;
 
-        const messageText = selectedFile ? `📎 Файл: ${selectedFile.name}${text ? `
-${text}` : ''}` : text;
+        const messageText = selectedFile ? `📎 Файл: ${selectedFile.name}${text ? `\n${text}` : ''}` : text;
         addMessage(panel, messageText, true);
         input.value = '';
         autoResizeTextarea(input);
@@ -940,8 +877,7 @@ ${text}` : ''}` : text;
 
         generatedChatCounter += 1;
         const targetId = `support-generated-${generatedChatCounter}`;
-        const messageText = ticketSelectedFile ? `📎 Файл: ${ticketSelectedFile.name}${text ? `
-${text}` : ''}` : text;
+        const messageText = ticketSelectedFile ? `📎 Файл: ${ticketSelectedFile.name}${text ? `\n${text}` : ''}` : text;
 
         const newItem = createDialogItem(targetId, topic, text || 'Прикреплен файл');
         chatList.insertBefore(newItem, emptyState);
@@ -951,6 +887,8 @@ ${text}` : ''}` : text;
         showWelcomeIfNeeded();
         openConversationById(targetId, newItem);
         hideActiveStickyChip(panel);
+
+        if (window.lucide?.createIcons) window.lucide.createIcons();
       });
 
       function shouldShowDetailOnMobile() {
@@ -995,6 +933,10 @@ ${text}` : ''}` : text;
         applyLayout();
         showWelcomeIfNeeded();
         getPanels().forEach(hideActiveStickyChip);
+
+        if (window.lucide?.createIcons) {
+          window.lucide.createIcons();
+        }
       }
 
       init();

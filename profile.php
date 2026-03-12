@@ -25,14 +25,7 @@
                 DW</div>
               <div
                 class="absolute -bottom-2 -right-2 p-1.5 rounded-lg border-4 bg-primary text-white shadow-xl border-white dark:border-[#14171A]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  data-lucide="shield-check" aria-hidden="true" class="lucide lucide-shield-check w-4 h-4">
-                  <path
-                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
-                  </path>
-                  <path d="m9 12 2 2 4-4"></path>
-                </svg>
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
               </div>
             </div>
             <div class="flex-1 text-center md:text-left">
@@ -46,26 +39,11 @@
 
                 <button
                   class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 btn-primary text-[11px] font-bold rounded-lg shadow-lg uppercase tracking-widest">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    data-lucide="settings" aria-hidden="true" class="lucide lucide-settings w-4 h-4">
-                    <path
-                      d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915">
-                    </path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
+                  <i data-lucide="settings" class="w-4 h-4"></i>
                   <span>Редактировать профиль</span>
                 </button><button
                   class="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    data-lucide="shield-check" aria-hidden="true"
-                    class="lucide lucide-shield-check w-4 h-4 text-primary">
-                    <path
-                      d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
-                    </path>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
+                  <i data-lucide="shield-check" class="w-4 h-4 text-primary"></i>
                   <span>Редактировать KYC</span>
                 </button>
               </div>
@@ -103,13 +81,7 @@
                   <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-1 opacity-70">
                     Верификация</p>
                   <div class="flex items-center space-x-1.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      data-lucide="check-circle-2" aria-hidden="true"
-                      class="lucide lucide-check-circle-2 text-primary w-[14px] h-[14px]">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="m9 12 2 2 4-4"></path>
-                    </svg>
+                    <i data-lucide="check-circle-2" class="text-primary w-3.5 h-3.5"></i>
                     <span class="text-sm font-bold text-primary">Верифицирован</span>
                   </div>
                 </div>

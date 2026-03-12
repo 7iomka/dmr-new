@@ -26,20 +26,7 @@
 								кошелька</label>
 							<div
 								class="flex items-center bg-zinc-50 dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 rounded-lg p-2 pl-4 shadow-inner">
-								<svg class="lucide lucide-fingerprint w-4 h-4 text-primary mr-3 opacity-70"
-									xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-									stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-									data-lucide="fingerprint" aria-hidden="true">
-									<path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path>
-									<path d="M14 13.12c0 2.38 0 6.38-1 8.88"></path>
-									<path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"></path>
-									<path d="M2 12a10 10 0 0 1 18-6"></path>
-									<path d="M2 16h.01"></path>
-									<path d="M21.8 16c.2-2 .131-5.354 0-6"></path>
-									<path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"></path>
-									<path d="M8.65 22c.21-.66.45-1.32.57-2"></path>
-									<path d="M9 6.8a6 6 0 0 1 9 5.2v2"></path>
-								</svg>
+								<i data-lucide="fingerprint" class="w-4 h-4 text-primary mr-3 opacity-70" aria-hidden="true"></i>
 								<code
 									class="text-[12px] sm:text-[13px] font-bold text-zinc-800 dark:text-zinc-200 flex-1 font-mono tracking-tight truncate">bb8623ef-3902-4937-95e5-1e64fc6f79c4</code>
 								<?= copyButton([
@@ -65,37 +52,19 @@
 							<div class="grid grid-cols-2 sm:flex flex-wrap gap-3">
 								<a href="deposit.php"
 									class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 btn-primary text-[11px] font-bold rounded-lg shadow-lg shadow-primary-500/20 uppercase tracking-widest">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-										stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-										data-lucide="plus-circle" aria-hidden="true" class="lucide lucide-plus-circle w-4 h-4">
-										<circle cx="12" cy="12" r="10"></circle>
-										<path d="M8 12h8"></path>
-										<path d="M12 8v8"></path>
-									</svg>
+									<i data-lucide="plus-circle" class="w-4 h-4" aria-hidden="true"></i>
 									<span>Пополнить</span>
 								</a>
 
 								<button
 									class="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-										stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-										data-lucide="send" aria-hidden="true" class="lucide lucide-send w-4 h-4">
-										<path
-											d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
-										</path>
-										<path d="m21.854 2.147-10.94 10.939"></path>
-									</svg>
+									<i data-lucide="send" class="w-4 h-4" aria-hidden="true"></i>
 									<span>Перевести</span>
 								</button>
 
 								<a href="withdraw.php"
 									class="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-										stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-										data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right w-4 h-4">
-										<path d="M7 7h10v10"></path>
-										<path d="M7 17 17 7"></path>
-									</svg>
+									<i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
 									<span>Вывести</span>
 								</a>
 							</div>
@@ -129,113 +98,65 @@
 												<th
 													class="c-sortable-th whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
 													Сумма
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 
 												<th
 													class="c-sortable-th whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
 													Валюта
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 
 												<th
 													class="c-sortable-th whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
 													Провайдер
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 
 												<th
 													class="c-sortable-th whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
 													Метод оплаты
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 
 												<th
 													class="c-sortable-th whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
 													Статус
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 
 												<th
 													class="c-sortable-th whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
 													Детали оплаты
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 
 												<th
 													class="c-sortable-th whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
 													Дата создания
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 
 												<th
 													class="c-sortable-th whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
 													Дата завершения
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 											</tr>
 										</thead>
@@ -318,13 +239,7 @@
 											<div class="flex items-center gap-3 min-w-0">
 												<div
 													class="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-500">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="zap" aria-hidden="true" class="lucide lucide-zap w-5 h-5">
-														<path
-															d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
-														</path>
-													</svg>
+													<i data-lucide="zap" class="w-5 h-5" aria-hidden="true"></i>
 												</div>
 												<div class="min-w-0">
 													<p class="text-[13px] font-bold dark:text-white uppercase tracking-tight truncate">INTERNAL
@@ -337,12 +252,8 @@
 												<div
 													class="flex items-center justify-end text-[9px] text-zinc-400 uppercase font-bold tracking-tighter">
 													<span>Детали</span>
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="chevron-down" aria-hidden="true"
-														class="lucide lucide-chevron-down w-3 h-3 ml-1 c-card-chevron">
-														<path d="m6 9 6 6 6-6"></path>
-													</svg>
+													<i data-lucide="chevron-down" class="w-3 h-3 ml-1 c-card-chevron"
+														aria-hidden="true"></i>
 												</div>
 											</div>
 										</div>
@@ -384,13 +295,7 @@
 										<div class="p-4 flex items-center justify-between">
 											<div class="flex items-center gap-3 min-w-0">
 												<div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="alert-circle" aria-hidden="true" class="lucide lucide-alert-circle w-5 h-5">
-														<circle cx="12" cy="12" r="10"></circle>
-														<line x1="12" x2="12" y1="8" y2="12"></line>
-														<line x1="12" x2="12.01" y1="16" y2="16"></line>
-													</svg>
+													<i data-lucide="circle-alert" class="w-5 h-5" aria-hidden="true"></i>
 												</div>
 												<div class="min-w-0">
 													<p class="text-[13px] font-bold dark:text-white uppercase tracking-tight truncate">MERCHANT_RU
@@ -403,12 +308,8 @@
 												<div
 													class="flex items-center justify-end text-[9px] text-zinc-400 uppercase font-bold tracking-tighter">
 													<span>Детали</span>
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="chevron-down" aria-hidden="true"
-														class="lucide lucide-chevron-down w-3 h-3 ml-1 c-card-chevron">
-														<path d="m6 9 6 6 6-6"></path>
-													</svg>
+													<i data-lucide="chevron-down" class="w-3 h-3 ml-1 c-card-chevron"
+														aria-hidden="true"></i>
 												</div>
 											</div>
 										</div>
@@ -450,11 +351,7 @@
 									<div class="flex items-center gap-2">
 										<button
 											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-												stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-												data-lucide="chevron-left" aria-hidden="true" class="lucide lucide-chevron-left w-4 h-4">
-												<path d="m15 18-6-6 6-6"></path>
-											</svg>
+											<i data-lucide="chevron-left" class="w-4 h-4" aria-hidden="true"></i>
 										</button>
 										<button
 											class="w-8 h-8 flex items-center justify-center rounded btn-primary text-[10px] font-bold">1</button>
@@ -464,11 +361,7 @@
 											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors">3</button>
 										<button
 											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-												stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-												data-lucide="chevron-right" aria-hidden="true" class="lucide lucide-chevron-right w-4 h-4">
-												<path d="m9 18 6-6-6-6"></path>
-											</svg>
+											<i data-lucide="chevron-right" class="w-4 h-4" aria-hidden="true"></i>
 										</button>
 									</div>
 								</div>
@@ -484,93 +377,51 @@
 												<th
 													class="c-sortable-th card-body-inset-x py-4 text-[9px] font-bold uppercase whitespace-nowrap tracking-widest">
 													Тип
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 												<th
 													class="c-sortable-th card-body-inset-x py-4 text-[9px] font-bold uppercase whitespace-nowrap tracking-widest">
 													Сумма
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 												<th
 													class="c-sortable-th card-body-inset-x py-4 text-[9px] font-bold uppercase whitespace-nowrap tracking-widest">
 													Баланс после
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 												<th
 													class="c-sortable-th card-body-inset-x py-4 text-[9px] font-bold uppercase whitespace-nowrap tracking-widest">
 													Валюта
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 												<th
 													class="c-sortable-th card-body-inset-x py-4 text-[9px] font-bold uppercase whitespace-nowrap tracking-widest">
 													Тип ссылки
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 												<th
 													class="c-sortable-th card-body-inset-x py-4 text-[9px] font-bold uppercase whitespace-nowrap tracking-widest">
 													Описание
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 												<th
 													class="c-sortable-th card-body-inset-x py-4 text-[9px] font-bold uppercase whitespace-nowrap tracking-widest">
 													Дата
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-down" aria-hidden="true"
-														class="lucide lucide-arrow-up-down c-sort-icon inline w-3 h-3 ml-1 opacity-50">
-														<path d="m21 16-4 4-4-4"></path>
-														<path d="M17 20V4"></path>
-														<path d="m3 8 4-4 4 4"></path>
-														<path d="M7 4v16"></path>
-													</svg>
+													<i data-lucide="arrow-up-down"
+														class="c-sort-icon inline w-3 h-3 ml-1 opacity-50"
+														aria-hidden="true"></i>
 												</th>
 											</tr>
 										</thead>
@@ -653,13 +504,7 @@
 											<div class="flex items-center gap-3 min-w-0">
 												<div
 													class="w-10 h-10 rounded-full bg-primary-500/10 flex items-center justify-center text-primary-500">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-down-left" aria-hidden="true"
-														class="lucide lucide-arrow-down-left w-5 h-5">
-														<path d="M17 7 7 17"></path>
-														<path d="M17 17H7V7"></path>
-													</svg>
+													<i data-lucide="arrow-down-left" class="w-5 h-5" aria-hidden="true"></i>
 												</div>
 												<div class="min-w-0">
 													<p class="text-[13px] font-bold dark:text-white truncate">Пополнение счета</p>
@@ -671,12 +516,8 @@
 												<div
 													class="flex items-center justify-end text-[9px] text-zinc-400 uppercase font-bold tracking-tighter">
 													<span>Детали</span>
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="chevron-down" aria-hidden="true"
-														class="lucide lucide-chevron-down w-3 h-3 ml-1 c-card-chevron">
-														<path d="m6 9 6 6 6-6"></path>
-													</svg>
+													<i data-lucide="chevron-down" class="w-3 h-3 ml-1 c-card-chevron"
+														aria-hidden="true"></i>
 												</div>
 											</div>
 										</div>
@@ -715,13 +556,7 @@
 										<div class="p-4 flex items-center justify-between">
 											<div class="flex items-center gap-3 min-w-0">
 												<div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="arrow-up-right" aria-hidden="true"
-														class="lucide lucide-arrow-up-right w-5 h-5">
-														<path d="M7 7h10v10"></path>
-														<path d="M7 17 17 7"></path>
-													</svg>
+													<i data-lucide="arrow-up-right" class="w-5 h-5" aria-hidden="true"></i>
 												</div>
 												<div class="min-w-0">
 													<p class="text-[13px] font-bold dark:text-white truncate">Вывод средств</p>
@@ -733,12 +568,8 @@
 												<div
 													class="flex items-center justify-end text-[9px] text-zinc-400 uppercase font-bold tracking-tighter">
 													<span>Детали</span>
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-														stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-														data-lucide="chevron-down" aria-hidden="true"
-														class="lucide lucide-chevron-down w-3 h-3 ml-1 c-card-chevron">
-														<path d="m6 9 6 6 6-6"></path>
-													</svg>
+													<i data-lucide="chevron-down" class="w-3 h-3 ml-1 c-card-chevron"
+														aria-hidden="true"></i>
 												</div>
 											</div>
 										</div>
@@ -782,11 +613,7 @@
 									<div class="flex items-center gap-2">
 										<button
 											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-												stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-												data-lucide="chevron-left" aria-hidden="true" class="lucide lucide-chevron-left w-4 h-4">
-												<path d="m15 18-6-6 6-6"></path>
-											</svg>
+											<i data-lucide="chevron-left" class="w-4 h-4" aria-hidden="true"></i>
 										</button>
 										<button
 											class="w-8 h-8 flex items-center justify-center rounded btn-primary text-[10px] font-bold">1</button>
@@ -796,11 +623,7 @@
 											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors">3</button>
 										<button
 											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-												stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-												data-lucide="chevron-right" aria-hidden="true" class="lucide lucide-chevron-right w-4 h-4">
-												<path d="m9 18 6-6-6-6"></path>
-											</svg>
+											<i data-lucide="chevron-right" class="w-4 h-4" aria-hidden="true"></i>
 										</button>
 									</div>
 								</div>
@@ -873,6 +696,12 @@
 		function toggleCard(cardEl) {
 			cardEl.classList.toggle('card-open');
 		}
+
+		document.addEventListener('DOMContentLoaded', () => {
+			if (window.lucide?.createIcons) {
+				window.lucide.createIcons();
+			}
+		});
 	</script>
 
 	<?php include __DIR__ . '/partials/app-shell/index.php'; ?>

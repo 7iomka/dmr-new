@@ -50,12 +50,7 @@
                   <option>2025</option>
                   <option>2024</option>
                 </select>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  aria-hidden="true"
-                  class="lucide lucide-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 w-4 h-4 pointer-events-none">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
+                <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 w-4 h-4 pointer-events-none"></i>
               </div>
 
               <!-- Селект Месяца -->
@@ -66,12 +61,7 @@
                   <option>Ноябрь</option>
                   <option>Октябрь</option>
                 </select>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  aria-hidden="true"
-                  class="lucide lucide-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 w-4 h-4 pointer-events-none">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
+                <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 w-4 h-4 pointer-events-none"></i>
               </div>
             </div>
           </div>

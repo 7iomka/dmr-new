@@ -31,12 +31,7 @@
                   <a href="wallet.html"
                     class="group flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all border border-zinc-200 dark:border-zinc-700">
                     <span class="text-[10px] font-bold text-zinc-600 dark:text-zinc-300 uppercase">Кошелёк</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      data-lucide="chevron-right" aria-hidden="true"
-                      class="lucide lucide-chevron-right w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5">
-                      <path d="m9 18 6-6-6-6"></path>
-                    </svg>
+                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
                   </a>
                 </div>
                 <div class="flex-1 flex flex-col justify-center items-start gap-4">
@@ -47,13 +42,7 @@
                   <div>
                     <a href="deposit.php"
                       class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 btn-primary text-white text-xs font-bold rounded-lg uppercase tracking-widest">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        data-lucide="plus-circle" aria-hidden="true" class="lucide lucide-plus-circle w-4 h-4">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M8 12h8"></path>
-                        <path d="M12 8v8"></path>
-                      </svg>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
                       <span>Пополнить</span>
                     </a>
                   </div>
@@ -72,12 +61,7 @@
                   <a href="partners.php"
                     class="group flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all border border-zinc-200 dark:border-zinc-700">
                     <span class="text-[10px] font-bold text-zinc-600 dark:text-zinc-300 uppercase">Детали</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      data-lucide="chevron-right" aria-hidden="true"
-                      class="lucide lucide-chevron-right w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5">
-                      <path d="m9 18 6-6-6-6"></path>
-                    </svg>
+                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
                   </a>
                 </div>
 
@@ -199,13 +183,7 @@
                             <option value="12" selected>12 месяцев</option>
                             <option value="24">24 месяца</option>
                           </select>
-
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            data-lucide="chevron-down" aria-hidden="true"
-                            class="lucide lucide-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 w-4 h-4 pointer-events-none">
-                            <path d="m6 9 6 6 6-6"></path>
-                          </svg>
+                          <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 w-4 h-4 pointer-events-none"></i>
                         </div>
                       </div>
 
@@ -234,13 +212,7 @@
 
                       <button id="mainBuyButton"
                         class="w-full py-4 btn-primary text-white font-bold rounded-lg active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                          data-lucide="circle-plus" aria-hidden="true" class="lucide lucide-circle-plus w-5 h-5">
-                          <circle cx="12" cy="12" r="10"></circle>
-                          <path d="M8 12h8"></path>
-                          <path d="M12 8v8"></path>
-                        </svg>
+                        <i data-lucide="circle-plus" class="w-5 h-5"></i>
                         <span id="buttonText">Купить 132 806 долей за 504 $</span>
                       </button>
                     </div>
@@ -310,12 +282,7 @@
                           class="group flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all border border-zinc-200 dark:border-zinc-700">
                           <span
                             class="text-[10px] font-bold text-zinc-600 dark:text-zinc-300 uppercase">Управление</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            data-lucide="chevron-right" aria-hidden="true"
-                            class="lucide lucide-chevron-right w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5">
-                            <path d="m9 18 6-6-6-6"></path>
-                          </svg>
+                          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
                         </a>
                       </div>
 
@@ -352,13 +319,7 @@
                             class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-red-500 hover:bg-red-600 text-white transition-all shadow-lg shadow-red-500/20 active:scale-[0.98]">
                             <span class="text-[10px] font-bold uppercase">Оплатить
                               сейчас</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round" data-lucide="credit-card" aria-hidden="true"
-                              class="lucide lucide-credit-card w-3.5 h-3.5">
-                              <rect width="20" height="14" x="2" y="5" rx="2"></rect>
-                              <line x1="2" x2="22" y1="10" y2="10"></line>
-                            </svg>
+                            <i data-lucide="credit-card" class="w-3.5 h-3.5"></i>
                           </a>
                         </div>
 
@@ -421,7 +382,7 @@
           </div>
 
           <!-- История цен -->
-          <div class="w-full flex-shrink-0">
+          <div class="w-full shrink-0">
             <div class="card js-tabs-container">
               <div class="card-header">
                 <h3 class="text-sm font-bold uppercase tracking-wide text-zinc-900 dark:text-white">

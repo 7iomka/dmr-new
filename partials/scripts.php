@@ -1,5 +1,7 @@
 	<script>
-		lucide.createIcons();
+		lucide.createIcons({
+			inTemplates: true
+		});
 
 		const SIDEBAR_STATE_KEY = 'sidebar-mode';
 
@@ -290,7 +292,9 @@
 					}
 					if (e.key === 'ArrowDown') {
 						e.preventDefault();
-						openDropdown({ focusPanel: true });
+						openDropdown({
+							focusPanel: true
+						});
 					}
 				});
 
@@ -344,21 +348,90 @@
 
 			const languageInstance = instances.get('language-menu');
 			if (languageInstance) {
-				const languages = [
-					{ code: 'EN', nativeLabel: 'English', englishLabel: 'English', flag: '🇺🇸' },
-					{ code: 'RU', nativeLabel: 'Русский', englishLabel: 'Russian', flag: '🇷🇺' },
-					{ code: 'HI', nativeLabel: 'हिन्दी', englishLabel: 'Hindi', flag: '🇮🇳' },
-					{ code: 'VI', nativeLabel: 'Tiếng Việt', englishLabel: 'Vietnamese', flag: '🇻🇳' },
-					{ code: 'FR', nativeLabel: 'Français', englishLabel: 'French', flag: '🇫🇷' },
-					{ code: 'AR', nativeLabel: 'العربية', englishLabel: 'Arabic', flag: '🇸🇦' },
-					{ code: 'ES', nativeLabel: 'Español', englishLabel: 'Spanish', flag: '🇪🇸' },
-					{ code: 'KO', nativeLabel: '한국어', englishLabel: 'Korean', flag: '🇰🇷' },
-					{ code: 'JA', nativeLabel: '日本語', englishLabel: 'Japanese', flag: '🇯🇵' },
-					{ code: 'BN', nativeLabel: 'বাংলা', englishLabel: 'Bengali', flag: '🇧🇩' },
-					{ code: 'ZH', nativeLabel: '中文', englishLabel: 'Chinese', flag: '🇨🇳' },
-					{ code: 'PT', nativeLabel: 'Português', englishLabel: 'Portuguese', flag: '🇵🇹' },
-					{ code: 'ID', nativeLabel: 'Bahasa Indonesia', englishLabel: 'Indonesian', flag: '🇮🇩' },
-					{ code: 'RO', nativeLabel: 'Română', englishLabel: 'Romanian', flag: '🇷🇴' },
+				const languages = [{
+						code: 'EN',
+						nativeLabel: 'English',
+						englishLabel: 'English',
+						flag: '🇺🇸'
+					},
+					{
+						code: 'RU',
+						nativeLabel: 'Русский',
+						englishLabel: 'Russian',
+						flag: '🇷🇺'
+					},
+					{
+						code: 'HI',
+						nativeLabel: 'हिन्दी',
+						englishLabel: 'Hindi',
+						flag: '🇮🇳'
+					},
+					{
+						code: 'VI',
+						nativeLabel: 'Tiếng Việt',
+						englishLabel: 'Vietnamese',
+						flag: '🇻🇳'
+					},
+					{
+						code: 'FR',
+						nativeLabel: 'Français',
+						englishLabel: 'French',
+						flag: '🇫🇷'
+					},
+					{
+						code: 'AR',
+						nativeLabel: 'العربية',
+						englishLabel: 'Arabic',
+						flag: '🇸🇦'
+					},
+					{
+						code: 'ES',
+						nativeLabel: 'Español',
+						englishLabel: 'Spanish',
+						flag: '🇪🇸'
+					},
+					{
+						code: 'KO',
+						nativeLabel: '한국어',
+						englishLabel: 'Korean',
+						flag: '🇰🇷'
+					},
+					{
+						code: 'JA',
+						nativeLabel: '日本語',
+						englishLabel: 'Japanese',
+						flag: '🇯🇵'
+					},
+					{
+						code: 'BN',
+						nativeLabel: 'বাংলা',
+						englishLabel: 'Bengali',
+						flag: '🇧🇩'
+					},
+					{
+						code: 'ZH',
+						nativeLabel: '中文',
+						englishLabel: 'Chinese',
+						flag: '🇨🇳'
+					},
+					{
+						code: 'PT',
+						nativeLabel: 'Português',
+						englishLabel: 'Portuguese',
+						flag: '🇵🇹'
+					},
+					{
+						code: 'ID',
+						nativeLabel: 'Bahasa Indonesia',
+						englishLabel: 'Indonesian',
+						flag: '🇮🇩'
+					},
+					{
+						code: 'RO',
+						nativeLabel: 'Română',
+						englishLabel: 'Romanian',
+						flag: '🇷🇴'
+					},
 				];
 
 				const list = languageInstance.panel.querySelector('[data-language-list]');
@@ -400,7 +473,9 @@
 						const option = getOptions()[activeIndex];
 						if (!option) return;
 						option.focus();
-						option.scrollIntoView({ block: 'nearest' });
+						option.scrollIntoView({
+							block: 'nearest'
+						});
 						languageInstance.panel.setAttribute('aria-activedescendant', option.id);
 					}
 
@@ -456,13 +531,17 @@
 					languageInstance.trigger.addEventListener('keydown', (e) => {
 						if (e.key === 'ArrowDown') {
 							e.preventDefault();
-							if (!languageInstance.isOpen()) languageInstance.open({ focusPanel: true });
+							if (!languageInstance.isOpen()) languageInstance.open({
+								focusPanel: true
+							});
 							else moveActive(1);
 							return;
 						}
 						if (e.key === 'ArrowUp') {
 							e.preventDefault();
-							if (!languageInstance.isOpen()) languageInstance.open({ focusPanel: true });
+							if (!languageInstance.isOpen()) languageInstance.open({
+								focusPanel: true
+							});
 							else moveActive(-1);
 						}
 					});

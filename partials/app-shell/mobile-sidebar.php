@@ -8,14 +8,11 @@
         <img class="h-full w-auto hidden dark:block" src="/img/logo-light.svg" alt="Logo">
         <img class="h-full w-auto dark:hidden" src="/img/logo-dark.svg" alt="Logo">
       </a>
+
       <button id="mobile-sidebar-close"
-        class="ml-auto p-2 rounded-lg text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+        class="ml-auto p-1.5 rounded-lg text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
         aria-label="Close sidebar">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 6 6 18"></path>
-          <path d="m6 6 12 12"></path>
-        </svg>
+        <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
 

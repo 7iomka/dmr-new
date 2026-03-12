@@ -19,10 +19,8 @@ $newsItem = getDemoNewsItemById($newsId) ?? getDemoNewsItems()[0];
       <div class="page-body">
         <main class="page-main">
           <article class="card-simple mt-4 w-full max-w-[1000px] mx-auto overflow-hidden">
-            <a href="news.php" class="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-700">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="m15 18-6-6 6-6" />
-              </svg>
+            <a href="news.php" class="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-600">
+              <i data-lucide="chevron-left" class="w-4 h-4 -mx-1"></i>
               <span>К списку новостей</span>
             </a>
             <div class="relative aspect-video overflow-hidden rounded-xl">

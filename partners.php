@@ -528,7 +528,9 @@
             function renderUI(shouldScrollToHeader = false) {
                 renderBreadcrumbs();
                 renderContent();
-                lucide.createIcons();
+                lucide.createIcons({
+                    inTemplates: true
+                });
                 updateScrollMasks();
                 scrollToEnd();
                 if (shouldScrollToHeader) checkAndScrollToTop();
