@@ -992,3 +992,447 @@
 			});
 		})();
 	</script>
+
+	<script>
+		(() => {
+			const STORAGE_KEY = 'demo-notifications-v1';
+			const seed = [{
+				id: 'n1',
+				type: 'critical',
+				title: 'Подозрительный вход в аккаунт',
+				message: 'Мы зафиксировали вход с нового устройства. Если это были не вы, срочно смените пароль и включите двухфакторную защиту.',
+				createdAt: '2026-03-12T10:20:00.000Z',
+				isRead: false,
+			}, {
+				id: 'n2',
+				type: 'warning',
+				title: 'Рассрочка скоро завершится',
+				message: 'По заявке #4829 осталось 3 дня до следующего платежа. Проверьте баланс, чтобы избежать задержки.',
+				createdAt: '2026-03-11T16:00:00.000Z',
+				isRead: false,
+			}, {
+				id: 'n3',
+				type: 'info',
+				title: 'Пополнение успешно завершено',
+				message: 'Баланс пополнен на 500 USD через STRIPE. Средства уже доступны в кошельке.',
+				createdAt: '2026-03-11T08:40:00.000Z',
+				isRead: true,
+			}, {
+				id: 'n4',
+				type: 'info',
+				title: 'Новый реферал зарегистрирован',
+				message: 'Пользователь по вашей ссылке успешно завершил регистрацию и пополнил счёт.',
+				createdAt: '2026-03-10T14:30:00.000Z',
+				isRead: false,
+			}, {
+				id: 'n5',
+				type: 'warning',
+				title: 'Серверные работы в воскресенье',
+				message: 'В воскресенье с 02:00 до 04:00 UTC будут технические работы. Часть операций может выполняться с задержкой.',
+				createdAt: '2026-03-09T09:15:00.000Z',
+				isRead: true,
+			}];
+
+			const typeMap = {
+				info: { label: 'Info', icon: 'info', iconClass: 'text-sky-600 dark:text-sky-300', wrapClass: 'bg-sky-500/10 dark:bg-sky-400/10', chipClass: 'bg-sky-500/10 text-sky-600 dark:text-sky-300' },
+				warning: { label: 'Warning', icon: 'alert-triangle', iconClass: 'text-amber-600 dark:text-amber-300', wrapClass: 'bg-amber-500/10 dark:bg-amber-400/10', chipClass: 'bg-amber-500/10 text-amber-700 dark:text-amber-300' },
+				critical: { label: 'Critical', icon: 'octagon-alert', iconClass: 'text-red-600 dark:text-red-300', wrapClass: 'bg-red-500/10 dark:bg-red-400/10', chipClass: 'bg-red-500/10 text-red-600 dark:text-red-300' },
+			};
+			const defaultSort = 'date_desc';
+			const sortOptions = [{ value: 'date_desc', label: 'Новые' }, { value: 'date_asc', label: 'Старые' }, { value: 'unread_first', label: 'Непрочитанные' }, { value: 'read_first', label: 'Прочитанные' }];
+
+			const escapeHtml = (v) => String(v).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
+			const relDate = (iso) => {
+				const d = new Date(iso);
+				const diff = Date.now() - d.getTime();
+				const hours = Math.floor(diff / 3600000);
+				if (hours < 1) return 'только что';
+				if (hours < 24) return `${hours} ч назад`;
+				const days = Math.floor(hours / 24);
+				if (days < 7) return `${days} д назад`;
+				return d.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' });
+			};
+			const fullDate = (iso) => new Date(iso).toLocaleString('ru-RU', { day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+			const isMobile = () => window.innerWidth < 1024;
+
+			function loadItems() {
+				try {
+					const raw = localStorage.getItem(STORAGE_KEY);
+					return raw ? JSON.parse(raw) : [...seed];
+				} catch {
+					return [...seed];
+				}
+			}
+
+			let items = loadItems();
+			const state = { pageType: 'all', sort: defaultSort, search: '', selectedId: null, selectedBulk: new Set(), selectMode: false };
+			let drawerOverlay = null;
+
+			const drawer = {
+				trigger: document.querySelector('[data-notifications-trigger]'),
+				drawer: document.querySelector('[data-notifications-drawer]'),
+				list: document.querySelector('[data-notifications-drawer-list]'),
+				count: document.querySelector('[data-notifications-drawer-count]'),
+				dot: document.querySelector('[data-notifications-dot]'),
+				badge: document.querySelector('[data-notifications-badge]'),
+				close: document.querySelector('[data-notifications-close]'),
+				label: document.querySelector('[data-notifications-unread-label]'),
+				isOpen: false,
+				lastFocused: null,
+			};
+
+			const page = {
+				root: document.querySelector('[data-notifications-page]'),
+				shell: document.querySelector('.notifications-page-shell'),
+				listPanel: document.querySelector('[data-notifications-list-panel]'),
+				detailPanel: document.querySelector('[data-notifications-detail-panel]'),
+				list: document.querySelector('[data-notifications-page-list]'),
+				detail: document.querySelector('[data-notifications-detail]'),
+				search: document.querySelector('[data-notifications-search]'),
+				bulkbar: document.querySelector('[data-notifications-bulkbar]'),
+				counter: document.querySelector('[data-notifications-selected-counter]'),
+				back: document.querySelector('[data-notifications-back]'),
+				sortTrigger: document.querySelector('[data-notifications-sort-trigger]'),
+				selectModeToggle: document.querySelector('[data-notifications-select-mode-toggle]'),
+				selectCount: document.querySelector('[data-notifications-select-count]'),
+			};
+
+			const persist = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+			const unreadCount = () => items.filter((n) => !n.isRead).length;
+			const byId = (id) => items.find((n) => n.id === id);
+			const saveRender = () => { persist(); renderAll(); };
+
+				const preselectedNotificationId = new URLSearchParams(window.location.search).get('notification');
+				if (preselectedNotificationId && byId(preselectedNotificationId)) {
+					state.selectedId = preselectedNotificationId;
+					const target = byId(preselectedNotificationId);
+					if (target && !target.isRead) {
+						target.isRead = true;
+						persist();
+					}
+				}
+
+			function filterAndSort({ type = 'all', onlyUnread = false, search = '', sort = defaultSort } = {}) {
+				let rows = items.filter((row) => (type === 'all' ? true : row.type === type));
+				if (onlyUnread) rows = rows.filter((row) => !row.isRead);
+				if (search.trim()) {
+					const q = search.trim().toLowerCase();
+					rows = rows.filter((row) => `${row.title} ${row.message}`.toLowerCase().includes(q));
+				}
+				rows.sort((a, b) => {
+					if (sort === 'unread_first') {
+						const delta = Number(a.isRead) - Number(b.isRead);
+						if (delta !== 0) return delta;
+					}
+					if (sort === 'read_first') {
+						const delta = Number(b.isRead) - Number(a.isRead);
+						if (delta !== 0) return delta;
+					}
+					return sort === 'date_asc'
+						? new Date(a.createdAt) - new Date(b.createdAt)
+						: new Date(b.createdAt) - new Date(a.createdAt);
+				});
+				return rows;
+			}
+
+			function ensureDrawerOverlay() {
+				if (drawerOverlay?.isConnected) return drawerOverlay;
+				drawerOverlay = document.createElement('div');
+				drawerOverlay.className = 'overlay fixed inset-0 z-[1090] notifications-drawer-overlay';
+				drawerOverlay.setAttribute('aria-hidden', 'true');
+				document.body.appendChild(drawerOverlay);
+				drawerOverlay.addEventListener('click', closeDrawer);
+				return drawerOverlay;
+			}
+
+			function openDrawer() {
+				if (!drawer.drawer || drawer.isOpen) return;
+				drawer.isOpen = true;
+				drawer.lastFocused = document.activeElement;
+				drawer.drawer.classList.add('active');
+				drawer.trigger?.setAttribute('aria-expanded', 'true');
+				drawer.trigger?.classList.add('bg-primary-100', 'dark:bg-primary-900/35', 'text-primary-700', 'dark:text-primary-200', 'border-primary-300', 'dark:border-primary-700/60');
+				document.body.style.overflow = 'hidden';
+				const ov = ensureDrawerOverlay();
+				requestAnimationFrame(() => ov.classList.add('active'));
+				setTimeout(() => drawer.drawer.focus(), 0);
+			}
+
+			function closeDrawer() {
+				if (!drawer.isOpen) return;
+				drawer.isOpen = false;
+				drawer.drawer?.classList.remove('active');
+				drawer.trigger?.setAttribute('aria-expanded', 'false');
+				drawer.trigger?.classList.remove('bg-primary-100', 'dark:bg-primary-900/35', 'text-primary-700', 'dark:text-primary-200', 'border-primary-300', 'dark:border-primary-700/60');
+				document.body.style.overflow = '';
+				if (drawerOverlay) {
+					drawerOverlay.classList.remove('active');
+					drawerOverlay.remove();
+				}
+				drawer.lastFocused?.focus?.();
+			}
+
+			function renderDrawer() {
+				if (!drawer.list) return;
+				const rows = filterAndSort({ sort: 'date_desc' }).slice(0, 10);
+				if (!rows.length) {
+					drawer.list.innerHTML = `<div class="notifications-empty"><i data-lucide="bell" class="w-8 h-8 opacity-50"></i><p class="text-sm font-semibold">Здесь пока пусто</p><p class="text-xs">Новые уведомления появятся автоматически.</p></div>`;
+				} else {
+					drawer.list.innerHTML = rows.map((n) => {
+						const t = typeMap[n.type];
+						return `<article class="notifications-item ${n.isRead ? '' : 'is-unread'}"><div class="flex items-start gap-3"><div class="notifications-icon-wrap ${t.wrapClass}"><i data-lucide="${t.icon}" class="w-4 h-4 ${t.iconClass}"></i></div><div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="notifications-item-title">${escapeHtml(n.title)}</h3><span class="notifications-unread-dot" aria-hidden="true"></span></div><p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">${escapeHtml(n.message)}</p><div class="mt-2 flex items-center justify-between gap-2"><span class="text-[11px] text-zinc-500 whitespace-nowrap">${relDate(n.createdAt)}</span><a href="/notifications.php?notification=${encodeURIComponent(n.id)}" class="btn-secondary text-[11px] font-semibold px-2.5 py-1.5 inline-flex items-center gap-1.5" data-drawer-go><span>Перейти</span><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a></div></div></div></article>`;
+					}).join('');
+				}
+				const un = unreadCount();
+				if (drawer.count) drawer.count.textContent = `Непрочитанных: ${un} · Показаны последние 10`;
+				drawer.dot?.classList.toggle('hidden', un === 0);
+				drawer.badge?.classList.toggle('hidden', un === 0);
+				if (drawer.badge) drawer.badge.textContent = String(un);
+				if (drawer.label) drawer.label.textContent = `Непрочитанных: ${un}`;
+			}
+
+			function openDetailOnMobile() {
+				if (!page.shell || !isMobile()) return;
+				page.shell.classList.add('mobile-detail-open');
+				page.listPanel?.classList.add('hidden');
+				page.detailPanel?.classList.remove('hidden');
+				page.detailPanel?.classList.add('flex');
+			}
+
+			function closeDetailOnMobile() {
+				if (!page.shell || !isMobile()) return;
+				page.shell.classList.remove('mobile-detail-open');
+				page.listPanel?.classList.remove('hidden');
+				page.detailPanel?.classList.add('hidden');
+				page.detailPanel?.classList.remove('flex');
+			}
+
+			function renderPage() {
+				if (!page.root || !page.list || !page.detail) return;
+				const rows = filterAndSort({ type: state.pageType, search: state.search, sort: state.sort });
+				if (!rows.length) {
+					page.list.innerHTML = `<div class="notifications-empty"><i data-lucide="search-x" class="w-8 h-8 opacity-50"></i><p class="text-sm font-semibold">Ничего не найдено</p><p class="text-xs">Попробуйте сбросить фильтры или изменить запрос.</p></div>`;
+				} else {
+					page.list.innerHTML = rows.map((n) => {
+						const t = typeMap[n.type];
+						const checked = state.selectedBulk.has(n.id);
+						return `<article class="notifications-item ${n.isRead ? '' : 'is-unread'} ${state.selectedId === n.id ? 'is-selected' : ''}" data-page-id="${n.id}" role="button" tabindex="0"><div class="flex items-start gap-3"><div class="notifications-item-leading"><div class="notifications-icon-wrap ${t.wrapClass}"><i data-lucide="${t.icon}" class="w-4 h-4 ${t.iconClass}"></i></div><input type="checkbox" ${checked ? 'checked' : ''} class="notifications-checkbox notifications-item-select" data-bulk-checkbox="${n.id}" aria-label="Выбрать уведомление"></div><div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="notifications-item-title">${escapeHtml(n.title)}</h3><span class="notifications-unread-dot" aria-hidden="true"></span></div><p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">${escapeHtml(n.message)}</p><div class="mt-1.5 flex items-center gap-2 text-[11px] text-zinc-500"><span class="truncate">${t.label}</span><span>•</span><span class="whitespace-nowrap">${relDate(n.createdAt)}</span></div></div></div></article>`;
+					}).join('');
+				}
+
+				const active = byId(state.selectedId);
+				if (!active) {
+					page.detail.innerHTML = `<div class="notifications-empty min-h-[360px]"><i data-lucide="bell-ring" class="w-10 h-10 opacity-50"></i><p class="text-base font-bold text-zinc-700 dark:text-zinc-200">Выберите уведомление</p><p class="text-sm">Откройте элемент из списка, чтобы посмотреть полные детали.</p></div>`;
+				} else {
+					const t = typeMap[active.type];
+					page.detail.innerHTML = `<article class="space-y-4"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold ${t.chipClass}"><i data-lucide="${t.icon}" class="w-3.5 h-3.5"></i>${t.label}</span><h2 class="text-xl font-bold text-zinc-900 dark:text-zinc-100">${escapeHtml(active.title)}</h2><p class="text-xs font-semibold uppercase tracking-widest text-zinc-500">${fullDate(active.createdAt)}</p><div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 p-4 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">${escapeHtml(active.message)}</div></article>`;
+				}
+
+				const selectedCount = state.selectedBulk.size;
+				if (page.bulkbar) page.bulkbar.classList.toggle('hidden', selectedCount === 0);
+				if (page.counter) page.counter.textContent = `Выбрано: ${selectedCount}`;
+				if (page.sortTrigger) {
+					const isCustom = state.sort !== defaultSort;
+					page.sortTrigger.classList.toggle('text-primary-700', isCustom);
+					page.sortTrigger.classList.toggle('dark:text-primary-300', isCustom);
+					page.sortTrigger.classList.toggle('bg-primary-100', isCustom);
+					page.sortTrigger.classList.toggle('dark:bg-primary-900/35', isCustom);
+					page.sortTrigger.classList.toggle('border-primary-300', isCustom);
+					page.sortTrigger.classList.toggle('dark:border-primary-700/60', isCustom);
+				}
+				if (page.selectModeToggle) {
+					const active = state.selectMode;
+					page.selectModeToggle.setAttribute('aria-pressed', active ? 'true' : 'false');
+					page.selectModeToggle.classList.toggle('bg-primary-100', active);
+					page.selectModeToggle.classList.toggle('dark:bg-primary-900/35', active);
+					page.selectModeToggle.classList.toggle('text-primary-700', active);
+					page.selectModeToggle.classList.toggle('dark:text-primary-200', active);
+					page.selectModeToggle.classList.toggle('border-primary-300', active);
+					page.selectModeToggle.classList.toggle('dark:border-primary-700/60', active);
+				}
+				if (page.selectCount) page.selectCount.textContent = String(selectedCount);
+			}
+
+			function renderAll() {
+				renderDrawer();
+				renderPage();
+				lucide.createIcons({ inTemplates: true });
+			}
+
+			function initSortDropdown() {
+				if (!page.root || !window.AppDropdown) return false;
+				const instance = window.AppDropdown.get('notifications-sort');
+				if (!instance) return false;
+				const panel = instance.panel;
+				const list = panel.querySelector('[data-notifications-sort-list]');
+				const tplNode = document.getElementById('tpl-notifications-sort-option');
+				const template = tplNode?.innerHTML || '';
+				if (!list || !template) return false;
+
+				const render = () => {
+					list.innerHTML = sortOptions.map((opt) => template.replace('{{value}}', opt.value).replace('{{label}}', opt.label)).join('');
+					list.querySelectorAll('[data-sort-option]').forEach((el) => {
+						const active = el.dataset.sortOption === state.sort;
+						el.classList.toggle('is-selected', active);
+						el.querySelector('[data-sort-check]')?.classList.toggle('hidden', !active);
+						el.addEventListener('click', () => {
+							state.sort = el.dataset.sortOption;
+							renderPage();
+							render();
+							instance.close(true);
+							lucide.createIcons({ inTemplates: true });
+						});
+					});
+					lucide.createIcons({ inTemplates: true });
+				};
+
+				render();
+				return true;
+			}
+
+
+			function initSortDropdownWhenReady() {
+				if (initSortDropdown()) return;
+				let attempts = 0;
+				const timer = setInterval(() => {
+					attempts += 1;
+					if (initSortDropdown() || attempts > 40) clearInterval(timer);
+				}, 100);
+			}
+
+
+			function bindDrawer() {
+				if (!drawer.trigger || !drawer.drawer || !drawer.list) return;
+				const focusables = () => drawer.drawer.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+				drawer.trigger.addEventListener('click', () => drawer.isOpen ? closeDrawer() : openDrawer());
+				drawer.close?.addEventListener('click', closeDrawer);
+				document.addEventListener('keydown', (e) => {
+					if (!drawer.isOpen) return;
+					if (e.key === 'Escape') return closeDrawer();
+					if (e.key !== 'Tab') return;
+					const list = Array.from(focusables()).filter((el) => !el.hasAttribute('disabled'));
+					if (!list.length) return;
+					const first = list[0];
+					const last = list[list.length - 1];
+					if (e.shiftKey && document.activeElement === first) {
+						e.preventDefault();
+						last.focus();
+					} else if (!e.shiftKey && document.activeElement === last) {
+						e.preventDefault();
+						first.focus();
+					}
+				});
+				drawer.list.addEventListener('click', (e) => {
+					const go = e.target.closest('[data-drawer-go]');
+					if (!go) return;
+					e.preventDefault();
+					window.location.href = go.getAttribute('href');
+				});
+			}
+
+			function bindPage() {
+				if (!page.root || !page.list) return;
+				page.search?.addEventListener('input', () => {
+					state.search = page.search.value;
+					renderPage();
+					lucide.createIcons({ inTemplates: true });
+				});
+				page.root.querySelectorAll('[data-type-filter]').forEach((btn) => btn.addEventListener('click', () => {
+					state.pageType = btn.dataset.typeFilter;
+					page.root.querySelectorAll('[data-type-filter]').forEach((node) => node.classList.toggle('is-active', node === btn));
+					renderPage();
+					lucide.createIcons({ inTemplates: true });
+				}));
+				page.list.addEventListener('click', (e) => {
+					const checkbox = e.target.closest('[data-bulk-checkbox]');
+					if (checkbox) {
+						e.stopPropagation();
+						const id = checkbox.dataset.bulkCheckbox;
+						if (checkbox.checked) state.selectedBulk.add(id);
+						else state.selectedBulk.delete(id);
+						renderPage();
+						lucide.createIcons({ inTemplates: true });
+						return;
+					}
+					const row = e.target.closest('[data-page-id]');
+					if (!row) return;
+					const id = row.dataset.pageId;
+					if (state.selectMode) {
+						if (state.selectedBulk.has(id)) state.selectedBulk.delete(id);
+						else state.selectedBulk.add(id);
+						renderPage();
+						lucide.createIcons({ inTemplates: true });
+						return;
+					}
+					state.selectedId = id;
+					const target = byId(id);
+					if (target) target.isRead = true;
+					saveRender();
+					openDetailOnMobile();
+				});
+				page.list.addEventListener('keydown', (e) => {
+					const row = e.target.closest('[data-page-id]');
+					if (!row) return;
+					if (e.key !== 'Enter' && e.key !== ' ') return;
+					e.preventDefault();
+					row.click();
+				});
+
+				page.selectModeToggle?.addEventListener('click', () => {
+					state.selectMode = !state.selectMode;
+					if (state.selectMode) closeDetailOnMobile();
+					if (!state.selectMode) state.selectedBulk.clear();
+					page.shell?.classList.toggle('select-mode', state.selectMode);
+					renderPage();
+					lucide.createIcons({ inTemplates: true });
+				});
+
+				page.back?.addEventListener('click', closeDetailOnMobile);
+				page.bulkbar?.addEventListener('click', (e) => {
+					const btn = e.target.closest('[data-bulk-action]');
+					if (!btn || !state.selectedBulk.size) return;
+					if (btn.dataset.bulkAction === 'delete') items = items.filter((row) => !state.selectedBulk.has(row.id));
+					if (btn.dataset.bulkAction === 'read') items = items.map((row) => state.selectedBulk.has(row.id) ? { ...row, isRead: true } : row);
+					if (btn.dataset.bulkAction === 'unread') items = items.map((row) => state.selectedBulk.has(row.id) ? { ...row, isRead: false } : row);
+					state.selectedBulk.clear();
+					state.selectMode = false;
+					page.shell?.classList.remove('select-mode');
+					saveRender();
+				});
+				const syncResponsivePanels = () => {
+					if (!page.shell) return;
+					if (!isMobile()) {
+						page.shell.classList.remove('mobile-detail-open');
+						page.shell.classList.toggle('select-mode', state.selectMode);
+						page.listPanel?.classList.remove('hidden');
+						page.detailPanel?.classList.remove('hidden');
+						page.detailPanel?.classList.add('flex');
+						renderPage();
+						lucide.createIcons({ inTemplates: true });
+						return;
+					}
+
+					page.shell.classList.toggle('select-mode', state.selectMode);
+					const isDetailOpen = page.shell.classList.contains('mobile-detail-open');
+					if (isDetailOpen) {
+						page.listPanel?.classList.add('hidden');
+						page.detailPanel?.classList.remove('hidden');
+						page.detailPanel?.classList.add('flex');
+					} else {
+						page.listPanel?.classList.remove('hidden');
+						page.detailPanel?.classList.add('hidden');
+						page.detailPanel?.classList.remove('flex');
+					}
+				};
+
+				syncResponsivePanels();
+				window.addEventListener('resize', syncResponsivePanels);
+			}
+
+			bindDrawer();
+			bindPage();
+			renderAll();
+			initSortDropdownWhenReady();
+		})();
+	</script>
+
