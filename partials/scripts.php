@@ -1071,13 +1071,6 @@
 				label: 'Прочитанные'
 			}];
 
-			const escapeHtml = (v) => String(v).replace(/[&<>"']/g, (ch) => ({
-				'&': '&amp;',
-				'<': '&lt;',
-				'>': '&gt;',
-				'"': '&quot;',
-				"'": '&#39;'
-			})[ch]);
 			const relDate = (iso) => {
 				const d = new Date(iso);
 				const diff = Date.now() - d.getTime();
@@ -1155,6 +1148,10 @@
 			const saveRender = () => {
 				persist();
 				renderAll();
+			};
+			const cloneTemplate = (id) => {
+				const tpl = document.getElementById(id);
+				return tpl?.content?.firstElementChild?.cloneNode(true) || null;
 			};
 
 			const preselectedNotificationId = new URLSearchParams(window.location.search).get('notification');
@@ -1237,13 +1234,36 @@
 				const rows = filterAndSort({
 					sort: 'date_desc'
 				}).slice(0, 10);
+				drawer.list.replaceChildren();
 				if (!rows.length) {
-					drawer.list.innerHTML = `<div class="notifications-empty"><i data-lucide="bell" class="w-8 h-8 opacity-50"></i><p class="text-sm font-semibold">Здесь пока пусто</p><p class="text-xs">Новые уведомления появятся автоматически.</p></div>`;
+					const emptyNode = cloneTemplate('tpl-notifications-empty');
+					if (emptyNode) {
+						emptyNode.querySelector('[data-empty-icon]')?.setAttribute('data-lucide', 'bell');
+						emptyNode.querySelector('[data-empty-title]')?.replaceChildren(document.createTextNode('Здесь пока пусто'));
+						emptyNode.querySelector('[data-empty-message]')?.replaceChildren(document.createTextNode('Новые уведомления появятся автоматически.'));
+						drawer.list.appendChild(emptyNode);
+					}
 				} else {
-					drawer.list.innerHTML = rows.map((n) => {
+					const fragment = document.createDocumentFragment();
+					rows.forEach((n) => {
 						const t = typeMap[n.type];
-						return `<article class="notifications-item ${n.isRead ? '' : 'is-unread'}"><div class="flex items-start gap-3"><div class="notifications-icon-wrap ${t.wrapClass}"><i data-lucide="${t.icon}" class="w-4 h-4 ${t.iconClass}"></i></div><div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="notifications-item-title">${escapeHtml(n.title)}</h3><span class="notifications-unread-dot" aria-hidden="true"></span></div><p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">${escapeHtml(n.message)}</p><div class="mt-2 flex items-center justify-between gap-2"><span class="text-[11px] text-zinc-500 whitespace-nowrap">${relDate(n.createdAt)}</span><a href="/notifications.php?notification=${encodeURIComponent(n.id)}" class="btn-secondary text-[11px] font-semibold px-2.5 py-1.5 inline-flex items-center gap-1.5" data-drawer-go><span>Перейти</span><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a></div></div></div></article>`;
-					}).join('');
+						const item = cloneTemplate('tpl-notifications-drawer-item');
+						if (!item) return;
+						item.classList.toggle('is-unread', !n.isRead);
+						item.querySelector('[data-item-icon-wrap]')?.classList.add(...t.wrapClass.split(' '));
+						const icon = item.querySelector('[data-item-icon]');
+						if (icon) {
+							icon.setAttribute('data-lucide', t.icon);
+							icon.classList.add(...t.iconClass.split(' '));
+						}
+						item.querySelector('[data-item-title]')?.replaceChildren(document.createTextNode(n.title));
+						item.querySelector('[data-item-message]')?.replaceChildren(document.createTextNode(n.message));
+						item.querySelector('[data-item-date]')?.replaceChildren(document.createTextNode(relDate(n.createdAt)));
+						item.querySelector('[data-drawer-go]')?.setAttribute('href', `/notifications.php?notification=${encodeURIComponent(n.id)}`);
+						item.querySelector('[data-item-unread-dot]')?.classList.toggle('hidden', n.isRead);
+						fragment.appendChild(item);
+					});
+					drawer.list.appendChild(fragment);
 				}
 				const un = unreadCount();
 				if (drawer.count) drawer.count.textContent = `Непрочитанных: ${un} · Показаны последние 10`;
@@ -1276,22 +1296,65 @@
 					search: state.search,
 					sort: state.sort
 				});
+				page.list.replaceChildren();
 				if (!rows.length) {
-					page.list.innerHTML = `<div class="notifications-empty"><i data-lucide="search-x" class="w-8 h-8 opacity-50"></i><p class="text-sm font-semibold">Ничего не найдено</p><p class="text-xs">Попробуйте сбросить фильтры или изменить запрос.</p></div>`;
+					const emptyNode = cloneTemplate('tpl-notifications-empty');
+					if (emptyNode) {
+						emptyNode.querySelector('[data-empty-icon]')?.setAttribute('data-lucide', 'search-x');
+						emptyNode.querySelector('[data-empty-title]')?.replaceChildren(document.createTextNode('Ничего не найдено'));
+						emptyNode.querySelector('[data-empty-message]')?.replaceChildren(document.createTextNode('Попробуйте сбросить фильтры или изменить запрос.'));
+						page.list.appendChild(emptyNode);
+					}
 				} else {
-					page.list.innerHTML = rows.map((n) => {
+					const fragment = document.createDocumentFragment();
+					rows.forEach((n) => {
 						const t = typeMap[n.type];
 						const checked = state.selectedBulk.has(n.id);
-						return `<article class="notifications-item ${n.isRead ? '' : 'is-unread'} ${state.selectedId === n.id ? 'is-selected' : ''}" data-page-id="${n.id}" role="button" tabindex="0"><div class="flex items-start gap-3"><div class="notifications-item-leading"><div class="notifications-icon-wrap ${t.wrapClass}"><i data-lucide="${t.icon}" class="w-4 h-4 ${t.iconClass}"></i></div><input type="checkbox" ${checked ? 'checked' : ''} class="notifications-checkbox notifications-item-select" data-bulk-checkbox="${n.id}" aria-label="Выбрать уведомление"></div><div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="notifications-item-title">${escapeHtml(n.title)}</h3><span class="notifications-unread-dot" aria-hidden="true"></span></div><p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">${escapeHtml(n.message)}</p><div class="mt-1.5 flex items-center gap-2 text-[11px] text-zinc-500"><span class="truncate">${t.label}</span><span>•</span><span class="whitespace-nowrap">${relDate(n.createdAt)}</span></div></div></div></article>`;
-					}).join('');
+						const item = cloneTemplate('tpl-notifications-page-item');
+						if (!item) return;
+						item.dataset.pageId = n.id;
+						item.classList.toggle('is-unread', !n.isRead);
+						item.classList.toggle('is-selected', state.selectedId === n.id);
+						item.querySelector('[data-item-icon-wrap]')?.classList.add(...t.wrapClass.split(' '));
+						const icon = item.querySelector('[data-item-icon]');
+						if (icon) {
+							icon.setAttribute('data-lucide', t.icon);
+							icon.classList.add(...t.iconClass.split(' '));
+						}
+						item.querySelector('[data-item-title]')?.replaceChildren(document.createTextNode(n.title));
+						item.querySelector('[data-item-message]')?.replaceChildren(document.createTextNode(n.message));
+						item.querySelector('[data-item-type]')?.replaceChildren(document.createTextNode(t.label));
+						item.querySelector('[data-item-date]')?.replaceChildren(document.createTextNode(relDate(n.createdAt)));
+						item.querySelector('[data-item-unread-dot]')?.classList.toggle('hidden', n.isRead);
+						const checkbox = item.querySelector('[data-bulk-checkbox]');
+						if (checkbox) {
+							checkbox.checked = checked;
+							checkbox.dataset.bulkCheckbox = n.id;
+						}
+						fragment.appendChild(item);
+					});
+					page.list.appendChild(fragment);
 				}
 
 				const active = byId(state.selectedId);
+				page.detail.replaceChildren();
 				if (!active) {
-					page.detail.innerHTML = `<div class="notifications-empty min-h-[360px]"><i data-lucide="bell-ring" class="w-10 h-10 opacity-50"></i><p class="text-base font-bold text-zinc-700 dark:text-zinc-200">Выберите уведомление</p><p class="text-sm">Откройте элемент из списка, чтобы посмотреть полные детали.</p></div>`;
+					const emptyDetail = cloneTemplate('tpl-notifications-detail-empty');
+					if (emptyDetail) page.detail.appendChild(emptyDetail);
 				} else {
 					const t = typeMap[active.type];
-					page.detail.innerHTML = `<article class="space-y-4"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold ${t.chipClass}"><i data-lucide="${t.icon}" class="w-3.5 h-3.5"></i>${t.label}</span><h2 class="text-xl font-bold text-zinc-900 dark:text-zinc-100">${escapeHtml(active.title)}</h2><p class="text-xs font-semibold text-zinc-500">${fullDate(active.createdAt)}</p><div class="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 p-4 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">${escapeHtml(active.message)}</div></article>`;
+					const detail = cloneTemplate('tpl-notifications-detail');
+					if (detail) {
+						const chip = detail.querySelector('[data-detail-chip]');
+						chip?.classList.add(...t.chipClass.split(' '));
+						const icon = detail.querySelector('[data-detail-icon]');
+						if (icon) icon.setAttribute('data-lucide', t.icon);
+						detail.querySelector('[data-detail-type]')?.replaceChildren(document.createTextNode(t.label));
+						detail.querySelector('[data-detail-title]')?.replaceChildren(document.createTextNode(active.title));
+						detail.querySelector('[data-detail-date]')?.replaceChildren(document.createTextNode(fullDate(active.createdAt)));
+						detail.querySelector('[data-detail-message]')?.replaceChildren(document.createTextNode(active.message));
+						page.detail.appendChild(detail);
+					}
 				}
 
 				const selectedCount = state.selectedBulk.size;

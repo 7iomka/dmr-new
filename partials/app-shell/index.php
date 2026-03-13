@@ -5,4 +5,8 @@
 <?php endif; ?>
 <?php include __DIR__ . '/mobile-bottom-nav.php'; ?>
 
+<!-- Overlays -->
 <?php include __DIR__ . '/overlays.php'; ?>
+
+<!-- Global templates -->
+<?php include __DIR__ . '/templates.php'; ?>
