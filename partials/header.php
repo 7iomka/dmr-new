@@ -68,11 +68,24 @@
 
       <?php if (shouldUseAppShell()): ?>
         <div class="relative">
-          <button class="btn-secondary header-icon-btn relative">
+          <button
+            type="button"
+            class="btn-secondary header-icon-btn relative"
+            id="header-notification-trigger"
+            data-notifications-trigger
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="notifications-drawer"
+            aria-label="Открыть уведомления">
             <i data-lucide="bell" class="w-[18px] h-[18px]"></i>
-            <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-zinc-900"></span>
+            <span data-notifications-dot class="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-zinc-900 hidden"></span>
+            <span data-notifications-badge class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-primary-500 dark:bg-primary-600 text-white text-[10px] font-bold leading-[18px] text-center hidden">0</span>
+            <span class="sr-only" data-notifications-unread-label>Непрочитанных: 0</span>
           </button>
         </div>
+
+
+
 
         <div class="h-8 w-px hidden lg:block bg-zinc-200 dark:bg-zinc-800"></div>
 
