@@ -79,6 +79,7 @@
             aria-label="Открыть уведомления">
             <i data-lucide="bell" class="w-[18px] h-[18px]"></i>
             <span data-notifications-dot class="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-zinc-900 hidden"></span>
+            <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-primary/35 rounded-full blur-[0.5px] animate-ping"></span>
             <span data-notifications-badge class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-primary-500 dark:bg-primary-600 text-white text-[10px] font-bold leading-[18px] text-center hidden">0</span>
             <span class="sr-only" data-notifications-unread-label>Непрочитанных: 0</span>
           </button>

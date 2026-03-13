@@ -38,7 +38,7 @@
         class="relative w-5 h-5 xl:w-6 xl:h-6 rounded-full
                inline-flex items-center justify-center
                text-[11px] xl:text-[12px] font-bold leading-none tabular-nums
-               bg-primary text-white
+               bg-primary-500 dark:bg-primary-600 text-white
                border border-white/70 dark:border-zinc-900/70
                shadow-sm shadow-black/10">
         99
