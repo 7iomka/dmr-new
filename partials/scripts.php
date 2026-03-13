@@ -1034,14 +1034,50 @@
 			}];
 
 			const typeMap = {
-				info: { label: 'Info', icon: 'info', iconClass: 'text-sky-600 dark:text-sky-300', wrapClass: 'bg-sky-500/10 dark:bg-sky-400/10', chipClass: 'bg-sky-500/10 text-sky-600 dark:text-sky-300' },
-				warning: { label: 'Warning', icon: 'alert-triangle', iconClass: 'text-amber-600 dark:text-amber-300', wrapClass: 'bg-amber-500/10 dark:bg-amber-400/10', chipClass: 'bg-amber-500/10 text-amber-700 dark:text-amber-300' },
-				critical: { label: 'Critical', icon: 'octagon-alert', iconClass: 'text-red-600 dark:text-red-300', wrapClass: 'bg-red-500/10 dark:bg-red-400/10', chipClass: 'bg-red-500/10 text-red-600 dark:text-red-300' },
+				info: {
+					label: 'Info',
+					icon: 'info',
+					iconClass: 'text-sky-600 dark:text-sky-300',
+					wrapClass: 'bg-sky-500/10 dark:bg-sky-400/10',
+					chipClass: 'bg-sky-500/10 text-sky-600 dark:text-sky-300'
+				},
+				warning: {
+					label: 'Warning',
+					icon: 'alert-triangle',
+					iconClass: 'text-amber-600 dark:text-amber-300',
+					wrapClass: 'bg-amber-500/10 dark:bg-amber-400/10',
+					chipClass: 'bg-amber-500/10 text-amber-700 dark:text-amber-300'
+				},
+				critical: {
+					label: 'Critical',
+					icon: 'octagon-alert',
+					iconClass: 'text-red-600 dark:text-red-300',
+					wrapClass: 'bg-red-500/10 dark:bg-red-400/10',
+					chipClass: 'bg-red-500/10 text-red-600 dark:text-red-300'
+				},
 			};
 			const defaultSort = 'date_desc';
-			const sortOptions = [{ value: 'date_desc', label: 'Новые' }, { value: 'date_asc', label: 'Старые' }, { value: 'unread_first', label: 'Непрочитанные' }, { value: 'read_first', label: 'Прочитанные' }];
+			const sortOptions = [{
+				value: 'date_desc',
+				label: 'Новые'
+			}, {
+				value: 'date_asc',
+				label: 'Старые'
+			}, {
+				value: 'unread_first',
+				label: 'Непрочитанные'
+			}, {
+				value: 'read_first',
+				label: 'Прочитанные'
+			}];
 
-			const escapeHtml = (v) => String(v).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
+			const escapeHtml = (v) => String(v).replace(/[&<>"']/g, (ch) => ({
+				'&': '&amp;',
+				'<': '&lt;',
+				'>': '&gt;',
+				'"': '&quot;',
+				"'": '&#39;'
+			})[ch]);
 			const relDate = (iso) => {
 				const d = new Date(iso);
 				const diff = Date.now() - d.getTime();
@@ -1050,9 +1086,18 @@
 				if (hours < 24) return `${hours} ч назад`;
 				const days = Math.floor(hours / 24);
 				if (days < 7) return `${days} д назад`;
-				return d.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' });
+				return d.toLocaleDateString('ru-RU', {
+					day: '2-digit',
+					month: 'short'
+				});
 			};
-			const fullDate = (iso) => new Date(iso).toLocaleString('ru-RU', { day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+			const fullDate = (iso) => new Date(iso).toLocaleString('ru-RU', {
+				day: '2-digit',
+				month: 'long',
+				year: 'numeric',
+				hour: '2-digit',
+				minute: '2-digit'
+			});
 			const isMobile = () => window.innerWidth < 1024;
 
 			function loadItems() {
@@ -1065,7 +1110,14 @@
 			}
 
 			let items = loadItems();
-			const state = { pageType: 'all', sort: defaultSort, search: '', selectedId: null, selectedBulk: new Set(), selectMode: false };
+			const state = {
+				pageType: 'all',
+				sort: defaultSort,
+				search: '',
+				selectedId: null,
+				selectedBulk: new Set(),
+				selectMode: false
+			};
 			let drawerOverlay = null;
 
 			const drawer = {
@@ -1100,19 +1152,27 @@
 			const persist = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 			const unreadCount = () => items.filter((n) => !n.isRead).length;
 			const byId = (id) => items.find((n) => n.id === id);
-			const saveRender = () => { persist(); renderAll(); };
+			const saveRender = () => {
+				persist();
+				renderAll();
+			};
 
-				const preselectedNotificationId = new URLSearchParams(window.location.search).get('notification');
-				if (preselectedNotificationId && byId(preselectedNotificationId)) {
-					state.selectedId = preselectedNotificationId;
-					const target = byId(preselectedNotificationId);
-					if (target && !target.isRead) {
-						target.isRead = true;
-						persist();
-					}
+			const preselectedNotificationId = new URLSearchParams(window.location.search).get('notification');
+			if (preselectedNotificationId && byId(preselectedNotificationId)) {
+				state.selectedId = preselectedNotificationId;
+				const target = byId(preselectedNotificationId);
+				if (target && !target.isRead) {
+					target.isRead = true;
+					persist();
 				}
+			}
 
-			function filterAndSort({ type = 'all', onlyUnread = false, search = '', sort = defaultSort } = {}) {
+			function filterAndSort({
+				type = 'all',
+				onlyUnread = false,
+				search = '',
+				sort = defaultSort
+			} = {}) {
 				let rows = items.filter((row) => (type === 'all' ? true : row.type === type));
 				if (onlyUnread) rows = rows.filter((row) => !row.isRead);
 				if (search.trim()) {
@@ -1128,9 +1188,9 @@
 						const delta = Number(b.isRead) - Number(a.isRead);
 						if (delta !== 0) return delta;
 					}
-					return sort === 'date_asc'
-						? new Date(a.createdAt) - new Date(b.createdAt)
-						: new Date(b.createdAt) - new Date(a.createdAt);
+					return sort === 'date_asc' ?
+						new Date(a.createdAt) - new Date(b.createdAt) :
+						new Date(b.createdAt) - new Date(a.createdAt);
 				});
 				return rows;
 			}
@@ -1174,7 +1234,9 @@
 
 			function renderDrawer() {
 				if (!drawer.list) return;
-				const rows = filterAndSort({ sort: 'date_desc' }).slice(0, 10);
+				const rows = filterAndSort({
+					sort: 'date_desc'
+				}).slice(0, 10);
 				if (!rows.length) {
 					drawer.list.innerHTML = `<div class="notifications-empty"><i data-lucide="bell" class="w-8 h-8 opacity-50"></i><p class="text-sm font-semibold">Здесь пока пусто</p><p class="text-xs">Новые уведомления появятся автоматически.</p></div>`;
 				} else {
@@ -1209,7 +1271,11 @@
 
 			function renderPage() {
 				if (!page.root || !page.list || !page.detail) return;
-				const rows = filterAndSort({ type: state.pageType, search: state.search, sort: state.sort });
+				const rows = filterAndSort({
+					type: state.pageType,
+					search: state.search,
+					sort: state.sort
+				});
 				if (!rows.length) {
 					page.list.innerHTML = `<div class="notifications-empty"><i data-lucide="search-x" class="w-8 h-8 opacity-50"></i><p class="text-sm font-semibold">Ничего не найдено</p><p class="text-xs">Попробуйте сбросить фильтры или изменить запрос.</p></div>`;
 				} else {
@@ -1225,7 +1291,7 @@
 					page.detail.innerHTML = `<div class="notifications-empty min-h-[360px]"><i data-lucide="bell-ring" class="w-10 h-10 opacity-50"></i><p class="text-base font-bold text-zinc-700 dark:text-zinc-200">Выберите уведомление</p><p class="text-sm">Откройте элемент из списка, чтобы посмотреть полные детали.</p></div>`;
 				} else {
 					const t = typeMap[active.type];
-					page.detail.innerHTML = `<article class="space-y-4"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold ${t.chipClass}"><i data-lucide="${t.icon}" class="w-3.5 h-3.5"></i>${t.label}</span><h2 class="text-xl font-bold text-zinc-900 dark:text-zinc-100">${escapeHtml(active.title)}</h2><p class="text-xs font-semibold uppercase tracking-widest text-zinc-500">${fullDate(active.createdAt)}</p><div class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 p-4 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">${escapeHtml(active.message)}</div></article>`;
+					page.detail.innerHTML = `<article class="space-y-4"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold ${t.chipClass}"><i data-lucide="${t.icon}" class="w-3.5 h-3.5"></i>${t.label}</span><h2 class="text-xl font-bold text-zinc-900 dark:text-zinc-100">${escapeHtml(active.title)}</h2><p class="text-xs font-semibold text-zinc-500">${fullDate(active.createdAt)}</p><div class="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 p-4 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">${escapeHtml(active.message)}</div></article>`;
 				}
 
 				const selectedCount = state.selectedBulk.size;
@@ -1256,7 +1322,9 @@
 			function renderAll() {
 				renderDrawer();
 				renderPage();
-				lucide.createIcons({ inTemplates: true });
+				lucide.createIcons({
+					inTemplates: true
+				});
 			}
 
 			function initSortDropdown() {
@@ -1280,10 +1348,14 @@
 							renderPage();
 							render();
 							instance.close(true);
-							lucide.createIcons({ inTemplates: true });
+							lucide.createIcons({
+								inTemplates: true
+							});
 						});
 					});
-					lucide.createIcons({ inTemplates: true });
+					lucide.createIcons({
+						inTemplates: true
+					});
 				};
 
 				render();
@@ -1335,13 +1407,17 @@
 				page.search?.addEventListener('input', () => {
 					state.search = page.search.value;
 					renderPage();
-					lucide.createIcons({ inTemplates: true });
+					lucide.createIcons({
+						inTemplates: true
+					});
 				});
 				page.root.querySelectorAll('[data-type-filter]').forEach((btn) => btn.addEventListener('click', () => {
 					state.pageType = btn.dataset.typeFilter;
 					page.root.querySelectorAll('[data-type-filter]').forEach((node) => node.classList.toggle('is-active', node === btn));
 					renderPage();
-					lucide.createIcons({ inTemplates: true });
+					lucide.createIcons({
+						inTemplates: true
+					});
 				}));
 				page.list.addEventListener('click', (e) => {
 					const checkbox = e.target.closest('[data-bulk-checkbox]');
@@ -1351,7 +1427,9 @@
 						if (checkbox.checked) state.selectedBulk.add(id);
 						else state.selectedBulk.delete(id);
 						renderPage();
-						lucide.createIcons({ inTemplates: true });
+						lucide.createIcons({
+							inTemplates: true
+						});
 						return;
 					}
 					const row = e.target.closest('[data-page-id]');
@@ -1361,7 +1439,9 @@
 						if (state.selectedBulk.has(id)) state.selectedBulk.delete(id);
 						else state.selectedBulk.add(id);
 						renderPage();
-						lucide.createIcons({ inTemplates: true });
+						lucide.createIcons({
+							inTemplates: true
+						});
 						return;
 					}
 					state.selectedId = id;
@@ -1384,7 +1464,9 @@
 					if (!state.selectMode) state.selectedBulk.clear();
 					page.shell?.classList.toggle('select-mode', state.selectMode);
 					renderPage();
-					lucide.createIcons({ inTemplates: true });
+					lucide.createIcons({
+						inTemplates: true
+					});
 				});
 
 				page.back?.addEventListener('click', closeDetailOnMobile);
@@ -1392,8 +1474,14 @@
 					const btn = e.target.closest('[data-bulk-action]');
 					if (!btn || !state.selectedBulk.size) return;
 					if (btn.dataset.bulkAction === 'delete') items = items.filter((row) => !state.selectedBulk.has(row.id));
-					if (btn.dataset.bulkAction === 'read') items = items.map((row) => state.selectedBulk.has(row.id) ? { ...row, isRead: true } : row);
-					if (btn.dataset.bulkAction === 'unread') items = items.map((row) => state.selectedBulk.has(row.id) ? { ...row, isRead: false } : row);
+					if (btn.dataset.bulkAction === 'read') items = items.map((row) => state.selectedBulk.has(row.id) ? {
+						...row,
+						isRead: true
+					} : row);
+					if (btn.dataset.bulkAction === 'unread') items = items.map((row) => state.selectedBulk.has(row.id) ? {
+						...row,
+						isRead: false
+					} : row);
 					state.selectedBulk.clear();
 					state.selectMode = false;
 					page.shell?.classList.remove('select-mode');
@@ -1408,7 +1496,9 @@
 						page.detailPanel?.classList.remove('hidden');
 						page.detailPanel?.classList.add('flex');
 						renderPage();
-						lucide.createIcons({ inTemplates: true });
+						lucide.createIcons({
+							inTemplates: true
+						});
 						return;
 					}
 
@@ -1435,4 +1525,3 @@
 			initSortDropdownWhenReady();
 		})();
 	</script>
-
