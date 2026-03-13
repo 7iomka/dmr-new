@@ -715,7 +715,11 @@
   }
 
   .notifications-item {
-    @apply w-full text-left rounded-lg bg-zinc-50/90 dark:bg-zinc-900/45 px-3 py-2.5 hover:bg-zinc-100 dark:hover:bg-zinc-800/70 transition-colors cursor-pointer;
+    @apply w-full text-left rounded-lg bg-zinc-50/90 dark:bg-zinc-900/45 px-3 py-2.5 transition-colors;
+  }
+
+  .notifications-item--interactive {
+    @apply cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800/70;
   }
 
   .notifications-item.is-unread {
