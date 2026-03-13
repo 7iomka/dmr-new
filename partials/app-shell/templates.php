@@ -8,7 +8,7 @@
 </template>
 
 <template id="tpl-notifications-drawer-item">
-  <article class="notifications-item" data-drawer-item>
+  <a href="/notifications.php" class="notifications-item notifications-item--interactive block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400" data-drawer-item data-drawer-go>
     <div class="flex items-start gap-3">
       <div class="notifications-icon-wrap" data-item-icon-wrap>
         <i data-item-icon class="w-4 h-4"></i>
@@ -21,18 +21,18 @@
         <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2" data-item-message></p>
         <div class="mt-2 flex items-center justify-between gap-2">
           <span class="text-[11px] text-zinc-500 whitespace-nowrap" data-item-date></span>
-          <a href="/notifications.php" class="btn-secondary text-[11px] font-semibold px-2.5 py-1.5 inline-flex items-center gap-1.5" data-drawer-go>
+          <span class="btn-secondary text-[11px] font-semibold px-2.5 py-1.5 inline-flex items-center gap-1.5" aria-hidden="true">
             <span>Перейти</span>
             <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-          </a>
+          </span>
         </div>
       </div>
     </div>
-  </article>
+  </a>
 </template>
 
 <template id="tpl-notifications-page-item">
-  <article class="notifications-item" data-page-item role="button" tabindex="0">
+  <article class="notifications-item notifications-item--interactive" data-page-item role="button" tabindex="0">
     <div class="flex items-start gap-3">
       <div class="notifications-item-leading">
         <div class="notifications-icon-wrap" data-item-icon-wrap>

@@ -1259,7 +1259,8 @@
 						item.querySelector('[data-item-title]')?.replaceChildren(document.createTextNode(n.title));
 						item.querySelector('[data-item-message]')?.replaceChildren(document.createTextNode(n.message));
 						item.querySelector('[data-item-date]')?.replaceChildren(document.createTextNode(relDate(n.createdAt)));
-						item.querySelector('[data-drawer-go]')?.setAttribute('href', `/notifications.php?notification=${encodeURIComponent(n.id)}`);
+						const drawerGo = item.matches('[data-drawer-go]') ? item : item.querySelector('[data-drawer-go]');
+						drawerGo?.setAttribute('href', `/notifications.php?notification=${encodeURIComponent(n.id)}`);
 						item.querySelector('[data-item-unread-dot]')?.classList.toggle('hidden', n.isRead);
 						fragment.appendChild(item);
 					});
@@ -1456,12 +1457,6 @@
 						e.preventDefault();
 						first.focus();
 					}
-				});
-				drawer.list.addEventListener('click', (e) => {
-					const go = e.target.closest('[data-drawer-go]');
-					if (!go) return;
-					e.preventDefault();
-					window.location.href = go.getAttribute('href');
 				});
 			}
 
