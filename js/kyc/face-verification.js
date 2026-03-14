@@ -1,6 +1,7 @@
 import { FACE_MATCH_THRESHOLDS, FACE_STATUSES, MAX_LIVENESS_RETRIES, RISK_FLAGS } from './constants.js';
 
 let visionModule = null;
+let imageFaceDetector = null;
 
 async function loadVision() {
   if (!visionModule) {
@@ -22,6 +23,35 @@ async function createFaceLandmarker() {
   });
 }
 
+
+async function createImageFaceDetector() {
+  if (imageFaceDetector) return imageFaceDetector;
+
+  const vision = await loadVision();
+  const filesetResolver = await vision.FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm');
+  imageFaceDetector = await vision.FaceDetector.createFromOptions(filesetResolver, {
+    baseOptions: {
+      modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/latest/blaze_face_short_range.tflite',
+    },
+    runningMode: 'IMAGE',
+    minDetectionConfidence: 0.5,
+  });
+
+  return imageFaceDetector;
+}
+
+function cropFaceFromBox(canvas, box) {
+  const x = Math.max(0, Math.floor(box.x));
+  const y = Math.max(0, Math.floor(box.y));
+  const width = Math.max(1, Math.floor(Math.min(canvas.width - x, box.width)));
+  const height = Math.max(1, Math.floor(Math.min(canvas.height - y, box.height)));
+
+  const crop = document.createElement('canvas');
+  crop.width = 220;
+  crop.height = 260;
+  crop.getContext('2d').drawImage(canvas, x, y, width, height, 0, 0, 220, 260);
+  return crop.toDataURL('image/jpeg', 0.9);
+}
 function computeYaw(landmarks) {
   if (!landmarks?.length) return null;
   const left = landmarks[234];
@@ -106,15 +136,37 @@ export async function extractDocumentFace(dataUrl) {
   ctx.drawImage(image, 0, 0);
 
   if ('FaceDetector' in window) {
-    const detector = new window.FaceDetector({ fastMode: true, maxDetectedFaces: 1 });
-    const faces = await detector.detect(canvas);
-    if (!faces.length) return { found: false, cropDataUrl: '' };
-    const { x, y, width, height } = faces[0].boundingBox;
-    const crop = document.createElement('canvas');
-    crop.width = 220;
-    crop.height = 260;
-    crop.getContext('2d').drawImage(canvas, x, y, width, height, 0, 0, 220, 260);
-    return { found: true, cropDataUrl: crop.toDataURL('image/jpeg', 0.9) };
+    try {
+      const detector = new window.FaceDetector({ fastMode: true, maxDetectedFaces: 1 });
+      const faces = await detector.detect(canvas);
+      if (faces.length) {
+        const { x, y, width, height } = faces[0].boundingBox;
+        return { found: true, cropDataUrl: cropFaceFromBox(canvas, { x, y, width, height }) };
+      }
+    } catch (error) {
+      // continue with MediaPipe fallback
+    }
+  }
+
+  try {
+    const detector = await createImageFaceDetector();
+    const result = detector.detect(canvas);
+    const detection = result?.detections?.[0];
+    const box = detection?.boundingBox;
+
+    if (box) {
+      return {
+        found: true,
+        cropDataUrl: cropFaceFromBox(canvas, {
+          x: box.originX ?? 0,
+          y: box.originY ?? 0,
+          width: box.width ?? canvas.width,
+          height: box.height ?? canvas.height,
+        }),
+      };
+    }
+  } catch (error) {
+    // fallthrough: treat as not found (manual review risk path)
   }
 
   return { found: false, cropDataUrl: '' };

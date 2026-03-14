@@ -228,7 +228,7 @@ async function runDocumentPipeline() {
 async function runFaceVerificationPipeline() {
   if (!state.document.face.found) {
     state.risk.flags.add(RISK_FLAGS.DOCUMENT_FACE_NOT_FOUND);
-    setStatus('error', 'Не найдено лицо на документе');
+    setStatus('error', 'Не найдено лицо на документе. Вернитесь на шаг 2, загрузите более крупное и чёткое фото, затем повторите проверку документа.');
     return;
   }
 
