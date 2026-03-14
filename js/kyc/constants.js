@@ -62,8 +62,8 @@ export const DOCUMENT_QUALITY_THRESHOLDS = {
 };
 
 export const FACE_MATCH_THRESHOLDS = {
-  approved: 0.82,
-  pending: 0.65,
+  approved: 0.72,
+  pending: 0.45,
 };
 
 export const MAX_LIVENESS_RETRIES = 2;

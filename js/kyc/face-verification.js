@@ -194,6 +194,7 @@ export async function runLivenessChallenge({ videoEl, statusEl, onStatus, state 
   let currentStep = 0;
   let stableFrames = 0;
   let blinkDetected = false;
+  let turnDirectionSign = 1;
 
   return new Promise((resolve) => {
     let active = true;
@@ -242,10 +243,25 @@ export async function runLivenessChallenge({ videoEl, statusEl, onStatus, state 
         ok = yaw !== null && Math.abs(yaw) < 0.18;
       } else if (step === 'turn_left') {
         hint = 'Поверните голову влево';
-        ok = yaw !== null && yaw < -0.22;
+        if (yaw !== null) {
+          const leftDetected = yaw < -0.22;
+          const rightDetected = yaw > 0.22;
+
+          if (leftDetected) {
+            ok = true;
+            turnDirectionSign = 1;
+          } else if (rightDetected) {
+            ok = true;
+            turnDirectionSign = -1;
+            hint = 'Определили зеркальную камеру, продолжаем с учётом инверсии';
+          }
+        }
       } else if (step === 'turn_right') {
         hint = 'Поверните голову вправо';
-        ok = yaw !== null && yaw > 0.22;
+        if (yaw !== null) {
+          const expected = 0.22 * turnDirectionSign;
+          ok = turnDirectionSign === 1 ? yaw > expected : yaw < expected;
+        }
       } else if (step === 'blink') {
         hint = 'Моргните один раз';
         ok = blinkScore > 0.42;

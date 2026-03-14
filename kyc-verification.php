@@ -185,7 +185,7 @@
                   <div class="space-y-4">
                     <div class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3 bg-zinc-50/60 dark:bg-zinc-900/40">
                       <p class="text-sm font-semibold mb-2">Лицо из документа</p>
-                      <img id="documentFacePreview" class="hidden h-36 w-full rounded-lg object-cover" alt="Лицо из документа">
+                      <img id="documentFacePreview" class="hidden h-36 w-full rounded-lg object-contain bg-zinc-950/40" alt="Лицо из документа">
                     </div>
                     <div class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3 bg-zinc-50/60 dark:bg-zinc-900/40">
                       <p class="text-sm font-semibold mb-2">Live selfie</p>

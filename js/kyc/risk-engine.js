@@ -49,10 +49,28 @@ export function decideKyc(state) {
     };
   }
 
-  if (hasCritical || !faceMatchOk) {
+  if (hasCritical) {
     return {
       decision: DECISIONS.REJECTED,
       reason: 'Обнаружены критические антифрод-сигналы',
+      canProceedToReview: false,
+      canAutoApprove: false,
+    };
+  }
+
+  if (!faceMatchOk) {
+    if (flags.has(RISK_FLAGS.MANUAL_OVERRIDE_REQUIRED)) {
+      return {
+        decision: DECISIONS.PENDING,
+        reason: 'Face match пограничный, требуется ручная модерация',
+        canProceedToReview: true,
+        canAutoApprove: false,
+      };
+    }
+
+    return {
+      decision: DECISIONS.REJECTED,
+      reason: 'Face match не пройден',
       canProceedToReview: false,
       canAutoApprove: false,
     };
