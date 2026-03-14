@@ -1,5 +1,7 @@
 <?php require_once __DIR__ . '/includes/demo-auth.php'; ?>
 <?php demoRequirePostAndLogin('dashboard.php'); ?>
+<?php require_once __DIR__ . '/components/phone-input.php'; ?>
+<?php require_once __DIR__ . '/components/form-control.php'; ?>
 <!doctype html>
 <html lang="ru" class="dark">
 <?php include __DIR__ . '/partials/head.php'; ?>
@@ -27,27 +29,23 @@
               </div>
 
               <div class="relative z-10 flex flex-col gap-4">
-                <div class="flex flex-col gap-2">
-                  <label for="register-phone-phone" class="auth-label">Номер телефона</label>
-                  <div class="auth-phone-shell">
-                    <div class="auth-phone-prefix">
-                      <button data-phone-country-trigger type="button" class="auth-phone-country-trigger" aria-haspopup="listbox" aria-expanded="false">
-                        <span data-phone-country-flag class="text-base leading-none">🇷🇺</span>
-                        <span data-phone-country-code>+7</span>
-                        <i data-lucide="chevron-down" class="auth-phone-country-chevron"></i>
-                      </button>
-                    </div>
-                    <input id="register-phone-phone" name="phone" type="tel" required placeholder="(999) 123-45-67" class="auth-phone-input" autocomplete="tel" inputmode="tel">
-                  </div>
-                  <input data-phone-country-hidden type="hidden" name="phone_country_code" value="+7">
+                <div class="c-form-control">
+                  <label for="register-phone-phone" class="c-form-label">Номер телефона</label>
+                  <?= renderPhoneInput([
+                    'id' => 'register-phone-phone',
+                    'name' => 'phone',
+                    'hidden_name' => 'phone_country_code',
+                    'required' => true,
+                    'placeholder' => '(999) 123-45-67',
+                  ]) ?>
                 </div>
 
-                <div class="flex flex-col gap-2">
-                  <label for="register-phone-password" class="auth-label">Пароль</label>
-                  <div class="auth-input-wrap">
-                    <span class="auth-input-icon-left"><i data-lucide="lock" class="h-4 w-4"></i></span>
+                <div class="c-form-control">
+                  <label for="register-phone-password" class="c-form-label">Пароль</label>
+                  <div class="c-form-control__input-wrap">
+                    <span class="c-form-control__icon-left"><i data-lucide="lock" class="h-4 w-4"></i></span>
                     <input id="register-phone-password" name="password" type="password" required placeholder="Создайте пароль" class="auth-input-with-icons" autocomplete="new-password">
-                    <button id="toggle-register-password" data-visibility="hidden" type="button" class="auth-input-icon-btn" aria-label="Показать пароль">
+                    <button id="toggle-register-password" data-visibility="hidden" type="button" class="c-form-control__icon-btn" aria-label="Показать пароль">
                       <i data-eye="show" data-lucide="eye" class="h-4 w-4"></i>
                       <i data-eye="hide" data-lucide="eye-off" class="h-4 w-4 hidden"></i>
                     </button>
@@ -70,23 +68,23 @@
                   </div>
                 </div>
 
-                <div class="flex flex-col gap-2">
-                  <label for="register-phone-password-confirmation" class="auth-label">Подтвердите пароль</label>
-                  <div class="auth-input-wrap">
-                    <span class="auth-input-icon-left"><i data-lucide="lock" class="h-4 w-4"></i></span>
+                <div class="c-form-control">
+                  <label for="register-phone-password-confirmation" class="c-form-label">Подтвердите пароль</label>
+                  <div class="c-form-control__input-wrap">
+                    <span class="c-form-control__icon-left"><i data-lucide="lock" class="h-4 w-4"></i></span>
                     <input id="register-phone-password-confirmation" name="password_confirmation" type="password" required placeholder="Повторите пароль" class="auth-input-with-icons" autocomplete="new-password">
-                    <button id="toggle-register-password-confirm" data-visibility="hidden" type="button" class="auth-input-icon-btn" aria-label="Показать пароль">
+                    <button id="toggle-register-password-confirm" data-visibility="hidden" type="button" class="c-form-control__icon-btn" aria-label="Показать пароль">
                       <i data-eye="show" data-lucide="eye" class="h-4 w-4"></i>
                       <i data-eye="hide" data-lucide="eye-off" class="h-4 w-4 hidden"></i>
                     </button>
                   </div>
-                  <p id="register-password-mismatch" class="auth-field-error hidden">Пароли не совпадают.</p>
+                  <p id="register-password-mismatch" class="c-form-message hidden">Пароли не совпадают.</p>
                 </div>
 
-                <div class="flex flex-col gap-2">
-                  <label for="register-ref-code" class="auth-label">Реферальный код (необязательно)</label>
-                  <div class="auth-input-wrap">
-                    <span class="auth-input-icon-left"><i data-lucide="code" class="h-4 w-4"></i></span>
+                <div class="c-form-control">
+                  <label for="register-ref-code" class="c-form-label">Реферальный код (необязательно)</label>
+                  <div class="c-form-control__input-wrap">
+                    <span class="c-form-control__icon-left"><i data-lucide="code" class="h-4 w-4"></i></span>
                     <input id="register-ref-code" name="ref_code" type="text" placeholder="Введите реферальный код" class="auth-input-with-icons pr-4">
                   </div>
                 </div>
@@ -107,89 +105,23 @@
     </div>
   </div>
 
-  <div data-phone-country-panel class="auth-phone-country-panel hidden" role="dialog" aria-label="Выбор страны">
-    <input data-phone-country-search class="auth-phone-country-search" type="text" placeholder="Поиск страны" autocomplete="off">
-    <div data-phone-country-list class="auth-phone-country-list" role="listbox" aria-label="Список стран"></div>
-  </div>
 
   <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
-  <script type="module">
-    import {
-      computePosition,
-      autoUpdate,
-      offset,
-      flip,
-      shift
-    } from 'https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10/+esm';
-
+  <script>
     (() => {
-      const countries = [{
-          name: 'Russia',
-          native: 'Россия',
-          flag: '🇷🇺',
-          code: '+7'
-        },
-        {
-          name: 'Moldova',
-          native: 'Moldova',
-          flag: '🇲🇩',
-          code: '+373'
-        },
-        {
-          name: 'Ukraine',
-          native: 'Україна',
-          flag: '🇺🇦',
-          code: '+380'
-        },
-        {
-          name: 'Belarus',
-          native: 'Беларусь',
-          flag: '🇧🇾',
-          code: '+375'
-        },
-        {
-          name: 'Uzbekistan',
-          native: 'Oʻzbekiston',
-          flag: '🇺🇿',
-          code: '+998'
-        },
-        {
-          name: 'Kazakhstan',
-          native: 'Қазақстан',
-          flag: '🇰🇿',
-          code: '+7'
-        },
-        {
-          name: 'United States',
-          native: 'United States',
-          flag: '🇺🇸',
-          code: '+1'
-        },
-      ];
-
-      const trigger = document.querySelector('[data-phone-country-trigger]');
-      const panel = document.querySelector('[data-phone-country-panel]');
-      const list = document.querySelector('[data-phone-country-list]');
-      const search = document.querySelector('[data-phone-country-search]');
-      const flag = document.querySelector('[data-phone-country-flag]');
-      const code = document.querySelector('[data-phone-country-code]');
-      const hiddenCode = document.querySelector('[data-phone-country-hidden]');
-      const phone = document.getElementById('register-phone-phone');
-
+      const form = document.getElementById('register-phone-form');
       const password = document.getElementById('register-phone-password');
       const confirmPassword = document.getElementById('register-phone-password-confirmation');
       const mismatch = document.getElementById('register-password-mismatch');
-      const form = document.getElementById('register-phone-form');
       const strength = document.getElementById('password-strength');
       const bars = strength ? [...strength.querySelectorAll('.auth-strength-bar')] : [];
-
-      let cleanup = null;
 
       function setupPasswordToggle(buttonId, inputId) {
         const toggle = document.getElementById(buttonId);
         const input = document.getElementById(inputId);
         if (!toggle || !input) return;
+
         const showIcon = toggle.querySelector('[data-eye="show"]');
         const hideIcon = toggle.querySelector('[data-eye="hide"]');
 
@@ -200,6 +132,7 @@
         };
 
         syncIcons();
+
         toggle.addEventListener('click', () => {
           const nextVisible = toggle.dataset.visibility !== 'visible';
           toggle.dataset.visibility = nextVisible ? 'visible' : 'hidden';
@@ -207,69 +140,6 @@
           toggle.setAttribute('aria-label', nextVisible ? 'Скрыть пароль' : 'Показать пароль');
           syncIcons();
         });
-      }
-
-      function renderList(filter = '') {
-        if (!list) return;
-        const q = filter.trim().toLowerCase();
-        list.innerHTML = '';
-        countries
-          .filter((c) => (`${c.name} ${c.native} ${c.code}`).toLowerCase().includes(q))
-          .forEach((c) => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'auth-phone-country-item';
-            btn.innerHTML = `
-              <span class="flex items-center gap-3 min-w-0">
-                <span class="text-base leading-none">${c.flag}</span>
-                <span class="truncate">${c.name} (${c.native})</span>
-              </span>
-              <span class="text-zinc-400 dark:text-zinc-500">${c.code}</span>
-            `;
-            btn.addEventListener('click', () => {
-              if (flag) flag.textContent = c.flag;
-              if (code) code.textContent = c.code;
-              if (hiddenCode) hiddenCode.value = c.code;
-              closePanel();
-            });
-            list.appendChild(btn);
-          });
-      }
-
-      async function positionPanel() {
-        if (!trigger || !panel) return;
-        const {
-          x,
-          y
-        } = await computePosition(trigger, panel, {
-          placement: 'bottom-start',
-          strategy: 'fixed',
-          middleware: [offset(8), flip(), shift({
-            padding: 8
-          })],
-        });
-        panel.style.left = `${x}px`;
-        panel.style.top = `${y}px`;
-      }
-
-      function openPanel() {
-        if (!panel || !trigger) return;
-        panel.classList.remove('hidden');
-        trigger.setAttribute('aria-expanded', 'true');
-        cleanup = autoUpdate(trigger, panel, positionPanel);
-        positionPanel();
-        if (search) {
-          search.value = '';
-          renderList('');
-          setTimeout(() => search.focus(), 0);
-        }
-      }
-
-      function closePanel() {
-        panel?.classList.add('hidden');
-        trigger?.setAttribute('aria-expanded', 'false');
-        cleanup?.();
-        cleanup = null;
       }
 
       function scorePassword(value) {
@@ -311,41 +181,6 @@
 
       setupPasswordToggle('toggle-register-password', 'register-phone-password');
       setupPasswordToggle('toggle-register-password-confirm', 'register-phone-password-confirmation');
-      renderList();
-
-      if (trigger && panel) {
-        trigger.addEventListener('click', () => {
-          const isOpen = !panel.classList.contains('hidden');
-          if (isOpen) closePanel();
-          else openPanel();
-        });
-      }
-
-      if (search) search.addEventListener('input', () => renderList(search.value));
-
-      document.addEventListener('click', (e) => {
-        if (!panel || panel.classList.contains('hidden') || !trigger) return;
-        const insidePanel = panel.contains(e.target);
-        const insideTrigger = trigger.contains(e.target);
-        if (!insidePanel && !insideTrigger) closePanel();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closePanel();
-      });
-
-      if (phone) {
-        phone.addEventListener('input', () => {
-          const raw = phone.value.replace(/\D/g, '').slice(0, 10);
-          const parts = [];
-          if (raw.length > 0) parts.push('(' + raw.slice(0, 3));
-          if (raw.length >= 4) parts[0] += ')';
-          if (raw.length > 3) parts.push(' ' + raw.slice(3, 6));
-          if (raw.length > 6) parts.push('-' + raw.slice(6, 8));
-          if (raw.length > 8) parts.push('-' + raw.slice(8, 10));
-          phone.value = parts.join('');
-        });
-      }
 
       password?.addEventListener('input', () => {
         scorePassword(password.value);
@@ -368,11 +203,10 @@
       });
 
       scorePassword(password?.value || '');
-      if (window.lucide) window.lucide.createIcons({
-        inTemplates: true
-      });
+      if (window.lucide) window.lucide.createIcons({ inTemplates: true });
     })();
   </script>
+  <?= renderPhoneInputScript(); ?>
 </body>
 
 </html>
