@@ -548,10 +548,6 @@
     @apply h-4 w-4 text-zinc-400 dark:text-zinc-500 transition-all duration-200 group-hover:text-primary-500 group-hover:translate-x-1;
   }
 
-  .auth-label {
-    @apply text-xs leading-none font-bold uppercase text-zinc-500 dark:text-zinc-400;
-  }
-
   .auth-input {
     @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/35 focus:border-primary-500;
   }
@@ -833,20 +829,59 @@
     @apply flex flex-col items-center justify-center text-center gap-2 px-6 py-14 text-zinc-500 dark:text-zinc-400;
   }
 
-  .auth-phone-input {
-    @apply flex-1 border-0 bg-transparent px-3 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none;
+  .c-input,
+  .c-select,
+  .c-textarea {
+    @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950/50 px-4 py-3 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 transition-colors focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/35;
   }
 
-  .auth-input-wrap {
+  .c-select {
+    @apply appearance-none bg-no-repeat pr-10;
+    background-position: right 0.875rem center;
+    background-size: 1rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%2371737f' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .dark .c-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23a1a1aa' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .c-input[data-invalid='true'],
+  .c-select[data-invalid='true'],
+  .c-textarea[data-invalid='true'] {
+    @apply border-red-500/70 focus:border-red-500 focus:ring-red-500/30;
+  }
+
+  .c-form-control {
+    @apply flex flex-col gap-2;
+  }
+
+  .c-form-label {
+    @apply block text-sm font-medium text-zinc-800 dark:text-zinc-100;
+  }
+
+  .c-form-description {
+    @apply mt-1 text-xs text-zinc-500 dark:text-zinc-400;
+  }
+
+  .c-form-message {
+    @apply text-sm text-red-600 dark:text-red-400;
+  }
+
+  .c-form-control__input-wrap {
     @apply relative;
   }
 
-  .auth-input-icon-left {
+  .c-form-control__icon-left {
     @apply absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-500 pointer-events-none;
   }
 
-  .auth-input-icon-btn {
+  .c-form-control__icon-btn {
     @apply absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300;
+  }
+
+  .auth-phone-input {
+    @apply flex-1 border-0 bg-transparent px-3 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none;
   }
 
   .auth-input-with-icons {
@@ -891,10 +926,6 @@
 
   .auth-requirement.ok {
     @apply text-primary-600 dark:text-primary-400;
-  }
-
-  .auth-field-error {
-    @apply text-xs text-red-600 dark:text-red-400;
   }
 
   .auth-divider {
