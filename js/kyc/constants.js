@@ -50,8 +50,9 @@ export const RISK_FLAGS = {
 };
 
 export const DOCUMENT_QUALITY_THRESHOLDS = {
-  minWidth: 900,
-  minHeight: 600,
+  // Более устойчивые пороги для портретных и ландшафтных снимков.
+  minShortSide: 620,
+  minPixels: 1_000_000,
   blurMin: 30,
   brightnessMin: 40,
   brightnessMax: 220,

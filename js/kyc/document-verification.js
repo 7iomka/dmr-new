@@ -109,8 +109,13 @@ export async function runDocumentQualityChecks(file) {
   const borderRatio = borderEdgeRatio(gray, width, height);
 
   const errors = [];
-  if (image.width < DOCUMENT_QUALITY_THRESHOLDS.minWidth || image.height < DOCUMENT_QUALITY_THRESHOLDS.minHeight) {
-    errors.push('Слишком низкое разрешение документа');
+  const shortSide = Math.min(image.width, image.height);
+  const pixelCount = image.width * image.height;
+  if (
+    shortSide < DOCUMENT_QUALITY_THRESHOLDS.minShortSide
+    || pixelCount < DOCUMENT_QUALITY_THRESHOLDS.minPixels
+  ) {
+    errors.push(`Слишком низкое разрешение документа (${image.width}x${image.height})`);
   }
   if (blurScore < DOCUMENT_QUALITY_THRESHOLDS.blurMin) errors.push('Изображение размыто');
   if (brightnessScore < DOCUMENT_QUALITY_THRESHOLDS.brightnessMin) errors.push('Слишком тёмное изображение');
@@ -124,6 +129,8 @@ export async function runDocumentQualityChecks(file) {
     errors,
     metrics: {
       resolution: `${image.width}x${image.height}`,
+      shortSide,
+      pixelCount,
       blurScore,
       brightnessScore,
       edgeScore,
