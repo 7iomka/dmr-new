@@ -33,9 +33,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
               </div>
 
               <div class="relative z-10 flex flex-col gap-2">
-                <label for="login-whatsapp" class="auth-label">WhatsApp</label>
-                <div class="auth-input-wrap">
-                  <span class="auth-input-icon-left"><i data-lucide="message-circle" class="h-4 w-4"></i></span>
+                <label for="login-whatsapp" class="c-form-label">WhatsApp</label>
+                <div class="c-form-control__input-wrap">
+                  <span class="c-form-control__icon-left"><i data-lucide="message-circle" class="h-4 w-4"></i></span>
                   <input id="login-whatsapp" name="whatsapp" type="text" required placeholder="+7..." class="auth-input-with-icons pr-4">
                 </div>
               </div>
