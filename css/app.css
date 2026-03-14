@@ -111,6 +111,36 @@
   [role='button'] {
     @apply transition-colors duration-200 ease-out;
   }
+
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #1a1d1f;
+    box-shadow: 0 0 0px 1000px #ffffff inset;
+    caret-color: #1a1d1f;
+    transition: background-color 9999s ease-in-out 0s;
+  }
+
+  .dark input:-webkit-autofill,
+  .dark input:-webkit-autofill:hover,
+  .dark input:-webkit-autofill:focus,
+  .dark textarea:-webkit-autofill,
+  .dark textarea:-webkit-autofill:hover,
+  .dark textarea:-webkit-autofill:focus,
+  .dark select:-webkit-autofill,
+  .dark select:-webkit-autofill:hover,
+  .dark select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #f4f4f5;
+    box-shadow: 0 0 0px 1000px rgb(9 9 11 / 0.88) inset;
+    caret-color: #f4f4f5;
+  }
 }
 
 @utility container {
@@ -548,10 +578,6 @@
     @apply h-4 w-4 text-zinc-400 dark:text-zinc-500 transition-all duration-200 group-hover:text-primary-500 group-hover:translate-x-1;
   }
 
-  .auth-label {
-    @apply text-xs leading-none font-bold uppercase text-zinc-500 dark:text-zinc-400;
-  }
-
   .auth-input {
     @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/50 px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500/35 focus:border-primary-500;
   }
@@ -833,20 +859,144 @@
     @apply flex flex-col items-center justify-center text-center gap-2 px-6 py-14 text-zinc-500 dark:text-zinc-400;
   }
 
-  .auth-phone-input {
-    @apply flex-1 border-0 bg-transparent px-3 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none;
+  .c-input,
+  .c-select,
+  .c-textarea {
+    @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950/50 px-4 py-3 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 transition-colors focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/35;
   }
 
-  .auth-input-wrap {
+  .c-select {
+    @apply appearance-none bg-no-repeat pr-10;
+    background-position: right 0.875rem center;
+    background-size: 1rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%2371737f' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .dark .c-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23a1a1aa' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .c-input[data-invalid='true'],
+  .c-select[data-invalid='true'],
+  .c-textarea[data-invalid='true'] {
+    @apply border-red-500/70 focus:border-red-500 focus:ring-red-500/30;
+  }
+
+  .c-form-control {
+    @apply flex flex-col gap-2;
+  }
+
+  .c-form-label {
+    @apply block text-sm font-medium text-zinc-800 dark:text-zinc-100;
+  }
+
+  .c-form-description {
+    @apply mt-1 text-xs text-zinc-500 dark:text-zinc-400;
+  }
+
+  .c-form-message {
+    @apply text-sm text-red-600 dark:text-red-400;
+  }
+
+  .c-form-control__input-wrap {
     @apply relative;
   }
 
-  .auth-input-icon-left {
+  .c-form-control__icon-left {
     @apply absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-500 pointer-events-none;
   }
 
-  .auth-input-icon-btn {
+  .c-form-control__icon-btn {
     @apply absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300;
+  }
+
+  .c-stepper {
+    @apply grid grid-cols-2 gap-4 md:grid-cols-4;
+  }
+
+  .c-stepper__item {
+    @apply relative text-center;
+  }
+
+  .c-stepper__dot {
+    @apply mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 bg-zinc-100 text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 font-semibold;
+  }
+
+  .c-stepper__label {
+    @apply text-xs sm:text-sm font-medium text-zinc-500 dark:text-zinc-400;
+  }
+
+  .c-stepper__line {
+    @apply pointer-events-none absolute top-5 left-[calc(50%+1.75rem)] hidden h-0.5 w-[calc(100%-2.25rem)] bg-zinc-200 dark:bg-zinc-700 md:block;
+  }
+
+  .c-upload-card {
+    @apply rounded-lg border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-900/40 p-5 transition-colors;
+  }
+
+  .c-upload-card__label {
+    @apply flex cursor-pointer flex-col items-center justify-center gap-2 text-center;
+  }
+
+  .c-upload-card__title {
+    @apply text-xl font-bold text-zinc-800 dark:text-zinc-100;
+  }
+
+  .c-upload-card__hint,
+  .c-field-hint {
+    @apply text-sm text-zinc-500 dark:text-zinc-400;
+  }
+
+  .c-verification-status {
+    @apply rounded-lg border px-4 py-3 text-sm font-medium;
+  }
+
+  .c-verification-status.is-processing {
+    @apply border-sky-500/25 bg-sky-500/10 text-sky-700 dark:text-sky-300;
+  }
+
+  .c-verification-status.is-success {
+    @apply border-primary-500/30 bg-primary-500/10 text-primary-700 dark:text-primary-300;
+  }
+
+  .c-verification-status.is-warning {
+    @apply border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300;
+  }
+
+  .c-verification-status.is-error {
+    @apply border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-300;
+  }
+
+  .c-summary-list {
+    @apply rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50/70 dark:bg-zinc-800/50 p-4;
+  }
+
+  .c-summary-list > h3 {
+    @apply text-base font-bold text-zinc-900 dark:text-zinc-100 mb-3;
+  }
+
+  .c-summary-row {
+    @apply flex items-start justify-between gap-3 border-b border-zinc-200 dark:border-zinc-700 py-2 last:border-b-0;
+  }
+
+  .c-summary-row > dt {
+    @apply text-sm text-zinc-500 dark:text-zinc-400;
+  }
+
+  .c-summary-row > dd {
+    @apply text-sm font-semibold text-zinc-900 dark:text-zinc-100 text-right;
+  }
+
+  .c-review-notice {
+    @apply rounded-lg border border-primary-500/30 bg-primary-500/10 px-4 py-3 text-sm text-primary-800 dark:text-primary-200;
+  }
+
+  .c-review-notice.is-error {
+    @apply border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-300;
+  }
+
+  .auth-phone-input {
+    @apply flex-1 border-0 bg-transparent px-3 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none;
   }
 
   .auth-input-with-icons {
@@ -891,10 +1041,6 @@
 
   .auth-requirement.ok {
     @apply text-primary-600 dark:text-primary-400;
-  }
-
-  .auth-field-error {
-    @apply text-xs text-red-600 dark:text-red-400;
   }
 
   .auth-divider {
