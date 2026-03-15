@@ -54,6 +54,12 @@ function setError(field, message) {
   node.classList.toggle('hidden', !message);
 }
 
+function clearDocumentTransientFeedback() {
+  setError('docFront', '');
+  setError('docBack', '');
+  setStatus('warning', 'Файлы обновлены. Нажмите «Проверить документ», чтобы запустить проверки.');
+}
+
 function getInput(id) {
   return dom.form.querySelector(`#${id}`);
 }
@@ -215,13 +221,17 @@ async function runDocumentPipeline() {
 
   const faceResult = await extractDocumentFace(frontDataUrl);
   state.document.face = faceResult;
-  dom.documentFacePreview.src = faceResult.cropDataUrl || '';
-  dom.documentFacePreview.classList.toggle('hidden', !faceResult.found);
+  dom.documentFacePreview.src = faceResult.cropDataUrl || frontDataUrl;
+  dom.documentFacePreview.classList.toggle('hidden', !(faceResult.cropDataUrl || frontDataUrl));
 
   recomputeDocumentRiskFlags(state);
 
   state.document.checksCompleted = state.document.qualityChecks.allPassed;
-  setStatus('success', 'Документ проверен. Можно переходить к face verification.');
+  if (faceResult.found) {
+    setStatus('success', 'Документ проверен. Можно переходить к face verification.');
+  } else {
+    setStatus('warning', 'Документ проверен, но лицо на фото не выделилось автоматически. Можно перейти к шагу 3, но вероятна ручная проверка.');
+  }
   return true;
 }
 
@@ -351,24 +361,66 @@ function attachResetListeners() {
 
   ['front', 'back'].forEach((side) => {
     const input = side === 'front' ? dom.docFront : dom.docBack;
-    input?.addEventListener('change', () => syncFileView(side));
+    const zone = dom.form.querySelector(`[data-drop-zone="${side}"]`);
+
+    const onFileChanged = () => {
+      syncFileView(side);
+      resetDependentVerificationState(state);
+      clearDocumentTransientFeedback();
+    };
+
+    input?.addEventListener('change', onFileChanged);
 
     dom.form.querySelector(`[data-file-replace="${side}"]`)?.addEventListener('click', () => input?.click());
     dom.form.querySelector(`[data-file-remove="${side}"]`)?.addEventListener('click', () => {
       if (input) input.value = '';
-      syncFileView(side);
-      resetDependentVerificationState(state);
+      onFileChanged();
     });
+
+    if (zone && input) {
+      ['dragenter', 'dragover'].forEach((eventName) => {
+        zone.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          zone.classList.add('border-primary-500', 'bg-primary-50/60', 'dark:bg-primary-950/30');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach((eventName) => {
+        zone.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          zone.classList.remove('border-primary-500', 'bg-primary-50/60', 'dark:bg-primary-950/30');
+        });
+      });
+
+      zone.addEventListener('drop', (event) => {
+        const dropped = event.dataTransfer?.files;
+        if (!dropped?.length) return;
+        const [file] = dropped;
+        if (!file.type.startsWith('image/')) {
+          setError(side === 'front' ? 'docFront' : 'docBack', 'Поддерживаются только изображения');
+          return;
+        }
+
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        input.files = dt.files;
+        onFileChanged();
+      });
+    }
   });
 
   dom.documentType.addEventListener('change', () => {
     const needsBack = requiredUploads().includes('back');
     dom.backCard.classList.toggle('hidden', !needsBack);
     resetDependentVerificationState(state);
+    clearDocumentTransientFeedback();
   });
 
-  [dom.docFront, dom.docBack, dom.documentNumber].forEach((el) => {
-    el?.addEventListener('change', () => resetDependentVerificationState(state));
+  dom.documentNumber?.addEventListener('change', () => {
+    resetDependentVerificationState(state);
+    clearDocumentTransientFeedback();
   });
 }
 

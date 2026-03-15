@@ -129,14 +129,14 @@
                 </div>
 
                 <div class="grid gap-4 md:grid-cols-2" id="uploadGrid">
-                  <div class="c-upload-card" data-upload-card="front">
+                  <div class="c-upload-card" data-upload-card="front" data-drop-zone="front">
                     <label class="c-upload-card__label" for="docFront">
                       <i data-lucide="upload" class="h-9 w-9 text-primary-600 dark:text-primary-400"></i>
                       <span class="c-upload-card__title">Лицевая сторона</span>
                       <span class="c-upload-card__hint">Нажмите для выбора или перетащите файл</span>
                     </label>
                     <input id="docFront" name="docFront" type="file" class="sr-only" accept="image/*,.pdf">
-                    <div class="mt-3 hidden" data-file-preview-wrap="front"><img src="" alt="Предпросмотр лицевой стороны" class="h-28 w-full rounded-lg border border-primary-500/30 object-cover" data-file-preview="front"></div>
+                    <div class="mt-3 hidden" data-file-preview-wrap="front"><img src="" alt="Предпросмотр лицевой стороны" class="h-28 w-full rounded-lg border border-primary-500/30 object-contain bg-zinc-950/20 dark:bg-zinc-900/70" data-file-preview="front"></div>
                     <div class="mt-2 hidden items-center justify-center gap-3 text-xs" data-file-actions="front">
                       <button type="button" class="font-semibold text-primary-700 dark:text-primary-300" data-file-replace="front">Заменить</button>
                       <button type="button" class="font-semibold text-red-600 dark:text-red-400" data-file-remove="front">Удалить</button>
@@ -144,20 +144,30 @@
                     <p class="c-form-message hidden" data-error-for="docFront"></p>
                   </div>
 
-                  <div class="c-upload-card hidden" data-upload-card="back">
+                  <div class="c-upload-card hidden" data-upload-card="back" data-drop-zone="back">
                     <label class="c-upload-card__label" for="docBack">
                       <i data-lucide="upload" class="h-9 w-9 text-primary-600 dark:text-primary-400"></i>
                       <span class="c-upload-card__title">Обратная сторона</span>
                       <span class="c-upload-card__hint">Нажмите для выбора или перетащите файл</span>
                     </label>
                     <input id="docBack" name="docBack" type="file" class="sr-only" accept="image/*,.pdf">
-                    <div class="mt-3 hidden" data-file-preview-wrap="back"><img src="" alt="Предпросмотр обратной стороны" class="h-28 w-full rounded-lg border border-primary-500/30 object-cover" data-file-preview="back"></div>
+                    <div class="mt-3 hidden" data-file-preview-wrap="back"><img src="" alt="Предпросмотр обратной стороны" class="h-28 w-full rounded-lg border border-primary-500/30 object-contain bg-zinc-950/20 dark:bg-zinc-900/70" data-file-preview="back"></div>
                     <div class="mt-2 hidden items-center justify-center gap-3 text-xs" data-file-actions="back">
                       <button type="button" class="font-semibold text-primary-700 dark:text-primary-300" data-file-replace="back">Заменить</button>
                       <button type="button" class="font-semibold text-red-600 dark:text-red-400" data-file-remove="back">Удалить</button>
                     </div>
                     <p class="c-form-message hidden" data-error-for="docBack"></p>
                   </div>
+                </div>
+
+                <div class="rounded-lg border border-zinc-200/80 bg-zinc-50/60 p-4 text-sm text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900/50 dark:text-zinc-200">
+                  <p class="font-semibold text-zinc-900 dark:text-zinc-100">Критерии приёмки фото документа:</p>
+                  <ul class="mt-2 list-disc space-y-1 pl-5">
+                    <li>Минимум ~1 мегапиксель и короткая сторона не менее 620 px (например, 1200×800).</li>
+                    <li>Все 4 края документа должны быть в кадре, без сильной перспективы и обрезки.</li>
+                    <li>Текст и фото владельца должны быть читаемыми: без смаза, бликов и пересвета.</li>
+                    <li>Вертикальные фото «издалека» часто не проходят: лучше приблизить документ и кадрировать плотнее.</li>
+                  </ul>
                 </div>
 
                 <div class="c-verification-status is-warning" data-kyc-status>Ожидается запуск проверки документа.</div>
