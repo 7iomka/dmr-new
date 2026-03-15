@@ -280,8 +280,6 @@ function renderSummary() {
     ['Обратная сторона', requiresBackSide() ? (state.document.back?.name || 'Не загружено') : 'Не требуется'],
     ['Селфи', state.selfie?.name || 'Не загружено'],
     ['Селфи с документом', state.selfieWithDocument?.name || 'Не загружено'],
-    ['hasSelfie', state.hasSelfie ? 'true' : 'false'],
-    ['hasSelfieWithDocument', state.hasSelfieWithDocument ? 'true' : 'false'],
   ];
 
   dom.summaryPersonal.innerHTML = personalRows.map(summaryRow).join('');
