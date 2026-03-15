@@ -17,8 +17,8 @@
         <main class="page-main">
           <section class="mx-auto w-full max-w-[800px] rounded-xl border border-zinc-200 bg-card p-5 shadow-sm dark:border-zinc-800 sm:p-8 lg:p-10">
             <header class="text-center">
-              <h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">Верификация личности</h1>
-              <p class="mt-3 text-base text-zinc-500 dark:text-zinc-400 sm:text-lg">Загрузите документ и дополнительные фото для усиленной ручной проверки менеджером.</p>
+              <h1 class="text-2xl lg:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">Верификация личности</h1>
+              <p class="mt-3 text-sm lg:text-base text-zinc-500 dark:text-zinc-400 sm:text-lg">Загрузите документ и дополнительные фото для усиленной ручной проверки менеджером.</p>
             </header>
 
             <ol class="c-stepper mt-8" data-kyc-stepper>
@@ -30,7 +30,7 @@
 
             <form id="kycForm" class="mt-8 space-y-7" novalidate>
               <section data-kyc-step="1" class="space-y-6">
-                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 1: Личная информация</h2>
+                <h2 class="text-xl lg:text-2xl font-bold text-zinc-900 dark:text-white">Этап 1: Личная информация</h2>
 
                 <div class="grid gap-4 sm:grid-cols-2">
                   <div class="c-form-control">
@@ -49,9 +49,15 @@
                   <div class="c-form-control">
                     <label class="c-form-label">Дата рождения<span class="text-red-500">*</span></label>
                     <div class="grid grid-cols-3 gap-2" id="birthDateBlock">
-                      <select class="c-select" id="birthMonth" name="birthMonth" required><option value="">Месяц</option></select>
-                      <select class="c-select" id="birthDay" name="birthDay" required><option value="">День</option></select>
-                      <select class="c-select" id="birthYear" name="birthYear" required><option value="">Год</option></select>
+                      <select class="c-select" id="birthMonth" name="birthMonth" required>
+                        <option value="">Месяц</option>
+                      </select>
+                      <select class="c-select" id="birthDay" name="birthDay" required>
+                        <option value="">День</option>
+                      </select>
+                      <select class="c-select" id="birthYear" name="birthYear" required>
+                        <option value="">Год</option>
+                      </select>
                     </div>
                     <p class="c-form-message hidden" data-error-for="birthDate"></p>
                   </div>
@@ -111,7 +117,7 @@
               </section>
 
               <section data-kyc-step="2" class="space-y-6 hidden">
-                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 2: Документ</h2>
+                <h2 class="text-xl lg:text-2xl font-bold text-zinc-900 dark:text-white">Этап 2: Документ</h2>
 
                 <div class="grid gap-4 sm:grid-cols-2">
                   <div class="c-form-control">
@@ -187,7 +193,7 @@
               </section>
 
               <section data-kyc-step="3" class="space-y-6 hidden">
-                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 3: Подтверждение личности (фото)</h2>
+                <h2 class="text-xl lg:text-2xl font-bold text-zinc-900 dark:text-white">Этап 3: Подтверждение личности (фото)</h2>
                 <p class="c-field-hint">Сделайте два фото: фото лица и фото с документом в руках. Это помогает менеджеру провести ручную сверку.</p>
 
                 <div class="grid gap-4 md:grid-cols-2">
@@ -235,7 +241,7 @@
               </section>
 
               <section data-kyc-step="4" class="space-y-6 hidden">
-                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 4: Проверка и отправка</h2>
+                <h2 class="text-xl lg:text-2xl font-bold text-zinc-900 dark:text-white">Этап 4: Проверка и отправка</h2>
 
                 <div class="space-y-4">
                   <div class="c-summary-list">
