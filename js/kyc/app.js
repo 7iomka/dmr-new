@@ -1,512 +1,581 @@
-import { KYC_STEPS, FACE_STATUSES, DECISIONS, DOCUMENT_TYPES, RISK_FLAGS } from './constants.js';
-import { createInitialKycState, resetDependentVerificationState, touch } from './state.js';
-import { runDocumentQualityChecks, recomputeDocumentRiskFlags } from './document-verification.js';
-import { runOcr, comparePersonalWithOcr } from './ocr-service.js';
-import { extractDocumentFace, startCamera, stopCamera, runLivenessChallenge, runFaceMatch } from './face-verification.js';
-import { decideKyc } from './risk-engine.js';
-import { submitKycApplication } from './submit-service.js';
+const form = document.getElementById('kycForm');
+if (!form) {
+  throw new Error('KYC form not found');
+}
 
-const state = createInitialKycState();
-let cameraStream = null;
-
-const dom = {
-  form: document.getElementById('kycForm'),
-  stepSections: [...document.querySelectorAll('[data-kyc-step]')],
-  stepIndicators: [...document.querySelectorAll('[data-step-indicator]')],
-  stepLines: [...document.querySelectorAll('[data-step-line]')],
-  documentType: document.getElementById('documentType'),
-  documentNumber: document.getElementById('documentNumber'),
-  docFront: document.getElementById('docFront'),
-  docBack: document.getElementById('docBack'),
-  backCard: document.querySelector('[data-upload-card="back"]'),
-  frontCard: document.querySelector('[data-upload-card="front"]'),
-  summaryPersonal: document.getElementById('summaryPersonal'),
-  summaryDocument: document.getElementById('summaryDocument'),
-  summaryDecision: document.getElementById('summaryDecision'),
-  riskFlags: document.getElementById('riskFlags'),
-  verificationNotice: document.getElementById('verificationNotice'),
-  cameraVideo: document.getElementById('livenessVideo'),
-  statusNodes: [...document.querySelectorAll('[data-kyc-status]')],
-  selfiePreview: document.getElementById('selfiePreview'),
-  documentFacePreview: document.getElementById('documentFacePreview'),
-  startFaceBtn: document.getElementById('startFaceVerificationBtn'),
-  retryFaceBtn: document.getElementById('retryFaceVerificationBtn'),
-  proceedReviewBtn: document.getElementById('proceedToReviewBtn'),
-  submitBtn: document.getElementById('submitKycBtn'),
-  consentAccuracy: document.getElementById('consentAccuracy'),
-  consentData: document.getElementById('consentData'),
-  decisionBadge: document.getElementById('finalDecisionBadge'),
+const state = {
+  step: 1,
+  personal: {
+    firstName: '',
+    lastName: '',
+    birthDate: '',
+    phoneNumber: '',
+    email: '',
+    country: '',
+    countryFlag: '',
+    city: '',
+    addressLine: '',
+  },
+  document: {
+    docType: '',
+    docNumber: '',
+    front: null,
+    back: null,
+  },
+  selfie: null,
+  selfieWithDocument: null,
+  hasSelfie: false,
+  hasSelfieWithDocument: false,
+  consent: false,
+  acceptTerms: false,
 };
 
-function setStatus(type, message) {
-  if (!dom.statusNodes.length) return;
-  dom.statusNodes.forEach((statusNode) => {
-    statusNode.className = 'c-verification-status';
-    statusNode.classList.add(`is-${type}`);
-    statusNode.textContent = message;
-  });
-}
+const dom = {
+  steps: [...document.querySelectorAll('[data-kyc-step]')],
+  indicators: [...document.querySelectorAll('[data-step-indicator]')],
+  statusDoc: document.querySelector('[data-doc-status]'),
+  statusSelfie: document.querySelector('[data-selfie-status]'),
+  summaryPersonal: document.getElementById('summaryPersonal'),
+  summaryVerification: document.getElementById('summaryVerification'),
+  submitBtn: document.getElementById('submitKycBtn'),
+  docType: document.getElementById('documentType'),
+  docNumber: document.getElementById('documentNumber'),
+  docBackCard: document.getElementById('docBackCard'),
+  consent: document.getElementById('consent'),
+  acceptTerms: document.getElementById('acceptTerms'),
+};
 
-function setError(field, message) {
-  const node = dom.form.querySelector(`[data-error-for="${field}"]`);
-  if (!node) return;
-  node.textContent = message;
-  node.classList.toggle('hidden', !message);
-}
+const uploads = {
+  front: bindUpload('front', 'docFrontInput', 'docFrontPreview'),
+  back: bindUpload('back', 'docBackInput', 'docBackPreview'),
+  selfie: bindUpload('selfie', 'selfieInput', 'selfiePreview'),
+  selfieWithDocument: bindUpload('selfieWithDocument', 'selfieWithDocumentInput', 'selfieWithDocumentPreview'),
+};
 
-function clearDocumentTransientFeedback() {
-  setError('docFront', '');
-  setError('docBack', '');
-  setStatus('warning', 'Файлы обновлены. Нажмите «Проверить документ», чтобы запустить проверки.');
-}
+const monthSelect = document.getElementById('birthMonth');
+const daySelect = document.getElementById('birthDay');
+const yearSelect = document.getElementById('birthYear');
 
-function getInput(id) {
-  return dom.form.querySelector(`#${id}`);
-}
+initBirthDateOptions();
+initEvents();
+updateDocumentTypeUI();
+updateStatuses();
+updateStepper();
 
-function requiredUploads() {
-  return dom.documentType.value === DOCUMENT_TYPES.PASSPORT ? ['front'] : ['front', 'back'];
-}
-
-function updateStepper() {
-  dom.stepSections.forEach((section) => section.classList.toggle('hidden', Number(section.dataset.kycStep) !== state.currentStep));
-
-  dom.stepIndicators.forEach((indicator, index) => {
-    const circle = indicator.querySelector('.c-stepper__dot');
-    const label = indicator.querySelector('.c-stepper__label');
-    const stepNo = Number(indicator.dataset.stepIndicator || index + 1);
-    const isActive = stepNo === state.currentStep;
-    const isDone = stepNo < state.currentStep;
-
-    indicator.setAttribute('aria-current', isActive ? 'step' : 'false');
-
-    if (!circle) return;
-
-    circle.classList.toggle('border-primary-500', isActive || isDone);
-    circle.classList.toggle('bg-primary-500', isActive || isDone);
-    circle.classList.toggle('text-white', isActive || isDone);
-    circle.classList.toggle('dark:border-primary-600', isActive || isDone);
-    circle.classList.toggle('dark:bg-primary-600', isActive || isDone);
-
-    circle.classList.toggle('border-zinc-200', !isActive && !isDone);
-    circle.classList.toggle('bg-zinc-100', !isActive && !isDone);
-    circle.classList.toggle('text-zinc-500', !isActive && !isDone);
-    circle.classList.toggle('dark:border-zinc-700', !isActive && !isDone);
-    circle.classList.toggle('dark:bg-zinc-800', !isActive && !isDone);
-    circle.classList.toggle('dark:text-zinc-400', !isActive && !isDone);
-
-    if (label) {
-      label.classList.toggle('text-primary-700', isActive || isDone);
-      label.classList.toggle('dark:text-primary-300', isActive || isDone);
-      label.classList.toggle('text-zinc-500', !isActive && !isDone);
-      label.classList.toggle('dark:text-zinc-400', !isActive && !isDone);
-    }
+function initEvents() {
+  document.querySelectorAll('[data-next-step]').forEach((button) => {
+    button.addEventListener('click', () => gotoStep(Number(button.dataset.nextStep)));
   });
 
-  dom.stepLines.forEach((line, idx) => {
-    const active = idx < state.currentStep - 1;
-    line.classList.toggle('bg-primary-500', active);
-    line.classList.toggle('dark:bg-primary-600', active);
-    line.classList.toggle('bg-zinc-200', !active);
-    line.classList.toggle('dark:bg-zinc-700', !active);
-  });
-}
-
-
-function syncFileView(side) {
-  const input = side === 'front' ? dom.docFront : dom.docBack;
-  const wrap = dom.form.querySelector(`[data-file-preview-wrap="${side}"]`);
-  const img = dom.form.querySelector(`[data-file-preview="${side}"]`);
-  const actions = dom.form.querySelector(`[data-file-actions="${side}"]`);
-  const has = !!input.files?.[0];
-
-  if (has && input.files[0].type.startsWith('image/')) {
-    img.src = URL.createObjectURL(input.files[0]);
-  } else {
-    img.src = '';
-  }
-  wrap.classList.toggle('hidden', !has);
-  actions.classList.toggle('hidden', !has);
-  actions.classList.toggle('flex', has);
-}
-
-function validateStep1() {
-  let valid = true;
-  const fields = [
-    ['firstName', 'Введите имя'], ['lastName', 'Введите фамилию'], ['email', 'Введите email'],
-    ['country', 'Выберите страну'], ['city', 'Введите город'], ['address', 'Введите адрес'], ['phone', 'Введите номер телефона'],
-  ];
-  fields.forEach(([id, err]) => {
-    const input = getInput(id);
-    const empty = !input?.value?.trim();
-    setError(id, empty ? err : '');
-    input.dataset.invalid = empty ? 'true' : 'false';
-    if (empty) valid = false;
-  });
-  const month = getInput('birthMonth').value;
-  const day = getInput('birthDay').value;
-  const year = getInput('birthYear').value;
-  const birthInvalid = !month || !day || !year;
-  setError('birthDate', birthInvalid ? 'Укажите дату рождения' : '');
-  if (birthInvalid) valid = false;
-  return valid;
-}
-
-async function runDocumentPipeline() {
-  state.document.type = dom.documentType.value;
-  state.document.number = dom.documentNumber.value.trim();
-  state.document.files.front = dom.docFront.files?.[0] || null;
-  state.document.files.back = dom.docBack.files?.[0] || null;
-
-  if (!state.document.type) {
-    setError('documentType', 'Выберите тип документа');
-    return false;
-  }
-  if (!state.document.number) {
-    setError('documentNumber', 'Введите номер документа');
-    return false;
-  }
-
-  const required = requiredUploads();
-  const missingFront = required.includes('front') && !state.document.files.front;
-  const missingBack = required.includes('back') && !state.document.files.back;
-  setError('docFront', missingFront ? 'Загрузите лицевую сторону' : '');
-  setError('docBack', missingBack ? 'Загрузите обратную сторону' : '');
-  if (missingFront || missingBack) return false;
-
-  setStatus('processing', 'Проверяем качество документа...');
-
-  const frontCheck = await runDocumentQualityChecks(state.document.files.front);
-  const backCheck = state.document.files.back ? await runDocumentQualityChecks(state.document.files.back) : null;
-
-  state.document.qualityChecks.front = frontCheck;
-  state.document.qualityChecks.back = backCheck;
-  state.document.qualityChecks.allPassed = frontCheck.passed && (!required.includes('back') || backCheck?.passed);
-
-  if (!frontCheck.passed) setError('docFront', frontCheck.errors[0]);
-  if (required.includes('back') && backCheck && !backCheck.passed) setError('docBack', backCheck.errors[0]);
-
-  if (!state.document.qualityChecks.allPassed) {
-    setStatus('error', 'Проверка качества документа не пройдена');
-    recomputeDocumentRiskFlags(state);
-    return false;
-  }
-
-  setStatus('processing', 'Запускаем OCR...');
-  state.document.ocr.status = 'processing';
-  try {
-    const ocr = await runOcr(state.document.files.front);
-    state.document.ocr.fields = {
-      documentNumber: ocr.documentNumber,
-      firstName: ocr.firstName,
-      lastName: ocr.lastName,
-      birthdate: ocr.birthdate,
-      mrz: ocr.mrz,
-    };
-    state.document.ocr.rawText = ocr.rawText;
-    state.document.ocr.status = 'done';
-  } catch (error) {
-    state.document.ocr.status = 'error';
-    state.risk.flags.add(RISK_FLAGS.OCR_DATA_MISSING);
-    setStatus('warning', 'OCR завершился частично. Заявка может уйти на ручную проверку.');
-  }
-
-  comparePersonalWithOcr(state);
-
-  const frontDataUrl = await new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.readAsDataURL(state.document.files.front);
+  document.querySelectorAll('[data-prev-step]').forEach((button) => {
+    button.addEventListener('click', () => gotoStep(Number(button.dataset.prevStep)));
   });
 
-  const faceResult = await extractDocumentFace(frontDataUrl);
-  state.document.face = faceResult;
-  dom.documentFacePreview.src = faceResult.cropDataUrl || frontDataUrl;
-  dom.documentFacePreview.classList.toggle('hidden', !(faceResult.cropDataUrl || frontDataUrl));
-
-  recomputeDocumentRiskFlags(state);
-
-  state.document.checksCompleted = state.document.qualityChecks.allPassed;
-  if (faceResult.found) {
-    setStatus('success', 'Документ проверен. Можно переходить к face verification.');
-  } else {
-    setStatus('warning', 'Документ проверен, но лицо на фото не выделилось автоматически. Можно перейти к шагу 3, но вероятна ручная проверка.');
-  }
-  return true;
-}
-
-async function runFaceVerificationPipeline() {
-  if (!state.document.face.found) {
-    state.risk.flags.add(RISK_FLAGS.DOCUMENT_FACE_NOT_FOUND);
-    setStatus('error', 'Не найдено лицо на документе. Вернитесь на шаг 2, загрузите более крупное и чёткое фото, затем повторите проверку документа.');
-    return;
-  }
-
-  try {
-    setStatus('processing', 'Запрашиваем доступ к камере...');
-    cameraStream = await startCamera(dom.cameraVideo);
-    state.faceVerification.status = FACE_STATUSES.CAMERA_READY;
-
-    const liveness = await runLivenessChallenge({
-      videoEl: dom.cameraVideo,
-      statusEl: dom.statusNodes[0] || null,
-      onStatus: setStatus,
-      state,
-    });
-
-    if (!liveness.passed) {
-      state.risk.flags.add(RISK_FLAGS.LIVENESS_SUSPICIOUS);
-      return;
-    }
-
-    state.faceVerification.livenessPassed = true;
-    state.faceVerification.selfieDataUrl = liveness.selfieDataUrl;
-    dom.selfiePreview.src = liveness.selfieDataUrl;
-    dom.selfiePreview.classList.remove('hidden');
-
-    const faceMatch = await runFaceMatch({
-      selfieDataUrl: liveness.selfieDataUrl,
-      documentFaceDataUrl: state.document.face.cropDataUrl,
-      state,
-    });
-
-    state.faceVerification.similarity = faceMatch.similarity;
-    state.faceVerification.faceMatchPassed = faceMatch.passed;
-
-    if (faceMatch.passed) {
-      state.faceVerification.status = FACE_STATUSES.SUCCESS;
-      setStatus('success', `Face match пройден (score: ${faceMatch.similarity.toFixed(3)})`);
-    } else if (faceMatch.pending) {
-      state.risk.flags.add(RISK_FLAGS.MANUAL_OVERRIDE_REQUIRED);
-      setStatus('warning', `Face match пограничный (score: ${faceMatch.similarity.toFixed(3)}). Вероятна ручная проверка.`);
+  dom.docType.addEventListener('change', () => {
+    clearError('documentType');
+    updateDocumentTypeUI();
+    if (requiresBackSide()) {
+      state.document.back = uploads.back.file;
     } else {
-      setStatus('error', `Face match не пройден (score: ${faceMatch.similarity.toFixed(3)})`);
+      clearUpload('back');
+      state.document.back = null;
     }
-  } catch (error) {
-    state.faceVerification.status = FACE_STATUSES.CAMERA_DENIED;
-    state.faceVerification.cameraError = error?.message ?? 'camera error';
-    state.risk.flags.add(RISK_FLAGS.CAMERA_ACCESS_PROBLEM);
-    setStatus('error', 'Доступ к камере отклонён или недоступен');
-  } finally {
-    stopCamera(cameraStream);
-    cameraStream = null;
-    const decision = decideKyc(state);
-    Object.assign(state.decisions, {
-      final: decision.decision,
-      decisionReason: decision.reason,
-      canProceedToReview: decision.canProceedToReview,
-      canAutoApprove: decision.canAutoApprove,
-    });
-
-    dom.proceedReviewBtn.disabled = !state.decisions.canProceedToReview && state.decisions.final !== DECISIONS.PENDING;
-    if (state.decisions.final === DECISIONS.PENDING) dom.proceedReviewBtn.disabled = false;
-  }
-}
-
-function updateReview() {
-  const p = state.personal;
-  const d = state.document;
-  const rowsPersonal = [
-    ['Имя', p.firstName], ['Фамилия', p.lastName], ['Дата рождения', `${p.birthDay}.${p.birthMonth}.${p.birthYear}`],
-    ['Телефон', `${p.phoneCountryCode} ${p.phone}`], ['Email', p.email], ['Страна', p.country], ['Город', p.city], ['Адрес', p.address],
-  ];
-  const rowsDocument = [
-    ['Тип документа', d.type], ['Номер документа', d.number], ['OCR номер', d.ocr.fields.documentNumber || '—'], ['OCR дата рождения', d.ocr.fields.birthdate || '—'],
-    ['MRZ', d.ocr.fields.mrz || '—'], ['Face similarity', state.faceVerification.similarity ? state.faceVerification.similarity.toFixed(3) : '—'],
-  ];
-
-  const renderRows = (target, rows) => {
-    target.innerHTML = rows.map(([label, value]) => `<div class="c-summary-row"><dt>${label}</dt><dd>${value || '—'}</dd></div>`).join('');
-  };
-
-  renderRows(dom.summaryPersonal, rowsPersonal);
-  renderRows(dom.summaryDocument, rowsDocument);
-
-  const flags = [...state.risk.flags];
-  dom.riskFlags.innerHTML = flags.length ? flags.map((flag) => `<li>${flag}</li>`).join('') : '<li>Риск-флаги не обнаружены</li>';
-
-  const mapDecision = {
-    [DECISIONS.APPROVED]: ['success', 'Автоматически подтверждено'],
-    [DECISIONS.PENDING]: ['warning', 'Будет отправлено на ручную проверку'],
-    [DECISIONS.REJECTED]: ['error', 'Отклонено автоматическими проверками'],
-  };
-  const [tone, text] = mapDecision[state.decisions.final] || ['warning', 'Проверка не завершена'];
-  dom.decisionBadge.className = `c-verification-status is-${tone}`;
-  dom.decisionBadge.textContent = `${text}. ${state.decisions.decisionReason || ''}`;
-}
-
-function syncPersonalToState() {
-  state.personal.firstName = getInput('firstName').value.trim();
-  state.personal.lastName = getInput('lastName').value.trim();
-  state.personal.birthMonth = getInput('birthMonth').value;
-  state.personal.birthDay = getInput('birthDay').value;
-  state.personal.birthYear = getInput('birthYear').value;
-  state.personal.phone = getInput('phone').value.trim();
-  state.personal.phoneCountryCode = getInput('phone-country-code')?.value || '+7';
-  state.personal.email = getInput('email').value.trim();
-  state.personal.country = getInput('country').value;
-  state.personal.city = getInput('city').value.trim();
-  state.personal.address = getInput('address').value.trim();
-  touch(state);
-}
-
-function attachResetListeners() {
-  ['firstName', 'lastName', 'birthMonth', 'birthDay', 'birthYear', 'email', 'country', 'city', 'address', 'phone'].forEach((id) => {
-    getInput(id)?.addEventListener('change', () => {
-      syncPersonalToState();
-      resetDependentVerificationState(state);
-    });
+    updateStatuses();
   });
 
+  dom.docNumber.addEventListener('input', () => clearError('documentNumber'));
+  [dom.consent, dom.acceptTerms].forEach((checkbox) => checkbox.addEventListener('change', updateSubmitState));
 
-  ['front', 'back'].forEach((side) => {
-    const input = side === 'front' ? dom.docFront : dom.docBack;
-    const zone = dom.form.querySelector(`[data-drop-zone="${side}"]`);
-
-    const onFileChanged = () => {
-      syncFileView(side);
-      resetDependentVerificationState(state);
-      clearDocumentTransientFeedback();
-    };
-
-    input?.addEventListener('change', onFileChanged);
-
-    dom.form.querySelector(`[data-file-replace="${side}"]`)?.addEventListener('click', () => input?.click());
-    dom.form.querySelector(`[data-file-remove="${side}"]`)?.addEventListener('click', () => {
-      if (input) input.value = '';
-      onFileChanged();
-    });
-
-    if (zone && input) {
-      ['dragenter', 'dragover'].forEach((eventName) => {
-        zone.addEventListener(eventName, (event) => {
-          event.preventDefault();
-          event.stopPropagation();
-          zone.classList.add('border-primary-500', 'bg-primary-50/60', 'dark:bg-primary-950/30');
-        });
-      });
-
-      ['dragleave', 'drop'].forEach((eventName) => {
-        zone.addEventListener(eventName, (event) => {
-          event.preventDefault();
-          event.stopPropagation();
-          zone.classList.remove('border-primary-500', 'bg-primary-50/60', 'dark:bg-primary-950/30');
-        });
-      });
-
-      zone.addEventListener('drop', (event) => {
-        const dropped = event.dataTransfer?.files;
-        if (!dropped?.length) return;
-        const [file] = dropped;
-        if (!file.type.startsWith('image/')) {
-          setError(side === 'front' ? 'docFront' : 'docBack', 'Поддерживаются только изображения');
-          return;
-        }
-
-        const dt = new DataTransfer();
-        dt.items.add(file);
-        input.files = dt.files;
-        onFileChanged();
-      });
-    }
+  form.addEventListener('input', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (target.id) clearError(target.id);
+    if (['birthMonth', 'birthDay', 'birthYear'].includes(target.id)) clearError('birthDate');
   });
 
-  dom.documentType.addEventListener('change', () => {
-    const needsBack = requiredUploads().includes('back');
-    dom.backCard.classList.toggle('hidden', !needsBack);
-    resetDependentVerificationState(state);
-    clearDocumentTransientFeedback();
-  });
-
-  dom.documentNumber?.addEventListener('change', () => {
-    resetDependentVerificationState(state);
-    clearDocumentTransientFeedback();
-  });
-}
-
-function validateConsents() {
-  state.consents.accuracy = dom.consentAccuracy.checked;
-  state.consents.dataProcessing = dom.consentData.checked;
-  setError('consentAccuracy', state.consents.accuracy ? '' : 'Подтвердите достоверность данных');
-  setError('consentData', state.consents.dataProcessing ? '' : 'Требуется согласие на обработку данных');
-  dom.submitBtn.disabled = !(state.consents.accuracy && state.consents.dataProcessing);
-}
-
-function gotoStep(step) {
-  state.currentStep = Math.min(4, Math.max(1, step));
-  updateStepper();
-  if (state.currentStep === 4) updateReview();
-}
-
-function bindActions() {
-  dom.form.querySelector('[data-action="next-step-1"]').addEventListener('click', () => {
-    if (!validateStep1()) return;
-    syncPersonalToState();
-    gotoStep(2);
-  });
-
-  dom.form.querySelector('[data-action="verify-document"]').addEventListener('click', async () => {
-    syncPersonalToState();
-    const ok = await runDocumentPipeline();
-    if (ok) gotoStep(3);
-  });
-
-  dom.startFaceBtn.addEventListener('click', runFaceVerificationPipeline);
-  dom.retryFaceBtn.addEventListener('click', runFaceVerificationPipeline);
-  dom.proceedReviewBtn.addEventListener('click', () => gotoStep(4));
-
-  dom.form.querySelectorAll('[data-prev-step]').forEach((btn) => {
-    btn.addEventListener('click', () => gotoStep(Number(btn.dataset.prevStep)));
-  });
-
-  [dom.consentAccuracy, dom.consentData].forEach((el) => el.addEventListener('change', validateConsents));
-
-  dom.form.addEventListener('submit', async (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    validateConsents();
-    if (!(state.consents.accuracy && state.consents.dataProcessing)) return;
+    if (!validateStep4()) return;
 
-    if (state.decisions.final === DECISIONS.REJECTED) {
-      dom.verificationNotice.className = 'c-review-notice is-error';
-      dom.verificationNotice.textContent = 'Заявка отклонена. Исправьте данные и попробуйте снова.';
-      return;
-    }
+    const payload = await buildPayload();
+    console.info('[KYC payload]', payload);
 
-    const result = await submitKycApplication(state);
-    state.timestamps.submittedAt = new Date().toISOString();
-
-    if (!result.ok && result.status === DECISIONS.REJECTED) {
-      dom.verificationNotice.className = 'c-review-notice is-error';
-      dom.verificationNotice.textContent = result.message;
-      return;
-    }
-
-    const notice = result.status === DECISIONS.PENDING ? 'manual_review' : 'approved';
+    const notice = encodeURIComponent('manual_review_submitted');
     window.location.href = `dashboard.php?kyc=${notice}`;
   });
 }
 
-function hydrateMonths() {
-  const monthSelect = getInput('birthMonth');
-  const daySelect = getInput('birthDay');
-  const yearSelect = getInput('birthYear');
-  const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-  months.forEach((m, i) => monthSelect.insertAdjacentHTML('beforeend', `<option value="${String(i + 1).padStart(2, '0')}">${m}</option>`));
-  for (let d = 1; d <= 31; d += 1) daySelect.insertAdjacentHTML('beforeend', `<option value="${String(d).padStart(2, '0')}">${d}</option>`);
-  const year = new Date().getFullYear();
-  for (let y = year - 18; y >= year - 100; y -= 1) yearSelect.insertAdjacentHTML('beforeend', `<option value="${y}">${y}</option>`);
-}
+function gotoStep(targetStep) {
+  if (targetStep > state.step) {
+    const valid = validateCurrentStep();
+    if (!valid) return;
+  }
 
-export function initKycApp() {
-  if (!dom.form) return;
-  hydrateMonths();
-  attachResetListeners();
-  bindActions();
-  validateConsents();
+  state.step = targetStep;
+  dom.steps.forEach((stepEl) => {
+    stepEl.classList.toggle('hidden', Number(stepEl.dataset.kycStep) !== targetStep);
+  });
+
+  if (targetStep === 4) {
+    renderSummary();
+  }
+
   updateStepper();
-  syncFileView('front');
-  syncFileView('back');
-  setStatus('warning', 'Запустите проверку документа и liveness перед отправкой.');
+  updateSubmitState();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-initKycApp();
+function validateCurrentStep() {
+  if (state.step === 1) return validateStep1();
+  if (state.step === 2) return validateStep2();
+  if (state.step === 3) return validateStep3();
+  return true;
+}
+
+function validateStep1() {
+  const required = ['firstName', 'lastName', 'phone', 'email', 'country', 'city', 'address'];
+  let isValid = true;
+
+  required.forEach((id) => {
+    const el = document.getElementById(id);
+    const value = (el?.value || '').trim();
+    if (!value) {
+      isValid = false;
+      showError(id, 'Обязательное поле.');
+    }
+  });
+
+  if (!monthSelect.value || !daySelect.value || !yearSelect.value) {
+    isValid = false;
+    showError('birthDate', 'Укажите дату рождения полностью.');
+  }
+
+  const email = document.getElementById('email')?.value.trim() || '';
+  if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+    isValid = false;
+    showError('email', 'Введите корректный email.');
+  }
+
+  const phone = document.getElementById('phone')?.value.trim() || '';
+  if (phone && phone.replace(/\D/g, '').length < 8) {
+    isValid = false;
+    showError('phone', 'Введите корректный номер телефона.');
+  }
+
+  if (!isValid) return focusFirstError();
+
+  const countrySelect = document.getElementById('country');
+  const selectedOption = countrySelect?.options[countrySelect.selectedIndex];
+  state.personal = {
+    firstName: document.getElementById('firstName').value.trim(),
+    lastName: document.getElementById('lastName').value.trim(),
+    birthDate: `${yearSelect.value}-${monthSelect.value.padStart(2, '0')}-${daySelect.value.padStart(2, '0')}`,
+    phoneNumber: document.getElementById('phone').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    country: countrySelect?.value || '',
+    countryFlag: selectedOption?.dataset.flag || '',
+    city: document.getElementById('city').value.trim(),
+    addressLine: document.getElementById('address').value.trim(),
+  };
+
+  return true;
+}
+
+function validateStep2() {
+  let isValid = true;
+  state.document.docType = dom.docType.value;
+  state.document.docNumber = dom.docNumber.value.trim();
+  state.document.front = uploads.front.file;
+  state.document.back = uploads.back.file;
+
+  if (!state.document.docType) {
+    isValid = false;
+    showError('documentType', 'Выберите тип документа.');
+  }
+
+  if (!state.document.docNumber) {
+    isValid = false;
+    showError('documentNumber', 'Введите номер документа.');
+  }
+
+  if (!state.document.front) {
+    isValid = false;
+    showError('docFront', 'Загрузите лицевую сторону документа.');
+  }
+
+  if (requiresBackSide() && !state.document.back) {
+    isValid = false;
+    showError('docBack', 'Загрузите обратную сторону документа.');
+  }
+
+  updateStatuses();
+
+  if (!isValid) return focusFirstError();
+  return true;
+}
+
+function validateStep3() {
+  let isValid = true;
+
+  state.selfie = uploads.selfie.file;
+  state.selfieWithDocument = uploads.selfieWithDocument.file;
+  state.hasSelfie = Boolean(state.selfie);
+  state.hasSelfieWithDocument = Boolean(state.selfieWithDocument);
+
+  if (!state.selfie) {
+    isValid = false;
+    showError('selfie', 'Загрузите селфи.');
+  }
+
+  if (!state.selfieWithDocument) {
+    isValid = false;
+    showError('selfieWithDocument', 'Загрузите селфи с документом.');
+  }
+
+  updateStatuses();
+
+  if (!isValid) return focusFirstError();
+  return true;
+}
+
+function validateStep4() {
+  let isValid = validateStep1() && validateStep2() && validateStep3();
+
+  state.consent = Boolean(dom.consent?.checked);
+  state.acceptTerms = Boolean(dom.acceptTerms?.checked);
+
+  if (!state.consent) {
+    isValid = false;
+    showError('consent', 'Подтвердите достоверность данных.');
+  }
+
+  if (!state.acceptTerms) {
+    isValid = false;
+    showError('acceptTerms', 'Примите условия обработки данных.');
+  }
+
+  if (!isValid) {
+    focusFirstError();
+  }
+
+  return isValid;
+}
+
+function renderSummary() {
+  const personalRows = [
+    ['Имя', state.personal.firstName],
+    ['Фамилия', state.personal.lastName],
+    ['Дата рождения', state.personal.birthDate],
+    ['Телефон', state.personal.phoneNumber],
+    ['Email', state.personal.email],
+    ['Страна', `${state.personal.countryFlag} ${state.personal.country}`.trim()],
+    ['Город', state.personal.city],
+    ['Адрес', state.personal.addressLine],
+  ];
+
+  const docRows = [
+    ['Тип документа', mapDocType(state.document.docType)],
+    ['Номер документа', state.document.docNumber || '—'],
+    ['Лицевая сторона', state.document.front?.name || 'Не загружено'],
+    ['Обратная сторона', requiresBackSide() ? (state.document.back?.name || 'Не загружено') : 'Не требуется'],
+    ['Селфи', state.selfie?.name || 'Не загружено'],
+    ['Селфи с документом', state.selfieWithDocument?.name || 'Не загружено'],
+    ['hasSelfie', state.hasSelfie ? 'true' : 'false'],
+    ['hasSelfieWithDocument', state.hasSelfieWithDocument ? 'true' : 'false'],
+  ];
+
+  dom.summaryPersonal.innerHTML = personalRows.map(summaryRow).join('');
+  dom.summaryVerification.innerHTML = docRows.map(summaryRow).join('');
+}
+
+function updateSubmitState() {
+  const canSubmit = state.step === 4 && dom.consent?.checked && dom.acceptTerms?.checked;
+  dom.submitBtn.disabled = !canSubmit;
+}
+
+function updateStepper() {
+  dom.indicators.forEach((item) => {
+    const step = Number(item.dataset.stepIndicator);
+    const dot = item.querySelector('.c-stepper__dot');
+    const label = item.querySelector('.c-stepper__label');
+    const line = item.querySelector('[data-step-line]');
+    if (!dot || !label) return;
+
+    const completed = step < state.step;
+    const active = step === state.step;
+
+    dot.classList.toggle('border-primary-500', active || completed);
+    dot.classList.toggle('bg-primary-500', active || completed);
+    dot.classList.toggle('text-white', active || completed);
+    dot.classList.toggle('border-zinc-200', !active && !completed);
+    dot.classList.toggle('bg-zinc-100', !active && !completed);
+    dot.classList.toggle('text-zinc-500', !active && !completed);
+    dot.classList.toggle('dark:border-zinc-700', !active && !completed);
+    dot.classList.toggle('dark:bg-zinc-800', !active && !completed);
+    dot.classList.toggle('dark:text-zinc-400', !active && !completed);
+
+    label.classList.toggle('text-primary-600', active || completed);
+    label.classList.toggle('dark:text-primary-400', active || completed);
+    label.classList.toggle('text-zinc-500', !active && !completed);
+    label.classList.toggle('dark:text-zinc-400', !active && !completed);
+    item.setAttribute('aria-current', active ? 'step' : 'false');
+
+    if (line) {
+      line.classList.toggle('bg-primary-500/60', completed);
+      line.classList.toggle('dark:bg-primary-500/50', completed);
+      line.classList.toggle('bg-zinc-200', !completed);
+      line.classList.toggle('dark:bg-zinc-700', !completed);
+    }
+  });
+}
+
+function bindUpload(key, inputId, previewId) {
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+  const card = document.querySelector(`[data-upload-card="${key}"]`);
+  const previewWrap = document.querySelector(`[data-preview-wrap="${key}"]`);
+  const fileName = document.querySelector(`[data-file-name="${key}"]`);
+  const replaceBtn = document.querySelector(`[data-replace-upload="${key}"]`);
+  const clearBtn = document.querySelector(`[data-clear-upload="${key}"]`);
+
+  const model = { file: null, objectUrl: '' };
+
+  if (!input || !card || !preview || !previewWrap || !fileName || !replaceBtn || !clearBtn) {
+    return model;
+  }
+
+  const applyFile = (file) => {
+    if (!file) return;
+    if (model.objectUrl) URL.revokeObjectURL(model.objectUrl);
+    model.file = file;
+    model.objectUrl = URL.createObjectURL(file);
+
+    preview.src = model.objectUrl;
+    previewWrap.classList.remove('hidden');
+    fileName.textContent = file.name;
+    fileName.classList.remove('hidden');
+    replaceBtn.classList.remove('hidden');
+    clearBtn.classList.remove('hidden');
+
+    clearError(uploadErrorKey(key));
+    updateStatuses();
+  };
+
+  input.addEventListener('change', () => applyFile(input.files?.[0]));
+  replaceBtn.addEventListener('click', () => input.click());
+  clearBtn.addEventListener('click', () => clearUpload(key));
+
+  card.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    card.classList.add('border-primary-500', 'bg-primary-50/50', 'dark:bg-primary-900/10');
+  });
+
+  ['dragleave', 'dragend'].forEach((type) => {
+    card.addEventListener(type, () => {
+      card.classList.remove('border-primary-500', 'bg-primary-50/50', 'dark:bg-primary-900/10');
+    });
+  });
+
+  card.addEventListener('drop', (event) => {
+    event.preventDefault();
+    card.classList.remove('border-primary-500', 'bg-primary-50/50', 'dark:bg-primary-900/10');
+    const droppedFile = event.dataTransfer?.files?.[0];
+    if (!droppedFile) return;
+    const dt = new DataTransfer();
+    dt.items.add(droppedFile);
+    input.files = dt.files;
+    applyFile(droppedFile);
+  });
+
+  return model;
+}
+
+function clearUpload(key) {
+  const upload = uploads[key];
+  if (!upload) return;
+
+  const input = document.getElementById(key === 'front' ? 'docFrontInput' : key === 'back' ? 'docBackInput' : key === 'selfie' ? 'selfieInput' : 'selfieWithDocumentInput');
+  const preview = document.getElementById(key === 'front' ? 'docFrontPreview' : key === 'back' ? 'docBackPreview' : key === 'selfie' ? 'selfiePreview' : 'selfieWithDocumentPreview');
+  const previewWrap = document.querySelector(`[data-preview-wrap="${key}"]`);
+  const fileName = document.querySelector(`[data-file-name="${key}"]`);
+  const replaceBtn = document.querySelector(`[data-replace-upload="${key}"]`);
+  const clearBtn = document.querySelector(`[data-clear-upload="${key}"]`);
+
+  if (upload.objectUrl) URL.revokeObjectURL(upload.objectUrl);
+  upload.file = null;
+  upload.objectUrl = '';
+
+  if (input) input.value = '';
+  if (preview) preview.src = '';
+  previewWrap?.classList.add('hidden');
+  fileName?.classList.add('hidden');
+  fileName && (fileName.textContent = '');
+  replaceBtn?.classList.add('hidden');
+  clearBtn?.classList.add('hidden');
+
+  clearError(uploadErrorKey(key));
+  updateStatuses();
+}
+
+function updateStatuses() {
+  const hasFront = Boolean(uploads.front.file);
+  const hasBack = Boolean(uploads.back.file);
+  const requiresBack = requiresBackSide();
+
+  if (dom.statusDoc) {
+    const docOk = hasFront && (!requiresBack || hasBack);
+    dom.statusDoc.className = `c-verification-status ${docOk ? 'is-success' : 'is-warning'}`;
+    dom.statusDoc.textContent = docOk
+      ? 'Статус: документы загружены и готовы для ручной проверки.'
+      : `Статус: требуется ${requiresBack ? 'лицевая и обратная стороны.' : 'лицевая сторона документа.'}`;
+  }
+
+  state.hasSelfie = Boolean(uploads.selfie.file);
+  state.hasSelfieWithDocument = Boolean(uploads.selfieWithDocument.file);
+
+  if (dom.statusSelfie) {
+    const selfieOk = state.hasSelfie && state.hasSelfieWithDocument;
+    dom.statusSelfie.className = `c-verification-status ${selfieOk ? 'is-success' : 'is-warning'}`;
+    dom.statusSelfie.textContent = selfieOk
+      ? 'Статус: оба селфи загружены и готовы к отправке менеджеру.'
+      : 'Статус: загрузите селфи и селфи с документом.';
+  }
+}
+
+function updateDocumentTypeUI() {
+  const showBack = requiresBackSide();
+  dom.docBackCard.classList.toggle('hidden', !showBack);
+  if (!showBack) {
+    clearError('docBack');
+  }
+  updateStatuses();
+}
+
+function requiresBackSide() {
+  return dom.docType.value === 'driver_license' || dom.docType.value === 'id_card';
+}
+
+function showError(field, message) {
+  const errorEl = document.querySelector(`[data-error-for="${field}"]`);
+  if (!errorEl) return;
+  errorEl.textContent = message;
+  errorEl.classList.remove('hidden');
+}
+
+function clearError(field) {
+  const errorEl = document.querySelector(`[data-error-for="${field}"]`);
+  if (!errorEl) return;
+  errorEl.textContent = '';
+  errorEl.classList.add('hidden');
+}
+
+function focusFirstError() {
+  const firstError = form.querySelector('.c-form-message:not(.hidden)');
+  if (!firstError) return false;
+  const fieldKey = firstError.getAttribute('data-error-for');
+  let target = fieldKey ? document.getElementById(fieldKey) : null;
+  if (!target && fieldKey === 'birthDate') target = monthSelect;
+  if (!target && fieldKey === 'docFront') target = document.getElementById('docFrontInput');
+  if (!target && fieldKey === 'docBack') target = document.getElementById('docBackInput');
+  if (!target && fieldKey === 'selfie') target = document.getElementById('selfieInput');
+  if (!target && fieldKey === 'selfieWithDocument') target = document.getElementById('selfieWithDocumentInput');
+  target?.focus({ preventScroll: true });
+  firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  return false;
+}
+
+function uploadErrorKey(key) {
+  if (key === 'front') return 'docFront';
+  if (key === 'back') return 'docBack';
+  return key;
+}
+
+function initBirthDateOptions() {
+  const months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
+  months.forEach((label, index) => {
+    const opt = document.createElement('option');
+    opt.value = String(index + 1).padStart(2, '0');
+    opt.textContent = label;
+    monthSelect.appendChild(opt);
+  });
+
+  for (let day = 1; day <= 31; day += 1) {
+    const opt = document.createElement('option');
+    opt.value = String(day).padStart(2, '0');
+    opt.textContent = String(day);
+    daySelect.appendChild(opt);
+  }
+
+  const currentYear = new Date().getFullYear();
+  for (let year = currentYear; year >= currentYear - 100; year -= 1) {
+    const opt = document.createElement('option');
+    opt.value = String(year);
+    opt.textContent = String(year);
+    yearSelect.appendChild(opt);
+  }
+}
+
+function mapDocType(type) {
+  const map = {
+    passport: 'Паспорт',
+    driver_license: 'Водительское удостоверение',
+    id_card: 'Национальное удостоверение личности',
+  };
+  return map[type] || '—';
+}
+
+function summaryRow([title, value]) {
+  return `<div class="c-summary-row"><dt>${title}</dt><dd>${escapeHtml(value || '—')}</dd></div>`;
+}
+
+async function buildPayload() {
+  const documents = [];
+  const front = await serializeFile(uploads.front.file);
+  const back = requiresBackSide() ? await serializeFile(uploads.back.file) : null;
+  if (front) documents.push(front);
+  if (back) documents.push(back);
+
+  const selfie = await serializeFile(uploads.selfie.file);
+  const selfieWithDocument = await serializeFile(uploads.selfieWithDocument.file);
+
+  return {
+    ...state.personal,
+    docType: state.document.docType,
+    docNumber: state.document.docNumber,
+    documents,
+    selfie,
+    selfieWithDocument,
+    hasSelfie: Boolean(selfie),
+    hasSelfieWithDocument: Boolean(selfieWithDocument),
+    consent: Boolean(dom.consent?.checked),
+    acceptTerms: Boolean(dom.acceptTerms?.checked),
+  };
+}
+
+function serializeFile(file) {
+  if (!file) return Promise.resolve(null);
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(reader.error);
+    reader.onload = () => {
+      const result = typeof reader.result === 'string' ? reader.result : '';
+      const [, base64 = ''] = result.split(',');
+      const ext = (file.name.split('.').pop() || '').toLowerCase();
+      resolve({
+        fileName: file.name,
+        extension: ext,
+        content: base64,
+      });
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}

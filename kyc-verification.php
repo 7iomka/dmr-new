@@ -7,7 +7,7 @@
 <?php include __DIR__ . '/partials/head.php'; ?>
 
 <body>
-  <div id="app" class="flex overflow-hidden min-h-screen">
+  <div id="app" class="flex min-h-screen overflow-hidden">
     <?php include __DIR__ . '/partials/desktop-sidebar.php'; ?>
 
     <div class="page-content-area">
@@ -15,32 +15,32 @@
 
       <div class="page-body">
         <main class="page-main">
-          <section class="mx-auto w-full max-w-[900px] rounded-xl border border-zinc-200 dark:border-zinc-800 bg-card shadow-sm p-5 sm:p-8 lg:p-10">
+          <section class="mx-auto w-full max-w-[800px] rounded-xl border border-zinc-200 bg-card p-5 shadow-sm dark:border-zinc-800 sm:p-8 lg:p-10">
             <header class="text-center">
-              <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">Верификация личности</h1>
-              <p class="mt-3 text-base sm:text-lg text-zinc-500 dark:text-zinc-400">Поток KYC с проверкой документа, live-liveness и risk-based decisioning.</p>
+              <h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">Верификация личности</h1>
+              <p class="mt-3 text-base text-zinc-500 dark:text-zinc-400 sm:text-lg">Загрузите документ и дополнительные фото для усиленной ручной проверки менеджером.</p>
             </header>
 
             <ol class="c-stepper mt-8" data-kyc-stepper>
-              <li class="c-stepper__item" data-step-indicator="1"><span class="c-stepper__dot">1</span><span class="c-stepper__label">Личные данные</span><span class="c-stepper__line" data-step-line></span></li>
+              <li class="c-stepper__item" data-step-indicator="1"><span class="c-stepper__dot">1</span><span class="c-stepper__label">Личная информация</span><span class="c-stepper__line" data-step-line></span></li>
               <li class="c-stepper__item" data-step-indicator="2"><span class="c-stepper__dot">2</span><span class="c-stepper__label">Документ</span><span class="c-stepper__line" data-step-line></span></li>
-              <li class="c-stepper__item" data-step-indicator="3"><span class="c-stepper__dot">3</span><span class="c-stepper__label">Face & Liveness</span><span class="c-stepper__line" data-step-line></span></li>
+              <li class="c-stepper__item" data-step-indicator="3"><span class="c-stepper__dot">3</span><span class="c-stepper__label">Селфи</span><span class="c-stepper__line" data-step-line></span></li>
               <li class="c-stepper__item" data-step-indicator="4"><span class="c-stepper__dot">4</span><span class="c-stepper__label">Проверка</span></li>
             </ol>
 
-            <form class="mt-8 space-y-7" id="kycForm" novalidate>
+            <form id="kycForm" class="mt-8 space-y-7" novalidate>
               <section data-kyc-step="1" class="space-y-6">
                 <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 1: Личная информация</h2>
 
                 <div class="grid gap-4 sm:grid-cols-2">
                   <div class="c-form-control">
                     <label class="c-form-label" for="firstName">Имя<span class="text-red-500">*</span></label>
-                    <div class="c-form-control__input-wrap"><span class="c-form-control__icon-left"><i data-lucide="user" class="h-4 w-4"></i></span><input class="c-input pl-10" id="firstName" name="firstName" autocomplete="given-name" placeholder="Введите имя" required></div>
+                    <div class="c-form-control__input-wrap"><span class="c-form-control__icon-left"><i data-lucide="user" class="h-4 w-4"></i></span><input class="c-input pl-10" id="firstName" name="firstName" placeholder="Введите имя" autocomplete="given-name" required></div>
                     <p class="c-form-message hidden" data-error-for="firstName"></p>
                   </div>
                   <div class="c-form-control">
                     <label class="c-form-label" for="lastName">Фамилия<span class="text-red-500">*</span></label>
-                    <div class="c-form-control__input-wrap"><span class="c-form-control__icon-left"><i data-lucide="users" class="h-4 w-4"></i></span><input class="c-input pl-10" id="lastName" name="lastName" autocomplete="family-name" placeholder="Введите фамилию" required></div>
+                    <div class="c-form-control__input-wrap"><span class="c-form-control__icon-left"><i data-lucide="users" class="h-4 w-4"></i></span><input class="c-input pl-10" id="lastName" name="lastName" placeholder="Введите фамилию" autocomplete="family-name" required></div>
                     <p class="c-form-message hidden" data-error-for="lastName"></p>
                   </div>
                 </div>
@@ -82,10 +82,11 @@
                   <label class="c-form-label" for="country">Страна<span class="text-red-500">*</span></label>
                   <select class="c-select" id="country" name="country" required>
                     <option value="">Выберите страну</option>
-                    <option value="Молдова">Молдова</option>
-                    <option value="Румыния">Румыния</option>
-                    <option value="Украина">Украина</option>
-                    <option value="Германия">Германия</option>
+                    <option value="Молдова" data-flag="🇲🇩">Молдова</option>
+                    <option value="Румыния" data-flag="🇷🇴">Румыния</option>
+                    <option value="Украина" data-flag="🇺🇦">Украина</option>
+                    <option value="Польша" data-flag="🇵🇱">Польша</option>
+                    <option value="Германия" data-flag="🇩🇪">Германия</option>
                   </select>
                   <p class="c-form-message hidden" data-error-for="country"></p>
                 </div>
@@ -96,152 +97,167 @@
                     <div class="c-form-control__input-wrap"><span class="c-form-control__icon-left"><i data-lucide="building-2" class="h-4 w-4"></i></span><input class="c-input pl-10" id="city" name="city" placeholder="Введите город" required></div>
                     <p class="c-form-message hidden" data-error-for="city"></p>
                   </div>
-
                   <div class="c-form-control">
                     <label class="c-form-label" for="address">Адрес<span class="text-red-500">*</span></label>
-                    <div class="c-form-control__input-wrap"><span class="c-form-control__icon-left"><i data-lucide="map-pin" class="h-4 w-4"></i></span><input class="c-input pl-10" id="address" name="address" autocomplete="street-address" placeholder="Улица, дом, квартира" required></div>
+                    <div class="c-form-control__input-wrap"><span class="c-form-control__icon-left"><i data-lucide="map-pin" class="h-4 w-4"></i></span><input class="c-input pl-10" id="address" name="address" placeholder="Улица, дом, квартира" autocomplete="street-address" required></div>
                     <p class="c-form-message hidden" data-error-for="address"></p>
                   </div>
                 </div>
 
-                <button type="button" class="btn-primary w-full rounded-lg px-6 py-3 text-base font-bold" data-action="next-step-1">Далее: документ</button>
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <span></span>
+                  <button type="button" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" data-next-step="2">Далее</button>
+                </div>
               </section>
 
               <section data-kyc-step="2" class="space-y-6 hidden">
-                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 2: Document verification</h2>
-                <p class="c-field-hint">Загрузите чёткие изображения документа, где видны все края. Затем запустится quality-check, OCR и поиск лица на документе.</p>
+                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 2: Документ</h2>
 
-                <div class="c-form-control">
-                  <label class="c-form-label" for="documentType">Тип документа<span class="text-red-500">*</span></label>
-                  <select class="c-select" id="documentType" name="documentType" required>
-                    <option value="">Выберите тип документа</option>
-                    <option value="Паспорт">Паспорт</option>
-                    <option value="Водительское удостоверение">Водительское удостоверение</option>
-                    <option value="Национальное удостоверение личности">Национальное удостоверение личности</option>
-                  </select>
-                  <p class="c-form-message hidden" data-error-for="documentType"></p>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="c-form-control">
+                    <label class="c-form-label" for="documentType">Тип документа<span class="text-red-500">*</span></label>
+                    <select id="documentType" class="c-select" required>
+                      <option value="">Выберите тип документа</option>
+                      <option value="passport">Паспорт</option>
+                      <option value="driver_license">Водительское удостоверение</option>
+                      <option value="id_card">Национальное удостоверение личности</option>
+                    </select>
+                    <p class="c-form-message hidden" data-error-for="documentType"></p>
+                  </div>
+
+                  <div class="c-form-control">
+                    <label class="c-form-label" for="documentNumber">Номер документа<span class="text-red-500">*</span></label>
+                    <div class="c-form-control__input-wrap"><span class="c-form-control__icon-left"><i data-lucide="id-card" class="h-4 w-4"></i></span><input id="documentNumber" class="c-input pl-10" placeholder="Введите номер документа" required></div>
+                    <p class="c-form-message hidden" data-error-for="documentNumber"></p>
+                  </div>
                 </div>
 
-                <div class="c-form-control">
-                  <label class="c-form-label" for="documentNumber">Номер документа<span class="text-red-500">*</span></label>
-                  <div class="c-form-control__input-wrap"><span class="c-form-control__icon-left"><i data-lucide="badge-check" class="h-4 w-4"></i></span><input class="c-input pl-10" id="documentNumber" name="documentNumber" placeholder="Введите номер документа" required></div>
-                  <p class="c-form-message hidden" data-error-for="documentNumber"></p>
-                </div>
-
-                <div class="grid gap-4 md:grid-cols-2" id="uploadGrid">
-                  <div class="c-upload-card" data-upload-card="front" data-drop-zone="front">
-                    <label class="c-upload-card__label" for="docFront">
-                      <i data-lucide="upload" class="h-9 w-9 text-primary-600 dark:text-primary-400"></i>
-                      <span class="c-upload-card__title">Лицевая сторона</span>
-                      <span class="c-upload-card__hint">Нажмите для выбора или перетащите файл</span>
+                <div class="space-y-4">
+                  <div class="c-upload-card" data-upload-card="front">
+                    <label class="c-upload-card__label" for="docFrontInput">
+                      <p class="c-upload-card__title">Лицевая сторона<span class="text-red-500">*</span></p>
+                      <p class="c-upload-card__hint">Перетащите файл сюда или нажмите для выбора</p>
+                      <input id="docFrontInput" class="sr-only" type="file" accept="image/*">
+                      <div class="hidden w-full max-w-xs rounded-lg border border-zinc-200 bg-white/80 p-2 dark:border-zinc-700 dark:bg-zinc-900/60" data-preview-wrap="front">
+                        <img id="docFrontPreview" class="h-40 w-full rounded-lg object-contain bg-zinc-950/5 dark:bg-zinc-950/40" alt="Превью лицевой стороны документа">
+                      </div>
+                      <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="front"></p>
                     </label>
-                    <input id="docFront" name="docFront" type="file" class="sr-only" accept="image/*,.pdf">
-                    <div class="mt-3 hidden" data-file-preview-wrap="front"><img src="" alt="Предпросмотр лицевой стороны" class="h-28 w-full rounded-lg border border-primary-500/30 object-contain bg-zinc-950/20 dark:bg-zinc-900/70" data-file-preview="front"></div>
-                    <div class="mt-2 hidden items-center justify-center gap-3 text-xs" data-file-actions="front">
-                      <button type="button" class="font-semibold text-primary-700 dark:text-primary-300" data-file-replace="front">Заменить</button>
-                      <button type="button" class="font-semibold text-red-600 dark:text-red-400" data-file-remove="front">Удалить</button>
+                    <div class="mt-3 flex justify-center gap-2">
+                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="front">Заменить</button>
+                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="front">Сбросить</button>
                     </div>
                     <p class="c-form-message hidden" data-error-for="docFront"></p>
                   </div>
 
-                  <div class="c-upload-card hidden" data-upload-card="back" data-drop-zone="back">
-                    <label class="c-upload-card__label" for="docBack">
-                      <i data-lucide="upload" class="h-9 w-9 text-primary-600 dark:text-primary-400"></i>
-                      <span class="c-upload-card__title">Обратная сторона</span>
-                      <span class="c-upload-card__hint">Нажмите для выбора или перетащите файл</span>
+                  <div class="c-upload-card hidden" data-upload-card="back" id="docBackCard">
+                    <label class="c-upload-card__label" for="docBackInput">
+                      <p class="c-upload-card__title">Обратная сторона<span class="text-red-500">*</span></p>
+                      <p class="c-upload-card__hint">Перетащите файл сюда или нажмите для выбора</p>
+                      <input id="docBackInput" class="sr-only" type="file" accept="image/*">
+                      <div class="hidden w-full max-w-xs rounded-lg border border-zinc-200 bg-white/80 p-2 dark:border-zinc-700 dark:bg-zinc-900/60" data-preview-wrap="back">
+                        <img id="docBackPreview" class="h-40 w-full rounded-lg object-contain bg-zinc-950/5 dark:bg-zinc-950/40" alt="Превью обратной стороны документа">
+                      </div>
+                      <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="back"></p>
                     </label>
-                    <input id="docBack" name="docBack" type="file" class="sr-only" accept="image/*,.pdf">
-                    <div class="mt-3 hidden" data-file-preview-wrap="back"><img src="" alt="Предпросмотр обратной стороны" class="h-28 w-full rounded-lg border border-primary-500/30 object-contain bg-zinc-950/20 dark:bg-zinc-900/70" data-file-preview="back"></div>
-                    <div class="mt-2 hidden items-center justify-center gap-3 text-xs" data-file-actions="back">
-                      <button type="button" class="font-semibold text-primary-700 dark:text-primary-300" data-file-replace="back">Заменить</button>
-                      <button type="button" class="font-semibold text-red-600 dark:text-red-400" data-file-remove="back">Удалить</button>
+                    <div class="mt-3 flex justify-center gap-2">
+                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="back">Заменить</button>
+                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="back">Сбросить</button>
                     </div>
                     <p class="c-form-message hidden" data-error-for="docBack"></p>
                   </div>
                 </div>
 
-                <div class="rounded-lg border border-zinc-200/80 bg-zinc-50/60 p-4 text-sm text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900/50 dark:text-zinc-200">
-                  <p class="font-semibold text-zinc-900 dark:text-zinc-100">Критерии приёмки фото документа:</p>
-                  <ul class="mt-2 list-disc space-y-1 pl-5">
-                    <li>Минимум ~1 мегапиксель и короткая сторона не менее 620 px (например, 1200×800).</li>
-                    <li>Все 4 края документа должны быть в кадре, без сильной перспективы и обрезки.</li>
-                    <li>Текст и фото владельца должны быть читаемыми: без смаза, бликов и пересвета.</li>
-                    <li>Вертикальные фото «издалека» часто не проходят: лучше приблизить документ и кадрировать плотнее.</li>
+                <div class="c-review-notice">
+                  <p class="font-semibold">Критерии приёмки фото документа:</p>
+                  <ul class="mt-2 list-disc space-y-1 pl-5 text-sm">
+                    <li>Поддерживаются JPG/PNG/WEBP до 10MB.</li>
+                    <li>Минимум 700×900 px (или выше), желательно без сильного сжатия.</li>
+                    <li>Документ должен занимать значимую часть кадра, все 4 края должны быть видны.</li>
+                    <li>Текст и фото на документе должны быть читаемыми, без бликов и смаза.</li>
                   </ul>
                 </div>
 
-                <div class="c-verification-status is-warning" data-kyc-status>Ожидается запуск проверки документа.</div>
+                <div class="c-verification-status is-warning" data-doc-status>Статус: загрузите обязательные стороны документа.</div>
 
                 <div class="grid gap-3 sm:grid-cols-2">
-                  <button type="button" class="btn-secondary px-6 py-3 text-base font-bold" data-prev-step="1" data-prev-step-btn>Назад</button>
-                  <button type="button" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" data-action="verify-document">Проверить документ</button>
+                  <button type="button" class="btn-secondary px-6 py-3 text-base font-bold" data-prev-step="1">Назад</button>
+                  <button type="button" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" data-next-step="3">Далее</button>
                 </div>
               </section>
 
               <section data-kyc-step="3" class="space-y-6 hidden">
-                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 3: Face verification + Liveness</h2>
-                <p class="c-field-hint">Для защиты от подмены фото необходимо пройти challenge (прямой взгляд, повороты головы, моргание).</p>
+                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 3: Подтверждение личности (селфи)</h2>
+                <p class="c-field-hint">Сделайте два фото: крупное селфи и селфи с документом в руках. Это помогает менеджеру провести ручную сверку.</p>
 
-                <div class="c-verification-status is-warning" data-kyc-status>Нажмите «Запустить проверку», затем разрешите доступ к камере.</div>
-
-                <div class="grid gap-4 lg:grid-cols-2">
-                  <div class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3 bg-zinc-50/60 dark:bg-zinc-900/40">
-                    <video id="livenessVideo" class="aspect-video w-full rounded-lg bg-zinc-950/80" autoplay muted playsinline></video>
-                    <div class="mt-3 flex gap-2">
-                      <button id="startFaceVerificationBtn" type="button" class="btn-primary rounded-lg px-4 py-2 text-sm font-semibold">Запустить проверку</button>
-                      <button id="retryFaceVerificationBtn" type="button" class="btn-secondary px-4 py-2 text-sm font-semibold">Повторить</button>
+                <div class="grid gap-4 md:grid-cols-2">
+                  <div class="c-upload-card" data-upload-card="selfie">
+                    <label class="c-upload-card__label" for="selfieInput">
+                      <p class="c-upload-card__title">Селфи лица<span class="text-red-500">*</span></p>
+                      <p class="c-upload-card__hint">Лицо должно быть по центру и хорошо освещено</p>
+                      <input id="selfieInput" class="sr-only" type="file" accept="image/*">
+                      <div class="hidden w-full max-w-xs rounded-lg border border-zinc-200 bg-white/80 p-2 dark:border-zinc-700 dark:bg-zinc-900/60" data-preview-wrap="selfie">
+                        <img id="selfiePreview" class="h-44 w-full rounded-lg object-contain bg-zinc-950/5 dark:bg-zinc-950/40" alt="Превью селфи пользователя">
+                      </div>
+                      <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="selfie"></p>
+                    </label>
+                    <div class="mt-3 flex justify-center gap-2">
+                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="selfie">Заменить</button>
+                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="selfie">Сбросить</button>
                     </div>
+                    <p class="c-form-message hidden" data-error-for="selfie"></p>
                   </div>
-                  <div class="space-y-4">
-                    <div class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3 bg-zinc-50/60 dark:bg-zinc-900/40">
-                      <p class="text-sm font-semibold mb-2">Лицо из документа</p>
-                      <img id="documentFacePreview" class="hidden h-36 w-full rounded-lg object-contain bg-zinc-950/40" alt="Лицо из документа">
+
+                  <div class="c-upload-card" data-upload-card="selfieWithDocument">
+                    <label class="c-upload-card__label" for="selfieWithDocumentInput">
+                      <p class="c-upload-card__title">Селфи с документом<span class="text-red-500">*</span></p>
+                      <p class="c-upload-card__hint">В кадре должны быть лицо и документ в руках</p>
+                      <input id="selfieWithDocumentInput" class="sr-only" type="file" accept="image/*">
+                      <div class="hidden w-full max-w-xs rounded-lg border border-zinc-200 bg-white/80 p-2 dark:border-zinc-700 dark:bg-zinc-900/60" data-preview-wrap="selfieWithDocument">
+                        <img id="selfieWithDocumentPreview" class="h-44 w-full rounded-lg object-contain bg-zinc-950/5 dark:bg-zinc-950/40" alt="Превью селфи с документом">
+                      </div>
+                      <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="selfieWithDocument"></p>
+                    </label>
+                    <div class="mt-3 flex justify-center gap-2">
+                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="selfieWithDocument">Заменить</button>
+                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="selfieWithDocument">Сбросить</button>
                     </div>
-                    <div class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3 bg-zinc-50/60 dark:bg-zinc-900/40">
-                      <p class="text-sm font-semibold mb-2">Live selfie</p>
-                      <img id="selfiePreview" class="hidden h-36 w-full rounded-lg object-cover" alt="Selfie">
-                    </div>
+                    <p class="c-form-message hidden" data-error-for="selfieWithDocument"></p>
                   </div>
                 </div>
 
+                <div class="c-verification-status is-warning" data-selfie-status>Статус: загрузите оба селфи для ручной проверки.</div>
+
                 <div class="grid gap-3 sm:grid-cols-2">
-                  <button type="button" class="btn-secondary px-6 py-3 text-base font-bold" data-prev-step="2" data-prev-step>Назад</button>
-                  <button id="proceedToReviewBtn" type="button" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" disabled>Далее: Review</button>
+                  <button type="button" class="btn-secondary px-6 py-3 text-base font-bold" data-prev-step="2">Назад</button>
+                  <button type="button" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" data-next-step="4">Далее</button>
                 </div>
               </section>
 
               <section data-kyc-step="4" class="space-y-6 hidden">
-                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 4: Review и решение</h2>
+                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Этап 4: Проверка и отправка</h2>
 
                 <div class="space-y-4">
                   <div class="c-summary-list">
                     <h3>Личные данные</h3>
                     <dl id="summaryPersonal"></dl>
                   </div>
-
                   <div class="c-summary-list">
-                    <h3>Документ и проверка</h3>
-                    <dl id="summaryDocument"></dl>
+                    <h3>Документ и материалы</h3>
+                    <dl id="summaryVerification"></dl>
                   </div>
-
-                  <div class="c-review-notice" id="verificationNotice">Проверьте итог перед отправкой.</div>
-                  <div id="finalDecisionBadge" class="c-verification-status is-warning">Решение ещё не вычислено.</div>
-
-                  <div class="c-summary-list">
-                    <h3>Risk flags</h3>
-                    <ul id="riskFlags" class="list-disc pl-6 text-sm text-zinc-700 dark:text-zinc-200"></ul>
-                  </div>
+                  <div class="c-review-notice" id="manualReviewNotice">Заявка будет отправлена менеджеру на ручную проверку.</div>
                 </div>
 
                 <div class="rounded-lg border border-primary-500/30 bg-primary-500/10 p-4 space-y-3">
-                  <label class="flex items-start gap-3 cursor-pointer"><input id="consentAccuracy" type="checkbox" class="c-checkbox mt-0.5"><span>Я подтверждаю, что все данные точные и актуальные.</span></label>
-                  <p class="c-form-message hidden" data-error-for="consentAccuracy"></p>
-                  <label class="flex items-start gap-3 cursor-pointer"><input id="consentData" type="checkbox" class="c-checkbox mt-0.5"><span>Я согласен на обработку персональных данных в рамках KYC.</span></label>
-                  <p class="c-form-message hidden" data-error-for="consentData"></p>
+                  <label class="flex cursor-pointer items-start gap-3"><input id="consent" type="checkbox" class="c-checkbox mt-0.5"><span>Я подтверждаю, что данные актуальны и фотографии принадлежат мне.</span></label>
+                  <p class="c-form-message hidden" data-error-for="consent"></p>
+                  <label class="flex cursor-pointer items-start gap-3"><input id="acceptTerms" type="checkbox" class="c-checkbox mt-0.5"><span>Я согласен на обработку персональных данных в рамках KYC.</span></label>
+                  <p class="c-form-message hidden" data-error-for="acceptTerms"></p>
                 </div>
 
                 <div class="grid gap-3 sm:grid-cols-2">
-                  <button type="button" class="btn-secondary px-6 py-3 text-base font-bold" data-prev-step="3" data-prev-step>Назад</button>
+                  <button type="button" class="btn-secondary px-6 py-3 text-base font-bold" data-prev-step="3">Назад</button>
                   <button id="submitKycBtn" type="submit" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" disabled>Отправить KYC</button>
                 </div>
               </section>
