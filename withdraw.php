@@ -76,29 +76,29 @@
                 <div class="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700">
                   <div class="flex items-center gap-3 border-b border-zinc-200 bg-zinc-50/70 px-4 py-4 dark:border-zinc-700 dark:bg-zinc-900/30">
                     <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-500 text-white"><i data-lucide="bitcoin" class="h-4 w-4"></i></span>
-                    <h3 class="text-xl font-bold text-zinc-900 dark:text-zinc-100">Проверьте свой вывод средств</h3>
+                    <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Проверьте свой вывод средств</h3>
                   </div>
 
                   <div class="divide-y divide-zinc-200 dark:divide-zinc-700">
                     <div class="flex items-center justify-between gap-3 px-4 py-4">
-                      <span class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Тип криптовалюты</span>
-                      <span class="rounded-lg bg-primary-500 px-3 py-1 text-sm font-semibold text-white">USDT (TRC20)</span>
+                      <span class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Тип криптовалюты</span>
+                      <span class="rounded-lg bg-primary-500 px-3 py-1 text-xs font-semibold text-white">USDT (TRC20)</span>
                     </div>
                     <div class="flex items-center justify-between gap-3 px-4 py-4">
-                      <span class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Сумма</span>
-                      <span class="text-base sm:text-lg font-medium text-zinc-900 dark:text-zinc-100">$20.00</span>
+                      <span class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Сумма</span>
+                      <span class="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100">$20.00</span>
                     </div>
                     <div class="flex items-center justify-between gap-3 px-4 py-4">
-                      <span class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Комиссия</span>
-                      <span class="text-base sm:text-lg font-medium text-zinc-900 dark:text-zinc-100">$0.00</span>
+                      <span class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Комиссия</span>
+                      <span class="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100">$0.00</span>
                     </div>
                     <div class="flex items-center justify-between gap-3 bg-zinc-50 px-4 py-4 dark:bg-zinc-800/60">
-                      <span class="text-base font-semibold text-zinc-900 dark:text-zinc-100">Итоговая сумма</span>
-                      <span class="text-2xl lg:text-3xl font-bold text-primary-500">$20.00</span>
+                      <span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Итоговая сумма</span>
+                      <span class="text-xl lg:text-2xl font-bold text-primary-500">$20.00</span>
                     </div>
                     <div class="space-y-3 px-4 py-4">
-                      <p class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Адрес назначения</p>
-                      <p class="text-base font-semibold text-zinc-900 dark:text-zinc-100">test</p>
+                      <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Адрес назначения</p>
+                      <p class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">test</p>
                       <input type="text" readonly value="TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9" class="c-input">
                     </div>
                   </div>
@@ -106,7 +106,7 @@
 
                 <div class="c-form-control">
                   <label class="c-form-label" for="confirmPassword">
-                    <span class="mr-2 inline-flex align-middle text-primary-500"><i data-lucide="lock" class="h-4 w-4"></i></span>
+                    <span class="inline-flex text-primary-500"><i data-lucide="lock" class="h-4 w-4"></i></span>
                     Подтвердите пароль
                   </label>
                   <div class="c-form-control__input-wrap">
