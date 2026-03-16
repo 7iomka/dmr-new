@@ -123,8 +123,7 @@
                   <div class="c-form-control">
                     <label class="c-form-label" for="documentType">Тип документа<span class="text-red-500">*</span></label>
                     <select id="documentType" class="c-select" required>
-                      <option value="">Выберите тип документа</option>
-                      <option value="passport">Паспорт</option>
+                      <option value="passport" selected>Паспорт</option>
                       <option value="driver_license">Водительское удостоверение</option>
                       <option value="id_card">Национальное удостоверение личности</option>
                     </select>
@@ -138,18 +137,19 @@
                   </div>
                 </div>
 
-                <div class="space-y-4">
+                <div class="grid gap-4 lg:grid-cols-2">
                   <div class="c-upload-card" data-upload-card="front">
                     <label class="c-upload-card__label" for="docFrontInput">
+                      <i data-lucide="upload" class="h-12 w-12 text-primary-500 dark:text-primary-400" aria-hidden="true"></i>
                       <p class="c-upload-card__title">Лицевая сторона<span class="text-red-500">*</span></p>
-                      <p class="c-upload-card__hint">Перетащите файл сюда или нажмите для выбора</p>
+                      <p class="c-upload-card__hint">Нажмите для выбора или Перетащите файл сюда</p>
                       <input id="docFrontInput" class="sr-only" type="file" accept="image/*">
                       <div class="hidden w-full max-w-xs rounded-lg border border-zinc-200 bg-white/80 p-2 dark:border-zinc-700 dark:bg-zinc-900/60" data-preview-wrap="front">
                         <img id="docFrontPreview" class="h-40 w-full rounded-lg object-contain bg-zinc-950/5 dark:bg-zinc-950/40" alt="Превью лицевой стороны документа">
                       </div>
                       <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="front"></p>
                     </label>
-                    <div class="mt-3 flex justify-center gap-2">
+                    <div class="hidden justify-center gap-2" data-upload-actions="front">
                       <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="front">Заменить</button>
                       <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="front">Сбросить</button>
                     </div>
@@ -158,15 +158,16 @@
 
                   <div class="c-upload-card hidden" data-upload-card="back" id="docBackCard">
                     <label class="c-upload-card__label" for="docBackInput">
+                      <i data-lucide="upload" class="h-12 w-12 text-primary-500 dark:text-primary-400" aria-hidden="true"></i>
                       <p class="c-upload-card__title">Обратная сторона<span class="text-red-500">*</span></p>
-                      <p class="c-upload-card__hint">Перетащите файл сюда или нажмите для выбора</p>
+                      <p class="c-upload-card__hint">Нажмите для выбора или Перетащите файл сюда</p>
                       <input id="docBackInput" class="sr-only" type="file" accept="image/*">
                       <div class="hidden w-full max-w-xs rounded-lg border border-zinc-200 bg-white/80 p-2 dark:border-zinc-700 dark:bg-zinc-900/60" data-preview-wrap="back">
                         <img id="docBackPreview" class="h-40 w-full rounded-lg object-contain bg-zinc-950/5 dark:bg-zinc-950/40" alt="Превью обратной стороны документа">
                       </div>
                       <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="back"></p>
                     </label>
-                    <div class="mt-3 flex justify-center gap-2">
+                    <div class="hidden justify-center gap-2" data-upload-actions="back">
                       <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="back">Заменить</button>
                       <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="back">Сбросить</button>
                     </div>
@@ -207,7 +208,7 @@
                       </div>
                       <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="selfie"></p>
                     </label>
-                    <div class="mt-3 flex justify-center gap-2">
+                    <div class="hidden justify-center gap-2" data-upload-actions="selfie">
                       <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="selfie">Заменить</button>
                       <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="selfie">Сбросить</button>
                     </div>
@@ -224,7 +225,7 @@
                       </div>
                       <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="selfieWithDocument"></p>
                     </label>
-                    <div class="mt-3 flex justify-center gap-2">
+                    <div class="hidden justify-center gap-2" data-upload-actions="selfieWithDocument">
                       <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="selfieWithDocument">Заменить</button>
                       <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="selfieWithDocument">Сбросить</button>
                     </div>

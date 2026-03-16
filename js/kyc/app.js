@@ -333,12 +333,13 @@ function bindUpload(key, inputId, previewId) {
   const card = document.querySelector(`[data-upload-card="${key}"]`);
   const previewWrap = document.querySelector(`[data-preview-wrap="${key}"]`);
   const fileName = document.querySelector(`[data-file-name="${key}"]`);
+  const actionsWrap = document.querySelector(`[data-upload-actions="${key}"]`);
   const replaceBtn = document.querySelector(`[data-replace-upload="${key}"]`);
   const clearBtn = document.querySelector(`[data-clear-upload="${key}"]`);
 
   const model = { file: null, objectUrl: '' };
 
-  if (!input || !card || !preview || !previewWrap || !fileName || !replaceBtn || !clearBtn) {
+  if (!input || !card || !preview || !previewWrap || !fileName || !actionsWrap || !replaceBtn || !clearBtn) {
     return model;
   }
 
@@ -352,6 +353,8 @@ function bindUpload(key, inputId, previewId) {
     previewWrap.classList.remove('hidden');
     fileName.textContent = file.name;
     fileName.classList.remove('hidden');
+    actionsWrap.classList.remove('hidden');
+    actionsWrap.classList.add('flex');
     replaceBtn.classList.remove('hidden');
     clearBtn.classList.remove('hidden');
 
@@ -396,6 +399,7 @@ function clearUpload(key) {
   const preview = document.getElementById(key === 'front' ? 'docFrontPreview' : key === 'back' ? 'docBackPreview' : key === 'selfie' ? 'selfiePreview' : 'selfieWithDocumentPreview');
   const previewWrap = document.querySelector(`[data-preview-wrap="${key}"]`);
   const fileName = document.querySelector(`[data-file-name="${key}"]`);
+  const actionsWrap = document.querySelector(`[data-upload-actions="${key}"]`);
   const replaceBtn = document.querySelector(`[data-replace-upload="${key}"]`);
   const clearBtn = document.querySelector(`[data-clear-upload="${key}"]`);
 
@@ -408,6 +412,8 @@ function clearUpload(key) {
   previewWrap?.classList.add('hidden');
   fileName?.classList.add('hidden');
   fileName && (fileName.textContent = '');
+  actionsWrap?.classList.remove('flex');
+  actionsWrap?.classList.add('hidden');
   replaceBtn?.classList.add('hidden');
   clearBtn?.classList.add('hidden');
 
