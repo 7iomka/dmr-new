@@ -30,13 +30,13 @@
                 </div>
               </div>
 
-              <ol class="c-stepper" aria-label="Шаги вывода средств">
+              <ol class="c-stepper mt-8" aria-label="Шаги вывода средств">
                 <li class="c-stepper__item" aria-current="false"><span class="c-stepper__dot border-primary-500 bg-primary-500 text-white">1</span><span class="c-stepper__label text-primary-600 dark:text-primary-400">Сумма и назначение</span><span class="c-stepper__line bg-primary-500/60 dark:bg-primary-500/50"></span></li>
                 <li class="c-stepper__item" aria-current="step"><span class="c-stepper__dot border-primary-500 bg-primary-500 text-white">2</span><span class="c-stepper__label text-primary-600 dark:text-primary-400">Проверьте свой вывод средств</span><span class="c-stepper__line"></span></li>
                 <li class="c-stepper__item" aria-current="false"><span class="c-stepper__dot">3</span><span class="c-stepper__label">Подтвердите свой вывод средств</span></li>
               </ol>
 
-              <form class="space-y-6" novalidate>
+              <form class="mt-8 space-y-7" novalidate>
                 <section data-withdraw-step="1" class="hidden space-y-5">
                   <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Сумма и назначение</h2>
 
@@ -66,46 +66,48 @@
                 </section>
 
                 <section data-withdraw-step="2" class="space-y-6">
-                  <h2 class="text-[44px] font-bold leading-tight text-zinc-900 dark:text-white">Review Your Withdrawal</h2>
+                  <h2 class="text-xl lg:text-2xl font-bold text-zinc-900 dark:text-white">Этап 2: Проверьте свой вывод средств</h2>
+
+                  <p class="text-base lg:text-lg font-semibold text-zinc-900 dark:text-zinc-100">Review Your Withdrawal</p>
 
                   <div class="overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50/70 dark:border-zinc-700 dark:bg-zinc-900/30">
                     <div class="flex items-center gap-3 border-b border-zinc-200 px-5 py-5 dark:border-zinc-700">
                       <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-500 text-white"><i data-lucide="bitcoin" class="h-4 w-4"></i></span>
-                      <h3 class="text-4xl font-bold text-zinc-900 dark:text-zinc-100">Cryptocurrency</h3>
+                      <h3 class="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100">Cryptocurrency</h3>
                     </div>
 
                     <div class="divide-y divide-zinc-200 dark:divide-zinc-700">
                       <div class="flex items-center justify-between gap-4 px-5 py-6">
-                        <span class="text-[44px] leading-none text-slate-500 dark:text-slate-300">Crypto Type</span>
-                        <span class="rounded-xl bg-primary-500 px-5 py-2 text-3xl font-semibold text-white">USDT (TRC20)</span>
+                        <span class="text-base sm:text-lg text-slate-500 dark:text-slate-300">Crypto Type</span>
+                        <span class="rounded-xl bg-primary-500 px-4 py-1.5 text-sm sm:text-base font-semibold text-white">USDT (TRC20)</span>
                       </div>
 
                       <div class="flex items-center justify-between gap-4 px-5 py-6">
-                        <span class="text-[44px] leading-none text-slate-500 dark:text-slate-300">Amount</span>
-                        <span class="text-[44px] font-medium text-zinc-900 dark:text-zinc-100">$20.00</span>
+                        <span class="text-base sm:text-lg text-slate-500 dark:text-slate-300">Amount</span>
+                        <span class="text-xl sm:text-2xl font-medium text-zinc-900 dark:text-zinc-100">$20.00</span>
                       </div>
 
                       <div class="flex items-center justify-between gap-4 px-5 py-6">
-                        <span class="text-[44px] leading-none text-slate-500 dark:text-slate-300">Fee</span>
-                        <span class="text-[44px] font-medium text-zinc-900 dark:text-zinc-100">$0.00</span>
+                        <span class="text-base sm:text-lg text-slate-500 dark:text-slate-300">Fee</span>
+                        <span class="text-xl sm:text-2xl font-medium text-zinc-900 dark:text-zinc-100">$0.00</span>
                       </div>
 
                       <div class="flex items-center justify-between gap-4 bg-zinc-100 px-5 py-6 dark:bg-zinc-800/70">
-                        <span class="text-[44px] font-semibold text-zinc-900 dark:text-zinc-100">Net Amount</span>
-                        <span class="text-[64px] font-bold leading-none text-primary-500">$20.00</span>
+                        <span class="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-100">Net Amount</span>
+                        <span class="text-3xl sm:text-4xl font-bold leading-none text-primary-500">$20.00</span>
                       </div>
 
                       <div class="space-y-3 px-5 py-6">
-                        <p class="text-[44px] leading-none text-slate-500 dark:text-slate-300">Destination Address</p>
-                        <p class="text-[44px] font-semibold leading-none text-zinc-900 dark:text-zinc-100">test</p>
+                        <p class="text-base sm:text-lg text-slate-500 dark:text-slate-300">Destination Address</p>
+                        <p class="text-xl sm:text-2xl font-semibold text-zinc-900 dark:text-zinc-100">test</p>
                         <input type="text" readonly value="TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9" class="c-input" />
                       </div>
                     </div>
                   </div>
 
                   <div class="c-form-control">
-                    <label class="c-form-label text-4xl" for="confirmPassword">
-                      <span class="mr-2 inline-flex align-middle text-primary-500"><i data-lucide="lock" class="h-8 w-8"></i></span>
+                    <label class="c-form-label text-base sm:text-lg" for="confirmPassword">
+                      <span class="mr-2 inline-flex align-middle text-primary-500"><i data-lucide="lock" class="h-5 w-5"></i></span>
                       Confirm Your Password
                     </label>
                     <div class="c-form-control__input-wrap">
@@ -117,7 +119,7 @@
                   <div class="c-review-notice border-blue-500/60 bg-blue-500/10 text-blue-700 dark:text-blue-300">
                     <div class="flex items-center gap-3">
                       <i data-lucide="shield" class="h-6 w-6"></i>
-                      <span class="text-3xl">An OTP code will be sent to your preferred method for verification</span>
+                      <span class="text-base sm:text-lg">An OTP code will be sent to your preferred method for verification</span>
                     </div>
                   </div>
                 </section>
