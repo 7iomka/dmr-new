@@ -29,7 +29,7 @@
               </div>
             </div>
 
-            <ol class="c-stepper mt-8" data-withdraw-stepper>
+            <ol class="c-stepper mt-8" style="--stepper-cols: 3; --stepper-cols-mobile: 2;" data-withdraw-stepper>
               <li class="c-stepper__item" data-step-indicator="1"><span class="c-stepper__dot">1</span><span class="c-stepper__label">Сумма и назначение</span><span class="c-stepper__line" data-step-line></span></li>
               <li class="c-stepper__item" data-step-indicator="2"><span class="c-stepper__dot">2</span><span class="c-stepper__label">Проверьте свой вывод средств</span><span class="c-stepper__line" data-step-line></span></li>
               <li class="c-stepper__item" data-step-indicator="3"><span class="c-stepper__dot">3</span><span class="c-stepper__label">Подтвердите свой вывод средств</span></li>
@@ -40,16 +40,16 @@
                 <h2 class="text-xl lg:text-2xl font-bold text-zinc-900 dark:text-white">Этап 1: Сумма и назначение</h2>
 
                 <div class="c-form-control">
-                  <label class="c-form-label" for="withdrawAmount">Сумма вывода</label>
+                  <label class="c-form-label" for="amount">Сумма вывода</label>
                   <div class="c-form-control__input-wrap">
-                    <input id="withdrawAmount" name="withdrawAmount" type="number" min="10" step="0.01" value="20.00" class="c-input" required>
+                    <input role="spinbutton" inputmode="decimal" id="amount" name="withdrawAmount" aria-valuemin="100" aria-valuemax="555" aria-valuenow="undefined" placeholder="0.00" min="100" max="555" step="1" value="" class="c-input" required>
                   </div>
-                  <p class="c-form-description">Диапазон сумм: $10.00 - $1000.00</p>
+                  <p class="c-form-description">Диапазон сумм: $100.00 - $555.00</p>
                 </div>
 
                 <div class="rounded-lg border border-primary-500/30 bg-primary-500/10 p-4">
                   <p class="text-sm font-semibold text-primary-700 dark:text-primary-200">Доступный баланс</p>
-                  <p class="mt-1 text-2xl lg:text-3xl font-bold text-primary-700 dark:text-primary-200">$10.21</p>
+                  <p class="mt-1 text-2xl lg:text-3xl font-bold text-primary-700 dark:text-primary-200">$555.00</p>
                 </div>
 
                 <div class="c-form-control">
@@ -76,28 +76,28 @@
                 <div class="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700">
                   <div class="flex items-center gap-3 border-b border-zinc-200 bg-zinc-50/70 px-4 py-4 dark:border-zinc-700 dark:bg-zinc-900/30">
                     <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-500 text-white"><i data-lucide="bitcoin" class="h-4 w-4"></i></span>
-                    <h3 class="text-xl font-bold text-zinc-900 dark:text-zinc-100">Review Your Withdrawal</h3>
+                    <h3 class="text-xl font-bold text-zinc-900 dark:text-zinc-100">Проверьте свой вывод средств</h3>
                   </div>
 
                   <div class="divide-y divide-zinc-200 dark:divide-zinc-700">
                     <div class="flex items-center justify-between gap-3 px-4 py-4">
-                      <span class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Crypto Type</span>
+                      <span class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Тип криптовалюты</span>
                       <span class="rounded-lg bg-primary-500 px-3 py-1 text-sm font-semibold text-white">USDT (TRC20)</span>
                     </div>
                     <div class="flex items-center justify-between gap-3 px-4 py-4">
-                      <span class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Amount</span>
+                      <span class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Сумма</span>
                       <span class="text-base sm:text-lg font-medium text-zinc-900 dark:text-zinc-100">$20.00</span>
                     </div>
                     <div class="flex items-center justify-between gap-3 px-4 py-4">
-                      <span class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Fee</span>
+                      <span class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Комиссия</span>
                       <span class="text-base sm:text-lg font-medium text-zinc-900 dark:text-zinc-100">$0.00</span>
                     </div>
                     <div class="flex items-center justify-between gap-3 bg-zinc-50 px-4 py-4 dark:bg-zinc-800/60">
-                      <span class="text-base font-semibold text-zinc-900 dark:text-zinc-100">Net Amount</span>
+                      <span class="text-base font-semibold text-zinc-900 dark:text-zinc-100">Итоговая сумма</span>
                       <span class="text-2xl lg:text-3xl font-bold text-primary-500">$20.00</span>
                     </div>
                     <div class="space-y-3 px-4 py-4">
-                      <p class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Destination Address</p>
+                      <p class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">Адрес назначения</p>
                       <p class="text-base font-semibold text-zinc-900 dark:text-zinc-100">test</p>
                       <input type="text" readonly value="TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9" class="c-input">
                     </div>
@@ -107,7 +107,7 @@
                 <div class="c-form-control">
                   <label class="c-form-label" for="confirmPassword">
                     <span class="mr-2 inline-flex align-middle text-primary-500"><i data-lucide="lock" class="h-4 w-4"></i></span>
-                    Confirm Your Password
+                    Подтвердите пароль
                   </label>
                   <div class="c-form-control__input-wrap">
                     <input id="confirmPassword" name="confirmPassword" type="password" placeholder="••••••" class="c-input pr-10" required>
@@ -118,7 +118,7 @@
                 <div class="c-review-notice">
                   <div class="flex items-center gap-3">
                     <i data-lucide="shield" class="h-5 w-5"></i>
-                    <span>An OTP code will be sent to your preferred method for verification.</span>
+                    <span>OTP-код будет отправлен на выбранный способ подтверждения.</span>
                   </div>
                 </div>
 
@@ -149,7 +149,7 @@
                 <div class="grid gap-3 sm:grid-cols-2">
                   <button type="button" class="btn-secondary rounded-lg px-6 py-3 text-base font-bold" data-prev-step="2">Назад</button>
                   <button type="submit" class="btn-primary rounded-lg px-6 py-3 text-base font-bold inline-flex items-center justify-center gap-2">
-                    <span>Confirm &amp; Submit Withdrawal</span>
+                    <span>Подтвердить и отправить вывод</span>
                     <i data-lucide="check" class="h-4 w-4"></i>
                   </button>
                 </div>
