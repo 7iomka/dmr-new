@@ -25,7 +25,7 @@
 			</p>
 
 			<div class="flex flex-col gap-1">
-				<a href="dashboard.php" data-active="true" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="/dashboard.php" data-active="true" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
@@ -36,7 +36,7 @@
 					<span class="sidebar-label text-sm font-semibold">Дашборд</span>
 				</a>
 
-				<a href="investments.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="/investments.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
@@ -57,7 +57,7 @@
 			</p>
 
 			<div class="flex flex-col gap-1">
-				<a href="wallet.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="/wallet" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
@@ -68,7 +68,7 @@
 					<span class="sidebar-label text-sm font-semibold">Кошелёк</span>
 				</a>
 
-				<a href="withdrawals.html" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="/wallet/withdrawals" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
@@ -79,7 +79,7 @@
 					<span class="sidebar-label text-sm font-semibold">Выводы</span>
 				</a>
 
-				<a href="report.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="/report.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
@@ -100,7 +100,7 @@
 			</p>
 
 			<div class="flex flex-col gap-1">
-				<a href="profile.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="/profile.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
@@ -111,7 +111,7 @@
 					<span class="sidebar-label text-sm font-semibold">Профиль</span>
 				</a>
 
-				<a href="partners.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="/partners.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
@@ -122,7 +122,7 @@
 					<span class="sidebar-label text-sm font-semibold">Рефералы</span>
 				</a>
 
-				<a href="settings.html" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="/settings.html" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
@@ -141,15 +141,15 @@
 				<span class="sidebar-label">Информация</span>
 			</p>
 			<div class="flex flex-col gap-1">
-				<a href="home.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary">
+				<a href="/home.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary">
 					<div class="sidebar-link-icon flex items-center justify-center"><i data-lucide="house" class="w-5 h-5"></i></div>
 					<span class="sidebar-label text-sm font-semibold">Главная</span>
 				</a>
-				<a href="news.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary">
+				<a href="/news.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary">
 					<div class="sidebar-link-icon flex items-center justify-center"><i data-lucide="newspaper" class="w-5 h-5"></i></div>
 					<span class="sidebar-label text-sm font-semibold">Новости</span>
 				</a>
-				<a href="contacts.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary">
+				<a href="/contacts.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary">
 					<div class="sidebar-link-icon flex items-center justify-center"><i data-lucide="phone" class="w-5 h-5"></i></div>
 					<span class="sidebar-label text-sm font-semibold">Контакты</span>
 				</a>

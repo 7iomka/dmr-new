@@ -1,4 +1,4 @@
-<?php require 'components/copy-button.php'; ?>
+<?php require __DIR__ . '/../components/copy-button.php'; ?>
 
 <head>
   <meta charset="UTF-8" />
