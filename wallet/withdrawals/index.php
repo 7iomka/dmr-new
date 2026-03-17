@@ -131,7 +131,7 @@
                           </div>
                           <div class="flex justify-between items-center">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Адрес назначения:</span>
-                            <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300">0x34fA5f2CD8Fc5c4B7A3a67E5dfEA3B12A8B392cB</span>
+                            <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300 break-all max-w-[220px] text-right">0x34fA5f2CD8Fc5c4B7A3a67E5dfEA3B12A8B392cB</span>
                           </div>
                                                   </div>
                       </div>
@@ -175,7 +175,7 @@
                           </div>
                           <div class="flex justify-between items-center">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Адрес назначения:</span>
-                            <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300">TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9</span>
+                            <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300 break-all max-w-[220px] text-right">TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9</span>
                           </div>
                                                   </div>
                       </div>
