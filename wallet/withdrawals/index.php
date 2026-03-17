@@ -121,17 +121,17 @@
                     <div class="c-card-details-content">
                       <div class="px-4 pb-4 pt-0">
                         <div class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
-                          <div class="flex justify-between items-center">
+                          <div class="flex justify-between items-center gap-2">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Статус:</span>
                             <span class="px-2 py-0.5 bg-primary/10 text-primary text-[9px] font-bold uppercase rounded">COMPLETED</span>
                           </div>
-                          <div class="flex justify-between items-center">
+                          <div class="flex justify-between items-center gap-2">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">ID заявки:</span>
                             <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300">#WD-10842</span>
                           </div>
-                          <div class="flex justify-between items-center">
+                          <div class="flex justify-between items-center gap-2">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Адрес назначения:</span>
-                            <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300 break-all max-w-[220px] text-right">0x34fA5f2CD8Fc5c4B7A3a67E5dfEA3B12A8B392cB</span>
+                            <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300 break-all text-balance text-right">0x34fA5f2CD8Fc5c4B7A3a67E5dfEA3B12A8B392cB</span>
                           </div>
                                                   </div>
                       </div>
@@ -165,17 +165,17 @@
                     <div class="c-card-details-content">
                       <div class="px-4 pb-4 pt-0">
                         <div class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
-                          <div class="flex justify-between items-center">
+                          <div class="flex justify-between items-center gap-2">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Статус:</span>
                             <span class="px-2 py-0.5 bg-amber-500/10 text-amber-500 text-[9px] font-bold uppercase rounded">В обработке</span>
                           </div>
-                          <div class="flex justify-between items-center">
+                          <div class="flex justify-between items-center gap-2">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">ID заявки:</span>
                             <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300">#WD-10839</span>
                           </div>
-                          <div class="flex justify-between items-center">
+                          <div class="flex justify-between items-center gap-2">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Адрес назначения:</span>
-                            <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300 break-all max-w-[220px] text-right">TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9</span>
+                            <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300 break-all text-balance text-right">TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9</span>
                           </div>
                                                   </div>
                       </div>
