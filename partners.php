@@ -288,25 +288,6 @@
                             .card-open .c-card-chevron {
                                 transform: rotate(180deg);
                             }
-
-                            .c-sortable-th {
-                                cursor: pointer;
-                                transition: background-color 0.2s, color 0.2s;
-                            }
-
-                            .c-sortable-th:hover {
-                                background-color: rgba(0, 176, 116, 0.05);
-                                color: var(--color-primary);
-                            }
-
-                            .c-sortable-th:hover .c-sort-icon {
-                                opacity: 1;
-                                color: var(--color-primary);
-                            }
-
-                            .dark .c-sortable-th:hover {
-                                background-color: rgba(255, 255, 255, 0.03);
-                            }
                         </style>
                         <!-- Table Card Section -->
                         <div class="card">
