@@ -101,54 +101,80 @@
               </div>
 
               <div class="lg:hidden divide-y divide-zinc-100 dark:divide-zinc-800/50">
-                <article class="p-4 space-y-3">
-                  <div class="flex items-center justify-between gap-3">
-                    <p class="text-xs font-bold text-zinc-900 dark:text-white">#WD-10842</p>
-                    <span class="px-2 py-0.5 bg-primary-500/10 text-primary-700 dark:text-primary-200 text-[9px] font-bold uppercase rounded">Завершён</span>
-                  </div>
-                  <div class="flex flex-wrap items-center gap-2">
-                    <span class="px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 text-[10px] font-bold uppercase">USDT</span>
-                    <span class="px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 text-[10px] font-bold uppercase">BEP20</span>
-                    <span class="text-[11px] text-zinc-500">14.02.2026 11:22</span>
-                  </div>
-                  <div class="grid grid-cols-3 gap-2 rounded-lg border border-zinc-200 dark:border-zinc-700 p-3">
-                    <div>
-                      <p class="text-[9px] font-bold uppercase tracking-widest text-zinc-500">Сумма</p>
-                      <p class="mt-1 text-xs font-semibold text-zinc-900 dark:text-white">$120.00</p>
+                <article class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
+                  <div class="p-4 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                      <div class="w-10 h-10 rounded-full bg-primary-500/15 flex items-center justify-center text-primary-700 dark:text-primary-200">
+                        <i data-lucide="check" class="w-5 h-5" aria-hidden="true"></i>
+                      </div>
+                      <div class="min-w-0">
+                        <p class="text-[13px] font-bold text-zinc-900 dark:text-white truncate">#WD-10842 · Завершён</p>
+                        <p class="text-[10px] text-zinc-500 font-medium">14.02.2026 11:22 · USDT (BEP20)</p>
+                        <p class="text-[10px] text-zinc-500 mt-1">Сумма: $120.00 · Комиссия: $0.00</p>
+                      </div>
                     </div>
-                    <div>
-                      <p class="text-[9px] font-bold uppercase tracking-widest text-zinc-500">Комиссия</p>
-                      <p class="mt-1 text-xs font-semibold text-zinc-900 dark:text-white">$0.00</p>
+                    <div class="text-right pl-3 shrink-0">
+                      <p class="text-[10px] font-bold uppercase text-zinc-500">К получению</p>
+                      <p class="text-[15px] font-black text-primary-700 dark:text-primary-200 whitespace-nowrap">$120.00</p>
+                      <div class="flex items-center justify-end text-[9px] text-zinc-400 uppercase font-bold tracking-tighter">
+                        <span>Детали</span>
+                        <i data-lucide="chevron-down" class="w-3 h-3 ml-1 c-card-chevron" aria-hidden="true"></i>
+                      </div>
                     </div>
-                    <div>
-                      <p class="text-[9px] font-bold uppercase tracking-widest text-zinc-500">К получению</p>
-                      <p class="mt-1 text-xs font-bold text-primary-700 dark:text-primary-200">$120.00</p>
+                  </div>
+                  <div class="c-card-details-wrapper">
+                    <div class="c-card-details-content">
+                      <div class="px-4 pb-4 pt-0">
+                        <div class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
+                          <div class="flex justify-between items-center">
+                            <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Адрес назначения:</span>
+                            <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300">0x34fA...92cB</span>
+                          </div>
+                          <div class="flex justify-between items-center text-[10px] font-bold">
+                            <span class="uppercase text-zinc-500 tracking-wider">Дата завершения:</span>
+                            <span class="text-zinc-700 dark:text-zinc-300">14.02.2026 11:30</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </article>
 
-                <article class="p-4 space-y-3">
-                  <div class="flex items-center justify-between gap-3">
-                    <p class="text-xs font-bold text-zinc-900 dark:text-white">#WD-10839</p>
-                    <span class="px-2 py-0.5 bg-amber-500/10 text-amber-500 text-[9px] font-bold uppercase rounded">В обработке</span>
-                  </div>
-                  <div class="flex flex-wrap items-center gap-2">
-                    <span class="px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 text-[10px] font-bold uppercase">USDT</span>
-                    <span class="px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 text-[10px] font-bold uppercase">TRC20</span>
-                    <span class="text-[11px] text-zinc-500">13.02.2026 17:41</span>
-                  </div>
-                  <div class="grid grid-cols-3 gap-2 rounded-lg border border-zinc-200 dark:border-zinc-700 p-3">
-                    <div>
-                      <p class="text-[9px] font-bold uppercase tracking-widest text-zinc-500">Сумма</p>
-                      <p class="mt-1 text-xs font-semibold text-zinc-900 dark:text-white">$80.00</p>
+                <article class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
+                  <div class="p-4 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                      <div class="w-10 h-10 rounded-full bg-amber-500/15 flex items-center justify-center text-amber-500">
+                        <i data-lucide="clock-3" class="w-5 h-5" aria-hidden="true"></i>
+                      </div>
+                      <div class="min-w-0">
+                        <p class="text-[13px] font-bold text-zinc-900 dark:text-white truncate">#WD-10839 · В обработке</p>
+                        <p class="text-[10px] text-zinc-500 font-medium">13.02.2026 17:41 · USDT (TRC20)</p>
+                        <p class="text-[10px] text-zinc-500 mt-1">Сумма: $80.00 · Комиссия: $1.00</p>
+                      </div>
                     </div>
-                    <div>
-                      <p class="text-[9px] font-bold uppercase tracking-widest text-zinc-500">Комиссия</p>
-                      <p class="mt-1 text-xs font-semibold text-zinc-900 dark:text-white">$1.00</p>
+                    <div class="text-right pl-3 shrink-0">
+                      <p class="text-[10px] font-bold uppercase text-zinc-500">К получению</p>
+                      <p class="text-[15px] font-black text-primary-700 dark:text-primary-200 whitespace-nowrap">$79.00</p>
+                      <div class="flex items-center justify-end text-[9px] text-zinc-400 uppercase font-bold tracking-tighter">
+                        <span>Детали</span>
+                        <i data-lucide="chevron-down" class="w-3 h-3 ml-1 c-card-chevron" aria-hidden="true"></i>
+                      </div>
                     </div>
-                    <div>
-                      <p class="text-[9px] font-bold uppercase tracking-widest text-zinc-500">К получению</p>
-                      <p class="mt-1 text-xs font-bold text-primary-700 dark:text-primary-200">$79.00</p>
+                  </div>
+                  <div class="c-card-details-wrapper">
+                    <div class="c-card-details-content">
+                      <div class="px-4 pb-4 pt-0">
+                        <div class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
+                          <div class="flex justify-between items-center">
+                            <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Адрес назначения:</span>
+                            <span class="text-[10px] font-mono font-bold text-zinc-800 dark:text-zinc-300">TN3W...b3m9</span>
+                          </div>
+                          <div class="flex justify-between items-center text-[10px] font-bold">
+                            <span class="uppercase text-zinc-500 tracking-wider">Дата завершения:</span>
+                            <span class="text-zinc-700 dark:text-zinc-300">—</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -175,8 +201,44 @@
   </div>
 </div>
 
+<style>
+  .c-card-details-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out, opacity 0.2s ease-out;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .card-open .c-card-details-wrapper {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .c-card-details-content {
+    min-height: 0;
+  }
+
+  .c-card-chevron {
+    transition: transform 0.3s ease;
+  }
+
+  .card-open .c-card-chevron {
+    transform: rotate(180deg);
+  }
+</style>
+
 <?php include __DIR__ . '/../../partials/app-shell/index.php'; ?>
 <?php include __DIR__ . '/../../partials/scripts.php'; ?>
+<script>
+  function toggleCard(cardElement) {
+    document.querySelectorAll('.card-open').forEach((item) => {
+      if (item !== cardElement) item.classList.remove('card-open');
+    });
+    cardElement.classList.toggle('card-open');
+  }
+</script>
+
 </body>
 
 </html>
