@@ -32,11 +32,11 @@
     <div>
       <p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">Финансы</p>
       <div class="flex flex-col gap-1">
-        <a href="wallet.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/wallet" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="wallet" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Кошелёк</span>
         </a>
-        <a href="withdrawals.html" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/wallet/withdrawals" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="circle-arrow-up" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Выводы</span>
         </a>

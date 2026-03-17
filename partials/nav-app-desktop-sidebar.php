@@ -57,7 +57,7 @@
 			</p>
 
 			<div class="flex flex-col gap-1">
-				<a href="wallet.php" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="/wallet" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
@@ -68,7 +68,7 @@
 					<span class="sidebar-label text-sm font-semibold">Кошелёк</span>
 				</a>
 
-				<a href="withdrawals.html" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
+				<a href="/wallet/withdrawals" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all 
 					text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900
 					dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white
 					data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary
