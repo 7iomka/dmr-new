@@ -917,7 +917,7 @@
   }
 
   .c-form-label {
-    @apply block text-sm font-medium text-zinc-800 dark:text-zinc-100;
+    @apply inline-flex items-center gap-1.5 text-sm font-medium text-zinc-800 dark:text-zinc-100;
   }
 
   .c-form-description {
@@ -941,7 +941,16 @@
   }
 
   .c-stepper {
-    @apply grid grid-cols-2 gap-4 md:grid-cols-4;
+    --stepper-cols-mobile: 2;
+    --stepper-cols: 4;
+    @apply grid gap-4;
+    grid-template-columns: repeat(var(--stepper-cols-mobile), minmax(0, 1fr));
+  }
+
+  @media (min-width: 768px) {
+    .c-stepper {
+      grid-template-columns: repeat(var(--stepper-cols), minmax(0, 1fr));
+    }
   }
 
   .c-stepper__item {

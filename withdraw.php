@@ -5,136 +5,157 @@
 <?php include __DIR__ . '/partials/head.php'; ?>
 
 <body>
-  <div id="app" class="flex overflow-hidden min-h-screen">
+  <div id="app" class="flex min-h-screen overflow-hidden">
     <?php include __DIR__ . '/partials/desktop-sidebar.php'; ?>
 
     <div class="page-content-area">
       <?php include __DIR__ . '/partials/header.php'; ?>
 
       <div class="page-body">
-        <!-- Main View -->
         <main class="page-main">
-          <div class="max-w-5xl mx-auto">
-            <section class="card overflow-hidden">
-              <div class="card-body space-y-6 lg:space-y-8">
-                <div class="text-center">
-                  <h1 class="text-3xl font-bold text-zinc-900 dark:text-white">Создать вывод средств</h1>
-                  <p class="mt-2 text-sm text-zinc-500">Безопасный вывод средств через USDT (TRC20)</p>
-                </div>
+          <section class="mx-auto w-full max-w-[800px] rounded-xl border border-zinc-200 bg-card p-5 shadow-sm dark:border-zinc-800 sm:p-8 lg:p-10">
+            <header class="text-center">
+              <h1 class="text-2xl lg:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">Создать вывод средств</h1>
+              <p class="mt-3 text-sm lg:text-base text-zinc-500 dark:text-zinc-400 sm:text-lg">Безопасный вывод средств через USDT (TRC20).</p>
+            </header>
 
-                <div
-                  class="rounded-lg border border-red-300/80 bg-red-100/80 dark:bg-red-500/10 dark:border-red-500/50 px-4 py-4">
-                  <div class="flex items-start gap-3">
-                    <svg class="shrink-0 w-5 h-5 text-red-700 dark:text-red-400 mt-0.5" xmlns="http://www.w3.org/2000/svg"
-                      width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path
-                        d="m10.29 3.86-7.81 13.52A2 2 0 0 0 4.2 20h15.6a2 2 0 0 0 1.73-2.62L13.71 3.86a2 2 0 0 0-3.42 0Z">
-                      </path>
-                      <line x1="12" x2="12" y1="9" y2="13"></line>
-                      <line x1="12" x2="12.01" y1="17" y2="17"></line>
-                    </svg>
-                    <div>
-                      <p class="text-2xl font-bold text-red-900 dark:text-red-300 leading-none">Вывод заблокирован
-                      </p>
-                      <p class="text-sm text-red-800/90 dark:text-red-200/90 mt-1">Недостаточный реферальный баланс. Для
-                        вывода средств вам нужны реферальные доходы.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- currentStep: 1..3 -->
-                <div class="px-2">
-                  <div class="relative">
-                    <!-- базовая линия (всегда) -->
-                    <div class="absolute left-0 right-0 top-4 h-px bg-zinc-200 dark:bg-zinc-700"></div>
-
-                    <!-- прогресс-линия (меняй width по шагу) -->
-                    <!-- step=1 -> w-0, step=2 -> w-1/2, step=3 -> w-full -->
-                    <div class="absolute left-0 top-4 h-px bg-primary w-0"></div>
-
-                    <div class="grid grid-cols-3 text-center gap-3 text-zinc-500 text-xs sm:text-sm">
-                      <!-- STEP 1 -->
-                      <div class="relative">
-                        <!-- completed/current styles -->
-                        <div class="relative z-10 w-8 h-8 rounded-full border bg-white dark:bg-zinc-900 mx-auto grid place-items-center
-                    border-primary text-primary">
-                          1
-                        </div>
-                        <p class="mt-3">Сумма и назначение</p>
-                      </div>
-
-                      <!-- STEP 2 -->
-                      <div class="relative">
-                        <div class="relative z-10 w-8 h-8 rounded-full border bg-white dark:bg-zinc-900 mx-auto grid place-items-center
-                    border-zinc-300 dark:border-zinc-600 text-zinc-500">
-                          2
-                        </div>
-                        <p class="mt-3">Проверьте свой вывод средств</p>
-                      </div>
-
-                      <!-- STEP 3 -->
-                      <div class="relative">
-                        <div class="relative z-10 w-8 h-8 rounded-full border bg-white dark:bg-zinc-900 mx-auto grid place-items-center
-                    border-zinc-300 dark:border-zinc-600 text-zinc-500">
-                          3
-                        </div>
-                        <p class="mt-3">Подтвердите свой вывод средств</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  class="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/30 p-4 sm:p-6 lg:p-8 space-y-5">
-                  <h2 class="text-2xl font-bold text-zinc-900 dark:text-white">Сумма и назначение</h2>
-
-                  <div>
-                    <label class="block mb-2 text-sm font-semibold text-zinc-800 dark:text-zinc-200">Сумма вывода</label>
-                    <input type="number" value="0.00"
-                      class="no-spinner w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-[#0B0E11] px-4 py-2.5 text-zinc-700 dark:text-zinc-200 outline-none focus:border-primary" />
-                    <p class="mt-2 text-sm text-zinc-500">Диапазон сумм: $10.00 - $0.00</p>
-                  </div>
-
-                  <div
-                    class="rounded-lg bg-gradient-to-r from-[#18b889] to-[#0da26e] p-4 text-white flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-lg bg-white/20 grid place-items-center">
-                      <i data-lucide="wallet-cards" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                      <p class="text-sm font-semibold text-white/90">Доступный баланс</p>
-                      <p class="text-4xl font-bold tracking-tight">$10.21</p>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label class="block mb-2 text-sm font-semibold text-zinc-800 dark:text-zinc-200">Адрес вывода
-                      TRC20</label>
-                    <div class="relative">
-                      <select
-                        class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-[#0B0E11] px-4 py-2.5 text-zinc-700 dark:text-zinc-200 appearance-none outline-none focus:border-primary">
-                        <option>test - TN3W4H6rK2...oxb3m9</option>
-                      </select>
-                      <i data-lucide="chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none"></i>
-                    </div>
-                    <button class="mt-4 text-primary font-semibold text-sm flex items-center gap-2">
-                      <i data-lucide="plus-circle" class="w-4 h-4"></i>
-                      <span>Добавить новый адрес TRC20</span>
-                    </button>
-                  </div>
+            <div class="mt-6 rounded-lg border border-red-300/80 bg-red-100/80 px-4 py-4 dark:border-red-500/50 dark:bg-red-500/10">
+              <div class="flex items-start gap-3">
+                <i data-lucide="triangle-alert" class="mt-0.5 h-5 w-5 shrink-0 text-red-700 dark:text-red-400"></i>
+                <div>
+                  <p class="text-base font-bold text-red-900 dark:text-red-300">Вывод заблокирован</p>
+                  <p class="mt-1 text-sm text-red-800/90 dark:text-red-200/90">Недостаточный реферальный баланс. Для вывода средств вам нужны реферальные доходы.</p>
                 </div>
               </div>
+            </div>
 
-              <div
-                class="px-4 lg:px-6 py-4 border-t border-zinc-200 dark:border-zinc-800 flex justify-end bg-zinc-50/60 dark:bg-zinc-900/30">
-                <button disabled
-                  class="btn-primary min-w-[150px] inline-flex justify-center items-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold disabled:opacity-80 disabled:pointer-events-none disabled:cursor-not-allowed">
-                  <span>Далее</span>
-                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </button>
-              </div>
-            </section>
-          </div>
+            <ol class="c-stepper mt-8" style="--stepper-cols: 3; --stepper-cols-mobile: 2;" data-withdraw-stepper>
+              <li class="c-stepper__item" data-step-indicator="1"><span class="c-stepper__dot">1</span><span class="c-stepper__label">Сумма и назначение</span><span class="c-stepper__line" data-step-line></span></li>
+              <li class="c-stepper__item" data-step-indicator="2"><span class="c-stepper__dot">2</span><span class="c-stepper__label">Проверьте свой вывод средств</span><span class="c-stepper__line" data-step-line></span></li>
+              <li class="c-stepper__item" data-step-indicator="3"><span class="c-stepper__dot">3</span><span class="c-stepper__label">Подтвердите свой вывод средств</span></li>
+            </ol>
+
+            <form id="withdrawForm" class="mt-8 space-y-7" novalidate>
+              <section data-withdraw-step="1" class="space-y-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-zinc-900 dark:text-white">Этап 1: Сумма и назначение</h2>
+
+                <div class="c-form-control">
+                  <label class="c-form-label" for="amount">Сумма вывода</label>
+                  <div class="c-form-control__input-wrap">
+                    <input role="spinbutton" inputmode="decimal" id="amount" name="withdrawAmount" aria-valuemin="100" aria-valuemax="555" aria-valuenow="undefined" placeholder="0.00" min="100" max="555" step="1" value="" class="c-input" required>
+                  </div>
+                  <p class="c-form-description">Диапазон сумм: $100.00 - $555.00</p>
+                </div>
+
+                <div class="rounded-lg border border-primary-500/30 bg-primary-500/10 p-4">
+                  <p class="text-sm font-semibold text-primary-700 dark:text-primary-200">Доступный баланс</p>
+                  <p class="mt-1 text-2xl lg:text-3xl font-bold text-primary-700 dark:text-primary-200">$555.00</p>
+                </div>
+
+                <div class="c-form-control">
+                  <label class="c-form-label" for="withdrawAddress">Адрес вывода TRC20</label>
+                  <select id="withdrawAddress" name="withdrawAddress" class="c-select" required>
+                    <option value="">Выберите адрес</option>
+                    <option value="test" selected>test - TN3W4H6rK2...oxb3m9</option>
+                  </select>
+                  <button type="button" class="inline-flex w-fit items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300">
+                    <i data-lucide="plus-circle" class="h-4 w-4"></i>
+                    <span>Добавить новый адрес TRC20</span>
+                  </button>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <button type="button" class="btn-secondary rounded-lg px-6 py-3 text-base font-bold" disabled>Назад</button>
+                  <button type="button" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" data-next-step="2">Далее</button>
+                </div>
+              </section>
+
+              <section data-withdraw-step="2" class="hidden space-y-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-zinc-900 dark:text-white">Этап 2: Проверьте свой вывод средств</h2>
+
+                <div class="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700">
+                  <div class="flex items-center gap-3 border-b border-zinc-200 bg-zinc-50/70 px-4 py-4 dark:border-zinc-700 dark:bg-zinc-900/30">
+                    <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-500 text-white"><i data-lucide="bitcoin" class="h-4 w-4"></i></span>
+                    <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Проверьте свой вывод средств</h3>
+                  </div>
+
+                  <div class="divide-y divide-zinc-200 dark:divide-zinc-700">
+                    <div class="flex items-center justify-between gap-3 px-4 py-4">
+                      <span class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Тип криптовалюты</span>
+                      <span class="rounded-md bg-primary-500 dark:bg-primary-600 px-3 py-1 text-xs font-semibold text-white">USDT (TRC20)</span>
+                    </div>
+                    <div class="flex items-center justify-between gap-3 px-4 py-4">
+                      <span class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Сумма</span>
+                      <span class="text-xs sm:text-sm font-medium text-zinc-900 dark:text-zinc-100">$20.00</span>
+                    </div>
+                    <div class="flex items-center justify-between gap-3 px-4 py-4">
+                      <span class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Комиссия</span>
+                      <span class="text-xs sm:text-sm font-medium text-zinc-900 dark:text-zinc-100">$0.00</span>
+                    </div>
+                    <div class="flex items-center justify-between gap-3 bg-zinc-50 px-4 py-4 dark:bg-zinc-800/60">
+                      <span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Итоговая сумма</span>
+                      <span class="text-xl lg:text-2xl font-bold text-primary-500">$20.00</span>
+                    </div>
+                    <div class="space-y-3 px-4 py-4">
+                      <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Адрес назначения</p>
+                      <p class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">test</p>
+                      <code class="inline-flex text-sm break-all py-2 px-3 bg-primary/10 rounded-md text-primary-800 dark:text-primary-200">TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9</code>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="c-form-control">
+                  <label class="c-form-label" for="confirmPassword">
+                    <span class="inline-flex text-primary-500"><i data-lucide="lock" class="h-4 w-4"></i></span>
+                    Подтвердите пароль
+                  </label>
+                  <div class="c-form-control__input-wrap">
+                    <input id="confirmPassword" name="confirmPassword" type="password" placeholder="••••••" class="c-input pr-10" required>
+                    <button type="button" class="c-form-control__icon-btn" aria-label="Показать пароль"><i data-lucide="eye" class="h-4 w-4"></i></button>
+                  </div>
+                </div>
+
+                <div class="c-review-notice">
+                  <div class="flex items-center gap-3">
+                    <i data-lucide="shield" class="h-5 w-5"></i>
+                    <span>OTP-код будет отправлен на выбранный способ подтверждения.</span>
+                  </div>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <button type="button" class="btn-secondary rounded-lg px-6 py-3 text-base font-bold" data-prev-step="1">Назад</button>
+                  <button type="button" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" data-next-step="3">Далее</button>
+                </div>
+              </section>
+
+              <section data-withdraw-step="3" class="hidden space-y-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-zinc-900 dark:text-white">Этап 3: Подтвердите свой вывод средств</h2>
+
+                <div class="c-form-control">
+                  <label class="c-form-label" for="otpCode">Код подтверждения (OTP)</label>
+                  <div class="c-form-control__input-wrap">
+                    <span class="c-form-control__icon-left"><i data-lucide="shield-check" class="h-4 w-4"></i></span>
+                    <input id="otpCode" name="otpCode" class="c-input pl-10" inputmode="numeric" maxlength="6" placeholder="Введите 6-значный код" required>
+                  </div>
+                  <p class="c-form-description">Мы отправили код на ваш предпочтительный метод подтверждения.</p>
+                </div>
+
+                <div class="rounded-lg border border-zinc-200 bg-zinc-50/70 p-4 dark:border-zinc-700 dark:bg-zinc-900/40">
+                  <p class="text-sm text-zinc-500 dark:text-zinc-400">Проверьте корректность данных перед отправкой.</p>
+                  <p class="mt-2 text-base font-semibold text-zinc-900 dark:text-zinc-100">Сумма: <span class="text-primary-600 dark:text-primary-400">$20.00</span></p>
+                  <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">Адрес: TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9</p>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <button type="button" class="btn-secondary rounded-lg px-6 py-3 text-base font-bold" data-prev-step="2">Назад</button>
+                  <button type="submit" class="btn-primary rounded-lg px-6 py-3 text-base font-bold inline-flex items-center justify-center gap-2">
+                    <span>Подтвердить и отправить вывод</span>
+                    <i data-lucide="check" class="h-4 w-4"></i>
+                  </button>
+                </div>
+              </section>
+            </form>
+          </section>
         </main>
         <?php include __DIR__ . '/partials/footer.php'; ?>
       </div>
@@ -143,6 +164,80 @@
 
   <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
+  <script>
+    (() => {
+      const form = document.getElementById('withdrawForm');
+      if (!form) return;
+
+      const state = { step: 1, maxStep: 3 };
+      const sections = [...form.querySelectorAll('[data-withdraw-step]')];
+      const indicators = [...document.querySelectorAll('[data-step-indicator]')];
+
+      function updateStepper() {
+        indicators.forEach((item) => {
+          const step = Number(item.dataset.stepIndicator);
+          const dot = item.querySelector('.c-stepper__dot');
+          const label = item.querySelector('.c-stepper__label');
+          const line = item.querySelector('[data-step-line]');
+          if (!dot || !label) return;
+
+          const completed = step < state.step;
+          const active = step === state.step;
+
+          dot.classList.toggle('border-primary-500', active || completed);
+          dot.classList.toggle('bg-primary-500', active || completed);
+          dot.classList.toggle('text-white', active || completed);
+          dot.classList.toggle('border-zinc-200', !active && !completed);
+          dot.classList.toggle('bg-zinc-100', !active && !completed);
+          dot.classList.toggle('text-zinc-500', !active && !completed);
+          dot.classList.toggle('dark:border-zinc-700', !active && !completed);
+          dot.classList.toggle('dark:bg-zinc-800', !active && !completed);
+          dot.classList.toggle('dark:text-zinc-400', !active && !completed);
+
+          label.classList.toggle('text-primary-600', active || completed);
+          label.classList.toggle('dark:text-primary-400', active || completed);
+          label.classList.toggle('text-zinc-500', !active && !completed);
+          label.classList.toggle('dark:text-zinc-400', !active && !completed);
+
+          if (line) {
+            line.classList.toggle('bg-primary-500/60', completed);
+            line.classList.toggle('dark:bg-primary-500/50', completed);
+            line.classList.toggle('bg-zinc-200', !completed);
+            line.classList.toggle('dark:bg-zinc-700', !completed);
+          }
+        });
+      }
+
+      function render() {
+        sections.forEach((section) => {
+          const step = Number(section.dataset.withdrawStep);
+          section.classList.toggle('hidden', step !== state.step);
+        });
+        updateStepper();
+      }
+
+      form.addEventListener('click', (event) => {
+        const nextBtn = event.target.closest('[data-next-step]');
+        const prevBtn = event.target.closest('[data-prev-step]');
+
+        if (nextBtn) {
+          state.step = Math.min(state.maxStep, Number(nextBtn.dataset.nextStep));
+          render();
+        }
+
+        if (prevBtn) {
+          state.step = Math.max(1, Number(prevBtn.dataset.prevStep));
+          render();
+        }
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+      });
+
+      render();
+    })();
+  </script>
 </body>
 
 </html>
