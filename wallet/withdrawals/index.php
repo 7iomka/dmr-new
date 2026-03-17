@@ -110,7 +110,7 @@
                       <div class="min-w-0">
                         <p class="text-[13px] font-bold text-zinc-900 dark:text-white truncate">#WD-10842 · Завершён</p>
                         <p class="text-[10px] text-zinc-500 font-medium">14.02.2026 11:22 · USDT (BEP20)</p>
-                        <p class="text-[10px] text-zinc-500 mt-1">Сумма: $120.00 · Комиссия: $0.00</p>
+                        <p class="text-[10px] text-zinc-500 mt-1">Сумма: <span class="font-semibold text-zinc-900 dark:text-zinc-100">$120.00</span> · Комиссия: <span class="font-semibold text-zinc-900 dark:text-zinc-100">$0.00</span></p>
                       </div>
                     </div>
                     <div class="text-right pl-3 shrink-0">
@@ -149,7 +149,7 @@
                       <div class="min-w-0">
                         <p class="text-[13px] font-bold text-zinc-900 dark:text-white truncate">#WD-10839 · В обработке</p>
                         <p class="text-[10px] text-zinc-500 font-medium">13.02.2026 17:41 · USDT (TRC20)</p>
-                        <p class="text-[10px] text-zinc-500 mt-1">Сумма: $80.00 · Комиссия: $1.00</p>
+                        <p class="text-[10px] text-zinc-500 mt-1">Сумма: <span class="font-semibold text-zinc-900 dark:text-zinc-100">$80.00</span> · Комиссия: <span class="font-semibold text-zinc-900 dark:text-zinc-100">$1.00</span></p>
                       </div>
                     </div>
                     <div class="text-right pl-3 shrink-0">
