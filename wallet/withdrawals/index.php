@@ -77,7 +77,7 @@
                     <td class="card-body-inset-x py-5 font-bold text-primary-700 dark:text-primary-200">$120.00</td>
                     <td class="card-body-inset-x py-5">USDT (BEP20)</td>
                     <td class="card-body-inset-x py-5 font-mono text-[11px]">0x34fA5f2CD8Fc5c4B7A3a67E5dfEA3B12A8B392cB</td>
-                    <td class="card-body-inset-x py-5"><span class="px-2 py-0.5 bg-primary-500/10 text-primary-700 dark:text-primary-200 text-[9px] font-bold uppercase rounded">Завершён</span></td>
+                    <td class="card-body-inset-x py-5"><span class="px-2 py-0.5 bg-primary-500/10 text-primary-700 dark:text-primary-200 text-[9px] font-bold uppercase rounded whitespace-nowrap">Завершён</span></td>
                     <td class="card-body-inset-x py-5"><button class="text-xs font-semibold text-primary-600 dark:text-primary-400">Детали</button></td>
                   </tr>
                   <tr class="hover:bg-zinc-50 dark:hover:bg-white/[0.02]">
@@ -87,7 +87,7 @@
                     <td class="card-body-inset-x py-5 font-bold text-primary-700 dark:text-primary-200">$79.00</td>
                     <td class="card-body-inset-x py-5">USDT (TRC20)</td>
                     <td class="card-body-inset-x py-5 font-mono text-[11px]">TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9</td>
-                    <td class="card-body-inset-x py-5"><span class="px-2 py-0.5 bg-amber-500/10 text-amber-500 text-[9px] font-bold uppercase rounded">В обработке</span></td>
+                    <td class="card-body-inset-x py-5"><span class="px-2 py-0.5 bg-amber-500/10 text-amber-500 text-[9px] font-bold uppercase rounded whitespace-nowrap">В обработке</span></td>
                     <td class="card-body-inset-x py-5"><button class="text-xs font-semibold text-primary-600 dark:text-primary-400">Детали</button></td>
                   </tr>
                   </tbody>
@@ -123,7 +123,7 @@
                         <div class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
                           <div class="flex justify-between items-center gap-2">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Статус:</span>
-                            <span class="px-2 py-0.5 bg-primary/10 text-primary text-[9px] font-bold uppercase rounded">COMPLETED</span>
+                            <span class="px-2 py-0.5 bg-primary/10 text-primary text-[9px] font-bold uppercase rounded whitespace-nowrap">COMPLETED</span>
                           </div>
                           <div class="flex justify-between items-center gap-2">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">ID заявки:</span>
@@ -167,7 +167,7 @@
                         <div class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
                           <div class="flex justify-between items-center gap-2">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Статус:</span>
-                            <span class="px-2 py-0.5 bg-amber-500/10 text-amber-500 text-[9px] font-bold uppercase rounded">В обработке</span>
+                            <span class="px-2 py-0.5 bg-amber-500/10 text-amber-500 text-[9px] font-bold uppercase rounded whitespace-nowrap">В обработке</span>
                           </div>
                           <div class="flex justify-between items-center gap-2">
                             <span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">ID заявки:</span>
