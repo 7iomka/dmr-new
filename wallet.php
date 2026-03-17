@@ -42,9 +42,12 @@
 								class="text-3xl sm:text-5xl font-bold tracking-tighter text-zinc-900 dark:text-white mb-6 whitespace-nowrap">
 								$ 12,450,000.80</h2>
 							<div class="space-y-3 mb-8">
-								<div class="flex items-baseline gap-2"><span
-										class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Доступно к выводу:</span><span
-										class="text-lg font-bold text-primary">$ 482.50</span></div>
+								<div class="flex items-baseline gap-2"><span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Доступно к выводу:</span>
+									<div class="flex flex-wrap gap-2 items-center"><span class="text-lg leading-none font-bold text-primary">$ 482.50</span><a href="/wallet/withdrawals" class="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all border border-zinc-200 dark:border-zinc-700">
+										<span class="text-[10px] font-bold text-zinc-600 dark:text-zinc-300 uppercase">Управление</span>
+										<i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
+									</a></div>
+								</div>
 								<div class="flex items-baseline gap-2 opacity-80"><span
 										class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Заблокировано:</span><span
 										class="text-md font-bold text-zinc-900 dark:text-zinc-300">$ 120,000.00</span></div>
@@ -69,10 +72,6 @@
 								</a>
 							</div>
 
-							<a href="/wallet/withdrawals" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300">
-								<i data-lucide="history" class="w-4 h-4" aria-hidden="true"></i>
-								<span>История выводов</span>
-							</a>
 						</div>
 					</div>
 

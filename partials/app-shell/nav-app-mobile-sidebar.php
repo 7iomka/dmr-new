@@ -18,11 +18,11 @@
     <div>
       <p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">Основное</p>
       <div class="flex flex-col gap-1">
-        <a href="dashboard.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/dashboard.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Дашборд</span>
         </a>
-        <a href="investments.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/investments.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="briefcase" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Инвестиции</span>
         </a>
@@ -40,7 +40,7 @@
           <i data-lucide="circle-arrow-up" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Выводы</span>
         </a>
-        <a href="report.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/report.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="file-text" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Отчёт</span>
         </a>
@@ -50,15 +50,15 @@
     <div>
       <p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">Аккаунт</p>
       <div class="flex flex-col gap-1">
-        <a href="profile.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/profile.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="circle-user" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Профиль</span>
         </a>
-        <a href="partners.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/partners.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="users" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Рефералы</span>
         </a>
-        <a href="settings.html" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/settings.html" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="settings" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Настройки</span>
         </a>
@@ -68,15 +68,15 @@
     <div>
       <p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">Информация</p>
       <div class="flex flex-col gap-1">
-        <a href="home.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/home.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="house" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Главная</span>
         </a>
-        <a href="news.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/news.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="newspaper" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Новости</span>
         </a>
-        <a href="contacts.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
+        <a href="/contacts.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="phone" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Контакты</span>
         </a>
