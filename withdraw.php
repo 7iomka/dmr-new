@@ -82,15 +82,15 @@
                   <div class="divide-y divide-zinc-200 dark:divide-zinc-700">
                     <div class="flex items-center justify-between gap-3 px-4 py-4">
                       <span class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Тип криптовалюты</span>
-                      <span class="rounded-lg bg-primary-500 px-3 py-1 text-xs font-semibold text-white">USDT (TRC20)</span>
+                      <span class="rounded-md bg-primary-500 dark:bg-primary-600 px-3 py-1 text-xs font-semibold text-white">USDT (TRC20)</span>
                     </div>
                     <div class="flex items-center justify-between gap-3 px-4 py-4">
                       <span class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Сумма</span>
-                      <span class="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100">$20.00</span>
+                      <span class="text-xs sm:text-sm font-medium text-zinc-900 dark:text-zinc-100">$20.00</span>
                     </div>
                     <div class="flex items-center justify-between gap-3 px-4 py-4">
                       <span class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Комиссия</span>
-                      <span class="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100">$0.00</span>
+                      <span class="text-xs sm:text-sm font-medium text-zinc-900 dark:text-zinc-100">$0.00</span>
                     </div>
                     <div class="flex items-center justify-between gap-3 bg-zinc-50 px-4 py-4 dark:bg-zinc-800/60">
                       <span class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Итоговая сумма</span>
@@ -99,7 +99,7 @@
                     <div class="space-y-3 px-4 py-4">
                       <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">Адрес назначения</p>
                       <p class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">test</p>
-                      <input type="text" readonly value="TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9" class="c-input">
+                      <code class="inline-flex text-sm break-all py-2 px-3 bg-primary/10 rounded-md text-primary-800 dark:text-primary-200">TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9</code>
                     </div>
                   </div>
                 </div>
