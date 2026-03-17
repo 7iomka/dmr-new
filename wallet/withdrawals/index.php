@@ -101,8 +101,8 @@
                 <article class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
                   <div class="p-4 flex items-center justify-between gap-3">
                     <div class="flex items-center gap-3 min-w-0">
-                      <div class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-300">
-                        <i data-lucide="receipt" class="w-5 h-5" aria-hidden="true"></i>
+                      <div class="w-10 h-10 rounded-full bg-primary-500/10 flex items-center justify-center text-primary-500 dark:bg-primary-500/20 dark:text-primary-300">
+                        <i data-lucide="check" class="w-5 h-5" aria-hidden="true"></i>
                       </div>
                       <div class="min-w-0">
                         <p class="text-[13px] font-bold text-zinc-900 dark:text-white truncate">14.02.2026 11:22</p>
@@ -149,8 +149,8 @@
                 <article class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
                   <div class="p-4 flex items-center justify-between gap-3">
                     <div class="flex items-center gap-3 min-w-0">
-                      <div class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-300">
-                        <i data-lucide="receipt" class="w-5 h-5" aria-hidden="true"></i>
+                      <div class="w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 dark:bg-amber-500/20 dark:text-amber-300">
+                        <i data-lucide="clock-3" class="w-5 h-5" aria-hidden="true"></i>
                       </div>
                       <div class="min-w-0">
                         <p class="text-[13px] font-bold text-zinc-900 dark:text-white truncate">13.02.2026 17:41</p>
