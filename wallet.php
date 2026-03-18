@@ -22,7 +22,7 @@
 
 					<div class="card-simple flex flex-col lg:flex-row gap-6">
 						<div class="max-w-md min-w-0 lg:order-1">
-							<label class="text-[10px] font-bold uppercase tracking-[2px] text-zinc-500 mb-2 block">Адрес вашего
+							<label class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-2 block">Адрес вашего
 								кошелька</label>
 							<div
 								class="flex items-center bg-zinc-50 dark:bg-dark border border-zinc-200 dark:border-zinc-800 rounded-lg p-2 pl-4 shadow-inner">
@@ -37,13 +37,13 @@
 						</div>
 
 						<div class="relative z-10 flex-1">
-							<p class="text-[10px] font-bold uppercase tracking-[2px] text-zinc-500 mb-2">Общий баланс</p>
+							<p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-2">Общий баланс</p>
 							<h2
 								class="text-3xl sm:text-5xl font-bold tracking-tighter text-zinc-900 dark:text-white mb-6 whitespace-nowrap">
 								$ 12,450,000.80</h2>
 							<div class="space-y-3 mb-8">
 								<div class="flex items-baseline gap-2"><span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Доступно к выводу:</span>
-									<div class="flex flex-wrap gap-2 items-center"><span class="text-lg leading-none font-bold text-primary">$ 482.50</span>
+									<div class="flex flex-wrap gap-2 items-center"><span class="text-lg leading-none font-bold text-primary">$482.50</span>
 										<a href="/wallet/withdrawals" class="group btn-secondary btn-sm">
 											<span>Управление</span>
 											<i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
@@ -51,8 +51,8 @@
 									</div>
 								</div>
 								<div class="flex items-baseline gap-2 opacity-80"><span
-										class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Заблокировано:</span><span
-										class="text-md font-bold text-zinc-900 dark:text-zinc-300">$ 120,000.00</span></div>
+										class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">В обработке:</span><span
+										class="text-base font-bold text-amber-500">$80.00</span></div>
 							</div>
 							<div class="grid grid-cols-2 sm:flex flex-wrap gap-3">
 								<a href="deposit.php"
@@ -468,9 +468,9 @@
 											<tr class="hover:bg-zinc-50 dark:hover:bg-white/[0.02] transition-colors">
 												<td class="card-body-inset-x py-5">
 													<span
-														class="px-2 py-1 bg-red-500/10 text-red-500 text-[9px] font-bold uppercase rounded tracking-wider">Заблокировано</span>
+														class="px-2 py-1 bg-red-500/10 text-amber-500 text-[9px] font-bold uppercase rounded tracking-wider">В обработке</span>
 												</td>
-												<td class="card-body-inset-x py-5 font-bold text-red-500 whitespace-nowrap">1,000.00</td>
+												<td class="card-body-inset-x py-5 font-bold text-amber-500 whitespace-nowrap">1,000.00</td>
 												<td
 													class="card-body-inset-x py-5 font-semibold text-zinc-900 dark:text-white whitespace-nowrap">
 													12,448,550.80</td>

@@ -30,7 +30,7 @@ $newsItem = getDemoNewsItemById($newsId) ?? getDemoNewsItems()[0];
             </div>
 
             <div class="mt-5">
-              <div class="text-[10px] uppercase font-bold tracking-[2px] text-zinc-500 mb-3">Новость #<?= (int) $newsItem['id'] ?></div>
+              <div class="text-[10px] uppercase font-bold tracking-widest text-zinc-500 mb-3">Новость #<?= (int) $newsItem['id'] ?></div>
               <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white mb-3"><?= htmlspecialchars($newsItem['title'], ENT_QUOTES, 'UTF-8') ?></h1>
               <p class="text-zinc-500 leading-relaxed mb-5"><?= htmlspecialchars($newsItem['excerpt'], ENT_QUOTES, 'UTF-8') ?></p>
 

@@ -34,8 +34,7 @@
                 <p class="font-mono text-xs text-zinc-700 dark:text-zinc-300 break-all">0x34fA5f2CD8Fc5c4B7A3a67E5dfEA3B12A8B392cB</p>
                 <span class="inline-flex rounded border border-primary-500/30 bg-primary-500/10 px-2 py-1 text-[10px] font-bold uppercase text-primary-700 dark:text-primary-200">По умолчанию</span>
                 <div class="flex flex-wrap gap-2 pt-2">
-                  <button class="btn-secondary" disabled>Сделать по умолчанию</button>
-                  <button class="btn-secondary text-red-500">Удалить</button>
+                  <button class="btn-danger btn-sm">Удалить</button>
                 </div>
               </article>
 
@@ -48,8 +47,8 @@
                 <p class="font-mono text-xs text-zinc-700 dark:text-zinc-300 break-all">TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9</p>
                 <div class="flex flex-wrap gap-2 pt-2">
                   <button class="btn-primary btn-sm" data-modal-open="withdraw-address-confirm">Подтвердить</button>
-                  <button class="btn-secondary">Сделать по умолчанию</button>
-                  <button class="btn-secondary text-red-500">Удалить</button>
+                  <button class="btn-secondary btn-sm">Сделать по умолчанию</button>
+                  <button class="btn-danger btn-sm">Удалить</button>
                 </div>
               </article>
             </div>

@@ -408,6 +408,19 @@
   opacity: 0.3;
 }
 
+@utility btn-danger {
+  @apply btn 
+         border border-red-200 dark:border-red-900/60 
+         bg-red-50 dark:bg-red-950/40 
+         text-red-700 dark:text-red-300 
+         transition-all duration-200
+         hover:bg-red-100 dark:hover:bg-red-900/50 
+         hover:border-red-300 dark:hover:border-red-800
+         focus-visible:outline-none 
+         focus-visible:ring-2 
+         focus-visible:ring-red-500/35;
+}
+
 @utility header-icon-btn {
   @apply p-2.5 text-zinc-500 dark:text-zinc-400;
 }
@@ -954,7 +967,7 @@
   }
 
   .c-form-description {
-    @apply mt-1 text-xs text-zinc-500 dark:text-zinc-400;
+    @apply text-xs text-muted-foreground;
   }
 
   .c-form-message {

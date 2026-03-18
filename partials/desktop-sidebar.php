@@ -17,7 +17,7 @@
 
     <div class="flex-1 px-2 py-4 pb-10 overflow-y-auto space-y-8">
       <div>
-        <p class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
+        <p class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-widest mb-3 text-zinc-400 dark:text-zinc-600">
           <span class="sidebar-label">Навигация</span>
         </p>
 
@@ -38,7 +38,7 @@
       </div>
 
       <div>
-        <p class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
+        <p class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-widest mb-3 text-zinc-400 dark:text-zinc-600">
           <span class="sidebar-label">Аккаунт</span>
         </p>
 

@@ -20,7 +20,7 @@
 		<!-- Основное -->
 		<div>
 			<p
-				class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
+				class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-widest mb-3 text-zinc-400 dark:text-zinc-600">
 				<span class="sidebar-label">Основное</span>
 			</p>
 
@@ -52,7 +52,7 @@
 		<!-- Финансы -->
 		<div>
 			<p
-				class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
+				class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-widest mb-3 text-zinc-400 dark:text-zinc-600">
 				<span class="sidebar-label">Финансы</span>
 			</p>
 
@@ -95,7 +95,7 @@
 		<!-- Аккаунт -->
 		<div>
 			<p
-				class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
+				class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-widest mb-3 text-zinc-400 dark:text-zinc-600">
 				<span class="sidebar-label">Аккаунт</span>
 			</p>
 
@@ -137,7 +137,7 @@
 
 		<!-- Публичные страницы -->
 		<div>
-			<p class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-[2px] mb-3 text-zinc-400 dark:text-zinc-600">
+			<p class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-widest mb-3 text-zinc-400 dark:text-zinc-600">
 				<span class="sidebar-label">Информация</span>
 			</p>
 			<div class="flex flex-col gap-1">

@@ -21,7 +21,7 @@
 
             <div class="grid gap-4 md:grid-cols-2">
               <article class="card-simple">
-                <p class="text-[10px] font-bold uppercase tracking-[2px] text-zinc-500">Доступная сумма</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Доступная сумма</p>
                 <p class="mt-3 text-3xl font-bold text-primary-700 dark:text-primary-200">$ 482.50</p>
                 <p class="mt-2 text-xs text-zinc-500">Минимальная сумма вывода: $20.00</p>
               </article>

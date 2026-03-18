@@ -26,7 +26,7 @@
               <!-- Блок Баланса -->
               <div class="card-simple">
                 <div class="flex justify-between mb-4 sm:mb-6">
-                  <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-[2px] text-zinc-500">
+                  <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-zinc-500">
                     Ваш баланс</p>
                   <a href="wallet.html"
                     class="group btn-secondary btn-sm">
@@ -53,7 +53,7 @@
               <div class="card-simple">
                 <div class="flex justify-between items-start mb-4">
                   <div class="space-y-1">
-                    <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-[2px] text-zinc-500">
+                    <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-zinc-500">
                       Рефералы</p>
                     <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
                       12</h3>

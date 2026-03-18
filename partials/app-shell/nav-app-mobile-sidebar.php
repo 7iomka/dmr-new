@@ -16,7 +16,7 @@
 
   <div class="flex-1 px-3 py-4 pb-10 overflow-y-auto space-y-6">
     <div>
-      <p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">Основное</p>
+      <p class="px-3 text-[10px] font-bold uppercase tracking-widest mb-2 text-zinc-400 dark:text-zinc-600">Основное</p>
       <div class="flex flex-col gap-1">
         <a href="/dashboard.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
@@ -30,7 +30,7 @@
     </div>
 
     <div>
-      <p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">Финансы</p>
+      <p class="px-3 text-[10px] font-bold uppercase tracking-widest mb-2 text-zinc-400 dark:text-zinc-600">Финансы</p>
       <div class="flex flex-col gap-1">
         <a href="/wallet" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="wallet" class="w-5 h-5"></i>
@@ -48,7 +48,7 @@
     </div>
 
     <div>
-      <p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">Аккаунт</p>
+      <p class="px-3 text-[10px] font-bold uppercase tracking-widest mb-2 text-zinc-400 dark:text-zinc-600">Аккаунт</p>
       <div class="flex flex-col gap-1">
         <a href="/profile.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="circle-user" class="w-5 h-5"></i>
@@ -66,7 +66,7 @@
     </div>
 
     <div>
-      <p class="px-3 text-[10px] font-bold uppercase tracking-[2px] mb-2 text-zinc-400 dark:text-zinc-600">Информация</p>
+      <p class="px-3 text-[10px] font-bold uppercase tracking-widest mb-2 text-zinc-400 dark:text-zinc-600">Информация</p>
       <div class="flex flex-col gap-1">
         <a href="/home.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
           <i data-lucide="house" class="w-5 h-5"></i>

@@ -14,14 +14,14 @@
       <div class="page-body">
         <main class="page-main">
           <section class="space-y-6">
-            <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-              <div>
-                <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">Выводы</h1>
+            <div class="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+              <div class="min-w-0">
+                <h1 class=" text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">Выводы</h1>
                 <p class="mt-1 text-sm font-medium text-zinc-500">Управляйте заявками на вывод, следите за статусами и подтверждайте адреса для вывода.</p>
               </div>
-              <div class="flex flex-wrap gap-2">
-                <a href="/wallet/withdrawals/addresses" class="inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-200 dark:border-zinc-700 px-4 py-2 text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800">
-                  <i data-lucide="book-user" class="h-4 w-4"></i>Адреса для вывода
+              <div class="flex flex-wrap gap-2 xl:shrink-0">
+                <a href="/wallet/withdrawals/addresses" class="btn-secondary">
+                  <i data-lucide="list" class="h-4 w-4"></i>Адреса для вывода
                 </a>
                 <a href="/wallet/withdrawals/new" class="btn-primary">
                   <i data-lucide="plus-circle" class="h-4 w-4"></i>Новая заявка на вывод
@@ -31,22 +31,34 @@
 
             <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               <article class="card-simple">
-                <p class="text-[10px] font-bold uppercase tracking-[2px] text-zinc-500">Доступно к выводу</p>
-                <p class="mt-3 text-2xl font-bold text-zinc-900 dark:text-white">$ 482.50</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Доступно к выводу</p>
+                <p class="mt-3 text-2xl font-bold text-primary">$482.50</p>
+                <!--If balance is less than minimum -->
+                <p class="hidden mt-3 text-2xl font-bold text-zinc-900 dark:text-white">$82.00</p>
+
+                <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-4">Минимальная сумма</p>
+                <p class="mt-1 text-lg font-bold text-sky-500">$100.00</p>
               </article>
               <article class="card-simple">
-                <p class="text-[10px] font-bold uppercase tracking-[2px] text-zinc-500">Всего выведено</p>
-                <p class="mt-3 text-2xl font-bold text-zinc-900 dark:text-white">$ 12,450.00</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Всего выведено</p>
+                <p class="mt-3 text-2xl font-bold text-zinc-900 dark:text-white">$120.00</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-4">Общий лимит</p>
+                <p class="mt-1 text-lg font-bold text-sky-500">$700.00</p>
               </article>
               <article class="card-simple">
-                <p class="text-[10px] font-bold uppercase tracking-[2px] text-zinc-500">В обработке</p>
-                <p class="mt-3 text-2xl font-bold text-amber-500">$ 180.00</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">В обработке</p>
+                <p class="mt-3 text-2xl font-bold text-amber-500">$80.00</p>
               </article>
               <article class="card-simple">
-                <p class="text-[10px] font-bold uppercase tracking-[2px] text-zinc-500">Статус вывода</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Статус вывода</p>
                 <p class="mt-3 inline-flex items-center gap-2 rounded-md bg-primary-500/10 px-2.5 py-1 text-xs font-bold uppercase text-primary-700 dark:text-primary-200">
                   <i data-lucide="shield-check" class="h-3.5 w-3.5"></i>Доступен
                 </p>
+                <!-- Demo for restricted status (if balance is less than minimum) -->
+                <div class="hidden">
+                  <p class="mt-3 inline-flex items-center gap-2 rounded-md bg-red-500/10 px-2.5 py-1 text-xs font-bold uppercase text-red-700 dark:text-red-200">
+                    <i data-lucide="lock" class="h-3.5 w-3.5"></i>Ограничен
+                </div>
               </article>
             </div>
 
