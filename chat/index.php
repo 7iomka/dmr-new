@@ -89,7 +89,7 @@
               <section id="chat-detail-panel" class="hidden lg:flex flex-col bg-card min-h-0">
                 <div class="px-4 lg:px-5 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center gap-3">
                   <button id="chat-back" type="button"
-                    class="lg:hidden h-9 w-9 rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-500 flex items-center justify-center"
+                    class="lg:hidden btn-secondary btn-icon"
                     aria-label="Вернуться к списку диалогов">
                     <i data-lucide="chevron-left" class="h-4 w-4" aria-hidden="true"></i>
                   </button>
@@ -109,7 +109,7 @@
                     <p class="text-lg font-bold text-zinc-900 dark:text-white">Добро пожаловать в чат поддержки</p>
                     <p class="mt-2 text-sm text-zinc-500">Выберите существующий диалог или создайте новое обращение.</p>
                     <button type="button" data-new-ticket-trigger
-                      class="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-bold text-white hover:bg-primary-600 transition-colors">
+                      class="mt-4 btn-primary">
                       Начать разговор
                     </button>
                   </div>
@@ -121,7 +121,7 @@
                       <label for="ticket-topic" class="inline-block text-sm font-semibold text-zinc-900 dark:text-white">Тема обращения</label>
                       <div class="relative">
                         <select id="ticket-topic"
-                          class="w-full border focus:border-primary/50 rounded-lg px-4 py-3 pr-10 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
+                          class="w-full border focus:border-primary/50 rounded-lg px-4 py-3 pr-10 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-dark border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
                           <option>Техническая проблема</option>
                           <option>Счета и платежи</option>
                           <option>Настройки учетной записи</option>

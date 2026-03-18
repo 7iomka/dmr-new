@@ -60,7 +60,7 @@
   --font-sans: 'TTNorms', sans-serif;
   --font-serif: 'TTNorms', sans-serif;
   --color-card: #ffffff;
-  --color-dark-bg: #0b0e11;
+  --color-dark: #0b0e11;
   --color-card-dark: #14171a;
   --color-muted-foreground: #5f6469;
   --color-surface-2: rgba(15, 23, 42, 0.06);
@@ -98,7 +98,7 @@
 
 @layer base {
   body {
-    @apply bg-[#f3f6f8] text-[#1A1D1F] dark:bg-dark-bg dark:text-[#E4E6EB] min-h-screen;
+    @apply bg-[#f3f6f8] text-[#1A1D1F] dark:bg-dark dark:text-[#E4E6EB] min-h-screen;
     font-variant-ligatures: none;
   }
   button:not(:disabled),
@@ -111,7 +111,6 @@
   [role='button'] {
     @apply transition-colors duration-200 ease-out;
   }
-
 
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -139,8 +138,12 @@
   textarea:autofill:focus,
   select:autofill:focus {
     -webkit-text-fill-color: #1a1d1f !important;
-    -webkit-box-shadow: 0 0 0 1000px #ffffff inset, 0 0 0 2px rgb(16 185 129 / 0.35) !important;
-    box-shadow: 0 0 0 1000px #ffffff inset, 0 0 0 2px rgb(16 185 129 / 0.35) !important;
+    -webkit-box-shadow:
+      0 0 0 1000px #ffffff inset,
+      0 0 0 2px rgb(16 185 129 / 0.35) !important;
+    box-shadow:
+      0 0 0 1000px #ffffff inset,
+      0 0 0 2px rgb(16 185 129 / 0.35) !important;
   }
 
   .dark input:-webkit-autofill,
@@ -168,8 +171,12 @@
   .dark textarea:autofill:focus,
   .dark select:autofill:focus {
     -webkit-text-fill-color: #f4f4f5 !important;
-    -webkit-box-shadow: 0 0 0 1000px rgb(9 9 11 / 0.88) inset, 0 0 0 2px rgb(16 185 129 / 0.45) !important;
-    box-shadow: 0 0 0 1000px rgb(9 9 11 / 0.88) inset, 0 0 0 2px rgb(16 185 129 / 0.45) !important;
+    -webkit-box-shadow:
+      0 0 0 1000px rgb(9 9 11 / 0.88) inset,
+      0 0 0 2px rgb(16 185 129 / 0.45) !important;
+    box-shadow:
+      0 0 0 1000px rgb(9 9 11 / 0.88) inset,
+      0 0 0 2px rgb(16 185 129 / 0.45) !important;
   }
 }
 
@@ -357,8 +364,36 @@
   }
 }
 
+@utility btn-md {
+  @apply px-4 py-2 min-h-10 rounded-lg gap-2 tracking-wider text-xs;
+}
+
+@utility btn-sm {
+  @apply px-3 py-1.5 min-h-7.5 rounded-md gap-1.5 tracking-normal text-[11px] leading-none;
+}
+
+@utility btn-narrow {
+  @apply px-2.5;
+}
+
+@utility btn-icon {
+  @apply p-0 w-10;
+}
+
+.btn-sm.btn-icon {
+  @apply w-7.5;
+}
+
+@utility btn {
+  @apply btn-md inline-flex items-center justify-center font-bold uppercase disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none disabled:grayscale;
+}
+
 @utility btn-primary {
-  @apply bg-primary-500 dark:bg-primary-600 text-white hover:bg-primary-600 dark:hover:bg-primary-700 active:bg-primary-700 dark:active:bg-primary-800 shadow-lg shadow-primary-500/25 transition-colors;
+  @apply btn bg-primary-500 dark:bg-primary-600 text-white hover:bg-primary-600 dark:hover:bg-primary-700 active:bg-primary-700 dark:active:bg-primary-800 shadow-lg shadow-primary-500/25 transition-colors;
+}
+
+.btn-primary.btn-sm {
+  @apply shadow-sm;
 }
 
 @utility btn-accent {
@@ -366,7 +401,11 @@
 }
 
 @utility btn-secondary {
-  @apply inline-flex items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-100/70 dark:bg-zinc-900/60 text-zinc-700 dark:text-zinc-200 transition-all duration-200 hover:bg-zinc-300/30 dark:hover:bg-zinc-800/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/35;
+  @apply btn border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/70 text-zinc-700 dark:text-zinc-300 transition-all duration-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:hover:border-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/35;
+}
+
+.btn-secondary:disabled {
+  opacity: 0.3;
 }
 
 @utility header-icon-btn {
@@ -782,9 +821,6 @@
     @apply bg-primary-50/70 dark:bg-primary-950/25;
   }
 
-
-
-
   .notifications-item.is-selected {
     @apply ring-1 ring-primary-300 dark:ring-primary-700/60 bg-primary-100/55 dark:bg-primary-900/20;
   }
@@ -881,9 +917,6 @@
   .notifications-page-shell.mobile-detail-open [data-notifications-detail-panel] {
     @apply flex;
   }
-
-
-
 
   .notifications-empty {
     @apply flex flex-col items-center justify-center text-center gap-2 px-6 py-14 text-zinc-500 dark:text-zinc-400;
@@ -1303,10 +1336,11 @@ body {
 }
 
 @layer components {
-
   .c-sortable-th {
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
   }
 
   .c-sortable-th:hover {

@@ -197,7 +197,7 @@
                   </div>
 
                   <button
-                    class="w-full h-11 rounded-lg btn-primary font-bold inline-flex items-center justify-center gap-2">
+                    class="w-full btn-primary">
                     Перейти к оплате
                   </button>
                 </div>
@@ -239,7 +239,7 @@
                   </div>
 
                   <button
-                    class="w-full h-11 rounded-lg btn-primary font-bold inline-flex items-center justify-center gap-2">
+                    class="w-full btn-primary">
                     Перейти к оплате
                   </button>
                 </div>

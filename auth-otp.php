@@ -60,8 +60,8 @@ $channelLabel = $channelLabelMap[$channel] ?? 'канал';
               <div class="relative z-10 text-xs text-zinc-500 dark:text-zinc-400">Код действителен 02:00</div>
 
               <div class="auth-actions">
-                <button type="submit" class="btn-primary rounded-lg px-4 py-3 text-sm font-bold">Подтвердить</button>
-                <a href="<?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? 'auth-otp.php', ENT_QUOTES, 'UTF-8') ?>" class="btn-secondary px-4 py-3 text-sm font-semibold">Повторно отправить</a>
+                <button type="submit" class="btn-primary">Подтвердить</button>
+                <a href="<?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? 'auth-otp.php', ENT_QUOTES, 'UTF-8') ?>" class="btn-secondary">Повторно отправить</a>
               </div>
 
               <div class="auth-divider auth-footer justify-start">

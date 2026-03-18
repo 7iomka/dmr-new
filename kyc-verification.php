@@ -112,7 +112,7 @@
 
                 <div class="grid gap-3 sm:grid-cols-2">
                   <span></span>
-                  <button type="button" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" data-next-step="2">Далее</button>
+                  <button type="button" class="btn-primary" data-next-step="2">Далее</button>
                 </div>
               </section>
 
@@ -150,8 +150,8 @@
                       <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="front"></p>
                     </label>
                     <div class="hidden justify-center gap-2" data-upload-actions="front">
-                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="front">Заменить</button>
-                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="front">Сбросить</button>
+                      <button type="button" class="btn-secondary btn-sm hidden" data-replace-upload="front">Заменить</button>
+                      <button type="button" class="btn-secondary btn-sm hidden" data-clear-upload="front">Сбросить</button>
                     </div>
                     <p class="c-form-message hidden" data-error-for="docFront"></p>
                   </div>
@@ -168,8 +168,8 @@
                       <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="back"></p>
                     </label>
                     <div class="hidden justify-center gap-2" data-upload-actions="back">
-                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="back">Заменить</button>
-                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="back">Сбросить</button>
+                      <button type="button" class="btn-secondary btn-sm hidden" data-replace-upload="back">Заменить</button>
+                      <button type="button" class="btn-secondary btn-sm hidden" data-clear-upload="back">Сбросить</button>
                     </div>
                     <p class="c-form-message hidden" data-error-for="docBack"></p>
                   </div>
@@ -189,7 +189,7 @@
 
                 <div class="grid gap-3 sm:grid-cols-2">
                   <button type="button" class="btn-secondary px-6 py-3 text-base font-bold" data-prev-step="1">Назад</button>
-                  <button type="button" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" data-next-step="3">Далее</button>
+                  <button type="button" class="btn-primary" data-next-step="3">Далее</button>
                 </div>
               </section>
 
@@ -209,8 +209,8 @@
                       <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="selfie"></p>
                     </label>
                     <div class="hidden justify-center gap-2" data-upload-actions="selfie">
-                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="selfie">Заменить</button>
-                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="selfie">Сбросить</button>
+                      <button type="button" class="btn-secondary btn-sm hidden" data-replace-upload="selfie">Заменить</button>
+                      <button type="button" class="btn-secondary btn-sm hidden" data-clear-upload="selfie">Сбросить</button>
                     </div>
                     <p class="c-form-message hidden" data-error-for="selfie"></p>
                   </div>
@@ -226,8 +226,8 @@
                       <p class="hidden text-sm font-medium text-zinc-700 dark:text-zinc-200" data-file-name="selfieWithDocument"></p>
                     </label>
                     <div class="hidden justify-center gap-2" data-upload-actions="selfieWithDocument">
-                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-replace-upload="selfieWithDocument">Заменить</button>
-                      <button type="button" class="btn-secondary hidden px-3 py-1.5 text-sm" data-clear-upload="selfieWithDocument">Сбросить</button>
+                      <button type="button" class="btn-secondary btn-sm hidden" data-replace-upload="selfieWithDocument">Заменить</button>
+                      <button type="button" class="btn-secondary btn-sm hidden" data-clear-upload="selfieWithDocument">Сбросить</button>
                     </div>
                     <p class="c-form-message hidden" data-error-for="selfieWithDocument"></p>
                   </div>
@@ -237,7 +237,7 @@
 
                 <div class="grid gap-3 sm:grid-cols-2">
                   <button type="button" class="btn-secondary px-6 py-3 text-base font-bold" data-prev-step="2">Назад</button>
-                  <button type="button" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" data-next-step="4">Далее</button>
+                  <button type="button" class="btn-primary" data-next-step="4">Далее</button>
                 </div>
               </section>
 
@@ -265,7 +265,7 @@
 
                 <div class="grid gap-3 sm:grid-cols-2">
                   <button type="button" class="btn-secondary px-6 py-3 text-base font-bold" data-prev-step="3">Назад</button>
-                  <button id="submitKycBtn" type="submit" class="btn-primary rounded-lg px-6 py-3 text-base font-bold" disabled>Отправить KYC</button>
+                  <button id="submitKycBtn" type="submit" class="btn-primary" disabled>Отправить KYC</button>
                 </div>
               </section>
             </form>

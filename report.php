@@ -74,11 +74,11 @@
               </div>
               <!-- CTA -->
               <div class="mt-8 p-5 bg-primary/10 border border-primary/20 rounded-2xl max-w-md mx-auto">
-                <h4 class="text-base font-bold text-primary uppercase  mb-2">Наблюдательный комитет</h4>
-                <p class="text-sm text-zinc-600 dark:text-zinc-400  mb-4">Заинтересованным партнерам отчёты доступны с
+                <h4 class="text-base font-bold text-primary uppercase mb-2">Наблюдательный комитет</h4>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">Заинтересованным партнерам отчёты доступны с
                   указанием точных сумм в долларах.</p>
                 <button
-                  class="px-4 py-3 btn-primary text-sm font-bold rounded-lg w-full">
+                  class="btn-primary w-full">
                   Подать заявку
                 </button>
               </div>

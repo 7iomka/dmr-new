@@ -21,14 +21,14 @@
       <div class="relative" data-dropdown data-dropdown-id="language-menu" data-dropdown-placement="bottom-end" data-dropdown-offset="10" data-dropdown-overlay="true" data-dropdown-close-ms="140">
         <button
           type="button"
-          class="btn-secondary header-language-trigger"
+          class="btn-secondary btn-narrow normal-case tracking-normal header-language-trigger"
           data-dropdown-trigger
           aria-haspopup="listbox"
           aria-expanded="false"
           aria-controls="header-language-menu">
           <span class="text-base leading-none" data-language-flag>🇺🇸</span>
-          <span class="hidden sm:inline text-sm font-semibold text-zinc-800 dark:text-zinc-100" data-language-native>English</span>
-          <span class="sm:hidden text-xs font-semibold uppercase tracking-wide text-zinc-700 dark:text-zinc-200" data-language-code>EN</span>
+          <span class="hidden sm:inline text-sm" data-language-native>English</span>
+          <span class="sm:hidden text-xs uppercase" data-language-code>EN</span>
           <svg class="header-language-chevron" data-dropdown-chevron xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="m6 9 6 6 6-6"></path>
           </svg>
@@ -115,7 +115,7 @@
           </template>
         </div>
       <?php else: ?>
-        <a href="auth-login.php" class="hidden lg:inline-flex items-center gap-2 btn-primary px-4 py-2.5 rounded-lg text-sm font-bold ml-2 shadow-lg shadow-primary-500/20">
+        <a href="auth-login.php" class="hidden lg:inline-flex btn-primary">
           <i data-lucide="log-in" class="w-4 h-4"></i>
           <span>Вход</span>
         </a>

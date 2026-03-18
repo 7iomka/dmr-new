@@ -91,8 +91,8 @@
               </div>
 
               <div class="auth-actions">
-                <button type="submit" class="btn-primary rounded-lg px-4 py-3 text-sm font-bold">Создать аккаунт</button>
-                <a href="auth-register.php" class="btn-secondary px-4 py-3 text-sm font-semibold">Назад</a>
+                <button type="submit" class="btn-primary">Создать аккаунт</button>
+                <a href="auth-register.php" class="btn-secondary">Назад</a>
               </div>
 
               <div class="auth-divider auth-footer justify-start">
@@ -203,7 +203,9 @@
       });
 
       scorePassword(password?.value || '');
-      if (window.lucide) window.lucide.createIcons({ inTemplates: true });
+      if (window.lucide) window.lucide.createIcons({
+        inTemplates: true
+      });
     })();
   </script>
   <?= renderPhoneInputScript(); ?>

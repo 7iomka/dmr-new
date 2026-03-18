@@ -17,18 +17,18 @@
             <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white text-left">Условия использования</h1>
 
             <div class="card-simple w-full max-w-4xl">
-              <p class="text-center text-base md:text-lg lg:text-xl leading-relaxed text-zinc-700 dark:text-zinc-200">
-                Наши <a href="#" class="text-primary-500 hover:text-primary-400 font-semibold">Условия использования</a> были обновлены. Пожалуйста, ознакомьтесь и подтвердите их снова, чтобы продолжить использование наших услуг.
+              <p class="text-center text-base md:text-lg leading-relaxed text-zinc-700 dark:text-zinc-200">
+                Наши <a href="#" class="text-primary-500 hover:text-primary-400 hover:underline font-semibold">Условия использования</a> были обновлены. Пожалуйста, ознакомьтесь и подтвердите их снова, чтобы продолжить использование наших услуг.
               </p>
 
               <form id="termsAcceptanceForm" class="mt-8 lg:mt-10 flex flex-col items-center gap-7" action="#" method="post">
-                <label for="termsAcceptanceCheckbox" class="w-full flex items-start md:items-center justify-center gap-3 text-zinc-700 dark:text-zinc-200 text-sm md:text-base leading-snug cursor-pointer select-none">
+                <label for="termsAcceptanceCheckbox" class="w-full flex items-start md:items-center justify-center gap-3 text-zinc-700 dark:text-zinc-200 text-sm cursor-pointer select-none">
                   <input id="termsAcceptanceCheckbox" name="termsAccepted" type="checkbox" class="c-checkbox mt-0.5 md:mt-0" />
                   <span>Нажимая это, вы подтверждаете, что прочитали и согласны с нашими Условиями использования</span>
                 </label>
 
-                <button id="termsAcceptanceSubmit" type="submit" disabled class="btn-primary w-full max-w-md rounded-lg px-5 py-3 text-base md:text-lg font-bold disabled:bg-zinc-500 disabled:text-zinc-300 disabled:dark:bg-zinc-700 disabled:dark:text-zinc-500 disabled:shadow-none disabled:pointer-events-none disabled:cursor-not-allowed inline-flex items-center justify-center gap-2.5">
-                  <i data-lucide="check" class="h-5 w-5" aria-hidden="true"></i>
+                <button id="termsAcceptanceSubmit" type="submit" disabled class="btn-primary w-full max-w-md">
+                  <i data-lucide="check" class="h-4 w-4" aria-hidden="true"></i>
                   <span>Подтвердить и продолжить</span>
                 </button>
               </form>

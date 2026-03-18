@@ -73,9 +73,9 @@
                   <div class="flex items-center justify-between gap-2 flex-wrap">
                     <p class="text-xs font-bold text-primary-700 dark:text-primary-200" data-notifications-selected-counter>Выбрано: 0</p>
                     <div class="flex items-center gap-2 flex-wrap">
-                      <button type="button" class="btn-secondary text-xs font-bold px-3 py-1.5" data-bulk-action="read">Прочитать</button>
-                      <button type="button" class="btn-secondary text-xs font-bold px-3 py-1.5" data-bulk-action="unread">Непрочитанные</button>
-                      <button type="button" class="btn-secondary text-xs font-bold px-3 py-1.5 text-red-600 dark:text-red-400" data-bulk-action="delete">Удалить</button>
+                      <button type="button" class="btn-secondary btn-sm" data-bulk-action="read">Прочитать</button>
+                      <button type="button" class="btn-secondary btn-sm" data-bulk-action="unread">Непрочитанные</button>
+                      <button type="button" class="btn-secondary btn-sm text-red-600 dark:text-red-400" data-bulk-action="delete">Удалить</button>
                     </div>
                   </div>
                 </div>

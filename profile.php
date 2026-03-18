@@ -36,16 +36,16 @@
                   class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary/10 text-primary uppercase tracking-wider border border-primary/20 self-center">Активный</span>
               </div>
               <div class="flex flex-wrap justify-center md:justify-start gap-3">
-
                 <button
-                  class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 btn-primary text-[11px] font-bold rounded-lg shadow-lg uppercase tracking-widest">
+                  class="col-span-2 btn-primary">
                   <i data-lucide="settings" class="w-4 h-4"></i>
                   <span>Редактировать профиль</span>
-                </button><button
-                  class="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest">
+                </button>
+                <a href="kyc-verification.php"
+                  class="btn-secondary">
                   <i data-lucide="shield-check" class="w-4 h-4 text-primary"></i>
                   <span>Редактировать KYC</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>

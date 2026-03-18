@@ -25,7 +25,7 @@
 							<label class="text-[10px] font-bold uppercase tracking-[2px] text-zinc-500 mb-2 block">Адрес вашего
 								кошелька</label>
 							<div
-								class="flex items-center bg-zinc-50 dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 rounded-lg p-2 pl-4 shadow-inner">
+								class="flex items-center bg-zinc-50 dark:bg-dark border border-zinc-200 dark:border-zinc-800 rounded-lg p-2 pl-4 shadow-inner">
 								<i data-lucide="fingerprint" class="w-4 h-4 text-primary mr-3 opacity-70" aria-hidden="true"></i>
 								<code
 									class="text-[12px] sm:text-[13px] font-bold text-zinc-800 dark:text-zinc-200 flex-1 font-mono tracking-tight truncate">bb8623ef-3902-4937-95e5-1e64fc6f79c4</code>
@@ -43,10 +43,12 @@
 								$ 12,450,000.80</h2>
 							<div class="space-y-3 mb-8">
 								<div class="flex items-baseline gap-2"><span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Доступно к выводу:</span>
-									<div class="flex flex-wrap gap-2 items-center"><span class="text-lg leading-none font-bold text-primary">$ 482.50</span><a href="/wallet/withdrawals" class="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all border border-zinc-200 dark:border-zinc-700">
-										<span class="text-[10px] font-bold text-zinc-600 dark:text-zinc-300 uppercase">Управление</span>
-										<i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
-									</a></div>
+									<div class="flex flex-wrap gap-2 items-center"><span class="text-lg leading-none font-bold text-primary">$ 482.50</span>
+										<a href="/wallet/withdrawals" class="group btn-secondary btn-sm">
+											<span>Управление</span>
+											<i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
+										</a>
+									</div>
 								</div>
 								<div class="flex items-baseline gap-2 opacity-80"><span
 										class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Заблокировано:</span><span
@@ -54,19 +56,19 @@
 							</div>
 							<div class="grid grid-cols-2 sm:flex flex-wrap gap-3">
 								<a href="deposit.php"
-									class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 btn-primary text-[11px] font-bold rounded-lg shadow-lg shadow-primary-500/20 uppercase tracking-widest">
+									class="col-span-2 btn-primary">
 									<i data-lucide="plus-circle" class="w-4 h-4" aria-hidden="true"></i>
 									<span>Пополнить</span>
 								</a>
 
 								<button
-									class="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest">
+									class="btn-secondary">
 									<i data-lucide="send" class="w-4 h-4" aria-hidden="true"></i>
 									<span>Перевести</span>
 								</button>
 
 								<a href="/wallet/withdrawals/new"
-									class="flex items-center justify-center gap-2 px-6 py-3 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-[11px] font-bold rounded-lg transition-all border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest">
+									class="btn-secondary">
 									<i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
 									<span>Вывести</span>
 								</a>
@@ -84,10 +86,10 @@
 									class="js-tab-highlight c-transition-slider absolute bg-white dark:bg-zinc-600 rounded-md shadow z-0 h-[calc(100%-8px)] top-[4px] left-0">
 								</div>
 								<button data-active="true" data-target="payments"
-									class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white whitespace-nowrap">Платежные
+									class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-zinc-50 whitespace-nowrap">Платежные
 									транзакции</button>
 								<button data-active="false" data-target="wallet"
-									class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white whitespace-nowrap">Wallet
+									class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-zinc-50 whitespace-nowrap">Wallet
 									transactions</button>
 							</div>
 						</div>
@@ -266,7 +268,7 @@
 											<div class="c-card-details-content">
 												<div class="px-4 pb-4 pt-0">
 													<div
-														class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
+														class="bg-zinc-50 dark:bg-dark rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
 														<div class="flex justify-between items-center">
 															<span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Статус:</span>
 															<span
@@ -322,7 +324,7 @@
 											<div class="c-card-details-content">
 												<div class="px-4 pb-4 pt-0">
 													<div
-														class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
+														class="bg-zinc-50 dark:bg-dark rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
 														<div class="flex justify-between items-center">
 															<span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Статус:</span>
 															<span
@@ -353,19 +355,17 @@
 									<p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Показано 1-10 из 42
 										транзакций</p>
 									<div class="flex items-center gap-2">
-										<button
-											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-											<i data-lucide="chevron-left" class="w-4 h-4" aria-hidden="true"></i>
+										<button class="btn-secondary btn-sm btn-icon" disabled>
+											<i data-lucide="chevron-left" class="w-4 h-4"></i>
 										</button>
 										<button
-											class="w-8 h-8 flex items-center justify-center rounded btn-primary text-[10px] font-bold">1</button>
+											class="btn-primary btn-sm btn-icon">1</button>
 										<button
-											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors">2</button>
+											class="btn-secondary btn-sm btn-icon">2</button>
 										<button
-											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors">3</button>
-										<button
-											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-											<i data-lucide="chevron-right" class="w-4 h-4" aria-hidden="true"></i>
+											class="btn-secondary btn-sm btn-icon">3</button>
+										<button class="btn-secondary btn-sm btn-icon">
+											<i data-lucide="chevron-right" class="w-4 h-4"></i>
 										</button>
 									</div>
 								</div>
@@ -530,7 +530,7 @@
 											<div class="c-card-details-content">
 												<div class="px-4 pb-4 pt-0">
 													<div
-														class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
+														class="bg-zinc-50 dark:bg-dark rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
 														<div class="flex justify-between items-center">
 															<span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Тип
 																ссылки:</span>
@@ -582,7 +582,7 @@
 											<div class="c-card-details-content">
 												<div class="px-4 pb-4 pt-0">
 													<div
-														class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
+														class="bg-zinc-50 dark:bg-dark rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
 														<div class="flex justify-between items-center">
 															<span class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Тип
 																ссылки:</span>
@@ -615,19 +615,17 @@
 									<p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Показано 1-10 из 42
 										транзакций</p>
 									<div class="flex items-center gap-2">
-										<button
-											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-											<i data-lucide="chevron-left" class="w-4 h-4" aria-hidden="true"></i>
+										<button class="btn-secondary btn-sm btn-icon" disabled>
+											<i data-lucide="chevron-left" class="w-4 h-4"></i>
 										</button>
 										<button
-											class="w-8 h-8 flex items-center justify-center rounded btn-primary text-[10px] font-bold">1</button>
+											class="btn-primary btn-sm btn-icon">1</button>
 										<button
-											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors">2</button>
+											class="btn-secondary btn-sm btn-icon">2</button>
 										<button
-											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors">3</button>
-										<button
-											class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-											<i data-lucide="chevron-right" class="w-4 h-4" aria-hidden="true"></i>
+											class="btn-secondary btn-sm btn-icon">3</button>
+										<button class="btn-secondary btn-sm btn-icon">
+											<i data-lucide="chevron-right" class="w-4 h-4"></i>
 										</button>
 									</div>
 								</div>

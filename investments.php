@@ -23,11 +23,11 @@
             <div class="card-header">
               <div class="js-tabs-nav flex items-center gap-2 p-1 rounded-xl bg-primary/[0.06] dark:bg-primary/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
                 <button data-active="true" data-target="shares"
-                  class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
+                  class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)] dark:data-[active=true]:bg-primary-600 dark:data-[active=true]:border-primary-600">
                   Мои доли
                 </button>
                 <button data-active="false" data-target="buy"
-                  class="js-tab-btn investments-primary-tab px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
+                  class="js-tab-btn investments-primary-tab px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)] dark:data-[active=true]:bg-primary-600 dark:data-[active=true]:border-primary-600">
                   Купить доли
                 </button>
               </div>
@@ -39,7 +39,7 @@
                 <div class="grid grid-cols-1 xl:grid-cols-5 gap-4 xl:gap-5">
                   <div class="xl:col-span-3 flex flex-col gap-5">
                     <div
-                      class="p-4 rounded-lg border flex items-center justify-between bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800">
+                      class="p-4 rounded-lg border flex items-center justify-between bg-zinc-50 dark:bg-dark border-zinc-200 dark:border-zinc-800">
                       <div class="flex-1 pr-2">
                         <p class="text-sm font-bold text-zinc-900 dark:text-zinc-200">Рассрочка</p>
                         <p class="text-xs text-zinc-500 font-medium leading-tight mt-0.5">
@@ -48,7 +48,7 @@
                       </div>
 
                       <button id="installmentToggle" onclick="toggleInstallment()"
-                        class="w-10 h-5 rounded-full relative transition-all duration-300 flex items-center px-1 flex-shrink-0 bg-zinc-400 dark:bg-zinc-700">
+                        class="w-10 h-5 rounded-full relative transition-all duration-300 flex items-center px-1 shrink-0 bg-zinc-400 dark:bg-zinc-700">
                         <div id="toggleCircle"
                           class="w-3.5 h-3.5 rounded-full bg-white shadow-sm transition-transform duration-300"
                           style="transform: translateX(0px);"></div>
@@ -60,7 +60,7 @@
                         <label for="invest_summ" class="text-[10px] font-bold text-zinc-500 uppercase px-1">Введите Сумму</label>
                         <div class="relative group flex">
                           <input id="invest_summ" type="number"
-                            class="no-spinner w-full rounded-lg rounded-r-none px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
+                            class="no-spinner w-full rounded-lg rounded-r-none px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-dark border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
                             value="504">
                           <div
                             class="border border-zinc-200 dark:border-zinc-800 border-l-0 flex items-center px-4 text-zinc-400 font-bold bg-black/5 dark:bg-white/5 rounded-r-lg">
@@ -72,7 +72,7 @@
                       <div class="flex flex-col gap-2">
                         <label for="shares_count" class="text-[10px] font-bold text-zinc-500 uppercase px-1">Количество долей</label>
                         <input id="shares_count" type="number"
-                          class="no-spinner w-full rounded-lg px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
+                          class="no-spinner w-full rounded-lg px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-dark border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
                           value="132806">
                       </div>
                     </div>
@@ -82,7 +82,7 @@
 
                       <div class="relative">
                         <select
-                          class="w-full border focus:border-primary/50 rounded-lg px-4 py-3 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
+                          class="w-full border focus:border-primary/50 rounded-lg px-4 py-3 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-dark border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
                           <option value="3">3 месяца</option>
                           <option value="6">6 месяцев</option>
                           <option value="12" selected>12 месяцев</option>
@@ -98,7 +98,7 @@
 
                   <div class="xl:col-span-2 flex flex-col gap-4 xl:gap-5">
                     <div
-                      class="p-4 rounded-lg border flex flex-col gap-3 bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 xl:sticky xl:top-4">
+                      class="p-4 rounded-lg border flex flex-col gap-3 bg-zinc-50 dark:bg-dark border-zinc-200 dark:border-zinc-800 xl:sticky xl:top-4">
                       <div class="flex justify-between items-center">
                         <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Доли</span>
                         <span class="text-sm font-bold text-primary">132 806</span>
@@ -116,8 +116,7 @@
                         <span class="text-2xl font-bold dark:text-white">504 $</span>
                       </div>
 
-                      <button id="mainBuyButton"
-                        class="w-full py-4 btn-primary text-white font-bold rounded-lg active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
+                      <button class="w-full btn-primary">
                         <i data-lucide="circle-plus" class="w-5 h-5"></i>
                         <span id="buttonText">Купить 132 806 долей за 504 $</span>
                       </button>
@@ -130,14 +129,14 @@
               <div class="js-tab-content hidden block" data-id="shares">
                 <!-- EMPTY STATE (когда долей нет) -->
                 <div
-                  class="only-no-shares p-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0B0E11] text-center">
+                  class="only-no-shares p-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-dark text-center">
                   <p class="text-base font-bold text-zinc-900 dark:text-white">У вас пока нет
                     долей</p>
                   <p class="text-sm font-medium text-zinc-500 mt-2">
                     Купите доли, чтобы открыть портфель и начать отслеживать цену и платежи.
                   </p>
                   <button
-                    class="mt-5 inline-flex items-center justify-center px-4 py-3 rounded-lg btn-primary text-white font-bold text-xs uppercase js-tab-btn"
+                    class="mt-5 btn-primary js-tab-btn"
                     data-target="buy" data-active="false">
                     Купить доли
                   </button>
@@ -201,9 +200,9 @@
                 class="js-tabs-nav relative flex bg-zinc-200/50 dark:bg-zinc-800/80 p-1 rounded-lg w-fit overflow-x-auto c-no-scrollbar max-w-full">
                 <div class="js-tab-highlight c-transition-slider absolute bg-white dark:bg-zinc-600 rounded-md shadow z-0 h-[calc(100%-8px)] top-[4px] left-0"></div>
                 <button data-active="true" data-target="installments-active"
-                  class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white whitespace-nowrap">Активные</button>
+                  class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-zinc-50 whitespace-nowrap">Активные</button>
                 <button data-active="false" data-target="installments-closed"
-                  class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white whitespace-nowrap">Закрытые</button>
+                  class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-zinc-50 whitespace-nowrap">Закрытые</button>
               </div>
             </div>
 
@@ -237,7 +236,7 @@
                                 <span>План</span>
                                 <span data-chevron class="inline-flex transition-transform rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                               </button>
-                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88421" aria-expanded="false" class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
+                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88421" aria-expanded="false" class="btn-primary btn-sm btn-icon">
                                 <i data-lucide="settings" class="h-4 w-4"></i>
                               </button>
                             </div>
@@ -303,7 +302,7 @@
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap">17569</td>
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap">05.03.2026</td>
                                   <td class="px-4 py-3 tabular-nums whitespace-nowrap text-amber-600">до 17.03.2026</td>
-                                  <td class="px-4 py-3 text-right"><button class="px-3 py-2 rounded-md btn-primary font-bold uppercase whitespace-nowrap" data-modal-open="payment-confirm">Оплатить сейчас</button></td>
+                                  <td class="px-4 py-3 text-right whitespace-nowrap"><button class="btn-primary" data-modal-open="payment-confirm">Оплатить сейчас</button></td>
                                 </tr>
                                 <tr data-payment-item="88421-3">
                                   <td class="px-4 py-3 font-semibold text-zinc-900 dark:text-zinc-100">Платёж #3</td>
@@ -335,7 +334,7 @@
                                 <span>План</span>
                                 <span data-chevron class="inline-flex transition-transform rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                               </button>
-                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88422" aria-expanded="false" class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
+                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88422" aria-expanded="false" class="btn-primary btn-sm btn-icon">
                                 <i data-lucide="settings" class="h-4 w-4"></i>
                               </button>
                             </div>
@@ -380,7 +379,7 @@
                                 <span>План</span>
                                 <span data-chevron class="inline-flex transition-transform rotate-180"><i data-lucide="chevron-down" class="h-4 w-4"></i></span>
                               </button>
-                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88423" aria-expanded="false" class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
+                              <button type="button" data-fly-trigger data-fly-menu="contract-actions" data-contract-id="88423" aria-expanded="false" class="btn-primary btn-sm btn-icon">
                                 <i data-lucide="settings" class="h-4 w-4"></i>
                               </button>
                             </div>
@@ -434,7 +433,7 @@
                           data-fly-trigger
                           data-fly-menu="contract-actions" data-contract-id="88421"
                           aria-expanded="false"
-                          class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
+                          class="btn-primary btn-sm btn-icon">
                           <i data-lucide="settings" class="h-4 w-4"></i>
                         </button>
                       </div>
@@ -487,7 +486,7 @@
                         <p class="mt-1 text-[11px]">Срок: <span class="font-semibold text-amber-600">до 17.03.2026</span></p>
                         <p class="mt-1 text-[11px]">Сумма: <span class="font-semibold text-zinc-900 dark:text-white">$66.67</span></p>
                         <p class="mt-1 text-[11px]">Доли: <span class="font-semibold text-zinc-900 dark:text-white">17569</span></p>
-                        <button class="mt-3 w-full px-3 py-2.5 rounded-lg btn-primary text-[11px] font-bold uppercase" data-modal-open="payment-confirm">Оплатить сейчас</button>
+                        <button class="mt-3 w-full btn-primary btn-sm" data-modal-open="payment-confirm">Оплатить сейчас</button>
                       </div>
 
                       <div data-payment-item="88421-3" class="bg-card rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2">
@@ -521,7 +520,7 @@
                           data-fly-trigger
                           data-fly-menu="contract-actions" data-contract-id="88422"
                           aria-expanded="false"
-                          class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
+                          class="btn-primary btn-sm btn-icon">
                           <i data-lucide="settings" class="h-4 w-4"></i>
                         </button>
                       </div>
@@ -602,7 +601,7 @@
                           data-fly-trigger
                           data-fly-menu="contract-actions" data-contract-id="88423"
                           aria-expanded="false"
-                          class="inline-flex h-8 w-8 items-center justify-center rounded-lg btn-primary">
+                          class="btn-primary btn-sm btn-icon">
                           <i data-lucide="settings" class="h-4 w-4"></i>
                         </button>
                       </div>
@@ -669,7 +668,7 @@
               <div class="js-tab-content hidden" data-id="installments-closed">
                 <div class="p-8 text-center">
                   <div
-                    class="max-w-xl mx-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0B0E11] px-6 py-10">
+                    class="max-w-xl mx-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-dark px-6 py-10">
                     <p class="text-sm font-bold text-zinc-900 dark:text-white mb-2">Пока нет закрытых рассрочек</p>
                     <p class="text-xs text-zinc-500 dark:text-zinc-400">
                       После полной оплаты или закрытия Закрыть история завершённых рассрочек появится в этом разделе.
@@ -760,7 +759,7 @@
 
         <div class="mt-6 flex flex-wrap justify-end gap-3">
           <button type="button" data-modal-close class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800"><i data-lucide="x" class="h-3.5 w-3.5"></i>Отмена</button>
-          <button type="button" class="inline-flex items-center justify-center gap-2 px-5 py-3 btn-primary text-xs font-bold rounded-lg uppercase tracking-widest"><i data-lucide="check" class="h-3.5 w-3.5"></i>Подтвердить</button>
+          <button type="button" class="btn-primary"><i data-lucide="check" class="h-3.5 w-3.5"></i>Подтвердить</button>
         </div>
       </div>
     </div>
@@ -808,7 +807,7 @@
 
         <div class="mt-6 flex flex-wrap justify-end gap-3">
           <button type="button" data-modal-close class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800"><i data-lucide="x" class="h-3.5 w-3.5"></i>Отмена</button>
-          <button type="button" class="inline-flex items-center justify-center gap-2 px-5 py-3 btn-primary text-xs font-bold rounded-lg uppercase tracking-widest"><i data-lucide="check" class="h-3.5 w-3.5"></i>Подтвердить</button>
+          <button type="button" class="btn-primary"><i data-lucide="check" class="h-3.5 w-3.5"></i>Подтвердить</button>
         </div>
       </div>
     </div>
@@ -841,7 +840,7 @@
         <div class="mt-5">
           <label class="block mb-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100">Выберите количество месяцев для оплаты</label>
           <div class="relative">
-            <select class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-[#0B0E11] px-4 py-2.5 text-zinc-700 dark:text-zinc-200 appearance-none outline-none focus:border-primary">
+            <select class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-dark px-4 py-2.5 text-zinc-700 dark:text-zinc-200 appearance-none outline-none focus:border-primary">
               <option>2 months</option>
             </select>
             <i data-lucide="chevron-down" class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400"></i>
@@ -876,7 +875,7 @@
 
         <div class="mt-6 flex flex-wrap justify-end gap-3">
           <button type="button" data-modal-close class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800"><i data-lucide="x" class="h-3.5 w-3.5"></i>Отмена</button>
-          <button type="button" class="inline-flex items-center justify-center gap-2 px-5 py-3 btn-primary text-xs font-bold rounded-lg uppercase tracking-widest"><i data-lucide="check" class="h-3.5 w-3.5"></i>Подтвердить</button>
+          <button type="button" class="btn-primary"><i data-lucide="check" class="h-3.5 w-3.5"></i>Подтвердить</button>
         </div>
       </div>
     </div>

@@ -44,7 +44,7 @@ $initialVisibleCount = 6;
           </div>
 
           <div class="mt-6 flex justify-center">
-            <button id="showMoreNews" class="btn-primary px-5 py-2.5 rounded-lg text-sm font-semibold" data-step="3">
+            <button id="showMoreNews" class="btn-primary font-semibold" data-step="3">
               Показать ещё
             </button>
           </div>

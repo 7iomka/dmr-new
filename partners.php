@@ -180,6 +180,7 @@
                                 flex: 1;
                                 min-width: 0;
                                 height: 100%;
+                                padding-inline: 8px;
                             }
 
                             .mask-left,
@@ -195,72 +196,21 @@
                                 align-items: center;
                             }
 
-                            .mask-left {
-                                left: 0;
-                                background: linear-gradient(to right, var(--color-zinc-100), transparent);
-                                justify-content: flex-start;
+                            .mask-left *,
+                            .mask-right * {
+                                pointer-events: all;
                             }
 
-                            .dark .mask-left {
-                                background: linear-gradient(to right, #1E2023, transparent);
+                            .mask-left {
+                                left: 0;
+                                background: linear-gradient(to right, var(--color-card), transparent);
+                                justify-content: flex-start;
                             }
 
                             .mask-right {
                                 right: 0;
-                                background: linear-gradient(to left, var(--color-zinc-100), transparent);
+                                background: linear-gradient(to left, var(--color-card), transparent);
                                 justify-content: flex-end;
-                            }
-
-                            .dark .mask-right {
-                                background: linear-gradient(to left, #1E2023, transparent);
-                            }
-
-                            /* Nav Buttons */
-                            .nav-btn-base {
-                                pointer-events: auto;
-                                width: 28px;
-                                height: 28px;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                border-radius: 8px;
-                                transition: all 0.2s;
-                                cursor: pointer;
-                                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-                            }
-
-                            .nav-btn-style {
-                                background: white;
-                                border: 1px solid var(--color-zinc-200);
-                                color: var(--color-zinc-500);
-                            }
-
-                            .nav-btn-style:hover:not(:disabled) {
-                                background: var(--color-zinc-100);
-                                color: var(--color-zinc-700);
-                                border-color: var(--color-zinc-300);
-                            }
-
-                            .dark .nav-btn-style {
-                                background: #27272a;
-                                border: 1px solid #3f3f46;
-                                color: #a1a1aa;
-                            }
-
-                            .dark .nav-btn-style:hover:not(:disabled) {
-                                background: #3f3f46;
-                                color: #f4f4f5;
-                                border-color: #52525b;
-                            }
-
-                            .nav-btn-base:active:not(:disabled) {
-                                transform: scale(0.9);
-                            }
-
-                            .nav-btn-base:disabled {
-                                opacity: 0.3;
-                                cursor: not-allowed;
-                                filter: grayscale(1);
                             }
                         </style>
                         <style>
@@ -296,11 +246,11 @@
                                 <div class="flex flex-col w-full">
                                     <!-- Line 1: Breadcrumbs -->
                                     <div
-                                        class="card-body-inset-x h-14 flex items-center justify-between gap-2 overflow-hidden grow border-b border-zinc-200 dark:border-zinc-800">
+                                        class="card-body-inset-x h-14 flex items-center justify-between overflow-hidden grow border-b border-zinc-200 dark:border-zinc-800">
 
                                         <!-- Fixed Root Element (Current User) -->
                                         <div
-                                            class="flex items-center flex-shrink-0 pr-3 border-r border-zinc-200 dark:border-zinc-700 h-full">
+                                            class="flex items-center shrink-0 pr-3 border-r border-zinc-200 dark:border-zinc-700 h-full">
                                             <button onclick="goToRoot()" id="root-btn"
                                                 class="flex items-center gap-2 px-2 py-1 rounded-lg transition-all group">
                                                 <i data-lucide="home" id="root-icon" class="w-4 h-4 transition-colors"></i>
@@ -311,16 +261,16 @@
                                         <!-- Scrollable Path -->
                                         <div class="breadcrumb-wrapper">
                                             <div class="mask-left opacity-0" id="m-left">
-                                                <button onclick="scrollBreadcrumbs('left')" class="nav-btn-base nav-btn-style ml-1">
+                                                <button onclick="scrollBreadcrumbs('left')" class="btn-secondary btn-sm btn-icon ml-1">
                                                     <i data-lucide="chevron-left" class="w-4 h-4"></i>
                                                 </button>
                                             </div>
                                             <div id="breadcrumb-container"
-                                                class="flex items-center gap-1 overflow-x-auto no-scrollbar text-sm px-4 h-full scroll-smooth">
+                                                class="flex items-center gap-1 overflow-x-auto no-scrollbar text-sm h-full scroll-smooth">
                                                 <!-- JS fills this -->
                                             </div>
                                             <div class="mask-right opacity-0" id="m-right">
-                                                <button onclick="scrollBreadcrumbs('right')" class="nav-btn-base nav-btn-style mr-1">
+                                                <button onclick="scrollBreadcrumbs('right')" class="btn-secondary btn-sm btn-icon mr-1">
                                                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
                                                 </button>
                                             </div>
@@ -328,8 +278,8 @@
 
                                         <!-- Back Action -->
                                         <div
-                                            class="flex items-center gap-2 flex-shrink-0 border-l border-zinc-200 dark:border-zinc-700 pl-3 h-full">
-                                            <button id="back-btn" onclick="goBack()" class="nav-btn-base nav-btn-style">
+                                            class="flex items-center gap-2 shrink-0 border-l border-zinc-200 dark:border-zinc-700 pl-3 h-full">
+                                            <button id="back-btn" onclick="goBack()" class="btn-secondary btn-sm btn-icon">
                                                 <i data-lucide="arrow-left" class="w-4 h-4"></i>
                                             </button>
                                         </div>
@@ -337,12 +287,12 @@
 
                                     <!-- Line 2: Search & Pagination -->
                                     <div
-                                        class="card-body-inset-x py-3 bg-zinc-50/50 dark:bg-white/[0.02] flex flex-col md:flex-row items-center justify-between gap-4">
+                                        class="card-body-inset-x py-3 bg-zinc-50/50 dark:bg-white/[0.02] flex flex-col md:flex-row items-end md:items-center justify-between gap-4">
                                         <!-- Search -->
                                         <div class="relative w-full md:w-72">
                                             <i data-lucide="search"
                                                 class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"></i>
-                                            <input type="text" placeholder="Поиск по логину..."
+                                            <input type="text" placeholder="Поиск по ID, email, телефону или ФИО"
                                                 class="w-full h-9 pl-9 pr-4 bg-white dark:bg-[#27272a] border border-zinc-200 dark:border-zinc-700 rounded-lg text-xs font-medium focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-zinc-500">
                                         </div>
 
@@ -350,12 +300,19 @@
                                         <div class="flex items-center gap-3">
                                             <p class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest hidden sm:block">
                                                 Страница 1 из 5</p>
-                                            <div class="flex items-center gap-1">
-                                                <button class="nav-btn-base"><i data-lucide="chevron-left" class="w-3.5 h-3.5"></i></button>
+                                            <div class="flex items-center gap-2">
+                                                <button class="btn-secondary btn-sm btn-icon" disabled>
+                                                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                                </button>
                                                 <button
-                                                    class="nav-btn-base !bg-primary !text-white !border-none text-[10px] font-bold">1</button>
-                                                <button class="nav-btn-base text-[10px] font-bold">2</button>
-                                                <button class="nav-btn-base"><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></button>
+                                                    class="btn-primary btn-sm btn-icon">1</button>
+                                                <button
+                                                    class="btn-secondary btn-sm btn-icon">2</button>
+                                                <button
+                                                    class="btn-secondary btn-sm btn-icon">3</button>
+                                                <button class="btn-secondary btn-sm btn-icon">
+                                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -371,8 +328,7 @@
                                     <thead>
                                         <tr class="bg-zinc-50/50 dark:bg-[#1E2023]/50 border-b border-zinc-200 dark:border-zinc-800">
                                             <th
-                                                class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
-                                                Логин</th>
+                                                class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">ID</th>
                                             <th
                                                 class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
                                                 Полное Имя</th>
@@ -410,18 +366,16 @@
                                     <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Показано
                                         1-5 из 42 партнеров</p>
                                     <div class="flex items-center gap-2">
-                                        <button
-                                            class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+                                        <button class="btn-secondary btn-sm btn-icon" disabled>
                                             <i data-lucide="chevron-left" class="w-4 h-4"></i>
                                         </button>
                                         <button
-                                            class="w-8 h-8 flex items-center justify-center rounded btn-primary text-[10px] font-bold shadow-sm shadow-primary/20">1</button>
+                                            class="btn-primary btn-sm btn-icon">1</button>
                                         <button
-                                            class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors cursor-pointer">2</button>
+                                            class="btn-secondary btn-sm btn-icon">2</button>
                                         <button
-                                            class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-[10px] font-bold transition-colors cursor-pointer">3</button>
-                                        <button
-                                            class="w-8 h-8 flex items-center justify-center rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+                                            class="btn-secondary btn-sm btn-icon">3</button>
+                                        <button class="btn-secondary btn-sm btn-icon">
                                             <i data-lucide="chevron-right" class="w-4 h-4"></i>
                                         </button>
                                     </div>
@@ -552,7 +506,7 @@
                     const style = getAaaStyle(step.level - 1);
                     const isLast = index === currentPath.length - 1;
                     html += `
-            <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-300 dark:text-zinc-700 mx-1 flex-shrink-0"></i>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-300 dark:text-zinc-700 mx-1 shrink-0"></i>
             <button onclick="goToLevel(${index})" class="flex items-center gap-1.5 whitespace-nowrap py-1 px-1.5 rounded-lg transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 group ${isLast ? 'cursor-default' : ''}">
                 <span class="text-[10px] px-1.5 py-0.5 rounded font-bold" style="background:${style.bg}; color:${style.text}">L${step.level}</span>
                 <span class="font-medium ${isLast ? 'text-zinc-900 dark:text-white font-bold' : 'text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white'}">${step.name}</span>
@@ -572,7 +526,7 @@
                 let mHtml = '';
 
                 for (let i = 1; i <= 5; i++) {
-                    const login = `user_lvl${nextLvl}_id${i}`;
+                    const id = `${nextLvl}${i}`;
                     const hasRef = i < 4;
                     const refCount = hasRef ? (10 - i) : 0;
 
@@ -584,11 +538,11 @@
                     <div class="flex items-center gap-3">
                         <span class="level-badge text-[10px] px-2 py-0.5 rounded shadow-sm" 
                                 style="background-color: ${style.bg}; color: ${style.text}">L${nextLvl}</span>
-                        <span class="text-zinc-900 dark:text-white font-bold">${login}</span>
+                        <span class="text-zinc-900 dark:text-white font-bold">${id}</span>
                     </div>
                 </td>
                 <td class="card-body-inset-x py-5 text-zinc-400 italic">User Name</td>
-                <td class="card-body-inset-x py-5 text-zinc-500 text-xs font-semibold">${login}@test.pro</td>
+                <td class="card-body-inset-x py-5 text-zinc-500 text-xs font-semibold">${id}@test.pro</td>
                 <td class="card-body-inset-x py-5 text-center">
                     ${refCount === 0 ? 
                         `<span class="text-zinc-300 dark:text-zinc-600 px-3 font-medium">—</span>` :
@@ -608,12 +562,12 @@
                         </span>
                     `}
                 </td>
-                <td class="card-body-inset-x py-5 font-mono text-xs font-bold text-zinc-400">ID-${nextLvl}${i}</td>
+                <td class="card-body-inset-x py-5 font-mono text-xs font-bold text-zinc-400">ID-${id}</td>
                 <td class="card-body-inset-x py-5 text-zinc-500 text-[11px] font-medium">18.02.26</td>
                 <td class="card-body-inset-x py-5 text-right">
                     ${hasRef ? `
-                        <button onclick="goDeeper('${login}', ${nextLvl})" 
-                                class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:bg-primary hover:text-white transition-all active:scale-90 shadow-sm cursor-pointer">
+                        <button onclick="goDeeper('${id}', ${nextLvl})" 
+                                class="btn-secondary btn-sm btn-icon">
                             <i data-lucide="chevron-right" class="w-4 h-4"></i>
                         </button>
                     ` : '<span class="text-zinc-300 dark:text-zinc-600 px-3">—</span>'}
@@ -627,7 +581,7 @@
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-10 h-10 rounded-xl flex items-center justify-center font-black text-xs shadow-inner" style="background:${style.bg}; color:${style.text}">L${nextLvl}</div>
                         <div class="min-w-0">
-                            <p class="text-[13px] font-bold dark:text-white uppercase tracking-tight truncate">${login}</p>
+                            <p class="text-[13px] font-bold dark:text-white uppercase tracking-tight truncate">${id}</p>
                             <p class="text-[10px] text-zinc-500 font-medium">Рефералов: ${refCount}</p>
                         </div>
                     </div>
@@ -641,16 +595,16 @@
                 <div class="c-card-details-wrapper">
                     <div class="c-card-details-content">
                         <div class="px-4 pb-4 pt-0">
-                            <div class="bg-zinc-50 dark:bg-[#0B0E11] rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
+                            <div class="bg-zinc-50 dark:bg-dark rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
                                 <div class="flex justify-between items-center text-[10px] font-bold">
                                     <span class="uppercase text-zinc-500 tracking-wider">Email:</span>
-                                    <span class="text-zinc-400 font-medium">${login}@test.pro</span>
+                                    <span class="text-zinc-400 font-medium">${id}@test.pro</span>
                                 </div>
                                 <div class="flex justify-between items-center text-[10px] font-bold">
                                     <span class="uppercase text-zinc-500 tracking-wider">Регистрация:</span>
                                     <span class="text-zinc-400 font-medium">18.02.2026</span>
                                 </div>
-                                ${hasRef ? `<div class="pt-2 border-t border-zinc-200 dark:border-zinc-800/80"><button onclick="event.stopPropagation(); goDeeper('${login}', ${nextLvl})" class="w-full py-2 flex items-center justify-center gap-2 border border-primary/30 bg-primary/5 text-primary rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-primary/10 transition-colors"><span>Открыть структуру</span><i data-lucide="arrow-right-circle" class="w-3.5 h-3.5"></i></button></div>` : ''}
+                                ${hasRef ? `<div class="pt-2 border-t border-zinc-200 dark:border-zinc-800/80"><button onclick="event.stopPropagation(); goDeeper('${id}', ${nextLvl})" class="w-full py-2 flex items-center justify-center gap-2 border border-primary/30 bg-primary/5 text-primary rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-primary/10 transition-colors"><span>Открыть структуру</span><i data-lucide="arrow-right-circle" class="w-3.5 h-3.5"></i></button></div>` : ''}
                             </div>
                         </div>
                     </div>

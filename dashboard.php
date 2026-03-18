@@ -29,9 +29,9 @@
                   <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-[2px] text-zinc-500">
                     Ваш баланс</p>
                   <a href="wallet.html"
-                    class="group flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all border border-zinc-200 dark:border-zinc-700">
-                    <span class="text-[10px] font-bold text-zinc-600 dark:text-zinc-300 uppercase">Кошелёк</span>
-                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
+                    class="group btn-secondary btn-sm">
+                    <span>Кошелёк</span>
+                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
                   </a>
                 </div>
                 <div class="flex-1 flex flex-col justify-center items-start gap-4">
@@ -41,8 +41,8 @@
                   </h3>
                   <div>
                     <a href="deposit.php"
-                      class="col-span-2 flex items-center justify-center gap-2 px-6 py-3 btn-primary text-white text-xs font-bold rounded-lg uppercase tracking-widest">
-                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
+                      class="col-span-2 btn-primary">
+                      <i data-lucide="plus-circle" class="w-4 h-4"></i>
                       <span>Пополнить</span>
                     </a>
                   </div>
@@ -59,9 +59,9 @@
                       12</h3>
                   </div>
                   <a href="partners.php"
-                    class="group flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all border border-zinc-200 dark:border-zinc-700">
-                    <span class="text-[10px] font-bold text-zinc-600 dark:text-zinc-300 uppercase">Детали</span>
-                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
+                    class="group btn-secondary btn-sm">
+                    <span>Детали</span>
+                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
                   </a>
                 </div>
 
@@ -116,11 +116,11 @@
 
                   <div class="js-tabs-nav flex items-center gap-2 p-1 rounded-xl bg-primary/[0.06] dark:bg-primary/[0.08] w-fit overflow-x-auto c-no-scrollbar max-w-full">
                     <button data-active="true" data-target="shares"
-                      class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
+                      class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)] dark:data-[active=true]:bg-primary-600 dark:data-[active=true]:border-primary-600">
                       Мои доли
                     </button>
                     <button data-active="false" data-target="buy"
-                      class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)]">
+                      class="js-tab-btn px-4 py-2 text-sm font-semibold rounded-lg border border-transparent whitespace-nowrap transition-colors data-[active=false]:bg-white/75 data-[active=false]:border-primary-500/30 data-[active=false]:text-primary-700 dark:data-[active=false]:bg-primary-950/25 dark:data-[active=false]:border-primary-500/35 dark:data-[active=false]:text-primary-300 data-[active=true]:bg-primary data-[active=true]:text-white data-[active=true]:border-primary data-[active=true]:shadow-[0_8px_16px_rgb(16_185_129/0.18)] dark:data-[active=true]:bg-primary-600 dark:data-[active=true]:border-primary-600">
                       Купить доли
                     </button>
                   </div>
@@ -130,7 +130,7 @@
                   <div class="js-tab-content hidden" data-id="buy">
                     <div class="flex flex-col gap-5">
                       <div
-                        class="p-4 rounded-lg border flex items-center justify-between bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800">
+                        class="p-4 rounded-lg border flex items-center justify-between bg-zinc-50 dark:bg-dark border-zinc-200 dark:border-zinc-800">
                         <div class="flex-1 pr-2">
                           <p class="text-sm font-bold text-zinc-900 dark:text-zinc-200">
                             Рассрочка</p>
@@ -140,7 +140,7 @@
                         </div>
 
                         <button id="installmentToggle" onclick="toggleInstallment()"
-                          class="w-10 h-5 rounded-full relative transition-all duration-300 flex items-center px-1 flex-shrink-0 bg-zinc-400 dark:bg-zinc-700">
+                          class="w-10 h-5 rounded-full relative transition-all duration-300 flex items-center px-1 shrink-0 bg-zinc-400 dark:bg-zinc-700">
                           <div id="toggleCircle"
                             class="w-3.5 h-3.5 rounded-full bg-white shadow-sm transition-transform duration-300"
                             style="transform: translateX(0px);"></div>
@@ -153,7 +153,7 @@
                             Сумму</label>
                           <div class="relative group flex">
                             <input id="invest_summ" type="number"
-                              class="no-spinner w-full rounded-lg rounded-r-none px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
+                              class="no-spinner w-full rounded-lg rounded-r-none px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-dark border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
                               value="504">
                             <div
                               class="border border-zinc-200 dark:border-zinc-800 border-l-0 flex items-center px-4 text-zinc-400 font-bold bg-black/5 dark:bg-white/5 rounded-r-lg">
@@ -166,7 +166,7 @@
                             class="text-[10px] font-bold text-zinc-500 uppercase px-1">Количество
                             долей</label>
                           <input id="shares_count" type="number"
-                            class="no-spinner w-full rounded-lg px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
+                            class="no-spinner w-full rounded-lg px-4 py-3 outline-none transition-all text-lg font-bold bg-white dark:bg-dark border border-zinc-200 dark:border-zinc-800 focus:border-primary/50 dark:focus:border-primary/50 text-zinc-900 dark:text-white"
                             value="132806">
                         </div>
                       </div>
@@ -177,7 +177,7 @@
 
                         <div class="relative">
                           <select
-                            class="w-full border focus:border-primary/50 rounded-lg px-4 py-3 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
+                            class="w-full border focus:border-primary/50 rounded-lg px-4 py-3 outline-none appearance-none font-bold cursor-pointer text-sm bg-white dark:bg-dark border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white">
                             <option value="3">3 месяца</option>
                             <option value="6">6 месяцев</option>
                             <option value="12" selected>12 месяцев</option>
@@ -188,7 +188,7 @@
                       </div>
 
                       <div
-                        class="p-4 rounded-lg border flex flex-col gap-3 bg-zinc-50 dark:bg-[#0B0E11] border-zinc-200 dark:border-zinc-800">
+                        class="p-4 rounded-lg border flex flex-col gap-3 bg-zinc-50 dark:bg-dark border-zinc-200 dark:border-zinc-800">
                         <div class="flex justify-between items-center">
                           <span class="text-[11px] font-bold text-zinc-500 uppercase tracking-wide">Доли</span>
                           <span class="text-sm font-bold text-primary">132 806</span>
@@ -210,8 +210,7 @@
                         </div>
                       </div>
 
-                      <button id="mainBuyButton"
-                        class="w-full py-4 btn-primary text-white font-bold rounded-lg active:scale-95 text-[12px] uppercase leading-snug flex items-center justify-center gap-3">
+                      <button class="w-full btn-primary">
                         <i data-lucide="circle-plus" class="w-5 h-5"></i>
                         <span id="buttonText">Купить 132 806 долей за 504 $</span>
                       </button>
@@ -222,14 +221,14 @@
                   <div class="js-tab-content block" data-id="shares">
                     <!-- EMPTY STATE (когда долей нет) -->
                     <div
-                      class="only-no-shares p-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0B0E11] text-center">
+                      class="only-no-shares p-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-dark text-center">
                       <p class="text-base font-bold text-zinc-900 dark:text-white">У вас пока нет
                         долей</p>
                       <p class="text-sm font-medium text-zinc-500 mt-2">
                         Купите доли, чтобы открыть портфель и начать отслеживать цену и платежи.
                       </p>
                       <button
-                        class="mt-5 inline-flex items-center justify-center px-4 py-3 rounded-lg btn-primary text-white font-bold text-xs uppercase js-tab-btn"
+                        class="mt-5 btn-primary js-tab-btn"
                         data-target="buy">
                         Купить доли
                       </button>
@@ -240,7 +239,7 @@
                       <!-- KPI grid -->
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                         <div
-                          class="p-4 rounded-lg bg-zinc-50 dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800">
+                          class="p-4 rounded-lg bg-zinc-50 dark:bg-dark border border-zinc-200 dark:border-zinc-800">
                           <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">
                             Количество долей</p>
                           <p class="text-2xl font-bold text-zinc-900 dark:text-white leading-none">
@@ -248,7 +247,7 @@
                         </div>
 
                         <div
-                          class="p-4 rounded-lg bg-zinc-50 dark:bg-[#0B0E11] border border-zinc-200 dark:border-zinc-800">
+                          class="p-4 rounded-lg bg-zinc-50 dark:bg-dark border border-zinc-200 dark:border-zinc-800">
                           <p class="text-[9px] font-bold text-zinc-500 uppercase mb-1">Текущая
                             стоимость</p>
                           <p class="text-2xl font-bold text-primary leading-none">$ 504.00</p>
@@ -279,10 +278,9 @@
                           Активные
                           рассрочки (2)</h3>
                         <a href="#"
-                          class="group flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all border border-zinc-200 dark:border-zinc-700">
-                          <span
-                            class="text-[10px] font-bold text-zinc-600 dark:text-zinc-300 uppercase">Управление</span>
-                          <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
+                          class="group btn-secondary btn-sm">
+                          <span>Управление</span>
+                          <i data-lucide="chevron-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>
                         </a>
                       </div>
 
@@ -338,7 +336,7 @@
                           <div class="flex items-start gap-3 mb-4">
                             <div class="mt-1 h-2 w-2 rounded-full bg-zinc-300 dark:bg-zinc-700">
                             </div>
-                            <p class="text-[10px] font-bold text-zinc-600 dark:text-zinc-300 uppercase tracking-tight">
+                            <ptracking-tight">
                               След. платеж: 25.02.2026</p>
                           </div>
 
@@ -393,9 +391,9 @@
                     style="width: 65px; transform: translateX(4px);"></div>
 
                   <button data-active="true" data-target="price-history-month"
-                    class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white">Месяц</button>
+                    class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-zinc-50">Месяц</button>
                   <button data-active="false" data-target="price-history-year"
-                    class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-white">Год</button>
+                    class="js-tab-btn relative z-10 px-4 py-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400 data-[active=true]:text-zinc-900 dark:data-[active=true]:text-zinc-50">Год</button>
                 </div>
               </div>
               <div class="card-body flex flex-col gap-6">
@@ -403,13 +401,13 @@
                 <div data-id="price-history-kpi">
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div
-                      class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0B0E11]">
+                      class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-dark">
                       <p class="text-[10px] font-bold text-zinc-500 uppercase">Текущая цена</p>
                       <p class="mt-1 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
                         $0.003795</p>
                     </div>
                     <div
-                      class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#0B0E11]">
+                      class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-dark">
                       <p class="text-[10px] font-bold text-zinc-500 uppercase">Всего проданных
                         акций</p>
                       <p class="mt-1 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
@@ -420,7 +418,7 @@
 
                 <!-- TAB CONTENT: Месяц -->
                 <div class="js-tab-content block" data-id="price-history-month">
-                  <div class="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0B0E11] py-5">
+                  <div class="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark py-5">
                     <div
                       class="flex items-center justify-center gap-6 text-sm font-semibold text-zinc-600 dark:text-zinc-300 mb-4">
                       <div class="flex items-center gap-2">
@@ -500,7 +498,7 @@
 
                 <!-- TAB CONTENT: Год -->
                 <div class="js-tab-content hidden" data-id="price-history-year">
-                  <div class="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0B0E11] py-5">
+                  <div class="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-dark py-5">
                     <div
                       class="flex items-center justify-center gap-6 text-sm font-semibold text-zinc-600 dark:text-zinc-300 mb-4">
                       <div class="flex items-center gap-2">
