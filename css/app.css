@@ -949,7 +949,17 @@
   .c-input,
   .c-select,
   .c-textarea {
-    @apply w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950/50 px-4 py-3 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 transition-colors focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/35;
+    @apply w-full rounded-lg border
+    border-zinc-200 dark:border-zinc-700 
+    bg-white dark:bg-zinc-950/50
+    px-4 py-3 text-sm
+    text-zinc-900 dark:text-zinc-100
+    placeholder:text-zinc-400
+    dark:placeholder:text-zinc-500
+    transition-colors
+    focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/35
+    disabled:text-zinc-500  dark:disabled:text-zinc-400
+     disabled:bg-zinc-100 dark:disabled:bg-zinc-800;
   }
 
   .c-select {
@@ -994,7 +1004,7 @@
   }
 
   .c-form-control__icon-btn {
-    @apply absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300;
+    @apply absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 disabled:pointer-events-none disabled:text-zinc-500  dark:disabled:text-zinc-400;
   }
 
   .c-stepper {
