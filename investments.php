@@ -47,12 +47,13 @@
                         </p>
                       </div>
 
-                      <button id="installmentToggle" onclick="toggleInstallment()"
-                        class="w-10 h-5 rounded-full relative transition-all duration-300 flex items-center px-1 shrink-0 bg-zinc-400 dark:bg-zinc-700">
-                        <div id="toggleCircle"
-                          class="w-3.5 h-3.5 rounded-full bg-white shadow-sm transition-transform duration-300"
-                          style="transform: translateX(0px);"></div>
-                      </button>
+                      <?= toggleSwitch([
+                        'id' => 'installmentToggle',
+                        'name' => 'installment',
+                        'checked' => false,
+                        'ariaLabel' => 'Рассрочка',
+                        'onchange' => 'toggleInstallment()'
+                      ]) ?>
                     </div>
 
                     <div class="flex flex-col gap-4">

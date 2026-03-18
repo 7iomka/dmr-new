@@ -139,12 +139,13 @@
                             покупки на срок от 2 до 24 месяцев</p>
                         </div>
 
-                        <button id="installmentToggle" onclick="toggleInstallment()"
-                          class="w-10 h-5 rounded-full relative transition-all duration-300 flex items-center px-1 shrink-0 bg-zinc-400 dark:bg-zinc-700">
-                          <div id="toggleCircle"
-                            class="w-3.5 h-3.5 rounded-full bg-white shadow-sm transition-transform duration-300"
-                            style="transform: translateX(0px);"></div>
-                        </button>
+                        <?= toggleSwitch([
+                          'id' => 'installmentToggle',
+                          'name' => 'installment',
+                          'checked' => false,
+                          'ariaLabel' => 'Рассрочка',
+                          'onchange' => 'toggleInstallment()'
+                        ]) ?>
                       </div>
 
                       <div class="flex flex-col gap-4">
@@ -307,7 +308,7 @@
                               <p
                                 class="text-[10px] font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-tight">
                                 След. платеж: <span class="text-red-500">10.02.2026</span></p>
-                              <p class="text-[9px] font-bold text-red-500/60 uppercase">
+                              <p class="text-[9px] font-bold text-red-500/60 dark:text-red-400 uppercase">
                                 Оплатить не позднее: 17.02.2026
                               </p>
                             </div>
@@ -336,7 +337,7 @@
                           <div class="flex items-start gap-3 mb-4">
                             <div class="mt-1 h-2 w-2 rounded-full bg-zinc-300 dark:bg-zinc-700">
                             </div>
-                            <ptracking-tight">
+                            <p class="text-[10px] font-bold text-zinc-600 dark:text-zinc-300 uppercase tracking-tight">
                               След. платеж: 25.02.2026</p>
                           </div>
 

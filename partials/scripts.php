@@ -62,26 +62,19 @@
 		let isInstallment = false;
 
 		function toggleInstallment() {
-			isInstallment = !isInstallment;
-			const field = document.getElementById('installmentField');
 			const toggle = document.getElementById('installmentToggle');
-			const circle = document.getElementById('toggleCircle');
+			const field = document.getElementById('installmentField');
 			const buttonText = document.getElementById('buttonText');
+
+			if (!toggle) return;
+
+			isInstallment = toggle.checked;
+
 			if (isInstallment) {
 				if (field) field.classList.remove('hidden');
-				if (toggle) {
-					toggle.classList.remove('bg-zinc-400', 'dark:bg-zinc-700');
-					toggle.classList.add('bg-primary');
-				}
-				if (circle) circle.style.transform = 'translateX(1.125rem)';
 				if (buttonText) buttonText.innerText = 'Зарезервировать 132 806 долей';
 			} else {
 				if (field) field.classList.add('hidden');
-				if (toggle) {
-					toggle.classList.add('bg-zinc-400', 'dark:bg-zinc-700');
-					toggle.classList.remove('bg-primary');
-				}
-				if (circle) circle.style.transform = 'translateX(0)';
 				if (buttonText) buttonText.innerText = 'Купить 132 806 долей за 504 $';
 			}
 		}
@@ -567,6 +560,20 @@
 		})();
 
 		document.addEventListener('DOMContentLoaded', initSidebarMode);
+	</script>
+
+	<script>
+		// ===== TOGGLE SWITCH (data-attributes) =====
+		document.addEventListener('change', function(event) {
+			const input = event.target.closest('.js-toggleswitch');
+			if (!input) return;
+
+			input.setAttribute('aria-checked', input.checked ? 'true' : 'false');
+		});
+
+		document.querySelectorAll('.js-toggleswitch').forEach((input) => {
+			input.setAttribute('aria-checked', input.checked ? 'true' : 'false');
+		});
 	</script>
 
 	<script>
