@@ -336,6 +336,9 @@
                                                 class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
                                                 Email</th>
                                             <th
+                                                class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
+                                                Телефон</th>
+                                            <th
                                                 class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest text-center">
                                                 Рефералы</th>
                                             <th
@@ -529,6 +532,7 @@
                     const id = `${nextLvl}${i}`;
                     const hasRef = i < 4;
                     const refCount = hasRef ? (10 - i) : 0;
+                    const phone = `+7 (900) 123-4${id}`;
 
                     // Row style: hover:bg-zinc-50 dark:hover:bg-white/[0.02]
                     // Cell style: card-body-inset-x py-5
@@ -543,6 +547,7 @@
                 </td>
                 <td class="card-body-inset-x py-5 text-zinc-400 italic">User Name</td>
                 <td class="card-body-inset-x py-5 text-zinc-500 text-xs font-semibold">${id}@test.pro</td>
+                <td class="card-body-inset-x py-5 text-zinc-500 text-xs font-semibold">${phone}</td>
                 <td class="card-body-inset-x py-5 text-center">
                     ${refCount === 0 ? 
                         `<span class="text-zinc-300 dark:text-zinc-600 px-3 font-medium">—</span>` :
@@ -563,7 +568,7 @@
                     `}
                 </td>
                 <td class="card-body-inset-x py-5 font-mono text-xs font-bold text-zinc-400">ID-${id}</td>
-                <td class="card-body-inset-x py-5 text-zinc-500 text-[11px] font-medium">18.02.26</td>
+                <td class="card-body-inset-x py-5 text-zinc-500 text-[11px] font-medium">18.02.2026 14:35</td>
                 <td class="card-body-inset-x py-5 text-right">
                     ${hasRef ? `
                         <button onclick="goDeeper('${id}', ${nextLvl})" 
@@ -601,8 +606,12 @@
                                     <span class="text-zinc-400 font-medium">${id}@test.pro</span>
                                 </div>
                                 <div class="flex justify-between items-center text-[10px] font-bold">
+                                    <span class="uppercase text-zinc-500 tracking-wider">Телефон:</span>
+                                    <span class="text-zinc-400 font-medium">${phone}</span>
+                                </div>
+                                <div class="flex justify-between items-center text-[10px] font-bold">
                                     <span class="uppercase text-zinc-500 tracking-wider">Регистрация:</span>
-                                    <span class="text-zinc-400 font-medium">18.02.2026</span>
+                                    <span class="text-zinc-400 font-medium">18.02.2026 14:35</span>
                                 </div>
                                 ${hasRef ? `<div class="pt-2 border-t border-zinc-200 dark:border-zinc-800/80"><button onclick="event.stopPropagation(); goDeeper('${id}', ${nextLvl})" class="w-full py-2 flex items-center justify-center gap-2 border border-primary/30 bg-primary/5 text-primary rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-primary/10 transition-colors"><span>Открыть структуру</span><i data-lucide="arrow-right-circle" class="w-3.5 h-3.5"></i></button></div>` : ''}
                             </div>
