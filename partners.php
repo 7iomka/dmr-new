@@ -30,7 +30,7 @@
                                         class="w-full h-full rounded-sm flex items-center justify-center font-bold text-[10px] bg-card text-zinc-900 dark:text-white">
                                         AR</div>
                                 </div>
-                                <span class="text-xs font-semibold">Arcadius Rudov</span>
+                                <span class="text-xs font-medium">Arcadius Rudov</span>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                                     <div class="p-1.5 rounded-md bg-primary/10 text-primary">
                                         <i data-lucide="dollar-sign" class="w-4 h-4"></i>
                                     </div>
-                                    <span class="text-xs font-bold text-zinc-500 uppercase tracking-widest">Доход</span>
+                                    <span class="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">Доход</span>
                                 </div>
                                 <div>
                                     <div class="flex items-baseline gap-2">
@@ -58,11 +58,11 @@
                                     <div class="flex items-center gap-2 mt-2 text-xs">
                                         <span class="text-primary bg-primary/10 px-1.5 py-0.5 rounded font-medium">+250.00
                                             $</span>
-                                        <span class="text-zinc-400">за Февраль</span>
+                                        <span class="text-zinc-500 dark:text-zinc-400">за Февраль</span>
                                     </div>
                                 </div>
                                 <div class="mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex justify-between items-center">
-                                    <span class="text-[10px] font-bold text-zinc-400 uppercase">Доступно к выводу</span>
+                                    <span class="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase">Доступно к выводу</span>
                                     <span class="text-sm font-bold text-primary">482.50 $</span>
                                 </div>
                             </div>
@@ -78,24 +78,14 @@
                                     <div class="p-1.5 rounded-md bg-blue-500/10 text-blue-500">
                                         <i data-lucide="users" class="w-4 h-4"></i>
                                     </div>
-                                    <span class="text-xs font-bold text-zinc-500 uppercase tracking-widest">Команда</span>
+                                    <span class="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">Команда</span>
                                 </div>
                                 <div>
                                     <h2 class="text-3xl font-bold text-zinc-900 dark:text-white">12</h2>
                                     <p class="text-xs text-zinc-400 mt-2">Активных партнеров: <span
                                             class="text-zinc-600 dark:text-zinc-300 font-bold">8</span></p>
                                 </div>
-                                <div class="mt-4">
-                                    <div class="flex gap-1 h-1.5 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
-                                        <div class="bg-blue-500 w-[60%]"></div>
-                                        <div class="bg-blue-400 w-[25%]"></div>
-                                        <div class="bg-blue-300 w-[15%]"></div>
-                                    </div>
-                                    <div class="flex justify-between text-[10px] text-zinc-400 mt-1">
-                                        <span class="pl-0.5 w-[60%]">Lvl 1</span>
-                                        <span class="pl-0.5 w-[25%]">Lvl 2</span>
-                                        <span class="pl-0.5 w-[15%]">Lvl 3+</span>
-                                    </div>
+                                <div class="hidden lg:block h-9 mt-4">
                                 </div>
                             </div>
                         </div>
@@ -110,7 +100,7 @@
                                 class="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl">
                             </div>
 
-                            <div class="flex-col gap-4 h-full justify-between relative z-10">
+                            <div class="flex flex-col gap-4 h-full justify-between relative z-10">
                                 <div>
                                     <h3 class="font-bold text-lg">Приглашайте друзей</h3>
                                     <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Получайте бонусы за
@@ -118,7 +108,7 @@
                                 </div>
                                 <div class="space-y-3">
                                     <div class="group relative">
-                                        <label class="text-[10px] font-bold text-zinc-500 uppercase mb-1 block">Ваша
+                                        <label class="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase mb-1 block">Ваша
                                             ссылка (платформа)</label>
                                         <div
                                             class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-primary transition-colors">
@@ -131,7 +121,7 @@
                                         </div>
                                     </div>
                                     <div class="group relative">
-                                        <label class="text-[10px] font-bold text-zinc-500 uppercase mb-1 block">Ваша
+                                        <label class="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase mb-1 block">Ваша
                                             ссылка (продукт)</label>
                                         <div
                                             class="flex items-center bg-zinc-50 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 pr-1.5 focus-within:border-primary transition-colors">
@@ -145,7 +135,7 @@
                                     </div>
                                     <div
                                         class="flex justify-between items-center bg-zinc-50 dark:bg-zinc-950/30 rounded-lg px-3 py-2.5 border border-zinc-200 dark:border-zinc-800">
-                                        <span class="text-[10px] font-bold text-zinc-500 uppercase">Код:</span>
+                                        <span class="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase">Код:</span>
                                         <div class="flex items-center gap-3">
                                             <span class="font-mono font-bold text-primary text-sm tracking-wider">A7CA9B55</span>
                                             <?= copyButton([
@@ -188,7 +178,7 @@
                                 position: absolute;
                                 top: 0;
                                 bottom: 0;
-                                width: 70px;
+                                width: 120px;
                                 pointer-events: none;
                                 z-index: 20;
                                 transition: opacity 0.3s;
@@ -203,13 +193,13 @@
 
                             .mask-left {
                                 left: 0;
-                                background: linear-gradient(to right, var(--color-card), transparent);
+                                background: linear-gradient(to right, var(--color-card-header) 20%, transparent);
                                 justify-content: flex-start;
                             }
 
                             .mask-right {
                                 right: 0;
-                                background: linear-gradient(to left, var(--color-card), transparent);
+                                background: linear-gradient(to left, var(--color-card-header) 20%, transparent);
                                 justify-content: flex-end;
                             }
                         </style>
@@ -261,7 +251,7 @@
                                         <!-- Scrollable Path -->
                                         <div class="breadcrumb-wrapper">
                                             <div class="mask-left opacity-0" id="m-left">
-                                                <button onclick="scrollBreadcrumbs('left')" class="btn-secondary btn-sm btn-icon ml-1">
+                                                <button onclick="scrollBreadcrumbs('left')" class="btn-secondary btn-sm btn-icon ml-2">
                                                     <i data-lucide="chevron-left" class="w-4 h-4"></i>
                                                 </button>
                                             </div>
@@ -270,7 +260,7 @@
                                                 <!-- JS fills this -->
                                             </div>
                                             <div class="mask-right opacity-0" id="m-right">
-                                                <button onclick="scrollBreadcrumbs('right')" class="btn-secondary btn-sm btn-icon mr-1">
+                                                <button onclick="scrollBreadcrumbs('right')" class="btn-secondary btn-sm btn-icon mr-2">
                                                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
                                                 </button>
                                             </div>
@@ -292,8 +282,8 @@
                                         <div class="relative w-full md:w-72">
                                             <i data-lucide="search"
                                                 class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"></i>
-                                            <input type="text" placeholder="Поиск по ID, email, телефону или ФИО"
-                                                class="w-full h-9 pl-9 pr-4 bg-white dark:bg-[#27272a] border border-zinc-200 dark:border-zinc-700 rounded-lg text-xs font-medium focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-zinc-500">
+                                            <input type="text" placeholder="Поиск по ID, email, телефону или имени"
+                                                class="w-full h-9 pl-9 pr-4 bg-white dark:bg-[#27272a] border border-zinc-200 dark:border-zinc-700 rounded-lg text-xs font-medium focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-zinc-400">
                                         </div>
 
                                         <!-- Top Pagination (Compact) -->
@@ -323,15 +313,14 @@
                             <div class="card-body !p-0">
                                 <!-- Desktop Table -->
                                 <div class="hidden lg:block overflow-x-auto"">
-                                    <table class=" w-full text-left border-collapse min-w-[1000px] text-zinc-500
-                                    dark:text-zinc-400">
+                                    <table class=" w-full text-left border-collapse min-w-[1000px] text-zinc-500 dark:text-zinc-400">
                                     <thead>
                                         <tr class="bg-zinc-50/50 dark:bg-[#1E2023]/50 border-b border-zinc-200 dark:border-zinc-800">
                                             <th
                                                 class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">ID</th>
                                             <th
                                                 class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
-                                                Полное Имя</th>
+                                                Имя и Фамилия</th>
                                             <th
                                                 class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
                                                 Email</th>
@@ -349,7 +338,7 @@
                                                 Код</th>
                                             <th
                                                 class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest">
-                                                Дата</th>
+                                                Зарегистрирован</th>
                                             <th
                                                 class="whitespace-nowrap card-body-inset-x py-4 text-[9px] font-bold uppercase tracking-widest text-right">
                                                 Действия</th>
@@ -366,7 +355,7 @@
                                 <!-- Bottom Pagination -->
                                 <div
                                     class="card-body-inset-x py-5 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                    <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Показано
+                                    <p class="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">Показано
                                         1-5 из 42 партнеров</p>
                                     <div class="flex items-center gap-2">
                                         <button class="btn-secondary btn-sm btn-icon" disabled>
@@ -509,10 +498,10 @@
                     const style = getAaaStyle(step.level - 1);
                     const isLast = index === currentPath.length - 1;
                     html += `
-            <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-300 dark:text-zinc-700 mx-1 shrink-0"></i>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-300 dark:text-zinc-700 -mx-0.5 shrink-0"></i>
             <button onclick="goToLevel(${index})" class="flex items-center gap-1.5 whitespace-nowrap py-1 px-1.5 rounded-lg transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 group ${isLast ? 'cursor-default' : ''}">
                 <span class="text-[10px] px-1.5 py-0.5 rounded font-bold" style="background:${style.bg}; color:${style.text}">L${step.level}</span>
-                <span class="font-medium ${isLast ? 'text-zinc-900 dark:text-white font-bold' : 'text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white'}">${step.name}</span>
+                <span class="text-xs font-medium ${isLast ? 'text-zinc-900 dark:text-white font-bold' : 'text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white'}">${step.name}</span>
             </button>
         `;
                 });
@@ -545,9 +534,9 @@
                         <span class="text-zinc-900 dark:text-white font-bold">${id}</span>
                     </div>
                 </td>
-                <td class="card-body-inset-x py-5 text-zinc-400 italic">User Name</td>
-                <td class="card-body-inset-x py-5 text-zinc-500 text-xs font-semibold">${id}@test.pro</td>
-                <td class="card-body-inset-x py-5 text-zinc-500 text-xs font-semibold">${phone}</td>
+                <td class="card-body-inset-x py-5 text-zinc-500 dark:text-zinc-400">Игнатьев Александр</td>
+                <td class="card-body-inset-x py-5 text-zinc-500 dark:text-zinc-400 text-xs font-medium">${id}@test.pro</td>
+                <td class="card-body-inset-x py-5 text-zinc-500 dark:text-zinc-400 text-xs font-medium">${phone}</td>
                 <td class="card-body-inset-x py-5 text-center">
                     ${refCount === 0 ? 
                         `<span class="text-zinc-300 dark:text-zinc-600 px-3 font-medium">—</span>` :
@@ -567,8 +556,8 @@
                         </span>
                     `}
                 </td>
-                <td class="card-body-inset-x py-5 font-mono text-xs font-bold text-zinc-400">ID-${id}</td>
-                <td class="card-body-inset-x py-5 text-zinc-500 text-[11px] font-medium">18.02.2026 14:35</td>
+                <td class="card-body-inset-x py-5 font-mono text-xs text-zinc-500 dark:text-zinc-400">ID-${id}</td>
+                <td class="card-body-inset-x py-5 text-zinc-500 dark:text-zinc-400 text-xs font-medium">18.02.2026 14:35</td>
                 <td class="card-body-inset-x py-5 text-right">
                     ${hasRef ? `
                         <button onclick="goDeeper('${id}', ${nextLvl})" 
@@ -584,10 +573,11 @@
             <div class="bg-card group transition-colors cursor-pointer" onclick="toggleCard(this)">
                 <div class="p-4 flex items-center justify-between">
                     <div class="flex items-center gap-3 min-w-0">
-                        <div class="w-10 h-10 rounded-xl flex items-center justify-center font-black text-xs shadow-inner" style="background:${style.bg}; color:${style.text}">L${nextLvl}</div>
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xs shadow-inner" style="background:${style.bg}; color:${style.text}">L${nextLvl}</div>
                         <div class="min-w-0">
-                            <p class="text-[13px] font-bold dark:text-white uppercase tracking-tight truncate">${id}</p>
-                            <p class="text-[10px] text-zinc-500 font-medium">Рефералов: ${refCount}</p>
+                            <p class="text-[13px] dark:text-white whitespace-nowrap">ID: <strong>${id}</strong></p>
+                            <p class="text-xs font-medium">Игнатьев Александр</p>
+                            <p class="text-xs text-zinc-500 dark:text-zinc-400 font-medium">Рефералов: ${refCount}</p>
                         </div>
                     </div>
                     <div class="text-right pl-3">
@@ -600,20 +590,20 @@
                 <div class="c-card-details-wrapper">
                     <div class="c-card-details-content">
                         <div class="px-4 pb-4 pt-0">
-                            <div class="bg-zinc-50 dark:bg-dark rounded-xl px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
-                                <div class="flex justify-between items-center text-[10px] font-bold">
-                                    <span class="uppercase text-zinc-500 tracking-wider">Email:</span>
-                                    <span class="text-zinc-400 font-medium">${id}@test.pro</span>
+                            <div class="bg-zinc-50 dark:bg-dark rounded-lg px-4 py-4 space-y-3 border border-zinc-200 dark:border-zinc-800 shadow-inner">
+                                <div class="flex justify-between items-center text-xs font-bold">
+                                    <span class="text-zinc-500 dark:text-zinc-400">Email:</span>
+                                    <span class="text-zinc-500 dark:text-zinc-400 font-medium">${id}@test.pro</span>
                                 </div>
-                                <div class="flex justify-between items-center text-[10px] font-bold">
-                                    <span class="uppercase text-zinc-500 tracking-wider">Телефон:</span>
-                                    <span class="text-zinc-400 font-medium">${phone}</span>
+                                <div class="flex justify-between items-center text-xs font-bold">
+                                    <span class="text-zinc-500 dark:text-zinc-400">Телефон:</span>
+                                    <span class="text-zinc-500 dark:text-zinc-400 font-medium">${phone}</span>
                                 </div>
-                                <div class="flex justify-between items-center text-[10px] font-bold">
-                                    <span class="uppercase text-zinc-500 tracking-wider">Регистрация:</span>
-                                    <span class="text-zinc-400 font-medium">18.02.2026 14:35</span>
+                                <div class="flex justify-between items-center text-xs font-bold">
+                                    <span class="text-zinc-500 dark:text-zinc-400">Зарегистрирован:</span>
+                                    <span class="text-zinc-500 dark:text-zinc-400 font-medium">18.02.2026 14:35</span>
                                 </div>
-                                ${hasRef ? `<div class="pt-2 border-t border-zinc-200 dark:border-zinc-800/80"><button onclick="event.stopPropagation(); goDeeper('${id}', ${nextLvl})" class="w-full py-2 flex items-center justify-center gap-2 border border-primary/30 bg-primary/5 text-primary rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-primary/10 transition-colors"><span>Открыть структуру</span><i data-lucide="arrow-right-circle" class="w-3.5 h-3.5"></i></button></div>` : ''}
+                                ${hasRef ? `<div class="pt-2 border-t border-zinc-200 dark:border-zinc-800/80"><button onclick="event.stopPropagation(); goDeeper('${id}', ${nextLvl})" class="w-full btn-soft-primary btn-sm"><span>Открыть структуру</span><i data-lucide="arrow-right-circle" class="w-3.5 h-3.5"></i></button></div>` : ''}
                             </div>
                         </div>
                     </div>

@@ -59,7 +59,8 @@
 @theme {
   --font-sans: 'TTNorms', sans-serif;
   --font-serif: 'TTNorms', sans-serif;
-  --color-card: #ffffff;
+  --color-card: #fff;
+  --color-card-header: #fff;
   --color-dark: #0b0e11;
   --color-card-dark: #14171a;
   --color-muted-foreground: #5f6469;
@@ -91,6 +92,7 @@
 
 @variant dark {
   --color-card: #14171a;
+  --color-card-header: #1e2023;
   --color-muted-foreground: #8b9095;
   --color-surface-2: rgba(255, 255, 255, 0.05);
   --color-border: rgba(255, 255, 255, 0.07);
@@ -385,11 +387,20 @@
 }
 
 @utility btn {
-  @apply btn-md inline-flex items-center justify-center font-bold uppercase disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none disabled:grayscale;
+  @apply btn-md inline-flex items-center justify-center font-bold uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none disabled:grayscale;
 }
 
 @utility btn-primary {
-  @apply btn bg-primary-500 dark:bg-primary-600 text-white hover:bg-primary-600 dark:hover:bg-primary-700 active:bg-primary-700 dark:active:bg-primary-800 shadow-lg shadow-primary-500/25 transition-colors;
+  @apply btn bg-primary-500 dark:bg-primary-600 text-white hover:bg-primary-600 dark:hover:bg-primary-700 active:bg-primary-700 dark:active:bg-primary-800 shadow-lg shadow-primary-500/25;
+}
+
+@utility btn-soft-primary {
+  @apply btn 
+         border border-primary/30 
+         bg-primary/5 
+         text-primary 
+         hover:bg-primary/10
+         focus-visible:ring-2 focus-visible:ring-primary-500/35;
 }
 
 .btn-primary.btn-sm {
@@ -522,7 +533,7 @@
   }
   /* 2) карточка со структурой */
   .card-header {
-    @apply px-4 lg:px-6 py-4 border-b flex items-center justify-between gap-2 flex-wrap bg-white dark:bg-[#1E2023] border-zinc-200 dark:border-zinc-800 rounded-t-[inherit];
+    @apply px-4 lg:px-6 py-4 border-b flex items-center justify-between gap-2 flex-wrap bg-card-header border-zinc-200 dark:border-zinc-800 rounded-t-[inherit];
   }
   /* базовый padding card-body */
   .card-body {
