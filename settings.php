@@ -30,13 +30,13 @@
  
     /* Notification toggle rows */
     .s-notify-row {
-      @apply flex items-center gap-4 px-4 py-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 transition-colors;
+      @apply flex items-center gap-4 px-4 py-3.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 transition-colors;
     }
     .s-notify-icon { @apply h-9 w-9 rounded-lg flex items-center justify-center shrink-0; }
  
     /* Language option cards */
     .s-lang-option {
-      @apply flex items-center gap-3 px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 cursor-pointer transition-all;
+      @apply flex items-center gap-3 px-4 py-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 cursor-pointer transition-all;
     }
     .s-lang-option:hover:not(.is-selected) { @apply border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50; }
     .s-lang-option.is-selected { @apply border-primary-500/60 bg-primary-50 dark:bg-primary-900/25 ring-1 ring-primary-500/30; }
@@ -227,7 +227,7 @@
                     </div>
 
                     <!-- Password method card -->
-                    <div class="rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+                    <div class="rounded-lg border border-zinc-200 dark:border-zinc-800 overflow-hidden">
                       <div class="flex items-center gap-4 px-4 lg:px-5 py-4 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800">
                         <div class="h-9 w-9 rounded-lg bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 flex items-center justify-center shrink-0">
                           <i data-lucide="key-round" class="w-4 h-4" aria-hidden="true"></i>
