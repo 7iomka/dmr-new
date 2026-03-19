@@ -59,7 +59,7 @@
           <span class="text-sm font-semibold">Рефералы</span>
         </a>
         <a href="/settings.php" class="w-full flex items-center p-3 gap-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
-          <i data-lucide="settings.php" class="w-5 h-5"></i>
+          <i data-lucide="settings" class="w-5 h-5"></i>
           <span class="text-sm font-semibold">Настройки</span>
         </a>
       </div>

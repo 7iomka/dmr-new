@@ -15,7 +15,7 @@
 			</div>
 			<div class="text-left">
 				<p class="text-md font-bold leading-none mb-0.5 text-zinc-800 dark:text-zinc-200">Dorin Watsap</p>
-				<p class="text-sm font-bold text-zinc-500 truncate">lawyer1@awsarhitect.me</p>
+				<p class="text-sm font-bold text-zinc-500 dark:text-zinc-400 truncate">ID: 882194</p>
 			</div>
 		</div>
 
@@ -29,13 +29,13 @@
 					</div>
 					<span class="text-sm font-medium">Мой профиль</span>
 				</a>
-				<a href="settings.php"
+				<a href="/settings.php"
 					class="w-full flex items-center py-2 px-4 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors cursor-pointer group">
 					<div
 						class="w-10 h-10 rounded-full bg-zinc-800 text-zinc-600 dark:text-zinc-400 flex items-center justify-center mr-4">
-						<i data-lucide="lock" class="w-5 h-5"></i>
+						<i data-lucide="settings" class="w-5 h-5"></i>
 					</div>
-					<span class="text-sm font-medium">Безопасность</span>
+					<span class="text-sm font-medium">Настройки</span>
 				</a>
 
 				<a href="logout.php"

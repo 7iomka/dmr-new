@@ -38,6 +38,28 @@
                 <span
                   class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary/10 text-primary uppercase tracking-wider border border-primary/20 self-center">Активный</span>
               </div>
+              <ul class="mb-4 flex flex-wrap justify-center md:justify-start gap-2" aria-label="Социальные сети пользователя">
+                <li>
+                  <a href="https://t.me/dorin_watsap" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-icon btn-sm" aria-label="Telegram" title="Telegram">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://x.com/dorin_watsap" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-icon btn-sm" aria-label="X (Twitter)" title="X (Twitter)">
+                    <i data-lucide="at-sign" class="w-3.5 h-3.5"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/dorinwatsap" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-icon btn-sm" aria-label="GitHub" title="GitHub">
+                    <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://instagram.com/dorin_watsap" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-icon btn-sm" aria-label="Instagram" title="Instagram">
+                    <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+                  </a>
+                </li>
+              </ul>
               <div class="flex flex-wrap justify-center md:justify-start gap-3">
                 <a href="/settings.php?tab=profile"
                   class="btn-primary">
