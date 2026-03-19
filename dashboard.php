@@ -28,7 +28,7 @@
                 <div class="flex justify-between mb-4 sm:mb-6">
                   <p class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-zinc-500">
                     Ваш баланс</p>
-                  <a href="wallet.html"
+                  <a href="/wallet"
                     class="group btn-secondary btn-sm">
                     <span>Кошелёк</span>
                     <i data-lucide="chevron-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 -mr-1.5"></i>

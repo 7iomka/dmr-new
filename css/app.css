@@ -226,7 +226,7 @@
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    @apply grid-cols-1 sm:grid-cols-[1.5fr_1fr] xl:grid-cols-[1.5fr_1fr_1fr_1fr];
     gap: 32px;
   }
 
