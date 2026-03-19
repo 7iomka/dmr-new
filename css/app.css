@@ -432,6 +432,19 @@
          focus-visible:ring-red-500/35;
 }
 
+@utility btn-info {
+  @apply btn
+         border border-sky-200 dark:border-sky-900/60
+         bg-sky-50 dark:bg-sky-950/40
+         text-sky-700 dark:text-sky-300
+         transition-all duration-200
+         hover:bg-sky-100 dark:hover:bg-sky-900/50
+         hover:border-sky-300 dark:hover:border-sky-800
+         focus-visible:outline-none
+         focus-visible:ring-2
+         focus-visible:ring-sky-500/35;
+}
+
 @utility header-icon-btn {
   @apply p-2.5 text-zinc-500 dark:text-zinc-400;
 }
