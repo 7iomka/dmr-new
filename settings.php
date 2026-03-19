@@ -11,7 +11,7 @@
       lg:w-full shrink-0
       flex-col lg:flex-row 
        gap-1.5 px-5 py-3
-       lg:gap-3 lg:px-3 lg:py-2.5
+       lg:gap-3 lg:px-3
        border-b-2 border-transparent
        lg:border-none
        lg:rounded-lg text-sm font-semibold text-left
