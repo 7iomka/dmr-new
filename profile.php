@@ -19,14 +19,17 @@
           </div>
           <!-- Profile Header -->
           <div class="card-simple flex flex-col md:flex-row items-center md:items-start gap-6">
-            <div class="relative">
-              <div
-                class="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-primary-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-primary-500/20">
-                DW</div>
-              <div
-                class="absolute -bottom-2 -right-2 p-1.5 rounded-lg border-4 bg-primary text-white shadow-xl border-white dark:border-[#14171A]">
-                <i data-lucide="shield-check" class="w-4 h-4"></i>
+            <div class="inline-flex flex-col items-center gap-3">
+              <div class="relative">
+                <div
+                  class="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-primary-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-primary-500/20">
+                  DW</div>
+                <div
+                  class="absolute -bottom-2 -right-2 p-1.5 rounded-lg border-4 bg-primary text-white shadow-xl border-white dark:border-[#14171A]">
+                  <i data-lucide="shield-check" class="w-4 h-4"></i>
+                </div>
               </div>
+              <span class="text-xs font-medium text-zinc-900 dark:text-zinc-300">ID: <span class="font-semibold text-sm">882194</span></span>
             </div>
             <div class="flex-1 text-center md:text-left">
               <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-4">

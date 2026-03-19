@@ -97,14 +97,14 @@
             </div>
             <div class="text-left">
               <p class="text-[11px] font-bold leading-none mb-0.5 text-zinc-800 dark:text-zinc-200">Dorin Watsap</p>
-              <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter">ID: 882194</p>
+              <p class="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-tighter">ID: 882194</p>
             </div>
             <i data-lucide="chevron-down" class="hidden md:block w-3.5 h-3.5 text-zinc-500 transition-transform"></i>
           </button>
           <div id="user-dropdown" data-dropdown-panel data-dropdown-template-id="tpl-user-menu" class="header-user-panel" role="menu" tabindex="-1" aria-label="Меню пользователя"></div>
           <template id="tpl-user-menu">
             <div class="p-4 border-b border-zinc-100 dark:border-zinc-800/50">
-              <p class="text-[10px] font-bold uppercase text-zinc-500 mb-1">Аккаунт</p>
+              <p class="text-[10px] font-bold uppercase text-zinc-500 dark:text-zinc-400 mb-1">Аккаунт</p>
               <p class="text-sm font-bold truncate">lawyer1@awsarhitect.me</p>
             </div>
             <div class="p-2 border-t border-zinc-100 dark:border-zinc-800/50">
