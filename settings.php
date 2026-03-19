@@ -85,25 +85,25 @@
                 <nav class="js-tabs-nav flex flex-row lg:flex-col lg:gap-1 overflow-x-auto no-scrollbar">
                   <button type="button" class="js-tab-btn settings-tab-btn whitespace-nowrap lg:whitespace-normal"
                     data-target="tab-profile" data-active="true">
-                    <i data-lucide="circle-user" class="w-5 h-5 lg:w-4 lg:h-4 shrink-0"></i>
+                    <i data-lucide="circle-user" class="w-5 h-5 shrink-0"></i>
                     <span>Профиль</span>
                   </button>
 
                   <button type="button" class="js-tab-btn settings-tab-btn whitespace-nowrap lg:whitespace-normal"
                     data-target="tab-security" data-active="false">
-                    <i data-lucide="shield" class="w-5 h-5 lg:w-4 lg:h-4 shrink-0"></i>
+                    <i data-lucide="shield" class="w-5 h-5 shrink-0"></i>
                     <span>Методы входа</span>
                   </button>
 
                   <button type="button" class="js-tab-btn settings-tab-btn whitespace-nowrap lg:whitespace-normal"
                     data-target="tab-notifications" data-active="false">
-                    <i data-lucide="bell" class="w-5 h-5 lg:w-4 lg:h-4 shrink-0"></i>
+                    <i data-lucide="bell" class="w-5 h-5 shrink-0"></i>
                     <span>Уведомления</span>
                   </button>
 
                   <button type="button" class="js-tab-btn settings-tab-btn whitespace-nowrap lg:whitespace-normal"
                     data-target="tab-language" data-active="false">
-                    <i data-lucide="globe" class="w-5 h-5 lg:w-4 lg:h-4 shrink-0"></i>
+                    <i data-lucide="globe" class="w-5 h-5 shrink-0"></i>
                     <span>Язык</span>
                   </button>
                 </nav>
@@ -194,7 +194,7 @@
                           </button>
                         </div>
                         <div class="alert alert-info">
-                          <i data-lucide="info" class="w-5 h-5 lg:w-4 lg:h-4 shrink-0 mt-px" aria-hidden="true"></i>
+                          <i data-lucide="info" class="w-5 h-5 shrink-0 mt-px" aria-hidden="true"></i>
                           <span>Социальные ссылки ещё не добавлены. Нажмите «Добавить социальную ссылку», чтобы начать.</span>
                         </div>
                       </div>
