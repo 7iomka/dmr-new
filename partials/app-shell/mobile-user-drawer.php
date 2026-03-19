@@ -1,21 +1,21 @@
 	<div id="mobile-user-drawer"
-		class="fixed bottom-0 left-0 right-0 bg-card rounded-t-xl z-[99] shadow-2xl border-t border-zinc-200 dark:border-zinc-800 flex flex-col pointer-events-auto max-w-2xl mx-auto pb-15">
+		class="fixed bottom-0 left-0 right-0 bg-card rounded-t-xl z-[99] shadow-2xl border-t border-zinc-200 dark:border-zinc-800 flex flex-col pointer-events-auto max-w-md mx-auto pb-15">
 		<!-- Хендл для свайпа -->
 		<div id="user-swipe-handle" class="w-full pt-4 pb-6 touch-none">
 			<div class="w-12 h-1.5 bg-zinc-200 dark:bg-zinc-800 rounded-full mx-auto"></div>
 		</div>
 
 		<!-- Превьюшка юзера -->
-		<div class="flex items-center space-x-3 cursor-pointer px-4 rounded-xl transition-all">
+		<div class="flex justify-center items-center gap-3 cursor-pointer px-4 rounded-xl transition-all">
 			<div class="w-12 h-12 rounded-lg bg-gradient-to-tr from-primary to-primary-400 p-0.5">
 				<div
 					class="w-full h-full rounded-md flex items-center justify-center font-bold text-xs bg-card text-zinc-900 dark:text-white">
 					DW
 				</div>
 			</div>
-			<div class="text-left">
-				<p class="text-md font-bold leading-none mb-0.5 text-zinc-800 dark:text-zinc-200">Dorin Watsap</p>
-				<p class="text-sm font-bold text-zinc-500 dark:text-zinc-400 truncate">ID: 882194</p>
+			<div class="text-left flex flex-col gap-1">
+				<p class="text-base font-bold leading-none mb-0.5 text-zinc-800 dark:text-zinc-200">Dorin Watsap</p>
+				<p class="text-sm font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-tighter">ID: 882194</p>
 			</div>
 		</div>
 
