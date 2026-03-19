@@ -495,7 +495,7 @@ function uploadErrorKey(key) {
 }
 
 function initBirthDateOptions() {
-  const months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
+  const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
   months.forEach((label, index) => {
     const opt = document.createElement('option');
     opt.value = String(index + 1).padStart(2, '0');

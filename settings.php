@@ -178,31 +178,56 @@
 
                           <div class="c-form-control">
                             <label class="c-form-label" for="s-firstname">Имя</label>
-                            <input type="text" id="s-firstname" class="c-input" disabled value="Dorin" placeholder="Введите имя">
+                            <div class="c-form-control__input-wrap">
+                              <span class="c-form-control__icon-left">
+                                <i data-lucide="user" class="w-4 h-4" aria-hidden="true"></i>
+                              </span>
+                              <input type="text" id="s-firstname" class="c-input pl-10" disabled value="Dorin" placeholder="Введите имя">
+                            </div>
                           </div>
 
                           <div class="c-form-control">
                             <label class="c-form-label" for="s-lastname">Фамилия</label>
-                            <input type="text" id="s-lastname" class="c-input" disabled value="Watsap" placeholder="Введите фамилию">
+                            <div class="c-form-control__input-wrap">
+                              <span class="c-form-control__icon-left">
+                                <i data-lucide="users" class="w-4 h-4" aria-hidden="true"></i>
+                              </span>
+                              <input type="text" id="s-lastname" class="c-input pl-10" disabled value="Watsap" placeholder="Введите фамилию">
+                            </div>
                           </div>
 
                           <div class="c-form-control">
                             <label class="c-form-label" for="s-email">Электронная Почта</label>
-                            <input type="email" id="s-email" class="c-input" disabled value="lawyer1@awsarhitect.me" placeholder="email@example.com">
+                            <div class="c-form-control__input-wrap">
+                              <span class="c-form-control__icon-left">
+                                <i data-lucide="mail" class="w-4 h-4" aria-hidden="true"></i>
+                              </span>
+                              <input type="email" id="s-email" class="c-input pl-10" disabled value="lawyer1@awsarhitect.me" placeholder="email@example.com">
+                            </div>
                           </div>
 
                           <div class="c-form-control">
                             <label class="c-form-label" for="s-phone">Телефон</label>
-                            <input type="tel" id="s-phone" class="c-input" disabled value="+376700001" placeholder="+7 000 000 00 00">
+                            <div class="c-form-control__input-wrap">
+                              <span class="c-form-control__icon-left">
+                                <i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i>
+                              </span>
+                              <input type="tel" id="s-phone" class="c-input pl-10" disabled value="+376700001" placeholder="+7 000 000 00 00">
+                            </div>
                           </div>
 
                           <div class="c-form-control sm:col-span-2 md:col-span-1">
-                            <label class="c-form-label" for="s-dob">Дата рождения</label>
-                            <div class="c-form-control__input-wrap">
-                              <input type="text" id="s-dob" class="c-input pr-10" disabled value="04.12.2007" placeholder="ДД.ММ.ГГГГ">
-                              <button type="button" class="c-form-control__icon-btn" disabled aria-label="Открыть календарь">
-                                <i data-lucide="calendar" class="w-4 h-4" aria-hidden="true"></i>
-                              </button>
+                            <label class="c-form-label">Дата рождения</label>
+                            <div class="grid grid-cols-3 gap-2">
+                              <select class="c-select" id="s-birth-month" name="birthMonth" disabled aria-label="Месяц рождения">
+                                <option value="12" selected>Декабрь</option>
+                              </select>
+                              <select class="c-select" id="s-birth-day" name="birthDay" disabled aria-label="День рождения">
+                                <option value="04" selected>04</option>
+                              </select>
+                              <select class="c-select" id="s-birth-year" name="birthYear" disabled aria-label="Год рождения">
+                                <option value="2007" selected>2007</option>
+                              </select>
                             </div>
                           </div>
 
