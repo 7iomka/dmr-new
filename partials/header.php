@@ -103,12 +103,19 @@
           </button>
           <div id="user-dropdown" data-dropdown-panel data-dropdown-template-id="tpl-user-menu" class="header-user-panel" role="menu" tabindex="-1" aria-label="Меню пользователя"></div>
           <template id="tpl-user-menu">
-            <div class="p-4 border-b border-zinc-100 dark:border-zinc-800/50">
-              <p class="text-[10px] font-bold uppercase text-zinc-500 dark:text-zinc-400 mb-1">Аккаунт</p>
-              <p class="text-sm font-bold truncate">lawyer1@awsarhitect.me</p>
+            <div class="p-2 space-y-1">
+              <a href="/profile.php" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
+                <i data-lucide="circle-user" class="w-4 h-4 text-primary"></i>
+                <span class="text-sm font-bold text-zinc-800 dark:text-zinc-100">Профиль</span>
+              </a>
+              <a href="/settings.php" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors">
+                <i data-lucide="settings" class="w-4 h-4 text-zinc-500 dark:text-zinc-400"></i>
+                <span class="text-sm font-bold text-zinc-800 dark:text-zinc-100">Настройки</span>
+              </a>
             </div>
             <div class="p-2 border-t border-zinc-100 dark:border-zinc-800/50">
               <a href="logout.php" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors">
+                <i data-lucide="log-out" class="w-4 h-4"></i>
                 <span class="text-sm font-bold">Выйти</span>
               </a>
             </div>
