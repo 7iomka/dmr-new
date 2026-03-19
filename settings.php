@@ -38,9 +38,10 @@
     .s-lang-option {
       @apply flex items-center gap-3 px-4 py-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 cursor-pointer transition-all;
     }
-    .s-lang-option:hover:not(.is-selected) { @apply border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50; }
-    .s-lang-option.is-selected { @apply border-primary-500/60 bg-primary-50 dark:bg-primary-900/25 ring-1 ring-primary-500/30; }
- 
+    .s-lang-option:hover[data-active="false"] { @apply border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50; }
+    .s-lang-option[data-active="true"] { @apply border-primary-500/60 bg-primary-50 dark:bg-primary-900/25 ring-1 ring-primary-500/30; }
+    .s-lang-check[data-active="false"] { @apply hidden; }
+
     /* Active state chip (for login methods) */
     .s-chip-active { @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold bg-primary-500/10 text-primary-700 dark:text-primary-300; }
 
@@ -61,8 +62,16 @@
     }
 
     .s-login-chip-default {
-      @apply bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200;
+      @apply bg-sky-100 text-sky-700 dark:bg-sky-900/60 dark:text-sky-200;
     }
+
+    [data-security-view="list"] [data-security-list-view] { display: flex; }
+    [data-security-view="list"] [data-security-detail-view] { display: none; }
+    [data-security-view="detail"] [data-security-list-view] { display: none; }
+    [data-security-view="detail"] [data-security-detail-view] { display: block; }
+
+    [data-social-empty="true"] #s-social-empty-state { display: flex; }
+    [data-social-empty="false"] #s-social-empty-state { display: none; }
   </style>
 
 <body>
@@ -80,7 +89,7 @@
       ════════════════════════════════════════════════════ -->
         <main class="page-main">
 
-          <div class="js-tabs-container card">
+          <div class="card">
 
             <!-- Card header -->
             <div class="card-header">
@@ -102,7 +111,7 @@
               <aside class="border-b lg:border-b-0 lg:border-r border-zinc-200 dark:border-zinc-800 lg:px-3 lg:py-6 xl:px-4">
                 <nav class="js-tabs-nav flex flex-row lg:flex-col lg:gap-1 overflow-x-auto no-scrollbar">
                   <button type="button" class="js-tab-btn settings-tab-btn whitespace-nowrap lg:whitespace-normal"
-                    data-target="tab-profile" data-active="true">
+                    data-target="tab-profile" data-active="false">
                     <i data-lucide="circle-user" class="w-5 h-5 shrink-0"></i>
                     <span>Профиль</span>
                   </button>
@@ -133,7 +142,7 @@
                 <!-- ══════════════════════════
                    TAB 1 · Профиль
               ══════════════════════════ -->
-                <div class="js-tab-content" data-id="tab-profile">
+                <div class="js-tab-content" data-id="tab-profile" hidden>
                   <div class="card-body-inset-x py-6 flex flex-col gap-6">
 
                     <div>
@@ -237,7 +246,7 @@
                 <!-- ══════════════════════════
                    TAB 2 · Методы входа
               ══════════════════════════ -->
-                <div class="js-tab-content hidden" data-id="tab-security">
+                <div class="js-tab-content" data-id="tab-security" hidden data-security-view="list">
                   <div class="card-body-inset-x py-6 flex flex-col gap-6" data-security-list-view>
 
                     <div>
@@ -258,14 +267,11 @@
                         </div>
                         <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Вход по паролю для вашего аккаунта.</p>
                         <div class="flex items-center gap-2 flex-wrap">
-                          <button type="button" class="btn-secondary btn-sm flex items-center gap-1.5" data-login-configure data-method-id="password">
+                          <button type="button" class="btn-primary btn-sm" data-login-configure data-method-id="password">
                             <i data-lucide="settings-2" class="w-4 h-4" aria-hidden="true"></i>
                             <span data-login-configure-label>Настроить</span>
                           </button>
-                          <button type="button" class="btn-primary btn-sm flex items-center gap-1.5" data-login-default data-method-id="password">
-                            <i data-lucide="star" class="w-4 h-4" aria-hidden="true"></i>
-                            <span>Установить по умолчанию</span>
-                          </button>
+                          <div data-login-default-slot></div>
                         </div>
                       </article>
 
@@ -281,14 +287,11 @@
                         </div>
                         <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Быстрый и безопасный вход через Telegram.</p>
                         <div class="flex items-center gap-2 flex-wrap">
-                          <button type="button" class="btn-secondary btn-sm flex items-center gap-1.5" data-login-configure data-method-id="telegram">
+                          <button type="button" class="btn-primary btn-sm" data-login-configure data-method-id="telegram">
                             <i data-lucide="settings-2" class="w-4 h-4" aria-hidden="true"></i>
                             <span data-login-configure-label>Настроить</span>
                           </button>
-                          <button type="button" class="btn-primary btn-sm flex items-center gap-1.5" data-login-default data-method-id="telegram">
-                            <i data-lucide="star" class="w-4 h-4" aria-hidden="true"></i>
-                            <span>Установить по умолчанию</span>
-                          </button>
+                          <div data-login-default-slot></div>
                         </div>
                       </article>
 
@@ -304,21 +307,18 @@
                         </div>
                         <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Подтверждение входа и авторизация через Whatsapp.</p>
                         <div class="flex items-center gap-2 flex-wrap">
-                          <button type="button" class="btn-secondary btn-sm flex items-center gap-1.5" data-login-configure data-method-id="whatsapp">
+                          <button type="button" class="btn-primary btn-sm" data-login-configure data-method-id="whatsapp">
                             <i data-lucide="settings-2" class="w-4 h-4" aria-hidden="true"></i>
                             <span data-login-configure-label>Настроить</span>
                           </button>
-                          <button type="button" class="btn-primary btn-sm flex items-center gap-1.5" data-login-default data-method-id="whatsapp">
-                            <i data-lucide="star" class="w-4 h-4" aria-hidden="true"></i>
-                            <span>Установить по умолчанию</span>
-                          </button>
+                          <div data-login-default-slot></div>
                         </div>
                       </article>
                     </div>
 
                   </div>
 
-                  <div class="card-body-inset-x py-6 hidden" data-security-detail-view>
+                  <div class="card-body-inset-x py-6" data-security-detail-view>
                     <div class="flex flex-col gap-5">
                       <button type="button" class="btn-secondary btn-sm w-fit flex items-center gap-2" id="s-security-back">
                         <i data-lucide="arrow-left" class="w-4 h-4" aria-hidden="true"></i>
@@ -341,7 +341,7 @@
                 <!-- ══════════════════════════
                    TAB 3 · Уведомления
               ══════════════════════════ -->
-                <div class="js-tab-content hidden" data-id="tab-notifications">
+                <div class="js-tab-content" data-id="tab-notifications" hidden>
                   <div class="card-body-inset-x py-6 flex flex-col gap-6">
 
                     <div>
@@ -443,7 +443,7 @@
                 <!-- ══════════════════════════
                    TAB 4 · Язык
               ══════════════════════════ -->
-                <div class="js-tab-content hidden" data-id="tab-language">
+                <div class="js-tab-content" data-id="tab-language" hidden>
                   <div class="card-body-inset-x py-6 flex flex-col gap-6">
 
                     <div>
@@ -453,64 +453,64 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-xl" id="s-lang-list">
 
-                      <label class="s-lang-option is-selected">
+                      <label class="s-lang-option" data-active="true">
                         <input type="radio" name="s-lang" value="EN" checked class="sr-only s-lang-radio">
                         <span class="text-lg leading-none">🇺🇸</span>
                         <span class="min-w-0">
                           <span class="block text-sm font-semibold truncate">English</span>
                           <span class="block text-xs text-zinc-500 dark:text-zinc-400 truncate">English</span>
                         </span>
-                        <i data-lucide="check" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check" aria-hidden="true"></i>
+                        <i data-lucide="check" data-active="true" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check" aria-hidden="true"></i>
                       </label>
 
-                      <label class="s-lang-option">
+                      <label class="s-lang-option" data-active="false">
                         <input type="radio" name="s-lang" value="RU" class="sr-only s-lang-radio">
                         <span class="text-lg leading-none">🇷🇺</span>
                         <span class="min-w-0">
                           <span class="block text-sm font-semibold truncate">Русский</span>
                           <span class="block text-xs text-zinc-500 dark:text-zinc-400 truncate">Russian</span>
                         </span>
-                        <i data-lucide="check" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check hidden" aria-hidden="true"></i>
+                        <i data-lucide="check" data-active="false" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check" aria-hidden="true"></i>
                       </label>
 
-                      <label class="s-lang-option">
+                      <label class="s-lang-option" data-active="false">
                         <input type="radio" name="s-lang" value="FR" class="sr-only s-lang-radio">
                         <span class="text-lg leading-none">🇫🇷</span>
                         <span class="min-w-0">
                           <span class="block text-sm font-semibold truncate">Français</span>
                           <span class="block text-xs text-zinc-500 dark:text-zinc-400 truncate">French</span>
                         </span>
-                        <i data-lucide="check" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check hidden" aria-hidden="true"></i>
+                        <i data-lucide="check" data-active="false" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check" aria-hidden="true"></i>
                       </label>
 
-                      <label class="s-lang-option">
+                      <label class="s-lang-option" data-active="false">
                         <input type="radio" name="s-lang" value="DE" class="sr-only s-lang-radio">
                         <span class="text-lg leading-none">🇩🇪</span>
                         <span class="min-w-0">
                           <span class="block text-sm font-semibold truncate">Deutsch</span>
                           <span class="block text-xs text-zinc-500 dark:text-zinc-400 truncate">German</span>
                         </span>
-                        <i data-lucide="check" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check hidden" aria-hidden="true"></i>
+                        <i data-lucide="check" data-active="false" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check" aria-hidden="true"></i>
                       </label>
 
-                      <label class="s-lang-option">
+                      <label class="s-lang-option" data-active="false">
                         <input type="radio" name="s-lang" value="ES" class="sr-only s-lang-radio">
                         <span class="text-lg leading-none">🇪🇸</span>
                         <span class="min-w-0">
                           <span class="block text-sm font-semibold truncate">Español</span>
                           <span class="block text-xs text-zinc-500 dark:text-zinc-400 truncate">Spanish</span>
                         </span>
-                        <i data-lucide="check" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check hidden" aria-hidden="true"></i>
+                        <i data-lucide="check" data-active="false" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check" aria-hidden="true"></i>
                       </label>
 
-                      <label class="s-lang-option">
+                      <label class="s-lang-option" data-active="false">
                         <input type="radio" name="s-lang" value="ZH" class="sr-only s-lang-radio">
                         <span class="text-lg leading-none">🇨🇳</span>
                         <span class="min-w-0">
                           <span class="block text-sm font-semibold truncate">中文</span>
                           <span class="block text-xs text-zinc-500 dark:text-zinc-400 truncate">Chinese</span>
                         </span>
-                        <i data-lucide="check" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check hidden" aria-hidden="true"></i>
+                        <i data-lucide="check" data-active="false" class="w-4 h-4 ml-auto shrink-0 text-primary-500 s-lang-check" aria-hidden="true"></i>
                       </label>
 
                     </div>
@@ -539,18 +539,61 @@
   <?php include __DIR__ . '/partials/app-shell/index.php'; ?>
   <?php include __DIR__ . '/partials/scripts.php'; ?>
 
+  <template id="s-social-row-template">
+    <div class="s-social-row" data-social-row>
+      <div class="grid grid-cols-1 md:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] gap-3 md:items-start">
+        <div class="c-form-control">
+          <label class="c-form-label">Тип</label>
+          <select class="c-select" aria-label="Выберите социальную сеть" data-social-type></select>
+        </div>
+        <div class="c-form-control">
+          <label class="c-form-label">URL</label>
+          <input type="text" class="c-input" placeholder="Введите URL социальной сети">
+        </div>
+        <button type="button" class="btn-danger btn-sm btn-icon absolute right-1 top-1 js-social-link-remove-btn" aria-label="Удалить социальную ссылку">
+          <i data-lucide="trash-2" class="w-3.5 h-3.5" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <template id="s-login-chip-configured-template">
+    <span class="s-login-chip s-login-chip-ready">Настроено</span>
+  </template>
+
+  <template id="s-login-chip-default-template">
+    <span class="s-login-chip s-login-chip-default">По умолчанию</span>
+  </template>
+
+  <template id="s-login-default-button-template">
+    <button type="button" class="btn-info btn-sm" data-login-default>
+      <i data-lucide="star" class="w-4 h-4" aria-hidden="true"></i>
+      <span>Установить по умолчанию</span>
+    </button>
+  </template>
+
   <script>
     /* ── Settings page interactions ── */
     document.addEventListener('DOMContentLoaded', () => {
+      const refreshLucideIcons = () => {
+        if (window.lucide) {
+          window.lucide.createIcons({
+            inTemplates: true
+          });
+        }
+      };
+
       /* Language radio cards */
       document.querySelectorAll('.s-lang-radio').forEach(radio => {
         radio.addEventListener('change', () => {
           document.querySelectorAll('.s-lang-option').forEach(opt => {
             const r = opt.querySelector('.s-lang-radio');
             const check = opt.querySelector('.s-lang-check');
-            const sel = r?.checked;
-            opt.classList.toggle('is-selected', sel);
-            check?.classList.toggle('hidden', !sel);
+            const isActive = r?.checked ? 'true' : 'false';
+            opt.setAttribute('data-active', isActive);
+            if (check) {
+              check.setAttribute('data-active', isActive);
+            }
           });
         });
       });
@@ -595,6 +638,8 @@
         });
         document.querySelectorAll('.js-tab-content').forEach(content => {
           const isActive = content.dataset.id === tabId;
+          content.hidden = !isActive;
+          content.style.display = isActive ? 'block' : 'none';
           content.classList.toggle('hidden', !isActive);
           content.classList.toggle('block', isActive);
         });
@@ -604,13 +649,21 @@
       const requestedSection = searchParams.get('section');
       const requestedMethod = searchParams.get('method');
       const requestedMode = searchParams.get('mode');
-      const initialTab = sectionToTab[requestedSection] || 'tab-profile';
+      const initialSection = sectionToTab[requestedSection] ? requestedSection : 'profile';
+      const initialTab = sectionToTab[initialSection];
       setTab(initialTab);
+      if (requestedSection !== initialSection) {
+        updateUrlState({
+          section: initialSection
+        });
+      }
+      window.addEventListener('load', () => setTab(initialTab));
 
       document.querySelectorAll('.js-tabs-nav .js-tab-btn[data-target]').forEach(btn => {
         btn.addEventListener('click', () => {
           const tabId = btn.dataset.target;
           const section = tabToSection[tabId];
+          setTab(tabId);
           updateUrlState({
             section
           });
@@ -654,40 +707,38 @@
       const socialLinksList = document.getElementById('s-social-links-list');
       const socialEmptyState = document.getElementById('s-social-empty-state');
       const addSocialButton = document.getElementById('s-add-social-btn');
+      const socialRowTemplate = document.getElementById('s-social-row-template');
+      const configuredChipTemplate = document.getElementById('s-login-chip-configured-template');
+      const defaultChipTemplate = document.getElementById('s-login-chip-default-template');
+      const defaultButtonTemplate = document.getElementById('s-login-default-button-template');
 
       const createSocialLinkBlock = () => {
-        const row = document.createElement('div');
-        row.className = 's-social-row';
-        row.innerHTML = `
-          <div class="grid grid-cols-1 md:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] gap-3 md:items-start">
-            <div class="c-form-control">
-              <label class="c-form-label">Тип</label>
-              <select class="c-select" aria-label="Выберите социальную сеть">
-                ${socialOptions.map(option => `<option value="${option.value}">${option.label}</option>`).join('')}
-              </select>
-            </div>
-            <div class="c-form-control">
-              <label class="c-form-label">URL</label>
-              <input type="text" class="c-input" placeholder="Введите URL социальной сети">
-            </div>
-            <button type="button" class="btn-danger btn-sm btn-icon absolute right-1 top-1 js-social-link-remove-btn" aria-label="Удалить социальную ссылку">
-              <i data-lucide="trash-2" class="w-3.5 h-3.5" aria-hidden="true"></i>
-            </button>
-          </div>
-        `;
+        if (!socialRowTemplate) return null;
+        const fragment = socialRowTemplate.content.cloneNode(true);
+        const row = fragment.querySelector('[data-social-row]');
+        const select = fragment.querySelector('[data-social-type]');
+        socialOptions.forEach(option => {
+          const opt = document.createElement('option');
+          opt.value = option.value;
+          opt.textContent = option.label;
+          select?.appendChild(opt);
+        });
+        if (!row) return null;
         return row;
       };
 
       const syncSocialEmptyState = () => {
         if (!socialLinksList || !socialEmptyState) return;
-        socialEmptyState.classList.toggle('hidden', socialLinksList.childElementCount > 0);
+        socialEmptyState.parentElement?.setAttribute('data-social-empty', socialLinksList.childElementCount > 0 ? 'false' : 'true');
       };
 
       addSocialButton?.addEventListener('click', () => {
         if (!socialLinksList) return;
-        socialLinksList.appendChild(createSocialLinkBlock());
+        const socialRow = createSocialLinkBlock();
+        if (!socialRow) return;
+        socialLinksList.appendChild(socialRow);
         syncSocialEmptyState();
-        lucide.createIcons();
+        refreshLucideIcons();
       });
 
       socialLinksList?.addEventListener('click', (event) => {
@@ -715,13 +766,11 @@
         whatsapp: 'Whatsapp',
       };
 
-      const securityListView = document.querySelector('[data-security-list-view]');
-      const securityDetailView = document.querySelector('[data-security-detail-view]');
       const securityDetailTitle = document.getElementById('s-security-detail-title');
+      const securityTab = document.querySelector('[data-id="tab-security"]');
 
       const openSecurityList = () => {
-        securityListView?.classList.remove('hidden');
-        securityDetailView?.classList.add('hidden');
+        securityTab?.setAttribute('data-security-view', 'list');
         updateUrlState({
           section: 'security'
         });
@@ -729,8 +778,7 @@
 
       const openSecurityDetail = (methodId) => {
         if (!methodTitles[methodId]) return;
-        securityListView?.classList.add('hidden');
-        securityDetailView?.classList.remove('hidden');
+        securityTab?.setAttribute('data-security-view', 'detail');
         if (securityDetailTitle) {
           securityDetailTitle.textContent = `Настройка метода: ${methodTitles[methodId]}`;
         }
@@ -750,34 +798,45 @@
           const isDefault = loginMethodState.defaultMethod === methodId;
           const chipsWrap = card.querySelector('[data-login-chips]');
           const configureLabel = card.querySelector('[data-login-configure-label]');
-          const defaultButton = card.querySelector('[data-login-default]');
+          const configureButton = card.querySelector('[data-login-configure]');
+          const defaultSlot = card.querySelector('[data-login-default-slot]');
 
           if (configureLabel) {
             configureLabel.textContent = isConfigured ? 'Перенастроить' : 'Настроить';
           }
 
-          if (defaultButton) {
-            defaultButton.disabled = isDefault;
-            defaultButton.classList.toggle('opacity-60', isDefault);
-            defaultButton.classList.toggle('pointer-events-none', isDefault);
+          if (configureButton) {
+            configureButton.className = `${isConfigured ? 'btn-secondary' : 'btn-primary'} btn-sm`;
           }
 
           if (chipsWrap) {
-            chipsWrap.innerHTML = '';
+            chipsWrap.replaceChildren();
             if (isConfigured) {
-              const configuredChip = document.createElement('span');
-              configuredChip.className = 's-login-chip s-login-chip-ready';
-              configuredChip.textContent = 'Настроено';
-              chipsWrap.appendChild(configuredChip);
+              const configuredChip = configuredChipTemplate?.content.firstElementChild?.cloneNode(true);
+              if (configuredChip) {
+                chipsWrap.appendChild(configuredChip);
+              }
             }
             if (isDefault) {
-              const defaultChip = document.createElement('span');
-              defaultChip.className = 's-login-chip s-login-chip-default';
-              defaultChip.textContent = 'По умолчанию';
-              chipsWrap.appendChild(defaultChip);
+              const defaultChip = defaultChipTemplate?.content.firstElementChild?.cloneNode(true);
+              if (defaultChip) {
+                chipsWrap.appendChild(defaultChip);
+              }
+            }
+          }
+
+          if (defaultSlot) {
+            defaultSlot.replaceChildren();
+            if (!isDefault) {
+              const defaultButton = defaultButtonTemplate?.content.firstElementChild?.cloneNode(true);
+              if (defaultButton) {
+                defaultButton.setAttribute('data-method-id', methodId);
+                defaultSlot.appendChild(defaultButton);
+              }
             }
           }
         });
+        refreshLucideIcons();
       };
 
       document.querySelectorAll('[data-login-configure]').forEach(btn => {
@@ -790,9 +849,11 @@
         });
       });
 
-      document.querySelectorAll('[data-login-default]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const methodId = btn.getAttribute('data-method-id');
+      document.querySelectorAll('[data-login-method-card]').forEach(card => {
+        card.addEventListener('click', (event) => {
+          const button = event.target.closest('[data-login-default]');
+          if (!button) return;
+          const methodId = button.getAttribute('data-method-id');
           if (!methodId) return;
           loginMethodState.defaultMethod = methodId;
           renderLoginMethodCards();
@@ -803,13 +864,13 @@
 
       renderLoginMethodCards();
 
-      if (requestedSection === 'security' && requestedMode === 'detail' && requestedMethod && methodTitles[requestedMethod]) {
+      if (initialSection === 'security' && requestedMode === 'detail' && requestedMethod && methodTitles[requestedMethod]) {
         openSecurityDetail(requestedMethod);
-      } else if (requestedSection === 'security') {
+      } else if (initialSection === 'security') {
         openSecurityList();
       }
 
-      lucide.createIcons();
+      refreshLucideIcons();
     });
   </script>
 
