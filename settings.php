@@ -43,9 +43,27 @@
  
     /* Active state chip (for login methods) */
     .s-chip-active { @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold bg-primary-500/10 text-primary-700 dark:text-primary-300; }
- 
+
+    .s-social-row {
+      @apply relative border bg-zinc-50 dark:bg-white/[0.02] border-zinc-200 dark:border-zinc-800 rounded-lg p-4;
+    }
+
+    .s-login-card {
+      @apply rounded-lg border border-zinc-200 dark:border-zinc-800 bg-card p-4 lg:p-5;
+    }
+
+    .s-login-chip {
+      @apply inline-flex items-center rounded-md px-2.5 py-1 text-xs font-semibold;
+    }
+
+    .s-login-chip-ready {
+      @apply bg-primary-500/10 text-primary-700 dark:text-primary-300;
+    }
+
+    .s-login-chip-default {
+      @apply bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200;
+    }
   </style>
-</style>
 
 <body>
   <div id="app" class="flex overflow-hidden min-h-screen">
@@ -184,16 +202,17 @@
                     </div>
 
                     <!-- Social links -->
-                    <div class="border-t border-zinc-200 dark:border-zinc-800 pt-6 flex justify-end">
-                      <div class="max-w-xl">
+                    <div class="border-t border-zinc-200 dark:border-zinc-800 pt-6">
+                      <div class="w-full">
                         <div class="flex items-center justify-between gap-3 mb-4 flex-wrap">
                           <h3 class="text-sm font-bold text-zinc-700 dark:text-zinc-300">Социальные ссылки</h3>
-                          <button type="button" class="btn-secondary btn-sm flex items-center gap-1.5">
+                          <button type="button" class="btn-secondary btn-sm flex items-center gap-1.5" id="s-add-social-btn">
                             <i data-lucide="plus" class="w-3.5 h-3.5" aria-hidden="true"></i>
                             <span>Добавить социальную ссылку</span>
                           </button>
                         </div>
-                        <div class="alert alert-info">
+                        <div class="space-y-3" id="s-social-links-list"></div>
+                        <div class="alert alert-info" id="s-social-empty-state">
                           <i data-lucide="info" class="w-5 h-5 shrink-0 mt-px" aria-hidden="true"></i>
                           <span>Социальные ссылки ещё не добавлены. Нажмите «Добавить социальную ссылку», чтобы начать.</span>
                         </div>
@@ -219,73 +238,101 @@
                    TAB 2 · Методы входа
               ══════════════════════════ -->
                 <div class="js-tab-content hidden" data-id="tab-security">
-                  <div class="card-body-inset-x py-6 flex flex-col gap-6">
+                  <div class="card-body-inset-x py-6 flex flex-col gap-6" data-security-list-view>
 
                     <div>
                       <h2 class="text-lg font-bold text-zinc-900 dark:text-white">Методы входа</h2>
                       <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">Управляйте способами доступа к вашему аккаунту</p>
                     </div>
 
-                    <!-- Password method card -->
-                    <div class="rounded-lg border border-zinc-200 dark:border-zinc-800 overflow-hidden">
-                      <div class="flex items-center gap-4 px-4 lg:px-5 py-4 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800">
-                        <div class="h-9 w-9 rounded-lg bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 flex items-center justify-center shrink-0">
-                          <i data-lucide="key-round" class="w-4 h-4" aria-hidden="true"></i>
-                        </div>
-                        <div class="min-w-0 flex-1">
-                          <p class="text-sm font-semibold text-zinc-900 dark:text-white">Пароль</p>
-                          <p class="text-xs text-zinc-500 dark:text-zinc-400">Последнее изменение: никогда</p>
-                        </div>
-                        <span class="s-chip-active">Активен</span>
-                      </div>
-
-                      <div class="p-4 lg:p-5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
-
-                          <div class="c-form-control sm:col-span-2">
-                            <label class="c-form-label" for="s-cur-pass">Текущий пароль</label>
-                            <div class="c-form-control__input-wrap">
-                              <input type="password" id="s-cur-pass" class="c-input pr-10" placeholder="••••••••">
-                              <button type="button" class="c-form-control__icon-btn s-eye-toggle" aria-label="Показать пароль">
-                                <i data-lucide="eye" class="w-4 h-4" aria-hidden="true"></i>
-                              </button>
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                      <article class="s-login-card" data-login-method-card data-method-id="password">
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                          <div class="flex items-center gap-3 min-w-0">
+                            <div class="h-10 w-10 rounded-lg bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 flex items-center justify-center shrink-0">
+                              <i data-lucide="key-round" class="w-4 h-4" aria-hidden="true"></i>
                             </div>
+                            <h3 class="text-base font-bold text-zinc-900 dark:text-white">Пароль</h3>
                           </div>
-
-                          <div class="c-form-control">
-                            <label class="c-form-label" for="s-new-pass">Новый пароль</label>
-                            <div class="c-form-control__input-wrap">
-                              <input type="password" id="s-new-pass" class="c-input pr-10" placeholder="••••••••">
-                              <button type="button" class="c-form-control__icon-btn s-eye-toggle" aria-label="Показать пароль">
-                                <i data-lucide="eye" class="w-4 h-4" aria-hidden="true"></i>
-                              </button>
-                            </div>
-                          </div>
-
-                          <div class="c-form-control">
-                            <label class="c-form-label" for="s-conf-pass">Повторите пароль</label>
-                            <div class="c-form-control__input-wrap">
-                              <input type="password" id="s-conf-pass" class="c-input pr-10" placeholder="••••••••">
-                              <button type="button" class="c-form-control__icon-btn s-eye-toggle" aria-label="Показать пароль">
-                                <i data-lucide="eye" class="w-4 h-4" aria-hidden="true"></i>
-                              </button>
-                            </div>
-                          </div>
-
+                          <div class="flex items-center gap-1.5 flex-wrap justify-end" data-login-chips></div>
                         </div>
-                      </div>
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Вход по паролю для вашего аккаунта.</p>
+                        <div class="flex items-center gap-2 flex-wrap">
+                          <button type="button" class="btn-secondary btn-sm flex items-center gap-1.5" data-login-configure data-method-id="password">
+                            <i data-lucide="settings-2" class="w-4 h-4" aria-hidden="true"></i>
+                            <span data-login-configure-label>Настроить</span>
+                          </button>
+                          <button type="button" class="btn-primary btn-sm flex items-center gap-1.5" data-login-default data-method-id="password">
+                            <i data-lucide="star" class="w-4 h-4" aria-hidden="true"></i>
+                            <span>Установить по умолчанию</span>
+                          </button>
+                        </div>
+                      </article>
+
+                      <article class="s-login-card" data-login-method-card data-method-id="telegram">
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                          <div class="flex items-center gap-3 min-w-0">
+                            <div class="h-10 w-10 rounded-lg bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 flex items-center justify-center shrink-0">
+                              <i data-lucide="send" class="w-4 h-4" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-zinc-900 dark:text-white">Telegram</h3>
+                          </div>
+                          <div class="flex items-center gap-1.5 flex-wrap justify-end" data-login-chips></div>
+                        </div>
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Быстрый и безопасный вход через Telegram.</p>
+                        <div class="flex items-center gap-2 flex-wrap">
+                          <button type="button" class="btn-secondary btn-sm flex items-center gap-1.5" data-login-configure data-method-id="telegram">
+                            <i data-lucide="settings-2" class="w-4 h-4" aria-hidden="true"></i>
+                            <span data-login-configure-label>Настроить</span>
+                          </button>
+                          <button type="button" class="btn-primary btn-sm flex items-center gap-1.5" data-login-default data-method-id="telegram">
+                            <i data-lucide="star" class="w-4 h-4" aria-hidden="true"></i>
+                            <span>Установить по умолчанию</span>
+                          </button>
+                        </div>
+                      </article>
+
+                      <article class="s-login-card xl:col-span-2" data-login-method-card data-method-id="whatsapp">
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                          <div class="flex items-center gap-3 min-w-0">
+                            <div class="h-10 w-10 rounded-lg bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 flex items-center justify-center shrink-0">
+                              <i data-lucide="message-circle" class="w-4 h-4" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-zinc-900 dark:text-white">Whatsapp</h3>
+                          </div>
+                          <div class="flex items-center gap-1.5 flex-wrap justify-end" data-login-chips></div>
+                        </div>
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Подтверждение входа и авторизация через Whatsapp.</p>
+                        <div class="flex items-center gap-2 flex-wrap">
+                          <button type="button" class="btn-secondary btn-sm flex items-center gap-1.5" data-login-configure data-method-id="whatsapp">
+                            <i data-lucide="settings-2" class="w-4 h-4" aria-hidden="true"></i>
+                            <span data-login-configure-label>Настроить</span>
+                          </button>
+                          <button type="button" class="btn-primary btn-sm flex items-center gap-1.5" data-login-default data-method-id="whatsapp">
+                            <i data-lucide="star" class="w-4 h-4" aria-hidden="true"></i>
+                            <span>Установить по умолчанию</span>
+                          </button>
+                        </div>
+                      </article>
                     </div>
 
-                    <!-- Actions -->
-                    <div class="flex items-center justify-end gap-3 flex-wrap">
-                      <button type="button" class="btn-secondary flex items-center gap-2">
-                        <i data-lucide="x" class="w-4 h-4" aria-hidden="true"></i>
-                        <span>Отмена</span>
+                  </div>
+
+                  <div class="card-body-inset-x py-6 hidden" data-security-detail-view>
+                    <div class="flex flex-col gap-5">
+                      <button type="button" class="btn-secondary btn-sm w-fit flex items-center gap-2" id="s-security-back">
+                        <i data-lucide="arrow-left" class="w-4 h-4" aria-hidden="true"></i>
+                        <span>Назад к методам входа</span>
                       </button>
-                      <button type="button" class="btn-primary flex items-center gap-2">
-                        <i data-lucide="check" class="w-4 h-4" aria-hidden="true"></i>
-                        <span>Сохранить</span>
-                      </button>
+
+                      <div>
+                        <h2 class="text-lg font-bold text-zinc-900 dark:text-white" id="s-security-detail-title">Настройка метода входа</h2>
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">Здесь будет содержимое настройки выбранного метода.</p>
+                      </div>
+
+                      <div class="rounded-lg border border-dashed border-zinc-300 dark:border-zinc-700 p-4 text-sm text-zinc-500 dark:text-zinc-400">
+                        Контент вью настройки будет добавлен позже.
+                      </div>
                     </div>
 
                   </div>
@@ -495,20 +542,6 @@
   <script>
     /* ── Settings page interactions ── */
     document.addEventListener('DOMContentLoaded', () => {
-
-      /* Password visibility toggle */
-      document.querySelectorAll('.s-eye-toggle').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const input = btn.closest('.c-form-control__input-wrap')?.querySelector('input');
-          if (!input) return;
-          const isPass = input.type === 'password';
-          input.type = isPass ? 'text' : 'password';
-          const icon = btn.querySelector('[data-lucide]');
-          if (icon) icon.setAttribute('data-lucide', isPass ? 'eye-off' : 'eye');
-          lucide.createIcons();
-        });
-      });
-
       /* Language radio cards */
       document.querySelectorAll('.s-lang-radio').forEach(radio => {
         radio.addEventListener('change', () => {
@@ -522,6 +555,261 @@
         });
       });
 
+      const sectionToTab = {
+        profile: 'tab-profile',
+        security: 'tab-security',
+        notifications: 'tab-notifications',
+        language: 'tab-language',
+      };
+
+      const tabToSection = Object.fromEntries(
+        Object.entries(sectionToTab).map(([section, tab]) => [tab, section])
+      );
+
+      const updateUrlState = ({
+        section,
+        method = null,
+        mode = null
+      } = {}) => {
+        const url = new URL(window.location.href);
+
+        if (section) {
+          url.searchParams.set('section', section);
+        }
+
+        if (method) {
+          url.searchParams.set('method', method);
+          url.searchParams.set('mode', mode || 'detail');
+        } else {
+          url.searchParams.delete('method');
+          url.searchParams.delete('mode');
+        }
+
+        window.history.replaceState({}, '', `${url.pathname}?${url.searchParams.toString()}${url.hash}`);
+      };
+
+      const setTab = (tabId) => {
+        if (!tabId) return;
+        document.querySelectorAll('.js-tabs-nav .js-tab-btn[data-target]').forEach(btn => {
+          btn.setAttribute('data-active', btn.dataset.target === tabId ? 'true' : 'false');
+        });
+        document.querySelectorAll('.js-tab-content').forEach(content => {
+          const isActive = content.dataset.id === tabId;
+          content.classList.toggle('hidden', !isActive);
+          content.classList.toggle('block', isActive);
+        });
+      };
+
+      const searchParams = new URLSearchParams(window.location.search);
+      const requestedSection = searchParams.get('section');
+      const requestedMethod = searchParams.get('method');
+      const requestedMode = searchParams.get('mode');
+      const initialTab = sectionToTab[requestedSection] || 'tab-profile';
+      setTab(initialTab);
+
+      document.querySelectorAll('.js-tabs-nav .js-tab-btn[data-target]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.dataset.target;
+          const section = tabToSection[tabId];
+          updateUrlState({
+            section
+          });
+        });
+      });
+
+      const socialOptions = [{
+          value: 'telegram',
+          label: 'Telegram'
+        },
+        {
+          value: 'whatsapp',
+          label: 'Whatsapp'
+        },
+        {
+          value: 'facebook',
+          label: 'Facebook'
+        },
+        {
+          value: 'twitter',
+          label: 'Twitter'
+        },
+        {
+          value: 'instagram',
+          label: 'Instagram'
+        },
+        {
+          value: 'linkedin',
+          label: 'LinkedIn'
+        },
+        {
+          value: 'youtube',
+          label: 'YouTube'
+        },
+        {
+          value: 'tiktok',
+          label: 'TikTok'
+        },
+      ];
+
+      const socialLinksList = document.getElementById('s-social-links-list');
+      const socialEmptyState = document.getElementById('s-social-empty-state');
+      const addSocialButton = document.getElementById('s-add-social-btn');
+
+      const createSocialLinkBlock = () => {
+        const row = document.createElement('div');
+        row.className = 's-social-row';
+        row.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] gap-3 md:items-start">
+            <div class="c-form-control">
+              <label class="c-form-label">Тип</label>
+              <select class="c-select" aria-label="Выберите социальную сеть">
+                ${socialOptions.map(option => `<option value="${option.value}">${option.label}</option>`).join('')}
+              </select>
+            </div>
+            <div class="c-form-control">
+              <label class="c-form-label">URL</label>
+              <input type="text" class="c-input" placeholder="Введите URL социальной сети">
+            </div>
+            <button type="button" class="btn-danger btn-sm btn-icon absolute right-1 top-1 js-social-link-remove-btn" aria-label="Удалить социальную ссылку">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5" aria-hidden="true"></i>
+            </button>
+          </div>
+        `;
+        return row;
+      };
+
+      const syncSocialEmptyState = () => {
+        if (!socialLinksList || !socialEmptyState) return;
+        socialEmptyState.classList.toggle('hidden', socialLinksList.childElementCount > 0);
+      };
+
+      addSocialButton?.addEventListener('click', () => {
+        if (!socialLinksList) return;
+        socialLinksList.appendChild(createSocialLinkBlock());
+        syncSocialEmptyState();
+        lucide.createIcons();
+      });
+
+      socialLinksList?.addEventListener('click', (event) => {
+        const removeButton = event.target.closest('.js-social-link-remove-btn');
+        if (!removeButton) return;
+        const row = removeButton.closest('.s-social-row');
+        row?.remove();
+        syncSocialEmptyState();
+      });
+
+      syncSocialEmptyState();
+
+      const loginMethodState = {
+        defaultMethod: 'password',
+        configuredMethods: {
+          password: false,
+          telegram: true,
+          whatsapp: false,
+        },
+      };
+
+      const methodTitles = {
+        password: 'Пароль',
+        telegram: 'Telegram',
+        whatsapp: 'Whatsapp',
+      };
+
+      const securityListView = document.querySelector('[data-security-list-view]');
+      const securityDetailView = document.querySelector('[data-security-detail-view]');
+      const securityDetailTitle = document.getElementById('s-security-detail-title');
+
+      const openSecurityList = () => {
+        securityListView?.classList.remove('hidden');
+        securityDetailView?.classList.add('hidden');
+        updateUrlState({
+          section: 'security'
+        });
+      };
+
+      const openSecurityDetail = (methodId) => {
+        if (!methodTitles[methodId]) return;
+        securityListView?.classList.add('hidden');
+        securityDetailView?.classList.remove('hidden');
+        if (securityDetailTitle) {
+          securityDetailTitle.textContent = `Настройка метода: ${methodTitles[methodId]}`;
+        }
+        updateUrlState({
+          section: 'security',
+          method: methodId,
+          mode: 'detail'
+        });
+      };
+
+      const renderLoginMethodCards = () => {
+        document.querySelectorAll('[data-login-method-card]').forEach(card => {
+          const methodId = card.getAttribute('data-method-id');
+          if (!methodId) return;
+
+          const isConfigured = Boolean(loginMethodState.configuredMethods[methodId]);
+          const isDefault = loginMethodState.defaultMethod === methodId;
+          const chipsWrap = card.querySelector('[data-login-chips]');
+          const configureLabel = card.querySelector('[data-login-configure-label]');
+          const defaultButton = card.querySelector('[data-login-default]');
+
+          if (configureLabel) {
+            configureLabel.textContent = isConfigured ? 'Перенастроить' : 'Настроить';
+          }
+
+          if (defaultButton) {
+            defaultButton.disabled = isDefault;
+            defaultButton.classList.toggle('opacity-60', isDefault);
+            defaultButton.classList.toggle('pointer-events-none', isDefault);
+          }
+
+          if (chipsWrap) {
+            chipsWrap.innerHTML = '';
+            if (isConfigured) {
+              const configuredChip = document.createElement('span');
+              configuredChip.className = 's-login-chip s-login-chip-ready';
+              configuredChip.textContent = 'Настроено';
+              chipsWrap.appendChild(configuredChip);
+            }
+            if (isDefault) {
+              const defaultChip = document.createElement('span');
+              defaultChip.className = 's-login-chip s-login-chip-default';
+              defaultChip.textContent = 'По умолчанию';
+              chipsWrap.appendChild(defaultChip);
+            }
+          }
+        });
+      };
+
+      document.querySelectorAll('[data-login-configure]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const methodId = btn.getAttribute('data-method-id');
+          if (!methodId) return;
+          loginMethodState.configuredMethods[methodId] = true;
+          renderLoginMethodCards();
+          openSecurityDetail(methodId);
+        });
+      });
+
+      document.querySelectorAll('[data-login-default]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const methodId = btn.getAttribute('data-method-id');
+          if (!methodId) return;
+          loginMethodState.defaultMethod = methodId;
+          renderLoginMethodCards();
+        });
+      });
+
+      document.getElementById('s-security-back')?.addEventListener('click', openSecurityList);
+
+      renderLoginMethodCards();
+
+      if (requestedSection === 'security' && requestedMode === 'detail' && requestedMethod && methodTitles[requestedMethod]) {
+        openSecurityDetail(requestedMethod);
+      } else if (requestedSection === 'security') {
+        openSecurityList();
+      }
+
+      lucide.createIcons();
     });
   </script>
 
