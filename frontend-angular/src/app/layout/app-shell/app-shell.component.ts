@@ -10,16 +10,16 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
   standalone: true,
   imports: [RouterOutlet, AppHeaderComponent, AppSidebarComponent, AppFooterComponent],
   template: `
-    <div class="app-shell">
+    <div id="app" class="flex overflow-hidden min-h-screen">
       <app-sidebar />
-      <div class="app-main">
+      <div class="page-content-area">
         <app-header />
-        <main class="app-content page-main">
-          <div class="app-page-container page-container">
+        <div class="page-body">
+          <main class="page-main">
             <router-outlet />
-          </div>
-        </main>
-        <app-footer />
+          </main>
+          <app-footer />
+        </div>
       </div>
     </div>
   `

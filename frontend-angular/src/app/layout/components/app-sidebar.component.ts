@@ -9,15 +9,15 @@ import { APP_NAVIGATION } from '../models/navigation.model';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, LucideAngularModule],
   template: `
-    <aside class="app-sidebar">
-      <div class="app-sidebar__brand">
+    <aside id="sidebar" class="page-sidebar">
+      <div class="page-sidebar-brand">
         <a routerLink="/dashboard" class="flex items-center gap-3">
           <img class="h-10 w-auto dark:hidden" src="img/logo-dark.svg" alt="Logo" />
           <img class="hidden h-10 w-auto dark:block" src="img/logo-light.svg" alt="Logo" />
         </a>
       </div>
 
-      <div class="app-sidebar__nav">
+      <div class="page-sidebar-nav">
         @for (group of navigation; track group.title) {
           <section class="app-sidebar__group">
             <p class="app-sidebar__group-title">{{ group.title }}</p>
