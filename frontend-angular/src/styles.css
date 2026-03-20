@@ -49,4 +49,24 @@
   .app-content {
     @apply container flex-1 py-6 lg:py-8;
   }
+
+  .dark .p-card,
+  .dark .p-datatable-table-container,
+  .dark .p-dialog,
+  .dark .p-drawer {
+    @apply border border-surface-700 bg-surface-900 text-surface-100;
+  }
+
+  .dark .p-card .p-card-caption,
+  .dark .p-card .p-card-content,
+  .dark .p-card .p-card-body,
+  .dark .p-datatable .p-datatable-thead > tr > th,
+  .dark .p-datatable .p-datatable-tbody > tr > td {
+    @apply text-surface-100;
+  }
+
+  .dark .p-datatable .p-datatable-thead > tr > th,
+  .dark .p-datatable .p-datatable-tbody > tr > td {
+    @apply border-surface-700 bg-surface-900;
+  }
 }

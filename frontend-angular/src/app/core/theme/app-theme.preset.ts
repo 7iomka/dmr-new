@@ -21,28 +21,6 @@ export const AppThemePreset = definePreset(Aura, {
       md: '8px',
       lg: '12px',
       xl: '14px'
-    },
-    colorScheme: {
-      light: {
-        surface: {
-          0: '#ffffff',
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          800: '#1f2937',
-          900: '#0f172a'
-        }
-      },
-      dark: {
-        surface: {
-          0: '#0b0e11',
-          50: '#111827',
-          100: '#1f2937',
-          200: '#374151',
-          800: '#d1d5db',
-          900: '#f3f4f6'
-        }
-      }
     }
   }
 });

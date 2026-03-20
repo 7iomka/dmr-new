@@ -24,9 +24,11 @@ export class ThemeService {
 
     if (mode === 'dark') {
       this.renderer.addClass(document.documentElement, 'dark');
+      this.renderer.addClass(document.body, 'dark');
       return;
     }
 
     this.renderer.removeClass(document.documentElement, 'dark');
+    this.renderer.removeClass(document.body, 'dark');
   }
 }
