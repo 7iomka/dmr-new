@@ -44,16 +44,5 @@ export const AppThemePreset = definePreset(Aura, {
         }
       }
     }
-  },
-  components: {
-    button: {
-      borderRadius: '{border.radius.md}'
-    },
-    inputtext: {
-      borderRadius: '{border.radius.md}'
-    },
-    card: {
-      borderRadius: '{border.radius.lg}'
-    }
   }
 });
