@@ -15,7 +15,9 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
       <div class="app-main">
         <app-header />
         <main class="app-content">
-          <router-outlet />
+          <div class="app-page-container">
+            <router-outlet />
+          </div>
         </main>
         <app-footer />
       </div>

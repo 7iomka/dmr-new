@@ -1,28 +1,28 @@
-import { Component, inject } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { TagModule } from 'primeng/tag';
+import { Component } from '@angular/core';
+import { DividerModule } from 'primeng/divider';
 
-import { ThemeService } from '../../core/theme/theme.service';
+import { AppLanguageSwitcherComponent } from './app-language-switcher.component';
+import { AppNotificationsButtonComponent } from './app-notifications-button.component';
+import { AppThemeToggleComponent } from './app-theme-toggle.component';
+import { AppUserMenuComponent } from './app-user-menu.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonModule, TagModule],
+  imports: [DividerModule, AppThemeToggleComponent, AppLanguageSwitcherComponent, AppNotificationsButtonComponent, AppUserMenuComponent],
   template: `
-    <header class="border-b border-surface-200 bg-surface-0 dark:border-surface-800 dark:bg-surface-950">
-      <div class="container flex h-16 items-center justify-between gap-3">
-        <p-tag value="PrimeNG Styled Mode" severity="info" />
-        <p-button
-          [label]="themeService.themeMode() === 'light' ? 'Dark mode' : 'Light mode'"
-          [icon]="themeService.themeMode() === 'light' ? 'pi pi-moon' : 'pi pi-sun'"
-          severity="secondary"
-          variant="outlined"
-          (onClick)="themeService.toggleTheme()"
-        />
+    <header class="app-topbar">
+      <div class="container flex h-full items-center justify-between gap-3">
+        <div class="text-sm font-semibold text-surface-500 dark:text-surface-400">Dashboard workspace</div>
+        <div class="flex items-center gap-2 lg:gap-3">
+          <app-theme-toggle />
+          <app-language-switcher />
+          <app-notifications-button />
+          <p-divider layout="vertical" styleClass="!hidden !h-8 !lg:block !m-0" />
+          <app-user-menu />
+        </div>
       </div>
     </header>
   `
 })
-export class AppHeaderComponent {
-  protected readonly themeService = inject(ThemeService);
-}
+export class AppHeaderComponent {}
