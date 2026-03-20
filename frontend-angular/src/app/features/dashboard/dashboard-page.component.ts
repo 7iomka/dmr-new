@@ -10,7 +10,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
   standalone: true,
   imports: [ButtonModule, CardModule, TabsModule, ToggleSwitchModule, LucideAngularModule],
   template: `
-    <div class="space-y-6 lg:space-y-7">
+    <div class="flex flex-col gap-6 lg:gap-7">
       <section>
         <h1 class="text-2xl font-bold tracking-tight text-surface-900 dark:text-surface-50 lg:text-3xl">Добро пожаловать, Дорин!</h1>
         <p class="mt-1 text-sm font-medium text-surface-500">Вот текущее состояние ваших инвестиций.</p>
@@ -19,7 +19,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
       <section class="grid grid-cols-1 gap-6 md:grid-cols-5">
         <div class="space-y-6 md:col-span-2">
           <p-card styleClass="card-simple">
-            <div class="space-y-4">
+            <div class="flex flex-col gap-4">
               <div class="flex justify-between sm:mb-2">
                 <p class="dash-card-kicker">Ваш баланс</p>
                 <button pButton type="button" [text]="true" severity="secondary" styleClass="dash-link-btn">
@@ -36,9 +36,9 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
           </p-card>
 
           <p-card styleClass="card-simple">
-            <div class="space-y-3">
+            <div class="flex flex-col gap-3">
               <div class="flex items-start justify-between">
-                <div class="space-y-1">
+                <div class="flex flex-col gap-1">
                   <p class="dash-card-kicker">Рефералы</p>
                   <h3 class="text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-50">12</h3>
                 </div>
@@ -83,19 +83,17 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
 
         <div class="md:col-span-3">
           <p-card styleClass="card h-full">
-            <ng-template pTemplate="header">
-              <div class="card-header">
-                <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">Инвестиции</h3>
-                <p-tabs value="shares" class="dash-tabs">
-                  <p-tablist>
-                    <p-tab value="shares">Мои доли</p-tab>
-                    <p-tab value="buy">Купить доли</p-tab>
-                  </p-tablist>
-                </p-tabs>
-              </div>
+            <ng-template #header>
+              <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">Инвестиции</h3>
+              <p-tabs value="shares" class="dash-tabs">
+                <p-tablist>
+                  <p-tab value="shares">Мои доли</p-tab>
+                  <p-tab value="buy">Купить доли</p-tab>
+                </p-tablist>
+              </p-tabs>
             </ng-template>
 
-            <div class="card-body space-y-6">
+            <div class="flex flex-col gap-6">
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div class="dash-stat-card">
                   <p>Количество долей</p>
@@ -155,19 +153,17 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
 
       <section>
         <p-card styleClass="card">
-          <ng-template pTemplate="header">
-            <div class="card-header">
-              <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">История цен</h3>
-              <p-tabs value="month" class="dash-tabs dash-tabs--period">
-                <p-tablist>
-                  <p-tab value="month">Месяц</p-tab>
-                  <p-tab value="year">Год</p-tab>
-                </p-tablist>
-              </p-tabs>
-            </div>
+          <ng-template #header>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">История цен</h3>
+            <p-tabs value="month" class="dash-tabs dash-tabs--period">
+              <p-tablist>
+                <p-tab value="month">Месяц</p-tab>
+                <p-tab value="year">Год</p-tab>
+              </p-tablist>
+            </p-tabs>
           </ng-template>
 
-          <div class="card-body space-y-5">
+          <div class="flex flex-col gap-5">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div class="dash-stat-card">
                 <p>Текущая цена</p>
