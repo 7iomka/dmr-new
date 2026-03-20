@@ -22,23 +22,5 @@ export const AppThemePreset = definePreset(Aura, {
       lg: '12px',
       xl: '14px'
     }
-  },
-  components: {
-    card: {
-      colorScheme: {
-        light: {
-          root: {
-            background: '#ffffff',
-            color: '{surface.900}'
-          }
-        },
-        dark: {
-          root: {
-            background: '#14171a',
-            color: '{surface.0}'
-          }
-        }
-      }
-    }
   }
 });
