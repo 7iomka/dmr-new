@@ -10,7 +10,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
   standalone: true,
   imports: [ButtonModule, CardModule, TabsModule, ToggleSwitchModule, LucideAngularModule],
   template: `
-    <div class="space-y-6 lg:space-y-7">
+    <div class="flex flex-col gap-6 lg:gap-7">
       <section>
         <h1 class="text-2xl font-bold tracking-tight text-surface-900 dark:text-surface-50 lg:text-3xl">Добро пожаловать, Дорин!</h1>
         <p class="mt-1 text-sm font-medium text-surface-500">Вот текущее состояние ваших инвестиций.</p>
@@ -18,17 +18,15 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
 
       <section class="grid grid-cols-1 gap-6 md:grid-cols-5">
         <div class="space-y-6 md:col-span-2">
-          <p-card styleClass="page-card-shell">
-            <ng-template pTemplate="header">
-              <div class="page-card-shell__header !pb-0">
+          <p-card>
+            <div class="flex flex-col gap-4">
+              <div class="flex justify-between sm:mb-2">
                 <p class="dash-card-kicker">Ваш баланс</p>
                 <button pButton type="button" [text]="true" severity="secondary" styleClass="dash-link-btn">
                   <span>Кошелёк</span>
                   <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
                 </button>
               </div>
-            </ng-template>
-            <div class="space-y-4 px-6 pb-6 pt-3">
               <h3 class="text-3xl font-bold tracking-tighter text-surface-900 dark:text-surface-50 xl:text-4xl">$ 12,450,000.80</h3>
               <button pButton type="button" styleClass="btn-primary">
                 <lucide-icon [img]="plusCircleIcon" class="h-4 w-4" />
@@ -37,10 +35,10 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
             </div>
           </p-card>
 
-          <p-card styleClass="page-card-shell">
-            <ng-template pTemplate="header">
-              <div class="page-card-shell__header !pb-0">
-                <div class="space-y-1">
+          <p-card>
+            <div class="flex flex-col gap-3">
+              <div class="flex items-start justify-between">
+                <div class="flex flex-col gap-1">
                   <p class="dash-card-kicker">Рефералы</p>
                   <h3 class="text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-50">12</h3>
                 </div>
@@ -49,8 +47,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                   <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
                 </button>
               </div>
-            </ng-template>
-            <div class="space-y-3 px-6 pb-6 pt-3">
+
               <div class="dash-ref-box">
                 <label>Ваша ссылка (платформа)</label>
                 <div class="dash-ref-box__row">
@@ -85,20 +82,18 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
         </div>
 
         <div class="md:col-span-3">
-          <p-card styleClass="page-card-shell h-full">
-            <ng-template pTemplate="header">
-              <div class="page-card-shell__header !pb-0">
-                <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">Инвестиции</h3>
-                <p-tabs value="shares" class="dash-tabs">
-                  <p-tablist>
-                    <p-tab value="shares">Мои доли</p-tab>
-                    <p-tab value="buy">Купить доли</p-tab>
-                  </p-tablist>
-                </p-tabs>
-              </div>
+          <p-card styleClass="h-full">
+            <ng-template #header>
+              <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">Инвестиции</h3>
+              <p-tabs value="shares" class="dash-tabs">
+                <p-tablist>
+                  <p-tab value="shares">Мои доли</p-tab>
+                  <p-tab value="buy">Купить доли</p-tab>
+                </p-tablist>
+              </p-tabs>
             </ng-template>
 
-            <div class="space-y-6 px-6 pb-6 pt-3">
+            <div class="flex flex-col gap-6">
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div class="dash-stat-card">
                   <p>Количество долей</p>
@@ -157,20 +152,18 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
       </section>
 
       <section>
-        <p-card styleClass="page-card-shell">
-          <ng-template pTemplate="header">
-            <div class="page-card-shell__header !pb-0">
-              <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">История цен</h3>
-              <p-tabs value="month" class="dash-tabs dash-tabs--period">
-                <p-tablist>
-                  <p-tab value="month">Месяц</p-tab>
-                  <p-tab value="year">Год</p-tab>
-                </p-tablist>
-              </p-tabs>
-            </div>
+        <p-card>
+          <ng-template #header>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">История цен</h3>
+            <p-tabs value="month" class="dash-tabs dash-tabs--period">
+              <p-tablist>
+                <p-tab value="month">Месяц</p-tab>
+                <p-tab value="year">Год</p-tab>
+              </p-tablist>
+            </p-tabs>
           </ng-template>
 
-          <div class="space-y-5 px-6 pb-6 pt-3">
+          <div class="flex flex-col gap-5">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div class="dash-stat-card">
                 <p>Текущая цена</p>
