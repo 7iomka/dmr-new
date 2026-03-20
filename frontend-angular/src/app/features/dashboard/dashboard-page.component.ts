@@ -18,7 +18,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
 
       <section class="grid grid-cols-1 gap-6 md:grid-cols-5">
         <div class="space-y-6 md:col-span-2">
-          <p-card styleClass="card-simple">
+          <p-card>
             <div class="flex flex-col gap-4">
               <div class="flex justify-between sm:mb-2">
                 <p class="dash-card-kicker">Ваш баланс</p>
@@ -35,7 +35,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
             </div>
           </p-card>
 
-          <p-card styleClass="card-simple">
+          <p-card>
             <div class="flex flex-col gap-3">
               <div class="flex items-start justify-between">
                 <div class="flex flex-col gap-1">
@@ -82,7 +82,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
         </div>
 
         <div class="md:col-span-3">
-          <p-card styleClass="card h-full">
+          <p-card styleClass="h-full">
             <ng-template #header>
               <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">Инвестиции</h3>
               <p-tabs value="shares" class="dash-tabs">
@@ -152,7 +152,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
       </section>
 
       <section>
-        <p-card styleClass="card">
+        <p-card>
           <ng-template #header>
             <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">История цен</h3>
             <p-tabs value="month" class="dash-tabs dash-tabs--period">

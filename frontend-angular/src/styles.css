@@ -128,46 +128,20 @@
     padding: 48px 0 32px;
   }
 
-  .card.p-card,
-  .card-simple.p-card {
+  .p-card {
     @apply rounded-xl border border-zinc-200 bg-card shadow-sm dark:border-zinc-800;
   }
 
-  .card.p-card .p-card-header {
+  .p-card .p-card-header {
     @apply flex flex-wrap items-center justify-between gap-2 rounded-t-[inherit] border-b border-zinc-200 bg-card-header px-4 py-4 lg:px-6 dark:border-zinc-800;
   }
 
-  .card.p-card .p-card-body,
-  .card-simple.p-card .p-card-body {
+  .p-card .p-card-body {
     @apply gap-0;
   }
 
-  .card-simple.p-card .p-card-body {
+  .p-card:not(:has(.p-card-header)) .p-card-body {
     @apply py-6;
-  }
-
-  .card-body-bleed {
-    @apply -m-4 lg:-m-6;
-  }
-
-  .card-body-bleed-x {
-    @apply -mx-4 lg:-mx-6;
-  }
-
-  .card-body-bleed-y {
-    @apply -my-4 lg:-my-6;
-  }
-
-  .card-body-inset {
-    @apply p-4 lg:p-6;
-  }
-
-  .card-body-inset-x {
-    @apply px-4 lg:px-6;
-  }
-
-  .card-body-inset-y {
-    @apply py-4 lg:py-6;
   }
 
   .dashboard-table-shell .p-datatable-thead > tr > th,
