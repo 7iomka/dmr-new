@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { Menu } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
-import { LucideAngularModule } from 'lucide-angular';
+import { ChevronDown, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-user-menu',
@@ -19,7 +19,7 @@ import { LucideAngularModule } from 'lucide-angular';
             <span class="shell-user-name">Dorin Watsap</span>
             <span class="shell-user-id">ID: 882194</span>
           </span>
-          <lucide-icon name="chevron-down" class="h-4 w-4 text-surface-500" />
+          <lucide-icon [img]="chevronDownIcon" class="h-4 w-4 text-surface-500" />
         </ng-template>
       </p-button>
 
@@ -36,4 +36,6 @@ export class AppUserMenuComponent {
     { separator: true },
     { label: 'Выйти', icon: 'pi pi-sign-out', styleClass: 'text-red-500' }
   ];
+
+  protected readonly chevronDownIcon = ChevronDown;
 }

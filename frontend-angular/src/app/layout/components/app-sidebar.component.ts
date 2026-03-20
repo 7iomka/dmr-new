@@ -24,7 +24,7 @@ import { APP_NAVIGATION } from '../models/navigation.model';
             <nav class="flex flex-col gap-1">
               @for (item of group.items; track item.route) {
                 <a [routerLink]="item.route" routerLinkActive="is-active" class="app-sidebar__link">
-                  <lucide-icon [name]="item.icon" class="h-5 w-5" />
+                  <lucide-icon [img]="item.icon" class="h-5 w-5" />
                   <span>{{ item.label }}</span>
                 </a>
               }

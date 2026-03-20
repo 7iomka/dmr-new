@@ -3,7 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { LucideAngularModule } from 'lucide-angular';
+import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 'lucide-angular';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -24,14 +24,14 @@ import { LucideAngularModule } from 'lucide-angular';
                 <p class="dash-card-kicker">Ваш баланс</p>
                 <button pButton type="button" [text]="true" severity="secondary" styleClass="dash-link-btn">
                   <span>Кошелёк</span>
-                  <lucide-icon name="chevron-right" class="h-3.5 w-3.5" />
+                  <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
                 </button>
               </div>
             </ng-template>
             <div class="space-y-4 px-6 pb-6 pt-3">
               <h3 class="text-3xl font-bold tracking-tighter text-surface-900 dark:text-surface-50 xl:text-4xl">$ 12,450,000.80</h3>
               <button pButton type="button" styleClass="btn-primary">
-                <lucide-icon name="plus-circle" class="h-4 w-4" />
+                <lucide-icon [img]="plusCircleIcon" class="h-4 w-4" />
                 <span>Пополнить</span>
               </button>
             </div>
@@ -46,7 +46,7 @@ import { LucideAngularModule } from 'lucide-angular';
                 </div>
                 <button pButton type="button" [text]="true" severity="secondary" styleClass="dash-link-btn">
                   <span>Детали</span>
-                  <lucide-icon name="chevron-right" class="h-3.5 w-3.5" />
+                  <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
                 </button>
               </div>
             </ng-template>
@@ -56,7 +56,7 @@ import { LucideAngularModule } from 'lucide-angular';
                 <div class="dash-ref-box__row">
                   <span>https://invest.awsarhitect.me/?ref=A7CA9B55</span>
                   <button pButton type="button" [text]="true" severity="secondary" styleClass="!h-8 !w-8 !rounded-md">
-                    <lucide-icon name="copy" class="h-4 w-4" />
+                    <lucide-icon [img]="copyIcon" class="h-4 w-4" />
                   </button>
                 </div>
               </div>
@@ -66,7 +66,7 @@ import { LucideAngularModule } from 'lucide-angular';
                 <div class="dash-ref-box__row">
                   <span>https://awsarhitect.me/?ref=A7CA9B55</span>
                   <button pButton type="button" [text]="true" severity="secondary" styleClass="!h-8 !w-8 !rounded-md">
-                    <lucide-icon name="copy" class="h-4 w-4" />
+                    <lucide-icon [img]="copyIcon" class="h-4 w-4" />
                   </button>
                 </div>
               </div>
@@ -76,7 +76,7 @@ import { LucideAngularModule } from 'lucide-angular';
                 <div class="flex items-center gap-2">
                   <strong>A7CA9B55</strong>
                   <button pButton type="button" [text]="true" severity="secondary" styleClass="!h-8 !w-8 !rounded-md">
-                    <lucide-icon name="copy" class="h-4 w-4" />
+                    <lucide-icon [img]="copyIcon" class="h-4 w-4" />
                   </button>
                 </div>
               </div>
@@ -122,7 +122,7 @@ import { LucideAngularModule } from 'lucide-angular';
                 <h4 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">Активные рассрочки (2)</h4>
                 <button pButton type="button" [text]="true" severity="secondary" styleClass="dash-link-btn">
                   <span>Управление</span>
-                  <lucide-icon name="chevron-right" class="h-3.5 w-3.5" />
+                  <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
                 </button>
               </div>
 
@@ -138,7 +138,7 @@ import { LucideAngularModule } from 'lucide-angular';
                   </div>
                   <button pButton type="button" severity="danger" styleClass="w-full !justify-center !gap-2">
                     <span>Оплатить сейчас</span>
-                    <lucide-icon name="credit-card" class="h-4 w-4" />
+                    <lucide-icon [img]="creditCardIcon" class="h-4 w-4" />
                   </button>
                 </article>
 
@@ -195,4 +195,9 @@ import { LucideAngularModule } from 'lucide-angular';
     </div>
   `
 })
-export class DashboardPageComponent {}
+export class DashboardPageComponent {
+  protected readonly chevronRightIcon = ChevronRight;
+  protected readonly plusCircleIcon = PlusCircle;
+  protected readonly copyIcon = Copy;
+  protected readonly creditCardIcon = CreditCard;
+}
