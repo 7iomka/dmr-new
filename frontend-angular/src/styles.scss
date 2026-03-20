@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+@import 'tailwindcss-primeui';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: TTNorms;
+  src: url('/assets/fonts/TTNorms/TTNorms-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: TTNorms;
+  src: url('/assets/fonts/TTNorms/TTNorms-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: TTNorms;
+  src: url('/assets/fonts/TTNorms/TTNorms-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@layer base {
+  html,
+  body {
+    min-height: 100%;
+    font-family: 'TTNorms', sans-serif;
+    @apply bg-surface-100 text-surface-900 dark:bg-surface-950 dark:text-surface-50;
+  }
+}
+
+@layer components {
+  .app-shell {
+    @apply min-h-screen lg:pl-64;
+  }
+
+  .app-sidebar {
+    @apply fixed inset-y-0 left-0 z-40 hidden w-64 border-r border-surface-200 bg-surface-0 p-4 lg:flex dark:border-surface-800 dark:bg-surface-950;
+  }
+
+  .app-main {
+    @apply flex min-h-screen flex-col;
+  }
+
+  .app-content {
+    @apply container flex-1 py-6 lg:py-8;
+  }
+}
