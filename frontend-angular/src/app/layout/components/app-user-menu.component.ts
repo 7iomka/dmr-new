@@ -4,11 +4,12 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { Menu } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [ButtonModule, AvatarModule, MenuModule],
+  imports: [ButtonModule, AvatarModule, MenuModule, LucideAngularModule],
   template: `
     <div class="hidden lg:block">
       <p-button styleClass="shell-user-trigger" [text]="true" (onClick)="menu.toggle($event)">
@@ -18,7 +19,7 @@ import { MenuItem } from 'primeng/api';
             <span class="shell-user-name">Dorin Watsap</span>
             <span class="shell-user-id">ID: 882194</span>
           </span>
-          <i class="pi pi-chevron-down text-xs text-surface-500"></i>
+          <lucide-icon name="chevron-down" class="h-4 w-4 text-surface-500" />
         </ng-template>
       </p-button>
 

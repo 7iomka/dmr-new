@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
+import { LucideAngularModule } from 'lucide-angular';
 
 import { APP_NAVIGATION } from '../models/navigation.model';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, ButtonModule],
+  imports: [RouterLink, RouterLinkActive, LucideAngularModule],
   template: `
     <aside class="app-sidebar">
       <div class="app-sidebar__brand">
@@ -23,8 +23,9 @@ import { APP_NAVIGATION } from '../models/navigation.model';
             <p class="app-sidebar__group-title">{{ group.title }}</p>
             <nav class="flex flex-col gap-1">
               @for (item of group.items; track item.route) {
-                <a [routerLink]="item.route" routerLinkActive="is-active">
-                  <p-button [label]="item.label" [icon]="item.icon" [text]="true" styleClass="app-sidebar__nav-btn" />
+                <a [routerLink]="item.route" routerLinkActive="is-active" class="app-sidebar__link">
+                  <lucide-icon [name]="item.icon" class="h-5 w-5" />
+                  <span>{{ item.label }}</span>
                 </a>
               }
             </nav>

@@ -1,18 +1,13 @@
 # DMR Angular Migration Workspace
 
 ## Current phase
-Real shell/layout migration from legacy PHP dashboard:
-- desktop sidebar (grouped navigation)
-- top header controls (theme, language, notifications, user menu)
-- page/content containers
-- dashboard skeleton layout
+Desktop dashboard page migration (legacy-composition oriented):
+- real shell/layout (sidebar + topbar + content containers)
+- dashboard sections mapped from legacy PHP composition
+- PrimeNG components used as building blocks, Tailwind as layout layer
 
 ## Run
 ```bash
 npm install
 npm run start
 ```
-
-## Notes
-- PrimeNG Styled Mode + Tailwind (`tailwindcss-primeui`)
-- Tailwind is used for layout/composition; PrimeNG components are used for controls and overlays.

@@ -13,24 +13,24 @@ export const APP_NAVIGATION: NavGroup[] = [
   {
     title: 'Основное',
     items: [
-      { label: 'Дашборд', icon: 'pi pi-th-large', route: '/dashboard' },
-      { label: 'Инвестиции', icon: 'pi pi-briefcase', route: '/dashboard/investments' }
+      { label: 'Дашборд', icon: 'layout-dashboard', route: '/dashboard' },
+      { label: 'Инвестиции', icon: 'briefcase', route: '/dashboard/investments' }
     ]
   },
   {
     title: 'Финансы',
     items: [
-      { label: 'Кошелёк', icon: 'pi pi-wallet', route: '/dashboard/wallet' },
-      { label: 'Выводы', icon: 'pi pi-arrow-up-right', route: '/dashboard/withdrawals' },
-      { label: 'Отчёт', icon: 'pi pi-file', route: '/dashboard/report' }
+      { label: 'Кошелёк', icon: 'wallet', route: '/dashboard/wallet' },
+      { label: 'Выводы', icon: 'circle-arrow-up', route: '/dashboard/withdrawals' },
+      { label: 'Отчёт', icon: 'file-text', route: '/dashboard/report' }
     ]
   },
   {
     title: 'Аккаунт',
     items: [
-      { label: 'Профиль', icon: 'pi pi-user', route: '/dashboard/profile' },
-      { label: 'Рефералы', icon: 'pi pi-users', route: '/dashboard/partners' },
-      { label: 'Настройки', icon: 'pi pi-cog', route: '/dashboard/settings' }
+      { label: 'Профиль', icon: 'circle-user', route: '/dashboard/profile' },
+      { label: 'Рефералы', icon: 'users', route: '/dashboard/partners' },
+      { label: 'Настройки', icon: 'settings', route: '/dashboard/settings' }
     ]
   }
 ];
