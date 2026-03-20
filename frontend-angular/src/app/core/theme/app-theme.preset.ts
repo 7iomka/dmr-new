@@ -25,14 +25,6 @@ export const AppThemePreset = definePreset(Aura, {
   },
   components: {
     card: {
-      root: {
-        borderRadius: '12px',
-        shadow: '0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08)'
-      },
-      body: {
-        padding: '1rem',
-        gap: '0'
-      },
       colorScheme: {
         light: {
           root: {
