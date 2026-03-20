@@ -71,7 +71,7 @@
   }
 
   .app-topbar {
-    @apply h-20 border-b border-surface-200 bg-surface-0 dark:border-surface-800 dark:bg-[#101317];
+    @apply h-16 border-b border-surface-200 bg-surface-0 lg:h-20 dark:border-surface-800 dark:bg-[#101317];
   }
 
   .shell-icon-btn {
@@ -79,11 +79,11 @@
   }
 
   .shell-language-select {
-    @apply !h-10 !min-w-[132px] !rounded-lg;
+    @apply !h-10 !min-w-[128px] !rounded-lg;
   }
 
   .shell-user-trigger {
-    @apply !rounded-lg !px-2 !py-1 hover:!bg-surface-100 dark:hover:!bg-surface-800/60;
+    @apply !rounded-lg !px-1.5 !py-1 hover:!bg-surface-100 dark:hover:!bg-surface-800/60;
   }
 
   .shell-user-avatar {
@@ -103,11 +103,19 @@
   }
 
   .app-content {
-    @apply flex-1 py-6 lg:py-8;
+    @apply flex-1 pb-8;
   }
 
   .app-page-container {
-    @apply container space-y-6;
+    @apply container space-y-6 pt-6 lg:pt-10;
+  }
+
+  .page-main {
+    @apply min-h-0 flex-1;
+  }
+
+  .page-container {
+    @apply flex-1;
   }
 
   .app-footer {
@@ -242,5 +250,9 @@
 
   .dash-chart-placeholder {
     @apply flex h-[260px] items-center justify-center rounded-lg border border-dashed border-surface-300 text-sm font-medium text-surface-500 dark:border-surface-700;
+  }
+
+  .shell-topbar-divider {
+    @apply hidden h-8 w-px bg-surface-200 lg:block dark:bg-surface-700;
   }
 }

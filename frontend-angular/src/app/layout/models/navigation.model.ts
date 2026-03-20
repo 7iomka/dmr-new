@@ -1,4 +1,4 @@
-import { Briefcase, CircleArrowUp, CircleUser, FileText, LayoutDashboard, type LucideIconData, Settings, Users, Wallet } from 'lucide-angular';
+import { Briefcase, CircleArrowUp, CircleUser, FileText, Home, Newspaper, Phone, LayoutDashboard, type LucideIconData, Settings, Users, Wallet } from 'lucide-angular';
 
 export interface NavItem {
   label: string;
@@ -16,23 +16,31 @@ export const APP_NAVIGATION: NavGroup[] = [
     title: 'Основное',
     items: [
       { label: 'Дашборд', icon: LayoutDashboard, route: '/dashboard' },
-      { label: 'Инвестиции', icon: Briefcase, route: '/dashboard/investments' }
+      { label: 'Инвестиции', icon: Briefcase, route: '/investments' }
     ]
   },
   {
     title: 'Финансы',
     items: [
-      { label: 'Кошелёк', icon: Wallet, route: '/dashboard/wallet' },
-      { label: 'Выводы', icon: CircleArrowUp, route: '/dashboard/withdrawals' },
-      { label: 'Отчёт', icon: FileText, route: '/dashboard/report' }
+      { label: 'Кошелёк', icon: Wallet, route: '/wallet' },
+      { label: 'Выводы', icon: CircleArrowUp, route: '/withdrawals' },
+      { label: 'Отчёт', icon: FileText, route: '/report' }
     ]
   },
   {
     title: 'Аккаунт',
     items: [
-      { label: 'Профиль', icon: CircleUser, route: '/dashboard/profile' },
-      { label: 'Рефералы', icon: Users, route: '/dashboard/partners' },
-      { label: 'Настройки', icon: Settings, route: '/dashboard/settings' }
+      { label: 'Профиль', icon: CircleUser, route: '/profile' },
+      { label: 'Рефералы', icon: Users, route: '/referrals' },
+      { label: 'Настройки', icon: Settings, route: '/settings' }
+    ]
+  },
+  {
+    title: 'Информация',
+    items: [
+      { label: 'Главная', icon: Home, route: '/home' },
+      { label: 'Новости', icon: Newspaper, route: '/news' },
+      { label: 'Контакты', icon: Phone, route: '/contacts' }
     ]
   }
 ];
