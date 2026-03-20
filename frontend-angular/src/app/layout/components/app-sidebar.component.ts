@@ -1,22 +1,23 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ChevronsLeft, LucideAngularModule } from 'lucide-angular';
 
 import { SidebarModeService } from '../../core/theme/sidebar-mode.service';
-import { APP_NAVIGATION } from '../models/navigation.model';
+import { APP_NAVIGATION, type NavItem } from '../models/navigation.model';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, LucideAngularModule],
+  imports: [RouterLink, LucideAngularModule],
   template: `
     <aside id="sidebar" class="page-sidebar">
       <div class="relative h-20 px-2 flex items-center justify-between">
         <a class="sidebar-logo-link h-full pl-4 flex items-center shrink-0 transition-all" routerLink="/dashboard">
-          <img class="sidebar-logo-full h-10 w-auto hidden dark:block" src="img/logo-light.svg" alt="Logo" />
-          <img class="sidebar-logo-full h-10 w-auto dark:hidden" src="img/logo-dark.svg" alt="Logo" />
-          <img class="sidebar-logo-icon h-10 w-auto hidden" src="img/logo-icon-only.svg" alt="Logo" />
+          <img class="sidebar-logo-full h-12 w-auto hidden dark:block" src="img/logo-light.svg" alt="Logo" />
+          <img class="sidebar-logo-full h-12 w-auto dark:hidden" src="img/logo-dark.svg" alt="Logo" />
+          <img class="sidebar-logo-icon h-12 w-auto hidden" src="img/logo-icon-only.svg" alt="Logo" />
         </a>
+
         <button
           type="button"
           (click)="sidebarModeService.toggleSidebar()"
@@ -27,23 +28,26 @@ import { APP_NAVIGATION } from '../models/navigation.model';
         </button>
       </div>
 
-      <div class="page-sidebar-nav">
+      <div class="flex-1 px-2 py-4 pb-10 overflow-y-auto space-y-8">
         @for (group of navigation; track group.title) {
-          <section class="sidebar-group">
+          <div>
             <p class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-widest mb-3 text-zinc-400 dark:text-zinc-600">
               <span class="sidebar-label">{{ group.title }}</span>
             </p>
-            <nav class="flex flex-col gap-1">
+
+            <div class="flex flex-col gap-1">
               @for (item of group.items; track item.route) {
-                <a [routerLink]="item.route" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }" class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white">
-                  <span class="sidebar-link-icon flex items-center justify-center">
-                    <lucide-icon [img]="item.icon" class="w-5 h-5" />
-                  </span>
+                <a
+                  [routerLink]="item.route"
+                  [attr.data-active]="isActive(item) ? 'true' : 'false'"
+                  class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary"
+                >
+                  <div class="sidebar-link-icon flex items-center justify-center"><lucide-icon [img]="item.icon" class="w-5 h-5" /></div>
                   <span class="sidebar-label text-sm font-semibold">{{ item.label }}</span>
                 </a>
               }
-            </nav>
-          </section>
+            </div>
+          </div>
         }
       </div>
     </aside>
@@ -53,4 +57,9 @@ export class AppSidebarComponent {
   protected readonly navigation = APP_NAVIGATION;
   protected readonly chevronsLeftIcon = ChevronsLeft;
   protected readonly sidebarModeService = inject(SidebarModeService);
+  private readonly router = inject(Router);
+
+  protected isActive(item: NavItem): boolean {
+    return this.router.url === item.route;
+  }
 }

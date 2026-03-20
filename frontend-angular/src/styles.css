@@ -71,18 +71,6 @@
     @apply fixed inset-y-0 left-0 z-50 hidden h-screen flex-col border-r border-zinc-200 bg-card lg:flex dark:border-zinc-800;
   }
 
-  .page-sidebar-nav {
-    @apply flex-1 space-y-7 overflow-y-auto px-3 py-5;
-  }
-
-  .sidebar-group {
-    @apply space-y-2;
-  }
-
-  .page-sidebar a.is-active.sidebar-nav-link {
-    @apply bg-primary/10 text-primary dark:bg-primary/10 dark:text-primary;
-  }
-
   .page-content-area {
     @apply relative flex h-screen min-w-0 flex-1 flex-col pb-15 lg:pb-0;
   }
