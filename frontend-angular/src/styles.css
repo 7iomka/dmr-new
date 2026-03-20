@@ -41,12 +41,6 @@
     --sidebar-width: 16rem;
     --sidebar-width-collapse: 5rem;
     --sidebar-default-width: 16rem;
-    --p-card-background: var(--color-card);
-    --p-card-border-radius: 0.75rem;
-    --p-card-color: var(--p-surface-900);
-    --p-card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
-    --p-card-body-padding: 1rem;
-    --p-card-body-gap: 0;
   }
 
   html,
@@ -129,15 +123,11 @@
   }
 
   .p-card {
-    @apply rounded-xl border border-zinc-200 bg-card shadow-sm dark:border-zinc-800;
+    @apply border border-zinc-200 dark:border-zinc-800;
   }
 
   .p-card .p-card-header {
     @apply flex flex-wrap items-center justify-between gap-2 rounded-t-[inherit] border-b border-zinc-200 bg-card-header px-4 py-4 lg:px-6 dark:border-zinc-800;
-  }
-
-  .p-card .p-card-body {
-    @apply gap-0;
   }
 
   .p-card:not(:has(.p-card-header)) .p-card-body {
@@ -264,8 +254,8 @@
 }
 
 @media (min-width: 64rem) {
-  :root {
-    --p-card-body-padding: 1.5rem;
+  .p-card .p-card-body {
+    padding: 1.5rem;
   }
 
   body.sidebar-collapse {
