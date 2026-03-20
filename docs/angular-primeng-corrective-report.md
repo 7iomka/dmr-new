@@ -143,6 +143,7 @@ Retained abstractions:
    - table fragment
    - dialog + drawer
    - theme switch in shell
+6. Updated `@primeuix/themes` dependency line to `^2.0.3` for compatibility with current published package stream.
 
 ---
 
