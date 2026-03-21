@@ -6,8 +6,8 @@ import { CardModule } from 'primeng/card';
   standalone: true,
   imports: [CardModule],
   template: `
-    <p-card styleClass="page-card-shell">
-      <ng-template pTemplate="header">
+    <p-card class="page-card-shell">
+      <ng-template #header>
         <div class="page-card-shell__header">
           <div>
             <h3 class="page-card-shell__title">{{ title() }}</h3>

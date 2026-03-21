@@ -17,10 +17,10 @@ interface LanguageOption {
       [options]="languages"
       [(ngModel)]="selected"
       optionLabel="label"
-      styleClass="shell-language-select"
+      class="shell-language-select"
       appendTo="body"
     >
-      <ng-template let-item pTemplate="selectedItem">
+      <ng-template let-item #selectedItem>
         <span class="inline-flex items-center gap-2 text-sm">
           <span>{{ item.flag }}</span>
           <span class="hidden md:inline">{{ item.label }}</span>
@@ -28,7 +28,7 @@ interface LanguageOption {
         </span>
       </ng-template>
 
-      <ng-template let-item pTemplate="item">
+      <ng-template let-item #item>
         <span class="inline-flex items-center gap-2 text-sm">
           <span>{{ item.flag }}</span>
           <span>{{ item.label }}</span>

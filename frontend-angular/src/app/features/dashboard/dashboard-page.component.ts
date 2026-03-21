@@ -57,7 +57,7 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                     [text]="true"
                     severity="secondary"
                     size="small"
-                    styleClass="p-button-icon-only"
+                    class="p-button-icon-only"
                     ariaLabel="Copy platform referral link"
                   >
                     <svg [lucideIcon]="copyIcon" class="h-4 w-4"></svg>
@@ -74,7 +74,7 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                     [text]="true"
                     severity="secondary"
                     size="small"
-                    styleClass="p-button-icon-only"
+                    class="p-button-icon-only"
                     ariaLabel="Copy product referral link"
                   >
                     <svg [lucideIcon]="copyIcon" class="h-4 w-4"></svg>
@@ -91,7 +91,7 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                     [text]="true"
                     severity="secondary"
                     size="small"
-                    styleClass="p-button-icon-only"
+                    class="p-button-icon-only"
                     ariaLabel="Copy referral code"
                   >
                     <svg [lucideIcon]="copyIcon" class="h-4 w-4"></svg>
@@ -103,7 +103,7 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
         </div>
 
         <div class="md:col-span-3">
-          <p-card styleClass="h-full">
+          <p-card class="h-full">
             <ng-template #header>
               <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">Инвестиции</h3>
               <p-tabs value="shares" class="dash-tabs">
@@ -152,7 +152,7 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                     <p>След. платеж: <span class="text-red-500">10.02.2026</span></p>
                     <p class="text-red-400/70">Оплатить не позднее: 17.02.2026</p>
                   </div>
-                  <p-button severity="danger" variant="outlined" styleClass="w-full !justify-center !gap-2">
+                  <p-button severity="danger" variant="outlined" class="w-full !justify-center !gap-2">
                     <span>Оплатить сейчас</span>
                     <svg [lucideIcon]="creditCardIcon" class="h-4 w-4"></svg>
                   </p-button>

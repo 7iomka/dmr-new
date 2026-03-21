@@ -8,7 +8,7 @@ import { ThemeService } from '../../core/theme/theme.service';
   standalone: true,
   imports: [ButtonModule, LucideDynamicIcon],
   template: `
-    <p-button severity="secondary" [text]="true" [rounded]="true" styleClass="shell-icon-btn" (onClick)="themeService.toggleTheme()">
+    <p-button severity="secondary" [text]="true" [rounded]="true" class="shell-icon-btn" (onClick)="themeService.toggleTheme()">
       <svg [lucideIcon]="themeToggleIcon" class="h-4.5 w-4.5" ></svg>
     </p-button>
   `
