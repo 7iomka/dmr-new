@@ -22,16 +22,16 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
             <div class="flex flex-col gap-4">
               <div class="flex justify-between sm:mb-2">
                 <p class="dash-card-kicker">Ваш баланс</p>
-                <button pButton type="button" [text]="true" severity="secondary" styleClass="dash-link-btn">
+                <p-button severity="secondary" variant="outlined" size="small" styleClass="dash-link-btn">
                   <span>Кошелёк</span>
                   <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
-                </button>
+                </p-button>
               </div>
               <h3 class="text-3xl font-bold tracking-tighter text-surface-900 dark:text-surface-50 xl:text-4xl">$ 12,450,000.80</h3>
-              <button pButton type="button" styleClass="btn-primary">
+              <p-button>
                 <lucide-icon [img]="plusCircleIcon" class="h-4 w-4" />
                 <span>Пополнить</span>
-              </button>
+              </p-button>
             </div>
           </p-card>
 
@@ -42,19 +42,26 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                   <p class="dash-card-kicker">Рефералы</p>
                   <h3 class="text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-50">12</h3>
                 </div>
-                <button pButton type="button" [text]="true" severity="secondary" styleClass="dash-link-btn">
+                <p-button severity="secondary" variant="outlined" size="small" styleClass="dash-link-btn">
                   <span>Детали</span>
                   <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
-                </button>
+                </p-button>
               </div>
 
               <div class="dash-ref-box">
                 <label>Ваша ссылка (платформа)</label>
                 <div class="dash-ref-box__row">
                   <span>https://invest.awsarhitect.me/?ref=A7CA9B55</span>
-                  <button pButton type="button" [text]="true" severity="secondary" styleClass="!h-8 !w-8 !rounded-md">
+                  <p-button
+                    [rounded]="true"
+                    [text]="true"
+                    severity="secondary"
+                    size="small"
+                    styleClass="p-button-icon-only"
+                    ariaLabel="Copy platform referral link"
+                  >
                     <lucide-icon [img]="copyIcon" class="h-4 w-4" />
-                  </button>
+                  </p-button>
                 </div>
               </div>
 
@@ -62,9 +69,16 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                 <label>Ваша ссылка (продукт)</label>
                 <div class="dash-ref-box__row">
                   <span>https://awsarhitect.me/?ref=A7CA9B55</span>
-                  <button pButton type="button" [text]="true" severity="secondary" styleClass="!h-8 !w-8 !rounded-md">
+                  <p-button
+                    [rounded]="true"
+                    [text]="true"
+                    severity="secondary"
+                    size="small"
+                    styleClass="p-button-icon-only"
+                    ariaLabel="Copy product referral link"
+                  >
                     <lucide-icon [img]="copyIcon" class="h-4 w-4" />
-                  </button>
+                  </p-button>
                 </div>
               </div>
 
@@ -72,9 +86,16 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                 <span>Код:</span>
                 <div class="flex items-center gap-2">
                   <strong>A7CA9B55</strong>
-                  <button pButton type="button" [text]="true" severity="secondary" styleClass="!h-8 !w-8 !rounded-md">
+                  <p-button
+                    [rounded]="true"
+                    [text]="true"
+                    severity="secondary"
+                    size="small"
+                    styleClass="p-button-icon-only"
+                    ariaLabel="Copy referral code"
+                  >
                     <lucide-icon [img]="copyIcon" class="h-4 w-4" />
-                  </button>
+                  </p-button>
                 </div>
               </div>
             </div>
@@ -115,10 +136,10 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
 
               <div class="flex flex-wrap items-center gap-3">
                 <h4 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">Активные рассрочки (2)</h4>
-                <button pButton type="button" [text]="true" severity="secondary" styleClass="dash-link-btn">
+                <p-button severity="secondary" variant="outlined" size="small" styleClass="dash-link-btn">
                   <span>Управление</span>
                   <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
-                </button>
+                </p-button>
               </div>
 
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -131,10 +152,10 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                     <p>След. платеж: <span class="text-red-500">10.02.2026</span></p>
                     <p class="text-red-400/70">Оплатить не позднее: 17.02.2026</p>
                   </div>
-                  <button pButton type="button" severity="danger" styleClass="w-full !justify-center !gap-2">
+                  <p-button severity="danger" variant="outlined" styleClass="w-full !justify-center !gap-2">
                     <span>Оплатить сейчас</span>
                     <lucide-icon [img]="creditCardIcon" class="h-4 w-4" />
-                  </button>
+                  </p-button>
                 </article>
 
                 <article class="dash-installment-card">
