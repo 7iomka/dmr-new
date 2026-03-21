@@ -40,7 +40,9 @@
     letter-spacing: normal;
     line-height: 1;
   }
+}
 
+@layer primeng {
   :where(.p-button-outlined.p-button-secondary) {
     background: var(--c-button-outlined-secondary-background);
   }
