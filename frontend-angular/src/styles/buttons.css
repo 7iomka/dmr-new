@@ -23,9 +23,9 @@
   }
 
   .dark {
-    --c-button-outlined-secondary-background: color-mix(in oklab, var(--color-zinc-800) 70%, transparent);
+    --c-button-outlined-secondary-background: --alpha(var(--color-zinc-800) / 70%);
     --c-button-outlined-secondary-hover-background: var(--color-zinc-800);
-    --c-button-outlined-secondary-active-background: color-mix(in oklab, var(--color-zinc-700) 85%, transparent);
+    --c-button-outlined-secondary-active-background: --alpha(var(--color-zinc-700) / 85%);
 
     --p-button-outlined-secondary-border-color: var(--color-zinc-700);
     --p-button-outlined-secondary-color: var(--color-zinc-300);
