@@ -17,10 +17,11 @@ export const AppThemePreset = definePreset(Aura, {
       950: '{emerald.950}'
     },
     borderRadius: {
-      sm: '6px',
-      md: '8px',
-      lg: '12px',
-      xl: '14px'
+      xs: 'var(--radius-xs)',
+      sm: 'var(--radius-sm)',
+      md: 'var(--radius-md)',
+      lg: 'var(--radius-lg)',
+      xl: 'var(--radius-xl)'
     }
   }
 });
