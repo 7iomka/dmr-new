@@ -1,3 +1,4 @@
+import { provideZoneChangeDetection } from "@angular/core";
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
@@ -9,7 +10,7 @@ import { LucideChevronDown, provideLucideConfig, provideLucideIcons } from '@luc
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter(appRoutes),
+    provideZoneChangeDetection(),provideRouter(appRoutes),
     provideAnimationsAsync(),
     provideLucideConfig({
       size: 20,
