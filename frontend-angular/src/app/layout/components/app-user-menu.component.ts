@@ -4,12 +4,12 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { Menu } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
-import { ChevronDown, LucideAngularModule } from 'lucide-angular';
+import { LucideDynamicIcon, LucideChevronDown} from '@lucide/angular';
 
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [ButtonModule, AvatarModule, MenuModule, LucideAngularModule],
+  imports: [ButtonModule, AvatarModule, MenuModule, LucideDynamicIcon],
   template: `
     <div class="hidden lg:block">
       <p-button styleClass="shell-user-trigger" [text]="true" (onClick)="menu.toggle($event)">
@@ -19,7 +19,7 @@ import { ChevronDown, LucideAngularModule } from 'lucide-angular';
             <span class="shell-user-name">Dorin Watsap</span>
             <span class="shell-user-id">ID: 882194</span>
           </span>
-          <lucide-icon [img]="chevronDownIcon" class="h-4 w-4 text-surface-500" />
+          <svg [lucideIcon]="chevronDownIcon" class="h-4 w-4 text-surface-500"></svg>
         </ng-template>
       </p-button>
 
@@ -37,5 +37,5 @@ export class AppUserMenuComponent {
     { label: 'Выйти', icon: 'pi pi-sign-out', styleClass: 'text-red-500' }
   ];
 
-  protected readonly chevronDownIcon = ChevronDown;
+  protected readonly chevronDownIcon = LucideChevronDown;
 }

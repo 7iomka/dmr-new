@@ -3,12 +3,12 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 'lucide-angular';
+import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, LucideCirclePlus } from '@lucide/angular';
 
 @Component({
   selector: 'app-dashboard-page',
   standalone: true,
-  imports: [ButtonModule, CardModule, TabsModule, ToggleSwitchModule, LucideAngularModule],
+  imports: [ButtonModule, CardModule, TabsModule, ToggleSwitchModule, LucideDynamicIcon],
   template: `
     <div class="flex flex-col gap-6 lg:gap-7">
       <section>
@@ -24,12 +24,12 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                 <p class="dash-card-kicker">Ваш баланс</p>
                 <p-button severity="secondary" variant="outlined" size="small">
                   <span>Кошелёк</span>
-                  <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
+                  <svg [lucideIcon]="chevronRightIcon" class="h-3.5 w-3.5"></svg>
                 </p-button>
               </div>
               <h3 class="text-3xl font-bold tracking-tighter text-surface-900 dark:text-surface-50 xl:text-4xl">$ 12,450,000.80</h3>
               <p-button>
-                <lucide-icon [img]="plusCircleIcon" class="h-4 w-4" />
+                <svg [lucideIcon]="circlePlusIcon" class="h-4 w-4"></svg>
                 <span>Пополнить</span>
               </p-button>
             </div>
@@ -44,7 +44,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                 </div>
                 <p-button severity="secondary" variant="outlined" size="small">
                   <span>Детали</span>
-                  <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
+                  <svg [lucideIcon]="chevronRightIcon" class="h-3.5 w-3.5"></svg>
                 </p-button>
               </div>
 
@@ -60,7 +60,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                     styleClass="p-button-icon-only"
                     ariaLabel="Copy platform referral link"
                   >
-                    <lucide-icon [img]="copyIcon" class="h-4 w-4" />
+                    <svg [lucideIcon]="copyIcon" class="h-4 w-4"></svg>
                   </p-button>
                 </div>
               </div>
@@ -77,7 +77,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                     styleClass="p-button-icon-only"
                     ariaLabel="Copy product referral link"
                   >
-                    <lucide-icon [img]="copyIcon" class="h-4 w-4" />
+                    <svg [lucideIcon]="copyIcon" class="h-4 w-4"></svg>
                   </p-button>
                 </div>
               </div>
@@ -94,7 +94,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                     styleClass="p-button-icon-only"
                     ariaLabel="Copy referral code"
                   >
-                    <lucide-icon [img]="copyIcon" class="h-4 w-4" />
+                    <svg [lucideIcon]="copyIcon" class="h-4 w-4"></svg>
                   </p-button>
                 </div>
               </div>
@@ -138,7 +138,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                 <h4 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">Активные рассрочки (2)</h4>
                 <p-button severity="secondary" variant="outlined" size="small">
                   <span>Управление</span>
-                  <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
+                  <svg [lucideIcon]="chevronRightIcon" class="h-3.5 w-3.5"></svg>
                 </p-button>
               </div>
 
@@ -154,7 +154,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                   </div>
                   <p-button severity="danger" variant="outlined" styleClass="w-full !justify-center !gap-2">
                     <span>Оплатить сейчас</span>
-                    <lucide-icon [img]="creditCardIcon" class="h-4 w-4" />
+                    <svg [lucideIcon]="creditCardIcon" class="h-4 w-4"></svg>
                   </p-button>
                 </article>
 
@@ -210,8 +210,8 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
   `
 })
 export class DashboardPageComponent {
-  protected readonly chevronRightIcon = ChevronRight;
-  protected readonly plusCircleIcon = PlusCircle;
-  protected readonly copyIcon = Copy;
-  protected readonly creditCardIcon = CreditCard;
+  protected readonly chevronRightIcon = LucideChevronRight;
+  protected readonly circlePlusIcon = LucideCirclePlus;
+  protected readonly copyIcon = LucideCopy;
+  protected readonly creditCardIcon = LucideCreditCard;
 }
