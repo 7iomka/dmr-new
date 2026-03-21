@@ -1,4 +1,4 @@
-@layer base {
+@layer properties {
   :root {
     --c-button-sm-padding-x: 0.75rem;
     --c-button-sm-padding-y: 0.375rem;
@@ -43,7 +43,7 @@
 }
 
 @layer primeng {
-  :where(.p-button-outlined.p-button-secondary) {
+  .p-button-outlined.p-button-secondary {
     background: var(--c-button-outlined-secondary-background);
   }
 }
