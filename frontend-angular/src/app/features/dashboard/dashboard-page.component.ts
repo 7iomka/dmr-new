@@ -22,7 +22,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
             <div class="flex flex-col gap-4">
               <div class="flex justify-between sm:mb-2">
                 <p class="dash-card-kicker">Ваш баланс</p>
-                <p-button severity="secondary" variant="outlined" size="small" styleClass="dash-link-btn">
+                <p-button severity="secondary" variant="outlined" size="small">
                   <span>Кошелёк</span>
                   <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
                 </p-button>
@@ -42,7 +42,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
                   <p class="dash-card-kicker">Рефералы</p>
                   <h3 class="text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-50">12</h3>
                 </div>
-                <p-button severity="secondary" variant="outlined" size="small" styleClass="dash-link-btn">
+                <p-button severity="secondary" variant="outlined" size="small">
                   <span>Детали</span>
                   <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
                 </p-button>
@@ -136,7 +136,7 @@ import { ChevronRight, Copy, CreditCard, LucideAngularModule, PlusCircle } from 
 
               <div class="flex flex-wrap items-center gap-3">
                 <h4 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">Активные рассрочки (2)</h4>
-                <p-button severity="secondary" variant="outlined" size="small" styleClass="dash-link-btn">
+                <p-button severity="secondary" variant="outlined" size="small">
                   <span>Управление</span>
                   <lucide-icon [img]="chevronRightIcon" class="h-3.5 w-3.5" />
                 </p-button>
