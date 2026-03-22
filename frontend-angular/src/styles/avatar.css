@@ -1,6 +1,8 @@
 @layer properties {
   :root,
   .dark {
+    --p-content-border-radius: var(--p-border-radius-lg);
+    --p-avatar-border-radius: var(--p-content-border-radius);
   }
 
   :root {

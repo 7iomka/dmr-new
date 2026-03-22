@@ -14,9 +14,9 @@ import { LucideBell } from '@lucide/angular';
         <svg lucideBell class="h-4.5 w-4.5"></svg>
       </ng-template>
     </p-button>
-    <span data-notifications-dot class="peer absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-zinc-900"></span>
-    <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-primary/35 rounded-full blur-[0.5px] animate-ping peer-[.hidden]:hidden"></span>
-    <span data-notifications-badge class="absolute -top-1 -right-1 min-w-4.5 h-4.5 leading-4.5 px-1 rounded-full bg-primary-500 dark:bg-primary-600 text-white text-[10px] font-bold text-center">
+    <span data-notifications-dot class="peer pointer-events-none absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-zinc-900"></span>
+    <span class="pointer-events-none absolute top-2.5 right-2.5 w-2 h-2 bg-primary/35 rounded-full blur-[0.5px] animate-ping peer-[.hidden]:hidden"></span>
+    <span data-notifications-badge class="pointer-events-none absolute -top-1 -right-1 min-w-4.5 h-4.5 leading-4.5 px-1 rounded-full bg-primary-500 dark:bg-primary-600 text-white text-[10px] font-bold text-center">
       {{ badge }}
     </span>
     <span class="sr-only" data-notifications-unread-label>Непрочитанных: 0</span>

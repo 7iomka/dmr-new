@@ -17,8 +17,8 @@ import { AppUserMenuComponent } from './app-user-menu.component';
           <app-theme-toggle />
           <app-language-switcher />
           <app-notifications-button />
-          <span class="shell-topbar-divider"></span>
-          <app-user-menu />
+          <span class="hidden lg:block h-10 w-px bg-surface-200 mx-1 dark:bg-surface-700"></span>
+          <app-user-menu class="hidden lg:block" />
         </div>
       </div>
     </header>

@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
+@import './styles/scrollbar.css';
 @import './styles/button.css';
 @import './styles/avatar.css';
 
@@ -231,10 +232,6 @@
 
   .dash-chart-placeholder {
     @apply flex h-[260px] items-center justify-center rounded-lg border border-dashed border-surface-300 text-sm font-medium text-surface-500 dark:border-surface-700;
-  }
-
-  .shell-topbar-divider {
-    @apply hidden h-8 w-px bg-surface-200 lg:block dark:bg-surface-700;
   }
 }
 

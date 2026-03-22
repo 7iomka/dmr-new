@@ -11,18 +11,15 @@ import { LucideChevronDown} from '@lucide/angular';
   standalone: true,
   imports: [ButtonModule, AvatarModule, MenuModule, LucideChevronDown],
   template: `
-    <div class="hidden lg:block">
-      <p-button severity="secondary" styleClass="p-1 pr-2 -my-1" size="small" [text]="true" (onClick)="menu.toggle($event)">
-        <p-avatar label="DW" class="shell-user-avatar" />
-        <span class="hidden text-left md:flex md:min-w-29.5 md:flex-col">
-          <span class="text-sm font-bold leading-none text-surface-800 dark:text-surface-100">Dorin Watsap</span>
-          <span class="mt-0.5 text-[11px] font-bold uppercase tracking-tight text-surface-500 dark:text-surface-400">ID: 882194</span>
-        </span>
-        <svg lucideChevronDown class="h-4 w-4 text-surface-500"></svg>
-      </p-button>
-  
-      <p-menu #menu [popup]="true" [model]="items" appendTo="body" styleClass="shell-user-menu" />
-    </div>
+    <p-button severity="secondary" variant="outlined" (onClick)="menu.toggle($event)">
+      <p-avatar label="DW" />
+      <span class="hidden text-left md:flex md:min-w-29.5 md:flex-col">
+        <span class="text-sm font-bold leading-none text-surface-800 dark:text-surface-100">Dorin Watsap</span>
+        <span class="mt-0.5 text-[11px] font-bold uppercase tracking-tight text-surface-500 dark:text-surface-400">ID: 882194</span>
+      </span>
+      <svg lucideChevronDown class="h-4 w-4 text-surface-500"></svg>
+    </p-button>
+    <p-menu #menu [popup]="true" [model]="items" appendTo="body" styleClass="shell-user-menu" />
   `
 })
 export class AppUserMenuComponent {
