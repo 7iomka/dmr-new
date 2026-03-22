@@ -1,336 +1,292 @@
-# Icons Usage Guide (Lucide + PrimeNG + Angular)
+# Icons Usage Guide
 
-## Goal
+## Stack
 
-Define a **strict, unified, LLM-friendly icon strategy** for the project.
-
-This guide is mandatory for all new and migrated Angular UI.
-
----
-
-## 🔴 Core Principles
-
-* Lucide is the **primary icon system**
-* Always use `@lucide/angular`
-* Static icons are the **default**
-* Dynamic icons are used **only when required by data/config**
-* PrimeIcons are **NOT used** unless strictly required by PrimeNG API
+- Angular (standalone)
+- PrimeNG
+- Tailwind CSS
+- TypeScript
 
 ---
 
-## Installation / Import
+## 🎯 Core Principle
+
+The project uses a **strict icon system hierarchy**:
+
+1. **Lucide** → primary icon system (UI icons)
+2. **semantic-icons (Simple Icons)** → fallback for brands/socials
+3. **PrimeIcons** → ONLY when strictly required by PrimeNG
+
+No other icon libraries are allowed.
+
+---
+
+# 1. Primary Icon System — Lucide
+
+## Library
 
 ```ts
-import { LucideBell } from '@lucide/angular';
-```
-
-❌ NEVER use:
-
-* `lucide-angular`
-* `<lucide-icon>` component
-* legacy APIs
-
----
-
-## 🔴 PRIMARY RULE
-
-* ✅ Static icons by default
-* ⚠️ Dynamic icons only when necessary
-* ❌ Do NOT guess icon names
-* ❌ Do NOT create custom wrappers
-
----
-
-# 1. Static Icons (DEFAULT)
-
-## When to use
-
-Use static icons when:
-
-* icon is known at development time
-* icon does not depend on data
-* button/header/card uses fixed icon
-
----
-
-## Import
-
-```ts
-import { LucideBell } from '@lucide/angular';
+import { LucideAngularModule, Plus, X, ChevronRight } from 'lucide-angular';
 ```
 
 ---
 
-## Component
+## Usage
+
+### Static icons (preferred)
 
 ```ts
-@Component({
-  standalone: true,
-  imports: [LucideBell]
-})
+import { Plus } from 'lucide-angular';
 ```
-
----
-
-## Template
 
 ```html
-<svg lucideBell class="h-4.5 w-4.5"></svg>
+<svg lucidePlus class="h-4 w-4"></svg>
 ```
+
+---
+
+### Dynamic icons (only when necessary)
+
+```ts
+import { LucideAngularModule } from 'lucide-angular';
+```
+
+```html
+<lucide-icon [name]="iconName"></lucide-icon>
+```
+
+⚠️ Use dynamic icons only when icon is not known at build time.
+
+---
+
+## Styling
+
+Use Tailwind classes only:
+
+```html
+<svg lucidePlus class="h-4 w-4 text-zinc-500"></svg>
+```
+
+Rules:
+
+- size → `h-* w-*`
+- color → `text-*`
+- do NOT use inline styles
 
 ---
 
 ## Rules
 
-* Attribute must be **lowerCamelCase**
-
-  * ✅ `lucideBell`
-  * ❌ `lucide-bell`
-
-* Use Tailwind for size
-
-  * `h-4 w-4`
-  * `h-4.5 w-4.5`
-
-* Color inherits from parent
+- import icons individually
+- do NOT import the whole icon set
+- do NOT wrap Lucide in custom components
+- do NOT use `<i>` tags
 
 ---
 
-## Example (PrimeNG button)
+## Correct Usage Examples
+
+### Button
+
+```html
+<p-button>
+  <svg lucidePlus class="h-4 w-4"></svg>
+  <span>Add</span>
+</p-button>
+```
+
+### Icon-only button
+
+```html
+<p-button severity="secondary" size="small" styleClass="p-button-icon-only">
+  <svg lucideX class="h-4 w-4"></svg>
+</p-button>
+```
+
+---
+
+## ❌ Do NOT
+
+```html
+<i class="pi pi-plus"></i>
+```
+
+```ts
+import * as icons from 'lucide-angular';
+```
+
+---
+
+# 2. Secondary Icon System — semantic-icons (Simple Icons)
+
+## Purpose
+
+Use `@semantic-icons/simple-icons` **only when Lucide does not provide the required icon**.
+
+This typically applies to:
+
+- social networks
+- payment systems
+- crypto assets
+- company / brand logos
+- third-party platforms
+
+---
+
+## Library
+
+```ts
+import { SiGithubIcon } from '@semantic-icons/simple-icons';
+```
+
+---
+
+## Usage
+
+```html
+<svg siGithubIcon class="h-4 w-4"></svg>
+```
+
+---
+
+## Naming Convention
+
+- TypeScript import: `SiGithubIcon`
+- Template usage: `siGithubIcon`
+
+Rules:
+
+- prefix → `Si`
+- suffix → `Icon`
+- template → lowerCamelCase
+
+---
+
+## When to use
+
+Use semantic-icons ONLY when:
+
+- icon is brand-specific
+- icon is not available in Lucide
+- UI requires recognizable brand identity
+
+Examples:
+
+- Telegram
+- YouTube
+- Instagram
+- Facebook
+- X / Twitter
+- LinkedIn
+- GitHub
+- Binance
+- Stripe
+- PayPal
+- Visa / Mastercard
+- Bitcoin / Ethereum
+
+---
+
+## Rules
+
+- fallback only — Lucide is still primary
+- import icons individually
+- do NOT wrap in custom components
+- do NOT mix with other icon libraries
+- do NOT use for generic UI icons
+
+---
+
+## Correct Usage Examples
+
+### Brand button
 
 ```html
 <p-button severity="secondary" variant="outlined">
   <ng-template #icon>
-    <svg lucideBell class="h-4.5 w-4.5"></svg>
+    <svg siTelegramIcon class="h-4.5 w-4.5"></svg>
   </ng-template>
+  <span>Telegram</span>
 </p-button>
 ```
 
----
-
-# 2. Dynamic Icons (ALLOWED)
-
-## When to use
-
-ONLY when icon depends on:
-
-* navigation config
-* API / CMS data
-* reusable structures
-* state (theme, status, etc.)
-
----
-
-## Import
-
-```ts
-import { LucideDynamicIcon, LucideSun, LucideMoon } from '@lucide/angular';
-```
-
----
-
-## Example (state-based)
-
-```ts
-
-@Component({
-  standalone: true,
-  imports: [LucideDynamicIcon]
-})
-
-protected readonly themeToggleIcon = computed(() =>
-  this.isDark() ? LucideSun : LucideMoon
-);
-```
-
-```html
-<svg class="h-4.5 w-4.5" [lucideIcon]="themeToggleIcon()"></svg>
-```
-
----
-
-## Example (config-driven)
-
-```ts
-import { type LucideIcon, LucideWallet } from '@lucide/angular';
-
-export interface NavItem {
-  label: string;
-  icon: LucideIcon;
-}
-```
-
-```html
-<svg [lucideIcon]="item.icon" class="h-4 w-4"></svg>
-```
-
----
-
-## Rules
-
-* Use `LucideIcon` type
-* Always map icons explicitly
-* Do NOT use raw string-based icons
-
-❌ Wrong:
-
-```ts
-icon: 'wallet'
-```
-
----
-
-# 3. PrimeNG Integration (CRITICAL)
-
-## Problem
-
-PrimeNG forces icon via:
-
-```html
-<p-button icon="pi pi-home" />
-```
-
-But we prefer Lucide icons instead of PrimeIcons.
-
----
-
-## ✅ Correct Pattern usecases
-
----
-
-## For Icon-only button ALWAYS use template slot
-
-```html
-<p-button
-  [rounded]="true"
-  [text]="true"
-  severity="secondary"
-  styleClass="p-button-icon-only"
-  ariaLabel="Notifications"
->
-  <ng-template #icon>
-    <svg lucideBell class="h-4.5 w-4.5"></svg>
-  </ng-template>
-</p-button>
-```
-
----
-
-## Rules
-
-* ❌ Do NOT use `icon="pi ..."`
-* ❌ Do NOT mix Lucide + PrimeIcons
-
----
-
-# 4. Static vs Dynamic Decision
-
-## Use static if
-
-* icon is fixed
-* component knows icon
-
-## Use dynamic if
-
-* icon comes from data/config
-* icon changes based on state
-
----
-
-## Examples
-
-### ✅ Static
-
-```html
-<svg lucideBell></svg>
-```
-
-### ✅ Dynamic
-
-```html
-<svg [lucideIcon]="item.icon"></svg>
-```
-
-### ❌ Wrong
-
-```html
-<svg [lucideIcon]="bellIcon"></svg>
-```
-
-(if bellIcon is constant)
-
----
-
-# 5. Styling Rules
-
-## Size
-
-* small → `h-4 w-4`
-* default → `h-5 w-5`
-* large → `h-6 w-6`
-
-## Color
-
-* inherit text color
-* use `text-primary` if needed
-
-## Alignment
+### List item
 
 ```html
 <div class="flex items-center gap-2">
-  <svg lucideBell class="h-4 w-4"></svg>
-  <span>Notifications</span>
+  <svg siGithubIcon class="h-4 w-4"></svg>
+  <span>GitHub</span>
 </div>
 ```
 
 ---
 
-# 6. Forbidden Patterns
-
-## ❌ Custom wrapper
+## ❌ Do NOT
 
 ```html
-<app-icon name="bell"></app-icon>
+<svg siChevronRightIcon></svg>
 ```
 
-## ❌ Wrong package
+Do NOT use semantic-icons for:
 
-```ts
-import { Bell } from 'lucide-angular';
-```
+- arrows
+- navigation
+- UI controls
+- system icons
 
-## ❌ PrimeIcons
+---
+
+# 3. PrimeIcons (Restricted Use)
+
+## Rule
+
+PrimeIcons are **NOT allowed by default**.
+
+Use ONLY when:
+
+- PrimeNG component strictly requires it
+- no alternative exists
+
+---
+
+## Example
 
 ```html
-<p-button icon="pi pi-home" />
-```
-
-## ❌ Dynamic without need
-
-```html
-<svg [lucideIcon]="bellIcon"></svg>
+<p-inputtext>
+  <i class="pi pi-search"></i>
+</p-inputtext>
 ```
 
 ---
 
-# 7. LLM Instructions (MANDATORY)
+# 4. Priority Order
+
+1. Lucide
+2. semantic-icons (only for brands/socials)
+3. PrimeIcons (restricted)
+
+---
+
+# 5. Final Rules
 
 When generating Angular UI:
 
-1. Use `@lucide/angular`
-2. Prefer static icons
-3. Use dynamic only when needed
-4. Use PrimeNG `#icon` slot for icon-only buttons
-5. Do NOT use PrimeIcons
-6. Do NOT create wrappers
-7. Do NOT guess icon names
+1. Use `@lucide/angular` by default
+2. Prefer static Lucide icons
+3. Use dynamic Lucide icons only if required
+4. If icon is missing and is brand/social → use `@semantic-icons/simple-icons`
+5. Use PrimeNG `#icon` slot when needed
+6. Do NOT use PrimeIcons unless required
+7. Do NOT create wrapper components
+8. Do NOT guess icon names
+9. Do NOT introduce new icon libraries
 
 ---
 
-## Final Rule
+## Summary
 
-* static first
-* dynamic only if justified
-* no legacy
-* no abstractions
-* explicit and predictable usage
+- Lucide → UI icons
+- semantic-icons → brands/socials (fallback)
+- PrimeIcons → rare edge cases
+
+Strict hierarchy must be preserved.
