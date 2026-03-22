@@ -14,14 +14,14 @@ export const AppThemePreset = definePreset(Aura, {
       700: '{emerald.700}',
       800: '{emerald.800}',
       900: '{emerald.900}',
-      950: '{emerald.950}'
+      950: '{emerald.950}',
     },
     borderRadius: {
       xs: 'var(--radius-xs)',
       sm: 'var(--radius-sm)',
       md: 'var(--radius-md)',
       lg: 'var(--radius-lg)',
-      xl: 'var(--radius-xl)'
-    }
-  }
+      xl: 'var(--radius-xl)',
+    },
+  },
 });

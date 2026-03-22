@@ -3,12 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import {
-  LucideChevronRight,
-  LucideCopy,
-  LucideCreditCard,
-  LucideCirclePlus
-} from '@lucide/angular';
+import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } from '@lucide/angular';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -21,7 +16,7 @@ import {
     LucideChevronRight,
     LucideCopy,
     LucideCreditCard,
-    LucideCirclePlus
+    LucideCirclePlus,
   ],
   template: `
     <div class="flex flex-col gap-6 lg:gap-7">
@@ -29,9 +24,7 @@ import {
         <h1 class="text-2xl font-bold tracking-tight text-surface-900 dark:text-surface-50 lg:text-3xl">
           Добро пожаловать, Дорин!
         </h1>
-        <p class="mt-1 text-sm font-medium text-surface-500">
-          Вот текущее состояние ваших инвестиций.
-        </p>
+        <p class="mt-1 text-sm font-medium text-surface-500">Вот текущее состояние ваших инвестиций.</p>
       </section>
 
       <section class="grid grid-cols-1 gap-6 md:grid-cols-5">
@@ -40,9 +33,9 @@ import {
             <div class="flex flex-col gap-4">
               <div class="flex justify-between sm:mb-2">
                 <p class="dash-card-kicker">Ваш баланс</p>
-                <p-button severity="secondary" variant="outlined" size="small">
+                <p-button severity="secondary" size="small" variant="outlined">
                   <span>Кошелёк</span>
-                  <svg lucideChevronRight class="h-3.5 w-3.5"></svg>
+                  <svg class="h-3.5 w-3.5" lucideChevronRight></svg>
                 </p-button>
               </div>
 
@@ -51,7 +44,7 @@ import {
               </h3>
 
               <p-button>
-                <svg lucideCirclePlus class="h-4 w-4"></svg>
+                <svg class="h-4 w-4" lucideCirclePlus></svg>
                 <span>Пополнить</span>
               </p-button>
             </div>
@@ -65,42 +58,40 @@ import {
                   <h3 class="text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-50">12</h3>
                 </div>
 
-                <p-button severity="secondary" variant="outlined" size="small">
+                <p-button severity="secondary" size="small" variant="outlined">
                   <span>Детали</span>
-                  <svg lucideChevronRight class="h-3.5 w-3.5"></svg>
+                  <svg class="h-3.5 w-3.5" lucideChevronRight></svg>
                 </p-button>
               </div>
 
               <div class="dash-ref-box">
-                <label>Ваша ссылка (платформа)</label>
+                <span class="dash-ref-box__label">Ваша ссылка (платформа)</span>
                 <div class="dash-ref-box__row">
                   <span>https://invest.awsarhitect.me/?ref=A7CA9B55</span>
                   <p-button
-                    [rounded]="true"
-                    [text]="true"
+                    ariaLabel="Copy platform referral link"
                     severity="secondary"
                     size="small"
                     styleClass="p-button-icon-only"
-                    ariaLabel="Copy platform referral link"
-                  >
-                    <svg lucideCopy class="h-4 w-4"></svg>
+                    [rounded]="true"
+                    [text]="true">
+                    <svg class="h-4 w-4" lucideCopy></svg>
                   </p-button>
                 </div>
               </div>
 
               <div class="dash-ref-box">
-                <label>Ваша ссылка (продукт)</label>
+                <span class="dash-ref-box__label">Ваша ссылка (продукт)</span>
                 <div class="dash-ref-box__row">
                   <span>https://awsarhitect.me/?ref=A7CA9B55</span>
                   <p-button
-                    [rounded]="true"
-                    [text]="true"
+                    ariaLabel="Copy product referral link"
                     severity="secondary"
                     size="small"
                     styleClass="p-button-icon-only"
-                    ariaLabel="Copy product referral link"
-                  >
-                    <svg lucideCopy class="h-4 w-4"></svg>
+                    [rounded]="true"
+                    [text]="true">
+                    <svg class="h-4 w-4" lucideCopy></svg>
                   </p-button>
                 </div>
               </div>
@@ -110,14 +101,13 @@ import {
                 <div class="flex items-center gap-2">
                   <strong>A7CA9B55</strong>
                   <p-button
-                    [rounded]="true"
-                    [text]="true"
+                    ariaLabel="Copy referral code"
                     severity="secondary"
                     size="small"
                     styleClass="p-button-icon-only"
-                    ariaLabel="Copy referral code"
-                  >
-                    <svg lucideCopy class="h-4 w-4"></svg>
+                    [rounded]="true"
+                    [text]="true">
+                    <svg class="h-4 w-4" lucideCopy></svg>
                   </p-button>
                 </div>
               </div>
@@ -131,7 +121,7 @@ import {
               <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
                 Инвестиции
               </h3>
-              <p-tabs value="shares" class="dash-tabs">
+              <p-tabs class="dash-tabs" value="shares">
                 <p-tablist>
                   <p-tab value="shares">Мои доли</p-tab>
                   <p-tab value="buy">Купить доли</p-tab>
@@ -163,9 +153,9 @@ import {
                 <h4 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">
                   Активные рассрочки (2)
                 </h4>
-                <p-button severity="secondary" variant="outlined" size="small">
+                <p-button severity="secondary" size="small" variant="outlined">
                   <span>Управление</span>
-                  <svg lucideChevronRight class="h-3.5 w-3.5"></svg>
+                  <svg class="h-3.5 w-3.5" lucideChevronRight></svg>
                 </p-button>
               </div>
 
@@ -181,9 +171,9 @@ import {
                     <p class="text-red-400/70">Оплатить не позднее: 17.02.2026</p>
                   </div>
 
-                  <p-button severity="danger" variant="outlined" class="w-full !justify-center !gap-2">
+                  <p-button class="w-full !justify-center !gap-2" severity="danger" variant="outlined">
                     <span>Оплатить сейчас</span>
-                    <svg lucideCreditCard class="h-4 w-4"></svg>
+                    <svg class="h-4 w-4" lucideCreditCard></svg>
                   </p-button>
                 </article>
 
@@ -206,10 +196,8 @@ import {
       <section>
         <p-card>
           <ng-template #header>
-            <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
-              История цен
-            </h3>
-            <p-tabs value="month" class="dash-tabs dash-tabs--period">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">История цен</h3>
+            <p-tabs class="dash-tabs dash-tabs--period" value="month">
               <p-tablist>
                 <p-tab value="month">Месяц</p-tab>
                 <p-tab value="year">Год</p-tab>
@@ -240,6 +228,6 @@ import {
         </p-card>
       </section>
     </div>
-  `
+  `,
 })
 export class DashboardPageComponent {}

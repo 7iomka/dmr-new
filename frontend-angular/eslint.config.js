@@ -38,7 +38,7 @@ module.exports = tseslint.config(
 
       // Angular
       '@angular-eslint/no-empty-lifecycle-method': 'warn',
-      '@angular-eslint/prefer-on-push-component-change-detection': 'warn',
+      '@angular-eslint/prefer-on-push-component-change-detection': 'off', // as we use for demo purposes only
       '@angular-eslint/prefer-output-readonly': 'warn',
       '@angular-eslint/prefer-signals': 'off',
       '@angular-eslint/prefer-standalone': 'warn',
@@ -116,10 +116,7 @@ module.exports = tseslint.config(
   },
   {
     files: ['**/*.html'],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
-    ],
+    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
     rules: {
       '@angular-eslint/template/attributes-order': [
         'warn',

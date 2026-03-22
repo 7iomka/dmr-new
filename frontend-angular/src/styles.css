@@ -146,7 +146,7 @@
     @apply space-y-1;
   }
 
-  .dash-ref-box label {
+  .dash-ref-box__label {
     @apply block text-[10px] font-bold uppercase text-surface-500;
   }
 
@@ -278,8 +278,7 @@
 
   .page-content-area {
     padding-inline-start: var(--sidebar-width) !important;
-    transition: padding-inline-start var(--sidebar-transition-duration)
-      var(--sidebar-transition-timing);
+    transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
   }
 
   body.sidebar-collapse .page-sidebar:hover:not(.animating) {

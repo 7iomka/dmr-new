@@ -1,4 +1,4 @@
-import { provideZoneChangeDetection } from "@angular/core";
+import { provideZoneChangeDetection } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
@@ -22,11 +22,11 @@ bootstrapApplication(AppComponent, {
           darkModeSelector: '.dark',
           cssLayer: {
             name: 'primeng',
-            order: 'theme, base, primeng'
-          }
-        }
+            order: 'theme, base, primeng',
+          },
+        },
       },
-      ripple: true
-    })
-  ]
+      ripple: true,
+    }),
+  ],
 }).catch((err) => console.error(err));

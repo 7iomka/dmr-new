@@ -30,4 +30,12 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+
+  "tailwindCSS.experimental.classRegex": ["[\"'`](.*?)[\"'`]"],
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "editor.unicodeHighlight.ambiguousCharacters": true,
+  "editor.unicodeHighlight.invisibleCharacters": true,
+  "indentRainbow.ignoreErrorLanguages": ["*"]
 }

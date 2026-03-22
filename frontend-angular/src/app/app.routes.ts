@@ -16,5 +16,5 @@ export const appRoutes: Routes = [
   { path: 'home', component: StubPageComponent, data: { title: 'Главная' } },
   { path: 'news', component: StubPageComponent, data: { title: 'Новости' } },
   { path: 'contacts', component: StubPageComponent, data: { title: 'Контакты' } },
-  { path: '**', redirectTo: 'dashboard' }
+  { path: '**', redirectTo: 'dashboard' },
 ];

@@ -1,15 +1,19 @@
-import { Injectable, Renderer2, RendererFactory2, signal } from '@angular/core';
+import { inject, Injectable, Renderer2, RendererFactory2, signal } from '@angular/core';
 
 type ThemeMode = 'light' | 'dark';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-  private readonly renderer: Renderer2;
+  private readonly rendererFactory = inject(RendererFactory2);
+  private readonly renderer: Renderer2 = this.rendererFactory.createRenderer(null, null);
+
   readonly themeMode = signal<ThemeMode>('light');
 
-  constructor(rendererFactory: RendererFactory2) {
-    this.renderer = rendererFactory.createRenderer(null, null);
+  constructor() {
+    this.initTheme();
+  }
 
+  private initTheme(): void {
     const saved = (localStorage.getItem('dmr-theme') as ThemeMode | null) ?? 'light';
     this.setTheme(saved);
   }

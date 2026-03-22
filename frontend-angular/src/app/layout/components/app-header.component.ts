@@ -8,7 +8,12 @@ import { AppUserMenuComponent } from './app-user-menu.component';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [AppThemeToggleComponent, AppLanguageSwitcherComponent, AppNotificationsButtonComponent, AppUserMenuComponent],
+  imports: [
+    AppThemeToggleComponent,
+    AppLanguageSwitcherComponent,
+    AppNotificationsButtonComponent,
+    AppUserMenuComponent,
+  ],
   template: `
     <header class="page-header">
       <div class="container flex h-full items-center justify-between">
@@ -22,6 +27,6 @@ import { AppUserMenuComponent } from './app-user-menu.component';
         </div>
       </div>
     </header>
-  `
+  `,
 })
 export class AppHeaderComponent {}

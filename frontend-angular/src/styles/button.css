@@ -10,12 +10,8 @@
 
     --p-button-outlined-secondary-border-color: var(--c-button-outlined-secondary-border-color);
     --p-button-outlined-secondary-color: var(--c-button-outlined-secondary-color);
-    --p-button-outlined-secondary-hover-background: var(
-      --c-button-outlined-secondary-hover-background
-    );
-    --p-button-outlined-secondary-active-background: var(
-      --c-button-outlined-secondary-active-background
-    );
+    --p-button-outlined-secondary-hover-background: var(--c-button-outlined-secondary-hover-background);
+    --p-button-outlined-secondary-active-background: var(--c-button-outlined-secondary-active-background);
   }
 
   :root {

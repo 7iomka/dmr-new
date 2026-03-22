@@ -20,7 +20,7 @@ import { CardModule } from 'primeng/card';
       </ng-template>
       <ng-content />
     </p-card>
-  `
+  `,
 })
 export class PageCardShellComponent {
   readonly title = input.required<string>();

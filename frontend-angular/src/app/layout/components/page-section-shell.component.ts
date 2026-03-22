@@ -16,7 +16,7 @@ import { Component, input } from '@angular/core';
       </header>
       <div><ng-content /></div>
     </section>
-  `
+  `,
 })
 export class PageSectionShellComponent {
   readonly title = input.required<string>();

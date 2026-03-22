@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectModule, SelectPassThrough } from 'primeng/select';
-import { LucideGlobe, LucideChevronDown, LucideCheck } from '@lucide/angular';
+import { Select, SelectModule, SelectPassThrough } from 'primeng/select';
+import { LucideCheck, LucideChevronDown, LucideGlobe } from '@lucide/angular';
 
-interface LanguageOption {
+type LanguageOption = {
   code: string;
   nativeLabel: string;
   englishLabel: string;
   flag: string;
-}
+};
 
 @Component({
   selector: 'app-language-switcher',
@@ -17,26 +17,25 @@ interface LanguageOption {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <p-select
-      [options]="languages"
-      [(ngModel)]="selectedLanguage"
-      optionLabel="nativeLabel"
+      ariaLabel="Выбор языка"
       dataKey="code"
-      [checkmark]="false"
-      [filter]="false"
-      [showClear]="false"
-      [editable]="false"
-      [appendTo]="'body'"
+      optionLabel="nativeLabel"
+      panelStyleClass="mt-2!"
       scrollHeight="20rem"
-      panelStyleClass="!mt-2"
-      [pt]="selectPt"
+      [appendTo]="'body'"
+      [checkmark]="false"
+      [editable]="false"
+      [filter]="false"
+      [options]="languages"
       [overlayOptions]="{
         autoZIndex: true,
-        baseZIndex: 1000
+        baseZIndex: 1000,
       }"
-      ariaLabel="Выбор языка"
-    >
+      [pt]="selectPt"
+      [showClear]="false"
+      [(ngModel)]="selectedLanguage">
       <ng-template #dropdownicon>
-        <svg lucideChevronDown class="w-4 h-4"></svg>
+        <svg class="w-4 h-4" lucideChevronDown></svg>
       </ng-template>
 
       <ng-template #selectedItem let-item>
@@ -57,9 +56,8 @@ interface LanguageOption {
 
       <ng-template #header>
         <div
-          class="flex items-center gap-2 border-b border-zinc-200/80 px-4 py-3 text-[11px] font-bold uppercase text-zinc-500 dark:border-zinc-800 dark:text-zinc-400"
-        >
-          <svg lucideGlobe class="w-4 h-4"></svg>
+          class="flex items-center gap-2 border-b border-zinc-200/80 px-4 py-3 text-[11px] font-bold uppercase text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+          <svg class="w-4 h-4" lucideGlobe></svg>
           <span>Выберите язык</span>
         </div>
       </ng-template>
@@ -80,12 +78,12 @@ interface LanguageOption {
           </span>
 
           @if (selectedLanguage.code === item.code) {
-            <svg lucideCheck class="w-4 h-4 shrink-0 text-primary-500 dark:text-primary-400"></svg>
+            <svg class="w-4 h-4 shrink-0 text-primary-500 dark:text-primary-400" lucideCheck></svg>
           }
         </div>
       </ng-template>
     </p-select>
-  `
+  `,
 })
 export class AppLanguageSwitcherComponent {
   protected readonly languages: LanguageOption[] = [
@@ -102,7 +100,7 @@ export class AppLanguageSwitcherComponent {
     { code: 'ZH', nativeLabel: '中文', englishLabel: 'Chinese', flag: '🇨🇳' },
     { code: 'PT', nativeLabel: 'Português', englishLabel: 'Portuguese', flag: '🇵🇹' },
     { code: 'ID', nativeLabel: 'Bahasa Indonesia', englishLabel: 'Indonesian', flag: '🇮🇩' },
-    { code: 'RO', nativeLabel: 'Română', englishLabel: 'Romanian', flag: '🇷🇴' }
+    { code: 'RO', nativeLabel: 'Română', englishLabel: 'Romanian', flag: '🇷🇴' },
   ];
 
   protected selectedLanguage: LanguageOption = this.languages[0];
@@ -116,34 +114,37 @@ export class AppLanguageSwitcherComponent {
         'text-zinc-700 dark:text-zinc-300',
         'hover:bg-zinc-100 dark:hover:bg-zinc-800',
         'dark:hover:border-zinc-600',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/35'
-      ].join(' ')
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/35',
+      ].join(' '),
     },
     label: {
-      class: 'py-2 pl-2.5 pr-0 min-w-0 flex items-center text-sm font-medium'
+      class: 'py-2 pl-2.5 pr-0 min-w-0 flex items-center text-sm font-medium',
     },
     dropdown: {
-      class: 'py-2 pr-2.5 pl-2 w-auto group'
+      class: 'py-2 pr-2.5 pl-2 w-auto group',
     },
     dropdownIcon: {
-      class: 'h-4 w-4 shrink-0 transition-transform duration-200 group-aria-expanded:rotate-180 text-zinc-500 dark:text-zinc-400'
+      class:
+        'h-4 w-4 shrink-0 transition-transform duration-200 group-aria-expanded:rotate-180 text-zinc-500 dark:text-zinc-400',
     },
     header: {
-      class: 'border-b border-zinc-200/80 px-4 py-3 dark:border-zinc-800'
+      class: 'border-b border-zinc-200/80 px-4 py-3 dark:border-zinc-800',
     },
     listContainer: {
-      class: 'min-w-60 max-h-80'
+      class: 'min-w-60 max-h-80',
     },
     list: {
-      class: 'flex flex-col gap-0.5 p-1'
+      class: 'flex flex-col gap-0.5 p-1',
     },
-    option: ({ context }: any) => ({
+    option: {
       class: [
         'flex w-full items-center justify-between gap-3 rounded-md px-3 py-2 text-left transition-all duration-150',
-        context?.selected
-          ? 'bg-primary-100/80 text-zinc-900 dark:bg-primary-900/35 dark:text-primary-100'
-          : 'text-zinc-800 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800/80'
-      ].join(' ')
-    })
+        'text-zinc-800 dark:text-zinc-100',
+        'hover:bg-zinc-100 dark:hover:bg-zinc-800/80',
+        'p-focus:bg-zinc-100 dark:p-focus:bg-zinc-800/80',
+        'p-selected:bg-primary-100/80! p-selected:text-zinc-900!',
+        'dark:p-selected:bg-primary-900/35! dark:p-selected:text-primary-100!',
+      ].join(' '),
+    },
   };
 }
