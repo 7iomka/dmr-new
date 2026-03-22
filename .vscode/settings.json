@@ -5,18 +5,29 @@
     "php": "html"
   },
   "tailwindCSS.emmetCompletions": true,
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
+
+  "prettier.embeddedLanguageFormatting": "auto",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
   "[php]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
   },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[css]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[postcss]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.embeddedLanguageFormatting": "auto"
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
