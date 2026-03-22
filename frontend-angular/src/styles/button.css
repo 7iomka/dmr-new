@@ -55,6 +55,10 @@
     line-height: 1;
     text-transform: uppercase;
   }
+
+  .p-button-icon-only {
+    height: var(--p-button-icon-only-width);
+  }
 }
 
 @layer primeng {

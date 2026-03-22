@@ -1,11 +1,13 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
-@import './styles/buttons.css';
+@import './styles/button.css';
+@import './styles/avatar.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-card: #ffffff;
+  --color-dark: #0b0e11;
 }
 
 @variant dark {
@@ -57,17 +59,26 @@
     --c-card-header-bg: #1e2023;
   }
 
-  html,
   body {
-    min-height: 100%;
+    @apply bg-surface-100 text-surface-900 dark:bg-dark dark:text-surface-50 min-h-screen;
+    font-variant-ligatures: none;
     font-family: 'TTNorms', sans-serif;
-    @apply bg-surface-100 text-surface-900 dark:bg-[#0b0e11] dark:text-surface-50;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
   }
 
   body {
     transition:
       background-color 0.3s,
       color 0.3s;
+  }
+
+  .lucide,
+  svg {
+    flex-shrink: 0;
   }
 }
 
@@ -95,32 +106,12 @@
     @apply relative z-40 h-16 shrink-0 border-b border-zinc-200 bg-card lg:h-20 dark:border-zinc-800;
   }
 
-  .shell-icon-btn {
-    @apply !h-10 !w-10 !rounded-lg !text-surface-600 hover:!bg-surface-100 dark:!text-surface-300 dark:hover:!bg-surface-800;
-  }
+  /* .shell-icon-btn {
+    @apply h-10 w-10 rounded-lg text-surface-600 hover:bg-surface-100 dark:text-surface-300 dark:hover:bg-surface-800;
+  } */
 
   .shell-language-select {
-    @apply !h-10 !min-w-[128px] !rounded-lg;
-  }
-
-  .shell-user-trigger {
-    @apply !rounded-lg !px-1.5 !py-1 hover:!bg-surface-100 dark:hover:!bg-surface-800/60;
-  }
-
-  .shell-user-avatar {
-    @apply !h-10 !w-10 !bg-primary-500 !text-white;
-  }
-
-  .shell-user-meta {
-    @apply hidden text-left md:flex md:min-w-[118px] md:flex-col;
-  }
-
-  .shell-user-name {
-    @apply text-sm font-bold leading-none text-surface-800 dark:text-surface-100;
-  }
-
-  .shell-user-id {
-    @apply mt-0.5 text-[11px] font-bold uppercase tracking-tight text-surface-500 dark:text-surface-400;
+    @apply h-10 !min-w-[128px] !rounded-lg;
   }
 
   .page-body {
@@ -290,7 +281,8 @@
 
   .page-content-area {
     padding-inline-start: var(--sidebar-width) !important;
-    transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+    transition: padding-inline-start var(--sidebar-transition-duration)
+      var(--sidebar-transition-timing);
   }
 
   body.sidebar-collapse .page-sidebar:hover:not(.animating) {

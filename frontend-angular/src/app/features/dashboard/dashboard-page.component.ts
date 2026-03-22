@@ -3,17 +3,35 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, LucideCirclePlus } from '@lucide/angular';
+import {
+  LucideChevronRight,
+  LucideCopy,
+  LucideCreditCard,
+  LucideCirclePlus
+} from '@lucide/angular';
 
 @Component({
   selector: 'app-dashboard-page',
   standalone: true,
-  imports: [ButtonModule, CardModule, TabsModule, ToggleSwitchModule, LucideDynamicIcon],
+  imports: [
+    ButtonModule,
+    CardModule,
+    TabsModule,
+    ToggleSwitchModule,
+    LucideChevronRight,
+    LucideCopy,
+    LucideCreditCard,
+    LucideCirclePlus
+  ],
   template: `
     <div class="flex flex-col gap-6 lg:gap-7">
       <section>
-        <h1 class="text-2xl font-bold tracking-tight text-surface-900 dark:text-surface-50 lg:text-3xl">Добро пожаловать, Дорин!</h1>
-        <p class="mt-1 text-sm font-medium text-surface-500">Вот текущее состояние ваших инвестиций.</p>
+        <h1 class="text-2xl font-bold tracking-tight text-surface-900 dark:text-surface-50 lg:text-3xl">
+          Добро пожаловать, Дорин!
+        </h1>
+        <p class="mt-1 text-sm font-medium text-surface-500">
+          Вот текущее состояние ваших инвестиций.
+        </p>
       </section>
 
       <section class="grid grid-cols-1 gap-6 md:grid-cols-5">
@@ -24,12 +42,16 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                 <p class="dash-card-kicker">Ваш баланс</p>
                 <p-button severity="secondary" variant="outlined" size="small">
                   <span>Кошелёк</span>
-                  <svg [lucideIcon]="chevronRightIcon" class="h-3.5 w-3.5"></svg>
+                  <svg lucideChevronRight class="h-3.5 w-3.5"></svg>
                 </p-button>
               </div>
-              <h3 class="text-3xl font-bold tracking-tighter text-surface-900 dark:text-surface-50 xl:text-4xl">$ 12,450,000.80</h3>
+
+              <h3 class="text-3xl font-bold tracking-tighter text-surface-900 dark:text-surface-50 xl:text-4xl">
+                $ 12,450,000.80
+              </h3>
+
               <p-button>
-                <svg [lucideIcon]="circlePlusIcon" class="h-4 w-4"></svg>
+                <svg lucideCirclePlus class="h-4 w-4"></svg>
                 <span>Пополнить</span>
               </p-button>
             </div>
@@ -42,9 +64,10 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                   <p class="dash-card-kicker">Рефералы</p>
                   <h3 class="text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-50">12</h3>
                 </div>
+
                 <p-button severity="secondary" variant="outlined" size="small">
                   <span>Детали</span>
-                  <svg [lucideIcon]="chevronRightIcon" class="h-3.5 w-3.5"></svg>
+                  <svg lucideChevronRight class="h-3.5 w-3.5"></svg>
                 </p-button>
               </div>
 
@@ -57,10 +80,10 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                     [text]="true"
                     severity="secondary"
                     size="small"
-                    class="p-button-icon-only"
+                    styleClass="p-button-icon-only"
                     ariaLabel="Copy platform referral link"
                   >
-                    <svg [lucideIcon]="copyIcon" class="h-4 w-4"></svg>
+                    <svg lucideCopy class="h-4 w-4"></svg>
                   </p-button>
                 </div>
               </div>
@@ -74,10 +97,10 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                     [text]="true"
                     severity="secondary"
                     size="small"
-                    class="p-button-icon-only"
+                    styleClass="p-button-icon-only"
                     ariaLabel="Copy product referral link"
                   >
-                    <svg [lucideIcon]="copyIcon" class="h-4 w-4"></svg>
+                    <svg lucideCopy class="h-4 w-4"></svg>
                   </p-button>
                 </div>
               </div>
@@ -91,10 +114,10 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                     [text]="true"
                     severity="secondary"
                     size="small"
-                    class="p-button-icon-only"
+                    styleClass="p-button-icon-only"
                     ariaLabel="Copy referral code"
                   >
-                    <svg [lucideIcon]="copyIcon" class="h-4 w-4"></svg>
+                    <svg lucideCopy class="h-4 w-4"></svg>
                   </p-button>
                 </div>
               </div>
@@ -105,7 +128,9 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
         <div class="md:col-span-3">
           <p-card class="h-full">
             <ng-template #header>
-              <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">Инвестиции</h3>
+              <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
+                Инвестиции
+              </h3>
               <p-tabs value="shares" class="dash-tabs">
                 <p-tablist>
                   <p-tab value="shares">Мои доли</p-tab>
@@ -135,10 +160,12 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
               </div>
 
               <div class="flex flex-wrap items-center gap-3">
-                <h4 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">Активные рассрочки (2)</h4>
+                <h4 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">
+                  Активные рассрочки (2)
+                </h4>
                 <p-button severity="secondary" variant="outlined" size="small">
                   <span>Управление</span>
-                  <svg [lucideIcon]="chevronRightIcon" class="h-3.5 w-3.5"></svg>
+                  <svg lucideChevronRight class="h-3.5 w-3.5"></svg>
                 </p-button>
               </div>
 
@@ -148,13 +175,15 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                     <span class="dash-installment-card__id">ID: 88421</span>
                     <strong class="text-red-500">$ 42.00</strong>
                   </div>
+
                   <div class="space-y-1 text-[11px] font-bold uppercase">
                     <p>След. платеж: <span class="text-red-500">10.02.2026</span></p>
                     <p class="text-red-400/70">Оплатить не позднее: 17.02.2026</p>
                   </div>
+
                   <p-button severity="danger" variant="outlined" class="w-full !justify-center !gap-2">
                     <span>Оплатить сейчас</span>
-                    <svg [lucideIcon]="creditCardIcon" class="h-4 w-4"></svg>
+                    <svg lucideCreditCard class="h-4 w-4"></svg>
                   </p-button>
                 </article>
 
@@ -163,7 +192,9 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
                     <span class="dash-installment-card__id">ID: 90152</span>
                     <strong>$ 120.00</strong>
                   </div>
-                  <p class="text-[11px] font-bold uppercase text-surface-500 dark:text-surface-300">След. платеж: 25.02.2026</p>
+                  <p class="text-[11px] font-bold uppercase text-surface-500 dark:text-surface-300">
+                    След. платеж: 25.02.2026
+                  </p>
                   <div class="dash-installment-card__eta">через 15 дней</div>
                 </article>
               </div>
@@ -175,7 +206,9 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
       <section>
         <p-card>
           <ng-template #header>
-            <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">История цен</h3>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
+              История цен
+            </h3>
             <p-tabs value="month" class="dash-tabs dash-tabs--period">
               <p-tablist>
                 <p-tab value="month">Месяц</p-tab>
@@ -209,9 +242,4 @@ import { LucideDynamicIcon, LucideChevronRight, LucideCopy, LucideCreditCard, Lu
     </div>
   `
 })
-export class DashboardPageComponent {
-  protected readonly chevronRightIcon = LucideChevronRight;
-  protected readonly circlePlusIcon = LucideCirclePlus;
-  protected readonly copyIcon = LucideCopy;
-  protected readonly creditCardIcon = LucideCreditCard;
-}
+export class DashboardPageComponent {}
