@@ -4,25 +4,23 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { Menu } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
-import { ChevronDown, LucideAngularModule } from 'lucide-angular';
+import { LucideChevronDown} from '@lucide/angular';
 
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [ButtonModule, AvatarModule, MenuModule, LucideAngularModule],
+  imports: [ButtonModule, AvatarModule, MenuModule, LucideChevronDown],
   template: `
     <div class="hidden lg:block">
-      <p-button styleClass="shell-user-trigger" [text]="true" (onClick)="menu.toggle($event)">
-        <ng-template pTemplate="content">
-          <p-avatar label="DW" shape="circle" styleClass="shell-user-avatar" />
-          <span class="shell-user-meta">
-            <span class="shell-user-name">Dorin Watsap</span>
-            <span class="shell-user-id">ID: 882194</span>
-          </span>
-          <lucide-icon [img]="chevronDownIcon" class="h-4 w-4 text-surface-500" />
-        </ng-template>
+      <p-button severity="secondary" styleClass="p-1 pr-2 -my-1" size="small" [text]="true" (onClick)="menu.toggle($event)">
+        <p-avatar label="DW" class="shell-user-avatar" />
+        <span class="hidden text-left md:flex md:min-w-29.5 md:flex-col">
+          <span class="text-sm font-bold leading-none text-surface-800 dark:text-surface-100">Dorin Watsap</span>
+          <span class="mt-0.5 text-[11px] font-bold uppercase tracking-tight text-surface-500 dark:text-surface-400">ID: 882194</span>
+        </span>
+        <svg lucideChevronDown class="h-4 w-4 text-surface-500"></svg>
       </p-button>
-
+  
       <p-menu #menu [popup]="true" [model]="items" appendTo="body" styleClass="shell-user-menu" />
     </div>
   `
@@ -34,8 +32,6 @@ export class AppUserMenuComponent {
     { label: 'Профиль', icon: 'pi pi-user' },
     { label: 'Настройки', icon: 'pi pi-cog' },
     { separator: true },
-    { label: 'Выйти', icon: 'pi pi-sign-out', styleClass: 'text-red-500' }
+    { label: 'Выйти', icon: 'pi pi-sign-out', class: 'text-red-500' }
   ];
-
-  protected readonly chevronDownIcon = ChevronDown;
 }

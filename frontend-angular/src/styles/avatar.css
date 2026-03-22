@@ -1,0 +1,15 @@
+@layer properties {
+  :root,
+  .dark {
+  }
+
+  :root {
+    --p-avatar-width: --spacing(10);
+    --p-avatar-height: --spacing(10);
+    --p-avatar-icon-size: var(--text-sm);
+    --p-avatar-font-size: var(--text-sm);
+  }
+
+  .dark {
+  }
+}

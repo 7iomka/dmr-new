@@ -1,8 +1,8 @@
-import { Briefcase, CircleArrowUp, CircleUser, FileText, Home, Newspaper, Phone, LayoutDashboard, type LucideIconData, Settings, Users, Wallet } from 'lucide-angular';
+import { type LucideIcon, LucideBriefcase, LucideCircleArrowUp, LucideCircleUser, LucideFileText, LucideHouse, LucideNewspaper, LucidePhone, LucideLayoutDashboard, LucideSettings, LucideUsers, LucideWallet } from '@lucide/angular';
 
 export interface NavItem {
   label: string;
-  icon: LucideIconData;
+  icon: LucideIcon;
   route: string;
 }
 
@@ -15,32 +15,33 @@ export const APP_NAVIGATION: NavGroup[] = [
   {
     title: 'Основное',
     items: [
-      { label: 'Дашборд', icon: LayoutDashboard, route: '/dashboard' },
-      { label: 'Инвестиции', icon: Briefcase, route: '/investments' }
+      { label: 'Дашборд', icon: LucideLayoutDashboard, route: '/dashboard' },
+      { label: 'Инвестиции', icon: LucideBriefcase, route: '/investments' }
     ]
   },
   {
     title: 'Финансы',
     items: [
-      { label: 'Кошелёк', icon: Wallet, route: '/wallet' },
-      { label: 'Выводы', icon: CircleArrowUp, route: '/withdrawals' },
-      { label: 'Отчёт', icon: FileText, route: '/report' }
+      { label: 'Кошелёк', icon: LucideWallet, route: '/wallet' },
+      { label: 'Выводы', icon: LucideCircleArrowUp, route: '/withdrawals' },
+      { label: 'Отчёт', icon: LucideFileText, route: '/report' }
     ]
   },
   {
     title: 'Аккаунт',
     items: [
-      { label: 'Профиль', icon: CircleUser, route: '/profile' },
-      { label: 'Рефералы', icon: Users, route: '/referrals' },
-      { label: 'Настройки', icon: Settings, route: '/settings' }
+      { label: 'Профиль', icon: LucideCircleUser, route: '/profile' },
+      { label: 'Рефералы', icon: LucideUsers, route: '/referrals' },
+      { label: 'Настройки', icon: LucideSettings, route: '/settings' }
     ]
   },
   {
     title: 'Информация',
     items: [
-      { label: 'Главная', icon: Home, route: '/home' },
-      { label: 'Новости', icon: Newspaper, route: '/news' },
-      { label: 'Контакты', icon: Phone, route: '/contacts' }
+      { label: 'Главная', icon: LucideHouse, route: '/home' },
+      { label: 'Новости', icon: LucideNewspaper, route: '/news' },
+      { label: 'Контакты', icon: LucidePhone, route: '/contacts' }
     ]
   }
 ];
+

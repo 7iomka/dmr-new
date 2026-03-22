@@ -1,0 +1,72 @@
+@layer properties {
+  :root,
+  .dark {
+    --p-button-sm-padding-x: var(--c-button-sm-padding-x);
+    --p-button-sm-padding-y: var(--c-button-sm-padding-y);
+    --p-button-sm-font-size: var(--c-button-sm-font-size);
+    --p-button-sm-icon-only-width: var(--c-button-sm-min-height);
+
+    --p-button-border-radius: var(--radius-lg);
+
+    --p-button-outlined-secondary-border-color: var(--c-button-outlined-secondary-border-color);
+    --p-button-outlined-secondary-color: var(--c-button-outlined-secondary-color);
+    --p-button-outlined-secondary-hover-background: var(
+      --c-button-outlined-secondary-hover-background
+    );
+    --p-button-outlined-secondary-active-background: var(
+      --c-button-outlined-secondary-active-background
+    );
+  }
+
+  :root {
+    --c-button-sm-padding-x: --spacing(3);
+    --c-button-sm-padding-y: --spacing(1.5);
+    --c-button-sm-min-height: --spacing(7.5);
+    --c-button-sm-font-size: var(--text-xs);
+    --c-button-sm-gap: --spacing(1.5);
+
+    --c-button-outlined-secondary-background: var(--color-zinc-50);
+    --c-button-outlined-secondary-border-color: var(--color-zinc-200);
+    --c-button-outlined-secondary-color: var(--color-zinc-700);
+    --c-button-outlined-secondary-hover-background: var(--color-zinc-100);
+    --c-button-outlined-secondary-hover-border-color: var(--color-zinc-200);
+    --c-button-outlined-secondary-active-background: var(--color-zinc-200);
+  }
+
+  .dark {
+    --c-button-outlined-secondary-background: --alpha(var(--color-zinc-800) / 70%);
+    --c-button-outlined-secondary-border-color: var(--color-zinc-700);
+    --c-button-outlined-secondary-color: var(--color-zinc-300);
+    --c-button-outlined-secondary-hover-background: var(--color-zinc-800);
+    --c-button-outlined-secondary-hover-border-color: var(--color-zinc-600);
+    --c-button-outlined-secondary-active-background: --alpha(var(--color-zinc-700) / 85%);
+  }
+}
+
+@layer components {
+  .p-button {
+    font-weight: var(--font-weight-medium);
+  }
+  .p-button-sm {
+    border-radius: var(--radius-md);
+    min-height: var(--c-button-sm-min-height);
+    gap: var(--c-button-sm-gap);
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .p-button-icon-only {
+    height: var(--p-button-icon-only-width);
+  }
+}
+
+@layer primeng {
+  .p-button-outlined.p-button-secondary {
+    background: var(--c-button-outlined-secondary-background);
+  }
+
+  .p-button-outlined.p-button-secondary:not(:disabled):hover {
+    border-color: var(--c-button-outlined-secondary-hover-border-color);
+  }
+}
