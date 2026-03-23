@@ -22,6 +22,7 @@ When editing Angular code, follow these docs first:
 - `./docs/color-palette-guide.md`
 - `./docs/button-migration-strategy.md`
 - `./docs/angular-primeng-corrective-report.md`
+- `./docs/tailwind-angular-dark-mode-guide.md` ← required for all styling work
 
 ## Package manager
 

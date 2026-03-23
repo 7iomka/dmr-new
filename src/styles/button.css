@@ -1,6 +1,7 @@
 @layer properties {
   :root,
   .dark {
+    --p-button-label-font-weight: 700;
     --p-button-sm-padding-x: var(--c-button-sm-padding-x);
     --p-button-sm-padding-y: var(--c-button-sm-padding-y);
     --p-button-sm-font-size: var(--c-button-sm-font-size);
@@ -46,7 +47,6 @@
 
 @layer components {
   .p-button {
-    font-weight: 700;
     text-transform: uppercase;
     font-size: var(--text-sm);
     min-height: var(--c-button-min-height);

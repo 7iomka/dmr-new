@@ -36,8 +36,8 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
               <div class="flex justify-between sm:mb-2">
                 <p class="dash-card-sm-title">Ваш баланс</p>
                 <p-button severity="secondary" size="small" variant="outlined">
-                  <span>Кошелёк</span>
-                  <svg class="h-3.5 w-3.5" lucideChevronRight></svg>
+                  <span pButtonLabel>Кошелёк</span>
+                  <svg class="h-3.5 w-3.5" lucideChevronRight pButtonIcon></svg>
                 </p-button>
               </div>
 
@@ -46,8 +46,8 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
               </h3>
 
               <p-button [raised]="true">
-                <svg class="h-4 w-4" lucideCirclePlus></svg>
-                <span>Пополнить</span>
+                <svg class="h-4 w-4" lucideCirclePlus pButtonIcon></svg>
+                <span pButtonLabel>Пополнить</span>
               </p-button>
             </div>
           </p-card>
@@ -61,8 +61,8 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
                 </div>
 
                 <p-button severity="secondary" size="small" variant="outlined">
-                  <span>Детали</span>
-                  <svg class="h-3.5 w-3.5" lucideChevronRight></svg>
+                  <span pButtonLabel>Детали</span>
+                  <svg class="h-3.5 w-3.5" lucideChevronRight pButtonIcon></svg>
                 </p-button>
               </div>
 
@@ -75,10 +75,9 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
                     class="dash-ref-box__action"
                     severity="secondary"
                     size="small"
+                    styleClass="p-button-icon-only"
                     [raised]="true">
-                    <ng-template #icon>
-                      <svg class="h-4 w-4" lucideCopy></svg>
-                    </ng-template>
+                    <svg class="h-4 w-4" lucideCopy pButtonIcon></svg>
                   </p-button>
                 </div>
               </div>
@@ -92,10 +91,9 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
                     class="dash-ref-box__action"
                     severity="secondary"
                     size="small"
+                    styleClass="p-button-icon-only"
                     [raised]="true">
-                    <ng-template #icon>
-                      <svg class="h-4 w-4" lucideCopy></svg>
-                    </ng-template>
+                    <svg class="h-4 w-4" lucideCopy pButtonIcon></svg>
                   </p-button>
                 </div>
               </div>
@@ -108,10 +106,9 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
                     class="dash-ref-box__action"
                     severity="secondary"
                     size="small"
+                    styleClass="p-button-icon-only"
                     [raised]="true">
-                    <ng-template #icon>
-                      <svg class="h-4 w-4" lucideCopy></svg>
-                    </ng-template>
+                    <svg class="h-4 w-4" lucideCopy pButtonIcon></svg>
                   </p-button>
                 </div>
               </div>
@@ -169,8 +166,8 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
                   Активные рассрочки (2)
                 </h4>
                 <p-button severity="secondary" size="small" variant="outlined">
-                  <span>Управление</span>
-                  <svg class="h-3.5 w-3.5" lucideChevronRight></svg>
+                  <span pButtonLabel>Управление</span>
+                  <svg class="h-3.5 w-3.5" lucideChevronRight pButtonIcon></svg>
                 </p-button>
               </div>
 
@@ -193,8 +190,8 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
                   </div>
 
                   <p-button severity="danger" size="small">
-                    <svg class="h-4 w-4" lucideCreditCard></svg>
-                    <span>Оплатить сейчас</span>
+                    <svg class="h-4 w-4" lucideCreditCard pButtonIcon></svg>
+                    <span pButtonLabel>Оплатить сейчас</span>
                   </p-button>
                 </article>
 
@@ -210,13 +207,12 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
                     <p class="text-xs font-bold text-surface-500 dark:text-surface-400">След. платеж: 25.02.2026</p>
                   </div>
                   <p-button
+                    label="через 15 дней"
                     severity="primary"
                     size="small"
                     styleClass="p-disabled:opacity-95 dark:p-disabled:opacity-85"
                     variant="outlined"
-                    [disabled]="true">
-                    через 15 дней
-                  </p-button>
+                    [disabled]="true" />
                 </article>
               </div>
             </div>

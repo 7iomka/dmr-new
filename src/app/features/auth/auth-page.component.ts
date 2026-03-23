@@ -31,7 +31,7 @@ import { AUTH_PAGE_CONFIGS, AUTH_PATH_TO_CHANNEL, AuthField, AuthPageConfig } fr
     <section class="auth-shell">
       <div class="auth-shell-glow"></div>
 
-      <p-card styleClass="auth-card">
+      <p-card class="auth-card">
         <div class="auth-card-dot auth-card-dot-1"></div>
         <div class="auth-card-dot auth-card-dot-2"></div>
 

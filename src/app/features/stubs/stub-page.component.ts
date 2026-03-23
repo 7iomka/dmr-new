@@ -14,9 +14,7 @@ import { ButtonModule } from 'primeng/button';
         итерациях.
       </p>
       <div>
-        <a pButton routerLink="/dashboard" severity="secondary" type="button" variant="outlined"
-          >Вернуться к дашборду</a
-        >
+        <a outlined pButton routerLink="/dashboard" severity="secondary" type="button">Вернуться к дашборду</a>
       </div>
     </section>
   `,

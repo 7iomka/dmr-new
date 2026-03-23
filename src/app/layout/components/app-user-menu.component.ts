@@ -21,7 +21,7 @@ import { LucideChevronDown } from '@lucide/angular';
           >ID: 882194</span
         >
       </span>
-      <svg class="h-4 w-4 text-surface-500" lucideChevronDown></svg>
+      <svg class="h-4 w-4 text-surface-500" lucideChevronDown pButtonIcon></svg>
     </p-button>
     <p-menu #menu appendTo="body" styleClass="shell-user-menu" [model]="items" [popup]="true" />
   `,

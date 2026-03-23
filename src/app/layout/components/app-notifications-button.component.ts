@@ -10,9 +10,7 @@ import { LucideBell } from '@lucide/angular';
   template: `
     <div class="inline-flex relative">
       <p-button severity="secondary" variant="outlined">
-        <ng-template #icon>
-          <svg class="h-4.5 w-4.5" lucideBell></svg>
-        </ng-template>
+        <svg class="h-4.5 w-4.5" lucideBell pButtonIcon></svg>
       </p-button>
       <span
         class="peer pointer-events-none absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-zinc-900"

@@ -90,8 +90,8 @@ Rules:
 
 ```html
 <p-button>
-  <svg lucidePlus class="h-4 w-4"></svg>
-  <span>Add</span>
+  <svg lucidePlus class="h-4 w-4" pButtonIcon></svg>
+  <span pButtonLabel>Add</span>
 </p-button>
 ```
 
@@ -99,7 +99,7 @@ Rules:
 
 ```html
 <p-button severity="secondary" size="small" styleClass="p-button-icon-only">
-  <svg lucideX class="h-4 w-4"></svg>
+  <svg lucideX class="h-4 w-4" pButtonIcon></svg>
 </p-button>
 ```
 
@@ -203,10 +203,8 @@ Examples:
 
 ```html
 <p-button severity="secondary" variant="outlined">
-  <ng-template #icon>
-    <svg siTelegramIcon class="h-4.5 w-4.5"></svg>
-  </ng-template>
-  <span>Telegram</span>
+  <svg siTelegramIcon class="h-4.5 w-4.5" pButtonIcon></svg>
+  <span pButtonLabel>Telegram</span>
 </p-button>
 ```
 
@@ -275,7 +273,7 @@ When generating Angular UI:
 2. Prefer static Lucide icons
 3. Use dynamic Lucide icons only if required
 4. If icon is missing and is brand/social → use `@semantic-icons/simple-icons`
-5. Use PrimeNG `#icon` slot when needed
+5. Use the `pButtonIcon` helper directive when you define svg icon inside p-button, except some cases when you have to use PrimeNG `#icon` slot
 6. Do NOT use PrimeIcons unless required
 7. Do NOT create wrapper components
 8. Do NOT guess icon names

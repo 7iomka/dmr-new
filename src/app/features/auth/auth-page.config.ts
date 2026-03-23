@@ -1,11 +1,13 @@
 import {
   type LucideIcon,
   LucideKey,
+  LucideLogIn,
   LucideMail,
   LucideMessageCircle,
   LucidePhone,
   LucideSend,
   LucideShieldCheck,
+  LucideShieldQuestionMark,
   LucideSmartphone,
   LucideUserPlus,
 } from '@lucide/angular';
@@ -45,7 +47,7 @@ export type AuthPageConfig = {
 
 export const AUTH_PAGE_CONFIGS: Record<string, AuthPageConfig> = {
   login: {
-    icon: LucideKey,
+    icon: LucideLogIn,
     title: 'Выберите способ входа',
     subtitle: 'Выберите предпочтительный способ аутентификации.',
     mode: 'selector',
@@ -253,12 +255,12 @@ export const AUTH_PAGE_CONFIGS: Record<string, AuthPageConfig> = {
         label: 'Пароль',
         type: 'password',
         icon: LucideKey,
-        placeholder: 'Минимум 8 символов',
+        placeholder: 'Создайте пароль',
         autocomplete: 'new-password',
       },
       {
         name: 'confirmPassword',
-        label: 'Повторите пароль',
+        label: 'Подтвердите пароль',
         type: 'password',
         icon: LucideKey,
         placeholder: 'Повторите пароль',
@@ -276,14 +278,14 @@ export const AUTH_PAGE_CONFIGS: Record<string, AuthPageConfig> = {
     footerLinks: [{ label: 'Войти', link: '/auth/login', prefix: 'Уже есть аккаунт? ' }],
   },
   forgot: {
-    icon: LucideShieldCheck,
+    icon: LucideShieldQuestionMark,
     title: 'Выберите способ восстановления',
-    subtitle: 'Мы отправим код подтверждения выбранным способом.',
+    subtitle: 'Отправим код подтверждения удобным способом.',
     mode: 'selector',
     links: [
       {
         title: 'Email OTP',
-        description: 'Код подтверждения на почту',
+        description: 'Код на почту',
         icon: LucideMail,
         routerLink: '/auth/forgot/email',
         primary: true,

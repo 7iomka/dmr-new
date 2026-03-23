@@ -20,6 +20,123 @@ Use `p-button` directly:
 - layout/geometry → via Tailwind utilities and minimal helper classes only when required;
 - icons → via PrimeIcons or Lucide static svg API.
 
+---
+
+## NEW: pButton Directive Usage (IMPORTANT)
+
+PrimeNG provides **two ways** to use buttons:
+
+1. `<p-button>` component (preferred for most cases)
+2. `[pButton]` directive (for native elements like `<button>` or `<a>`)
+
+Use `[pButton]` when:
+
+- you need `routerLink`
+- you need semantic `<a>`
+- you integrate into existing markup
+
+---
+
+### Basic Example (Anchor + Router)
+
+```html
+<a pButton routerLink="/dashboard">Back to dashboard</a>
+```
+
+---
+
+### Passing Props (Directive API)
+
+Unlike `<p-button>`, props are passed as **inputs on the element**:
+
+```html
+<a
+  pButton
+  routerLink="/dashboard"
+  severity="secondary"
+  outlined
+  size="small"
+>
+  Back to dashboard
+</a>
+```
+
+Key differences:
+
+- `outlined` → boolean attribute (NOT `variant="outlined"`)
+- `text`, `raised`, `rounded`, `plain` → boolean flags
+- `size="small" | "large"`
+- `severity="primary" | "secondary" | "danger" | "info"`
+
+Source: PrimeNG directive API fileciteturn0file1
+
+---
+
+### Icon + Label (Directive)
+
+```html
+<a pButton routerLink="/dashboard" severity="secondary" outlined>
+  <svg class="h-4 w-4" lucideChevronLeft pButtonIcon></svg>
+  <span pButtonLabel>Back</span>
+</a>
+```
+
+---
+
+### Icon Only (Directive)
+
+```html
+<button pButton text severity="secondary" aria-label="Copy">
+  <svg class="h-4 w-4" lucideCopy pButtonIcon></svg>
+</button>
+```
+
+---
+
+### Loading State
+
+```html
+<button pButton [loading]="isLoading">Submit</button>
+```
+
+---
+
+### Full Width (Fluid)
+
+```html
+<button pButton fluid>Continue</button>
+```
+
+---
+
+### PassThrough (Advanced)
+
+Used to inject attributes into internal DOM:
+
+```html
+<button
+  pButton
+  [pButtonPT]="{
+    root: { class: 'w-full' }
+  }"
+>
+  Continue
+</button>
+```
+
+---
+
+### When to Use What
+
+| Case                          | Use          |
+| ----------------------------- | ------------ |
+| Standard button               | `<p-button>` |
+| Router link / anchor          | `[pButton]`  |
+| Need full control over markup | `[pButton]`  |
+| Simple UI                     | `<p-button>` |
+
+---
+
 ## Canonical Usage
 
 ### Primary
@@ -36,11 +153,7 @@ Use `p-button` directly:
 
 <p-button label="Сохранить" size="small" />
 
-## Icon-Only Buttons
-
-### PrimeIcons
-
-<p-button icon="pi pi-user" [rounded]="true" [text]="true" severity="info" />
+## Icon + Label Buttons
 
 ### Lucide (CURRENT STANDARD)
 
@@ -48,9 +161,25 @@ Import:
 import { LucideCopy } from '@lucide/angular';
 
 Usage:
-<p-button [rounded]="true" [text]="true" severity="secondary" styleClass="p-button-icon-only" ariaLabel="Copy">
-<svg lucideCopy class="h-4 w-4"></svg>
-</p-button>
+<p-button [text]="true" severity="secondary" styleClass="p-button-icon-only" ariaLabel="Copy"> <svg class="h-4 w-4" lucideCopy pButtonIcon></svg> <span pButtonLabel>Copy</span> </p-button>
+
+### PrimeIcons
+
+<p-button label="Юзер" icon="pi pi-user" [text]="true" severity="info" />
+
+## Icon-Only Buttons
+
+### Lucide (CURRENT STANDARD)
+
+Import:
+import { LucideCopy } from '@lucide/angular';
+
+Usage:
+<p-button [text]="true" severity="secondary" styleClass="p-button-icon-only" ariaLabel="Copy"> <svg class="h-4 w-4" lucideCopy pButtonIcon></svg> </p-button>
+
+### PrimeIcons
+
+<p-button icon="pi pi-user" [text]="true" severity="info" />
 
 ## Lucide Usage Rules
 
@@ -58,6 +187,8 @@ Usage:
 - Attribute must be lowerCamelCase (lucideChevronRight)
 - Dynamic icons only when necessary
 - Do NOT use <lucide-icon> or legacy API
+- Use pButtonIcon directive
+- For more details, see `./icons-usage-guide.md`
 
 ## Legacy → PrimeNG Mapping
 
@@ -66,7 +197,7 @@ Usage:
 - btn-danger → severity="danger" variant="outlined"
 - btn-info → severity="info" variant="outlined"
 - btn-sm → size="small"
-- btn-icon → styleClass="p-button-icon-only"
+- btn-icon → styleClass="p-button-icon-only" and use svg with pButtonIcon directive
 
 ## Styling Strategy
 
