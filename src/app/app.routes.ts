@@ -1,11 +1,15 @@
 import { Routes } from '@angular/router';
 
+import { AuthPageComponent } from './features/auth/auth-page.component';
 import { DashboardPageComponent } from './features/dashboard/dashboard-page.component';
 import { StubPageComponent } from './features/stubs/stub-page.component';
 
 export const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: 'dashboard', component: DashboardPageComponent },
+  { path: 'auth', pathMatch: 'full', redirectTo: 'auth/login' },
+  { path: 'auth/:mode', component: AuthPageComponent },
+  { path: 'auth/:mode/:method', component: AuthPageComponent },
   { path: 'investments', component: StubPageComponent, data: { title: 'Инвестиции' } },
   { path: 'wallet', component: StubPageComponent, data: { title: 'Кошелёк' } },
   { path: 'withdrawals', component: StubPageComponent, data: { title: 'Выводы' } },

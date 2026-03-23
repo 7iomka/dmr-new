@@ -4,6 +4,7 @@
 @import './styles/variables.css';
 @import './styles/scrollbar.css';
 @import './styles/button.css';
+@import './styles/form-controls.css';
 @import './styles/avatar.css';
 
 @custom-variant dark (&:where(.dark, .dark *));

@@ -1,0 +1,228 @@
+:host {
+  display: block;
+}
+
+.auth-shell {
+  position: relative;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 38rem;
+  padding-block: 2rem;
+}
+
+.auth-shell-glow {
+  position: absolute;
+  inset-inline: 15%;
+  inset-block-start: 1rem;
+  z-index: 0;
+  height: 16rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, color-mix(in oklab, var(--p-primary-500) 18%, transparent), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+:host ::ng-deep .auth-card.p-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+:host ::ng-deep .auth-card .p-card-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+
+.auth-card-dot {
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 9999px;
+  background-color: color-mix(in oklab, var(--p-primary-500) 15%, transparent);
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.auth-card-dot-1 {
+  inset-inline-end: -3.5rem;
+  inset-block-start: -3.25rem;
+}
+
+.auth-card-dot-2 {
+  inset-inline-start: -2.5rem;
+  inset-block-end: -4rem;
+}
+
+.auth-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  text-align: center;
+}
+
+.auth-card-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-lg);
+  color: var(--p-primary-500);
+  background: color-mix(in oklab, var(--p-primary-500) 20%, transparent);
+  border: 1px solid color-mix(in oklab, var(--p-primary-500) 30%, transparent);
+}
+
+.auth-title {
+  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.auth-subtitle {
+  max-width: 32ch;
+  color: var(--p-surface-500);
+  font-size: 0.95rem;
+}
+
+.auth-method-list,
+.auth-form,
+.auth-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.auth-method-btn {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--p-surface-200);
+  background-color: color-mix(in oklab, var(--p-surface-0) 88%, transparent);
+  padding: 0.85rem 0.9rem;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.dark .auth-method-btn {
+  border-color: var(--p-surface-700);
+  background-color: color-mix(in oklab, var(--p-surface-900) 72%, transparent);
+}
+
+.auth-method-btn:hover {
+  border-color: color-mix(in oklab, var(--p-primary-500) 32%, var(--p-surface-200));
+}
+
+.dark .auth-method-btn:hover {
+  border-color: color-mix(in oklab, var(--p-primary-500) 42%, var(--p-surface-700));
+}
+
+.auth-method-btn-primary {
+  border-color: color-mix(in oklab, var(--p-primary-500) 30%, var(--p-surface-200));
+  background: color-mix(in oklab, var(--p-primary-500) 10%, var(--p-surface-0));
+}
+
+.dark .auth-method-btn-primary {
+  border-color: color-mix(in oklab, var(--p-primary-500) 42%, var(--p-surface-700));
+  background: color-mix(in oklab, var(--p-primary-500) 12%, var(--p-surface-900));
+}
+
+.auth-method-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.auth-method-left {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.auth-method-icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-md);
+  color: var(--p-primary-500);
+  background-color: color-mix(in oklab, var(--p-primary-500) 13%, transparent);
+}
+
+.auth-method-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.auth-method-desc {
+  color: var(--p-surface-500);
+  font-size: 0.8rem;
+}
+
+.auth-method-arrow {
+  width: 1rem;
+  height: 1rem;
+  color: var(--p-surface-500);
+}
+
+.auth-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.625rem;
+}
+
+.auth-divider {
+  border-top: 1px solid var(--p-surface-200);
+  padding-top: 0.875rem;
+}
+
+.dark .auth-divider {
+  border-top-color: var(--p-surface-700);
+}
+
+.auth-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.625rem 1.1rem;
+}
+
+.auth-muted {
+  color: var(--p-surface-500);
+  font-size: 0.85rem;
+}
+
+.auth-link {
+  color: var(--p-primary-500);
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.auth-otp-meta {
+  color: var(--p-surface-500);
+  font-size: 0.75rem;
+}
+
+@media (min-width: 48rem) {
+  .auth-shell {
+    padding-block: 2.5rem;
+  }
+
+  .auth-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  :host ::ng-deep .auth-card .p-card-body {
+    padding: 1.75rem;
+    gap: 1.5rem;
+  }
+}

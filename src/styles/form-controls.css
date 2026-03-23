@@ -1,0 +1,46 @@
+@layer properties {
+  :root,
+  .dark {
+    --p-inputtext-border-radius: var(--radius-lg);
+    --p-inputtext-sm-border-radius: var(--radius-lg);
+  }
+
+  :root {
+    --c-auth-input-min-height: --spacing(11);
+    --c-auth-input-padding-inline: --spacing(10);
+  }
+}
+
+@layer components {
+  .c-auth-field {
+    @apply relative z-10 flex flex-col gap-2;
+  }
+
+  .c-auth-field__label {
+    @apply text-sm font-medium text-surface-700 dark:text-surface-300;
+  }
+
+  .c-auth-field__control {
+    @apply relative;
+  }
+
+  .c-auth-field__icon {
+    @apply pointer-events-none absolute inset-y-0 left-0 flex w-10 items-center justify-center text-surface-400 dark:text-surface-500;
+  }
+
+  .c-auth-input.p-inputtext {
+    min-height: var(--c-auth-input-min-height);
+    width: 100%;
+    padding-inline: var(--c-auth-input-padding-inline) 1rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.95rem;
+  }
+
+  .p-inputotp {
+    @apply justify-between gap-2;
+  }
+
+  .p-inputotp-input {
+    @apply h-11 w-full max-w-11 rounded-lg text-center text-lg font-bold;
+  }
+}
