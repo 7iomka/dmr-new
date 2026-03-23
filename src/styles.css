@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
+@import './styles/fonts.css';
+@import './styles/variables.css';
 @import './styles/scrollbar.css';
 @import './styles/button.css';
 @import './styles/avatar.css';
@@ -13,27 +15,6 @@
 
 @variant dark {
   --color-card: #14171a;
-}
-
-@font-face {
-  font-family: TTNorms;
-  src: url('/assets/fonts/TTNorms/TTNorms-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: TTNorms;
-  src: url('/assets/fonts/TTNorms/TTNorms-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: TTNorms;
-  src: url('/assets/fonts/TTNorms/TTNorms-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
 }
 
 @layer base {
@@ -126,112 +107,6 @@
   .page-footer {
     @apply shrink-0 min-h-0 border-t border-zinc-200 bg-card dark:border-zinc-800;
     padding: 48px 0 32px;
-  }
-
-  .dashboard-table-shell .p-datatable-thead > tr > th,
-  .dashboard-table-shell .p-datatable-tbody > tr > td {
-    @apply border-surface-200 text-sm dark:border-surface-700;
-  }
-
-  .dark .dashboard-table-shell .p-datatable-thead > tr > th,
-  .dark .dashboard-table-shell .p-datatable-tbody > tr > td {
-    @apply bg-[#151a1f] text-surface-200;
-  }
-
-  .dash-card-kicker {
-    @apply text-[10px] font-bold uppercase tracking-[0.18em] text-surface-500;
-  }
-
-  .dash-ref-box {
-    @apply space-y-1;
-  }
-
-  .dash-ref-box__label {
-    @apply block text-[10px] font-bold uppercase text-surface-500;
-  }
-
-  .dash-ref-box__row {
-    @apply flex items-center rounded-lg border border-surface-200 bg-surface-50 px-2 py-1 text-xs font-mono text-surface-600 dark:border-surface-700 dark:bg-surface-950/40 dark:text-surface-300;
-  }
-
-  .dash-ref-box__row span {
-    @apply truncate px-2 py-2;
-  }
-
-  .dash-ref-code {
-    @apply flex items-center justify-between rounded-lg border border-surface-200 bg-surface-50 px-3 py-2.5 dark:border-surface-800 dark:bg-surface-950/40;
-  }
-
-  .dash-ref-code > span {
-    @apply text-[10px] font-bold uppercase text-surface-500;
-  }
-
-  .dash-ref-code strong {
-    @apply font-mono text-sm font-bold tracking-wider text-primary-500;
-  }
-
-  .dash-tabs .p-tablist-tab-list {
-    @apply rounded-xl bg-primary-500/10 p-1;
-  }
-
-  .dash-tabs .p-tab {
-    @apply rounded-lg text-sm font-semibold;
-  }
-
-  .dash-tabs--period .p-tablist-tab-list {
-    @apply rounded-lg bg-surface-200/60 dark:bg-surface-800;
-  }
-
-  .dash-stat-card {
-    @apply rounded-lg border border-surface-200 bg-surface-50 p-4 dark:border-surface-800 dark:bg-surface-950/35;
-  }
-
-  .dash-stat-card p {
-    @apply mb-1 text-[10px] font-bold uppercase text-surface-500;
-  }
-
-  .dash-stat-card h4 {
-    @apply text-2xl font-bold leading-none text-surface-900 dark:text-surface-50;
-  }
-
-  .dash-installment-card {
-    @apply flex flex-col gap-4 rounded-lg border border-surface-200 bg-surface-50 p-4 dark:border-surface-800 dark:bg-surface-950/35;
-  }
-
-  .dash-installment-card--danger {
-    @apply border-red-500/20 bg-red-500/5;
-  }
-
-  .dash-installment-card__id {
-    @apply text-[10px] font-bold uppercase text-surface-400;
-  }
-
-  .dash-installment-card__eta {
-    @apply mt-auto flex items-center justify-center rounded-lg border border-surface-200 bg-surface-100 py-2.5 text-[10px] font-bold uppercase text-primary-500 dark:border-surface-700 dark:bg-surface-800;
-  }
-
-  .dash-chart-shell {
-    @apply rounded-lg border border-surface-200 bg-surface-0 p-5 dark:border-surface-800 dark:bg-surface-950/30;
-  }
-
-  .dash-chart-legend {
-    @apply mb-4 flex items-center justify-center gap-6 text-sm font-semibold text-surface-500;
-  }
-
-  .dash-chart-legend .dot {
-    @apply mr-2 inline-block h-3 w-3 rounded-full align-middle;
-  }
-
-  .dash-chart-legend .dot-blue {
-    @apply bg-blue-500;
-  }
-
-  .dash-chart-legend .dot-green {
-    @apply bg-primary-500;
-  }
-
-  .dash-chart-placeholder {
-    @apply flex h-[260px] items-center justify-center rounded-lg border border-dashed border-surface-300 text-sm font-medium text-surface-500 dark:border-surface-700;
   }
 }
 

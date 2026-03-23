@@ -1,6 +1,5 @@
 {
   "prettier.requireConfig": true,
-
   "tailwindCSS.includeLanguages": {
     "php": "html"
   },
@@ -22,10 +21,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "wordWrapColumn"
   },
   "[postcss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "wordWrapColumn"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -35,6 +36,14 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
+  "emmet.includeLanguages": {
+    "css": "css",
+    "postcss": "css",
+    "html": "html",
+    "typescript": "html"
+  },
+  "emmet.useInlineCompletions": true,
+  "emmet.triggerExpansionOnTab": true,
   "editor.unicodeHighlight.ambiguousCharacters": true,
   "editor.unicodeHighlight.invisibleCharacters": true,
   "indentRainbow.ignoreErrorLanguages": ["*"]

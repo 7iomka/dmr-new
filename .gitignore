@@ -9,7 +9,6 @@
 /node_modules/
 
 # editor and local env
-/.vscode/
 /.idea/
 .DS_Store
 .env

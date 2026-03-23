@@ -1,0 +1,104 @@
+@reference "../../../styles.css";
+
+.dash-card-sm-title {
+  @apply text-[10px] font-bold uppercase tracking-[0.18em] text-surface-500;
+}
+
+/* Ref box */
+.dash-ref-box {
+  @apply flex flex-col gap-1;
+}
+
+.dash-ref-box__label {
+  @apply self-start inline-flex text-[10px] font-bold uppercase text-surface-500;
+}
+
+.dash-ref-box__row {
+  @apply flex items-center rounded-lg border border-surface-200 bg-surface-50 px-2 py-1 text-xs font-mono text-surface-600 dark:border-surface-700 dark:bg-surface-950/40 dark:text-surface-300;
+}
+
+.dash-ref-box__content {
+  @apply truncate p-2 w-full select-all;
+}
+
+.dash-ref-box__action {
+  @apply shrink-0;
+}
+/* Tabs */
+.dash-tabs .p-tablist-tab-list {
+  @apply rounded-xl bg-primary-500/10 p-1;
+}
+
+.dash-tabs .p-tab {
+  @apply rounded-lg text-sm font-semibold;
+}
+
+.dash-tabs--period .p-tablist-tab-list {
+  @apply rounded-lg bg-surface-200/60 dark:bg-surface-800;
+}
+
+/* Stats */
+.dash-stat-card {
+  @apply rounded-lg border border-surface-200 bg-surface-50 p-4 dark:border-surface-800 dark:bg-surface-950/35;
+}
+
+.dash-stat-card p {
+  @apply mb-1 text-[10px] font-bold uppercase text-surface-500;
+}
+
+.dash-stat-card h4 {
+  @apply text-2xl font-bold leading-none text-surface-900 dark:text-surface-50;
+}
+
+/* Installment card */
+.dash-installment-card {
+  @apply flex flex-col gap-4 rounded-lg border border-surface-200 bg-surface-50 p-4 dark:border-surface-800 dark:bg-surface-950/35;
+}
+
+.dash-installment-card--danger {
+  @apply border-red-500/20 bg-red-500/5;
+}
+
+.dash-installment-card__id {
+  @apply text-[10px] font-bold uppercase text-surface-400 dark:text-surface-400;
+}
+
+.dash-installment-card__eta {
+  @apply mt-auto flex items-center justify-center rounded-lg border border-surface-200 bg-surface-100 py-2.5 text-[10px] font-bold uppercase text-primary-500 dark:border-surface-700 dark:bg-surface-800;
+}
+
+/* Chart demo */
+.dash-chart-shell {
+  @apply rounded-lg border border-surface-200 bg-surface-0 p-5 dark:border-surface-800 dark:bg-surface-950/30;
+}
+
+.dash-chart-legend {
+  @apply mb-4 flex items-center justify-center gap-6 text-sm font-semibold text-surface-500;
+}
+
+.dash-chart-legend .dot {
+  @apply mr-2 inline-block h-3 w-3 rounded-full align-middle;
+}
+
+.dash-chart-legend .dot-blue {
+  @apply bg-blue-500;
+}
+
+.dash-chart-legend .dot-green {
+  @apply bg-primary-500;
+}
+
+.dash-chart-placeholder {
+  @apply flex h-[260px] items-center justify-center rounded-lg border border-dashed border-surface-300 text-sm font-medium text-surface-500 dark:border-surface-700;
+}
+
+/* Table */
+.dashboard-table-shell .p-datatable-thead > tr > th,
+.dashboard-table-shell .p-datatable-tbody > tr > td {
+  @apply border-surface-200 text-sm dark:border-surface-700;
+}
+
+.dark .dashboard-table-shell .p-datatable-thead > tr > th,
+.dark .dashboard-table-shell .p-datatable-tbody > tr > td {
+  @apply bg-[#151a1f] text-surface-200;
+}

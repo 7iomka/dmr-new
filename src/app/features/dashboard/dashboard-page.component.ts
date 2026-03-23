@@ -18,6 +18,7 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
     LucideCreditCard,
     LucideCirclePlus,
   ],
+  styleUrl: './dashboard-page.component.css',
   template: `
     <div class="flex flex-col gap-6 lg:gap-7">
       <section>
@@ -32,7 +33,7 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
           <p-card>
             <div class="flex flex-col gap-4">
               <div class="flex justify-between sm:mb-2">
-                <p class="dash-card-kicker">Ваш баланс</p>
+                <p class="dash-card-sm-title">Ваш баланс</p>
                 <p-button severity="secondary" size="small" variant="outlined">
                   <span>Кошелёк</span>
                   <svg class="h-3.5 w-3.5" lucideChevronRight></svg>
@@ -43,7 +44,7 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
                 $ 12,450,000.80
               </h3>
 
-              <p-button>
+              <p-button [raised]="true">
                 <svg class="h-4 w-4" lucideCirclePlus></svg>
                 <span>Пополнить</span>
               </p-button>
@@ -54,7 +55,7 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
             <div class="flex flex-col gap-3">
               <div class="flex items-start justify-between">
                 <div class="flex flex-col gap-1">
-                  <p class="dash-card-kicker">Рефералы</p>
+                  <p class="dash-card-sm-title">Рефералы</p>
                   <h3 class="text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-50">12</h3>
                 </div>
 
@@ -67,15 +68,16 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
               <div class="dash-ref-box">
                 <span class="dash-ref-box__label">Ваша ссылка (платформа)</span>
                 <div class="dash-ref-box__row">
-                  <span>https://invest.awsarhitect.me/?ref=A7CA9B55</span>
+                  <span class="dash-ref-box__content">https://invest.awsarhitect.me/?ref=A7CA9B55</span>
                   <p-button
                     ariaLabel="Copy platform referral link"
+                    class="dash-ref-box__action"
                     severity="secondary"
                     size="small"
-                    styleClass="p-button-icon-only"
-                    [rounded]="true"
-                    [text]="true">
-                    <svg class="h-4 w-4" lucideCopy></svg>
+                    [raised]="true">
+                    <ng-template #icon>
+                      <svg class="h-4 w-4" lucideCopy></svg>
+                    </ng-template>
                   </p-button>
                 </div>
               </div>
@@ -83,31 +85,32 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
               <div class="dash-ref-box">
                 <span class="dash-ref-box__label">Ваша ссылка (продукт)</span>
                 <div class="dash-ref-box__row">
-                  <span>https://awsarhitect.me/?ref=A7CA9B55</span>
+                  <span class="dash-ref-box__content">https://awsarhitect.me/?ref=A7CA9B55</span>
                   <p-button
                     ariaLabel="Copy product referral link"
+                    class="dash-ref-box__action"
                     severity="secondary"
                     size="small"
-                    styleClass="p-button-icon-only"
-                    [rounded]="true"
-                    [text]="true">
-                    <svg class="h-4 w-4" lucideCopy></svg>
+                    [raised]="true">
+                    <ng-template #icon>
+                      <svg class="h-4 w-4" lucideCopy></svg>
+                    </ng-template>
                   </p-button>
                 </div>
               </div>
-
-              <div class="dash-ref-code">
-                <span>Код:</span>
-                <div class="flex items-center gap-2">
-                  <strong>A7CA9B55</strong>
+              <div class="dash-ref-box">
+                <span class="dash-ref-box__label">Код</span>
+                <div class="dash-ref-box__row">
+                  <span class="dash-ref-box__content font-bold text-primary">A7CA9B55</span>
                   <p-button
                     ariaLabel="Copy referral code"
+                    class="dash-ref-box__action"
                     severity="secondary"
                     size="small"
-                    styleClass="p-button-icon-only"
-                    [rounded]="true"
-                    [text]="true">
-                    <svg class="h-4 w-4" lucideCopy></svg>
+                    [raised]="true">
+                    <ng-template #icon>
+                      <svg class="h-4 w-4" lucideCopy></svg>
+                    </ng-template>
                   </p-button>
                 </div>
               </div>
@@ -165,15 +168,21 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
                     <span class="dash-installment-card__id">ID: 88421</span>
                     <strong class="text-red-500">$ 42.00</strong>
                   </div>
-
-                  <div class="space-y-1 text-[11px] font-bold uppercase">
-                    <p>След. платеж: <span class="text-red-500">10.02.2026</span></p>
-                    <p class="text-red-400/70">Оплатить не позднее: 17.02.2026</p>
+                  <div class="flex-1 flex items-start gap-2">
+                    <div class="mt-1 relative flex h-2 w-2">
+                      <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                    </div>
+                    <div class="space-y-1 text-xs font-bold">
+                      <p>След. платеж: <span class="text-red-500">10.02.2026</span></p>
+                      <p class="text-red-500/70 dark:text-red-400/70">Оплатить не позднее: 17.02.2026</p>
+                    </div>
                   </div>
 
-                  <p-button class="w-full !justify-center !gap-2" severity="danger" variant="outlined">
-                    <span>Оплатить сейчас</span>
+                  <p-button severity="danger" size="small">
                     <svg class="h-4 w-4" lucideCreditCard></svg>
+                    <span>Оплатить сейчас</span>
                   </p-button>
                 </article>
 
@@ -182,10 +191,20 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
                     <span class="dash-installment-card__id">ID: 90152</span>
                     <strong>$ 120.00</strong>
                   </div>
-                  <p class="text-[11px] font-bold uppercase text-surface-500 dark:text-surface-300">
-                    След. платеж: 25.02.2026
-                  </p>
-                  <div class="dash-installment-card__eta">через 15 дней</div>
+                  <div class="flex-1 flex items-start gap-2">
+                    <div class="mt-1 relative flex h-2 w-2">
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-surface-300 dark:bg-surface-500"></span>
+                    </div>
+                    <p class="text-xs font-bold text-surface-500 dark:text-surface-400">След. платеж: 25.02.2026</p>
+                  </div>
+                  <p-button
+                    severity="primary"
+                    size="small"
+                    styleClass="p-disabled:opacity-95 dark:p-disabled:opacity-85"
+                    variant="outlined"
+                    [disabled]="true">
+                    через 15 дней
+                  </p-button>
                 </article>
               </div>
             </div>
