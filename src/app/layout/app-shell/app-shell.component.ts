@@ -8,8 +8,7 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
 @Component({
   selector: 'app-shell',
   standalone: true,
-  imports: [RouterOutlet, AppHeaderComponent,
-    AppSidebarComponent, AppFooterComponent],
+  imports: [RouterOutlet, AppHeaderComponent, AppSidebarComponent, AppFooterComponent],
   template: `
     <div class="flex overflow-hidden min-h-screen" id="app">
       <app-sidebar />

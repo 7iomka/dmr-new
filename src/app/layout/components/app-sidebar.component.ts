@@ -12,9 +12,9 @@ import { APP_NAVIGATION, type NavItem } from '../models/navigation.model';
     <aside class="page-sidebar" id="sidebar">
       <div class="relative h-20 px-2 flex items-center justify-between">
         <a class="sidebar-logo-link h-full pl-4 flex items-center shrink-0 transition-all" routerLink="/dashboard">
-          <img alt="Logo" class="sidebar-logo-full h-12 w-auto hidden dark:block" src="img/logo-light.svg" />
-          <img alt="Logo" class="sidebar-logo-full h-12 w-auto dark:hidden" src="img/logo-dark.svg" />
-          <img alt="Logo" class="sidebar-logo-icon h-12 w-auto hidden" src="img/logo-icon-only.svg" />
+          <img alt="Logo" class="sidebar-logo-full h-12 w-auto hidden dark:block" src="/assets/img/logo-light.svg" />
+          <img alt="Logo" class="sidebar-logo-full h-12 w-auto dark:hidden" src="/assets/img/logo-dark.svg" />
+          <img alt="Logo" class="sidebar-logo-icon h-12 w-auto hidden" src="/assets/img/logo-icon-only.svg" />
         </a>
 
         <button

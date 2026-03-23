@@ -5,6 +5,7 @@
 This document defines a single button strategy for the project foundation during Angular migration.
 
 Goal:
+
 - migrate from legacy `.btn-*` classes;
 - use PrimeNG `p-button` as the single source of truth;
 - use Lucide icons via native Angular standalone API (no wrappers);
@@ -13,6 +14,7 @@ Goal:
 ## Core Principle
 
 Use `p-button` directly:
+
 - visual style → via PrimeNG theme, design tokens, and variables;
 - behavior → via PrimeNG input props;
 - layout/geometry → via Tailwind utilities and minimal helper classes only when required;
@@ -21,19 +23,23 @@ Use `p-button` directly:
 ## Canonical Usage
 
 ### Primary
+
 <p-button label="Пополнить" />
 
 ### Secondary / Danger / Info
+
 <p-button label="Кошелёк" severity="secondary" variant="outlined" />
 <p-button label="Удалить" severity="danger" variant="outlined" />
 <p-button label="Подробнее" severity="info" variant="outlined" />
 
 ### Small
+
 <p-button label="Сохранить" size="small" />
 
 ## Icon-Only Buttons
 
 ### PrimeIcons
+
 <p-button icon="pi pi-user" [rounded]="true" [text]="true" severity="info" />
 
 ### Lucide (CURRENT STANDARD)
@@ -43,7 +49,7 @@ import { LucideCopy } from '@lucide/angular';
 
 Usage:
 <p-button [rounded]="true" [text]="true" severity="secondary" styleClass="p-button-icon-only" ariaLabel="Copy">
-  <svg lucideCopy class="h-4 w-4"></svg>
+<svg lucideCopy class="h-4 w-4"></svg>
 </p-button>
 
 ## Lucide Usage Rules
@@ -64,13 +70,13 @@ Usage:
 
 ## Styling Strategy
 
-1) Tokens first  
-2) PrimeNG props  
-3) Minimal helper classes  
+1. Tokens first
+2. PrimeNG props
+3. Minimal helper classes
 
 ## Usage Rules
 
-- No new .btn-* classes
+- No new .btn-\* classes
 - No wrapper components
 - Start with PrimeNG props
 - Then tokens
@@ -84,7 +90,7 @@ Usage:
 
 ## Acceptance Criteria
 
-- No .btn-* usage
+- No .btn-\* usage
 - Only p-button used
 - Lucide uses static API
 - Token-based styling

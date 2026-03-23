@@ -1054,9 +1054,7 @@
   }
 
   .c-toggleswitch-input:checked + .c-toggleswitch-slider .c-toggleswitch-handle {
-    left: calc(
-      var(--c-toggleswitch-width) - var(--c-toggleswitch-handle-size) - var(--c-toggleswitch-gap)
-    );
+    left: calc(var(--c-toggleswitch-width) - var(--c-toggleswitch-handle-size) - var(--c-toggleswitch-gap));
     transform: translateY(-50%);
   }
 
@@ -1268,8 +1266,7 @@ body {
   }
   .page-content-area {
     padding-inline-start: var(--sidebar-width) !important;
-    transition: padding-inline-start var(--sidebar-transition-duration)
-      var(--sidebar-transition-timing);
+    transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
   }
   body.sidebar-collapse .page-sidebar:hover:not(.animating) {
     width: var(--sidebar-default-width);
@@ -1395,12 +1392,7 @@ body {
 
 .dark .overlay::before {
   background:
-    radial-gradient(
-      1200px 600px at 50% 30%,
-      rgba(0, 0, 0, 0.18) 0%,
-      rgba(0, 0, 0, 0.52) 55%,
-      rgba(0, 0, 0, 0.72) 100%
-    ),
+    radial-gradient(1200px 600px at 50% 30%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.52) 55%, rgba(0, 0, 0, 0.72) 100%),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.78));
 }
 

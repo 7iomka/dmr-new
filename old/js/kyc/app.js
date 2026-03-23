@@ -277,7 +277,7 @@ function renderSummary() {
     ['Тип документа', mapDocType(state.document.docType)],
     ['Номер документа', state.document.docNumber || '—'],
     ['Лицевая сторона', state.document.front?.name || 'Не загружено'],
-    ['Обратная сторона', requiresBackSide() ? (state.document.back?.name || 'Не загружено') : 'Не требуется'],
+    ['Обратная сторона', requiresBackSide() ? state.document.back?.name || 'Не загружено' : 'Не требуется'],
     ['Фото лица', state.selfie?.name || 'Не загружено'],
     ['Фото с документом', state.selfieWithDocument?.name || 'Не загружено'],
   ];
@@ -395,8 +395,24 @@ function clearUpload(key) {
   const upload = uploads[key];
   if (!upload) return;
 
-  const input = document.getElementById(key === 'front' ? 'docFrontInput' : key === 'back' ? 'docBackInput' : key === 'selfie' ? 'selfieInput' : 'selfieWithDocumentInput');
-  const preview = document.getElementById(key === 'front' ? 'docFrontPreview' : key === 'back' ? 'docBackPreview' : key === 'selfie' ? 'selfiePreview' : 'selfieWithDocumentPreview');
+  const input = document.getElementById(
+    key === 'front'
+      ? 'docFrontInput'
+      : key === 'back'
+        ? 'docBackInput'
+        : key === 'selfie'
+          ? 'selfieInput'
+          : 'selfieWithDocumentInput',
+  );
+  const preview = document.getElementById(
+    key === 'front'
+      ? 'docFrontPreview'
+      : key === 'back'
+        ? 'docBackPreview'
+        : key === 'selfie'
+          ? 'selfiePreview'
+          : 'selfieWithDocumentPreview',
+  );
   const previewWrap = document.querySelector(`[data-preview-wrap="${key}"]`);
   const fileName = document.querySelector(`[data-file-name="${key}"]`);
   const actionsWrap = document.querySelector(`[data-upload-actions="${key}"]`);
@@ -495,7 +511,20 @@ function uploadErrorKey(key) {
 }
 
 function initBirthDateOptions() {
-  const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  const months = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
+  ];
   months.forEach((label, index) => {
     const opt = document.createElement('option');
     opt.value = String(index + 1).padStart(2, '0');

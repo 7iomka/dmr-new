@@ -22,17 +22,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/assets"
-              },
-              {
-                "glob": "**/*",
-                "input": "../assets",
+                "input": "src/assets",
                 "output": "assets"
-              },
-              {
-                "glob": "**/*",
-                "input": "../img",
-                "output": "img"
               }
             ],
             "styles": ["src/styles.css"]
@@ -77,7 +68,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/assets"
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": ["src/styles.css"]

@@ -12,10 +12,13 @@ async function loadVision() {
 
 async function createFaceLandmarker() {
   const vision = await loadVision();
-  const filesetResolver = await vision.FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm');
+  const filesetResolver = await vision.FilesetResolver.forVisionTasks(
+    'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm',
+  );
   return vision.FaceLandmarker.createFromOptions(filesetResolver, {
     baseOptions: {
-      modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/latest/face_landmarker.task',
+      modelAssetPath:
+        'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/latest/face_landmarker.task',
     },
     runningMode: 'VIDEO',
     numFaces: 1,
@@ -23,15 +26,17 @@ async function createFaceLandmarker() {
   });
 }
 
-
 async function createImageFaceDetector() {
   if (imageFaceDetector) return imageFaceDetector;
 
   const vision = await loadVision();
-  const filesetResolver = await vision.FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm');
+  const filesetResolver = await vision.FilesetResolver.forVisionTasks(
+    'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm',
+  );
   imageFaceDetector = await vision.FaceDetector.createFromOptions(filesetResolver, {
     baseOptions: {
-      modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/latest/blaze_face_short_range.tflite',
+      modelAssetPath:
+        'https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/latest/blaze_face_short_range.tflite',
     },
     runningMode: 'IMAGE',
     minDetectionConfidence: 0.5,

@@ -1,62 +1,34 @@
 # AGENTS.md (root)
 
-## Project Context
+## Repository layout
 
-This repository contains:
+- Angular application is the primary app at repository root.
+- Legacy PHP application is preserved under `old/` as read-only reference.
+- Project documentation remains under `docs/`.
 
-- Legacy PHP application (source of truth for UI and flows)
-- Angular application (target implementation)
+## Core rule
 
----
+- `old/` PHP code is reference-only unless a task explicitly asks for PHP edits.
+- New feature work must target Angular code at root.
 
-## Core Rule
+## Angular source of truth
 
-- PHP code is READ-ONLY reference (unless the task involves creating a PHP page or making corrections to existing PHP code)
-- Angular is the ONLY target for new code (unless the task involves creating a PHP page or making corrections to existing PHP code)
+When editing Angular code, follow these docs first:
 
----
+- `./docs/primeng-llms-full.txt`
+- `./docs/icons-usage-guide.md`
+- `./docs/angular-migration-report.md`
+- `./docs/ui-guidelines.md`
+- `./docs/color-palette-guide.md`
+- `./docs/button-migration-strategy.md`
+- `./docs/angular-primeng-corrective-report.md`
 
-## Migration Policy
+## Package manager
 
-When implementing features:
+- Use `pnpm` only.
 
-1. Analyze PHP pages for:
-   - layout
-   - structure
-   - business logic
-   - UI behavior
+## Validation (mandatory after code edits)
 
-2. Reimplement in Angular using:
-   - PrimeNG components
-   - project design system
-   - Angular architecture
-
----
-
-## STRICT RULES
-
-- ❌ Do NOT write PHP
-- ❌ Do NOT copy HTML blindly
-- ❌ Do NOT reuse legacy CSS classes (.btn-*, etc.)
-
-- ✅ Translate logic into Angular components
-- ✅ Use PrimeNG instead of raw HTML
-- ✅ Follow frontend-angular/AGENTS.md
-
----
-
-## Angular Rules
-
-All Angular code MUST follow:
-
-→ frontend-angular/AGENTS.md
-
----
-
-## Important
-
-If working inside Angular:
-
-- Ignore legacy PHP patterns
-- Use them only as reference
-- Do not replicate outdated approaches
+1. `pnpm lint:fix`
+2. `pnpm format`
+3. `pnpm build`

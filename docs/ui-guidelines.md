@@ -17,10 +17,10 @@
 
 - Use semantic tokens (accent, card, etc.)
 - Never use raw hex in components
-- Color palette details: `docs/color-palette-guide.md`
+- Color palette details: `./color-palette-guide.md`
 
 ## Button Strategy
 
-- Follow `docs/button-migration-strategy.md` as the mandatory foundation strategy.
+- Follow `./button-migration-strategy.md` as the mandatory foundation strategy.
 - Use PrimeNG `p-button` as the only button component for all new and migrated screens.
 - Do not introduce new `.btn-*` classes in migrated/new Angular pages.

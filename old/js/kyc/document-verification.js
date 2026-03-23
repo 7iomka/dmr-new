@@ -64,8 +64,20 @@ function edgeDensity(gray, width, height) {
   for (let y = 1; y < height - 1; y += 1) {
     for (let x = 1; x < width - 1; x += 1) {
       const i = y * width + x;
-      const gx = -gray[i - width - 1] - 2 * gray[i - 1] - gray[i + width - 1] + gray[i - width + 1] + 2 * gray[i + 1] + gray[i + width + 1];
-      const gy = -gray[i - width - 1] - 2 * gray[i - width] - gray[i - width + 1] + gray[i + width - 1] + 2 * gray[i + width] + gray[i + width + 1];
+      const gx =
+        -gray[i - width - 1] -
+        2 * gray[i - 1] -
+        gray[i + width - 1] +
+        gray[i - width + 1] +
+        2 * gray[i + 1] +
+        gray[i + width + 1];
+      const gy =
+        -gray[i - width - 1] -
+        2 * gray[i - width] -
+        gray[i - width + 1] +
+        gray[i + width - 1] +
+        2 * gray[i + width] +
+        gray[i + width + 1];
       const magnitude = Math.sqrt(gx * gx + gy * gy);
       if (magnitude > 120) edges += 1;
     }
@@ -96,7 +108,8 @@ function borderEdgeRatio(gray, width, height) {
 
 export async function runDocumentQualityChecks(file) {
   if (!file) return { passed: false, errors: ['Файл не загружен'] };
-  if (!file.type.startsWith('image/')) return { passed: false, errors: ['Поддерживаются только изображения для проверки качества'] };
+  if (!file.type.startsWith('image/'))
+    return { passed: false, errors: ['Поддерживаются только изображения для проверки качества'] };
 
   const image = await loadImage(file);
   const { ctx, width, height } = sampleCanvas(image);
@@ -111,17 +124,16 @@ export async function runDocumentQualityChecks(file) {
   const errors = [];
   const shortSide = Math.min(image.width, image.height);
   const pixelCount = image.width * image.height;
-  if (
-    shortSide < DOCUMENT_QUALITY_THRESHOLDS.minShortSide
-    || pixelCount < DOCUMENT_QUALITY_THRESHOLDS.minPixels
-  ) {
+  if (shortSide < DOCUMENT_QUALITY_THRESHOLDS.minShortSide || pixelCount < DOCUMENT_QUALITY_THRESHOLDS.minPixels) {
     errors.push(`Слишком низкое разрешение документа (${image.width}x${image.height})`);
   }
   if (blurScore < DOCUMENT_QUALITY_THRESHOLDS.blurMin) errors.push('Изображение размыто');
   if (brightnessScore < DOCUMENT_QUALITY_THRESHOLDS.brightnessMin) errors.push('Слишком тёмное изображение');
   if (brightnessScore > DOCUMENT_QUALITY_THRESHOLDS.brightnessMax) errors.push('Слишком яркое изображение');
-  if (edgeScore < DOCUMENT_QUALITY_THRESHOLDS.edgeDensityMin) errors.push('Недостаточно деталей, документ может быть не в фокусе');
-  if (edgeScore > DOCUMENT_QUALITY_THRESHOLDS.edgeDensityMax) errors.push('Слишком шумное изображение, возможна съёмка с экрана');
+  if (edgeScore < DOCUMENT_QUALITY_THRESHOLDS.edgeDensityMin)
+    errors.push('Недостаточно деталей, документ может быть не в фокусе');
+  if (edgeScore > DOCUMENT_QUALITY_THRESHOLDS.edgeDensityMax)
+    errors.push('Слишком шумное изображение, возможна съёмка с экрана');
   if (borderRatio > DOCUMENT_QUALITY_THRESHOLDS.borderEdgeMaxRatio) errors.push('Документ сильно обрезан по краям');
 
   return {

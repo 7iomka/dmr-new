@@ -3,30 +3,33 @@
 ## 1) Legacy page map (HTML/PHP includes)
 
 ### App (authenticated shell)
-- `home.php`
-- `dashboard.php`
-- `wallet.php`, `wallet/index.php`, `wallet/withdrawals/index.php`, `wallet/withdrawals/new/index.php`, `wallet/withdrawals/addresses/index.php`, `withdraw.php`
-- `deposit.php`
-- `investments.php`
-- `partners.php`
-- `profile.php`
-- `settings.php`
-- `notifications.php`
-- `report.php`
-- `news.php`, `news-detail.php`
-- `kyc-verification.php`
-- `contacts.php`, `terms-acceptance.php`
+
+- `old/home.php`
+- `old/dashboard.php`
+- `old/wallet.php`, `old/wallet/index.php`, `old/wallet/withdrawals/index.php`, `old/wallet/withdrawals/new/index.php`, `old/wallet/withdrawals/addresses/index.php`, `old/withdraw.php`
+- `old/deposit.php`
+- `old/investments.php`
+- `old/partners.php`
+- `old/profile.php`
+- `old/settings.php`
+- `old/notifications.php`
+- `old/report.php`
+- `old/news.php`, `old/news-detail.php`
+- `old/kyc-verification.php`
+- `old/contacts.php`, `old/terms-acceptance.php`
 
 ### Auth flow pages
-- `auth-login.php`, `auth-login-email.php`, `auth-login-password.php`, `auth-login-telegram.php`, `auth-login-whatsapp.php`
-- `auth-register.php`, `auth-register-email.php`, `auth-register-phone.php`
-- `auth-forgot.php`, `auth-forgot-email.php`, `auth-forgot-telegram.php`, `auth-forgot-whatsapp.php`
-- `auth-otp.php`
+
+- `old/auth-login.php`, `old/auth-login-email.php`, `old/auth-login-password.php`, `old/auth-login-telegram.php`, `old/auth-login-whatsapp.php`
+- `old/auth-register.php`, `old/auth-register-email.php`, `old/auth-register-phone.php`
+- `old/auth-forgot.php`, `old/auth-forgot-email.php`, `old/auth-forgot-telegram.php`, `old/auth-forgot-whatsapp.php`
+- `old/auth-otp.php`
 
 ### Legacy composition dependencies
-- Global shell: `partials/head.php`, `partials/header.php`, `partials/desktop-sidebar.php`, `partials/footer.php`, `partials/scripts.php`
-- Mobile/app overlays: `partials/app-shell/*`
-- Reusable snippets: `components/news-card.php`, `components/form-control.php`, `components/phone-input.php`, `components/toggle-switch.php`, `components/copy-button.php`
+
+- Global shell: `old/partials/head.php`, `old/partials/header.php`, `old/partials/desktop-sidebar.php`, `old/partials/footer.php`, `old/partials/scripts.php`
+- Mobile/app overlays: `old/partials/app-shell/*`
+- Reusable snippets: `old/components/news-card.php`, `old/components/form-control.php`, `old/components/phone-input.php`, `old/components/toggle-switch.php`, `old/components/copy-button.php`
 
 ## 2) Reusable blocks map
 
@@ -44,6 +47,7 @@
 ## 3) Angular component map (target)
 
 ### App shell + layout
+
 - `layout/app-shell`
 - `layout/components/app-sidebar`
 - `layout/components/app-header`
@@ -52,6 +56,7 @@
 - `layout/components/mobile-user-drawer`
 
 ### Shared UI layer
+
 - `shared/ui/card-shell`
 - `shared/ui/data-table`
 - `shared/ui/form-field`
@@ -61,6 +66,7 @@
 - `shared/ui/skeleton-block`
 
 ### Feature slices (page orchestration)
+
 - `features/dashboard`
 - `features/wallet`
 - `features/investments`
@@ -71,16 +77,16 @@
 
 ## 4) PrimeNG selection (only real candidates)
 
-| Area | PrimeNG component | Use now | Note |
-|---|---|---:|---|
-| Actions | `Button` | ✅ | base CTA and icon buttons |
-| Inputs | `InputText`, `InputNumber`, `Textarea` | ✅ | auth + profile + KYC forms |
-| Choice | `Select`, `MultiSelect`, `Checkbox`, `RadioButton`, `ToggleSwitch` | ✅ | filters and settings |
-| Data | `Table`, `Paginator`, `Tag`, `Badge` | ✅ | wallet, investments, reports |
-| Overlays | `Dialog`, `Drawer`, `ConfirmDialog`, `Tooltip` | ✅ | mobile drawers + confirmations |
-| Navigation | `Menu`, `Breadcrumb`, `Tabs`, `Accordion` | ⚠️ | by page need only |
-| Feedback | `Toast`, `Message`, `Skeleton`, `ProgressSpinner` | ✅ | notifications + loading |
-| Date/time | `DatePicker` | ⚠️ | only if report/wallet filters require |
+| Area       | PrimeNG component                                                  | Use now | Note                                  |
+| ---------- | ------------------------------------------------------------------ | ------: | ------------------------------------- |
+| Actions    | `Button`                                                           |      ✅ | base CTA and icon buttons             |
+| Inputs     | `InputText`, `InputNumber`, `Textarea`                             |      ✅ | auth + profile + KYC forms            |
+| Choice     | `Select`, `MultiSelect`, `Checkbox`, `RadioButton`, `ToggleSwitch` |      ✅ | filters and settings                  |
+| Data       | `Table`, `Paginator`, `Tag`, `Badge`                               |      ✅ | wallet, investments, reports          |
+| Overlays   | `Dialog`, `Drawer`, `ConfirmDialog`, `Tooltip`                     |      ✅ | mobile drawers + confirmations        |
+| Navigation | `Menu`, `Breadcrumb`, `Tabs`, `Accordion`                          |      ⚠️ | by page need only                     |
+| Feedback   | `Toast`, `Message`, `Skeleton`, `ProgressSpinner`                  |      ✅ | notifications + loading               |
+| Date/time  | `DatePicker`                                                       |      ⚠️ | only if report/wallet filters require |
 
 ## 5) PrimeNG customization strategy
 
@@ -94,6 +100,7 @@
 ## 6) Theme + design-system baseline
 
 ### Global tokens
+
 - Surface/background/text/border from current `css/app.css` token system.
 - Primary color from existing emerald-based scale (`primary-50..950`).
 - Standard radii:
@@ -103,12 +110,14 @@
 - Focus ring: primary-based contrast ring for both themes.
 
 ### Light/dark parity points to lock
+
 - body background, card background, muted text, border contrast
 - table header/background differences
 - input autofill and focus behavior
 - overlay backdrop opacity and z-index stacking
 
 ### Overlay z-index strategy
+
 - `header`: 40
 - `desktop sidebar`: 50
 - `mobile drawer`: 60+
@@ -116,16 +125,16 @@
 
 ## 7) PHP include to Angular composition mapping
 
-- `partials/head.php` → Angular build pipeline + global styles + app providers.
-- `partials/header.php` → `layout/components/app-header`.
-- `partials/desktop-sidebar.php` + `partials/nav-app-desktop-sidebar.php` → `layout/components/app-sidebar` + nav config model.
-- `partials/app-shell/*` → mobile layout components + overlay outlet.
-- `partials/footer.php` → `layout/components/app-footer`.
-- `components/*.php` → standalone reusable UI components in `shared/ui`.
+- `old/partials/head.php` → Angular build pipeline + global styles + app providers.
+- `old/partials/header.php` → `layout/components/app-header`.
+- `old/partials/desktop-sidebar.php` + `old/partials/nav-app-desktop-sidebar.php` → `layout/components/app-sidebar` + nav config model.
+- `old/partials/app-shell/*` → mobile layout components + overlay outlet.
+- `old/partials/footer.php` → `layout/components/app-footer`.
+- `old/components/*.php` → standalone reusable UI components in `shared/ui`.
 
 ## 8) Current migration status after this iteration
 
-1. Created Angular standalone foundation in `frontend-angular` with planned app architecture.
+1. Created Angular standalone foundation at repository root with planned app architecture.
 2. Added PrimeNG/Tailwind/Lucide dependency scaffold and base provider setup.
 3. Implemented shell-first baseline (`sidebar + header + footer + router outlet`) and initial shared UI primitives.
 4. Added no full page migration yet by design: next iteration begins with shared table/form/dialog blocks, then page-by-page transfer.
