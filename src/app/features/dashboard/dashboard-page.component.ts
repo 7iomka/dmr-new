@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
@@ -19,6 +19,7 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
     LucideCirclePlus,
   ],
   styleUrl: './dashboard-page.component.css',
+  encapsulation: ViewEncapsulation.None,
   template: `
     <div class="flex flex-col gap-6 lg:gap-7">
       <section>
@@ -124,10 +125,21 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
               <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
                 Инвестиции
               </h3>
-              <p-tabs class="dash-tabs" value="shares">
-                <p-tablist>
-                  <p-tab value="shares">Мои доли</p-tab>
-                  <p-tab value="buy">Купить доли</p-tab>
+              <p-tabs class="dash-tabs" value="shares" [showNavigators]="false">
+                <p-tablist
+                  [pt]="{
+                    root: {
+                      class: 'dash-tabs__root',
+                    },
+                    tabList: {
+                      class: 'dash-tabs__list',
+                    },
+                    activeBar: {
+                      class: 'hidden',
+                    },
+                  }">
+                  <p-tab class="dash-tabs__tab" value="shares">Мои доли</p-tab>
+                  <p-tab class="dash-tabs__tab" value="buy">Купить доли</p-tab>
                 </p-tablist>
               </p-tabs>
             </ng-template>
