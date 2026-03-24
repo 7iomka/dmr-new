@@ -73,7 +73,7 @@ export class FormControlPasswordComponent {
     return typeof value === 'string' ? value : '';
   }
 
-  protected get ruleStates(): Array<{ key: string; label: string; ok: boolean }> {
+  protected get ruleStates(): { key: string; label: string; ok: boolean }[] {
     const value = this.passwordValue;
 
     return [

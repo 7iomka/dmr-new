@@ -41,7 +41,6 @@
     @apply text-sm text-surface-500 dark:text-surface-400;
   }
 
-
   .c-form-control__input--password.p-inputtext {
     padding-inline-end: calc(var(--c-form-control-icon-width) + 0.5rem);
   }

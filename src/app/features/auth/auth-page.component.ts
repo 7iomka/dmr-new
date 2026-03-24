@@ -1,6 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, inject } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { LucideChevronRight, LucideDynamicIcon } from '@lucide/angular';
@@ -73,18 +82,18 @@ import { AUTH_PAGE_CONFIGS, AUTH_PATH_TO_CHANNEL, AuthField, AuthPageConfig } fr
               @for (field of config().fields ?? []; track field.name) {
                 @if (field.type === 'password') {
                   <app-form-control-password
-                    [formGroup]="form"
                     [autocomplete]="field.autocomplete ?? 'new-password'"
                     [controlName]="field.name"
+                    [formGroup]="form"
                     [icon]="field.icon"
                     [label]="field.label"
                     [placeholder]="field.placeholder"
                     [showStrength]="shouldShowPasswordStrength(field)" />
                 } @else {
                   <app-form-control-text
-                    [formGroup]="form"
                     [autocomplete]="field.autocomplete"
                     [controlName]="field.name"
+                    [formGroup]="form"
                     [icon]="field.icon"
                     [label]="field.label"
                     [placeholder]="field.placeholder"
