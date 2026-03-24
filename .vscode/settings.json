@@ -21,12 +21,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.wordWrap": "wordWrapColumn"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.wordWrap": "wordWrapColumn"
   },
   "[postcss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.wordWrap": "wordWrapColumn"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.wordWrap": "wordWrapColumn"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

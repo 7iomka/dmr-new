@@ -67,6 +67,7 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
   template: `
     <div class="c-form-control c-phone-control">
       <label class="c-form-control__label" [for]="controlName">{{ label }}</label>
+
       <div class="c-form-control__control" [formGroup]="formGroup">
         <p-inputgroup class="c-phone-inputgroup">
           <p-inputgroup-addon class="c-phone-inputgroup__addon">
@@ -76,12 +77,12 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
               dataKey="iso2"
               optionLabel="name"
               optionValue="iso2"
-              panelStyleClass="c-phone-country-panel"
+              panelStyleClass="c-phone-country-select__panel"
               scrollHeight="16rem"
               [appendTo]="'body'"
               [filter]="true"
               [filterBy]="countryFilterBy"
-              [filterPlaceholder]="'Поиск страны...'"
+              [filterPlaceholder]="countryFilterPlaceholder"
               [ngModelOptions]="{ standalone: true }"
               [options]="countries"
               [overlayOptions]="{ autoZIndex: true, baseZIndex: 1200 }"
@@ -92,8 +93,7 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
               <ng-template #selectedItem let-item>
                 @if (item) {
                   <span class="c-phone-country-current">
-                    <span class="text-base leading-none">{{ item.flag }}</span>
-                    <!-- <span>{{ item.dialCode }}</span> -->
+                    <span class="c-phone-country-current__flag">{{ item.flag }}</span>
                   </span>
                 }
               </ng-template>
@@ -101,9 +101,10 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
               <ng-template #item let-item>
                 <div class="c-phone-country-option">
                   <span class="c-phone-country-option__main">
-                    <span class="text-base leading-none">{{ item.flag }}</span>
-                    <span class="truncate">{{ item.name }}</span>
+                    <span class="c-phone-country-option__flag">{{ item.flag }}</span>
+                    <span class="c-phone-country-option__name">{{ item.name }}</span>
                   </span>
+
                   <span class="c-phone-country-option__code">{{ item.dialCode }}</span>
                 </div>
               </ng-template>
@@ -132,51 +133,21 @@ export class FormControlPhoneComponent implements OnInit {
 
   protected readonly countries = PHONE_COUNTRIES;
   protected readonly countryFilterBy = 'name,dialCode,iso2';
+  protected readonly countryFilterPlaceholder = 'Поиск страны...';
+
   protected selectedCountryIso = 'RU';
 
   protected readonly countrySelectPt: SelectPassThrough = {
-    root: {
-      class: [
-        'h-full rounded-r-none border-0 bg-transparent',
-        'text-zinc-700 dark:text-zinc-200',
-        'hover:bg-zinc-100 dark:hover:bg-zinc-800',
-        'focus-visible:outline-none focus-visible:ring-0',
-      ].join(' '),
-    },
-    label: {
-      class: 'h-full py-2 pl-3 pr-1 min-w-0 flex items-center text-sm font-semibold',
-    },
-    dropdown: {
-      class: 'h-full w-auto py-2 pl-0 pr-2 group',
-    },
-    dropdownIcon: {
-      class:
-        'h-3 w-3 shrink-0 text-zinc-500 transition-transform duration-200 group-aria-expanded:rotate-180 dark:text-zinc-400',
-    },
-    listContainer: {
-      class: 'max-h-64',
-    },
-    list: {
-      class: 'flex flex-col gap-0.5 p-1',
-    },
-    option: {
-      class: [
-        'flex w-full items-center justify-between gap-3 rounded-md px-3 py-2.5 text-left text-sm transition-colors',
-        'text-zinc-800 dark:text-zinc-100',
-        'hover:bg-zinc-100 dark:hover:bg-zinc-800',
-        'p-focus:bg-zinc-100 dark:p-focus:bg-zinc-800',
-        'p-selected:bg-primary-100/80! p-selected:text-zinc-900!',
-        'dark:p-selected:bg-primary-900/35! dark:p-selected:text-primary-100!',
-      ].join(' '),
-    },
-
-    header: {
-      class: 'border-b border-zinc-200 dark:border-zinc-700 p-0',
-    },
+    root: { class: 'c-phone-country-select__root' },
+    label: { class: 'c-phone-country-select__label' },
+    dropdown: { class: 'c-phone-country-select__trigger' },
+    dropdownIcon: { class: 'c-phone-country-select__icon' },
+    listContainer: { class: 'c-phone-country-select__list-container' },
+    list: { class: 'c-phone-country-select__list' },
+    option: { class: 'c-phone-country-select__option' },
+    header: { class: 'c-phone-country-select__header' },
     pcFilter: {
-      root: {
-        class: 'rounded-(--p-select-overlay-border-radius) border-none',
-      },
+      root: { class: 'c-phone-country-select__filter' },
     },
   };
 
@@ -185,6 +156,7 @@ export class FormControlPhoneComponent implements OnInit {
 
   ngOnInit(): void {
     this.syncCountryWithValue(this.control.value, false);
+    this.ensureInitialDialCode();
 
     this.control.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
       if (this.isPatchingValue) {
@@ -195,15 +167,23 @@ export class FormControlPhoneComponent implements OnInit {
     });
   }
 
-  protected onCountrySelected(iso2: string): void {
-    this.selectedCountryIso = iso2;
-
-    const selected = this.getCountryByIso(iso2);
-    if (!selected) {
+  private ensureInitialDialCode(): void {
+    if (this.control.value?.trim()) {
       return;
     }
 
-    this.patchControlValue(this.formatPhone(selected.dialCode, selected));
+    this.patchControlValue(this.selectedCountry.dialCode);
+  }
+
+  protected onCountrySelected(iso2: string): void {
+    this.selectedCountryIso = iso2;
+
+    const selectedCountry = this.getCountryByIso(iso2);
+    if (!selectedCountry) {
+      return;
+    }
+
+    this.patchControlValue(this.formatPhone(selectedCountry.dialCode, selectedCountry));
   }
 
   private get control(): FormControl<string | null> {
@@ -226,6 +206,7 @@ export class FormControlPhoneComponent implements OnInit {
 
     const sanitized = this.sanitizePhone(value);
     const matchedCountry = this.matchCountryByPhoneValue(sanitized);
+
     if (matchedCountry) {
       this.selectedCountryIso = matchedCountry.iso2;
     }
@@ -269,8 +250,8 @@ export class FormControlPhoneComponent implements OnInit {
       return undefined;
     }
 
-    const sorted = matches.sort((a, b) => b.dialCode.length - a.dialCode.length);
-    return sorted.find((country) => country.iso2 === this.selectedCountryIso) ?? sorted[0];
+    const sortedMatches = matches.sort((a, b) => b.dialCode.length - a.dialCode.length);
+    return sortedMatches.find((country) => country.iso2 === this.selectedCountryIso) ?? sortedMatches[0];
   }
 
   private formatPhone(phoneValue: string, country: PhoneCountryOption): string {
@@ -285,7 +266,7 @@ export class FormControlPhoneComponent implements OnInit {
     const nationalDigits = startsWithPlus ? digits.slice(codeDigits.length) : digits;
     const groups = this.splitByGroups(nationalDigits, country.formatGroups);
 
-    if (country.iso2 === 'RU' || country.iso2 === 'KZ' || country.iso2 === 'BY' || country.iso2 === 'UA') {
+    if (this.isCisCountry(country.iso2)) {
       return this.formatCisNumber(country.dialCode, groups);
     }
 
@@ -330,5 +311,9 @@ export class FormControlPhoneComponent implements OnInit {
     }
 
     return formattedParts.join(' ').trim();
+  }
+
+  private isCisCountry(iso2: string): boolean {
+    return iso2 === 'RU' || iso2 === 'KZ' || iso2 === 'BY' || iso2 === 'UA';
   }
 }

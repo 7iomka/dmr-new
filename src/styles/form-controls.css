@@ -1,9 +1,15 @@
 @layer properties {
+  /* Prime variables override */
+
   :root,
   .dark {
+    --p-icon-size: var(--text-sm);
+    --p-form-field-border-radius: var(--p-border-radius-lg);
     --p-inputtext-border-radius: var(--radius-lg);
     --p-inputtext-sm-border-radius: var(--radius-lg);
   }
+
+  /* Form control tokens */
 
   :root {
     --c-form-control-input-min-height: --spacing(11);
@@ -12,6 +18,16 @@
 }
 
 @layer components {
+  /* -------------------------------------------------------------------------- */
+  /* PrimeNG customization                                                      */
+  /* -------------------------------------------------------------------------- */
+  .p-inputtext {
+    font-size: var(--text-sm);
+  }
+  /* -------------------------------------------------------------------------- */
+  /* Form control layout                                                        */
+  /* -------------------------------------------------------------------------- */
+
   .c-form-control {
     @apply relative z-10 flex flex-col gap-2;
   }
@@ -24,30 +40,46 @@
     @apply relative;
   }
 
-  .c-form-control__icon-left {
-    @apply pointer-events-none absolute inset-y-px left-px flex
-    w-(--c-form-control-icon-width) items-center justify-center text-surface-400 dark:text-surface-500;
-  }
-
-  .c-form-control__input.p-inputtext {
-    min-height: var(--c-form-control-input-min-height);
-    width: 100%;
-    padding-inline: var(--c-form-control-icon-width) 1rem;
-    border-radius: var(--radius-lg);
-    font-size: 0.95rem;
-  }
-
   .c-form-control__meta {
     @apply text-sm text-surface-500 dark:text-surface-400;
   }
 
-  .c-form-control__input--password.p-inputtext {
-    padding-inline-end: calc(var(--c-form-control-icon-width) + 0.5rem);
+  .c-form-control__meta--error {
+    @apply text-red-600 dark:text-red-400;
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /* Generic input elements                                                     */
+  /* -------------------------------------------------------------------------- */
+
+  .c-form-control__input {
+    min-height: var(--c-form-control-input-min-height);
+    width: 100%;
+    padding-inline-start: var(--c-form-control-icon-width);
+  }
+
+  .c-form-control:has(.c-form-control__icon-left) .c-form-control__input {
+    padding-inline-start: var(--c-form-control-icon-width);
+  }
+
+  .c-form-control__icon-left {
+    @apply pointer-events-none absolute inset-y-px left-px flex items-center justify-center text-surface-400 dark:text-surface-500;
+    width: var(--c-form-control-icon-width);
+    padding-inline: calc(var(--p-inputtext-padding-x) / 2);
   }
 
   .c-form-control__icon-btn {
-    @apply absolute inset-y-px right-px z-10 inline-flex w-(--c-form-control-icon-width) items-center justify-center text-surface-400 transition-colors hover:text-surface-700 dark:text-surface-500 dark:hover:text-surface-300;
+    @apply absolute inset-y-px right-px z-10 inline-flex items-center justify-center text-surface-400 transition-colors hover:text-surface-700 dark:text-surface-500 dark:hover:text-surface-300;
+    width: var(--c-form-control-icon-width);
   }
+
+  .c-form-control:has(.c-form-control__icon-btn) .c-form-control__input--password {
+    padding-inline-end: calc(var(--c-form-control-icon-width) + 0.5rem);
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /* Password strength                                                          */
+  /* -------------------------------------------------------------------------- */
 
   .c-password-strength {
     @apply mt-1 flex flex-col gap-2;
@@ -73,48 +105,131 @@
     @apply text-emerald-600 dark:text-emerald-400;
   }
 
-  .c-form-control__meta--error {
-    @apply text-red-600 dark:text-red-400;
-  }
+  /* -------------------------------------------------------------------------- */
+  /* OTP                                                                        */
+  /* -------------------------------------------------------------------------- */
 
-  .p-inputotp {
+  .c-input-otp {
     @apply gap-2;
   }
 
-  .p-inputotp-input {
+  .c-input-otp__field {
     @apply h-13 w-10.5 rounded-lg text-lg font-bold text-surface-900 dark:text-surface-100;
   }
 
-  .p-inputotp-input.p-filled {
+  .c-input-otp__field.is-filled {
     @apply border-primary-500/80 bg-primary-50/70 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400;
   }
-}
 
-@layer components {
-  .c-phone-control .c-form-control__control {
-    @apply overflow-visible;
-  }
+  /* -------------------------------------------------------------------------- */
+  /* Phone control layout                                                       */
+  /* -------------------------------------------------------------------------- */
 
-  .c-phone-inputgroup.p-inputgroup {
-    @apply w-full;
+  .c-phone-inputgroup {
   }
 
   .c-phone-inputgroup__addon {
+    padding: 0;
     min-width: auto;
+    transition: border-color var(--p-inputtext-transition-duration);
   }
 
-  .c-phone-inputgroup .p-inputgroupaddon.c-phone-inputgroup__addon {
-    @apply p-0 border border-r-0 border-surface-300 dark:border-surface-700 bg-surface-50/80 dark:bg-surface-900/70 rounded-s-lg rounded-e-none;
+  .c-phone-inputgroup__addon:hover {
+    border-color: var(--p-inputtext-hover-border-color);
   }
 
-  .c-phone-inputgroup .c-form-control__input.c-phone-input.p-inputtext {
-    @apply rounded-s-none;
-    padding-inline: 1rem;
+  .c-phone-input {
+    padding-inline-start: var(--p-inputtext-padding-x);
   }
+
+  /* -------------------------------------------------------------------------- */
+  /* Phone country select shell                                                 */
+  /* -------------------------------------------------------------------------- */
+
+  .c-phone-country-select {
+    @apply h-full;
+  }
+
+  .c-phone-country-select__root {
+    @apply h-full rounded-r-none border-0 bg-transparent text-surface-700 transition-colors dark:text-surface-200;
+  }
+
+  .c-phone-country-select__root:hover {
+    @apply bg-surface-100 dark:bg-surface-900 border-(--p-inputtext-hover-border-color);
+  }
+
+  .c-phone-country-select__root:focus-visible {
+    @apply outline-none ring-0;
+  }
+
+  .c-phone-country-select__label {
+    @apply flex h-full min-w-0 items-center py-2 pl-3 pr-1 text-sm font-semibold;
+  }
+
+  .c-phone-country-select__trigger {
+    @apply h-full w-auto py-2 pl-1 pr-2;
+  }
+
+  .c-phone-country-select__icon {
+    @apply h-2.75 w-2.75 shrink-0 text-surface-500 transition-transform duration-200 dark:text-surface-400;
+  }
+
+  .c-phone-country-select__root[aria-expanded='true'] .c-phone-country-select__icon {
+    @apply rotate-180;
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /* Phone country select overlay                                               */
+  /* -------------------------------------------------------------------------- */
+
+  .c-phone-country-select__panel {
+    @apply overflow-hidden rounded-xl;
+  }
+
+  .c-phone-country-select__header {
+    @apply border-b border-surface-200 p-0 dark:border-surface-700;
+  }
+
+  .c-phone-country-select__filter {
+    @apply rounded-none border-none shadow-none;
+  }
+
+  .c-phone-country-select__list-container {
+    @apply max-h-64;
+  }
+
+  .c-phone-country-select__list {
+    @apply flex flex-col gap-0.5 p-1;
+  }
+
+  .c-phone-country-select__option {
+    @apply rounded-md px-3 py-2.5 text-sm text-surface-800 transition-colors dark:text-surface-100;
+  }
+
+  .c-phone-country-select__option:hover,
+  .c-phone-country-select__option:focus-visible {
+    @apply bg-surface-100 dark:bg-surface-800;
+  }
+
+  .c-phone-country-select__option[aria-selected='true'] {
+    @apply bg-primary-100/80 text-surface-900 dark:bg-primary-900/35 dark:text-primary-100;
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /* Phone country selected value                                               */
+  /* -------------------------------------------------------------------------- */
 
   .c-phone-country-current {
     @apply inline-flex min-w-0 items-center gap-2;
   }
+
+  .c-phone-country-current__flag {
+    @apply text-base leading-none;
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /* Phone country option content                                               */
+  /* -------------------------------------------------------------------------- */
 
   .c-phone-country-option {
     @apply flex w-full items-center justify-between gap-3;
@@ -124,11 +239,15 @@
     @apply flex min-w-0 items-center gap-3;
   }
 
-  .c-phone-country-option__code {
-    @apply text-sm text-surface-500 dark:text-surface-400;
+  .c-phone-country-option__flag {
+    @apply text-base leading-none;
   }
 
-  .c-phone-country-panel .p-select-list-container {
-    @apply max-h-64;
+  .c-phone-country-option__name {
+    @apply min-w-0 truncate text-sm;
+  }
+
+  .c-phone-country-option__code {
+    @apply text-sm text-surface-500 dark:text-surface-400;
   }
 }
