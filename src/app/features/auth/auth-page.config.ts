@@ -208,7 +208,7 @@ export const AUTH_PAGE_CONFIGS: Record<string, AuthPageConfig> = {
     footerLinks: [{ label: 'Войти', link: '/auth/login', prefix: 'Уже есть аккаунт? ' }],
   },
   'register/email': {
-    icon: LucideUserPlus,
+    icon: LucideMail,
     title: 'Регистрация через Email',
     subtitle: 'Заполните данные, затем подтвердите код из письма.',
     mode: 'form',
