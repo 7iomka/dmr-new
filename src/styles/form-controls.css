@@ -6,35 +6,76 @@
   }
 
   :root {
-    --c-auth-input-min-height: --spacing(11);
-    --c-auth-input-padding-inline: --spacing(9);
+    --c-form-control-input-min-height: --spacing(11);
+    --c-form-control-icon-width: --spacing(9);
   }
 }
 
 @layer components {
-  .c-auth-field {
+  .c-form-control {
     @apply relative z-10 flex flex-col gap-2;
   }
 
-  .c-auth-field__label {
+  .c-form-control__label {
     @apply text-sm leading-none font-medium text-surface-700 dark:text-surface-300;
   }
 
-  .c-auth-field__control {
+  .c-form-control__control {
     @apply relative;
   }
 
-  .c-auth-field__icon {
+  .c-form-control__icon-left {
     @apply pointer-events-none absolute inset-y-px left-px flex
-    w-(--c-auth-input-padding-inline) items-center justify-center text-surface-400 dark:text-surface-500;
+    w-(--c-form-control-icon-width) items-center justify-center text-surface-400 dark:text-surface-500;
   }
 
-  .c-auth-input.p-inputtext {
-    min-height: var(--c-auth-input-min-height);
+  .c-form-control__input.p-inputtext {
+    min-height: var(--c-form-control-input-min-height);
     width: 100%;
-    padding-inline: var(--c-auth-input-padding-inline) 1rem;
+    padding-inline: var(--c-form-control-icon-width) 1rem;
     border-radius: var(--radius-lg);
     font-size: 0.95rem;
+  }
+
+  .c-form-control__meta {
+    @apply text-sm text-surface-500 dark:text-surface-400;
+  }
+
+
+  .c-form-control__input--password.p-inputtext {
+    padding-inline-end: calc(var(--c-form-control-icon-width) + 0.5rem);
+  }
+
+  .c-form-control__icon-btn {
+    @apply absolute inset-y-px right-px z-10 inline-flex w-(--c-form-control-icon-width) items-center justify-center text-surface-400 transition-colors hover:text-surface-700 dark:text-surface-500 dark:hover:text-surface-300;
+  }
+
+  .c-password-strength {
+    @apply mt-1 flex flex-col gap-2;
+  }
+
+  .c-password-strength__bars {
+    @apply grid grid-cols-4 gap-1;
+  }
+
+  .c-password-strength__bar {
+    @apply h-1.5 rounded-full bg-surface-200 dark:bg-surface-800;
+  }
+
+  .c-password-strength__bar.is-active {
+    @apply bg-primary-500/80 dark:bg-primary-400/80;
+  }
+
+  .c-password-strength__rules {
+    @apply grid gap-1 text-xs text-surface-500 dark:text-surface-400;
+  }
+
+  .c-password-strength__rule.is-ok {
+    @apply text-emerald-600 dark:text-emerald-400;
+  }
+
+  .c-form-control__meta--error {
+    @apply text-red-600 dark:text-red-400;
   }
 
   .p-inputotp {
@@ -44,7 +85,8 @@
   .p-inputotp-input {
     @apply h-13 w-10.5 rounded-lg text-lg font-bold text-surface-900 dark:text-surface-100;
   }
+
   .p-inputotp-input.p-filled {
-    @apply border-primary-500/80 text-primary-600 dark:text-primary-400 bg-primary-50/70 dark:bg-primary-900/20;
+    @apply border-primary-500/80 bg-primary-50/70 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400;
   }
 }

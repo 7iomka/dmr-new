@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { LucideChevronRight, LucideDynamicIcon } from '@lucide/angular';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { InputOtpModule } from 'primeng/inputotp';
-import { InputTextModule } from 'primeng/inputtext';
+
+import { FormControlOtpComponent } from '../../shared/components/form-control-otp.component';
+import { FormControlPasswordComponent } from '../../shared/components/form-control-password.component';
+import { FormControlTextComponent } from '../../shared/components/form-control-text.component';
 
 import { AuthMockService } from './auth-mock.service';
 import { AUTH_PAGE_CONFIGS, AUTH_PATH_TO_CHANNEL, AuthField, AuthPageConfig } from './auth-page.config';
@@ -22,8 +24,9 @@ import { AUTH_PAGE_CONFIGS, AUTH_PATH_TO_CHANNEL, AuthField, AuthPageConfig } fr
     RouterLink,
     CardModule,
     ButtonModule,
-    InputTextModule,
-    InputOtpModule,
+    FormControlTextComponent,
+    FormControlPasswordComponent,
+    FormControlOtpComponent,
     LucideChevronRight,
     LucideDynamicIcon,
   ],
@@ -68,22 +71,33 @@ import { AUTH_PAGE_CONFIGS, AUTH_PATH_TO_CHANNEL, AuthField, AuthPageConfig } fr
           <form class="auth-form" [formGroup]="form" (ngSubmit)="submitForm()">
             <div class="auth-form-fields">
               @for (field of config().fields ?? []; track field.name) {
-                <div class="c-auth-field">
-                  <label class="c-auth-field__label" [for]="field.name">{{ field.label }}</label>
-                  <div class="c-auth-field__control">
-                    <span class="c-auth-field__icon">
-                      <svg class="h-4 w-4" [lucideIcon]="field.icon"></svg>
-                    </span>
-                    <input
-                      class="c-auth-input"
-                      pInputText
-                      [attr.autocomplete]="field.autocomplete"
-                      [formControlName]="field.name"
-                      [id]="field.name"
-                      [placeholder]="field.placeholder"
-                      [type]="field.type" />
-                  </div>
-                </div>
+                @if (field.type === 'password') {
+                  <app-form-control-password
+                    [formGroup]="form"
+                    [autocomplete]="field.autocomplete ?? 'new-password'"
+                    [controlName]="field.name"
+                    [icon]="field.icon"
+                    [label]="field.label"
+                    [placeholder]="field.placeholder"
+                    [showStrength]="shouldShowPasswordStrength(field)" />
+                } @else {
+                  <app-form-control-text
+                    [formGroup]="form"
+                    [autocomplete]="field.autocomplete"
+                    [controlName]="field.name"
+                    [icon]="field.icon"
+                    [label]="field.label"
+                    [placeholder]="field.placeholder"
+                    [type]="field.type" />
+                }
+              }
+
+              @if (
+                routeKey() === 'register/phone' &&
+                form.hasError('passwordMismatch') &&
+                (form.get('confirmPassword')?.touched || form.get('password')?.touched)
+              ) {
+                <p class="c-form-control__meta c-form-control__meta--error">Пароли не совпадают.</p>
               }
             </div>
 
@@ -102,14 +116,13 @@ import { AUTH_PAGE_CONFIGS, AUTH_PATH_TO_CHANNEL, AuthField, AuthPageConfig } fr
         @if (config().mode === 'otp') {
           <form class="auth-form" (ngSubmit)="submitOtp()">
             <div class="auth-form-fields">
-              <label class="c-auth-field__label" for="auth-otp-input">Код подтверждения</label>
-              <p-inputotp
+              <app-form-control-otp
                 inputId="auth-otp-input"
+                label="Код подтверждения"
+                metaText="Код действителен 02:00"
                 name="otpCode"
-                [integerOnly]="true"
                 [length]="6"
-                [(ngModel)]="otpCode" />
-              <div class="auth-otp-meta">Код действителен 02:00</div>
+                [(value)]="otpCode" />
             </div>
             <div class="auth-actions">
               <p-button type="submit" [label]="config().submitLabel ?? 'Подтвердить'" />
@@ -212,6 +225,55 @@ export class AuthPageComponent {
     this.otpCode = '';
   }
 
+  protected shouldShowPasswordStrength(field: AuthField): boolean {
+    return this.routeKey() === 'register/phone' && field.name === 'password';
+  }
+
+  private passwordRulesValidator(control: AbstractControl): ValidationErrors | null {
+    const value = typeof control.value === 'string' ? control.value : '';
+
+    if (!value) {
+      return { required: true };
+    }
+
+    const isValid =
+      value.length >= 8 &&
+      value.length <= 16 &&
+      /[A-ZА-ЯЁ]/.test(value) &&
+      /[a-zа-яё]/.test(value) &&
+      /\d/.test(value) &&
+      /[^A-Za-zА-Яа-яЁё0-9]/.test(value);
+
+    return isValid ? null : { passwordRules: true };
+  }
+
+  private passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+
+    if (typeof password !== 'string' || typeof confirmPassword !== 'string') {
+      return null;
+    }
+
+    if (!confirmPassword) {
+      return null;
+    }
+
+    return password === confirmPassword ? null : { passwordMismatch: true };
+  }
+
+  private resolveControlValidators(field: AuthField): ValidatorFn[] {
+    if (field.optional) {
+      return [];
+    }
+
+    if (this.routeKey() === 'register/phone' && field.name === 'password') {
+      return [this.passwordRulesValidator.bind(this)];
+    }
+
+    return [Validators.required];
+  }
+
   private readControlValue(controlName: string): string | null {
     const value = this.form.get(controlName)?.value;
 
@@ -237,7 +299,7 @@ export class AuthPageComponent {
         continue;
       }
 
-      this.form.addControl(field.name, new FormControl('', field.optional ? [] : [Validators.required], []));
+      this.form.addControl(field.name, new FormControl('', this.resolveControlValidators(field), []));
     }
 
     for (const controlName of Object.keys(this.form.controls)) {
@@ -245,5 +307,9 @@ export class AuthPageComponent {
         this.form.removeControl(controlName);
       }
     }
+
+    const hasPasswordPair = nextControlNames.has('password') && nextControlNames.has('confirmPassword');
+    this.form.setValidators(hasPasswordPair ? this.passwordMatchValidator.bind(this) : null);
+    this.form.updateValueAndValidity({ emitEvent: false });
   }
 }
