@@ -19,6 +19,7 @@ import { CardModule } from 'primeng/card';
 import { FormControlOtpComponent } from '../../shared/components/form-control-otp.component';
 import { FormControlPasswordComponent } from '../../shared/components/form-control-password.component';
 import { FormControlTextComponent } from '../../shared/components/form-control-text.component';
+import { FormControlPhoneComponent } from '../../shared/components/form-control-phone.component';
 
 import { AuthMockService } from './auth-mock.service';
 import { AUTH_PAGE_CONFIGS, AUTH_PATH_TO_CHANNEL, AuthField, AuthPageConfig } from './auth-page.config';
@@ -34,6 +35,7 @@ import { AUTH_PAGE_CONFIGS, AUTH_PATH_TO_CHANNEL, AuthField, AuthPageConfig } fr
     CardModule,
     ButtonModule,
     FormControlTextComponent,
+    FormControlPhoneComponent,
     FormControlPasswordComponent,
     FormControlOtpComponent,
     LucideChevronRight,
@@ -89,6 +91,13 @@ import { AUTH_PAGE_CONFIGS, AUTH_PATH_TO_CHANNEL, AuthField, AuthPageConfig } fr
                     [label]="field.label"
                     [placeholder]="field.placeholder"
                     [showStrength]="shouldShowPasswordStrength(field)" />
+                } @else if (field.type === 'tel') {
+                  <app-form-control-phone
+                    [autocomplete]="field.autocomplete"
+                    [controlName]="field.name"
+                    [formGroup]="form"
+                    [label]="field.label"
+                    [placeholder]="field.placeholder" />
                 } @else {
                   <app-form-control-text
                     [autocomplete]="field.autocomplete"

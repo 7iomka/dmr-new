@@ -89,3 +89,46 @@
     @apply border-primary-500/80 bg-primary-50/70 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400;
   }
 }
+
+@layer components {
+  .c-phone-control .c-form-control__control {
+    @apply overflow-visible;
+  }
+
+  .c-phone-inputgroup.p-inputgroup {
+    @apply w-full;
+  }
+
+  .c-phone-inputgroup .p-inputgroupaddon.c-phone-inputgroup__addon {
+    @apply p-0 border-1 border-r-0 border-surface-300 dark:border-surface-700 bg-surface-50/80 dark:bg-surface-900/70 rounded-s-lg rounded-e-none;
+  }
+
+  .c-phone-inputgroup .c-phone-country-select.p-select {
+    @apply rounded-none border-0 bg-transparent;
+  }
+
+  .c-phone-inputgroup .c-form-control__input.c-phone-input.p-inputtext {
+    @apply rounded-s-none;
+    padding-inline: 1rem;
+  }
+
+  .c-phone-country-current {
+    @apply inline-flex min-w-0 items-center gap-2;
+  }
+
+  .c-phone-country-option {
+    @apply flex w-full items-center justify-between gap-3;
+  }
+
+  .c-phone-country-option__main {
+    @apply flex min-w-0 items-center gap-3;
+  }
+
+  .c-phone-country-option__code {
+    @apply text-sm text-surface-500 dark:text-surface-400;
+  }
+
+  .c-phone-country-panel .p-select-list-container {
+    @apply max-h-64;
+  }
+}
