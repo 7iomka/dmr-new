@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule, SelectPassThrough } from 'primeng/select';
 
@@ -53,7 +54,15 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
 @Component({
   selector: 'app-form-control-phone',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, InputGroupModule, SelectModule, InputTextModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    SelectModule,
+    InputTextModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="c-form-control c-phone-control">
@@ -72,18 +81,19 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
               [appendTo]="'body'"
               [filter]="true"
               [filterBy]="countryFilterBy"
+              [filterPlaceholder]="'Поиск страны...'"
+              [ngModelOptions]="{ standalone: true }"
               [options]="countries"
               [overlayOptions]="{ autoZIndex: true, baseZIndex: 1200 }"
               [pt]="countrySelectPt"
               [showClear]="false"
               [(ngModel)]="selectedCountryIso"
-              [ngModelOptions]="{ standalone: true }"
               (ngModelChange)="onCountrySelected($event)">
               <ng-template #selectedItem let-item>
                 @if (item) {
                   <span class="c-phone-country-current">
                     <span class="text-base leading-none">{{ item.flag }}</span>
-                    <span>{{ item.dialCode }}</span>
+                    <!-- <span>{{ item.dialCode }}</span> -->
                   </span>
                 }
               </ng-template>
@@ -103,11 +113,11 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
           <input
             class="c-form-control__input c-phone-input"
             pInputText
+            type="tel"
             [attr.autocomplete]="autocomplete"
             [formControlName]="controlName"
             [id]="controlName"
-            [placeholder]="placeholder"
-            type="tel" />
+            [placeholder]="placeholder" />
         </p-inputgroup>
       </div>
     </div>
@@ -127,7 +137,7 @@ export class FormControlPhoneComponent implements OnInit {
   protected readonly countrySelectPt: SelectPassThrough = {
     root: {
       class: [
-        'h-full rounded-none border-0 bg-transparent',
+        'h-full rounded-r-none border-0 bg-transparent',
         'text-zinc-700 dark:text-zinc-200',
         'hover:bg-zinc-100 dark:hover:bg-zinc-800',
         'focus-visible:outline-none focus-visible:ring-0',
@@ -141,11 +151,7 @@ export class FormControlPhoneComponent implements OnInit {
     },
     dropdownIcon: {
       class:
-        'h-4 w-4 shrink-0 text-zinc-500 transition-transform duration-200 group-aria-expanded:rotate-180 dark:text-zinc-400',
-    },
-    overlay: {
-      class:
-        'rounded-lg border border-zinc-200 bg-white shadow-xl dark:border-zinc-700 dark:bg-zinc-900 overflow-hidden',
+        'h-3 w-3 shrink-0 text-zinc-500 transition-transform duration-200 group-aria-expanded:rotate-180 dark:text-zinc-400',
     },
     listContainer: {
       class: 'max-h-64',
@@ -163,23 +169,24 @@ export class FormControlPhoneComponent implements OnInit {
         'dark:p-selected:bg-primary-900/35! dark:p-selected:text-primary-100!',
       ].join(' '),
     },
-    filterContainer: {
-      class: 'border-b border-zinc-200 p-2 dark:border-zinc-700',
+
+    header: {
+      class: 'border-b border-zinc-200 dark:border-zinc-700 p-0',
     },
     pcFilter: {
       root: {
-        class:
-          'w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100',
+        class: 'rounded-(--p-select-overlay-border-radius) border-none',
       },
     },
   };
 
   private isPatchingValue = false;
+  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
     this.syncCountryWithValue(this.control.value, false);
 
-    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {
+    this.control.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
       if (this.isPatchingValue) {
         return;
       }
