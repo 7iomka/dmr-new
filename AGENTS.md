@@ -28,8 +28,17 @@ When editing Angular code, follow these docs first:
 
 - Use `pnpm` only.
 
-## Validation (mandatory after code edits)
+## Validation (MANDATORY — NO EXCEPTIONS)
 
-1. `pnpm lint:fix`
-2. `pnpm format`
-3. `pnpm build`
+Before EVERY commit or PR update:
+
+```bash
+pnpm fix && pnpm check
+```
+
+Rules:
+
+- Do NOT commit if any check fails
+- Do NOT open/update PR with lint or formatting issues
+- Always include auto-fixes in the same commit
+- Repeat until everything passes cleanly

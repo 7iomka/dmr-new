@@ -10,14 +10,17 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "fix": "pnpm lint:fix && pnpm format",
+    "check": "pnpm lint && pnpm format:check",
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{ts,html,scss,css,js,mjs,cjs,json,md}": [
-      "prettier --write"
-    ],
     "*.{ts,html,js,mjs,cjs}": [
       "eslint --fix"
+    ],
+    "*.{ts,html,scss,css,js,mjs,cjs,json,md}": [
+      "prettier --write"
     ]
   },
   "dependencies": {
