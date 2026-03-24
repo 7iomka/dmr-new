@@ -188,6 +188,13 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
+}
+
+.auth-form,
+.auth-form-fields {
+  gap: 1rem;
+}
+.auth-method-list {
   gap: 0.625rem;
 }
 

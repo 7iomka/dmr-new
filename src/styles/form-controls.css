@@ -17,7 +17,7 @@
   }
 
   .c-auth-field__label {
-    @apply text-sm font-medium text-surface-700 dark:text-surface-300;
+    @apply text-sm leading-none font-medium text-surface-700 dark:text-surface-300;
   }
 
   .c-auth-field__control {
