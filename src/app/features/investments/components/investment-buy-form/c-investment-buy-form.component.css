@@ -37,7 +37,7 @@
 }
 
 .c-investment-buy-form__term-root {
-  @apply w-full rounded-lg border border-surface-200 bg-white text-sm font-bold text-surface-900 transition-colors;
+  @apply w-full rounded-lg border border-surface-200 bg-white text-sm font-bold text-surface-900 transition-colors focus-within:border-primary/50;
 
   @variant dark {
     @apply border-surface-800 bg-surface-950/40 text-surface-50;
@@ -45,21 +45,41 @@
 }
 
 .c-investment-buy-form__term-label-value {
-  @apply px-4 py-3;
+  @apply px-4 py-3 leading-none;
 }
 
 .c-investment-buy-form__term-dropdown {
-  @apply w-12;
+  @apply flex w-12 items-center justify-center;
+}
+
+.c-investment-buy-form__term-dropdown-icon {
+  @apply h-4 w-4 text-surface-500;
+}
+
+.c-investment-buy-form__term-overlay {
+  @apply mt-1 rounded-lg border border-surface-200 bg-white p-1 shadow-xl;
+
+  @variant dark {
+    @apply border-surface-800 bg-surface-900;
+  }
 }
 
 .c-investment-buy-form__term-list {
-  @apply py-1;
+  @apply py-0;
 }
 
 .c-investment-buy-form__term-option {
-  @apply px-4 py-2 text-sm font-semibold;
+  @apply rounded-md px-4 py-2 text-sm font-semibold;
+
+  &:hover {
+    @apply bg-surface-100;
+  }
 
   @variant dark {
     @apply text-surface-50;
+
+    &:hover {
+      @apply bg-surface-800;
+    }
   }
 }

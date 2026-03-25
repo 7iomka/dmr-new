@@ -52,6 +52,7 @@ import { CInvestmentSwitchCardComponent } from './c-investment-switch-card.compo
               [ngModel]="termMonths()"
               [options]="termOptions"
               [pt]="termSelectPt"
+              [unstyled]="true"
               (ngModelChange)="updateTerm($event)" />
           </label>
         }
@@ -91,6 +92,8 @@ export class CInvestmentBuyFormComponent {
     root: { class: 'c-investment-buy-form__term-root' },
     label: { class: 'c-investment-buy-form__term-label-value' },
     dropdown: { class: 'c-investment-buy-form__term-dropdown' },
+    dropdownIcon: { class: 'c-investment-buy-form__term-dropdown-icon' },
+    overlay: { class: 'c-investment-buy-form__term-overlay' },
     list: { class: 'c-investment-buy-form__term-list' },
     option: { class: 'c-investment-buy-form__term-option' },
   };
