@@ -23,9 +23,9 @@
 }
 
 .c-investment-input-field__suffix {
-  @apply rounded-r-lg border border-l-0 border-surface-200 bg-black/5 px-4 text-base font-bold text-surface-400 flex items-center;
+  @apply rounded-r-lg border border-l-0 border-surface-200 bg-surface-50 px-4 text-lg font-bold text-surface-400 flex items-center;
 
   @variant dark {
-    @apply border-surface-800 bg-white/5;
+    @apply border-surface-800 bg-surface-900;
   }
 }
