@@ -1,10 +1,11 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ViewEncapsulation } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { LucideChevronRight, LucideCreditCard } from '@lucide/angular';
 
 @Component({
   selector: 'app-c-investment-shares-overview',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [ButtonModule, LucideChevronRight, LucideCreditCard],
   template: `
     <div class="c-investment-shares-overview">

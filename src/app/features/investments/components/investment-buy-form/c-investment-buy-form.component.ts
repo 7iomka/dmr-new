@@ -1,4 +1,4 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, input, signal, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SelectModule, SelectPassThrough } from 'primeng/select';
 
@@ -9,6 +9,7 @@ import { CInvestmentSwitchCardComponent } from './c-investment-switch-card.compo
 @Component({
   selector: 'app-c-investment-buy-form',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [
     FormsModule,
     SelectModule,
@@ -28,14 +29,14 @@ import { CInvestmentSwitchCardComponent } from './c-investment-switch-card.compo
             inputId="investment-amount"
             label="Введите сумму"
             suffix="$"
-            [value]="amount()"
             [maxFractionDigits]="6"
+            [value]="amount()"
             (valueChange)="updateAmount($event)" />
           <app-c-investment-input-field
             inputId="investment-shares"
             label="Количество долей"
-            [value]="shares()"
             [maxFractionDigits]="0"
+            [value]="shares()"
             (valueChange)="updateShares($event)" />
         </div>
 
@@ -43,7 +44,6 @@ import { CInvestmentSwitchCardComponent } from './c-investment-switch-card.compo
           <label class="c-investment-buy-form__term-wrap" for="investment-term">
             <span class="c-investment-buy-form__term-label">Срок рассрочки</span>
             <p-select
-              class="c-investment-buy-form__term"
               appendTo="body"
               ariaLabel="Срок рассрочки"
               id="investment-term"
@@ -52,7 +52,6 @@ import { CInvestmentSwitchCardComponent } from './c-investment-switch-card.compo
               [ngModel]="termMonths()"
               [options]="termOptions"
               [pt]="termSelectPt"
-              [unstyled]="true"
               (ngModelChange)="updateTerm($event)" />
           </label>
         }
@@ -93,7 +92,9 @@ export class CInvestmentBuyFormComponent {
     label: { class: 'c-investment-buy-form__term-label-value' },
     dropdown: { class: 'c-investment-buy-form__term-dropdown' },
     dropdownIcon: { class: 'c-investment-buy-form__term-dropdown-icon' },
-    overlay: { class: 'c-investment-buy-form__term-overlay' },
+    pcOverlay: {
+      root: { class: 'c-investment-buy-form__term-overlay' },
+    },
     list: { class: 'c-investment-buy-form__term-list' },
     option: { class: 'c-investment-buy-form__term-option' },
   };

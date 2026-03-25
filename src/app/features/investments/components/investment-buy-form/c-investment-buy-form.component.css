@@ -45,7 +45,7 @@
 }
 
 .c-investment-buy-form__term-label-value {
-  @apply px-4 py-3 leading-none;
+  @apply px-4 py-3 text-lg;
 }
 
 .c-investment-buy-form__term-dropdown {
@@ -56,30 +56,6 @@
   @apply h-4 w-4 text-surface-500;
 }
 
-.c-investment-buy-form__term-overlay {
-  @apply mt-1 rounded-lg border border-surface-200 bg-white p-1 shadow-xl;
-
-  @variant dark {
-    @apply border-surface-800 bg-surface-900;
-  }
-}
-
-.c-investment-buy-form__term-list {
-  @apply py-0;
-}
-
 .c-investment-buy-form__term-option {
-  @apply rounded-md px-4 py-2 text-sm font-semibold;
-
-  &:hover {
-    @apply bg-surface-100;
-  }
-
-  @variant dark {
-    @apply text-surface-50;
-
-    &:hover {
-      @apply bg-surface-800;
-    }
-  }
+  @apply text-base font-bold;
 }

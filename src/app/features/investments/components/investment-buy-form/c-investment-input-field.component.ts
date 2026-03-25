@@ -1,12 +1,13 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { InputNumberModule, InputNumberPassThrough } from 'primeng/inputnumber';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-c-investment-input-field',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [FormsModule, InputNumberModule, InputGroupModule, InputGroupAddonModule],
   template: `
     <div class="c-investment-input-field">
@@ -16,12 +17,11 @@ import { InputNumberModule, InputNumberPassThrough } from 'primeng/inputnumber';
           <p-inputnumber
             [allowEmpty]="false"
             [id]="inputId()"
+            [inputStyleClass]="'c-investment-input-field__input c-investment-input-field__input--split'"
             [locale]="'en-US'"
             [maxFractionDigits]="maxFractionDigits()"
             [minFractionDigits]="minFractionDigits()"
             [ngModel]="value()"
-            [pt]="splitInputPt"
-            [unstyled]="true"
             [useGrouping]="false"
             (ngModelChange)="onValueChange($event)" />
           <span class="c-investment-input-field__suffix">{{ suffix() }}</span>
@@ -30,12 +30,11 @@ import { InputNumberModule, InputNumberPassThrough } from 'primeng/inputnumber';
         <p-inputnumber
           [allowEmpty]="false"
           [id]="inputId()"
+          [inputStyleClass]="'c-investment-input-field__input'"
           [locale]="'en-US'"
           [maxFractionDigits]="maxFractionDigits()"
           [minFractionDigits]="minFractionDigits()"
           [ngModel]="value()"
-          [pt]="inputPt"
-          [unstyled]="true"
           [useGrouping]="false"
           (ngModelChange)="onValueChange($event)" />
       }
@@ -52,30 +51,6 @@ export class CInvestmentInputFieldComponent {
   readonly maxFractionDigits = input(0);
 
   readonly valueChange = output<number>();
-
-  protected readonly inputPt: InputNumberPassThrough = {
-    root: { class: 'w-full' },
-    input: {
-      class: 'c-investment-input-field__input',
-    },
-    pcInputText: {
-      root: {
-        class: 'w-full',
-      },
-    },
-  };
-
-  protected readonly splitInputPt: InputNumberPassThrough = {
-    root: { class: 'w-full' },
-    input: {
-      class: 'c-investment-input-field__input c-investment-input-field__input--split',
-    },
-    pcInputText: {
-      root: {
-        class: 'w-full',
-      },
-    },
-  };
 
   onValueChange(value: number | null): void {
     const nextValue = Number(value ?? 0);
