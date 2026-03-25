@@ -2,7 +2,7 @@ name: PR check
 
 on:
   pull_request:
-    branches: [primeng]
+    branches: [main, primeng]
 
 jobs:
   check:
