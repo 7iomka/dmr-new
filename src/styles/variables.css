@@ -1,3 +1,14 @@
+/* Add custom theme colors available for use as tailwind utilities */
+@theme {
+  --color-card: #ffffff;
+  --color-dark: #0b0e11;
+}
+
+@variant dark {
+  --color-card: #14171a;
+}
+
+/* Override custom properties for the PrimeUI theme */
 @layer properties {
   :root,
   .dark {

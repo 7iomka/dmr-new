@@ -10,15 +10,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --color-card: #ffffff;
-  --color-dark: #0b0e11;
-}
-
-@variant dark {
-  --color-card: #14171a;
-}
-
 @layer base {
   :root {
     --radius-xs: 0.125rem;
