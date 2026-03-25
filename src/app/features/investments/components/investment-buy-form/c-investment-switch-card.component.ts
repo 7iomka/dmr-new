@@ -1,10 +1,11 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
   selector: 'app-c-investment-switch-card',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [FormsModule, ToggleSwitchModule],
   template: `
     <div class="c-investment-switch-card">

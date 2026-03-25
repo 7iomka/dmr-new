@@ -4,6 +4,7 @@ import { TabsModule } from 'primeng/tabs';
 @Component({
   selector: 'app-investment-tabpanels',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [TabsModule],
   template: `
     <p-tabpanels class="c-investment-tabs__panels">
@@ -11,7 +12,6 @@ import { TabsModule } from 'primeng/tabs';
     </p-tabpanels>
   `,
   styleUrl: './investment-tabpanels.component.css',
-  encapsulation: ViewEncapsulation.None,
 })
 export class InvestmentTabpanelsComponent {}
 

@@ -4,6 +4,7 @@ import { TabsModule } from 'primeng/tabs';
 @Component({
   selector: 'app-investment-tabs-nav',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [TabsModule],
   template: `
     <p-tablist
@@ -17,7 +18,6 @@ import { TabsModule } from 'primeng/tabs';
     </p-tablist>
   `,
   styleUrl: './investment-tabs-nav.component.css',
-  encapsulation: ViewEncapsulation.None,
 })
 export class InvestmentTabsNavComponent {
   readonly sharesLabel = input('Мои доли');

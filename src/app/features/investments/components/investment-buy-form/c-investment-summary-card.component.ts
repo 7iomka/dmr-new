@@ -1,11 +1,12 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ViewEncapsulation } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { LucideCirclePlus } from '@lucide/angular';
 
 @Component({
   selector: 'app-c-investment-summary-card',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [ButtonModule, LucideCirclePlus, DecimalPipe],
   template: `
     <div class="c-investment-summary-card" [class.c-investment-summary-card--sticky]="sticky()">

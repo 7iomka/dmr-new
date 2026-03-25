@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Select, SelectModule, SelectPassThrough } from 'primeng/select';
+import { SelectModule, SelectPassThrough } from 'primeng/select';
 import { LucideCheck, LucideChevronDown, LucideGlobe } from '@lucide/angular';
 
 type LanguageOption = {

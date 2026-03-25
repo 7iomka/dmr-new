@@ -13,11 +13,9 @@
 }
 
 .c-investment-input-field__input {
-  @apply w-full rounded-lg border border-surface-200 bg-white px-4 py-3 text-lg font-bold text-surface-900 outline-none transition-colors focus:border-primary/50;
-
-  @variant dark {
-    @apply border-surface-800 bg-surface-950/40 text-surface-50;
-  }
+  @apply w-full rounded-lg border border-surface-200 bg-white text-surface-900
+  dark:border-surface-800 dark:bg-surface-950/40 dark:text-surface-50
+  px-4 py-3 text-lg font-bold outline-none transition-colors focus:border-primary/50;
 }
 
 .c-investment-input-field__input--split {

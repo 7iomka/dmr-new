@@ -33,9 +33,29 @@
 }
 
 .c-investment-buy-form__term {
-  @apply w-full appearance-none rounded-lg border border-surface-200 bg-white px-4 py-3 text-sm font-bold text-surface-900 outline-none transition-colors focus:border-primary/50;
+  @apply w-full;
+}
+
+.c-investment-buy-form__term-root {
+  @apply w-full rounded-lg border border-surface-200 bg-white text-sm font-bold text-surface-900 transition-colors focus-within:border-primary/50;
 
   @variant dark {
     @apply border-surface-800 bg-surface-950/40 text-surface-50;
   }
+}
+
+.c-investment-buy-form__term-label-value {
+  @apply px-4 py-3 text-lg;
+}
+
+.c-investment-buy-form__term-dropdown {
+  @apply flex w-12 items-center justify-center;
+}
+
+.c-investment-buy-form__term-dropdown-icon {
+  @apply h-4 w-4 text-surface-500;
+}
+
+.c-investment-buy-form__term-option {
+  @apply text-base font-bold;
 }
