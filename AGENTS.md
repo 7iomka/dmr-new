@@ -38,18 +38,28 @@ When editing Angular code, follow these docs first:
 ## Package manager
 
 - Use `pnpm` only.
+- Respect the package manager version declared in `package.json`.
+- Use Node.js version compatible with `.nvmrc` and `package.json` engines.
 
 ## Validation (MANDATORY — NO EXCEPTIONS)
 
-Before EVERY commit or PR update:
+Before every commit or PR update, run:
 
 ```bash
+pnpm install --frozen-lockfile
 pnpm fix && pnpm check
 ```
 
 Rules:
 
-- Do NOT commit if any check fails
-- Do NOT open/update PR with lint or formatting issues
-- Always include auto-fixes in the same commit
-- Repeat until everything passes cleanly
+- Do NOT commit if validation fails because of code, lint, type, test, or formatting issues.
+- Do NOT open or update a PR with unresolved lint, type, test, or formatting issues.
+- Always include auto-fixes in the same commit when applicable.
+- Repeat until everything passes cleanly.
+
+## Environment failure reporting
+
+- If `pnpm install` fails because of proxy, registry, authentication, network, sandbox, or other environment restrictions, treat it as an environment issue, not a code failure.
+- In such cases, do NOT claim validation passed.
+- Clearly report the exact failed command and the exact error.
+- Still complete the requested code changes as far as possible, but explicitly state that full validation could not be completed due to environment limitations.

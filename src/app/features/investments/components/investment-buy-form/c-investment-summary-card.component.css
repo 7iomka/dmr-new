@@ -1,0 +1,49 @@
+@reference "../../../../../styles.css";
+
+.c-investment-summary-card {
+  @apply rounded-lg border border-surface-200 bg-surface-50 p-4 flex flex-col gap-3;
+
+  @variant dark {
+    @apply border-surface-800 bg-surface-950/35;
+  }
+}
+
+.c-investment-summary-card--sticky {
+  @apply xl:sticky xl:top-4;
+}
+
+.c-investment-summary-card__row {
+  @apply flex items-center justify-between gap-4;
+}
+
+.c-investment-summary-card__label {
+  @apply text-[11px] font-bold uppercase tracking-wide text-surface-500;
+}
+
+.c-investment-summary-card__value {
+  @apply text-sm font-bold tracking-tight text-surface-900;
+
+  @variant dark {
+    @apply text-surface-100;
+  }
+}
+
+.c-investment-summary-card__value--accent {
+  @apply text-primary;
+}
+
+.c-investment-summary-card__divider {
+  @apply h-px bg-surface-200;
+
+  @variant dark {
+    @apply bg-surface-800;
+  }
+}
+
+.c-investment-summary-card__total {
+  @apply text-2xl font-bold text-surface-900;
+
+  @variant dark {
+    @apply text-surface-50;
+  }
+}

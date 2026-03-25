@@ -6,6 +6,7 @@
 @import './styles/button.css';
 @import './styles/form-controls.css';
 @import './styles/avatar.css';
+@import './styles/stat-card.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 

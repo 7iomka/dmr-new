@@ -2,8 +2,15 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
-import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } from '@lucide/angular';
+import { LucideChevronRight, LucideCirclePlus, LucideCopy } from '@lucide/angular';
+
+import { CInvestmentBuyFormComponent } from '../investments/components/investment-buy-form/c-investment-buy-form.component';
+import { CInvestmentSharesOverviewComponent } from '../investments/components/shares-overview/c-investment-shares-overview.component';
+import { InvestmentTabsNavComponent } from '../investments/components/tabs/investment-tabs-nav.component';
+import {
+  InvestmentTabpanelComponent,
+  InvestmentTabpanelsComponent,
+} from '../investments/components/tabs/investment-tabpanels.component';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -12,11 +19,14 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
     ButtonModule,
     CardModule,
     TabsModule,
-    ToggleSwitchModule,
     LucideChevronRight,
     LucideCopy,
-    LucideCreditCard,
     LucideCirclePlus,
+    CInvestmentBuyFormComponent,
+    CInvestmentSharesOverviewComponent,
+    InvestmentTabsNavComponent,
+    InvestmentTabpanelsComponent,
+    InvestmentTabpanelComponent,
   ],
   styleUrl: './dashboard-page.component.css',
   encapsulation: ViewEncapsulation.None,
@@ -117,106 +127,25 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
         </div>
 
         <div class="md:col-span-3">
-          <p-card class="h-full">
-            <ng-template #header>
-              <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
-                Инвестиции
-              </h3>
-              <p-tabs class="dash-tabs" value="shares" [showNavigators]="false">
-                <p-tablist
-                  [pt]="{
-                    root: {
-                      class: 'dash-tabs__root',
-                    },
-                    tabList: {
-                      class: 'dash-tabs__list',
-                    },
-                    activeBar: {
-                      class: 'hidden',
-                    },
-                  }">
-                  <p-tab class="dash-tabs__tab" value="shares">Мои доли</p-tab>
-                  <p-tab class="dash-tabs__tab" value="buy">Купить доли</p-tab>
-                </p-tablist>
-              </p-tabs>
-            </ng-template>
+          <p-tabs class="c-investment-tabs" value="shares" [showNavigators]="false">
+            <p-card class="h-full">
+              <ng-template #header>
+                <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
+                  Инвестиции
+                </h3>
+                <app-investment-tabs-nav />
+              </ng-template>
 
-            <div class="flex flex-col gap-6">
-              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div class="dash-stat-card">
-                  <p>Количество долей</p>
-                  <h4>132,806</h4>
-                </div>
-                <div class="dash-stat-card">
-                  <p>Текущая стоимость</p>
-                  <h4 class="text-primary-500">$ 504.00</h4>
-                </div>
-                <div class="dash-stat-card">
-                  <p>Текущая цена доли</p>
-                  <h4>$0.003795</h4>
-                </div>
-                <div class="dash-stat-card">
-                  <p>Средняя цена покупки</p>
-                  <h4>$0.003795</h4>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap items-center gap-3">
-                <h4 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">
-                  Активные рассрочки (2)
-                </h4>
-                <p-button severity="secondary" size="small" variant="outlined">
-                  <span pButtonLabel>Управление</span>
-                  <svg class="h-3.5 w-3.5" lucideChevronRight pButtonIcon></svg>
-                </p-button>
-              </div>
-
-              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <article class="dash-installment-card dash-installment-card--danger">
-                  <div class="flex items-start justify-between">
-                    <span class="dash-installment-card__id">ID: 88421</span>
-                    <strong class="text-red-500">$ 42.00</strong>
-                  </div>
-                  <div class="flex-1 flex items-start gap-2">
-                    <div class="mt-1 relative flex h-2 w-2">
-                      <span
-                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                    </div>
-                    <div class="space-y-1 text-xs font-bold">
-                      <p>След. платеж: <span class="text-red-500">10.02.2026</span></p>
-                      <p class="text-red-500/70 dark:text-red-400/70">Оплатить не позднее: 17.02.2026</p>
-                    </div>
-                  </div>
-
-                  <p-button severity="danger" size="small">
-                    <svg class="h-4 w-4" lucideCreditCard pButtonIcon></svg>
-                    <span pButtonLabel>Оплатить сейчас</span>
-                  </p-button>
-                </article>
-
-                <article class="dash-installment-card">
-                  <div class="flex items-start justify-between">
-                    <span class="dash-installment-card__id">ID: 90152</span>
-                    <strong>$ 120.00</strong>
-                  </div>
-                  <div class="flex-1 flex items-start gap-2">
-                    <div class="mt-1 relative flex h-2 w-2">
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-surface-300 dark:bg-surface-500"></span>
-                    </div>
-                    <p class="text-xs font-bold text-surface-500 dark:text-surface-400">След. платеж: 25.02.2026</p>
-                  </div>
-                  <p-button
-                    label="через 15 дней"
-                    severity="primary"
-                    size="small"
-                    styleClass="p-disabled:opacity-95 dark:p-disabled:opacity-85"
-                    variant="outlined"
-                    [disabled]="true" />
-                </article>
-              </div>
-            </div>
-          </p-card>
+              <app-investment-tabpanels>
+                <app-investment-tabpanel value="shares">
+                  <app-c-investment-shares-overview />
+                </app-investment-tabpanel>
+                <app-investment-tabpanel value="buy">
+                  <app-c-investment-buy-form layout="stacked" />
+                </app-investment-tabpanel>
+              </app-investment-tabpanels>
+            </p-card>
+          </p-tabs>
         </div>
       </section>
 
@@ -224,7 +153,7 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
         <p-card>
           <ng-template #header>
             <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">История цен</h3>
-            <p-tabs class="dash-tabs dash-tabs--period" value="month">
+            <p-tabs class="c-investment-tabs c-investment-tabs--period" value="month">
               <p-tablist>
                 <p-tab value="month">Месяц</p-tab>
                 <p-tab value="year">Год</p-tab>
@@ -234,20 +163,20 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy, LucideCreditCard } fr
 
           <div class="flex flex-col gap-5">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div class="dash-stat-card">
-                <p>Текущая цена</p>
-                <h4>$0.003795</h4>
+              <div class="c-investment-stat-card">
+                <h5 class="c-investment-stat-card__title">Текущая цена</h5>
+                <div class="c-investment-stat-card__value">$0.003795</div>
               </div>
-              <div class="dash-stat-card">
-                <p>Всего проданных акций</p>
-                <h4>5.52B</h4>
+              <div class="c-investment-stat-card">
+                <h5 class="c-investment-stat-card__title">Всего проданных долей</h5>
+                <div class="c-investment-stat-card__value">5.52B</div>
               </div>
             </div>
 
             <div class="dash-chart-shell">
               <div class="dash-chart-legend">
                 <span><i class="dot dot-blue"></i>Цена</span>
-                <span><i class="dot dot-green"></i>Проданные акции</span>
+                <span><i class="dot dot-green"></i>Проданные доли</span>
               </div>
               <div class="dash-chart-placeholder">Chart container (legacy structure, static v1)</div>
             </div>
