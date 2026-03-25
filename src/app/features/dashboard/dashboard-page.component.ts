@@ -119,7 +119,14 @@ import { CInvestmentSharesOverviewComponent } from '../investments/components/sh
         </div>
 
         <div class="md:col-span-3">
-          <p-tabs class="c-investment-tabs" value="shares" [showNavigators]="false">
+          <p-tabs
+            class="c-investment-tabs"
+            value="shares"
+            [showNavigators]="false"
+            [pt]="{
+              tabpanels: { class: 'c-investment-tabs__panels' },
+              tabpanel: { class: 'c-investment-tabs__panel' },
+            }">
             <p-card class="h-full">
               <ng-template #header>
                 <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">

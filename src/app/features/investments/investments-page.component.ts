@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
 
@@ -19,7 +19,13 @@ import { CInvestmentSharesOverviewComponent } from './components/shares-overview
       </section>
 
       <section>
-        <p-tabs value="shares" [showNavigators]="false">
+        <p-tabs
+          value="shares"
+          [showNavigators]="false"
+          [pt]="{
+            tabpanels: { class: 'c-investment-tabs__panels' },
+            tabpanel: { class: 'c-investment-tabs__panel' },
+          }">
           <p-card>
             <ng-template #header>
               <p-tablist
@@ -47,5 +53,6 @@ import { CInvestmentSharesOverviewComponent } from './components/shares-overview
     </div>
   `,
   styleUrl: './investments-page.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class InvestmentsPageComponent {}
