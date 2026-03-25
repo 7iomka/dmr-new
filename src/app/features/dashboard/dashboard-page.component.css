@@ -24,15 +24,17 @@
 .dash-ref-box__action {
   @apply shrink-0;
 }
+
 /* Tabs */
-.dash-tabs__root {
+.c-investment-tabs__root {
   @apply bg-primary/6 dark:bg-primary/8 rounded-xl;
 }
-.dash-tabs__list {
+
+.c-investment-tabs__list {
   @apply p-1 gap-2 rounded-xl;
 }
 
-.dash-tabs__tab {
+.c-investment-tabs__tab {
   color: var(--p-button-outlined-primary-color);
   border: 1px solid var(--p-button-outlined-primary-border-color);
   padding: var(--p-button-padding-y) var(--p-button-padding-x);
@@ -47,33 +49,16 @@
 }
 
 /* Stats */
-.dash-stat-card {
+.c-investment-stat-card {
   @apply rounded-lg border border-surface-200 bg-surface-50 p-4 dark:border-surface-800 dark:bg-surface-950/35;
 }
 
-.dash-stat-card p {
+.c-investment-stat-card p {
   @apply mb-1 text-[10px] font-bold uppercase text-surface-500;
 }
 
-.dash-stat-card h4 {
+.c-investment-stat-card h4 {
   @apply text-2xl font-bold leading-none text-surface-900 dark:text-surface-50;
-}
-
-/* Installment card */
-.dash-installment-card {
-  @apply flex flex-col gap-4 rounded-lg border border-surface-200 bg-surface-50 p-4 dark:border-surface-800 dark:bg-surface-950/35;
-}
-
-.dash-installment-card--danger {
-  @apply border-red-500/20 bg-red-500/5;
-}
-
-.dash-installment-card__id {
-  @apply text-[10px] font-bold uppercase text-surface-400 dark:text-surface-400;
-}
-
-.dash-installment-card__eta {
-  @apply mt-auto flex items-center justify-center rounded-lg border border-surface-200 bg-surface-100 py-2.5 text-[10px] font-bold uppercase text-primary-500 dark:border-surface-700 dark:bg-surface-800;
 }
 
 /* Chart demo */
@@ -107,7 +92,9 @@
   @apply border-surface-200 text-sm dark:border-surface-700;
 }
 
-.dark .dashboard-table-shell .p-datatable-thead > tr > th,
-.dark .dashboard-table-shell .p-datatable-tbody > tr > td {
-  @apply bg-[#151a1f] text-surface-200;
+.dashboard-table-shell .p-datatable-thead > tr > th,
+.dashboard-table-shell .p-datatable-tbody > tr > td {
+  @variant dark {
+    @apply bg-[#151a1f] text-surface-200;
+  }
 }
