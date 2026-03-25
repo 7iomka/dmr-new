@@ -119,25 +119,24 @@ import { CInvestmentSharesOverviewComponent } from '../investments/components/sh
         </div>
 
         <div class="md:col-span-3">
-          <p-card class="h-full">
-            <ng-template #header>
-              <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
-                Инвестиции
-              </h3>
-            </ng-template>
+          <p-tabs class="c-investment-tabs" value="shares" [showNavigators]="false">
+            <p-card class="h-full">
+              <ng-template #header>
+                <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
+                  Инвестиции
+                </h3>
+                <p-tablist
+                  [pt]="{
+                    root: { class: 'c-investment-tabs__nav' },
+                    tabList: { class: 'c-investment-tabs__list' },
+                    activeBar: { class: 'hidden' },
+                  }">
+                  <p-tab class="c-investment-tabs__tab" value="shares">Мои доли</p-tab>
+                  <p-tab class="c-investment-tabs__tab" value="buy">Купить доли</p-tab>
+                </p-tablist>
+              </ng-template>
 
-            <p-tabs class="c-investment-tabs" value="shares" [showNavigators]="false">
-              <p-tablist
-                [pt]="{
-                  root: { class: 'c-investment-tabs__root' },
-                  tabList: { class: 'c-investment-tabs__list' },
-                  activeBar: { class: 'hidden' },
-                }">
-                <p-tab class="c-investment-tabs__tab" value="shares">Мои доли</p-tab>
-                <p-tab class="c-investment-tabs__tab" value="buy">Купить доли</p-tab>
-              </p-tablist>
-
-              <p-tabpanels class="mt-5">
+              <p-tabpanels>
                 <p-tabpanel value="shares">
                   <app-c-investment-shares-overview />
                 </p-tabpanel>
@@ -145,8 +144,8 @@ import { CInvestmentSharesOverviewComponent } from '../investments/components/sh
                   <app-c-investment-buy-form layout="stacked" />
                 </p-tabpanel>
               </p-tabpanels>
-            </p-tabs>
-          </p-card>
+            </p-card>
+          </p-tabs>
         </div>
       </section>
 

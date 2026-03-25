@@ -1,6 +1,6 @@
 @reference "../../../styles.css";
 
-.c-investment-tabs__root {
+.c-investment-tabs__nav {
   @apply rounded-xl bg-primary/6;
 
   @variant dark {

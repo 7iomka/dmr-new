@@ -19,19 +19,21 @@ import { CInvestmentSharesOverviewComponent } from './components/shares-overview
       </section>
 
       <section>
-        <p-card>
-          <p-tabs value="shares" [showNavigators]="false">
-            <p-tablist
-              [pt]="{
-                root: { class: 'c-investment-tabs__root' },
-                tabList: { class: 'c-investment-tabs__list' },
-                activeBar: { class: 'hidden' },
-              }">
-              <p-tab class="c-investment-tabs__tab" value="shares">Мои доли</p-tab>
-              <p-tab class="c-investment-tabs__tab" value="buy">Купить доли</p-tab>
-            </p-tablist>
+        <p-tabs value="shares" [showNavigators]="false">
+          <p-card>
+            <ng-template #header>
+              <p-tablist
+                [pt]="{
+                  root: { class: 'c-investment-tabs__nav' },
+                  tabList: { class: 'c-investment-tabs__list' },
+                  activeBar: { class: 'hidden' },
+                }">
+                <p-tab class="c-investment-tabs__tab" value="shares">Мои доли</p-tab>
+                <p-tab class="c-investment-tabs__tab" value="buy">Купить доли</p-tab>
+              </p-tablist>
+            </ng-template>
 
-            <p-tabpanels class="mt-5">
+            <p-tabpanels>
               <p-tabpanel value="buy">
                 <app-c-investment-buy-form layout="split" />
               </p-tabpanel>
@@ -39,8 +41,8 @@ import { CInvestmentSharesOverviewComponent } from './components/shares-overview
                 <app-c-investment-shares-overview [showInstallments]="false" [wideGrid]="true" />
               </p-tabpanel>
             </p-tabpanels>
-          </p-tabs>
-        </p-card>
+          </p-card>
+        </p-tabs>
       </section>
     </div>
   `,
