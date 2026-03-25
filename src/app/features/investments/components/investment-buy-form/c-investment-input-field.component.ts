@@ -1,28 +1,43 @@
 import { Component, input, output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputNumberModule, InputNumberPassThrough } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-c-investment-input-field',
   standalone: true,
+  imports: [FormsModule, InputNumberModule, InputGroupModule, InputGroupAddonModule],
   template: `
     <div class="c-investment-input-field">
       <label class="c-investment-input-field__label" [attr.for]="inputId()">{{ label() }}</label>
       @if (suffix()) {
-        <div class="c-investment-input-field__split-wrap">
-          <input
-            class="c-investment-input-field__input c-investment-input-field__input--split"
-            type="number"
+        <p-inputgroup class="c-investment-input-field__split-wrap">
+          <p-inputnumber
+            [allowEmpty]="false"
             [id]="inputId()"
-            [value]="value()"
-            (input)="onInput($event)" />
+            [inputStyleClass]="'c-investment-input-field__input c-investment-input-field__input--split'"
+            [locale]="'en-US'"
+            [maxFractionDigits]="maxFractionDigits()"
+            [minFractionDigits]="minFractionDigits()"
+            [ngModel]="value()"
+            [pt]="inputPt"
+            [useGrouping]="false"
+            (ngModelChange)="onValueChange($event)" />
           <span class="c-investment-input-field__suffix">{{ suffix() }}</span>
-        </div>
+        </p-inputgroup>
       } @else {
-        <input
-          class="c-investment-input-field__input"
-          type="number"
+        <p-inputnumber
+          [allowEmpty]="false"
           [id]="inputId()"
-          [value]="value()"
-          (input)="onInput($event)" />
+          [inputStyleClass]="'c-investment-input-field__input'"
+          [locale]="'en-US'"
+          [maxFractionDigits]="maxFractionDigits()"
+          [minFractionDigits]="minFractionDigits()"
+          [ngModel]="value()"
+          [pt]="inputPt"
+          [useGrouping]="false"
+          (ngModelChange)="onValueChange($event)" />
       }
     </div>
   `,
@@ -33,11 +48,18 @@ export class CInvestmentInputFieldComponent {
   readonly value = input.required<number>();
   readonly inputId = input.required<string>();
   readonly suffix = input<string | null>(null);
+  readonly minFractionDigits = input(0);
+  readonly maxFractionDigits = input(0);
 
   readonly valueChange = output<number>();
 
-  onInput(event: Event): void {
-    const nextValue = Number((event.target as HTMLInputElement).value || 0);
+  protected readonly inputPt: InputNumberPassThrough = {
+    root: { class: 'w-full' },
+    pcInputText: { root: { class: 'w-full' } },
+  };
+
+  onValueChange(value: number | null): void {
+    const nextValue = Number(value ?? 0);
     this.valueChange.emit(nextValue);
   }
 }
