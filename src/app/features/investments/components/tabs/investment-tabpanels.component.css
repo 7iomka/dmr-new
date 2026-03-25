@@ -1,0 +1,9 @@
+@reference "../../../../../styles.css";
+
+.c-investment-tabs__panels {
+  @apply block bg-transparent p-0 m-0;
+}
+
+.c-investment-tabs__panel {
+  @apply bg-transparent p-0;
+}

@@ -10,20 +10,20 @@ import { LucideChevronRight, LucideCreditCard } from '@lucide/angular';
     <div class="c-investment-shares-overview">
       <div class="c-investment-shares-overview__stats" [class.c-investment-shares-overview__stats--wide]="wideGrid()">
         <div class="c-investment-stat-card">
-          <p>Количество долей</p>
-          <h4>132,806</h4>
+          <h5 class="c-investment-stat-card__title">Количество долей</h5>
+          <div class="c-investment-stat-card__value">132,806</div>
         </div>
         <div class="c-investment-stat-card">
-          <p>{{ wideGrid() ? 'Стоимость портфеля' : 'Текущая стоимость' }}</p>
-          <h4 class="text-primary-500">$ 504.00</h4>
+          <h5 class="c-investment-stat-card__title">{{ wideGrid() ? 'Стоимость портфеля' : 'Текущая стоимость' }}</h5>
+          <div class="c-investment-stat-card__value text-primary!">$ 504.00</div>
         </div>
         <div class="c-investment-stat-card">
-          <p>Текущая цена доли</p>
-          <h4>$0.003795</h4>
+          <h5 class="c-investment-stat-card__title">Текущая цена доли</h5>
+          <div class="c-investment-stat-card__value">$0.003795</div>
         </div>
         <div class="c-investment-stat-card">
-          <p>Средняя цена покупки</p>
-          <h4>$0.003795</h4>
+          <h5 class="c-investment-stat-card__title">Средняя цена покупки</h5>
+          <div class="c-investment-stat-card__value">$0.003795</div>
         </div>
       </div>
 

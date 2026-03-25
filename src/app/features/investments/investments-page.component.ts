@@ -4,11 +4,24 @@ import { TabsModule } from 'primeng/tabs';
 
 import { CInvestmentBuyFormComponent } from './components/investment-buy-form/c-investment-buy-form.component';
 import { CInvestmentSharesOverviewComponent } from './components/shares-overview/c-investment-shares-overview.component';
+import { InvestmentTabsNavComponent } from './components/tabs/investment-tabs-nav.component';
+import {
+  InvestmentTabpanelComponent,
+  InvestmentTabpanelsComponent,
+} from './components/tabs/investment-tabpanels.component';
 
 @Component({
   selector: 'app-investments-page',
   standalone: true,
-  imports: [CardModule, TabsModule, CInvestmentBuyFormComponent, CInvestmentSharesOverviewComponent],
+  imports: [
+    CardModule,
+    TabsModule,
+    CInvestmentBuyFormComponent,
+    CInvestmentSharesOverviewComponent,
+    InvestmentTabsNavComponent,
+    InvestmentTabpanelsComponent,
+    InvestmentTabpanelComponent,
+  ],
   template: `
     <div class="flex flex-col gap-6 lg:gap-7">
       <section>
@@ -19,30 +32,20 @@ import { CInvestmentSharesOverviewComponent } from './components/shares-overview
       </section>
 
       <section>
-        <p-tabs
-          value="shares"
-          [showNavigators]="false">
+        <p-tabs value="shares" [showNavigators]="false">
           <p-card>
             <ng-template #header>
-              <p-tablist
-                [pt]="{
-                  root: { class: 'c-investment-tabs__nav' },
-                  tabList: { class: 'c-investment-tabs__list' },
-                  activeBar: { class: 'hidden' },
-                }">
-                <p-tab class="c-investment-tabs__tab" value="shares">Мои доли</p-tab>
-                <p-tab class="c-investment-tabs__tab" value="buy">Купить доли</p-tab>
-              </p-tablist>
+              <app-investment-tabs-nav />
             </ng-template>
 
-            <p-tabpanels class="c-investment-tabs__panels">
-              <p-tabpanel class="c-investment-tabs__panel" value="buy">
+            <app-investment-tabpanels>
+              <app-investment-tabpanel value="buy">
                 <app-c-investment-buy-form layout="split" />
-              </p-tabpanel>
-              <p-tabpanel class="c-investment-tabs__panel" value="shares">
+              </app-investment-tabpanel>
+              <app-investment-tabpanel value="shares">
                 <app-c-investment-shares-overview [showInstallments]="false" [wideGrid]="true" />
-              </p-tabpanel>
-            </p-tabpanels>
+              </app-investment-tabpanel>
+            </app-investment-tabpanels>
           </p-card>
         </p-tabs>
       </section>

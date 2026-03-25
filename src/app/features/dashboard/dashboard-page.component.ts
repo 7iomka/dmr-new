@@ -6,6 +6,11 @@ import { LucideChevronRight, LucideCirclePlus, LucideCopy } from '@lucide/angula
 
 import { CInvestmentBuyFormComponent } from '../investments/components/investment-buy-form/c-investment-buy-form.component';
 import { CInvestmentSharesOverviewComponent } from '../investments/components/shares-overview/c-investment-shares-overview.component';
+import { InvestmentTabsNavComponent } from '../investments/components/tabs/investment-tabs-nav.component';
+import {
+  InvestmentTabpanelComponent,
+  InvestmentTabpanelsComponent,
+} from '../investments/components/tabs/investment-tabpanels.component';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -19,6 +24,9 @@ import { CInvestmentSharesOverviewComponent } from '../investments/components/sh
     LucideCirclePlus,
     CInvestmentBuyFormComponent,
     CInvestmentSharesOverviewComponent,
+    InvestmentTabsNavComponent,
+    InvestmentTabpanelsComponent,
+    InvestmentTabpanelComponent,
   ],
   styleUrl: './dashboard-page.component.css',
   encapsulation: ViewEncapsulation.None,
@@ -119,34 +127,23 @@ import { CInvestmentSharesOverviewComponent } from '../investments/components/sh
         </div>
 
         <div class="md:col-span-3">
-          <p-tabs
-            class="c-investment-tabs"
-            value="shares"
-            [showNavigators]="false">
+          <p-tabs class="c-investment-tabs" value="shares" [showNavigators]="false">
             <p-card class="h-full">
               <ng-template #header>
                 <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
                   Инвестиции
                 </h3>
-                <p-tablist
-                  [pt]="{
-                    root: { class: 'c-investment-tabs__nav' },
-                    tabList: { class: 'c-investment-tabs__list' },
-                    activeBar: { class: 'hidden' },
-                  }">
-                  <p-tab class="c-investment-tabs__tab" value="shares">Мои доли</p-tab>
-                  <p-tab class="c-investment-tabs__tab" value="buy">Купить доли</p-tab>
-                </p-tablist>
+                <app-investment-tabs-nav />
               </ng-template>
 
-              <p-tabpanels class="c-investment-tabs__panels">
-                <p-tabpanel class="c-investment-tabs__panel" value="shares">
+              <app-investment-tabpanels>
+                <app-investment-tabpanel value="shares">
                   <app-c-investment-shares-overview />
-                </p-tabpanel>
-                <p-tabpanel class="c-investment-tabs__panel" value="buy">
+                </app-investment-tabpanel>
+                <app-investment-tabpanel value="buy">
                   <app-c-investment-buy-form layout="stacked" />
-                </p-tabpanel>
-              </p-tabpanels>
+                </app-investment-tabpanel>
+              </app-investment-tabpanels>
             </p-card>
           </p-tabs>
         </div>
@@ -167,19 +164,19 @@ import { CInvestmentSharesOverviewComponent } from '../investments/components/sh
           <div class="flex flex-col gap-5">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div class="c-investment-stat-card">
-                <p>Текущая цена</p>
-                <h4>$0.003795</h4>
+                <h5 class="c-investment-stat-card__title">Текущая цена</h5>
+                <div class="c-investment-stat-card__value">$0.003795</div>
               </div>
               <div class="c-investment-stat-card">
-                <p>Всего проданных акций</p>
-                <h4>5.52B</h4>
+                <h5 class="c-investment-stat-card__title">Всего проданных долей</h5>
+                <div class="c-investment-stat-card__value">5.52B</div>
               </div>
             </div>
 
             <div class="dash-chart-shell">
               <div class="dash-chart-legend">
                 <span><i class="dot dot-blue"></i>Цена</span>
-                <span><i class="dot dot-green"></i>Проданные акции</span>
+                <span><i class="dot dot-green"></i>Проданные доли</span>
               </div>
               <div class="dash-chart-placeholder">Chart container (legacy structure, static v1)</div>
             </div>

@@ -1,0 +1,31 @@
+@reference "../../../../../styles.css";
+
+.c-investment-tabs__nav {
+  @apply rounded-xl bg-primary/6;
+
+  @variant dark {
+    @apply bg-primary/8;
+  }
+}
+
+.c-investment-tabs__list {
+  @apply gap-2 rounded-xl p-1;
+}
+
+.c-investment-tabs__tab {
+  color: var(--p-button-outlined-primary-color);
+  border: 1px solid var(--p-button-outlined-primary-border-color);
+  padding: var(--p-button-padding-y) var(--p-button-padding-x);
+  border-radius: var(--p-button-border-radius);
+  outline-color: transparent;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+  min-height: var(--c-button-min-height);
+
+  @apply bg-white/75 p-active:bg-(--p-button-primary-background) p-active:text-(--p-button-primary-color) p-active:border-(--p-button-primary-border-color);
+
+  @variant dark {
+    @apply bg-primary-950/25;
+  }
+}

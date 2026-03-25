@@ -25,50 +25,6 @@
   @apply shrink-0;
 }
 
-/* Tabs */
-.c-investment-tabs__nav {
-  @apply bg-primary/6 dark:bg-primary/8 rounded-xl;
-}
-
-.c-investment-tabs__list {
-  @apply p-1 gap-2 rounded-xl;
-}
-
-.c-investment-tabs__tab {
-  color: var(--p-button-outlined-primary-color);
-  border: 1px solid var(--p-button-outlined-primary-border-color);
-  padding: var(--p-button-padding-y) var(--p-button-padding-x);
-  border-radius: var(--p-button-border-radius);
-  outline-color: transparent;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: var(--text-sm);
-  min-height: var(--c-button-min-height);
-
-  @apply bg-white/75 dark:bg-primary-950/25 p-active:bg-(--p-button-primary-background) p-active:text-(--p-button-primary-color) p-active:border-(--p-button-primary-border-color);
-}
-
-.c-investment-tabs__panels {
-  @apply block bg-transparent p-0 m-0;
-}
-
-.c-investment-tabs__panel {
-  @apply bg-transparent p-0;
-}
-
-/* Stats */
-.c-investment-stat-card {
-  @apply rounded-lg border border-surface-200 bg-surface-50 p-4 dark:border-surface-800 dark:bg-surface-950/35;
-}
-
-.c-investment-stat-card p {
-  @apply mb-1 text-[10px] font-bold uppercase text-surface-500;
-}
-
-.c-investment-stat-card h4 {
-  @apply text-2xl font-bold leading-none text-surface-900 dark:text-surface-50;
-}
-
 /* Chart demo */
 .dash-chart-shell {
   @apply rounded-lg border border-surface-200 bg-surface-0 p-5 dark:border-surface-800 dark:bg-surface-950/30;
