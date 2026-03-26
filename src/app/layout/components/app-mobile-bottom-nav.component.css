@@ -1,4 +1,7 @@
+@reference "../../../styles.css";
+
 .c-mobile-nav {
+  @apply lg:hidden;
   position: fixed;
   inset-inline: 0;
   bottom: 0;
@@ -6,12 +9,12 @@
   display: flex;
   height: 3.75rem;
   border-top: 1px solid color-mix(in oklab, var(--p-surface-300, #d4d4d8) 65%, transparent);
-  background: var(--p-content-background, #ffffff);
+  background: var(--color-card);
 }
 
 .dark .c-mobile-nav {
   border-top-color: color-mix(in oklab, #3f3f46 80%, transparent);
-  background: #1e2023;
+  background: var(--color-card);
 }
 
 .c-mobile-nav__item {
@@ -49,15 +52,7 @@
 
 .dark .c-mobile-sidebar {
   border-inline-end-color: #27272a;
-  background: #1e2023;
-}
-
-.c-mobile-sidebar .p-drawer-header {
-  display: none;
-}
-
-.c-mobile-sidebar .p-drawer-content {
-  padding: 0;
+  background: var(--color-card);
 }
 
 .c-mobile-sidebar__header {
@@ -87,7 +82,7 @@
 .c-mobile-sidebar__body {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem 0.75rem 2.5rem;
+  padding: 1rem 0.25rem 2.5rem;
 }
 
 .c-mobile-sidebar__section + .c-mobile-sidebar__section {

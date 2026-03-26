@@ -1,15 +1,9 @@
-import { Component, ViewEncapsulation, inject, signal } from '@angular/core';
+import { Component, inject, signal, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { DrawerModule } from 'primeng/drawer';
 import { Menu, MenuModule } from 'primeng/menu';
-import {
-  LucideBriefcase,
-  LucideCircleUser,
-  LucideDynamicIcon,
-  LucideTextAlignJustify,
-  LucideX,
-} from '@lucide/angular';
+import { LucideBriefcase, LucideCircleUser, LucideDynamicIcon, LucideTextAlignJustify, LucideX } from '@lucide/angular';
 
 import { APP_NAVIGATION } from '../models/navigation.model';
 
@@ -29,7 +23,7 @@ import { APP_NAVIGATION } from '../models/navigation.model';
   styleUrl: './app-mobile-bottom-nav.component.css',
   encapsulation: ViewEncapsulation.None,
   template: `
-    <nav class="c-mobile-nav" aria-label="Мобильная навигация">
+    <nav aria-label="Мобильная навигация" class="c-mobile-nav">
       <button class="c-mobile-nav__item" type="button" (click)="openSidebar()">
         <svg class="c-mobile-nav__icon" lucideTextAlignJustify></svg>
         <span class="c-mobile-nav__label">Меню</span>
@@ -46,7 +40,12 @@ import { APP_NAVIGATION } from '../models/navigation.model';
       </button>
     </nav>
 
-    <p-menu #profileMenu appendTo="body" [model]="profileMenuItems" [popup]="true" styleClass="c-mobile-nav__profile-menu" />
+    <p-menu
+      #profileMenu
+      appendTo="body"
+      styleClass="c-mobile-nav__profile-menu"
+      [model]="profileMenuItems"
+      [popup]="true" />
 
     <p-drawer
       class="c-mobile-drawer"
@@ -54,41 +53,45 @@ import { APP_NAVIGATION } from '../models/navigation.model';
       position="left"
       [dismissible]="true"
       [modal]="true"
+      [pt]="{
+        header: {
+          class: 'c-mobile-sidebar__header',
+        },
+        content: { class: 'c-mobile-sidebar__body' },
+      }"
       [showCloseIcon]="false"
       [styleClass]="'c-mobile-sidebar'"
       [visible]="isSidebarOpen()"
       (visibleChange)="onSidebarVisibleChange($event)">
-      <header class="c-mobile-sidebar__header">
+      <ng-template #header>
         <a class="c-mobile-sidebar__logo" routerLink="/dashboard" (click)="closeSidebar()">
           <img alt="Logo" class="h-10 w-auto hidden dark:block" src="/assets/img/logo-light.svg" />
           <img alt="Logo" class="h-10 w-auto dark:hidden" src="/assets/img/logo-dark.svg" />
         </a>
 
-        <button class="c-mobile-sidebar__close" type="button" aria-label="Закрыть меню" (click)="closeSidebar()">
+        <button aria-label="Закрыть меню" class="c-mobile-sidebar__close" type="button" (click)="closeSidebar()">
           <svg class="h-5 w-5" lucideX></svg>
         </button>
-      </header>
+      </ng-template>
 
-      <div class="c-mobile-sidebar__body">
-        @for (group of navigation; track group.title) {
-          <section class="c-mobile-sidebar__section">
-            <h3 class="c-mobile-sidebar__title">{{ group.title }}</h3>
+      @for (group of navigation; track group.title) {
+        <section class="c-mobile-sidebar__section">
+          <h3 class="c-mobile-sidebar__title">{{ group.title }}</h3>
 
-            <div class="c-mobile-sidebar__links">
-              @for (item of group.items; track item.route) {
-                <a
-                  class="c-mobile-sidebar__link"
-                  [attr.data-active]="isRouteActive(item.route)"
-                  [routerLink]="item.route"
-                  (click)="closeSidebar()">
-                  <svg class="h-5 w-5" [lucideIcon]="item.icon"></svg>
-                  <span>{{ item.label }}</span>
-                </a>
-              }
-            </div>
-          </section>
-        }
-      </div>
+          <div class="c-mobile-sidebar__links">
+            @for (item of group.items; track item.route) {
+              <a
+                class="c-mobile-sidebar__link"
+                [attr.data-active]="isRouteActive(item.route)"
+                [routerLink]="item.route"
+                (click)="closeSidebar()">
+                <svg class="h-5 w-5" [lucideIcon]="item.icon"></svg>
+                <span>{{ item.label }}</span>
+              </a>
+            }
+          </div>
+        </section>
+      }
     </p-drawer>
   `,
 })
