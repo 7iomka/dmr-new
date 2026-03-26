@@ -24,13 +24,12 @@ import {
   ],
   template: `
     <div class="flex flex-col gap-6 lg:gap-7">
-      <section>
-        <h1 class="text-2xl font-bold tracking-tight text-surface-900 dark:text-surface-50 lg:text-3xl">Инвестиции</h1>
-        <p class="mt-1 text-sm font-medium text-surface-500">
+      <section class="c-page-heading">
+        <h1 class="c-page-heading__title">Инвестиции</h1>
+        <p class="c-page-heading__subtitle">
           Просматривайте портфель долей и управляйте всеми рассрочками в одном месте.
         </p>
       </section>
-
       <section>
         <p-tabs value="shares" [showNavigators]="false">
           <p-card>
