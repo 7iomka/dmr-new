@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LucideChevronsLeft, LucideDynamicIcon } from '@lucide/angular';
+
 import { SidebarModeService } from '../../core/theme/sidebar-mode.service';
 import { APP_NAVIGATION, type NavItem } from '../models/navigation.model';
 
@@ -8,44 +9,49 @@ import { APP_NAVIGATION, type NavItem } from '../models/navigation.model';
   selector: 'app-sidebar',
   standalone: true,
   imports: [RouterLink, LucideDynamicIcon, LucideChevronsLeft],
+  styleUrl: './app-sidebar.component.css',
+  encapsulation: ViewEncapsulation.None,
   template: `
-    <aside class="page-sidebar" id="sidebar">
-      <div class="relative h-20 px-2 flex items-center justify-between">
-        <a class="sidebar-logo-link h-full pl-4 flex items-center shrink-0 transition-all" routerLink="/dashboard">
-          <img alt="Logo" class="sidebar-logo-full h-12 w-auto hidden dark:block" src="/assets/img/logo-light.svg" />
-          <img alt="Logo" class="sidebar-logo-full h-12 w-auto dark:hidden" src="/assets/img/logo-dark.svg" />
-          <img alt="Logo" class="sidebar-logo-icon h-12 w-auto hidden" src="/assets/img/logo-icon-only.svg" />
+    <aside class="c-desktop-sidebar" id="sidebar">
+      <div class="c-desktop-sidebar__topbar">
+        <a class="c-desktop-sidebar__logo" routerLink="/dashboard">
+          <img
+            alt="Logo"
+            class="c-desktop-sidebar__logo-full c-desktop-sidebar__logo-full--light"
+            src="/assets/img/logo-light.svg" />
+          <img
+            alt="Logo"
+            class="c-desktop-sidebar__logo-full c-desktop-sidebar__logo-full--dark"
+            src="/assets/img/logo-dark.svg" />
+          <img alt="Logo" class="c-desktop-sidebar__logo-icon" src="/assets/img/logo-icon-only.svg" />
         </a>
 
         <button
           aria-label="Toggle sidebar"
-          class="js-desktop-sidebar-toggle absolute -right-3.5 top-0 bottom-0 my-auto hidden lg:flex w-7 h-7 items-center justify-center text-zinc-500 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 rounded-md transition-colors"
+          class="c-desktop-sidebar__toggle js-desktop-sidebar-toggle"
           type="button"
           (click)="sidebarModeService.toggleSidebar()">
-          <svg
-            class="w-4.5 h-4.5 transition-transform duration-300 [.sidebar-collapse_&]:rotate-180"
-            lucideChevronsLeft></svg>
+          <svg class="c-desktop-sidebar__toggle-icon" lucideChevronsLeft></svg>
         </button>
       </div>
 
-      <div class="flex-1 px-2 py-4 pb-10 overflow-y-auto space-y-8">
+      <div class="c-desktop-sidebar__content">
         @for (group of navigation; track group.title) {
           <div>
-            <p
-              class="sidebar-section-title px-4 text-[10px] font-bold uppercase tracking-widest mb-3 text-zinc-400 dark:text-zinc-600">
-              <span class="sidebar-label">{{ group.title }}</span>
+            <p class="c-desktop-sidebar__section-title">
+              <span class="c-desktop-sidebar__label">{{ group.title }}</span>
             </p>
 
-            <div class="flex flex-col gap-1">
+            <div class="c-desktop-sidebar__links">
               @for (item of group.items; track item.route) {
                 <a
-                  class="sidebar-nav-link w-full flex items-center gap-3 pl-4 pr-3 py-3 rounded-lg transition-all text-zinc-500 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-white data-[active=true]:bg-primary/10 data-[active=true]:text-primary dark:data-[active=true]:bg-primary/10 dark:data-[active=true]:text-primary"
+                  class="c-desktop-sidebar__link"
                   [attr.data-active]="isActive(item) ? 'true' : 'false'"
                   [routerLink]="item.route">
-                  <div class="sidebar-link-icon flex items-center justify-center">
-                    <svg class="w-5 h-5" [lucideIcon]="item.icon"></svg>
+                  <div class="c-desktop-sidebar__link-icon">
+                    <svg class="c-desktop-sidebar__icon" [lucideIcon]="item.icon"></svg>
                   </div>
-                  <span class="sidebar-label text-sm font-semibold">{{ item.label }}</span>
+                  <span class="c-desktop-sidebar__label c-desktop-sidebar__label--item">{{ item.label }}</span>
                 </a>
               }
             </div>
