@@ -29,7 +29,7 @@
 }
 
 .c-mobile-nav__item[data-active='true'] {
-  color: var(--primary-color);
+  @apply text-primary;
 }
 
 .c-mobile-nav__icon {

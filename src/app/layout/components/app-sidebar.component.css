@@ -126,8 +126,7 @@
 }
 
 .c-desktop-sidebar__link[data-active='true'] {
-  background: color-mix(in oklab, var(--primary-color) 10%, transparent);
-  color: var(--primary-color);
+  @apply bg-primary/10 text-primary;
 }
 
 .c-desktop-sidebar__link-icon {
