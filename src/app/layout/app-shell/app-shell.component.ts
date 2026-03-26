@@ -4,11 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { AppFooterComponent } from '../components/app-footer.component';
 import { AppHeaderComponent } from '../components/app-header.component';
 import { AppSidebarComponent } from '../components/app-sidebar.component';
+import { AppMobileBottomNavComponent } from '../components/app-mobile-bottom-nav.component';
 
 @Component({
   selector: 'app-shell',
   standalone: true,
-  imports: [RouterOutlet, AppHeaderComponent, AppSidebarComponent, AppFooterComponent],
+  imports: [RouterOutlet, AppHeaderComponent, AppSidebarComponent, AppFooterComponent, AppMobileBottomNavComponent],
   template: `
     <div class="flex overflow-hidden min-h-screen" id="app">
       <app-sidebar />
@@ -21,6 +22,7 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
           <app-footer />
         </div>
       </div>
+      <app-mobile-bottom-nav />
     </div>
   `,
 })
