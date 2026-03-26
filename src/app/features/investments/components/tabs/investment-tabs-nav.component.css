@@ -9,7 +9,7 @@
 }
 
 .c-investment-tabs__list {
-  @apply gap-2 rounded-xl p-1;
+  @apply gap-2 rounded-xl p-1 border-none;
 }
 
 .c-investment-tabs__tab {
