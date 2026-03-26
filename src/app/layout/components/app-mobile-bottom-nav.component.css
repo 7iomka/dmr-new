@@ -1,5 +1,4 @@
 .c-mobile-nav {
-  @apply lg:hidden;
   position: fixed;
   inset-inline: 0;
   bottom: 0;
@@ -10,10 +9,6 @@
   background: var(--p-content-background, #ffffff);
 }
 
-
-.c-mobile-drawer {
-  @apply lg:hidden;
-}
 .dark .c-mobile-nav {
   border-top-color: color-mix(in oklab, #3f3f46 80%, transparent);
   background: #1e2023;
