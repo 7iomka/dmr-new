@@ -1,6 +1,6 @@
 @reference "../../../styles.css";
 
-.c-mobile-nav {
+.app-mobile-nav {
   @apply lg:hidden;
   position: fixed;
   inset-inline: 0;
@@ -17,7 +17,7 @@
   }
 }
 
-.c-mobile-nav__item {
+.app-mobile-nav__item {
   display: inline-flex;
   min-width: 0;
   flex: 1;
@@ -28,22 +28,22 @@
   color: #71717a;
 }
 
-.c-mobile-nav__item[data-active='true'] {
+.app-mobile-nav__item[data-active='true'] {
   @apply text-primary;
 }
 
-.c-mobile-nav__icon {
+.app-mobile-nav__icon {
   width: 1.25rem;
   height: 1.25rem;
 }
 
-.c-mobile-nav__label {
+.app-mobile-nav__label {
   font-size: 0.55rem;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
 }
 
-.c-mobile-nav__profile-menu {
+.app-mobile-nav__profile-menu {
   min-width: 13rem;
 }

@@ -20,27 +20,27 @@ import { AppMobileSidebarComponent } from './app-mobile-sidebar.component';
   styleUrl: './app-mobile-bottom-nav.component.css',
   encapsulation: ViewEncapsulation.None,
   template: `
-    <nav aria-label="Мобильная навигация" class="c-mobile-nav">
-      <button class="c-mobile-nav__item" type="button" (click)="openSidebar()">
-        <svg class="c-mobile-nav__icon" lucideTextAlignJustify></svg>
-        <span class="c-mobile-nav__label">Меню</span>
+    <nav aria-label="Мобильная навигация" class="app-mobile-nav">
+      <button class="app-mobile-nav__item" type="button" (click)="openSidebar()">
+        <svg class="app-mobile-nav__icon" lucideTextAlignJustify></svg>
+        <span class="app-mobile-nav__label">Меню</span>
       </button>
 
-      <a class="c-mobile-nav__item" routerLink="/investments" [attr.data-active]="isRouteActive('/investments')">
-        <svg class="c-mobile-nav__icon" lucideBriefcase></svg>
-        <span class="c-mobile-nav__label">Инвестиции</span>
+      <a class="app-mobile-nav__item" routerLink="/investments" [attr.data-active]="isRouteActive('/investments')">
+        <svg class="app-mobile-nav__icon" lucideBriefcase></svg>
+        <span class="app-mobile-nav__label">Инвестиции</span>
       </a>
 
-      <button class="c-mobile-nav__item" type="button" (click)="toggleProfileMenu($event, profileMenu)">
-        <svg class="c-mobile-nav__icon" lucideCircleUser></svg>
-        <span class="c-mobile-nav__label">Профиль</span>
+      <button class="app-mobile-nav__item" type="button" (click)="toggleProfileMenu($event, profileMenu)">
+        <svg class="app-mobile-nav__icon" lucideCircleUser></svg>
+        <span class="app-mobile-nav__label">Профиль</span>
       </button>
     </nav>
 
     <p-menu
       #profileMenu
       appendTo="body"
-      styleClass="c-mobile-nav__profile-menu"
+      styleClass="app-mobile-nav__profile-menu"
       [model]="profileMenuItems"
       [popup]="true" />
 

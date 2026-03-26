@@ -69,11 +69,11 @@
 }
 
 @layer components {
-  .page-content-area {
+  .app-shell__content {
     @apply relative flex h-screen min-w-0 flex-1 flex-col pb-15 lg:pb-0;
   }
 
-  .page-header {
+  .app-shell__header {
     @apply relative z-40 h-16 shrink-0 border-b border-zinc-200 bg-card lg:h-20 dark:border-zinc-800;
   }
 
@@ -85,15 +85,15 @@
     @apply h-10 !min-w-[128px] !rounded-lg;
   }
 
-  .page-body {
+  .app-shell__body {
     @apply flex min-h-0 flex-1 flex-col overflow-y-auto;
   }
 
-  .page-main {
+  .app-shell__main {
     @apply container flex-1 space-y-6 py-6 lg:py-10;
   }
 
-  .page-footer {
+  .app-shell__footer {
     @apply shrink-0 min-h-0 border-t border-zinc-200 bg-card dark:border-zinc-800;
     padding: 48px 0 32px;
   }
@@ -135,7 +135,7 @@
     --sidebar-width: var(--sidebar-width-collapse);
   }
 
-  .page-content-area {
+  .app-shell__content {
     padding-inline-start: var(--sidebar-width) !important;
     transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
   }
