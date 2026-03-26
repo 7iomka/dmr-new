@@ -29,7 +29,7 @@ import { APP_NAVIGATION } from '../models/navigation.model';
   styleUrl: './app-mobile-bottom-nav.component.css',
   encapsulation: ViewEncapsulation.None,
   template: `
-    <nav class="c-mobile-nav lg:hidden" aria-label="Мобильная навигация">
+    <nav class="c-mobile-nav" aria-label="Мобильная навигация">
       <button class="c-mobile-nav__item" type="button" (click)="openSidebar()">
         <svg class="c-mobile-nav__icon" lucideTextAlignJustify></svg>
         <span class="c-mobile-nav__label">Меню</span>
@@ -49,7 +49,7 @@ import { APP_NAVIGATION } from '../models/navigation.model';
     <p-menu #profileMenu appendTo="body" [model]="profileMenuItems" [popup]="true" styleClass="c-mobile-nav__profile-menu" />
 
     <p-drawer
-      class="lg:hidden"
+      class="c-mobile-drawer"
       header=""
       position="left"
       [dismissible]="true"
