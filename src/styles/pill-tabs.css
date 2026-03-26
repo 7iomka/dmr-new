@@ -1,0 +1,88 @@
+@layer properties {
+  :root {
+    --c-pill-tabs-nav-bg: color-mix(in srgb, var(--p-surface-200) 50%, transparent);
+    --c-pill-tabs-tab-color: var(--p-text-muted-color);
+    --c-pill-tabs-tab-hover-color: var(--p-text-color);
+
+    --c-pill-tabs-secondary-active-bg: var(--p-surface-300);
+    --c-pill-tabs-secondary-active-color: var(--p-surface-950);
+
+    --c-pill-tabs-primary-active-bg: var(--p-button-primary-background);
+    --c-pill-tabs-primary-active-color: var(--p-button-primary-color);
+  }
+
+  .dark {
+    --c-pill-tabs-nav-bg: color-mix(in srgb, var(--p-surface-800) 72%, transparent);
+    --c-pill-tabs-tab-color: var(--p-surface-400);
+    --c-pill-tabs-tab-hover-color: var(--p-surface-200);
+
+    --c-pill-tabs-secondary-active-bg: var(--p-surface-600);
+    --c-pill-tabs-secondary-active-color: var(--p-text-color);
+
+    --c-pill-tabs-primary-active-bg: var(--p-button-primary-background);
+    --c-pill-tabs-primary-active-color: var(--p-button-primary-color);
+  }
+}
+
+@layer components {
+  .c-pill-tabs {
+    @apply w-full;
+  }
+
+  .c-pill-tabs__nav {
+    @apply inline-flex items-center rounded-lg bg-(--c-pill-tabs-nav-bg) p-1;
+    box-shadow: none;
+  }
+
+  .c-pill-tabs .p-tablist-tab-list {
+    @apply flex items-center gap-0.5 border-none bg-transparent;
+  }
+
+  .c-pill-tabs .p-tablist-active-bar {
+    @apply hidden;
+  }
+
+  .c-pill-tabs__tab {
+    @apply m-0 inline-flex items-center justify-center rounded-md border border-transparent bg-transparent px-4 py-2 font-bold leading-none shadow-none;
+    color: var(--c-pill-tabs-tab-color);
+  }
+
+  .c-pill-tabs--sm .c-pill-tabs__tab {
+    @apply text-xs;
+  }
+
+  .c-pill-tabs--md .c-pill-tabs__tab {
+    @apply text-sm;
+  }
+
+  .c-pill-tabs__tab:not(.p-tab-active) {
+    @apply bg-transparent;
+    color: var(--c-pill-tabs-tab-color);
+  }
+
+  .c-pill-tabs__tab:not(.p-tab-active):hover {
+    color: var(--c-pill-tabs-tab-hover-color);
+  }
+
+  .c-pill-tabs--theme-primary .c-pill-tabs__tab.p-tab-active {
+    @apply bg-(--c-pill-tabs-primary-active-bg) text-(--c-pill-tabs-primary-active-color);
+    border-color: transparent;
+  }
+
+  .c-pill-tabs--theme-secondary .c-pill-tabs__tab.p-tab-active {
+    @apply bg-(--c-pill-tabs-secondary-active-bg) text-(--c-pill-tabs-secondary-active-color);
+    border-color: transparent;
+  }
+
+  .c-pill-tabs__panels {
+    @apply m-0 block bg-transparent p-0;
+  }
+
+  .c-pill-tabs__panel {
+    @apply bg-transparent p-0;
+  }
+
+  .c-pill-tabs .p-tabpanels {
+    @apply bg-transparent p-0;
+  }
+}

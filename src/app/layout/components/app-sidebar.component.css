@@ -110,19 +110,9 @@
   color: #71717a;
   transition: all var(--sidebar-transition-duration) var(--sidebar-transition-timing);
 
-  &:hover {
-    background: #fafafa;
-    color: #18181b;
-  }
-
-  @variant dark {
-    color: #a1a1aa;
-
-    &:hover {
-      background: rgb(39 39 42 / 0.5);
-      color: #ffffff;
-    }
-  }
+  @apply text-surface-500 dark:text-surface-400 
+  hover:bg-surface-50 hover:text-surface-900 
+  dark:hover:bg-surface-800/50 dark:hover:text-white;
 }
 
 .app-sidebar__link[data-active='true'] {

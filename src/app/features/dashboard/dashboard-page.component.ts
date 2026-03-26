@@ -11,6 +11,10 @@ import {
   InvestmentTabpanelComponent,
   InvestmentTabpanelsComponent,
 } from '../investments/components/tabs/investment-tabpanels.component';
+import { PillTabComponent } from '../../shared/components/pill-tabs/pill-tab.component';
+import { PillTabPanelComponent } from '../../shared/components/pill-tabs/pill-tabpanel.component';
+import { PillTabPanelsComponent } from '../../shared/components/pill-tabs/pill-tabpanels.component';
+import { PillTabsNavComponent } from '../../shared/components/pill-tabs/pill-tabs-nav.component';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -27,6 +31,10 @@ import {
     InvestmentTabsNavComponent,
     InvestmentTabpanelsComponent,
     InvestmentTabpanelComponent,
+    PillTabsNavComponent,
+    PillTabComponent,
+    PillTabPanelsComponent,
+    PillTabPanelComponent,
   ],
   styleUrl: './dashboard-page.component.css',
   encapsulation: ViewEncapsulation.None,
@@ -148,38 +156,50 @@ import {
       </section>
 
       <section>
-        <p-card>
-          <ng-template #header>
-            <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">История цен</h3>
-            <p-tabs class="c-investment-tabs c-investment-tabs--period" value="month">
-              <p-tablist>
-                <p-tab value="month">Месяц</p-tab>
-                <p-tab value="year">Год</p-tab>
-              </p-tablist>
-            </p-tabs>
-          </ng-template>
+        <p-tabs value="month" [showNavigators]="false">
+          <p-card>
+            <ng-template #header>
+              <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">
+                История цен
+              </h3>
+              <app-pill-tabs-nav theme="primary">
+                <app-pill-tab value="month">Месяц</app-pill-tab>
+                <app-pill-tab value="year">Год</app-pill-tab>
+              </app-pill-tabs-nav>
+            </ng-template>
 
-          <div class="flex flex-col gap-5">
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div class="c-investment-stat-card">
-                <h5 class="c-investment-stat-card__title">Текущая цена</h5>
-                <div class="c-investment-stat-card__value">$0.003795</div>
-              </div>
-              <div class="c-investment-stat-card">
-                <h5 class="c-investment-stat-card__title">Всего проданных долей</h5>
-                <div class="c-investment-stat-card__value">5.52B</div>
-              </div>
-            </div>
+            <app-pill-tabpanels>
+              <app-pill-tabpanel value="month">
+                <div class="flex flex-col gap-5">
+                  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div class="c-investment-stat-card">
+                      <h5 class="c-investment-stat-card__title">Текущая цена</h5>
+                      <div class="c-investment-stat-card__value">$0.003795</div>
+                    </div>
+                    <div class="c-investment-stat-card">
+                      <h5 class="c-investment-stat-card__title">Всего проданных долей</h5>
+                      <div class="c-investment-stat-card__value">5.52B</div>
+                    </div>
+                  </div>
 
-            <div class="dash-chart-shell">
-              <div class="dash-chart-legend">
-                <span><i class="dot dot-blue"></i>Цена</span>
-                <span><i class="dot dot-green"></i>Проданные доли</span>
-              </div>
-              <div class="dash-chart-placeholder">Chart container (legacy structure, static v1)</div>
-            </div>
-          </div>
-        </p-card>
+                  <div class="dash-chart-shell">
+                    <div class="dash-chart-legend">
+                      <span><i class="dot dot-blue"></i>Цена</span>
+                      <span><i class="dot dot-green"></i>Проданные доли</span>
+                    </div>
+                    <div class="dash-chart-placeholder">Chart container (legacy structure, static v1)</div>
+                  </div>
+                </div>
+              </app-pill-tabpanel>
+
+              <app-pill-tabpanel value="year">
+                <div class="py-3 text-sm text-surface-600 dark:text-surface-300">
+                  Контент за год появится в следующем обновлении.
+                </div>
+              </app-pill-tabpanel>
+            </app-pill-tabpanels>
+          </p-card>
+        </p-tabs>
       </section>
     </div>
   `,
