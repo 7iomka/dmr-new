@@ -13,50 +13,50 @@ import { APP_NAVIGATION } from '../models/navigation.model';
   encapsulation: ViewEncapsulation.None,
   template: `
     <p-drawer
-      class="c-mobile-drawer"
+      class="app-mobile-drawer"
       header=""
       position="left"
       [dismissible]="true"
       [modal]="true"
       [pt]="{
         header: {
-          class: 'c-mobile-sidebar__header',
+          class: 'app-mobile-sidebar__header',
         },
-        content: { class: 'c-mobile-sidebar__body' },
+        content: { class: 'app-mobile-sidebar__body' },
       }"
       [showCloseIcon]="false"
-      [styleClass]="'c-mobile-sidebar'"
+      [styleClass]="'app-mobile-sidebar'"
       [visible]="isOpen"
       (visibleChange)="onVisibleChange($event)">
       <ng-template #header>
-        <a class="c-mobile-sidebar__logo" routerLink="/dashboard" (click)="closeSidebar()">
+        <a class="app-mobile-sidebar__logo" routerLink="/dashboard" (click)="closeSidebar()">
           <img
             alt="Logo"
-            class="c-mobile-sidebar__logo-image c-mobile-sidebar__logo-image--light"
+            class="app-mobile-sidebar__logo-image app-mobile-sidebar__logo-image--light"
             src="/assets/img/logo-light.svg" />
           <img
             alt="Logo"
-            class="c-mobile-sidebar__logo-image c-mobile-sidebar__logo-image--dark"
+            class="app-mobile-sidebar__logo-image app-mobile-sidebar__logo-image--dark"
             src="/assets/img/logo-dark.svg" />
         </a>
 
-        <button aria-label="Закрыть меню" class="c-mobile-sidebar__close" type="button" (click)="closeSidebar()">
-          <svg class="c-mobile-sidebar__close-icon" lucideX></svg>
+        <button aria-label="Закрыть меню" class="app-mobile-sidebar__close" type="button" (click)="closeSidebar()">
+          <svg class="app-mobile-sidebar__close-icon" lucideX></svg>
         </button>
       </ng-template>
 
       @for (group of navigation; track group.title) {
-        <section class="c-mobile-sidebar__section">
-          <h3 class="c-mobile-sidebar__title">{{ group.title }}</h3>
+        <section class="app-mobile-sidebar__section">
+          <h3 class="app-mobile-sidebar__title">{{ group.title }}</h3>
 
-          <div class="c-mobile-sidebar__links">
+          <div class="app-mobile-sidebar__links">
             @for (item of group.items; track item.route) {
               <a
-                class="c-mobile-sidebar__link"
+                class="app-mobile-sidebar__link"
                 [attr.data-active]="isRouteActive(item.route)"
                 [routerLink]="item.route"
                 (click)="closeSidebar()">
-                <svg class="c-mobile-sidebar__link-icon" [lucideIcon]="item.icon"></svg>
+                <svg class="app-mobile-sidebar__link-icon" [lucideIcon]="item.icon"></svg>
                 <span>{{ item.label }}</span>
               </a>
             }

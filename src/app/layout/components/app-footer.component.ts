@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-footer',
   standalone: true,
   template: `
-    <footer class="page-footer">
+    <footer class="app-shell__footer">
       <div class="container text-xs text-surface-500 dark:text-surface-500">© DMR dashboard shell migration phase.</div>
     </footer>
   `,

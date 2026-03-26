@@ -13,10 +13,10 @@ import { AppMobileBottomNavComponent } from '../components/app-mobile-bottom-nav
   template: `
     <div class="flex overflow-hidden min-h-screen" id="app">
       <app-sidebar />
-      <div class="page-content-area">
+      <div class="app-shell__content">
         <app-header />
-        <div class="page-body">
-          <main class="page-main">
+        <div class="app-shell__body">
+          <main class="app-shell__main">
             <router-outlet />
           </main>
           <app-footer />

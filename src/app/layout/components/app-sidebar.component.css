@@ -1,6 +1,6 @@
 @reference "../../../styles.css";
 
-.c-desktop-sidebar {
+.app-sidebar {
   @apply fixed inset-y-0 left-0 z-50 hidden h-screen flex-col border-r border-zinc-200 bg-card lg:flex;
 
   @variant dark {
@@ -8,7 +8,7 @@
   }
 }
 
-.c-desktop-sidebar__topbar {
+.app-sidebar__topbar {
   position: relative;
   display: flex;
   height: 5rem;
@@ -17,7 +17,7 @@
   padding-inline: 0.5rem;
 }
 
-.c-desktop-sidebar__logo {
+.app-sidebar__logo {
   display: flex;
   height: 100%;
   flex-shrink: 0;
@@ -26,12 +26,12 @@
   transition: all var(--sidebar-transition-duration) var(--sidebar-transition-timing);
 }
 
-.c-desktop-sidebar__logo-full {
+.app-sidebar__logo-full {
   height: 3rem;
   width: auto;
 }
 
-.c-desktop-sidebar__logo-full--light {
+.app-sidebar__logo-full--light {
   display: none;
 
   @variant dark {
@@ -39,7 +39,7 @@
   }
 }
 
-.c-desktop-sidebar__logo-full--dark {
+.app-sidebar__logo-full--dark {
   display: block;
 
   @variant dark {
@@ -47,13 +47,13 @@
   }
 }
 
-.c-desktop-sidebar__logo-icon {
+.app-sidebar__logo-icon {
   display: none;
   height: 3rem;
   width: auto;
 }
 
-.c-desktop-sidebar__toggle {
+.app-sidebar__toggle {
   @apply absolute -right-3.5 top-0 bottom-0 my-auto hidden h-7 w-7 items-center justify-center rounded-md border border-zinc-200 bg-zinc-100 text-zinc-500 transition-colors lg:flex hover:bg-zinc-200;
 
   @variant dark {
@@ -61,7 +61,7 @@
   }
 }
 
-.c-desktop-sidebar__toggle-icon {
+.app-sidebar__toggle-icon {
   width: 1.125rem;
   height: 1.125rem;
   transition: transform 0.3s;
@@ -71,7 +71,7 @@
   }
 }
 
-.c-desktop-sidebar__content {
+.app-sidebar__content {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -80,7 +80,7 @@
   padding: 1rem 0.5rem 2.5rem;
 }
 
-.c-desktop-sidebar__section-title {
+.app-sidebar__section-title {
   margin-bottom: 0.75rem;
   padding-inline: 1rem;
   font-size: 0.625rem;
@@ -94,13 +94,13 @@
   }
 }
 
-.c-desktop-sidebar__links {
+.app-sidebar__links {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-.c-desktop-sidebar__link {
+.app-sidebar__link {
   display: flex;
   width: 100%;
   align-items: center;
@@ -125,73 +125,73 @@
   }
 }
 
-.c-desktop-sidebar__link[data-active='true'] {
+.app-sidebar__link[data-active='true'] {
   @apply bg-primary/10 text-primary;
 }
 
-.c-desktop-sidebar__link-icon {
+.app-sidebar__link-icon {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.c-desktop-sidebar__icon {
+.app-sidebar__icon {
   width: 1.25rem;
   height: 1.25rem;
 }
 
-.c-desktop-sidebar__label--item {
+.app-sidebar__label--item {
   font-size: 0.875rem;
   font-weight: 600;
 }
 
 @media (min-width: 64rem) {
-  .c-desktop-sidebar {
+  .app-sidebar {
     width: var(--sidebar-width);
     transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
   }
 
-  body.sidebar-collapse .c-desktop-sidebar:hover:not(.animating) {
+  body.sidebar-collapse .app-sidebar:hover:not(.animating) {
     width: var(--sidebar-default-width);
   }
 
-  body.sidebar-collapse .c-desktop-sidebar:not(:hover) .c-desktop-sidebar__link .c-desktop-sidebar__label,
-  body.sidebar-collapse .c-desktop-sidebar:not(:hover) .c-desktop-sidebar__logo-full {
+  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__link .app-sidebar__label,
+  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__logo-full {
     display: none;
   }
 
-  body.sidebar-collapse .c-desktop-sidebar:not(:hover) .c-desktop-sidebar__logo-icon {
+  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__logo-icon {
     display: block;
   }
 
-  body.sidebar-collapse .c-desktop-sidebar:not(:hover) .c-desktop-sidebar__logo {
+  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__logo {
     width: 100%;
     justify-content: center;
     padding-left: 0;
   }
 
-  body.sidebar-collapse .c-desktop-sidebar:not(:hover) .c-desktop-sidebar__link {
+  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__link {
     justify-content: center;
     padding-left: 0;
     padding-right: 0;
   }
 
-  body.sidebar-collapse .c-desktop-sidebar:not(:hover) .c-desktop-sidebar__link-icon {
+  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__link-icon {
     margin: 0;
   }
 
-  body.sidebar-collapse .c-desktop-sidebar:not(:hover) .c-desktop-sidebar__section-title {
+  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__section-title {
     position: relative;
     min-height: 0.875rem;
     padding-inline: 0;
     text-align: center;
   }
 
-  body.sidebar-collapse .c-desktop-sidebar:not(:hover) .c-desktop-sidebar__section-title .c-desktop-sidebar__label {
+  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__section-title .app-sidebar__label {
     display: none;
   }
 
-  body.sidebar-collapse .c-desktop-sidebar:not(:hover) .c-desktop-sidebar__section-title::before {
+  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__section-title::before {
     position: absolute;
     inset-inline-start: 50%;
     inset-block-start: 50%;
