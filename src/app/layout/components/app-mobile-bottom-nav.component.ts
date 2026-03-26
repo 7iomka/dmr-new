@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { DrawerModule } from 'primeng/drawer';
 import { Menu, MenuModule } from 'primeng/menu';
 import {
   LucideBriefcase,
   LucideCircleUser,
   LucideDynamicIcon,
-  LucideHouse,
   LucideTextAlignJustify,
   LucideX,
 } from '@lucide/angular';
@@ -19,10 +19,10 @@ import { APP_NAVIGATION } from '../models/navigation.model';
   imports: [
     RouterLink,
     MenuModule,
+    DrawerModule,
     LucideTextAlignJustify,
     LucideBriefcase,
     LucideCircleUser,
-    LucideHouse,
     LucideX,
     LucideDynamicIcon,
   ],
@@ -48,49 +48,48 @@ import { APP_NAVIGATION } from '../models/navigation.model';
 
     <p-menu #profileMenu appendTo="body" [model]="profileMenuItems" [popup]="true" styleClass="c-mobile-nav__profile-menu" />
 
-    @if (isSidebarOpen()) {
-      <div class="c-mobile-nav__overlay lg:hidden" (click)="closeSidebar()" aria-hidden="true"></div>
-      <aside class="c-mobile-sidebar lg:hidden" aria-label="Боковое меню">
-        <header class="c-mobile-sidebar__header">
-          <a class="c-mobile-sidebar__logo" routerLink="/dashboard" (click)="closeSidebar()">
-            <img alt="Logo" class="h-10 w-auto hidden dark:block" src="/assets/img/logo-light.svg" />
-            <img alt="Logo" class="h-10 w-auto dark:hidden" src="/assets/img/logo-dark.svg" />
-          </a>
+    <p-drawer
+      class="lg:hidden"
+      header=""
+      position="left"
+      [dismissible]="true"
+      [modal]="true"
+      [showCloseIcon]="false"
+      [styleClass]="'c-mobile-sidebar'"
+      [visible]="isSidebarOpen()"
+      (visibleChange)="onSidebarVisibleChange($event)">
+      <header class="c-mobile-sidebar__header">
+        <a class="c-mobile-sidebar__logo" routerLink="/dashboard" (click)="closeSidebar()">
+          <img alt="Logo" class="h-10 w-auto hidden dark:block" src="/assets/img/logo-light.svg" />
+          <img alt="Logo" class="h-10 w-auto dark:hidden" src="/assets/img/logo-dark.svg" />
+        </a>
 
-          <button class="c-mobile-sidebar__close" type="button" aria-label="Закрыть меню" (click)="closeSidebar()">
-            <svg class="h-5 w-5" lucideX></svg>
-          </button>
-        </header>
+        <button class="c-mobile-sidebar__close" type="button" aria-label="Закрыть меню" (click)="closeSidebar()">
+          <svg class="h-5 w-5" lucideX></svg>
+        </button>
+      </header>
 
-        <div class="c-mobile-sidebar__body">
-          @for (group of navigation; track group.title) {
-            <section class="c-mobile-sidebar__section">
-              <h3 class="c-mobile-sidebar__title">{{ group.title }}</h3>
+      <div class="c-mobile-sidebar__body">
+        @for (group of navigation; track group.title) {
+          <section class="c-mobile-sidebar__section">
+            <h3 class="c-mobile-sidebar__title">{{ group.title }}</h3>
 
-              <div class="c-mobile-sidebar__links">
-                @for (item of group.items; track item.route) {
-                  <a
-                    class="c-mobile-sidebar__link"
-                    [attr.data-active]="isRouteActive(item.route)"
-                    [routerLink]="item.route"
-                    (click)="closeSidebar()">
-                    <svg class="h-5 w-5" [lucideIcon]="item.icon"></svg>
-                    <span>{{ item.label }}</span>
-                  </a>
-                }
-              </div>
-            </section>
-          }
-        </div>
-
-        <footer class="c-mobile-sidebar__footer">
-          <a class="c-mobile-sidebar__home" routerLink="/dashboard" (click)="closeSidebar()">
-            <svg class="h-4 w-4" lucideHouse></svg>
-            <span>На главную панели</span>
-          </a>
-        </footer>
-      </aside>
-    }
+            <div class="c-mobile-sidebar__links">
+              @for (item of group.items; track item.route) {
+                <a
+                  class="c-mobile-sidebar__link"
+                  [attr.data-active]="isRouteActive(item.route)"
+                  [routerLink]="item.route"
+                  (click)="closeSidebar()">
+                  <svg class="h-5 w-5" [lucideIcon]="item.icon"></svg>
+                  <span>{{ item.label }}</span>
+                </a>
+              }
+            </div>
+          </section>
+        }
+      </div>
+    </p-drawer>
   `,
 })
 export class AppMobileBottomNavComponent {
@@ -112,6 +111,10 @@ export class AppMobileBottomNavComponent {
 
   protected closeSidebar(): void {
     this.isSidebarOpen.set(false);
+  }
+
+  protected onSidebarVisibleChange(isVisible: boolean): void {
+    this.isSidebarOpen.set(isVisible);
   }
 
   protected isRouteActive(route: string): boolean {
