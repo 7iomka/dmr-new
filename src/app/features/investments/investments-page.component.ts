@@ -59,16 +59,13 @@ import { PillTabsNavComponent } from '../../shared/components/pill-tabs/pill-tab
         <p-tabs value="active" [showNavigators]="false">
           <p-card [pt]="installmentsCardPt">
             <ng-template #header>
-              <div class="flex flex-wrap items-center justify-between gap-3">
-                <h3 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">
-                  Рассрочки
-                </h3>
-
-                <app-pill-tabs-nav size="sm" theme="secondary">
-                  <app-pill-tab value="active">Активные</app-pill-tab>
-                  <app-pill-tab value="closed">Закрытые</app-pill-tab>
-                </app-pill-tabs-nav>
-              </div>
+              <h3 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">
+                Рассрочки
+              </h3>
+              <app-pill-tabs-nav size="sm" theme="secondary">
+                <app-pill-tab value="active">Активные</app-pill-tab>
+                <app-pill-tab value="closed">Закрытые</app-pill-tab>
+              </app-pill-tabs-nav>
             </ng-template>
 
             <app-c-investment-installments-overview />
@@ -82,6 +79,7 @@ import { PillTabsNavComponent } from '../../shared/components/pill-tabs/pill-tab
 })
 export class InvestmentsPageComponent {
   protected readonly installmentsCardPt: CardPassThroughOptions = {
+    header: { class: 'flex flex-wrap items-center justify-between gap-3' },
     body: { class: 'px-0 pb-0 pt-0' },
     content: { class: 'px-0 pb-0 pt-0' },
   };
