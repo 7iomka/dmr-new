@@ -1,16 +1,10 @@
 import { Component, signal, ViewEncapsulation } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { Popover, PopoverModule } from 'primeng/popover';
+import { Menu, MenuModule } from 'primeng/menu';
 import { TagModule } from 'primeng/tag';
-import {
-  LucideCalendarCheck2,
-  LucideChevronDown,
-  LucideClockFading,
-  LucideDollarSign,
-  LucideSettings,
-  LucideX,
-} from '@lucide/angular';
+import { LucideCalendarCheck2, LucideChevronDown, LucideClockFading, LucideSettings } from '@lucide/angular';
 
 import { PillTabPanelComponent } from '../../../../shared/components/pill-tabs/pill-tabpanel.component';
 import { PillTabPanelsComponent } from '../../../../shared/components/pill-tabs/pill-tabpanels.component';
@@ -48,14 +42,12 @@ type InstallmentItem = {
   imports: [
     ButtonModule,
     DialogModule,
-    PopoverModule,
+    MenuModule,
     TagModule,
     LucideCalendarCheck2,
     LucideChevronDown,
     LucideClockFading,
-    LucideDollarSign,
     LucideSettings,
-    LucideX,
     PillTabPanelsComponent,
     PillTabPanelComponent,
   ],
@@ -99,7 +91,7 @@ type InstallmentItem = {
                               severity="primary"
                               size="small"
                               styleClass="p-button-icon-only"
-                              (onClick)="toggleContractActions($event, installment.id, actionsMenu)">
+                              (onClick)="toggleContractMenu($event, installment.id, actionsMenu)">
                               <svg class="h-3.5 w-3.5" lucideSettings pButtonIcon></svg>
                             </p-button>
                           </div>
@@ -228,7 +220,7 @@ type InstallmentItem = {
                         severity="primary"
                         size="small"
                         styleClass="p-button-icon-only"
-                        (onClick)="toggleContractActions($event, installment.id, actionsMenu)">
+                        (onClick)="toggleContractMenu($event, installment.id, actionsMenu)">
                         <svg class="h-3.5 w-3.5" lucideSettings pButtonIcon></svg>
                       </p-button>
                     </div>
@@ -317,31 +309,12 @@ type InstallmentItem = {
       </app-pill-tabpanels>
     </section>
 
-    <p-popover #actionsMenu appendTo="body" styleClass="c-investment-contract-actions-menu">
-      <div class="c-investment-contract-actions">
-        <button
-          class="c-investment-contract-actions__item"
-          type="button"
-          (click)="openContractDialog('payAll', actionsMenu)">
-          <svg class="h-4 w-4" lucideDollarSign></svg>
-          <span>Оплатить весь контракт</span>
-        </button>
-        <button
-          class="c-investment-contract-actions__item"
-          type="button"
-          (click)="openContractDialog('paySome', actionsMenu)">
-          <svg class="h-4 w-4" lucideCalendarCheck2></svg>
-          <span>Оплатить несколько месяцев</span>
-        </button>
-        <button
-          class="c-investment-contract-actions__item c-investment-contract-actions__item--danger"
-          type="button"
-          (click)="openContractDialog('cancel', actionsMenu)">
-          <svg class="h-4 w-4" lucideX></svg>
-          <span>Отменить контракт</span>
-        </button>
-      </div>
-    </p-popover>
+    <p-menu
+      #actionsMenu
+      appendTo="body"
+      styleClass="c-investment-contract-menu"
+      [model]="contractMenuItems"
+      [popup]="true" />
 
     <p-dialog
       header="Подтверждение оплаты контракта"
@@ -486,6 +459,24 @@ export class CInvestmentInstallmentsOverviewComponent {
   readonly isPayAllDialogOpen = signal(false);
   readonly isPaySomeDialogOpen = signal(false);
   readonly isCancelDialogOpen = signal(false);
+  readonly contractMenuItems: MenuItem[] = [
+    {
+      label: 'Оплатить весь контракт',
+      icon: 'pi pi-dollar',
+      command: () => this.openContractDialog('payAll'),
+    },
+    {
+      label: 'Оплатить несколько месяцев',
+      icon: 'pi pi-calendar',
+      command: () => this.openContractDialog('paySome'),
+    },
+    {
+      label: 'Отменить контракт',
+      icon: 'pi pi-times',
+      styleClass: 'text-red-500',
+      command: () => this.openContractDialog('cancel'),
+    },
+  ];
 
   toggleDesktopPlan(id: string): void {
     this.expandedDesktopId.set(this.expandedDesktopId() === id ? '' : id);
@@ -527,14 +518,12 @@ export class CInvestmentInstallmentsOverviewComponent {
     return 'secondary';
   }
 
-  toggleContractActions(event: Event, contractId: string, menu: Popover): void {
+  toggleContractMenu(event: Event, contractId: string, menu: Menu): void {
     this.selectedContractId.set(contractId);
     menu.toggle(event);
   }
 
-  openContractDialog(type: 'payAll' | 'paySome' | 'cancel', menu: Popover): void {
-    menu.hide();
-
+  openContractDialog(type: 'payAll' | 'paySome' | 'cancel'): void {
     if (type === 'payAll') {
       this.isPayAllDialogOpen.set(true);
       return;
