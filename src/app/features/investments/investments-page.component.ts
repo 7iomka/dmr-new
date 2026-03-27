@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { CardModule } from 'primeng/card';
+import { CardModule, CardPassThroughOptions } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
 
 import { CInvestmentBuyFormComponent } from './components/investment-buy-form/c-investment-buy-form.component';
@@ -46,16 +46,32 @@ import {
               <app-investment-tabpanel value="shares">
                 <app-c-investment-shares-overview [showInstallments]="false" [wideGrid]="true" />
               </app-investment-tabpanel>
-              <app-investment-tabpanel value="installments">
-                <app-c-investment-installments-overview />
-              </app-investment-tabpanel>
             </app-investment-tabpanels>
           </p-card>
         </p-tabs>
+      </section>
+
+      <section>
+        <p-card [pt]="installmentsCardPt">
+          <ng-template #header>
+            <div class="px-4 py-4 sm:px-5">
+              <h3 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">
+                Рассрочки
+              </h3>
+            </div>
+          </ng-template>
+
+          <app-c-investment-installments-overview />
+        </p-card>
       </section>
     </div>
   `,
   styleUrl: './investments-page.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class InvestmentsPageComponent {}
+export class InvestmentsPageComponent {
+  protected readonly installmentsCardPt: CardPassThroughOptions = {
+    body: { class: 'px-0 pb-0 pt-0' },
+    content: { class: 'px-0 pb-0 pt-0' },
+  };
+}

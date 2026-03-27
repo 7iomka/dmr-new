@@ -37,10 +37,6 @@ type InstallmentItem = {
   imports: [TabsModule, ButtonModule, TagModule, LucideChevronDown, LucideSettings],
   template: `
     <section class="c-investment-installments">
-      <div class="c-investment-installments__header">
-        <h3 class="c-investment-installments__title">Рассрочки</h3>
-      </div>
-
       <p-tabs value="active" [showNavigators]="false">
         <p-tablist
           [pt]="{
