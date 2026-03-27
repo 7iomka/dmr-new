@@ -4,7 +4,15 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { Menu, MenuModule } from 'primeng/menu';
 import { TagModule } from 'primeng/tag';
-import { LucideCalendarCheck2, LucideChevronDown, LucideClockFading, LucideSettings } from '@lucide/angular';
+import {
+  LucideCalendar,
+  LucideCalendarCheck2,
+  LucideChevronDown,
+  LucideClockFading,
+  LucideDollarSign,
+  LucideSettings,
+  LucideX,
+} from '@lucide/angular';
 
 import { PillTabPanelComponent } from '../../../../shared/components/pill-tabs/pill-tabpanel.component';
 import { PillTabPanelsComponent } from '../../../../shared/components/pill-tabs/pill-tabpanels.component';
@@ -35,6 +43,12 @@ type InstallmentItem = {
   readonly plan: readonly PaymentPlanItem[];
 };
 
+type ContractMenuItem = MenuItem & {
+  readonly action: 'payAll' | 'paySome' | 'cancel';
+  readonly menuIcon: 'dollar' | 'calendar' | 'cancel';
+  readonly danger?: boolean;
+};
+
 @Component({
   selector: 'app-c-investment-installments-overview',
   standalone: true,
@@ -44,10 +58,13 @@ type InstallmentItem = {
     DialogModule,
     MenuModule,
     TagModule,
+    LucideCalendar,
     LucideCalendarCheck2,
     LucideChevronDown,
     LucideClockFading,
+    LucideDollarSign,
     LucideSettings,
+    LucideX,
     PillTabPanelsComponent,
     PillTabPanelComponent,
   ],
@@ -314,7 +331,26 @@ type InstallmentItem = {
       appendTo="body"
       styleClass="c-investment-contract-menu"
       [model]="contractMenuItems"
-      [popup]="true" />
+      [popup]="true">
+      <ng-template #item let-item>
+        <button
+          class="c-investment-contract-menu__item"
+          type="button"
+          [class.c-investment-contract-menu__item--danger]="item.danger"
+          (click)="onContractMenuAction(item, actionsMenu)">
+          <span class="c-investment-contract-menu__item-icon">
+            @if (item.menuIcon === 'dollar') {
+              <svg class="h-4 w-4" lucideDollarSign></svg>
+            } @else if (item.menuIcon === 'calendar') {
+              <svg class="h-4 w-4" lucideCalendar></svg>
+            } @else {
+              <svg class="h-4 w-4" lucideX></svg>
+            }
+          </span>
+          <span>{{ item.label }}</span>
+        </button>
+      </ng-template>
+    </p-menu>
 
     <p-dialog
       header="Подтверждение оплаты контракта"
@@ -459,22 +495,22 @@ export class CInvestmentInstallmentsOverviewComponent {
   readonly isPayAllDialogOpen = signal(false);
   readonly isPaySomeDialogOpen = signal(false);
   readonly isCancelDialogOpen = signal(false);
-  readonly contractMenuItems: MenuItem[] = [
+  readonly contractMenuItems: readonly ContractMenuItem[] = [
     {
       label: 'Оплатить весь контракт',
-      icon: 'pi pi-dollar',
-      command: () => this.openContractDialog('payAll'),
+      action: 'payAll',
+      menuIcon: 'dollar',
     },
     {
       label: 'Оплатить несколько месяцев',
-      icon: 'pi pi-calendar',
-      command: () => this.openContractDialog('paySome'),
+      action: 'paySome',
+      menuIcon: 'calendar',
     },
     {
       label: 'Отменить контракт',
-      icon: 'pi pi-times',
-      styleClass: 'text-red-500',
-      command: () => this.openContractDialog('cancel'),
+      action: 'cancel',
+      menuIcon: 'cancel',
+      danger: true,
     },
   ];
 
@@ -521,6 +557,11 @@ export class CInvestmentInstallmentsOverviewComponent {
   toggleContractMenu(event: Event, contractId: string, menu: Menu): void {
     this.selectedContractId.set(contractId);
     menu.toggle(event);
+  }
+
+  onContractMenuAction(item: ContractMenuItem, menu: Menu): void {
+    menu.hide();
+    this.openContractDialog(item.action);
   }
 
   openContractDialog(type: 'payAll' | 'paySome' | 'cancel'): void {
