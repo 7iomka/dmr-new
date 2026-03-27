@@ -1,0 +1,275 @@
+@reference "../../../../../styles.css";
+
+.c-investment-installments {
+  @apply flex flex-col gap-4;
+}
+
+.c-investment-installments__panel {
+}
+
+.c-investment-installments__desktop {
+  @apply hidden overflow-x-auto lg:block;
+}
+
+.c-investment-installments-table {
+  @apply min-w-[760px] w-full border-collapse text-left text-sm;
+}
+
+.c-investment-installments-table thead tr {
+  @apply border-b border-surface-200 dark:border-surface-800;
+}
+
+.c-investment-installments-table th {
+  @apply py-4 text-xs font-bold uppercase tracking-wide text-surface-600;
+  padding-inline: var(--c-card-padding-x);
+
+  @variant dark {
+    color: var(--p-surface-400);
+  }
+}
+
+.c-investment-installments-table td {
+  @apply border-b border-surface-200 py-5 align-top text-surface-600;
+  padding-inline: var(--c-card-padding-x);
+
+  @variant dark {
+    @apply border-surface-800;
+    color: var(--p-surface-400);
+  }
+}
+
+.c-investment-installments-table__main-row:hover td {
+  @apply bg-surface-50/70;
+
+  @variant dark {
+    @apply bg-surface-900/20;
+  }
+}
+
+.c-investment-installments-table__id-cell {
+  @apply min-w-[190px];
+}
+
+.c-investment-installments-table__id {
+  @apply text-base font-bold text-surface-900;
+
+  @variant dark {
+    @apply text-surface-50;
+  }
+}
+
+.c-investment-installments-table__actions {
+  @apply mt-3 flex items-center gap-2;
+}
+
+.c-investment-installments-table__strong {
+  @apply font-bold text-surface-900;
+
+  @variant dark {
+    @apply text-surface-50;
+  }
+}
+
+.c-investment-installments-table__pair {
+  @apply font-bold;
+}
+
+.c-investment-installments-table__plan-row td {
+  @apply bg-surface-50/70;
+
+  @variant dark {
+    @apply bg-surface-900/20;
+  }
+}
+
+.c-investment-installments-plan {
+  @apply rounded-xl border border-surface-200 bg-white p-4;
+
+  @variant dark {
+    @apply border-surface-800 bg-surface-950/40;
+  }
+}
+
+.c-investment-installments-plan__title {
+  @apply text-xs font-bold uppercase text-surface-500;
+}
+
+.c-investment-installments-plan__items {
+  @apply mt-3 grid grid-cols-1 gap-3 xl:grid-cols-3;
+}
+
+.c-investment-installments-plan__item {
+  @apply flex flex-col gap-3 rounded-lg border border-surface-200 bg-surface-50 p-3;
+
+  @variant dark {
+    @apply border-surface-800 bg-surface-900/30;
+  }
+}
+
+.c-investment-installments-plan__item-head {
+  @apply flex items-center justify-between gap-2;
+}
+
+.c-investment-installments-plan__item-title {
+  @apply text-xs font-bold uppercase text-surface-900;
+
+  @variant dark {
+    @apply text-surface-50;
+  }
+}
+
+.c-investment-installments-plan__item-grid {
+  @apply grid grid-cols-1 gap-1 text-xs text-surface-600;
+
+  @variant dark {
+    @apply text-surface-300;
+  }
+}
+
+.c-investment-installments__mobile {
+  @apply grid grid-cols-1 gap-4 pb-4 lg:hidden;
+}
+
+.c-investment-installments-mobile-card {
+  @apply flex flex-col gap-3 rounded-xl border border-surface-200 bg-surface-50 p-4;
+
+  @variant dark {
+    @apply border-surface-800 bg-surface-950/35;
+  }
+}
+
+.c-investment-installments-mobile-card__head {
+  @apply flex items-center justify-between gap-2;
+}
+
+.c-investment-installments-mobile-card__actions {
+  @apply flex items-center gap-2;
+}
+
+.c-investment-installments-mobile-card__stats {
+  @apply grid grid-cols-2 gap-2;
+}
+
+.c-investment-installments-mobile-card__stat {
+  @apply flex flex-col gap-1 rounded-lg border border-surface-200 bg-white p-3 text-xs text-surface-600;
+
+  @variant dark {
+    @apply border-surface-800 bg-surface-900/40 text-surface-300;
+  }
+}
+
+.c-investment-installments-mobile-card__stat strong {
+  @apply font-bold text-surface-900;
+
+  @variant dark {
+    @apply text-surface-50;
+  }
+}
+
+.c-investment-installments-mobile-card__line {
+  @apply text-surface-900;
+
+  @variant dark {
+    @apply text-surface-50;
+  }
+}
+
+.c-investment-installments-mobile-card__date {
+  @apply flex items-center gap-1.5;
+}
+
+.c-investment-installments-mobile-card__plan {
+  @apply grid grid-cols-1 gap-3;
+}
+
+.c-investment-installments__empty {
+  @apply mb-4 rounded-xl border border-surface-200 bg-surface-50 px-6 py-8 text-center;
+
+  @variant dark {
+    @apply border-surface-800 bg-surface-950/35;
+  }
+}
+
+.c-investment-installments__empty-title {
+  @apply text-sm font-bold text-surface-900;
+
+  @variant dark {
+    @apply text-surface-50;
+  }
+}
+
+.c-investment-installments__empty-subtitle {
+  @apply mt-2 text-xs text-surface-500;
+
+  @variant dark {
+    @apply text-surface-400;
+  }
+}
+
+.c-investment-contract-dialog {
+  @apply flex flex-col gap-3 text-sm text-surface-600;
+
+  @variant dark {
+    @apply text-surface-300;
+  }
+}
+
+:host ::ng-deep .c-investment-contract-menu.p-menu {
+  @apply w-[16.5rem] rounded-xl border border-surface-200 bg-surface-0 p-1 shadow-lg;
+
+  @variant dark {
+    @apply border-surface-800 bg-surface-900;
+  }
+}
+
+:host ::ng-deep .c-investment-contract-menu .p-menu-list {
+  @apply gap-0;
+}
+
+:host ::ng-deep .c-investment-contract-menu .p-menu-item-link {
+  @apply rounded-lg px-0 py-0 text-sm font-semibold;
+}
+
+:host ::ng-deep .c-investment-contract-menu .p-menu-item-link:hover {
+  @apply bg-surface-50;
+
+  @variant dark {
+    @apply bg-surface-800/60;
+  }
+}
+
+:host ::ng-deep .c-investment-contract-menu .p-menu-item-icon {
+  @apply text-base;
+}
+
+:host ::ng-deep .c-investment-contract-menu .p-menu-item-text {
+  @apply whitespace-nowrap;
+}
+
+:host ::ng-deep .c-investment-contract-menu .p-menu-item-content {
+  @apply p-0;
+}
+
+.c-investment-contract-menu__item {
+  @apply flex w-full items-center gap-2.5 rounded-lg px-3 py-3 text-left text-sm font-semibold text-surface-800 transition-colors hover:bg-surface-50;
+
+  @variant dark {
+    @apply text-surface-100 hover:bg-surface-800/60;
+  }
+}
+
+.c-investment-contract-menu__item-icon {
+  @apply inline-flex text-surface-500;
+
+  @variant dark {
+    @apply text-surface-400;
+  }
+}
+
+.c-investment-contract-menu__item--danger {
+  @apply text-red-500 hover:bg-red-500/10;
+}
+
+.c-investment-contract-menu__item--danger .c-investment-contract-menu__item-icon {
+  @apply text-red-500;
+}

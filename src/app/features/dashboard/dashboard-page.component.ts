@@ -11,10 +11,12 @@ import {
   InvestmentTabpanelComponent,
   InvestmentTabpanelsComponent,
 } from '../investments/components/tabs/investment-tabpanels.component';
-import { PillTabComponent } from '../../shared/components/pill-tabs/pill-tab.component';
-import { PillTabPanelComponent } from '../../shared/components/pill-tabs/pill-tabpanel.component';
-import { PillTabPanelsComponent } from '../../shared/components/pill-tabs/pill-tabpanels.component';
-import { PillTabsNavComponent } from '../../shared/components/pill-tabs/pill-tabs-nav.component';
+import {
+  PillTabComponent,
+  PillTabPanelComponent,
+  PillTabPanelsComponent,
+  PillTabsNavComponent,
+} from '../../shared/components/pill-tabs';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -144,10 +146,10 @@ import { PillTabsNavComponent } from '../../shared/components/pill-tabs/pill-tab
 
               <app-investment-tabpanels>
                 <app-investment-tabpanel value="shares">
-                  <app-c-investment-shares-overview />
+                  <app-investment-shares-overview />
                 </app-investment-tabpanel>
                 <app-investment-tabpanel value="buy">
-                  <app-c-investment-buy-form layout="stacked" />
+                  <app-investment-buy-form layout="stacked" />
                 </app-investment-tabpanel>
               </app-investment-tabpanels>
             </p-card>
