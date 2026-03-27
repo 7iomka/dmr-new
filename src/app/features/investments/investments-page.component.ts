@@ -3,6 +3,7 @@ import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
 
 import { CInvestmentBuyFormComponent } from './components/investment-buy-form/c-investment-buy-form.component';
+import { CInvestmentInstallmentsOverviewComponent } from './components/installments-overview/c-investment-installments-overview.component';
 import { CInvestmentSharesOverviewComponent } from './components/shares-overview/c-investment-shares-overview.component';
 import { InvestmentTabsNavComponent } from './components/tabs/investment-tabs-nav.component';
 import {
@@ -17,6 +18,7 @@ import {
     CardModule,
     TabsModule,
     CInvestmentBuyFormComponent,
+    CInvestmentInstallmentsOverviewComponent,
     CInvestmentSharesOverviewComponent,
     InvestmentTabsNavComponent,
     InvestmentTabpanelsComponent,
@@ -43,6 +45,9 @@ import {
               </app-investment-tabpanel>
               <app-investment-tabpanel value="shares">
                 <app-c-investment-shares-overview [showInstallments]="false" [wideGrid]="true" />
+              </app-investment-tabpanel>
+              <app-investment-tabpanel value="installments">
+                <app-c-investment-installments-overview />
               </app-investment-tabpanel>
             </app-investment-tabpanels>
           </p-card>

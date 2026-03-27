@@ -15,6 +15,7 @@ import { TabsModule } from 'primeng/tabs';
       }">
       <p-tab class="c-investment-tabs__tab" value="shares">{{ sharesLabel() }}</p-tab>
       <p-tab class="c-investment-tabs__tab" value="buy">{{ buyLabel() }}</p-tab>
+      <p-tab class="c-investment-tabs__tab" value="installments">{{ installmentsLabel() }}</p-tab>
     </p-tablist>
   `,
   styleUrl: './investment-tabs-nav.component.css',
@@ -22,4 +23,5 @@ import { TabsModule } from 'primeng/tabs';
 export class InvestmentTabsNavComponent {
   readonly sharesLabel = input('Мои доли');
   readonly buyLabel = input('Купить доли');
+  readonly installmentsLabel = input('Рассрочки');
 }
