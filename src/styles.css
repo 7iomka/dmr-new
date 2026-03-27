@@ -4,9 +4,11 @@
 @import './styles/variables.css';
 @import './styles/scrollbar.css';
 @import './styles/button.css';
+@import './styles/menu.css';
 @import './styles/card.css';
 @import './styles/form-controls.css';
 @import './styles/avatar.css';
+@import './styles/menu.css';
 @import './styles/stat-card.css';
 @import './styles/page-heading.css';
 @import './styles/pill-tabs.css';

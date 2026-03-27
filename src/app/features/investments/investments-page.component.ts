@@ -10,8 +10,7 @@ import {
   InvestmentTabpanelComponent,
   InvestmentTabpanelsComponent,
 } from './components/tabs/investment-tabpanels.component';
-import { PillTabComponent } from '../../shared/components/pill-tabs/pill-tab.component';
-import { PillTabsNavComponent } from '../../shared/components/pill-tabs/pill-tabs-nav.component';
+import { PillTabComponent, PillTabsNavComponent } from '../../shared/components/pill-tabs';
 
 @Component({
   selector: 'app-investments-page',
@@ -45,10 +44,10 @@ import { PillTabsNavComponent } from '../../shared/components/pill-tabs/pill-tab
 
             <app-investment-tabpanels>
               <app-investment-tabpanel value="buy">
-                <app-c-investment-buy-form layout="split" />
+                <app-investment-buy-form layout="split" />
               </app-investment-tabpanel>
               <app-investment-tabpanel value="shares">
-                <app-c-investment-shares-overview [showInstallments]="false" [wideGrid]="true" />
+                <app-investment-shares-overview [showInstallments]="false" [wideGrid]="true" />
               </app-investment-tabpanel>
             </app-investment-tabpanels>
           </p-card>
@@ -68,7 +67,7 @@ import { PillTabsNavComponent } from '../../shared/components/pill-tabs/pill-tab
               </app-pill-tabs-nav>
             </ng-template>
 
-            <app-c-investment-installments-overview />
+            <app-investment-installments-overview />
           </p-card>
         </p-tabs>
       </section>

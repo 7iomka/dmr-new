@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { LucideCirclePlus } from '@lucide/angular';
 
 @Component({
-  selector: 'app-c-investment-summary-card',
+  selector: 'app-investment-summary-card',
   standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [ButtonModule, LucideCirclePlus, DecimalPipe],

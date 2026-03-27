@@ -3,7 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { LucideChevronRight, LucideCreditCard } from '@lucide/angular';
 
 @Component({
-  selector: 'app-c-investment-shares-overview',
+  selector: 'app-investment-shares-overview',
   standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [ButtonModule, LucideChevronRight, LucideCreditCard],

@@ -5,7 +5,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
-  selector: 'app-c-investment-input-field',
+  selector: 'app-investment-input-field',
   standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [FormsModule, InputNumberModule, InputGroupModule, InputGroupAddonModule],

@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
-  selector: 'app-c-investment-switch-card',
+  selector: 'app-investment-switch-card',
   standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [FormsModule, ToggleSwitchModule],

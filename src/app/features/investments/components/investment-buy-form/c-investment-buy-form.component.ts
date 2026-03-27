@@ -7,7 +7,7 @@ import { CInvestmentSummaryCardComponent } from './c-investment-summary-card.com
 import { CInvestmentSwitchCardComponent } from './c-investment-switch-card.component';
 
 @Component({
-  selector: 'app-c-investment-buy-form',
+  selector: 'app-investment-buy-form',
   standalone: true,
   encapsulation: ViewEncapsulation.None,
   imports: [
@@ -20,19 +20,17 @@ import { CInvestmentSwitchCardComponent } from './c-investment-switch-card.compo
   template: `
     <div class="c-investment-buy-form" [class.c-investment-buy-form--split]="layout() === 'split'">
       <div class="c-investment-buy-form__main">
-        <app-c-investment-switch-card
-          [checked]="installmentEnabled()"
-          (checkedChange)="installmentEnabled.set($event)" />
+        <app-investment-switch-card [checked]="installmentEnabled()" (checkedChange)="installmentEnabled.set($event)" />
 
         <div class="c-investment-buy-form__fields">
-          <app-c-investment-input-field
+          <app-investment-input-field
             inputId="investment-amount"
             label="Введите сумму"
             suffix="$"
             [maxFractionDigits]="6"
             [value]="amount()"
             (valueChange)="updateAmount($event)" />
-          <app-c-investment-input-field
+          <app-investment-input-field
             inputId="investment-shares"
             label="Количество долей"
             [maxFractionDigits]="0"
@@ -58,7 +56,7 @@ import { CInvestmentSwitchCardComponent } from './c-investment-switch-card.compo
       </div>
 
       <div class="c-investment-buy-form__summary">
-        <app-c-investment-summary-card
+        <app-investment-summary-card
           [amount]="amount()"
           [sharePrice]="sharePrice()"
           [shares]="shares()"

@@ -16,13 +16,12 @@ import { LucideChevronRight, LucideDynamicIcon } from '@lucide/angular';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 
-import { FormControlOtpComponent } from '../../shared/components/form-control-otp.component';
-import { FormControlPasswordComponent } from '../../shared/components/form-control-password.component';
-import { FormControlTextComponent } from '../../shared/components/form-control-text.component';
-import { FormControlPhoneComponent } from '../../shared/components/form-control-phone.component';
-
 import { AuthMockService } from './auth-mock.service';
 import { AUTH_PAGE_CONFIGS, AUTH_PATH_TO_CHANNEL, AuthField, AuthPageConfig } from './auth-page.config';
+import { FormControlTextComponent } from '../../shared/components/form-controls/form-control-text.component';
+import { FormControlPhoneComponent } from '../../shared/components/form-controls/form-control-phone.component';
+import { FormControlPasswordComponent } from '../../shared/components/form-controls/form-control-password.component';
+import { FormControlOtpComponent } from '../../shared/components/form-controls/form-control-otp.component';
 
 @Component({
   selector: 'app-auth-page',
