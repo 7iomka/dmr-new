@@ -45,27 +45,31 @@
 }
 
 .app-footer__social-btn {
-  @apply !h-10 !w-10 !min-w-10 !p-0;
 }
 
 .app-footer__social-icon {
+  color: var(--p-text-muted-color);
   @apply h-4.5 w-4.5;
 }
 
+.app-footer__social-btn:not(:hover) .app-footer__social-icon {
+  fill: currentColor;
+}
+
 .app-footer__col {
-  @apply space-y-4;
+  @apply flex flex-col gap-3 items-start;
 }
 
 .app-footer__col-title {
-  @apply text-base font-bold text-surface-900 dark:text-surface-50;
+  @apply text-sm font-bold text-surface-900 dark:text-surface-50;
 }
 
-.app-footer__col-divider {
+.app-footer__col-title-divider {
   @apply block h-px w-8 bg-surface-300 dark:bg-surface-700;
 }
 
 .app-footer__links {
-  @apply space-y-2.5;
+  @apply flex flex-col gap-3 items-start;
 }
 
 .app-footer__link {

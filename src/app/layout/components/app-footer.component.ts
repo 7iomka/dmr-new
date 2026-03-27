@@ -37,11 +37,11 @@ type SocialLink = {
               @for (social of socialLinks; track social.label) {
                 <a
                   class="app-footer__social-btn"
+                  outlined="true"
                   pButton
                   rel="noopener noreferrer"
                   severity="secondary"
                   target="_blank"
-                  variant="outlined"
                   [attr.aria-label]="social.label"
                   [attr.title]="social.label"
                   [href]="social.href">
@@ -63,7 +63,7 @@ type SocialLink = {
 
           <section class="app-footer__col">
             <h4 class="app-footer__col-title">Навигация</h4>
-            <span aria-hidden="true" class="app-footer__col-divider"></span>
+            <span aria-hidden="true" class="app-footer__col-title-divider"></span>
             <ul class="app-footer__links">
               @for (link of navigationLinks; track link.href) {
                 <li>
@@ -75,7 +75,7 @@ type SocialLink = {
 
           <section class="app-footer__col">
             <h4 class="app-footer__col-title">Информация</h4>
-            <span aria-hidden="true" class="app-footer__col-divider"></span>
+            <span aria-hidden="true" class="app-footer__col-title-divider"></span>
             <ul class="app-footer__links">
               @for (link of infoLinks; track link.href) {
                 <li>
