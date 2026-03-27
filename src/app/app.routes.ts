@@ -6,7 +6,7 @@ import { InvestmentsPageComponent } from './features/investments/investments-pag
 import { StubPageComponent } from './features/stubs/stub-page.component';
 
 export const appRoutes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  { path: '', component: StubPageComponent, data: { title: 'Главная (Лендинг)' } },
   { path: 'dashboard', component: DashboardPageComponent },
   { path: 'auth', pathMatch: 'full', redirectTo: 'auth/login' },
   { path: 'auth/:mode', component: AuthPageComponent },
@@ -20,6 +20,9 @@ export const appRoutes: Routes = [
   { path: 'settings', component: StubPageComponent, data: { title: 'Настройки' } },
   { path: 'home', component: StubPageComponent, data: { title: 'Главная' } },
   { path: 'news', component: StubPageComponent, data: { title: 'Новости' } },
-  { path: 'contacts', component: StubPageComponent, data: { title: 'Контакты' } },
-  { path: '**', redirectTo: 'dashboard' },
+  { path: 'contacts', component: StubPageComponent, data: { title: 'Связаться с нами' } },
+  { path: 'faq', component: StubPageComponent, data: { title: 'FAQ' } },
+  { path: 'terms', component: StubPageComponent, data: { title: 'Условия и положения' } },
+  { path: 'privacy', component: StubPageComponent, data: { title: 'Политика конфиденциальности' } },
+  { path: '**', redirectTo: '' },
 ];

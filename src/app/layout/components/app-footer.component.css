@@ -1,0 +1,81 @@
+@reference "../../../styles.css";
+
+.app-footer {
+  @apply border-t border-zinc-200 bg-card dark:border-zinc-800;
+}
+
+.app-footer__container {
+  @apply space-y-8;
+}
+
+.app-footer__grid {
+  @apply grid gap-8 pb-8 md:grid-cols-3 md:gap-10;
+}
+
+.app-footer__brand {
+  @apply space-y-5;
+}
+
+.app-footer__logo {
+  @apply inline-flex items-center;
+}
+
+.app-footer__logo-light {
+  @apply hidden h-12 w-auto;
+
+  @variant dark {
+    @apply block;
+  }
+}
+
+.app-footer__logo-dark {
+  @apply h-12 w-auto;
+
+  @variant dark {
+    @apply hidden;
+  }
+}
+
+.app-footer__brand-text {
+  @apply max-w-sm text-sm leading-6 text-surface-600 dark:text-surface-300;
+}
+
+.app-footer__socials {
+  @apply flex flex-wrap gap-2.5;
+}
+
+.app-footer__social-btn {
+  @apply !h-10 !w-10 !min-w-10 !p-0;
+}
+
+.app-footer__social-icon {
+  @apply h-4.5 w-4.5;
+}
+
+.app-footer__col {
+  @apply space-y-4;
+}
+
+.app-footer__col-title {
+  @apply text-base font-bold text-surface-900 dark:text-surface-50;
+}
+
+.app-footer__col-divider {
+  @apply block h-px w-8 bg-surface-300 dark:bg-surface-700;
+}
+
+.app-footer__links {
+  @apply space-y-2.5;
+}
+
+.app-footer__link {
+  @apply text-sm text-surface-600 transition-colors hover:text-primary-600 dark:text-surface-300 dark:hover:text-primary-300;
+}
+
+.app-footer__bottom {
+  @apply border-t border-zinc-200 pt-6 dark:border-zinc-800;
+}
+
+.app-footer__copyright {
+  @apply text-xs text-surface-500 dark:text-surface-400;
+}
