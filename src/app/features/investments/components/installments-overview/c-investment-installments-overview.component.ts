@@ -1,8 +1,9 @@
 import { Component, signal, ViewEncapsulation } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { TabsModule } from 'primeng/tabs';
 import { TagModule } from 'primeng/tag';
 import { LucideChevronDown, LucideSettings } from '@lucide/angular';
+import { PillTabPanelComponent } from '../../../../shared/components/pill-tabs/pill-tabpanel.component';
+import { PillTabPanelsComponent } from '../../../../shared/components/pill-tabs/pill-tabpanels.component';
 
 type PaymentPlanItem = {
   readonly id: string;
@@ -34,22 +35,12 @@ type InstallmentItem = {
   selector: 'app-c-investment-installments-overview',
   standalone: true,
   encapsulation: ViewEncapsulation.None,
-  imports: [TabsModule, ButtonModule, TagModule, LucideChevronDown, LucideSettings],
+  imports: [ButtonModule, TagModule, LucideChevronDown, LucideSettings, PillTabPanelsComponent, PillTabPanelComponent],
   template: `
     <section class="c-investment-installments">
-      <p-tabs value="active" [showNavigators]="false">
-        <p-tablist
-          [pt]="{
-            root: { class: 'c-investment-installments__status-nav' },
-            tabList: { class: 'c-investment-installments__status-list' },
-            activeBar: { class: 'hidden' },
-          }">
-          <p-tab class="c-investment-installments__status-tab" value="active">Активные</p-tab>
-          <p-tab class="c-investment-installments__status-tab" value="closed">Закрытые</p-tab>
-        </p-tablist>
-
-        <p-tabpanels>
-          <p-tabpanel class="c-investment-installments__panel" value="active">
+      <app-pill-tabpanels>
+        <app-pill-tabpanel value="active">
+          <div class="c-investment-installments__panel">
             <div class="c-investment-installments__desktop">
               <table class="c-investment-installments-table">
                 <thead>
@@ -260,18 +251,20 @@ type InstallmentItem = {
                 </article>
               }
             </div>
-          </p-tabpanel>
+          </div>
+        </app-pill-tabpanel>
 
-          <p-tabpanel class="c-investment-installments__panel" value="closed">
+        <app-pill-tabpanel value="closed">
+          <div class="c-investment-installments__panel">
             <div class="c-investment-installments__empty">
               <p class="c-investment-installments__empty-title">Пока нет закрытых рассрочек</p>
               <p class="c-investment-installments__empty-subtitle">
                 После полной оплаты или закрытия история завершённых рассрочек появится в этом разделе.
               </p>
             </div>
-          </p-tabpanel>
-        </p-tabpanels>
-      </p-tabs>
+          </div>
+        </app-pill-tabpanel>
+      </app-pill-tabpanels>
     </section>
   `,
   styleUrl: './c-investment-installments-overview.component.css',

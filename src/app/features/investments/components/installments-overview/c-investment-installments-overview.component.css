@@ -4,35 +4,6 @@
   @apply flex flex-col gap-4 py-4;
 }
 
-.c-investment-installments__status-nav {
-  @apply mx-4 rounded-xl bg-primary/6;
-
-  @variant dark {
-    @apply bg-primary/8;
-  }
-}
-
-.c-investment-installments__status-list {
-  @apply gap-2 rounded-xl p-1 border-none;
-}
-
-.c-investment-installments__status-tab {
-  color: var(--p-button-outlined-primary-color);
-  border: 1px solid var(--p-button-outlined-primary-border-color);
-  padding: calc(var(--p-button-padding-y) - 0.1rem) var(--p-button-padding-x);
-  border-radius: var(--p-button-border-radius);
-  outline-color: transparent;
-  font-weight: 700;
-  font-size: var(--text-xs);
-  min-height: calc(var(--c-button-min-height) - 0.5rem);
-
-  @apply bg-white/75 p-active:bg-(--p-button-primary-background) p-active:text-(--p-button-primary-color) p-active:border-(--p-button-primary-border-color);
-
-  @variant dark {
-    @apply bg-primary-950/25;
-  }
-}
-
 .c-investment-installments__panel {
   @apply pt-0;
 }

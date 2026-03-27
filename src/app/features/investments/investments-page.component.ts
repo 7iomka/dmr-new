@@ -10,6 +10,8 @@ import {
   InvestmentTabpanelComponent,
   InvestmentTabpanelsComponent,
 } from './components/tabs/investment-tabpanels.component';
+import { PillTabComponent } from '../../shared/components/pill-tabs/pill-tab.component';
+import { PillTabsNavComponent } from '../../shared/components/pill-tabs/pill-tabs-nav.component';
 
 @Component({
   selector: 'app-investments-page',
@@ -23,6 +25,8 @@ import {
     InvestmentTabsNavComponent,
     InvestmentTabpanelsComponent,
     InvestmentTabpanelComponent,
+    PillTabsNavComponent,
+    PillTabComponent,
   ],
   template: `
     <div class="flex flex-col gap-6 lg:gap-7">
@@ -52,17 +56,24 @@ import {
       </section>
 
       <section>
-        <p-card [pt]="installmentsCardPt">
-          <ng-template #header>
-            <div class="px-4 py-4 sm:px-5">
-              <h3 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">
-                Рассрочки
-              </h3>
-            </div>
-          </ng-template>
+        <p-tabs value="active" [showNavigators]="false">
+          <p-card [pt]="installmentsCardPt">
+            <ng-template #header>
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">
+                  Рассрочки
+                </h3>
 
-          <app-c-investment-installments-overview />
-        </p-card>
+                <app-pill-tabs-nav size="sm" theme="secondary">
+                  <app-pill-tab value="active">Активные</app-pill-tab>
+                  <app-pill-tab value="closed">Закрытые</app-pill-tab>
+                </app-pill-tabs-nav>
+              </div>
+            </ng-template>
+
+            <app-c-investment-installments-overview />
+          </p-card>
+        </p-tabs>
       </section>
     </div>
   `,
