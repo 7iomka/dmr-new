@@ -1,7 +1,7 @@
 import { Component, signal, ViewEncapsulation } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { OverlayPanel, OverlayPanelModule } from 'primeng/overlaypanel';
+import { Popover, PopoverModule } from 'primeng/popover';
 import { TagModule } from 'primeng/tag';
 import {
   LucideCalendarCheck2,
@@ -48,7 +48,7 @@ type InstallmentItem = {
   imports: [
     ButtonModule,
     DialogModule,
-    OverlayPanelModule,
+    PopoverModule,
     TagModule,
     LucideCalendarCheck2,
     LucideChevronDown,
@@ -317,7 +317,7 @@ type InstallmentItem = {
       </app-pill-tabpanels>
     </section>
 
-    <p-overlayPanel #actionsMenu appendTo="body" styleClass="c-investment-contract-actions-menu">
+    <p-popover #actionsMenu appendTo="body" styleClass="c-investment-contract-actions-menu">
       <div class="c-investment-contract-actions">
         <button
           class="c-investment-contract-actions__item"
@@ -341,7 +341,7 @@ type InstallmentItem = {
           <span>Отменить контракт</span>
         </button>
       </div>
-    </p-overlayPanel>
+    </p-popover>
 
     <p-dialog
       header="Подтверждение оплаты контракта"
@@ -527,12 +527,12 @@ export class CInvestmentInstallmentsOverviewComponent {
     return 'secondary';
   }
 
-  toggleContractActions(event: Event, contractId: string, menu: OverlayPanel): void {
+  toggleContractActions(event: Event, contractId: string, menu: Popover): void {
     this.selectedContractId.set(contractId);
     menu.toggle(event);
   }
 
-  openContractDialog(type: 'payAll' | 'paySome' | 'cancel', menu: OverlayPanel): void {
+  openContractDialog(type: 'payAll' | 'paySome' | 'cancel', menu: Popover): void {
     menu.hide();
 
     if (type === 'payAll') {
