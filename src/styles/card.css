@@ -1,0 +1,19 @@
+@layer properties {
+  :root,
+  .dark {
+    --p-card-shadow: none;
+  }
+
+  :root {
+    --c-card-header-bg: #ffffff;
+    --c-card-padding-x: 1rem;
+    --c-card-padding-y: 1rem;
+    --c-card-header-padding-y: 1rem;
+    --p-card-body-padding: var(--c-card-padding-y) var(--c-card-padding-x);
+    --p-card-body-gap: 0;
+  }
+
+  .dark {
+    --c-card-header-bg: #1e2023;
+  }
+}

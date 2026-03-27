@@ -4,6 +4,7 @@
 @import './styles/variables.css';
 @import './styles/scrollbar.css';
 @import './styles/button.css';
+@import './styles/card.css';
 @import './styles/form-controls.css';
 @import './styles/avatar.css';
 @import './styles/stat-card.css';
@@ -24,16 +25,6 @@
     --sidebar-width: 16rem;
     --sidebar-width-collapse: 5rem;
     --sidebar-default-width: 16rem;
-    --c-card-header-bg: #ffffff;
-    --c-card-padding-x: 1rem;
-    --c-card-padding-y: 1rem;
-    --c-card-header-padding-y: 1rem;
-    --p-card-body-padding: var(--c-card-padding-y) var(--c-card-padding-x);
-    --p-card-body-gap: 0;
-  }
-
-  .dark {
-    --c-card-header-bg: #1e2023;
   }
 
   body {
