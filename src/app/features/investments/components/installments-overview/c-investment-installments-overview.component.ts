@@ -323,21 +323,21 @@ type InstallmentItem = {
           class="c-investment-contract-actions__item"
           type="button"
           (click)="openContractDialog('payAll', actionsMenu)">
-          <svg class="h-5 w-5" lucideDollarSign></svg>
+          <svg class="h-4 w-4" lucideDollarSign></svg>
           <span>Оплатить весь контракт</span>
         </button>
         <button
           class="c-investment-contract-actions__item"
           type="button"
           (click)="openContractDialog('paySome', actionsMenu)">
-          <svg class="h-5 w-5" lucideCalendarCheck2></svg>
+          <svg class="h-4 w-4" lucideCalendarCheck2></svg>
           <span>Оплатить несколько месяцев</span>
         </button>
         <button
           class="c-investment-contract-actions__item c-investment-contract-actions__item--danger"
           type="button"
           (click)="openContractDialog('cancel', actionsMenu)">
-          <svg class="h-5 w-5" lucideX></svg>
+          <svg class="h-4 w-4" lucideX></svg>
           <span>Отменить контракт</span>
         </button>
       </div>

@@ -208,7 +208,7 @@
 }
 
 .c-investment-contract-actions {
-  @apply min-w-[18rem] overflow-hidden rounded-xl border border-surface-200 bg-surface-0;
+  @apply min-w-[16.5rem] overflow-hidden rounded-xl border border-surface-200 bg-surface-0;
 
   @variant dark {
     @apply border-surface-800 bg-surface-900;
@@ -216,7 +216,7 @@
 }
 
 .c-investment-contract-actions__item {
-  @apply flex w-full items-center gap-3 px-4 py-4 text-left text-base text-surface-800 transition-colors hover:bg-surface-50;
+  @apply flex w-full items-center gap-2.5 px-3 py-3 text-left text-sm font-semibold text-surface-800 transition-colors hover:bg-surface-50;
 
   @variant dark {
     @apply text-surface-100 hover:bg-surface-800/60;
@@ -241,4 +241,17 @@
   @variant dark {
     @apply text-surface-300;
   }
+}
+
+:host ::ng-deep .c-investment-contract-actions-menu.p-popover {
+  @apply border-none bg-transparent shadow-none;
+}
+
+:host ::ng-deep .c-investment-contract-actions-menu .p-popover-content {
+  @apply p-0 bg-transparent;
+}
+
+:host ::ng-deep .c-investment-contract-actions-menu::before,
+:host ::ng-deep .c-investment-contract-actions-menu::after {
+  display: none;
 }
