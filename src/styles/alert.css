@@ -1,0 +1,13 @@
+@layer components {
+  .c-alert__content {
+    @apply gap-3;
+  }
+
+  .c-alert__icon {
+    @apply shrink-0 w-4 h-4;
+  }
+
+  .c-alert__text {
+    @apply text-sm;
+  }
+}
