@@ -10,7 +10,7 @@ import {
 } from '@lucide/angular';
 import { MessagePassThrough } from 'primeng/types/message';
 
-export type AppAlertType = 'info' | 'success' | 'warning' | 'danger';
+export type AppAlertSeverity = Message['severity'];
 export type AppAlertSize = 'small' | 'large' | undefined;
 export type AppAlertVariant = 'outlined' | 'simple' | undefined;
 
@@ -30,32 +30,19 @@ export type AppAlertVariant = 'outlined' | 'simple' | undefined;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppAlertComponent {
-  type = input<AppAlertType>('info');
+  severity = input<AppAlertSeverity>('info');
   title = input<string>();
   closable = input(false);
   size = input<AppAlertSize>(undefined);
   variant = input<AppAlertVariant>(undefined);
 
-  readonly severity = computed(() => {
-    switch (this.type()) {
-      case 'success':
-        return 'success' as const;
-      case 'warning':
-        return 'warn' as const;
-      case 'danger':
-        return 'error' as const;
-      default:
-        return 'info' as const;
-    }
-  });
-
   readonly alertIcon = computed<LucideIcon>(() => {
-    switch (this.type()) {
+    switch (this.severity()) {
       case 'success':
         return LucideCircleCheck;
-      case 'warning':
+      case 'warn':
         return LucideTriangleAlert;
-      case 'danger':
+      case 'error':
         return LucideCircleAlert;
       default:
         return LucideInfo;
@@ -63,11 +50,9 @@ export class AppAlertComponent {
   });
 
   readonly pt = computed<MessagePassThrough>(() => {
-    const type = this.type();
-
     return {
       root: {
-        class: ['c-alert', `c-alert--${type}`].join(' '),
+        class: ['c-alert', `c-alert--${this.severity()}`].join(' '),
       },
       content: {
         class: 'c-alert__content',

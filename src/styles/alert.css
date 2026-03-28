@@ -1,4 +1,31 @@
+@layer properties {
+  :root {
+    --c-alert-info-border-color: var(--p-message-info-border-color);
+    --c-alert-success-border-color: var(--p-message-success-border-color);
+    --c-alert-warn-border-color: var(--p-message-warn-border-color);
+    --c-alert-error-border-color: var(--p-message-error-border-color);
+  }
+}
+
 @layer components {
+  .c-alert {
+    outline: none !important;
+    border: 1px solid;
+  }
+
+  .c-alert--info {
+    border-color: var(--c-alert-info-border-color);
+  }
+  .c-alert--success {
+    border-color: var(--c-alert-success-border-color);
+  }
+  .c-alert--warn {
+    border-color: var(--c-alert-warn-border-color);
+  }
+  .c-alert--error {
+    border-color: var(--c-alert-error-border-color);
+  }
+
   .c-alert__content {
     @apply gap-3;
   }
