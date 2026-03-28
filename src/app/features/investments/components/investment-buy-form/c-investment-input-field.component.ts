@@ -16,7 +16,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
         <p-inputgroup class="c-investment-input-field__split-wrap">
           <p-inputnumber
             [allowEmpty]="false"
-            [id]="inputId()"
+            [inputId]="inputId()"
             [inputStyleClass]="'c-investment-input-field__input c-investment-input-field__input--split'"
             [locale]="'en-US'"
             [maxFractionDigits]="maxFractionDigits()"
@@ -29,7 +29,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
       } @else {
         <p-inputnumber
           [allowEmpty]="false"
-          [id]="inputId()"
+          [inputId]="inputId()"
           [inputStyleClass]="'c-investment-input-field__input'"
           [locale]="'en-US'"
           [maxFractionDigits]="maxFractionDigits()"
