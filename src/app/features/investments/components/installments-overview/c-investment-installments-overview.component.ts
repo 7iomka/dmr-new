@@ -10,7 +10,6 @@ import {
   LucideChevronDown,
   LucideClockFading,
   LucideDollarSign,
-  LucideInfo,
   LucideSettings,
   LucideX,
 } from '@lucide/angular';
@@ -18,6 +17,7 @@ import { map } from 'rxjs';
 import { PillTabPanelComponent, PillTabPanelsComponent } from '../../../../shared/components/pill-tabs';
 import { type AppMenuItem, MenuComponent } from '../../../../shared/components/menu/menu.component';
 import { AppAlertComponent } from '../../../../shared/components/alert/alert.component';
+import { FormControlSelectComponent } from '../../../../shared/components/form-controls/form-control-select.component';
 
 type PaymentPlanItem = {
   readonly id: string;
@@ -67,6 +67,7 @@ type ContractMenuItem = AppMenuItem & {
     LucideSettings,
     PillTabPanelsComponent,
     PillTabPanelComponent,
+    FormControlSelectComponent,
   ],
   template: `
     <section class="c-investment-installments">
@@ -363,6 +364,7 @@ type ContractMenuItem = AppMenuItem & {
     <app-menu #actionsMenu [items]="contractMenuItems" />
 
     <p-dialog
+      appendTo="body"
       contentStyleClass="c-investment-contract-dialog"
       header="Подтверждение оплаты контракта"
       [dismissableMask]="true"
@@ -408,6 +410,7 @@ type ContractMenuItem = AppMenuItem & {
     </p-dialog>
 
     <p-dialog
+      appendTo="body"
       contentStyleClass="c-investment-contract-dialog"
       header="Оплатить несколько месяцев"
       [dismissableMask]="true"
@@ -431,20 +434,15 @@ type ContractMenuItem = AppMenuItem & {
         </div>
       </div>
 
-      <div class="c-investment-contract-dialog__months-select-wrap">
-        <label class="c-investment-contract-dialog__months-label" for="monthsToPay">
-          Выберите количество месяцев для оплаты
-        </label>
-
-        <div class="c-investment-contract-dialog__months-select-box">
-          <select class="c-investment-contract-dialog__months-select" id="monthsToPay">
-            <option>2 months</option>
-          </select>
-          <svg class="c-investment-contract-dialog__months-icon" lucideChevronDown></svg>
-        </div>
-
-        <p class="c-investment-contract-dialog__months-hint">Доступно 2 - 2 месяцев</p>
-      </div>
+      <app-form-control-select
+        inputId="monthsToPay"
+        label="Выберите количество месяцев для оплаты"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Выберите количество месяцев"
+        [metaText]="'Доступно 2-4 месяца'"
+        [options]="monthsToPayOptions"
+        [(value)]="selectedMonthsToPay" />
 
       <div class="c-investment-contract-dialog__rows">
         <div class="c-investment-contract-dialog__row">
@@ -480,6 +478,7 @@ type ContractMenuItem = AppMenuItem & {
     </p-dialog>
 
     <p-dialog
+      appendTo="body"
       contentStyleClass="c-investment-contract-dialog"
       header="Отменить контракт"
       [dismissableMask]="true"
@@ -651,6 +650,15 @@ export class CInvestmentInstallmentsOverviewComponent implements AfterViewInit {
   readonly isPaySomeDialogOpen = signal(false);
   readonly isCancelDialogOpen = signal(false);
   readonly highlightedPaymentId = signal('');
+
+  // Demo
+  monthsToPayOptions = [
+    { label: '2 месяца', value: 2 },
+    { label: '3 месяца', value: 3 },
+    { label: '4 месяца', value: 4 },
+  ];
+
+  selectedMonthsToPay = 2;
 
   readonly contractMenuItems: ContractMenuItem[] = [
     {

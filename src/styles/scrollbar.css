@@ -1,15 +1,25 @@
+@layer properties {
+  :root,
+  .dark {
+    --c-scrollbar-thumb-border-radius: 10px;
+    --c-scrollbar-size: 4px;
+  }
+  :root {
+    --c-scrollbar-thumb-color: var(--p-surface-300);
+  }
+  .dark {
+    --c-scrollbar-thumb-color: #27272a;
+  }
+}
+
 @layer base {
   ::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
+    width: var(--c-scrollbar-size);
+    height: var(--c-scrollbar-size);
   }
 
-  .dark ::-webkit-scrollbar-thumb {
-    background: #27272a;
-    border-radius: 10px;
-  }
   ::-webkit-scrollbar-thumb {
-    background: #e2e8f0;
-    border-radius: 10px;
+    background: var(--c-scrollbar-thumb-color);
+    border-radius: var(--c-scrollbar-thumb-border-radius);
   }
 }

@@ -78,6 +78,27 @@
   }
 
   /* -------------------------------------------------------------------------- */
+  /* Generic select                                                              */
+  /* -------------------------------------------------------------------------- */
+
+  .c-form-control__select {
+    @apply w-full;
+  }
+
+  .c-form-control-select__root {
+    min-height: var(--c-form-control-input-min-height);
+    @apply w-full rounded-lg text-sm;
+  }
+
+  .c-form-control-select__label {
+    @apply flex min-h-[inherit] items-center;
+  }
+
+  .c-form-control-select__trigger {
+    @apply w-10;
+  }
+
+  /* -------------------------------------------------------------------------- */
   /* Password strength                                                          */
   /* -------------------------------------------------------------------------- */
 

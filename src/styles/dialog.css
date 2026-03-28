@@ -1,0 +1,30 @@
+:root,
+.dark {
+  --p-dialog-footer-padding: 0.5rem var(--p-overlay-modal-padding) var(--p-overlay-modal-padding);
+  --p-dialog-content-padding: 0 var(--p-overlay-modal-padding) var(--p-overlay-modal-padding);
+  /* --p-dialog-footer-gap: 0.5rem;
+    --p-dialog-title-font-size: 1.25rem;
+    --p-dialog-title-font-weight: 600;
+    --p-dialog-header-padding: var(--p-overlay-modal-padding);
+    --p-dialog-header-gap: 0.5rem;
+    --p-dialog-background: var(--p-overlay-modal-background);
+    --p-dialog-border-color: var(--p-overlay-modal-border-color);
+    --p-dialog-color: var(--p-overlay-modal-color);
+    --p-dialog-border-radius: var(--p-overlay-modal-border-radius);
+    --p-dialog-shadow: var(--p-overlay-modal-shadow); */
+}
+
+:root {
+}
+
+.dark {
+}
+
+@layer components {
+  .p-dialog-close-button {
+    width: var(--c-button-sm-min-height);
+    height: var(--c-button-sm-min-height);
+    min-height: var(--c-button-sm-min-height) !important;
+    border-radius: var(--p-button-border-radius);
+  }
+}
