@@ -10,7 +10,9 @@ import {
   LucideChevronDown,
   LucideClockFading,
   LucideDollarSign,
+  LucideInfo,
   LucideSettings,
+  LucideTriangleAlert,
   LucideX,
 } from '@lucide/angular';
 import { map } from 'rxjs';
@@ -61,7 +63,9 @@ type ContractMenuItem = AppMenuItem & {
     LucideCalendarCheck2,
     LucideChevronDown,
     LucideClockFading,
+    LucideInfo,
     LucideSettings,
+    LucideTriangleAlert,
     PillTabPanelsComponent,
     PillTabPanelComponent,
   ],
@@ -361,46 +365,192 @@ type ContractMenuItem = AppMenuItem & {
 
     <p-dialog
       header="Подтверждение оплаты контракта"
+      [contentStyle]="{ overflow: 'visible' }"
+      [dismissableMask]="true"
       [draggable]="false"
       [modal]="true"
       [resizable]="false"
       [style]="{ width: 'min(92vw, 36rem)' }"
       [(visible)]="isPayAllDialogOpen">
       <div class="c-investment-contract-dialog">
-        <p>
-          ID контракта: <strong>{{ selectedContractId() || '—' }}</strong>
-        </p>
-        <p>Это действие погасит весь оставшийся баланс по контракту.</p>
+        <div class="c-investment-contract-dialog__rows">
+          <div class="c-investment-contract-dialog__row">
+            <p>ID контракта</p>
+            <strong>{{ contractDialogData.id }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Доли</p>
+            <strong>{{ contractDialogData.shares }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Сумма платежа</p>
+            <strong>{{ contractDialogData.paymentAmount }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Баланс кошелька</p>
+            <strong>{{ contractDialogData.walletBalance }}</strong>
+          </div>
+        </div>
+
+        <div class="c-investment-contract-dialog__summary">
+          <span>Сумма к списанию</span>
+          <strong>{{ contractDialogData.summaryAmount }}</strong>
+        </div>
+
+        <div class="c-investment-contract-dialog__info">
+          <svg class="h-4 w-4 shrink-0" lucideInfo></svg>
+          <p>Это действие погасит весь оставшийся баланс по контракту</p>
+        </div>
+
+        <div class="c-investment-contract-dialog__footer">
+          <p-button
+            icon="pi pi-times"
+            label="Отмена"
+            severity="secondary"
+            styleClass="c-investment-contract-dialog__cancel"
+            variant="outlined"
+            (onClick)="isPayAllDialogOpen.set(false)" />
+          <p-button icon="pi pi-check" label="Подтвердить" />
+        </div>
       </div>
     </p-dialog>
 
     <p-dialog
       header="Оплатить несколько месяцев"
+      [contentStyle]="{ overflow: 'visible' }"
+      [dismissableMask]="true"
       [draggable]="false"
       [modal]="true"
       [resizable]="false"
       [style]="{ width: 'min(92vw, 36rem)' }"
       [(visible)]="isPaySomeDialogOpen">
       <div class="c-investment-contract-dialog">
-        <p>
-          ID контракта: <strong>{{ selectedContractId() || '—' }}</strong>
-        </p>
-        <p>Выберите, сколько следующих месяцев нужно оплатить.</p>
+        <div class="c-investment-contract-dialog__rows">
+          <div class="c-investment-contract-dialog__row">
+            <p>ID контракта</p>
+            <strong>{{ contractDialogData.id }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Неоплаченные месяцы</p>
+            <strong>{{ contractDialogData.unpaidMonths }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Сумма за месяц</p>
+            <strong>{{ contractDialogData.monthlyAmount }}</strong>
+          </div>
+        </div>
+
+        <div class="c-investment-contract-dialog__months-select-wrap">
+          <label class="c-investment-contract-dialog__months-label" for="monthsToPay"
+            >Выберите количество месяцев для оплаты</label
+          >
+          <div class="c-investment-contract-dialog__months-select-box">
+            <select class="c-investment-contract-dialog__months-select" id="monthsToPay">
+              <option>2 months</option>
+            </select>
+            <svg class="c-investment-contract-dialog__months-icon" lucideChevronDown></svg>
+          </div>
+          <p class="c-investment-contract-dialog__months-hint">Доступно 2 - 2 месяцев</p>
+        </div>
+
+        <div class="c-investment-contract-dialog__rows">
+          <div class="c-investment-contract-dialog__row">
+            <p>Доли</p>
+            <strong>{{ contractDialogData.shares }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Сумма платежа</p>
+            <strong>{{ contractDialogData.paymentAmount }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Баланс кошелька</p>
+            <strong>{{ contractDialogData.walletBalance }}</strong>
+          </div>
+        </div>
+
+        <div class="c-investment-contract-dialog__summary">
+          <span>Сумма к списанию</span>
+          <strong>{{ contractDialogData.summaryAmount }}</strong>
+        </div>
+
+        <div class="c-investment-contract-dialog__info">
+          <svg class="h-4 w-4 shrink-0" lucideInfo></svg>
+          <p>Это оплатит следующие 2 платежа</p>
+        </div>
+
+        <div class="c-investment-contract-dialog__footer">
+          <p-button
+            icon="pi pi-times"
+            label="Отмена"
+            severity="secondary"
+            styleClass="c-investment-contract-dialog__cancel"
+            variant="outlined"
+            (onClick)="isPaySomeDialogOpen.set(false)" />
+          <p-button icon="pi pi-check" label="Подтвердить" />
+        </div>
       </div>
     </p-dialog>
 
     <p-dialog
       header="Отменить контракт"
+      [contentStyle]="{ overflow: 'visible' }"
+      [dismissableMask]="true"
       [draggable]="false"
       [modal]="true"
       [resizable]="false"
       [style]="{ width: 'min(92vw, 36rem)' }"
       [(visible)]="isCancelDialogOpen">
       <div class="c-investment-contract-dialog">
-        <p>
-          ID контракта: <strong>{{ selectedContractId() || '—' }}</strong>
-        </p>
-        <p>Это действие отменит неоплаченные платежи по выбранному контракту.</p>
+        <div class="c-investment-contract-dialog__danger">
+          <svg class="h-4 w-4 shrink-0" lucideTriangleAlert></svg>
+          <p>Внимание: Это действие нельзя отменить</p>
+        </div>
+
+        <div class="c-investment-contract-dialog__rows">
+          <div class="c-investment-contract-dialog__row">
+            <p>ID контракта</p>
+            <strong>{{ contractDialogData.id }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Неоплаченные платежи</p>
+            <strong>{{ contractDialogData.unpaidMonths }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Остаток суммы</p>
+            <strong>{{ contractDialogData.paymentAmount }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Доли, которые вы сохраните</p>
+            <strong>{{ contractDialogData.preservedShares }}</strong>
+          </div>
+        </div>
+
+        <div class="c-investment-contract-dialog__warning">
+          <div class="c-investment-contract-dialog__warning-head">
+            <svg class="h-4 w-4 shrink-0" lucideInfo></svg>
+            <p>Отмена этого контракта приведет к:</p>
+          </div>
+          <ul>
+            <li>Отмене всех неоплаченных платежей</li>
+            <li>Вы сохраните доли, полученные из оплаченных платежей</li>
+            <li>Возврат средств за оплаченные суммы не производится</li>
+          </ul>
+        </div>
+
+        <div class="c-investment-contract-dialog__footer">
+          <p-button
+            icon="pi pi-times"
+            label="Отмена"
+            severity="secondary"
+            styleClass="c-investment-contract-dialog__cancel"
+            variant="outlined"
+            (onClick)="isCancelDialogOpen.set(false)" />
+          <p-button
+            icon="pi pi-exclamation-triangle"
+            label="Подтвердить отмену"
+            severity="danger"
+            styleClass="c-investment-contract-dialog__confirm-cancel" />
+        </div>
       </div>
     </p-dialog>
   `,
@@ -509,6 +659,16 @@ export class CInvestmentInstallmentsOverviewComponent implements AfterViewInit {
   readonly expandedDesktopId = signal(this.activeInstallments[0]?.id ?? '');
   readonly expandedMobileIds = signal<ReadonlySet<string>>(new Set([this.activeInstallments[0]?.id ?? '']));
   readonly selectedContractId = signal('');
+  readonly contractDialogData = {
+    id: '09022700',
+    shares: '35 138',
+    paymentAmount: '133.33 $',
+    walletBalance: '350.54 $',
+    summaryAmount: '133.33 $',
+    unpaidMonths: '2',
+    monthlyAmount: '66.67 $',
+    preservedShares: '17 569',
+  } as const;
   readonly isPayAllDialogOpen = signal(false);
   readonly isPaySomeDialogOpen = signal(false);
   readonly isCancelDialogOpen = signal(false);
