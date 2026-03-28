@@ -21,7 +21,7 @@ type PaymentPlanItem = {
   readonly shares: string;
   readonly issueDate: string;
   readonly dueDate: string;
-  readonly status: 'paid' | 'due' | 'pending';
+  readonly status: 'paid' | 'due' | 'overdue' | 'pending';
 };
 
 type InstallmentItem = {
@@ -70,17 +70,17 @@ type ContractMenuItem = AppMenuItem & {
             <div class="c-investment-installments__desktop">
               <table class="c-investment-installments-table">
                 <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Общая сумма / План</th>
-                    <th>Даты</th>
-                    <th>Оплачено / Остаток</th>
+                  <tr class="c-investment-installments-table__head-row">
+                    <th class="c-investment-installments-table__head-cell">ID</th>
+                    <th class="c-investment-installments-table__head-cell">Общая сумма / План</th>
+                    <th class="c-investment-installments-table__head-cell">Даты</th>
+                    <th class="c-investment-installments-table__head-cell">Оплачено / Остаток</th>
                   </tr>
                 </thead>
                 <tbody>
                   @for (installment of activeInstallments; track installment.id) {
                     <tr class="c-investment-installments-table__main-row">
-                      <td class="c-investment-installments-table__id-cell">
+                      <td class="c-investment-installments-table__body-cell c-investment-installments-table__id-cell">
                         <div class="flex flex-col gap-0.5">
                           <p class="c-investment-installments-table__id">{{ installment.id }}</p>
                           <div class="c-investment-installments-table__actions">
@@ -109,7 +109,8 @@ type ContractMenuItem = AppMenuItem & {
                           </div>
                         </div>
                       </td>
-                      <td>
+
+                      <td class="c-investment-installments-table__body-cell">
                         <div class="flex flex-col gap-0.5">
                           <p class="c-investment-installments-table__strong text-base">{{ installment.totalAmount }}</p>
                           <p>{{ installment.months }}</p>
@@ -128,7 +129,8 @@ type ContractMenuItem = AppMenuItem & {
                           </p>
                         </div>
                       </td>
-                      <td>
+
+                      <td class="c-investment-installments-table__body-cell">
                         <div class="flex flex-col gap-0.5">
                           <p>
                             Начало:
@@ -144,7 +146,8 @@ type ContractMenuItem = AppMenuItem & {
                           </p>
                         </div>
                       </td>
-                      <td>
+
+                      <td class="c-investment-installments-table__body-cell">
                         <div class="flex flex-col gap-0.5">
                           <p class="c-investment-installments-table__pair">
                             <span class="text-primary">{{ installment.paidAmount }}</span>
@@ -165,39 +168,59 @@ type ContractMenuItem = AppMenuItem & {
 
                     @if (expandedDesktopId() === installment.id) {
                       <tr class="c-investment-installments-table__plan-row">
-                        <td colspan="4">
+                        <td class="c-investment-installments-table__plan-cell" colspan="4">
                           <div class="c-investment-installments-plan">
                             <h5 class="c-investment-installments-plan__title">План платежей</h5>
-                            <div class="c-investment-installments-plan__items">
-                              @for (planItem of installment.plan; track planItem.id) {
-                                <article class="c-investment-installments-plan__item">
-                                  <div class="c-investment-installments-plan__item-head">
-                                    <p class="c-investment-installments-plan__item-title">{{ planItem.title }}</p>
-                                    <p-tag
-                                      [severity]="statusSeverity(planItem.status)"
-                                      [value]="statusLabel(planItem.status)" />
-                                  </div>
-                                  <div class="c-investment-installments-plan__item-grid">
-                                    <p>Дата выпуска: {{ planItem.issueDate }}</p>
-                                    <p>Срок: {{ planItem.dueDate }}</p>
-                                    <p>
-                                      Сумма:
-                                      <span class="font-bold text-surface-900 dark:text-surface-50">{{
-                                        planItem.amount
-                                      }}</span>
-                                    </p>
-                                    <p>
-                                      Доли:
-                                      <span class="font-bold text-surface-900 dark:text-surface-50">{{
-                                        planItem.shares
-                                      }}</span>
-                                    </p>
-                                  </div>
-                                  @if (planItem.status === 'due') {
-                                    <p-button label="Оплатить сейчас" size="small" />
+                            <div class="c-investment-installments-plan__table-wrap">
+                              <table class="c-investment-installments-plan-table">
+                                <thead>
+                                  <tr class="c-investment-installments-plan-table__head-row">
+                                    <th class="c-investment-installments-plan-table__head-cell">Платёж</th>
+                                    <th class="c-investment-installments-plan-table__head-cell">Сумма</th>
+                                    <th class="c-investment-installments-plan-table__head-cell">Доли</th>
+                                    <th class="c-investment-installments-plan-table__head-cell">Дата выпуска</th>
+                                    <th class="c-investment-installments-plan-table__head-cell">Срок</th>
+                                    <th class="c-investment-installments-plan-table__head-cell text-right">Действие</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  @for (planItem of installment.plan; track planItem.id) {
+                                    <tr
+                                      class="c-investment-installments-plan-table__body-row"
+                                      [class.c-investment-installments-plan-table__body-row--current]="
+                                        isPayable(planItem.status)
+                                      ">
+                                      <td class="c-investment-installments-plan-table__cell">
+                                        <span class="c-investment-installments-plan-table__payment-title">{{
+                                          planItem.title
+                                        }}</span>
+                                      </td>
+                                      <td class="c-investment-installments-plan-table__cell">{{ planItem.amount }}</td>
+                                      <td class="c-investment-installments-plan-table__cell">{{ planItem.shares }}</td>
+                                      <td class="c-investment-installments-plan-table__cell">
+                                        {{ planItem.issueDate }}
+                                      </td>
+                                      <td class="c-investment-installments-plan-table__cell">
+                                        <span
+                                          [class.text-amber-600]="planItem.status === 'due'"
+                                          [class.text-primary]="planItem.status === 'paid'"
+                                          [class.text-red-500]="planItem.status === 'overdue'">
+                                          {{ planItem.dueDate }}
+                                        </span>
+                                      </td>
+                                      <td class="c-investment-installments-plan-table__cell text-right">
+                                        @if (isPayable(planItem.status)) {
+                                          <p-button label="Оплатить" />
+                                        } @else {
+                                          <p-tag
+                                            [severity]="statusSeverity(planItem.status)"
+                                            [value]="statusLabel(planItem.status)" />
+                                        }
+                                      </td>
+                                    </tr>
                                   }
-                                </article>
-                              }
+                                </tbody>
+                              </table>
                             </div>
                           </div>
                         </td>
@@ -296,8 +319,8 @@ type ContractMenuItem = AppMenuItem & {
                               <span class="font-bold text-surface-900 dark:text-surface-50">{{ planItem.shares }}</span>
                             </p>
                           </div>
-                          @if (planItem.status === 'due') {
-                            <p-button label="Оплатить сейчас" size="small" styleClass="w-full" />
+                          @if (isPayable(planItem.status)) {
+                            <p-button label="Оплатить" size="small" styleClass="w-full" />
                           }
                         </article>
                       }
@@ -460,6 +483,12 @@ export class CInvestmentInstallmentsOverviewComponent {
       ],
     },
   ];
+
+  private readonly payableStatuses = new Set(['due', 'overdue']);
+
+  isPayable(status: PaymentPlanItem['status']): boolean {
+    return this.payableStatuses.has(status);
+  }
 
   readonly expandedDesktopId = signal(this.activeInstallments[0]?.id ?? '');
   readonly expandedMobileIds = signal<ReadonlySet<string>>(new Set([this.activeInstallments[0]?.id ?? '']));
