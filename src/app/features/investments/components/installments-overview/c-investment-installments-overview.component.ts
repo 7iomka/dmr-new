@@ -1,4 +1,6 @@
-import { Component, signal, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, inject, signal, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { TagModule } from 'primeng/tag';
@@ -11,6 +13,7 @@ import {
   LucideSettings,
   LucideX,
 } from '@lucide/angular';
+import { map } from 'rxjs';
 import { PillTabPanelComponent, PillTabPanelsComponent } from '../../../../shared/components/pill-tabs';
 import { type AppMenuItem, MenuComponent } from '../../../../shared/components/menu/menu.component';
 
@@ -79,7 +82,7 @@ type ContractMenuItem = AppMenuItem & {
                 </thead>
                 <tbody>
                   @for (installment of activeInstallments; track installment.id) {
-                    <tr class="c-investment-installments-table__main-row">
+                    <tr class="c-investment-installments-table__main-row" [attr.data-installment-row]="installment.id">
                       <td class="c-investment-installments-table__body-cell c-investment-installments-table__id-cell">
                         <div class="flex flex-col gap-0.5">
                           <p class="c-investment-installments-table__id">{{ installment.id }}</p>
@@ -187,8 +190,12 @@ type ContractMenuItem = AppMenuItem & {
                                   @for (planItem of installment.plan; track planItem.id) {
                                     <tr
                                       class="c-investment-installments-plan-table__body-row"
+                                      [attr.data-desktop-payment-item]="planItem.id"
                                       [class.c-investment-installments-plan-table__body-row--current]="
                                         isPayable(planItem.status)
+                                      "
+                                      [class.c-investment-installments-plan-table__body-row--highlight]="
+                                        highlightedPaymentId() === planItem.id
                                       ">
                                       <td class="c-investment-installments-plan-table__cell">
                                         <span class="c-investment-installments-plan-table__payment-title">{{
@@ -233,7 +240,7 @@ type ContractMenuItem = AppMenuItem & {
 
             <div class="c-investment-installments__mobile">
               @for (installment of activeInstallments; track installment.id) {
-                <article class="c-investment-installments-mobile-card">
+                <article class="c-investment-installments-mobile-card" [attr.data-mobile-installment]="installment.id">
                   <div class="c-investment-installments-mobile-card__head">
                     <p class="font-bold text-surface-900 dark:text-surface-50">ID: {{ installment.id }}</p>
                     <div class="c-investment-installments-mobile-card__actions">
@@ -300,7 +307,12 @@ type ContractMenuItem = AppMenuItem & {
                   @if (expandedMobileIds().has(installment.id)) {
                     <div class="c-investment-installments-mobile-card__plan">
                       @for (planItem of installment.plan; track planItem.id) {
-                        <article class="c-investment-installments-plan__item">
+                        <article
+                          class="c-investment-installments-plan__item"
+                          [attr.data-mobile-payment-item]="planItem.id"
+                          [class.c-investment-installments-plan__item--highlight]="
+                            highlightedPaymentId() === planItem.id
+                          ">
                           <div class="c-investment-installments-plan__item-head">
                             <p class="c-investment-installments-plan__item-title">{{ planItem.title }}</p>
                             <p-tag
@@ -394,7 +406,11 @@ type ContractMenuItem = AppMenuItem & {
   `,
   styleUrl: './c-investment-installments-overview.component.css',
 })
-export class CInvestmentInstallmentsOverviewComponent {
+export class CInvestmentInstallmentsOverviewComponent implements AfterViewInit {
+  private readonly route = inject(ActivatedRoute);
+  private readonly destroyRef = inject(DestroyRef);
+  private resetHighlightTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
   readonly activeInstallments: readonly InstallmentItem[] = [
     {
       id: '88421',
@@ -496,6 +512,7 @@ export class CInvestmentInstallmentsOverviewComponent {
   readonly isPayAllDialogOpen = signal(false);
   readonly isPaySomeDialogOpen = signal(false);
   readonly isCancelDialogOpen = signal(false);
+  readonly highlightedPaymentId = signal('');
 
   readonly contractMenuItems: ContractMenuItem[] = [
     {
@@ -518,6 +535,29 @@ export class CInvestmentInstallmentsOverviewComponent {
       command: () => this.openContractDialog('cancel'),
     },
   ];
+
+  constructor() {
+    this.destroyRef.onDestroy(() => {
+      if (this.resetHighlightTimeoutId) {
+        clearTimeout(this.resetHighlightTimeoutId);
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.route.queryParamMap
+      .pipe(
+        map((params) => this.parseInstallmentTarget(params)),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(({ targetId, payment }) => {
+        if (!targetId) {
+          return;
+        }
+
+        this.navigateToInstallmentTarget(targetId, payment);
+      });
+  }
 
   toggleDesktopPlan(id: string): void {
     this.expandedDesktopId.set(this.expandedDesktopId() === id ? '' : id);
@@ -576,5 +616,102 @@ export class CInvestmentInstallmentsOverviewComponent {
     }
 
     this.isCancelDialogOpen.set(true);
+  }
+
+  private parseInstallmentTarget(params: ParamMap): { targetId: string; payment: string } {
+    const targetId = params.get('installment') ?? params.get('installmentId') ?? '';
+    const payment = params.get('payment') ?? params.get('paymentNumber') ?? '';
+
+    return {
+      targetId: targetId.trim(),
+      payment: payment.trim(),
+    };
+  }
+
+  private navigateToInstallmentTarget(targetId: string, payment: string): void {
+    const targetInstallment = this.activeInstallments.find((installment) => installment.id === targetId);
+
+    if (!targetInstallment) {
+      return;
+    }
+
+    if (this.isMobileViewport()) {
+      const nextExpanded = new Set(this.expandedMobileIds());
+      nextExpanded.add(targetId);
+      this.expandedMobileIds.set(nextExpanded);
+    } else {
+      this.expandedDesktopId.set(targetId);
+    }
+
+    this.runAfterRender(() => {
+      const paymentTargetId = payment ? `${targetId}-${payment}` : '';
+      const paymentElement = paymentTargetId ? this.findPaymentElement(paymentTargetId) : null;
+
+      if (paymentElement) {
+        this.highlightPayment(paymentTargetId);
+        this.scrollToElement(paymentElement);
+        return;
+      }
+
+      const installmentElement = this.findInstallmentElement(targetId);
+      if (installmentElement) {
+        this.scrollToElement(installmentElement);
+      }
+    });
+  }
+
+  private isMobileViewport(): boolean {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+
+    return window.matchMedia('(max-width: 1023.98px)').matches;
+  }
+
+  private findInstallmentElement(installmentId: string): HTMLElement | null {
+    const selector = this.isMobileViewport()
+      ? `[data-mobile-installment="${installmentId}"]`
+      : `[data-installment-row="${installmentId}"]`;
+
+    return document.querySelector<HTMLElement>(selector);
+  }
+
+  private findPaymentElement(paymentId: string): HTMLElement | null {
+    const selector = this.isMobileViewport()
+      ? `[data-mobile-payment-item="${paymentId}"]`
+      : `[data-desktop-payment-item="${paymentId}"]`;
+
+    return document.querySelector<HTMLElement>(selector);
+  }
+
+  private scrollToElement(element: HTMLElement): void {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  }
+
+  private highlightPayment(paymentId: string): void {
+    this.highlightedPaymentId.set(paymentId);
+
+    if (this.resetHighlightTimeoutId) {
+      clearTimeout(this.resetHighlightTimeoutId);
+    }
+
+    this.resetHighlightTimeoutId = setTimeout(() => {
+      this.highlightedPaymentId.set('');
+      this.resetHighlightTimeoutId = null;
+    }, 2800);
+  }
+
+  private runAfterRender(callback: () => void): void {
+    if (typeof window === 'undefined') {
+      callback();
+      return;
+    }
+
+    setTimeout(() => {
+      requestAnimationFrame(callback);
+    }, 0);
   }
 }

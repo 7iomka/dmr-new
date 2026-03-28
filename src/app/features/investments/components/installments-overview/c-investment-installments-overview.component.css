@@ -132,6 +132,10 @@
   @apply bg-white/70 dark:bg-white/2;
 }
 
+.c-investment-installments-plan-table__body-row--highlight {
+  @apply ring-2 ring-amber-400/70;
+}
+
 .c-investment-installments-plan-table__body-row:last-child {
   @apply border-b-0;
 }
@@ -158,6 +162,10 @@
   @variant dark {
     @apply border-surface-800 bg-surface-900/30;
   }
+}
+
+.c-investment-installments-plan__item--highlight {
+  @apply ring-2 ring-amber-400/70;
 }
 
 .c-investment-installments-plan__item-head {
