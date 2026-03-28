@@ -221,7 +221,9 @@ type ContractMenuItem = AppMenuItem & {
                                       </td>
                                       <td class="c-investment-installments-plan-table__cell text-right">
                                         @if (isPayable(planItem.status)) {
-                                          <p-button label="Оплатить" />
+                                          <p-button
+                                            label="Оплатить"
+                                            (onClick)="openPlanPaymentDialog(installment.id, planItem)" />
                                         } @else {
                                           <p-tag
                                             [severity]="statusSeverity(planItem.status)"
@@ -336,7 +338,11 @@ type ContractMenuItem = AppMenuItem & {
                             </p>
                           </div>
                           @if (isPayable(planItem.status)) {
-                            <p-button label="Оплатить" size="small" styleClass="w-full" />
+                            <p-button
+                              label="Оплатить"
+                              size="small"
+                              styleClass="w-full"
+                              (onClick)="openPlanPaymentDialog(installment.id, planItem)" />
                           }
                         </article>
                       }
@@ -362,6 +368,57 @@ type ContractMenuItem = AppMenuItem & {
     </section>
 
     <app-menu #actionsMenu [items]="contractMenuItems" />
+
+    <p-dialog
+      appendTo="body"
+      contentStyleClass="c-investment-contract-dialog"
+      header="Подтверждение оплаты платежа"
+      [dismissableMask]="true"
+      [draggable]="false"
+      [modal]="true"
+      [resizable]="false"
+      [style]="{ width: 'min(92vw, 36rem)' }"
+      [(visible)]="isPlanPaymentDialogOpen">
+      @if (selectedPlanPayment(); as selectedPayment) {
+        <div class="c-investment-contract-dialog__rows">
+          <div class="c-investment-contract-dialog__row">
+            <p>ID контракта</p>
+            <strong>{{ selectedPayment.contractId }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Платёж</p>
+            <strong>{{ selectedPayment.payment.title }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Доли</p>
+            <strong>{{ selectedPayment.payment.shares }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Сумма платежа</p>
+            <strong>{{ selectedPayment.payment.amount }}</strong>
+          </div>
+          <div class="c-investment-contract-dialog__row">
+            <p>Баланс кошелька</p>
+            <strong>{{ planPaymentWalletBalance }}</strong>
+          </div>
+        </div>
+
+        <div class="c-investment-contract-dialog__summary">
+          <span>Сумма к списанию</span>
+          <strong>{{ selectedPayment.payment.amount }}</strong>
+        </div>
+      }
+
+      <ng-template #footer>
+        <p-button
+          label="Отмена"
+          severity="secondary"
+          styleClass="c-investment-contract-dialog__cancel"
+          variant="outlined"
+          (onClick)="isPlanPaymentDialogOpen.set(false)" />
+        <p-button label="Подтвердить" />
+      </ng-template>
+    </p-dialog>
 
     <p-dialog
       appendTo="body"
@@ -649,7 +706,10 @@ export class CInvestmentInstallmentsOverviewComponent implements AfterViewInit {
   readonly isPayAllDialogOpen = signal(false);
   readonly isPaySomeDialogOpen = signal(false);
   readonly isCancelDialogOpen = signal(false);
+  readonly isPlanPaymentDialogOpen = signal(false);
   readonly highlightedPaymentId = signal('');
+  readonly selectedPlanPayment = signal<{ contractId: string; payment: PaymentPlanItem } | null>(null);
+  readonly planPaymentWalletBalance = '512.40 $';
 
   // Demo
   monthsToPayOptions = [
@@ -748,6 +808,11 @@ export class CInvestmentInstallmentsOverviewComponent implements AfterViewInit {
   toggleContractMenu(event: Event, contractId: string, menu: MenuComponent): void {
     this.selectedContractId.set(contractId);
     menu.toggle(event);
+  }
+
+  openPlanPaymentDialog(contractId: string, payment: PaymentPlanItem): void {
+    this.selectedPlanPayment.set({ contractId, payment });
+    this.isPlanPaymentDialogOpen.set(true);
   }
 
   openContractDialog(type: ContractMenuAction): void {
