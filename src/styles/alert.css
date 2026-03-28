@@ -1,0 +1,50 @@
+@layer properties {
+  :root {
+    --p-message-info-background: --alpha(var(--color-sky-500) / 10%);
+    --p-message-info-border-color: --alpha(var(--color-sky-500) / 25%);
+    --p-message-info-color: var(--color-sky-600);
+
+    --p-message-success-background: --alpha(var(--color-primary-500) / 10%);
+    --p-message-success-border-color: --alpha(var(--color-primary-500) / 25%);
+    --p-message-success-color: var(--color-primary-700);
+
+    --p-message-warn-background: --alpha(var(--color-amber-500) / 10%);
+    --p-message-warn-border-color: --alpha(var(--color-amber-500) / 25%);
+    --p-message-warn-color: var(--color-amber-700);
+
+    --p-message-error-background: --alpha(var(--color-red-500) / 10%);
+    --p-message-error-border-color: --alpha(var(--color-red-500) / 25%);
+    --p-message-error-color: var(--color-red-600);
+  }
+
+  .dark {
+    --p-message-info-background: --alpha(var(--color-sky-500) / 10%);
+    --p-message-info-border-color: --alpha(var(--color-sky-500) / 25%);
+    --p-message-info-color: var(--color-sky-300);
+
+    --p-message-success-background: --alpha(var(--color-primary-500) / 10%);
+    --p-message-success-border-color: --alpha(var(--color-primary-500) / 25%);
+    --p-message-success-color: var(--color-primary-300);
+
+    --p-message-warn-background: --alpha(var(--color-amber-500) / 10%);
+    --p-message-warn-border-color: --alpha(var(--color-amber-500) / 25%);
+    --p-message-warn-color: var(--color-amber-300);
+
+    --p-message-error-background: --alpha(var(--color-red-500) / 10%);
+    --p-message-error-border-color: --alpha(var(--color-red-500) / 25%);
+    --p-message-error-color: var(--color-red-300);
+  }
+}
+@layer components {
+  .c-alert__content {
+    @apply gap-3;
+  }
+
+  .c-alert__icon {
+    @apply shrink-0 w-4 h-4;
+  }
+
+  .c-alert__text {
+    @apply text-sm;
+  }
+}
