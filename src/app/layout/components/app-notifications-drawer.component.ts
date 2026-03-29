@@ -1,55 +1,52 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LucideArrowRight, LucideDynamicIcon, LucideX } from '@lucide/angular';
+import { LucideArrowRight, LucideBell, LucideDynamicIcon, LucideX } from '@lucide/angular';
 import { ButtonModule } from 'primeng/button';
+import { DrawerModule } from 'primeng/drawer';
 
 import { NotificationsKnowledgeBaseService } from '../../features/notifications/notifications-knowledge-base.service';
 
 @Component({
   selector: 'app-notifications-drawer',
   standalone: true,
-  imports: [ButtonModule, RouterLink, NgClass, LucideDynamicIcon, LucideX, LucideArrowRight],
+  imports: [DrawerModule, ButtonModule, RouterLink, NgClass, LucideBell, LucideX, LucideArrowRight, LucideDynamicIcon],
   template: `
-    @if (store.drawerOpen()) {
-      <button
-        aria-label="Закрыть уведомления"
-        class="overlay fixed inset-0 z-[1090] notifications-drawer-overlay"
-        type="button"
-        (click)="store.closeDrawer()"></button>
-    }
-
-    <aside
-      aria-labelledby="notifications-drawer-title"
-      aria-modal="true"
+    <p-drawer
       class="notifications-drawer"
-      role="dialog"
-      tabindex="-1"
-      [class.active]="store.drawerOpen()">
-      <div class="notifications-drawer__header">
-        <div>
-          <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100" id="notifications-drawer-title">
-            Уведомления
-          </h2>
-          <p class="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-            Непрочитанных: {{ store.unreadCount() }} · Показаны последние 10
-          </p>
-        </div>
+      header=""
+      position="right"
+      [dismissible]="true"
+      [modal]="true"
+      [pt]="{ content: { class: 'p-0 flex flex-col h-full' } }"
+      [showCloseIcon]="false"
+      [styleClass]="'notifications-drawer__panel'"
+      [visible]="store.drawerOpen()"
+      (visibleChange)="onVisibleChange($event)">
+      <ng-template #header>
+        <div class="notifications-drawer__header">
+          <div>
+            <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Уведомления</h2>
+            <p class="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+              Непрочитанных: {{ store.unreadCount() }} · Показаны последние 10
+            </p>
+          </div>
 
-        <p-button
-          ariaLabel="Закрыть уведомления"
-          severity="secondary"
-          styleClass="p-button-icon-only notifications-close-btn"
-          variant="outlined"
-          (onClick)="store.closeDrawer()">
-          <svg class="h-4 w-4" lucideX pButtonIcon></svg>
-        </p-button>
-      </div>
+          <p-button
+            ariaLabel="Закрыть уведомления"
+            severity="secondary"
+            styleClass="p-button-icon-only notifications-close-btn"
+            variant="outlined"
+            (onClick)="store.closeDrawer()">
+            <svg class="h-4 w-4" lucideX pButtonIcon></svg>
+          </p-button>
+        </div>
+      </ng-template>
 
       <div class="notifications-drawer__list">
         @if (!rows().length) {
           <div class="notifications-empty">
-            <svg class="w-8 h-8 opacity-50" [lucideIcon]="'bell'"></svg>
+            <svg class="w-8 h-8 opacity-50" lucideBell></svg>
             <p class="text-sm font-semibold">Здесь пока пусто</p>
             <p class="text-xs">Новые уведомления появятся автоматически.</p>
           </div>
@@ -71,7 +68,7 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
 
               <div class="min-w-0 flex-1">
                 <div class="flex items-start justify-between gap-2">
-                  <h3 class="notifications-item-title">{{ item.title }}</h3>
+                  <h3 class="notifications-item-title">#{{ item.id }} · {{ item.title }}</h3>
                   <span aria-hidden="true" class="notifications-unread-dot" [class.hidden]="item.isRead"></span>
                 </div>
 
@@ -79,9 +76,17 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
 
                 <div class="mt-2 flex items-center justify-between gap-2">
                   <span class="text-[11px] text-zinc-500 whitespace-nowrap">{{ relativeDate(item.createdAt) }}</span>
-                  <span aria-hidden="true" class="btn-secondary btn-sm">
-                    <span>Перейти</span>
-                    <svg class="w-3.5 h-3.5" lucideArrowRight></svg>
+                  <span
+                    class="pointer-events-none"
+                    pButton
+                    severity="secondary"
+                    size="small"
+                    styleClass="p-button-sm"
+                    variant="outlined">
+                    <span class="inline-flex items-center gap-1.5">
+                      <span>Перейти</span>
+                      <svg class="w-3.5 h-3.5" lucideArrowRight></svg>
+                    </span>
                   </span>
                 </div>
               </div>
@@ -92,22 +97,22 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
 
       <div class="notifications-drawer__footer">
         <p class="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400">Показаны не все уведомления</p>
-        <a class="btn-primary btn-sm" routerLink="/notifications" (click)="store.closeDrawer()">
-          <span>Все уведомления</span>
-          <svg class="w-3.5 h-3.5" lucideArrowRight></svg>
+        <a pButton routerLink="/notifications" severity="primary" size="small" (click)="store.closeDrawer()">
+          <span pButtonLabel>Все уведомления</span>
+          <svg class="w-3.5 h-3.5" lucideArrowRight pButtonIcon></svg>
         </a>
       </div>
-    </aside>
+    </p-drawer>
   `,
 })
 export class AppNotificationsDrawerComponent {
   protected readonly store = inject(NotificationsKnowledgeBaseService);
   protected readonly rows = computed(() => this.store.getFilteredRows({ sort: 'date_desc' }).slice(0, 10));
 
-  constructor() {
-    effect(() => {
-      document.body.style.overflow = this.store.drawerOpen() ? 'hidden' : '';
-    });
+  protected onVisibleChange(visible: boolean): void {
+    if (!visible) {
+      this.store.closeDrawer();
+    }
   }
 
   protected onNavigate(id: string): void {

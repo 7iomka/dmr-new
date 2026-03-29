@@ -1,10 +1,6 @@
 @layer components {
-  .notifications-drawer {
-    @apply fixed right-0 top-0 z-[1100] h-dvh w-full max-w-[420px] bg-card shadow-2xl flex flex-col translate-x-full transition-transform duration-200;
-  }
-
-  .notifications-drawer.active {
-    @apply translate-x-0;
+  .notifications-drawer__panel {
+    @apply w-full max-w-[420px]! bg-card;
   }
 
   .notifications-drawer__header {
@@ -74,6 +70,22 @@
 
   .notifications-action-btn--active.p-button {
     @apply bg-primary-100 text-primary-700 border-primary-300 dark:bg-primary-900/35 dark:text-primary-200 dark:border-primary-700/60;
+  }
+
+  .notifications-sort-menu {
+    @apply border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden;
+  }
+
+  .notifications-sort-menu .p-menu-list {
+    @apply p-0;
+  }
+
+  .notifications-sort-item .p-menu-item-link {
+    @apply rounded-none px-4 py-3;
+  }
+
+  .notifications-sort-item.is-active .p-menu-item-link {
+    @apply bg-emerald-100/70 dark:bg-emerald-900/35;
   }
 
   .notifications-empty {

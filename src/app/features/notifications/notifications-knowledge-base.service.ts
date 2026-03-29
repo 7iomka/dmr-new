@@ -1,4 +1,5 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
+import { LucideAlertTriangle, type LucideIcon, LucideInfo, LucideOctagonAlert } from '@lucide/angular';
 
 export type NotificationType = 'info' | 'warning' | 'critical';
 
@@ -15,7 +16,7 @@ export type NotificationSort = 'date_desc' | 'date_asc' | 'unread_first' | 'read
 
 export type NotificationTypeMeta = {
   label: string;
-  icon: string;
+  icon: LucideIcon;
   iconClass: string;
   wrapClass: string;
   chipClass: string;
@@ -25,7 +26,7 @@ const STORAGE_KEY = 'demo-notifications-v1';
 
 const SEED_NOTIFICATIONS: NotificationItem[] = [
   {
-    id: 'n1',
+    id: '1001',
     type: 'critical',
     title: 'Подозрительный вход в аккаунт',
     message:
@@ -34,7 +35,7 @@ const SEED_NOTIFICATIONS: NotificationItem[] = [
     isRead: false,
   },
   {
-    id: 'n2',
+    id: '1002',
     type: 'warning',
     title: 'Рассрочка скоро завершится',
     message: 'По заявке #4829 осталось 3 дня до следующего платежа. Проверьте баланс, чтобы избежать задержки.',
@@ -42,7 +43,7 @@ const SEED_NOTIFICATIONS: NotificationItem[] = [
     isRead: false,
   },
   {
-    id: 'n3',
+    id: '1003',
     type: 'info',
     title: 'Пополнение успешно завершено',
     message: 'Баланс пополнен на 500 USD через STRIPE. Средства уже доступны в кошельке.',
@@ -50,7 +51,7 @@ const SEED_NOTIFICATIONS: NotificationItem[] = [
     isRead: true,
   },
   {
-    id: 'n4',
+    id: '1004',
     type: 'info',
     title: 'Новый реферал зарегистрирован',
     message: 'Пользователь по вашей ссылке успешно завершил регистрацию и пополнил счёт.',
@@ -58,7 +59,7 @@ const SEED_NOTIFICATIONS: NotificationItem[] = [
     isRead: false,
   },
   {
-    id: 'n5',
+    id: '1005',
     type: 'warning',
     title: 'Серверные работы в воскресенье',
     message:
@@ -79,21 +80,21 @@ export class NotificationsKnowledgeBaseService {
   readonly typeMeta: Record<NotificationType, NotificationTypeMeta> = {
     info: {
       label: 'Info',
-      icon: 'info',
+      icon: LucideInfo,
       iconClass: 'text-sky-600 dark:text-sky-300',
       wrapClass: 'bg-sky-500/10 dark:bg-sky-400/10',
       chipClass: 'bg-sky-500/10 text-sky-600 dark:text-sky-300',
     },
     warning: {
       label: 'Warning',
-      icon: 'alert-triangle',
+      icon: LucideAlertTriangle,
       iconClass: 'text-amber-600 dark:text-amber-300',
       wrapClass: 'bg-amber-500/10 dark:bg-amber-400/10',
       chipClass: 'bg-amber-500/10 text-amber-700 dark:text-amber-300',
     },
     critical: {
       label: 'Critical',
-      icon: 'octagon-alert',
+      icon: LucideOctagonAlert,
       iconClass: 'text-red-600 dark:text-red-300',
       wrapClass: 'bg-red-500/10 dark:bg-red-400/10',
       chipClass: 'bg-red-500/10 text-red-600 dark:text-red-300',
@@ -189,9 +190,45 @@ export class NotificationsKnowledgeBaseService {
         return [...SEED_NOTIFICATIONS];
       }
 
-      return parsed as NotificationItem[];
+      const normalized = parsed
+        .map((item, index) => this.normalizeItem(item, index))
+        .filter((item): item is NotificationItem => Boolean(item));
+
+      return normalized.length ? normalized : [...SEED_NOTIFICATIONS];
     } catch {
       return [...SEED_NOTIFICATIONS];
     }
+  }
+
+  private normalizeItem(raw: unknown, index: number): NotificationItem | null {
+    if (!raw || typeof raw !== 'object') {
+      return null;
+    }
+
+    const candidate = raw as Partial<NotificationItem>;
+    const createdAt = typeof candidate.createdAt === 'string' ? candidate.createdAt : '';
+    const isDateValid = !Number.isNaN(new Date(createdAt).getTime());
+    const type = candidate.type;
+    const isTypeValid = type === 'info' || type === 'warning' || type === 'critical';
+
+    if (
+      !isTypeValid ||
+      typeof candidate.title !== 'string' ||
+      !candidate.title.trim() ||
+      typeof candidate.message !== 'string' ||
+      !candidate.message.trim() ||
+      !isDateValid
+    ) {
+      return null;
+    }
+
+    return {
+      id: typeof candidate.id === 'string' && candidate.id.trim() ? candidate.id : String(1000 + index),
+      type,
+      title: candidate.title,
+      message: candidate.message,
+      createdAt,
+      isRead: Boolean(candidate.isRead),
+    };
   }
 }

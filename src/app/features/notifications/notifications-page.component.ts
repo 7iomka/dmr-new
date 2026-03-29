@@ -1,18 +1,23 @@
 import { NgClass, ViewportScroller } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CardModule } from 'primeng/card';
 import { Component, computed, DestroyRef, HostListener, inject, signal, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   LucideArrowUpDown,
   LucideBell,
+  LucideBellRing,
   LucideChevronLeft,
   LucideDynamicIcon,
   LucideListChecks,
   LucideSearch,
+  LucideSearchX,
 } from '@lucide/angular';
+import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
+import { Menu, MenuModule } from 'primeng/menu';
 
 import { FormControlTextComponent } from '../../shared/components/form-controls/form-control-text.component';
 import {
@@ -28,10 +33,14 @@ import {
     FormsModule,
     ReactiveFormsModule,
     NgClass,
+    CardModule,
     ButtonModule,
     CheckboxModule,
+    MenuModule,
     FormControlTextComponent,
     LucideBell,
+    LucideBellRing,
+    LucideSearchX,
     LucideListChecks,
     LucideArrowUpDown,
     LucideChevronLeft,
@@ -78,6 +87,18 @@ export class NotificationsPageComponent {
 
   protected readonly selectedItem = computed(() => this.store.getById(this.selectedNotificationId()));
 
+  protected readonly sortOptions: { value: NotificationSort; label: string }[] = [
+    { value: 'date_desc', label: 'Сначала новые' },
+    { value: 'date_asc', label: 'Сначала старые' },
+    { value: 'unread_first', label: 'Сначала непрочитанные' },
+    { value: 'read_first', label: 'Сначала прочитанные' },
+  ];
+
+  protected readonly cardPt = {
+    body: { class: 'p-0 h-full' },
+    content: { class: 'p-0 h-full' },
+  };
+
   constructor() {
     this.filtersForm.controls.search.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.selectedBulkIds.set(new Set<string>());
@@ -105,6 +126,19 @@ export class NotificationsPageComponent {
     });
   }
 
+  protected get sortMenuItems(): MenuItem[] {
+    return this.sortOptions.map((option) => ({
+      label: option.label,
+      styleClass: this.sort() === option.value ? 'notifications-sort-item is-active' : 'notifications-sort-item',
+      icon: this.sort() === option.value ? 'pi pi-check' : undefined,
+      command: () => this.sort.set(option.value),
+    }));
+  }
+
+  protected openSortMenu(event: Event, sortMenu: Menu): void {
+    sortMenu.toggle(event);
+  }
+
   @HostListener('window:resize')
   protected onResize(): void {
     if (window.innerWidth >= 1024) {
@@ -114,13 +148,6 @@ export class NotificationsPageComponent {
 
   protected setTypeFilter(type: NotificationType | 'all'): void {
     this.typeFilter.set(type);
-  }
-
-  protected toggleSort(): void {
-    const current = this.sort();
-    const next: NotificationSort =
-      current === 'date_desc' ? 'unread_first' : current === 'unread_first' ? 'date_asc' : 'date_desc';
-    this.sort.set(next);
   }
 
   protected toggleSelectMode(): void {
