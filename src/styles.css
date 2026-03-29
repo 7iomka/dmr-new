@@ -74,7 +74,7 @@
   }
 
   .app-shell__header {
-    @apply relative z-40 h-16 shrink-0 border-b border-zinc-200 bg-card lg:h-20 dark:border-zinc-800;
+    @apply relative z-40 h-16 shrink-0 border-b border-surface-200 bg-card lg:h-20 dark:border-surface-800;
   }
 
   /* .shell-icon-btn {
@@ -94,7 +94,7 @@
   }
 
   .app-shell__footer {
-    @apply shrink-0 min-h-0 border-t border-zinc-200 bg-card dark:border-zinc-800;
+    @apply shrink-0 min-h-0 border-t border-surface-200 bg-card dark:border-surface-800;
     padding: 48px 0 32px;
   }
 }
@@ -102,11 +102,11 @@
 @layer components {
   /* PrimeNG Card (p-card) customization block */
   .p-card {
-    @apply border border-zinc-200 bg-card text-surface-900 dark:border-zinc-800 dark:text-surface-50;
+    @apply border border-surface-200 bg-card text-surface-900 dark:border-surface-800 dark:text-surface-50;
   }
 
   .p-card-header {
-    @apply flex flex-wrap items-center justify-between gap-2 rounded-t-[inherit] border-b border-zinc-200 dark:border-zinc-800;
+    @apply flex flex-wrap items-center justify-between gap-2 rounded-t-[inherit] border-b border-surface-200 dark:border-surface-800;
     background-color: var(--c-card-header-bg);
     padding-inline: var(--c-card-padding-x);
     padding-block: var(--c-card-header-padding-y);

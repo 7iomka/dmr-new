@@ -21,7 +21,7 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
       </p-button>
 
       <span
-        class="peer pointer-events-none absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-zinc-900"
+        class="peer pointer-events-none absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-surface-900"
         [class.hidden]="store.unreadCount() === 0"></span>
       <span
         class="pointer-events-none absolute top-2.5 right-2.5 w-2 h-2 bg-primary/35 rounded-full blur-[0.5px] animate-ping peer-[.hidden]:hidden"></span>

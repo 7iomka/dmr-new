@@ -4,7 +4,7 @@
   }
 
   .notifications-drawer__header {
-    @apply sticky top-0 z-10 bg-card border-b border-zinc-200/80 dark:border-zinc-800 px-4 py-3 flex items-center justify-between gap-3;
+    @apply sticky top-0 z-10 bg-card border-b border-surface-200/80 dark:border-surface-800 px-4 py-3 flex items-center justify-between gap-3;
   }
 
   .notifications-close-btn.p-button {
@@ -17,11 +17,11 @@
   }
 
   .notifications-drawer__footer {
-    @apply sticky bottom-0 bg-card border-t border-zinc-200/80 dark:border-zinc-800 p-3 flex items-center justify-between gap-2;
+    @apply sticky bottom-0 bg-card border-t border-surface-200/80 dark:border-surface-800 p-3 flex items-center justify-between gap-2;
   }
 
   .notifications-segment {
-    @apply text-xs font-bold px-3 py-1.5 rounded-md border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 bg-zinc-100/70 dark:bg-zinc-900/70;
+    @apply text-xs font-bold px-3 py-1.5 rounded-md border border-surface-200 dark:border-surface-700 text-surface-600 dark:text-surface-300 bg-surface-100/70 dark:bg-surface-900/70;
   }
 
   .notifications-segment.is-active {
@@ -29,12 +29,12 @@
   }
 
   .notifications-item {
-    @apply block w-full text-left rounded-lg bg-zinc-50/90 dark:bg-zinc-900/45 px-3 py-2.5 transition-colors;
+    @apply block w-full text-left rounded-lg bg-surface-50/90 dark:bg-surface-900/45 px-3 py-2.5 transition-colors;
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400;
   }
 
   .notifications-item--interactive {
-    @apply cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800/70;
+    @apply cursor-pointer hover:bg-surface-100 dark:hover:bg-surface-800/70;
   }
 
   .notifications-item.is-unread {
@@ -46,11 +46,11 @@
   }
 
   .notifications-item-title {
-    @apply text-sm font-semibold text-zinc-800 dark:text-zinc-100 truncate;
+    @apply text-sm font-semibold text-surface-800 dark:text-surface-100 truncate;
   }
 
   .notifications-item.is-unread .notifications-item-title {
-    @apply font-bold text-zinc-900 dark:text-white;
+    @apply font-bold text-surface-900 dark:text-white;
   }
 
   .notifications-unread-dot {
@@ -74,7 +74,7 @@
   }
 
   .notifications-sort-menu {
-    @apply border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden;
+    @apply border border-surface-200 dark:border-surface-800 rounded-xl overflow-hidden;
   }
 
   .notifications-sort-menu .p-menu-list {
@@ -90,6 +90,6 @@
   }
 
   .notifications-empty {
-    @apply flex flex-col items-center justify-center text-center gap-2 px-6 py-14 text-zinc-500 dark:text-zinc-400;
+    @apply flex flex-col items-center justify-center text-center gap-2 px-6 py-14 text-surface-500 dark:text-surface-400;
   }
 }

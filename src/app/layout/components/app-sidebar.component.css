@@ -1,10 +1,10 @@
 @reference "../../../styles.css";
 
 .app-sidebar {
-  @apply fixed inset-y-0 left-0 z-50 hidden h-screen flex-col border-r border-zinc-200 bg-card lg:flex;
+  @apply fixed inset-y-0 left-0 z-50 hidden h-screen flex-col border-r border-surface-200 bg-card lg:flex;
 
   @variant dark {
-    @apply border-zinc-800;
+    @apply border-surface-800;
   }
 }
 
@@ -54,10 +54,10 @@
 }
 
 .app-sidebar__toggle {
-  @apply absolute -right-3.5 top-0 bottom-0 my-auto hidden h-7 w-7 items-center justify-center rounded-md border border-zinc-200 bg-zinc-100 text-zinc-500 transition-colors lg:flex hover:bg-zinc-200;
+  @apply absolute -right-3.5 top-0 bottom-0 my-auto hidden h-7 w-7 items-center justify-center rounded-md border border-surface-200 bg-surface-100 text-surface-500 transition-colors lg:flex hover:bg-surface-200;
 
   @variant dark {
-    @apply border-zinc-700 bg-zinc-800 hover:bg-zinc-700;
+    @apply border-surface-700 bg-surface-800 hover:bg-surface-700;
   }
 }
 

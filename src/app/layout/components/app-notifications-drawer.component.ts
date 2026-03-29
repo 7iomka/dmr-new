@@ -30,8 +30,8 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
       (visibleChange)="onVisibleChange($event)">
       <ng-template #header>
         <div>
-          <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Уведомления</h2>
-          <p class="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+          <h2 class="text-lg font-bold text-surface-900 dark:text-surface-100">Уведомления</h2>
+          <p class="text-xs font-semibold text-surface-500 dark:text-surface-400">
             Непрочитанных: {{ store.unreadCount() }} · Показаны последние 10
           </p>
         </div>
@@ -66,10 +66,10 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
                   <span aria-hidden="true" class="notifications-unread-dot" [class.hidden]="item.isRead"></span>
                 </div>
 
-                <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">{{ item.message }}</p>
+                <p class="mt-1 text-xs text-surface-500 dark:text-surface-400 line-clamp-2">{{ item.message }}</p>
 
                 <div class="mt-2 flex items-center justify-between gap-2">
-                  <span class="text-[11px] text-zinc-500 whitespace-nowrap">{{ relativeDate(item.createdAt) }}</span>
+                  <span class="text-[11px] text-surface-500 whitespace-nowrap">{{ relativeDate(item.createdAt) }}</span>
                   <span outlined pButton severity="secondary" size="small">
                     <span pButtonLabel>Перейти</span>
                     <svg class="w-3.5 h-3.5" lucideArrowRight pButtonIcon></svg>
@@ -82,7 +82,7 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
       </div>
 
       <ng-template #footer>
-        <p class="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400">Показаны не все уведомления</p>
+        <p class="text-[11px] font-semibold text-surface-500 dark:text-surface-400">Показаны не все уведомления</p>
         <a pButton routerLink="/notifications" severity="primary" size="small" (click)="store.closeDrawer()">
           <span pButtonLabel>Все уведомления</span>
           <svg class="w-3.5 h-3.5" lucideArrowRight pButtonIcon></svg>
