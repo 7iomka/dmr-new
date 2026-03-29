@@ -11,13 +11,16 @@ export type FormControlSelectOption = Record<string, unknown>;
   imports: [CommonModule, FormsModule, ReactiveFormsModule, SelectModule],
   template: `
     <div class="c-form-control">
-      <label class="c-form-control__label" [for]="resolvedInputId">{{ label }}</label>
+      @if (label) {
+        <label class="c-form-control__label" [for]="resolvedInputId">{{ label }}</label>
+      }
 
       @if (usesFormGroup) {
         <div class="c-form-control__control" [formGroup]="formGroup!">
           <p-select
             class="c-form-control__select"
             [appendTo]="'body'"
+            [ariaLabel]="resolvedAriaLabel"
             [filter]="filter"
             [filterBy]="filterBy"
             [filterPlaceholder]="filterPlaceholder"
@@ -52,6 +55,7 @@ export type FormControlSelectOption = Record<string, unknown>;
           <p-select
             class="c-form-control__select"
             [appendTo]="'body'"
+            [ariaLabel]="resolvedAriaLabel"
             [filter]="filter"
             [filterBy]="filterBy"
             [filterPlaceholder]="filterPlaceholder"
@@ -94,7 +98,8 @@ export type FormControlSelectOption = Record<string, unknown>;
 export class FormControlSelectComponent {
   @Input() formGroup?: FormGroup;
   @Input() controlName?: string;
-  @Input({ required: true }) label!: string;
+  @Input() label?: string;
+  @Input() ariaLabel?: string;
 
   @Input() value: unknown;
   @Output() readonly valueChange = new EventEmitter<unknown>();
@@ -143,6 +148,14 @@ export class FormControlSelectComponent {
 
   protected get resolvedInputId(): string {
     return this.inputId ?? this.controlName ?? 'form-control-select';
+  }
+
+  protected get resolvedAriaLabel(): string | undefined {
+    if (this.label) {
+      return undefined;
+    }
+
+    return (this.ariaLabel ?? this.placeholder) || this.controlName;
   }
 
   protected getLabel(option: unknown): string {

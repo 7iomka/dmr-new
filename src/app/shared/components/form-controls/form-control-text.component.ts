@@ -10,7 +10,9 @@ import { InputTextModule } from 'primeng/inputtext';
   imports: [CommonModule, ReactiveFormsModule, InputTextModule, LucideDynamicIcon],
   template: `
     <div class="c-form-control">
-      <label class="c-form-control__label" [for]="controlName">{{ label }}</label>
+      @if (label) {
+        <label class="c-form-control__label" [for]="controlName">{{ label }}</label>
+      }
       <div class="c-form-control__control" [formGroup]="formGroup">
         @if (icon) {
           <span class="c-form-control__icon-left">
@@ -21,6 +23,7 @@ import { InputTextModule } from 'primeng/inputtext';
         <input
           class="c-form-control__input"
           pInputText
+          [attr.aria-label]="resolvedAriaLabel"
           [attr.autocomplete]="autocomplete"
           [formControlName]="controlName"
           [id]="controlName"
@@ -33,9 +36,18 @@ import { InputTextModule } from 'primeng/inputtext';
 export class FormControlTextComponent {
   @Input({ required: true }) formGroup!: FormGroup;
   @Input({ required: true }) controlName!: string;
-  @Input({ required: true }) label!: string;
+  @Input() label?: string;
+  @Input() ariaLabel?: string;
   @Input() type: 'text' | 'email' | 'password' | 'tel' = 'text';
   @Input() placeholder = '';
   @Input() autocomplete?: string;
   @Input() icon?: LucideIcon;
+
+  protected get resolvedAriaLabel(): string | null {
+    if (this.label) {
+      return null;
+    }
+
+    return (this.ariaLabel ?? this.placeholder) || this.controlName;
+  }
 }
