@@ -107,7 +107,13 @@ export class MenuComponent {
   }
 
   ptItem(options: unknown): AppMenuItem {
-    return this.asAppItem((options as { item?: unknown }).item);
+    const ptOptions = options as {
+      item?: unknown;
+      context?: { item?: unknown };
+      parent?: { item?: unknown };
+    };
+
+    return this.asAppItem(ptOptions.item ?? ptOptions.context?.item ?? ptOptions.parent?.item ?? {});
   }
 
   isLucideIcon(icon: AppMenuItem['icon']): icon is LucideIcon {
