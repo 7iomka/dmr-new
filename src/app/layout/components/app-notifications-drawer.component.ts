@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LucideArrowRight, LucideBell, LucideDynamicIcon, LucideX } from '@lucide/angular';
+import { LucideArrowRight, LucideBell, LucideDynamicIcon } from '@lucide/angular';
 import { ButtonModule } from 'primeng/button';
 import { DrawerModule } from 'primeng/drawer';
 
@@ -10,36 +10,30 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
 @Component({
   selector: 'app-notifications-drawer',
   standalone: true,
-  imports: [DrawerModule, ButtonModule, RouterLink, NgClass, LucideBell, LucideX, LucideArrowRight, LucideDynamicIcon],
+  imports: [DrawerModule, ButtonModule, RouterLink, NgClass, LucideBell, LucideArrowRight, LucideDynamicIcon],
   template: `
     <p-drawer
       class="notifications-drawer"
       header=""
       position="right"
+      [closeButtonProps]="{ rounded: false, severity: 'secondary', text: true, size: 'small' }"
       [dismissible]="true"
       [modal]="true"
-      [pt]="{ content: { class: 'p-0 flex flex-col h-full' } }"
-      [showCloseIcon]="false"
+      [pt]="{
+        header: { class: 'notifications-drawer__header' },
+        content: { class: 'p-0 flex flex-col h-full' },
+        footer: { class: 'notifications-drawer__footer' },
+      }"
+      [showCloseIcon]="true"
       [styleClass]="'notifications-drawer__panel'"
       [visible]="store.drawerOpen()"
       (visibleChange)="onVisibleChange($event)">
       <ng-template #header>
-        <div class="notifications-drawer__header">
-          <div>
-            <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Уведомления</h2>
-            <p class="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-              Непрочитанных: {{ store.unreadCount() }} · Показаны последние 10
-            </p>
-          </div>
-
-          <p-button
-            ariaLabel="Закрыть уведомления"
-            severity="secondary"
-            styleClass="p-button-icon-only notifications-close-btn"
-            variant="outlined"
-            (onClick)="store.closeDrawer()">
-            <svg class="h-4 w-4" lucideX pButtonIcon></svg>
-          </p-button>
+        <div>
+          <h2 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Уведомления</h2>
+          <p class="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+            Непрочитанных: {{ store.unreadCount() }} · Показаны последние 10
+          </p>
         </div>
       </ng-template>
 
@@ -54,7 +48,7 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
 
         @for (item of rows(); track item.id) {
           <a
-            class="notifications-item notifications-item--interactive block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400"
+            class="notifications-item notifications-item--interactive"
             [class.is-unread]="!item.isRead"
             [routerLink]="['/notifications', item.id]"
             (click)="onNavigate(item.id)">
@@ -76,17 +70,9 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
 
                 <div class="mt-2 flex items-center justify-between gap-2">
                   <span class="text-[11px] text-zinc-500 whitespace-nowrap">{{ relativeDate(item.createdAt) }}</span>
-                  <span
-                    class="pointer-events-none"
-                    pButton
-                    severity="secondary"
-                    size="small"
-                    styleClass="p-button-sm"
-                    variant="outlined">
-                    <span class="inline-flex items-center gap-1.5">
-                      <span>Перейти</span>
-                      <svg class="w-3.5 h-3.5" lucideArrowRight></svg>
-                    </span>
+                  <span outlined pButton severity="secondary" size="small">
+                    <span pButtonLabel>Перейти</span>
+                    <svg class="w-3.5 h-3.5" lucideArrowRight pButtonIcon></svg>
                   </span>
                 </div>
               </div>
@@ -95,13 +81,13 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
         }
       </div>
 
-      <div class="notifications-drawer__footer">
+      <ng-template #footer>
         <p class="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400">Показаны не все уведомления</p>
         <a pButton routerLink="/notifications" severity="primary" size="small" (click)="store.closeDrawer()">
           <span pButtonLabel>Все уведомления</span>
           <svg class="w-3.5 h-3.5" lucideArrowRight pButtonIcon></svg>
         </a>
-      </div>
+      </ng-template>
     </p-drawer>
   `,
 })
