@@ -73,22 +73,6 @@
     @apply bg-primary-100 text-primary-700 border-primary-300 dark:bg-primary-900/35 dark:text-primary-200 dark:border-primary-700/60;
   }
 
-  .notifications-sort-menu {
-    @apply border border-surface-200 dark:border-surface-800 rounded-xl overflow-hidden;
-  }
-
-  .notifications-sort-menu .p-menu-list {
-    @apply p-0;
-  }
-
-  .notifications-sort-menu__item-link {
-    @apply flex w-full items-center justify-between gap-3 rounded-none px-4 py-3;
-  }
-
-  .notifications-sort-menu .c-menu__item-inner--active {
-    @apply bg-primary-100/80 dark:bg-primary-900/35 rounded-md;
-  }
-
   .notifications-empty {
     @apply flex flex-col items-center justify-center text-center gap-2 px-6 py-14 text-surface-500 dark:text-surface-400;
   }

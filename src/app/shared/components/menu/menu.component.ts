@@ -10,7 +10,10 @@ export type AppMenuItem = Omit<MenuItem, 'items' | 'icon'> & {
   icon?: LucideIcon | string;
   danger?: boolean;
   active?: boolean;
+  itemClass?: string;
+  itemActiveClass?: string;
   linkClass?: string;
+  linkActiveClass?: string;
   items?: AppMenuItem[];
 };
 
@@ -51,23 +54,14 @@ export type AppMenuItem = Omit<MenuItem, 'items' | 'icon'> & {
             <ng-container *ngTemplateOutlet="itemInner; context: { $implicit: i }" />
           </a>
         } @else {
-          <a
-            href=""
-            pRipple
-            tabindex="-1"
-            [attr.title]="i['title'] ?? null"
-            [class]="itemLinkClass(i)"
-            (click)="$event.preventDefault()">
+          <a pRipple tabindex="-1" [attr.title]="i['title'] ?? null" [class]="itemLinkClass(i)">
             <ng-container *ngTemplateOutlet="itemInner; context: { $implicit: i }" />
           </a>
         }
       </ng-template>
 
       <ng-template #itemInner let-item>
-        <span
-          class="c-menu__item-inner"
-          [class.c-menu__item-inner--active]="item.active"
-          [class.c-menu__item-inner--danger]="item.danger">
+        <span class="c-menu__item-inner">
           @if (isLucideIcon(item.icon)) {
             <span class="c-menu__item-icon" [class.c-menu__item-icon--danger]="item.danger">
               <svg class="h-4 w-4" [lucideIcon]="item.icon"></svg>
@@ -99,9 +93,9 @@ export class MenuComponent {
   readonly pt: MenuPassThrough = {
     root: { class: 'c-menu__overlay' },
     list: { class: 'c-menu__list' },
-    item: { class: 'c-menu__item' },
+    item: (options) => ({ class: this.itemClass(this.ptItem(options)) }),
     itemContent: { class: 'c-menu__item-content' },
-    itemLink: { class: 'c-menu__item-link' },
+    itemLink: (options) => ({ class: this.itemLinkClass(this.ptItem(options)) }),
   };
 
   get model(): MenuItem[] {
@@ -112,12 +106,33 @@ export class MenuComponent {
     return item as AppMenuItem;
   }
 
+  ptItem(options: unknown): AppMenuItem {
+    return this.asAppItem((options as { item?: unknown }).item);
+  }
+
   isLucideIcon(icon: AppMenuItem['icon']): icon is LucideIcon {
     return icon !== null && typeof icon !== 'string';
   }
 
+  itemClass(item: AppMenuItem): string {
+    return [
+      'c-menu__item',
+      item.danger ? 'c-menu__item--danger' : '',
+      item.active ? ['c-menu__item--active', item.itemActiveClass].filter(Boolean).join(' ') : '',
+      item.itemClass,
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }
+
   itemLinkClass(item: AppMenuItem): string {
-    return ['p-menu-item-link c-menu__item-link', item.linkClass].filter(Boolean).join(' ');
+    return [
+      'p-menu-item-link c-menu__item-link',
+      item.active ? ['c-menu__item-link--active', item.linkActiveClass].filter(Boolean).join(' ') : '',
+      item.linkClass,
+    ]
+      .filter(Boolean)
+      .join(' ');
   }
 
   toggle(event: Event): void {

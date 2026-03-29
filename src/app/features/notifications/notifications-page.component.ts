@@ -129,7 +129,6 @@ export class NotificationsPageComponent {
     return this.sortOptions.map((option) => ({
       label: option.label,
       active: this.sort() === option.value,
-      linkClass: 'notifications-sort-menu__item-link',
       command: () => this.sort.set(option.value),
     }));
   }
