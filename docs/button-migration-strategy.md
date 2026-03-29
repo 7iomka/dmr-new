@@ -68,7 +68,7 @@ Key differences:
 - `size="small" | "large"`
 - `severity="primary" | "secondary" | "danger" | "info"`
 
-Source: PrimeNG directive API fileciteturn0file1
+Source: PrimeNG directive API
 
 ---
 
@@ -163,7 +163,7 @@ import { LucideCopy } from '@lucide/angular';
 Usage:
 <p-button [text]="true" severity="secondary" styleClass="p-button-icon-only" ariaLabel="Copy"> <svg class="h-4 w-4" lucideCopy pButtonIcon></svg> <span pButtonLabel>Copy</span> </p-button>
 
-### PrimeIcons
+### PrimeIcons (LEGACY, not recommended)
 
 <p-button label="Юзер" icon="pi pi-user" [text]="true" severity="info" />
 
@@ -177,7 +177,7 @@ import { LucideCopy } from '@lucide/angular';
 Usage:
 <p-button [text]="true" severity="secondary" styleClass="p-button-icon-only" ariaLabel="Copy"> <svg class="h-4 w-4" lucideCopy pButtonIcon></svg> </p-button>
 
-### PrimeIcons
+### PrimeIcons (LEGACY, not recommended)
 
 <p-button icon="pi pi-user" [text]="true" severity="info" />
 

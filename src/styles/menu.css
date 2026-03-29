@@ -22,7 +22,7 @@
 
   :root {
     --c-menu-background: var(--color-white);
-    --c-menu-border-color: var(--color-zinc-200);
+    --c-menu-border-color: var(--color-surface-200);
     --c-menu-border-radius: var(--radius-xl);
     --c-menu-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.12), 0 8px 10px -6px rgb(0 0 0 / 0.08);
 
@@ -33,22 +33,22 @@
     --c-menu-item-gap: --spacing(2.5);
     --c-menu-item-border-radius: var(--radius-lg);
 
-    --c-menu-item-color: var(--color-zinc-800);
-    --c-menu-item-focus-color: var(--color-zinc-900);
-    --c-menu-item-icon-color: var(--color-zinc-500);
-    --c-menu-item-icon-focus-color: var(--color-zinc-600);
-    --c-menu-item-focus-background: var(--color-zinc-50);
+    --c-menu-item-color: var(--color-surface-800);
+    --c-menu-item-focus-color: var(--color-surface-900);
+    --c-menu-item-icon-color: var(--color-surface-500);
+    --c-menu-item-icon-focus-color: var(--color-surface-600);
+    --c-menu-item-focus-background: var(--color-surface-50);
   }
 
   .dark {
-    --c-menu-background: var(--color-zinc-900);
-    --c-menu-border-color: var(--color-zinc-800);
+    --c-menu-background: var(--color-surface-900);
+    --c-menu-border-color: var(--color-surface-800);
     --c-menu-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.35), 0 8px 10px -6px rgb(0 0 0 / 0.25);
 
-    --c-menu-item-color: var(--color-zinc-100);
+    --c-menu-item-color: var(--color-surface-100);
     --c-menu-item-focus-color: var(--color-white);
-    --c-menu-item-icon-color: var(--color-zinc-400);
-    --c-menu-item-icon-focus-color: var(--color-zinc-300);
+    --c-menu-item-icon-color: var(--color-surface-400);
+    --c-menu-item-icon-focus-color: var(--color-surface-300);
     --c-menu-item-focus-background: rgb(39 39 42 / 0.6);
   }
 }

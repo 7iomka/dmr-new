@@ -56,7 +56,7 @@ type LanguageOption = {
 
       <ng-template #header>
         <div
-          class="flex items-center gap-2 border-b border-zinc-200/80 px-4 py-3 text-[11px] font-bold uppercase text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+          class="flex items-center gap-2 border-b border-surface-200/80 px-4 py-3 text-[11px] font-bold uppercase text-surface-500 dark:border-surface-800 dark:text-surface-400">
           <svg class="w-4 h-4" lucideGlobe></svg>
           <span>Выберите язык</span>
         </div>
@@ -68,10 +68,10 @@ type LanguageOption = {
             <span class="shrink-0 text-lg leading-none">{{ item.flag }}</span>
 
             <span class="min-w-0">
-              <span class="block truncate text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+              <span class="block truncate text-sm font-semibold text-surface-800 dark:text-surface-100">
                 {{ item.nativeLabel }}
               </span>
-              <span class="mt-0.5 block truncate text-xs text-zinc-500 dark:text-zinc-400">
+              <span class="mt-0.5 block truncate text-xs text-surface-500 dark:text-surface-400">
                 {{ item.englishLabel }}
               </span>
             </span>
@@ -109,11 +109,11 @@ export class AppLanguageSwitcherComponent {
     root: {
       class: [
         'min-h-10 rounded-lg',
-        'border-zinc-200 dark:border-zinc-700',
-        'bg-zinc-50 dark:bg-zinc-800/70',
-        'text-zinc-700 dark:text-zinc-300',
-        'hover:bg-zinc-100 dark:hover:bg-zinc-800',
-        'dark:hover:border-zinc-600',
+        'border-surface-200 dark:border-surface-700',
+        'bg-surface-50 dark:bg-surface-800/70',
+        'text-surface-700 dark:text-surface-300',
+        'hover:bg-surface-100 dark:hover:bg-surface-800',
+        'dark:hover:border-surface-600',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/35',
       ].join(' '),
     },
@@ -125,10 +125,10 @@ export class AppLanguageSwitcherComponent {
     },
     dropdownIcon: {
       class:
-        'h-4 w-4 shrink-0 transition-transform duration-200 group-aria-expanded:rotate-180 text-zinc-500 dark:text-zinc-400',
+        'h-4 w-4 shrink-0 transition-transform duration-200 group-aria-expanded:rotate-180 text-surface-500 dark:text-surface-400',
     },
     header: {
-      class: 'border-b border-zinc-200/80 px-4 py-3 dark:border-zinc-800',
+      class: 'border-b border-surface-200/80 px-4 py-3 dark:border-surface-800',
     },
     listContainer: {
       class: 'min-w-60 max-h-80',
@@ -139,10 +139,10 @@ export class AppLanguageSwitcherComponent {
     option: {
       class: [
         'flex w-full items-center justify-between gap-3 rounded-md px-3 py-2 text-left transition-all duration-150',
-        'text-zinc-800 dark:text-zinc-100',
-        'hover:bg-zinc-100 dark:hover:bg-zinc-800/80',
-        'p-focus:bg-zinc-100 dark:p-focus:bg-zinc-800/80',
-        'p-selected:bg-primary-100/80! p-selected:text-zinc-900!',
+        'text-surface-800 dark:text-surface-100',
+        'hover:bg-surface-100 dark:hover:bg-surface-800/80',
+        'p-focus:bg-surface-100 dark:p-focus:bg-surface-800/80',
+        'p-selected:bg-primary-100/80! p-selected:text-surface-900!',
         'dark:p-selected:bg-primary-900/35! dark:p-selected:text-primary-100!',
       ].join(' '),
     },

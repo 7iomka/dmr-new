@@ -15,14 +15,23 @@
 
 When editing Angular code, follow these docs first:
 
-- `./docs/primeng-llms-full.txt`
-- `./docs/icons-usage-guide.md`
-- `./docs/angular-migration-report.md`
-- `./docs/ui-guidelines.md`
-- `./docs/color-palette-guide.md`
-- `./docs/button-migration-strategy.md`
-- `./docs/angular-primeng-corrective-report.md`
-- `./docs/tailwind-angular-dark-mode-guide.md` ← required for all styling work
+1. `./docs/primeng-llms-full.txt` ← PRIMARY SOURCE (component APIs, patterns)
+2. `./docs/tailwind-angular-dark-mode-guide.md` ← REQUIRED for all styling work
+3. `./docs/color-migrations-strategy.md` ← REQUIRED for ALL migrations from old/\*_/_.php
+4. `./docs/button-migration-strategy.md`
+5. `./docs/icons-usage-guide.md`
+6. `./docs/angular-migration-report.md`
+7. `./docs/ui-guidelines.md`
+8. `./docs/color-palette-guide.md` ← Applied only for old/\*_/_.php
+9. `./docs/angular-primeng-corrective-report.md`
+
+### Critical rules for Codex
+
+- When migrating UI from `old/**/*.php`, you MUST follow:
+  - `./docs/color-migrations-strategy.md` (NO EXCEPTIONS)
+- NEVER reuse Tailwind Zinc palette (`zinc-*`)
+- ALWAYS convert colors to PrimeNG semantic tokens (`surface`, `text`, `muted`, etc.)
+- Prefer semantic tokens over raw colors in ALL cases
 
 ## Angular implementation rules
 

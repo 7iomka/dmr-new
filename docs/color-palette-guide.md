@@ -1,4 +1,4 @@
-# Color Palette Guide (Primary System)
+# Color Palette Guide (ONLY FOR PHP version of site (Primary System))
 
 ## Goal
 
