@@ -66,7 +66,9 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="c-form-control c-phone-control">
-      <label class="c-form-control__label" [for]="controlName">{{ label }}</label>
+      @if (label) {
+        <label class="c-form-control__label" [for]="controlName">{{ label }}</label>
+      }
 
       <div class="c-form-control__control" [formGroup]="formGroup">
         <p-inputgroup class="c-phone-inputgroup">
@@ -115,6 +117,7 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
             class="c-form-control__input c-phone-input"
             pInputText
             type="tel"
+            [attr.aria-label]="resolvedAriaLabel"
             [attr.autocomplete]="autocomplete"
             [formControlName]="controlName"
             [id]="controlName"
@@ -127,7 +130,8 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
 export class FormControlPhoneComponent implements OnInit {
   @Input({ required: true }) formGroup!: FormGroup;
   @Input({ required: true }) controlName!: string;
-  @Input({ required: true }) label!: string;
+  @Input() label?: string;
+  @Input() ariaLabel?: string;
   @Input() placeholder = '';
   @Input() autocomplete?: string;
 
@@ -315,5 +319,13 @@ export class FormControlPhoneComponent implements OnInit {
 
   private isCisCountry(iso2: string): boolean {
     return iso2 === 'RU' || iso2 === 'KZ' || iso2 === 'BY' || iso2 === 'UA';
+  }
+
+  protected get resolvedAriaLabel(): string | null {
+    if (this.label) {
+      return null;
+    }
+
+    return (this.ariaLabel ?? this.placeholder) || this.controlName;
   }
 }

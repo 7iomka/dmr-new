@@ -8,8 +8,11 @@ import { InputOtpModule } from 'primeng/inputotp';
   imports: [FormsModule, InputOtpModule],
   template: `
     <div class="c-form-control c-form-control--otp">
-      <label class="c-form-control__label" [for]="inputId">{{ label }}</label>
+      @if (label) {
+        <label class="c-form-control__label" [for]="inputId">{{ label }}</label>
+      }
       <p-inputotp
+        [ariaLabel]="resolvedAriaLabel"
         [attr.inputId]="inputId"
         [integerOnly]="true"
         [length]="length"
@@ -24,7 +27,8 @@ import { InputOtpModule } from 'primeng/inputotp';
 export class FormControlOtpComponent {
   @Input() inputId = 'otp-input';
   @Input() name = 'otp';
-  @Input() label = 'Код подтверждения';
+  @Input() label?: string;
+  @Input() ariaLabel?: string;
   @Input() metaText?: string;
   @Input() length = 6;
   @Input() value = '';
@@ -37,5 +41,9 @@ export class FormControlOtpComponent {
   set modelValue(nextValue: string) {
     this.value = nextValue;
     this.valueChange.emit(nextValue);
+  }
+
+  protected get resolvedAriaLabel(): string {
+    return this.ariaLabel ?? this.label ?? 'Код подтверждения';
   }
 }
