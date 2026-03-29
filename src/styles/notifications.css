@@ -1,0 +1,82 @@
+@layer components {
+  .notifications-drawer {
+    @apply fixed right-0 top-0 z-[1100] h-dvh w-full max-w-[420px] bg-card shadow-2xl flex flex-col translate-x-full transition-transform duration-200;
+  }
+
+  .notifications-drawer.active {
+    @apply translate-x-0;
+  }
+
+  .notifications-drawer__header {
+    @apply sticky top-0 z-10 bg-card border-b border-zinc-200/80 dark:border-zinc-800 px-4 py-3 flex items-center justify-between gap-3;
+  }
+
+  .notifications-close-btn.p-button {
+    @apply h-8! w-8!;
+  }
+
+  .notifications-drawer__list,
+  .notifications-page-list {
+    @apply flex-1 overflow-y-auto px-2 py-2 space-y-2;
+  }
+
+  .notifications-drawer__footer {
+    @apply sticky bottom-0 bg-card border-t border-zinc-200/80 dark:border-zinc-800 p-3 flex items-center justify-between gap-2;
+  }
+
+  .notifications-segment {
+    @apply text-xs font-bold px-3 py-1.5 rounded-md border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 bg-zinc-100/70 dark:bg-zinc-900/70;
+  }
+
+  .notifications-segment.is-active {
+    @apply bg-primary-100 text-primary-700 border-primary-200 dark:bg-primary-900/35 dark:text-primary-100 dark:border-primary-700/50;
+  }
+
+  .notifications-item {
+    @apply w-full text-left rounded-lg bg-zinc-50/90 dark:bg-zinc-900/45 px-3 py-2.5 transition-colors;
+  }
+
+  .notifications-item--interactive {
+    @apply cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800/70;
+  }
+
+  .notifications-item.is-unread {
+    @apply bg-primary-50/70 dark:bg-primary-950/25;
+  }
+
+  .notifications-item.is-selected {
+    @apply ring-1 ring-primary-300 dark:ring-primary-700/60 bg-primary-100/55 dark:bg-primary-900/20;
+  }
+
+  .notifications-item-title {
+    @apply text-sm font-semibold text-zinc-800 dark:text-zinc-100 truncate;
+  }
+
+  .notifications-item.is-unread .notifications-item-title {
+    @apply font-bold text-zinc-900 dark:text-white;
+  }
+
+  .notifications-unread-dot {
+    @apply h-2 w-2 rounded-full bg-primary-500 dark:bg-primary-400 shrink-0;
+  }
+
+  .notifications-item:not(.is-unread) .notifications-unread-dot {
+    @apply invisible;
+  }
+
+  .notifications-icon-wrap {
+    @apply h-9 w-9 rounded-md flex items-center justify-center shrink-0;
+  }
+
+  .notifications-item-leading {
+    @apply flex flex-col items-center gap-2 shrink-0;
+  }
+
+  .notifications-action-btn--active.p-button {
+    @apply bg-primary-100 text-primary-700 border-primary-300 dark:bg-primary-900/35 dark:text-primary-200 dark:border-primary-700/60;
+  }
+
+  .notifications-empty {
+    @apply flex flex-col items-center justify-center text-center gap-2 px-6 py-14 text-zinc-500 dark:text-zinc-400;
+  }
+}

@@ -1,0 +1,13 @@
+@media (max-width: 63.99rem) {
+  .notifications-page-shell {
+    @apply min-h-[70vh];
+  }
+
+  .notifications-page-shell.mobile-detail-open [data-notifications-list-panel] {
+    @apply hidden;
+  }
+
+  .notifications-page-shell.mobile-detail-open [data-notifications-detail-panel] {
+    display: flex;
+  }
+}

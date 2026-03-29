@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { AuthPageComponent } from './features/auth/auth-page.component';
 import { DashboardPageComponent } from './features/dashboard/dashboard-page.component';
 import { InvestmentsPageComponent } from './features/investments/investments-page.component';
+import { NotificationsPageComponent } from './features/notifications/notifications-page.component';
 import { StubPageComponent } from './features/stubs/stub-page.component';
 
 export const appRoutes: Routes = [
@@ -12,6 +13,8 @@ export const appRoutes: Routes = [
   { path: 'auth/:mode', component: AuthPageComponent },
   { path: 'auth/:mode/:method', component: AuthPageComponent },
   { path: 'investments', component: InvestmentsPageComponent },
+  { path: 'notifications', component: NotificationsPageComponent },
+  { path: 'notifications/:id', component: NotificationsPageComponent },
   { path: 'wallet', component: StubPageComponent, data: { title: 'Кошелёк' } },
   { path: 'withdrawals', component: StubPageComponent, data: { title: 'Выводы' } },
   { path: 'report', component: StubPageComponent, data: { title: 'Отчёт' } },

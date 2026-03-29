@@ -5,11 +5,19 @@ import { AppFooterComponent } from '../components/app-footer.component';
 import { AppHeaderComponent } from '../components/app-header.component';
 import { AppSidebarComponent } from '../components/app-sidebar.component';
 import { AppMobileBottomNavComponent } from '../components/app-mobile-bottom-nav.component';
+import { AppNotificationsDrawerComponent } from '../components/app-notifications-drawer.component';
 
 @Component({
   selector: 'app-shell',
   standalone: true,
-  imports: [RouterOutlet, AppHeaderComponent, AppSidebarComponent, AppFooterComponent, AppMobileBottomNavComponent],
+  imports: [
+    RouterOutlet,
+    AppHeaderComponent,
+    AppSidebarComponent,
+    AppFooterComponent,
+    AppMobileBottomNavComponent,
+    AppNotificationsDrawerComponent,
+  ],
   template: `
     <div class="flex overflow-hidden min-h-screen" id="app">
       <app-sidebar />
@@ -23,6 +31,7 @@ import { AppMobileBottomNavComponent } from '../components/app-mobile-bottom-nav
         </div>
       </div>
       <app-mobile-bottom-nav />
+      <app-notifications-drawer />
     </div>
   `,
 })
