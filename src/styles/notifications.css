@@ -81,20 +81,12 @@
     @apply p-0;
   }
 
-  .notifications-sort-item .p-menu-item-link {
-    @apply rounded-none px-4 py-3;
-  }
-
-  .notifications-sort-menu__link {
+  .notifications-sort-menu__item-link {
     @apply flex w-full items-center justify-between gap-3 rounded-none px-4 py-3;
   }
 
-  .notifications-sort-menu__label {
-    @apply text-sm text-surface-700 dark:text-surface-200;
-  }
-
-  .notifications-sort-item.is-active .p-menu-item-link {
-    @apply bg-primary-100/80 dark:bg-primary-900/35;
+  .notifications-sort-menu .c-menu__item-inner--active {
+    @apply bg-primary-100/80 dark:bg-primary-900/35 rounded-md;
   }
 
   .notifications-empty {

@@ -71,6 +71,15 @@
   }
 
   .c-menu__item-label {
+    @apply min-w-0 flex-1;
+  }
+
+  .c-menu__item-check {
+    @apply ml-auto inline-flex shrink-0 text-primary-600 dark:text-primary-300;
+  }
+
+  .c-menu__item-inner--active {
+    @apply text-surface-900 dark:text-surface-50;
   }
 
   .c-menu__item-inner--danger,

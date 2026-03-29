@@ -8,19 +8,17 @@ import {
   LucideArrowUpDown,
   LucideBell,
   LucideBellRing,
-  LucideCheck,
   LucideChevronLeft,
   LucideDynamicIcon,
   LucideListChecks,
   LucideSearch,
   LucideSearchX,
 } from '@lucide/angular';
-import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
-import { Menu, MenuModule } from 'primeng/menu';
 
 import { FormControlTextComponent } from '../../shared/components/form-controls/form-control-text.component';
+import { AppMenuItem, MenuComponent } from '../../shared/components/menu/menu.component';
 import {
   NotificationsKnowledgeBaseService,
   NotificationSort,
@@ -37,11 +35,10 @@ import {
     CardModule,
     ButtonModule,
     CheckboxModule,
-    MenuModule,
     FormControlTextComponent,
+    MenuComponent,
     LucideBell,
     LucideBellRing,
-    LucideCheck,
     LucideSearchX,
     LucideListChecks,
     LucideArrowUpDown,
@@ -128,21 +125,17 @@ export class NotificationsPageComponent {
     });
   }
 
-  protected get sortMenuItems(): MenuItem[] {
+  protected get sortMenuItems(): AppMenuItem[] {
     return this.sortOptions.map((option) => ({
       label: option.label,
-      styleClass: this.sort() === option.value ? 'notifications-sort-item is-active' : 'notifications-sort-item',
-      selected: this.sort() === option.value,
+      active: this.sort() === option.value,
+      linkClass: 'notifications-sort-menu__item-link',
       command: () => this.sort.set(option.value),
     }));
   }
 
-  protected openSortMenu(event: MouseEvent, sortMenu: Menu): void {
+  protected openSortMenu(event: MouseEvent, sortMenu: MenuComponent): void {
     sortMenu.toggle(event);
-  }
-
-  protected isSortItemSelected(item: MenuItem): boolean {
-    return Boolean((item as MenuItem & { selected?: boolean }).selected);
   }
 
   @HostListener('window:resize')
