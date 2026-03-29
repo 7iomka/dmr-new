@@ -64,7 +64,7 @@ import { LucideAngularModule } from 'lucide-angular';
 Use Tailwind classes only:
 
 ```html
-<svg lucidePlus class="h-4 w-4 text-zinc-500"></svg>
+<svg lucidePlus class="h-4 w-4 text-surface-500"></svg>
 ```
 
 Rules:
