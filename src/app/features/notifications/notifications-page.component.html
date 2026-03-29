@@ -52,15 +52,22 @@
             [styleClass]="
               sort() !== 'date_desc' ? 'p-button-icon-only notifications-action-btn--active' : 'p-button-icon-only'
             "
-            (onClick)="openSortMenu($event, sortMenu)">
+            (click)="openSortMenu($event, sortMenu)">
             <svg class="w-4 h-4" lucideArrowUpDown pButtonIcon></svg>
           </p-button>
-          <p-menu
-            #sortMenu
-            appendTo="body"
-            styleClass="notifications-sort-menu"
-            [model]="sortMenuItems"
-            [popup]="true" />
+          <p-menu #sortMenu appendTo="body" styleClass="notifications-sort-menu" [model]="sortMenuItems" [popup]="true">
+            <ng-template #item let-item>
+              <a class="p-menu-item-link notifications-sort-menu__link" href="" (click)="$event.preventDefault()">
+                <span class="notifications-sort-menu__label">
+                  {{ item.label }}
+                </span>
+
+                @if (isSortItemSelected(item)) {
+                  <svg class="h-4 w-4 shrink-0 text-primary-600 dark:text-primary-300" lucideCheck></svg>
+                }
+              </a>
+            </ng-template>
+          </p-menu>
         </div>
 
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">

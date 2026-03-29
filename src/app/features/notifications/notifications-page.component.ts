@@ -8,6 +8,7 @@ import {
   LucideArrowUpDown,
   LucideBell,
   LucideBellRing,
+  LucideCheck,
   LucideChevronLeft,
   LucideDynamicIcon,
   LucideListChecks,
@@ -40,6 +41,7 @@ import {
     FormControlTextComponent,
     LucideBell,
     LucideBellRing,
+    LucideCheck,
     LucideSearchX,
     LucideListChecks,
     LucideArrowUpDown,
@@ -130,13 +132,17 @@ export class NotificationsPageComponent {
     return this.sortOptions.map((option) => ({
       label: option.label,
       styleClass: this.sort() === option.value ? 'notifications-sort-item is-active' : 'notifications-sort-item',
-      icon: this.sort() === option.value ? 'pi pi-check' : undefined,
+      selected: this.sort() === option.value,
       command: () => this.sort.set(option.value),
     }));
   }
 
-  protected openSortMenu(event: Event, sortMenu: Menu): void {
+  protected openSortMenu(event: MouseEvent, sortMenu: Menu): void {
     sortMenu.toggle(event);
+  }
+
+  protected isSortItemSelected(item: MenuItem): boolean {
+    return Boolean((item as MenuItem & { selected?: boolean }).selected);
   }
 
   @HostListener('window:resize')
