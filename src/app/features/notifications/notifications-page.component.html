@@ -122,7 +122,8 @@
                     [binary]="true"
                     [ngModel]="selectedBulkIds().has(item.id)"
                     [ngModelOptions]="{ standalone: true }"
-                    (onChange)="onBulkToggle(item.id, !!$event.checked)" />
+                    (onChange)="onBulkToggle(item.id, !!$event.checked)"
+                    (onClick)="$any($event).originalEvent.stopPropagation()" />
                 }
               </div>
 
