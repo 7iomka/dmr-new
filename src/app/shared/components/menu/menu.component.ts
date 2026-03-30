@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Menu, MenuPassThrough } from 'primeng/menu';
 import { LucideCheck, LucideDynamicIcon, type LucideIcon } from '@lucide/angular';
@@ -10,6 +10,7 @@ export type AppMenuItem = Omit<MenuItem, 'items' | 'icon'> & {
   icon?: LucideIcon | string;
   danger?: boolean;
   active?: boolean;
+  iconTemplate?: TemplateRef<{ $implicit: AppMenuItem }>;
   itemClass?: string;
   itemActiveClass?: string;
   linkClass?: string;
@@ -62,9 +63,17 @@ export type AppMenuItem = Omit<MenuItem, 'items' | 'icon'> & {
 
       <ng-template #itemInner let-item>
         <span class="c-menu__item-inner">
-          @if (isLucideIcon(item.icon)) {
+          @if (item.iconTemplate) {
+            <span class="c-menu__item-icon" [class.c-menu__item-icon--danger]="item.danger">
+              <ng-container *ngTemplateOutlet="item.iconTemplate; context: { $implicit: item }" />
+            </span>
+          } @else if (isLucideIcon(item.icon)) {
             <span class="c-menu__item-icon" [class.c-menu__item-icon--danger]="item.danger">
               <svg class="h-4 w-4" [lucideIcon]="item.icon"></svg>
+            </span>
+          } @else if (allowPrimeIcons && isPrimeIconClass(item.icon)) {
+            <span class="c-menu__item-icon" [class.c-menu__item-icon--danger]="item.danger">
+              <i [class]="item.icon"></i>
             </span>
           }
 
@@ -86,6 +95,7 @@ export class MenuComponent {
   @Input() items: AppMenuItem[] = [];
   @Input() popup = true;
   @Input() menuClass = '';
+  @Input() allowPrimeIcons = false;
 
   @ViewChild('menu', { static: true })
   private readonly menuRef!: Menu;
@@ -118,6 +128,10 @@ export class MenuComponent {
 
   isLucideIcon(icon: AppMenuItem['icon']): icon is LucideIcon {
     return !!icon && typeof icon !== 'string';
+  }
+
+  isPrimeIconClass(icon: AppMenuItem['icon']): icon is string {
+    return typeof icon === 'string' && icon.trim().startsWith('pi ');
   }
 
   itemClass(item: AppMenuItem): string {
