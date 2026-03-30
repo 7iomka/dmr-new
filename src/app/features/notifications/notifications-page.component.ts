@@ -125,13 +125,13 @@ export class NotificationsPageComponent {
     });
   }
 
-  protected get sortMenuItems(): AppMenuItem[] {
-    return this.sortOptions.map((option) => ({
+  protected readonly sortMenuItems = computed<AppMenuItem[]>(() =>
+    this.sortOptions.map((option) => ({
       label: option.label,
       active: this.sort() === option.value,
       command: () => this.sort.set(option.value),
-    }));
-  }
+    })),
+  );
 
   protected openSortMenu(event: MouseEvent, sortMenu: MenuComponent): void {
     sortMenu.toggle(event);

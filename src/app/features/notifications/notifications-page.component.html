@@ -55,7 +55,7 @@
             (click)="openSortMenu($event, sortMenu)">
             <svg class="w-4 h-4" lucideArrowUpDown pButtonIcon></svg>
           </p-button>
-          <app-menu #sortMenu [items]="sortMenuItems" />
+          <app-menu #sortMenu [items]="sortMenuItems()" />
         </div>
 
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
