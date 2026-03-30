@@ -24,6 +24,7 @@
   align-items: center;
   padding-left: 1rem;
   transition: all var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+  @apply focus:outline-none;
 }
 
 .app-sidebar__logo-full {

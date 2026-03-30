@@ -16,13 +16,13 @@ import { APP_NAVIGATION, type NavItem } from '../models/navigation.model';
   template: `
     <aside class="app-sidebar__inner" id="sidebar">
       <div class="app-sidebar__topbar">
-        <a class="app-sidebar__logo" routerLink="/dashboard">
+        <a class="app-sidebar__logo" routerLink="/">
           <img
-            alt="Logo"
+            alt="DMR"
             class="app-sidebar__logo-full app-sidebar__logo-full--light"
             src="/assets/img/logo-light.svg" />
-          <img alt="Logo" class="app-sidebar__logo-full app-sidebar__logo-full--dark" src="/assets/img/logo-dark.svg" />
-          <img alt="Logo" class="app-sidebar__logo-icon" src="/assets/img/logo-icon-only.svg" />
+          <img alt="DMR" class="app-sidebar__logo-full app-sidebar__logo-full--dark" src="/assets/img/logo-dark.svg" />
+          <img alt="DMR" class="app-sidebar__logo-icon" src="/assets/img/logo-icon-only.svg" />
         </a>
 
         <button

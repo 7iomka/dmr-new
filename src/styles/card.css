@@ -17,3 +17,29 @@
     --c-card-header-bg: #1e2023;
   }
 }
+
+@layer components {
+  /* PrimeNG Card (p-card) customization block */
+  .p-card {
+    @apply border border-surface-200 bg-card text-surface-900 dark:border-surface-800 dark:text-surface-50;
+  }
+
+  .p-card-header {
+    @apply flex flex-wrap items-center justify-between gap-2 rounded-t-[inherit] border-b border-surface-200 dark:border-surface-800;
+    background-color: var(--c-card-header-bg);
+    padding-inline: var(--c-card-padding-x);
+    padding-block: var(--c-card-header-padding-y);
+  }
+
+  .c-card-body-inset {
+    padding: var(--c-card-padding-y) var(--c-card-padding-x);
+  }
+
+  .c-card-body-inset-x {
+    padding-inline: var(--c-card-padding-x);
+  }
+
+  .c-card-body-inset-y {
+    padding-block: var(--c-card-padding-y);
+  }
+}

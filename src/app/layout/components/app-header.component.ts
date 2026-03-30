@@ -21,12 +21,15 @@ import { AppUserMenuComponent } from './app-user-menu.component';
   template: `
     <header class="app-header__inner">
       <div class="container flex h-full items-center justify-between">
-        <div class="min-w-0 text-sm font-semibold text-surface-500 dark:text-surface-400">Dashboard workspace</div>
-        <div class="flex items-center gap-1.5 md:gap-2.5">
+        <a class="app-header__logo" routerLink="/">
+          <img alt="DMR" class="app-header__logo-light" src="assets/img/logo-light.svg" />
+          <img alt="DMR" class="app-header__logo-dark" src="assets/img/logo-dark.svg" />
+        </a>
+        <div class="app-header__actions">
           <app-theme-toggle />
           <app-language-switcher />
           <app-notifications-button />
-          <span class="hidden lg:block h-10 w-px bg-surface-200 mx-1 dark:bg-surface-700"></span>
+          <span class="app-header__divider"></span>
           <app-user-menu class="hidden lg:block" />
         </div>
       </div>

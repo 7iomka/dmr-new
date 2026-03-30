@@ -7,3 +7,22 @@
 .app-header__inner {
   @apply h-full;
 }
+
+.app-header__logo {
+  @apply flex h-10 min-w-0 shrink-0 items-center lg:hidden;
+}
+
+.app-header__logo-light {
+  @apply hidden h-full w-auto dark:block;
+}
+
+.app-header__logo-dark {
+  @apply h-full w-auto dark:hidden;
+}
+
+.app-header__actions {
+  @apply ms-auto me-0 flex items-center gap-1.5 md:gap-2.5;
+}
+.app-header__divider {
+  @apply mx-1 hidden h-10 w-px bg-surface-200 dark:bg-surface-700 lg:block;
+}
