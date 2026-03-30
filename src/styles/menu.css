@@ -23,15 +23,15 @@
   :root {
     --c-menu-background: var(--color-white);
     --c-menu-border-color: var(--color-surface-200);
-    --c-menu-border-radius: var(--radius-xl);
+    --c-menu-border-radius: var(--radius-lg);
     --c-menu-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.12), 0 8px 10px -6px rgb(0 0 0 / 0.08);
 
     --c-menu-list-padding: --spacing(1);
-    --c-menu-list-gap: 0;
+    --c-menu-list-gap: --spacing(0.5);
 
-    --c-menu-item-padding: --spacing(3) --spacing(3);
+    --c-menu-item-padding: --spacing(2) --spacing(3);
     --c-menu-item-gap: --spacing(2.5);
-    --c-menu-item-border-radius: var(--radius-lg);
+    --c-menu-item-border-radius: var(--radius-md);
 
     --c-menu-item-color: var(--color-surface-800);
     --c-menu-item-focus-color: var(--color-surface-900);
