@@ -1,0 +1,25 @@
+@layer components {
+  .app-notifications-button {
+    @apply relative inline-flex;
+  }
+
+  .app-notifications-button__trigger.p-button {
+    @apply h-10! w-10!;
+  }
+
+  .app-notifications-button__trigger--active.p-button {
+    @apply bg-primary-100 text-primary-700 border-primary-300 dark:bg-primary-900/35 dark:text-primary-200 dark:border-primary-700/60;
+  }
+
+  .app-notifications-button__dot {
+    @apply pointer-events-none absolute top-2.5 right-2.5 h-2 w-2 rounded-full bg-primary border-2 border-white dark:border-surface-900;
+  }
+
+  .app-notifications-button__pulse {
+    @apply pointer-events-none absolute top-2.5 right-2.5 h-2 w-2 rounded-full bg-primary/35 blur-[0.5px] animate-ping;
+  }
+
+  .app-notifications-button__badge {
+    @apply pointer-events-none absolute -top-1 -right-1 h-4.5 min-w-4.5 rounded-full bg-primary-500 px-1 text-center text-[10px] leading-4.5 font-bold text-white dark:bg-primary-600;
+  }
+}
