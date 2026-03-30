@@ -1,3 +1,5 @@
+@reference "../../../styles.css";
+
 @layer components {
   .app-notifications-button {
     @apply relative inline-flex;

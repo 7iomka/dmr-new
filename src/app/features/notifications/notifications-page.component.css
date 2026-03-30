@@ -1,3 +1,5 @@
+@reference "../../../styles.css";
+
 @layer components {
   /* Shell */
   .notifications-page {
@@ -199,7 +201,7 @@
       @apply min-h-[70vh];
     }
 
-    .notifications-page__layout--mobile-detail-open [data-notifications-list-panel] {
+    .notifications-page__layout--mobile-detail-open .notifications-page__list-panel {
       @apply hidden;
     }
 

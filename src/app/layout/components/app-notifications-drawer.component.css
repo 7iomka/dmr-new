@@ -1,3 +1,5 @@
+@reference "../../../styles.css";
+
 @layer components {
   /* Shell */
   .app-notifications-drawer {

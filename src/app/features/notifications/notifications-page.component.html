@@ -17,7 +17,7 @@
     class="notifications-page__layout"
     [class.notifications-page__layout--mobile-detail-open]="mobileDetailOpen()"
     [class.notifications-page__layout--select-mode]="selectMode()">
-    <aside class="notifications-page__list-panel" data-notifications-list-panel>
+    <aside class="notifications-page__list-panel">
       <div class="notifications-page__toolbar">
         <div class="notifications-page__search min-w-0">
           <app-form-control-text
@@ -92,7 +92,7 @@
         </div>
       }
 
-      <div class="notifications-page__list" data-notifications-page-list>
+      <div class="notifications-page__list">
         @if (!rows().length) {
           <div class="notifications-page__empty">
             <svg class="w-8 h-8 opacity-50" lucideSearchX></svg>
@@ -122,7 +122,6 @@
 
                 @if (selectMode()) {
                   <p-checkbox
-                    styleClass="notifications-page__checkbox"
                     [binary]="true"
                     [ngModel]="selectedBulkIds().has(item.id)"
                     [ngModelOptions]="{ standalone: true }"
@@ -149,7 +148,7 @@
       </div>
     </aside>
 
-    <section class="notifications-page__detail-panel" data-notifications-detail-panel>
+    <section class="notifications-page__detail-panel">
       <div class="notifications-page__detail-mobile-back lg:hidden">
         <button class="notifications-page__back" type="button" (click)="closeDetailOnMobile()">
           <span class="notifications-page__back-icon shrink-0">
@@ -159,7 +158,7 @@
         </button>
       </div>
 
-      <div class="notifications-page__detail" data-notifications-detail>
+      <div class="notifications-page__detail">
         @if (selectedItem(); as activeItem) {
           <article class="notifications-page__detail-content">
             <span class="notifications-page__detail-chip" [ngClass]="store.typeMeta[activeItem.type].chipClass">
