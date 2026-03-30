@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideArrowRight, LucideBell, LucideDynamicIcon } from '@lucide/angular';
 import { ButtonModule } from 'primeng/button';
@@ -11,21 +11,22 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
   selector: 'app-notifications-drawer',
   standalone: true,
   imports: [DrawerModule, ButtonModule, RouterLink, NgClass, LucideBell, LucideArrowRight, LucideDynamicIcon],
+  styleUrl: './app-notifications-drawer.component.css',
+  encapsulation: ViewEncapsulation.None,
   template: `
     <p-drawer
-      class="notifications-drawer"
       header=""
       position="right"
       [closeButtonProps]="{ rounded: false, severity: 'secondary', text: true, size: 'small' }"
       [dismissible]="true"
       [modal]="true"
       [pt]="{
-        header: { class: 'notifications-drawer__header' },
-        content: { class: 'p-0 flex flex-col h-full' },
-        footer: { class: 'notifications-drawer__footer' },
+        header: { class: 'app-notifications-drawer__header' },
+        content: { class: 'app-notifications-drawer__content' },
+        footer: { class: 'app-notifications-drawer__footer' },
       }"
       [showCloseIcon]="true"
-      [styleClass]="'notifications-drawer__panel'"
+      [styleClass]="'app-notifications-drawer'"
       [visible]="store.drawerOpen()"
       (visibleChange)="onVisibleChange($event)">
       <ng-template #header>
@@ -37,9 +38,9 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
         </div>
       </ng-template>
 
-      <div class="notifications-drawer__list">
+      <div class="app-notifications-drawer__list">
         @if (!rows().length) {
-          <div class="notifications-empty">
+          <div class="app-notifications-drawer__empty">
             <svg class="w-8 h-8 opacity-50" lucideBell></svg>
             <p class="text-sm font-semibold">Здесь пока пусто</p>
             <p class="text-xs">Новые уведомления появятся автоматически.</p>
@@ -48,28 +49,31 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
 
         @for (item of rows(); track item.id) {
           <a
-            class="notifications-item notifications-item--interactive"
-            [class.is-unread]="!item.isRead"
+            class="app-notifications-drawer__item app-notifications-drawer__item--interactive"
+            [class.app-notifications-drawer__item--unread]="!item.isRead"
             [routerLink]="['/notifications', item.id]"
             (click)="onNavigate(item.id)">
-            <div class="flex items-start gap-3">
-              <div class="notifications-icon-wrap" [ngClass]="store.typeMeta[item.type].wrapClass">
+            <div class="app-notifications-drawer__item-main">
+              <div class="app-notifications-drawer__item-icon-wrap" [ngClass]="store.typeMeta[item.type].wrapClass">
                 <svg
                   class="w-4 h-4"
                   [lucideIcon]="store.typeMeta[item.type].icon"
                   [ngClass]="store.typeMeta[item.type].iconClass"></svg>
               </div>
 
-              <div class="min-w-0 flex-1">
-                <div class="flex items-start justify-between gap-2">
-                  <h3 class="notifications-item-title">#{{ item.id }} · {{ item.title }}</h3>
-                  <span aria-hidden="true" class="notifications-unread-dot" [class.hidden]="item.isRead"></span>
+              <div class="app-notifications-drawer__item-body">
+                <div class="app-notifications-drawer__item-head">
+                  <h3 class="app-notifications-drawer__item-title">#{{ item.id }} · {{ item.title }}</h3>
+                  <span
+                    aria-hidden="true"
+                    class="app-notifications-drawer__item-dot"
+                    [class.hidden]="item.isRead"></span>
                 </div>
 
                 <p class="mt-1 text-xs text-surface-500 dark:text-surface-400 line-clamp-2">{{ item.message }}</p>
 
-                <div class="mt-2 flex items-center justify-between gap-2">
-                  <span class="text-[11px] text-surface-500 whitespace-nowrap">{{ relativeDate(item.createdAt) }}</span>
+                <div class="app-notifications-drawer__item-meta">
+                  <span class="app-notifications-drawer__item-time">{{ relativeDate(item.createdAt) }}</span>
                   <span outlined pButton severity="secondary" size="small">
                     <span pButtonLabel>Перейти</span>
                     <svg class="w-3.5 h-3.5" lucideArrowRight pButtonIcon></svg>

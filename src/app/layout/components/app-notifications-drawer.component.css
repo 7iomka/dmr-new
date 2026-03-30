@@ -1,0 +1,80 @@
+@reference "../../../styles.css";
+
+@layer components {
+  /* Shell */
+  .app-notifications-drawer {
+    @apply w-full max-w-[425px]! bg-card;
+  }
+
+  .app-notifications-drawer__content {
+    @apply flex h-full flex-col p-0;
+  }
+
+  .app-notifications-drawer__header {
+    @apply sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-surface-200/80 bg-card px-4 py-3 dark:border-surface-800;
+  }
+
+  .app-notifications-drawer__footer {
+    @apply sticky bottom-0 flex items-center justify-between gap-2 border-t border-surface-200/80 bg-card p-3 dark:border-surface-800;
+  }
+
+  /* List */
+  .app-notifications-drawer__list {
+    @apply flex-1 space-y-2 overflow-y-auto px-2 py-2;
+  }
+
+  /* Item */
+  .app-notifications-drawer__item {
+    @apply block w-full rounded-lg bg-surface-50/90 px-3 py-2.5 text-left transition-colors dark:bg-surface-900/45;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400;
+  }
+
+  .app-notifications-drawer__item--interactive {
+    @apply cursor-pointer hover:bg-surface-100 dark:hover:bg-surface-800/70;
+  }
+
+  .app-notifications-drawer__item--unread {
+    @apply bg-primary-50/70 dark:bg-primary-950/25;
+  }
+
+  .app-notifications-drawer__item-main {
+    @apply flex items-start gap-3;
+  }
+
+  .app-notifications-drawer__item-icon-wrap {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-md;
+  }
+
+  .app-notifications-drawer__item-body {
+    @apply min-w-0 flex-1;
+  }
+
+  .app-notifications-drawer__item-head {
+    @apply flex items-start justify-between gap-2;
+  }
+
+  .app-notifications-drawer__item-title {
+    @apply truncate text-sm font-semibold text-surface-800 dark:text-surface-100;
+  }
+
+  .app-notifications-drawer__item--unread .app-notifications-drawer__item-title {
+    @apply font-bold text-surface-900 dark:text-white;
+  }
+
+  .app-notifications-drawer__item-dot {
+    @apply h-2 w-2 shrink-0 rounded-full bg-primary-500 dark:bg-primary-400;
+  }
+
+  .app-notifications-drawer__item-meta {
+    @apply mt-2 flex items-center justify-between gap-2;
+  }
+
+  .app-notifications-drawer__item-time {
+    @apply whitespace-nowrap text-[11px] text-surface-500;
+  }
+
+  /* Empty state */
+  .app-notifications-drawer__empty {
+    @apply flex flex-col items-center justify-center gap-2 px-6 py-14 text-center text-surface-500 dark:text-surface-400;
+  }
+}

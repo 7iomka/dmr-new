@@ -2,6 +2,7 @@
 @import 'tailwindcss-primeui';
 @import './styles/fonts.css';
 @import './styles/variables.css';
+@import './styles/utilities.css';
 @import './styles/scrollbar.css';
 @import './styles/button.css';
 @import './styles/menu.css';
@@ -15,7 +16,6 @@
 @import './styles/stat-card.css';
 @import './styles/page-heading.css';
 @import './styles/pill-tabs.css';
-@import './styles/notifications.css';
 @import './styles/checkbox.css';
 
 @custom-variant dark (&:where(.dark, .dark *));

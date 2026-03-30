@@ -1,83 +1,79 @@
-<p-card class="notifications-page-card" [pt]="cardPt">
+<p-card class="notifications-page" [pt]="cardPt">
   <ng-template #header>
-    <div class="card-header">
-      <div class="flex items-center gap-3 min-w-0">
-        <div
-          class="h-10 w-10 rounded-lg bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 flex
-            items-center justify-center shrink-0">
+    <header class="notifications-page__header">
+      <div class="notifications-page__header-main">
+        <div class="notifications-page__header-icon">
           <svg aria-hidden="true" class="w-5 h-5" lucideBell></svg>
         </div>
         <div class="min-w-0">
-          <h1 class="text-xl lg:text-2xl font-bold text-surface-900 dark:text-white">Уведомления</h1>
-          <p class="text-sm text-surface-500">Быстрый обзор и удобное управление уведомлениями.</p>
+          <h1 class="notifications-page__title">Уведомления</h1>
+          <p class="notifications-page__subtitle">Быстрый обзор и удобное управление уведомлениями.</p>
         </div>
       </div>
-    </div>
+    </header>
   </ng-template>
 
   <div
-    class="grid grid-cols-1 lg:grid-cols-[340px_1fr] xl:grid-cols-[420px_1fr] min-h-[520px] lg:min-h-[620px]
-      max-h-[85vh] notifications-page-shell"
-    [class.mobile-detail-open]="mobileDetailOpen()"
-    [class.select-mode]="selectMode()">
-    <aside
-      class="bg-card border-b lg:border-b-0 lg:border-r border-surface-200 dark:border-surface-800 flex flex-col
-        min-h-0"
-      data-notifications-list-panel>
-      <div class="p-3 lg:p-4 space-y-3 border-b border-surface-200 dark:border-surface-800">
-        <div class="flex items-center gap-2">
-          <div class="flex-1 min-w-0">
-            <app-form-control-text
-              ariaLabel="Поиск уведомлений"
-              controlName="search"
-              placeholder="Поиск по заголовку и тексту"
-              [formGroup]="filtersForm"
-              [icon]="searchIcon" />
-          </div>
-
-          <p-button
-            ariaLabel="Режим выбора уведомлений"
-            severity="secondary"
-            variant="outlined"
-            [attr.aria-pressed]="selectMode()"
-            [styleClass]="selectMode() ? 'p-button-icon-only notifications-action-btn--active' : 'p-button-icon-only'"
-            (onClick)="toggleSelectMode()">
-            <svg class="w-4 h-4" lucideListChecks pButtonIcon></svg>
-          </p-button>
-
-          <p-button
-            ariaLabel="Сортировка уведомлений"
-            severity="secondary"
-            variant="outlined"
-            [styleClass]="
-              sort() !== 'date_desc' ? 'p-button-icon-only notifications-action-btn--active' : 'p-button-icon-only'
-            "
-            (click)="openSortMenu($event, sortMenu)">
-            <svg class="w-4 h-4" lucideArrowUpDown pButtonIcon></svg>
-          </p-button>
-          <app-menu #sortMenu [items]="sortMenuItems()" />
+    class="notifications-page__layout"
+    [class.notifications-page__layout--mobile-detail-open]="mobileDetailOpen()"
+    [class.notifications-page__layout--select-mode]="selectMode()">
+    <aside class="notifications-page__list-panel">
+      <div class="notifications-page__toolbar">
+        <div class="notifications-page__search min-w-0">
+          <app-form-control-text
+            ariaLabel="Поиск уведомлений"
+            controlName="search"
+            placeholder="Поиск по заголовку и тексту"
+            [formGroup]="filtersForm"
+            [icon]="searchIcon" />
         </div>
 
-        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
-          @for (segment of typeSegments; track segment.value) {
-            <button
-              class="notifications-segment"
-              type="button"
-              [class.is-active]="typeFilter() === segment.value"
-              (click)="setTypeFilter(segment.value)">
-              {{ segment.label }}
-            </button>
-          }
-        </div>
+        <p-button
+          ariaLabel="Режим выбора уведомлений"
+          severity="secondary"
+          variant="outlined"
+          [attr.aria-pressed]="selectMode()"
+          [styleClass]="
+            selectMode()
+              ? 'p-button-icon-only notifications-page__toolbar-action notifications-page__toolbar-action--active'
+              : 'p-button-icon-only notifications-page__toolbar-action'
+          "
+          (onClick)="toggleSelectMode()">
+          <svg class="w-4 h-4" lucideListChecks pButtonIcon></svg>
+        </p-button>
+
+        <p-button
+          ariaLabel="Сортировка уведомлений"
+          severity="secondary"
+          variant="outlined"
+          [styleClass]="
+            sort() !== 'date_desc'
+              ? 'p-button-icon-only notifications-page__toolbar-action notifications-page__toolbar-action--active'
+              : 'p-button-icon-only notifications-page__toolbar-action'
+          "
+          (click)="openSortMenu($event, sortMenu)">
+          <svg class="w-4 h-4" lucideArrowUpDown pButtonIcon></svg>
+        </p-button>
+        <app-menu #sortMenu [items]="sortMenuItems()" />
+      </div>
+
+      <div class="notifications-page__segments">
+        @for (segment of typeSegments; track segment.value) {
+          <button
+            class="notifications-page__segment"
+            type="button"
+            [class.notifications-page__segment--active]="typeFilter() === segment.value"
+            (click)="setTypeFilter(segment.value)">
+            {{ segment.label }}
+          </button>
+        }
       </div>
 
       @if (selectedBulkIds().size > 0) {
-        <div class="p-3 border-b border-surface-200 dark:border-surface-800 bg-surface-0 dark:bg-surface-900/60">
-          <div class="flex items-center justify-between gap-2 flex-wrap">
-            <p class="text-xs font-bold text-primary-700 dark:text-primary-200">
-              Выбрано: {{ selectedBulkIds().size }}
-            </p>
-            <div class="flex items-center gap-2 flex-wrap">
+        <div class="notifications-page__bulk-bar">
+          <div class="notifications-page__bulk-content">
+            <p class="notifications-page__bulk-label">Выбрано: {{ selectedBulkIds().size }}</p>
+            <div class="notifications-page__bulk-actions">
               <p-button
                 label="Прочитать"
                 severity="secondary"
@@ -96,9 +92,9 @@
         </div>
       }
 
-      <div class="notifications-page-list" data-notifications-page-list>
+      <div class="notifications-page__list">
         @if (!rows().length) {
-          <div class="notifications-empty">
+          <div class="notifications-page__empty">
             <svg class="w-8 h-8 opacity-50" lucideSearchX></svg>
             <p class="text-sm font-semibold">Ничего не найдено</p>
             <p class="text-xs">Попробуйте сбросить фильтры или изменить запрос.</p>
@@ -107,17 +103,17 @@
 
         @for (item of rows(); track item.id) {
           <article
-            class="notifications-item notifications-item--interactive"
+            class="notifications-page__item notifications-page__item--interactive"
             role="button"
             tabindex="0"
-            [class.is-selected]="selectedNotificationId() === item.id"
-            [class.is-unread]="!item.isRead"
+            [class.notifications-page__item--selected]="selectedNotificationId() === item.id"
+            [class.notifications-page__item--unread]="!item.isRead"
             (click)="openItem(item.id)"
             (keydown.enter)="openItem(item.id)"
             (keydown.space)="openItem(item.id); $event.preventDefault()">
-            <div class="flex items-start gap-3">
-              <div class="notifications-item-leading">
-                <div class="notifications-icon-wrap" [ngClass]="store.typeMeta[item.type].wrapClass">
+            <div class="notifications-page__item-main">
+              <div class="notifications-page__item-leading">
+                <div class="notifications-page__item-icon-wrap" [ngClass]="store.typeMeta[item.type].wrapClass">
                   <svg
                     class="w-4 h-4"
                     [lucideIcon]="store.typeMeta[item.type].icon"
@@ -126,7 +122,6 @@
 
                 @if (selectMode()) {
                   <p-checkbox
-                    styleClass="notifications-checkbox"
                     [binary]="true"
                     [ngModel]="selectedBulkIds().has(item.id)"
                     [ngModelOptions]="{ standalone: true }"
@@ -135,13 +130,13 @@
                 }
               </div>
 
-              <div class="min-w-0 flex-1">
-                <div class="flex items-start justify-between gap-2">
-                  <h3 class="notifications-item-title">#{{ item.id }} · {{ item.title }}</h3>
-                  <span aria-hidden="true" class="notifications-unread-dot" [class.hidden]="item.isRead"></span>
+              <div class="notifications-page__item-body">
+                <div class="notifications-page__item-head">
+                  <h3 class="notifications-page__item-title">#{{ item.id }} · {{ item.title }}</h3>
+                  <span aria-hidden="true" class="notifications-page__item-dot" [class.hidden]="item.isRead"></span>
                 </div>
-                <p class="mt-1 text-xs text-surface-500 dark:text-surface-400 line-clamp-2">{{ item.message }}</p>
-                <div class="mt-1.5 flex items-center gap-2 text-[11px] text-surface-500">
+                <p class="notifications-page__item-message">{{ item.message }}</p>
+                <div class="notifications-page__item-meta">
                   <span class="truncate">{{ store.typeMeta[item.type].label }}</span>
                   <span>•</span>
                   <span class="whitespace-nowrap">{{ relativeDate(item.createdAt) }}</span>
@@ -153,43 +148,33 @@
       </div>
     </aside>
 
-    <section class="hidden lg:flex flex-col bg-card min-h-0" data-notifications-detail-panel>
-      <div class="px-4 lg:px-5 py-4 border-b border-surface-200 dark:border-surface-800 lg:hidden">
-        <button
-          class="w-full inline-flex items-center gap-3 rounded-lg px-2 py-1.5 text-sm font-bold text-surface-700
-            dark:text-surface-400 hover:bg-surface-100/70 dark:hover:bg-surface-800/70 transition-colors"
-          type="button"
-          (click)="closeDetailOnMobile()">
-          <span class="notifications-detail-back shrink-0">
+    <section class="notifications-page__detail-panel">
+      <div class="notifications-page__detail-mobile-back lg:hidden">
+        <button class="notifications-page__back" type="button" (click)="closeDetailOnMobile()">
+          <span class="notifications-page__back-icon shrink-0">
             <svg class="h-4 w-4" lucideChevronLeft></svg>
           </span>
           <span>Вернуться к списку</span>
         </button>
       </div>
 
-      <div class="flex-1 overflow-y-auto p-4 lg:p-5" data-notifications-detail>
+      <div class="notifications-page__detail">
         @if (selectedItem(); as activeItem) {
-          <article class="space-y-4">
-            <span
-              class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold"
-              [ngClass]="store.typeMeta[activeItem.type].chipClass">
+          <article class="notifications-page__detail-content">
+            <span class="notifications-page__detail-chip" [ngClass]="store.typeMeta[activeItem.type].chipClass">
               <svg class="w-3.5 h-3.5" [lucideIcon]="store.typeMeta[activeItem.type].icon"></svg>
               <span>{{ store.typeMeta[activeItem.type].label }}</span>
             </span>
 
-            <h2 class="text-xl font-bold text-surface-900 dark:text-surface-100">
-              #{{ activeItem.id }} · {{ activeItem.title }}
-            </h2>
-            <p class="text-xs font-semibold text-surface-500">{{ fullDate(activeItem.createdAt) }}</p>
+            <h2 class="notifications-page__detail-title">#{{ activeItem.id }} · {{ activeItem.title }}</h2>
+            <p class="notifications-page__detail-date">{{ fullDate(activeItem.createdAt) }}</p>
 
-            <div
-              class="rounded-lg border border-surface-200 dark:border-surface-800 bg-surface-50/70
-                dark:bg-surface-900/60 p-4 text-sm leading-relaxed text-surface-700 dark:text-surface-300">
+            <div class="notifications-page__detail-message">
               {{ activeItem.message }}
             </div>
           </article>
         } @else {
-          <div class="notifications-empty min-h-[360px]">
+          <div class="notifications-page__empty notifications-page__empty--detail">
             <svg class="w-10 h-10 opacity-50" lucideBellRing></svg>
             <p class="text-base font-bold text-surface-700 dark:text-surface-200">Выберите уведомление</p>
             <p class="text-sm">Откройте элемент из списка, чтобы посмотреть полные детали.</p>
