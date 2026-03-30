@@ -69,11 +69,6 @@
 }
 
 @media (min-width: 64rem) {
-  :root {
-    --c-card-padding-x: 1.5rem;
-    --c-card-padding-y: 1.5rem;
-  }
-
   body.sidebar-collapse {
     --sidebar-width: var(--sidebar-width-collapse);
   }

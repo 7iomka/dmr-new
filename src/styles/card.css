@@ -18,6 +18,13 @@
   }
 }
 
+@media (min-width: 64rem) {
+  :root {
+    --c-card-padding-x: 1.5rem;
+    --c-card-padding-y: 1.5rem;
+  }
+}
+
 @layer components {
   /* PrimeNG Card (p-card) customization block */
   .p-card {
