@@ -160,16 +160,6 @@ export class NotificationsPageComponent {
     this.closeDetailOnMobile();
   }
 
-  protected onBulkToggle(id: string, checked: boolean): void {
-    const next = new Set(this.selectedBulkIds());
-    if (checked) {
-      next.add(id);
-    } else {
-      next.delete(id);
-    }
-    this.selectedBulkIds.set(next);
-  }
-
   protected bulkMark(isRead: boolean): void {
     this.store.markMany(this.selectedBulkIds(), isRead);
     this.selectedBulkIds.set(new Set<string>());

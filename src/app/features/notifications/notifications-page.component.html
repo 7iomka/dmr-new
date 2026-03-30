@@ -78,11 +78,19 @@
               Выбрано: {{ selectedBulkIds().size }}
             </p>
             <div class="flex items-center gap-2 flex-wrap">
-              <button class="btn-secondary btn-sm" type="button" (click)="bulkMark(true)">Прочитать</button>
-              <button class="btn-secondary btn-sm" type="button" (click)="bulkMark(false)">Непрочитанные</button>
-              <button class="btn-secondary btn-sm text-red-600 dark:text-red-400" type="button" (click)="bulkDelete()">
-                Удалить
-              </button>
+              <p-button
+                label="Прочитать"
+                severity="secondary"
+                size="small"
+                variant="outlined"
+                (onClick)="bulkMark(true)" />
+              <p-button
+                label="Непрочитанные"
+                severity="secondary"
+                size="small"
+                variant="outlined"
+                (onClick)="bulkMark(false)" />
+              <p-button label="Удалить" severity="danger" size="small" variant="outlined" (onClick)="bulkDelete()" />
             </div>
           </div>
         </div>
@@ -122,8 +130,7 @@
                     [binary]="true"
                     [ngModel]="selectedBulkIds().has(item.id)"
                     [ngModelOptions]="{ standalone: true }"
-                    (onChange)="onBulkToggle(item.id, !!$event.checked)"
-                    (onClick)="$any($event).originalEvent.stopPropagation()" />
+                    (onClick)="$any($event).originalEvent.stopPropagation(); openItem(item.id)" />
                 }
               </div>
 
