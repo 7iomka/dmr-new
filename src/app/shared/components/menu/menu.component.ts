@@ -117,7 +117,7 @@ export class MenuComponent {
   }
 
   isLucideIcon(icon: AppMenuItem['icon']): icon is LucideIcon {
-    return icon !== null && typeof icon !== 'string';
+    return !!icon && typeof icon !== 'string';
   }
 
   itemClass(item: AppMenuItem): string {
