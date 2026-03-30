@@ -1,6 +1,6 @@
 @reference '../../../styles.css';
 
-:host {
+.app-mobile-nav {
   @apply lg:hidden;
   position: fixed;
   inset-inline: 0;

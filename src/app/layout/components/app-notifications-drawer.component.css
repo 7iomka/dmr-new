@@ -1,6 +1,6 @@
 @reference "../../../styles.css";
 
-:host {
+.app-notifications-drawer-host {
   display: block;
 }
 
