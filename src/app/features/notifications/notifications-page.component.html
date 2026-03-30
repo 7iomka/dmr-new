@@ -72,7 +72,7 @@
       </div>
 
       @if (selectedBulkIds().size > 0) {
-        <div class="p-3 border-b border-surface-200 dark:border-surface-800 bg-primary-50/70 dark:bg-primary-900/20">
+        <div class="p-3 border-b border-surface-200 dark:border-surface-800 bg-surface-50/70 dark:bg-surface-900/60">
           <div class="flex items-center justify-between gap-2 flex-wrap">
             <p class="text-xs font-bold text-primary-700 dark:text-primary-200">
               Выбрано: {{ selectedBulkIds().size }}
@@ -130,7 +130,8 @@
                     [binary]="true"
                     [ngModel]="selectedBulkIds().has(item.id)"
                     [ngModelOptions]="{ standalone: true }"
-                    (onClick)="$any($event).originalEvent.stopPropagation(); openItem(item.id)" />
+                    (click)="onCheckboxClick($event)"
+                    (onChange)="onBulkToggle(item.id, !!$event.checked)" />
                 }
               </div>
 
