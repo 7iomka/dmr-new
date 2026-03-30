@@ -1,5 +1,5 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
-import { LucideAlertTriangle, type LucideIcon, LucideInfo, LucideOctagonAlert } from '@lucide/angular';
+import { type LucideIcon, LucideInfo, LucideOctagonAlert, LucideTriangleAlert } from '@lucide/angular';
 
 export type NotificationType = 'info' | 'warning' | 'critical';
 
@@ -87,7 +87,7 @@ export class NotificationsKnowledgeBaseService {
     },
     warning: {
       label: 'Warning',
-      icon: LucideAlertTriangle,
+      icon: LucideTriangleAlert,
       iconClass: 'text-amber-600 dark:text-amber-300',
       wrapClass: 'bg-amber-500/10 dark:bg-amber-400/10',
       chipClass: 'bg-amber-500/10 text-amber-700 dark:text-amber-300',
