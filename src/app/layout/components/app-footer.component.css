@@ -1,7 +1,11 @@
-@reference "../../../styles.css";
+@reference '../../../styles.css';
 
-.app-footer {
-  @apply border-t border-surface-200 bg-card dark:border-surface-800;
+:host {
+  @apply block;
+}
+
+.app-footer__inner {
+  @apply border-t border-surface-200 bg-card px-0 pt-12 pb-8 dark:border-surface-800;
 }
 
 .app-footer__container {
@@ -42,9 +46,6 @@
 
 .app-footer__socials {
   @apply flex flex-wrap gap-2.5;
-}
-
-.app-footer__social-btn {
 }
 
 .app-footer__social-icon {

@@ -3,9 +3,9 @@ import { RouterOutlet } from '@angular/router';
 
 import { AppFooterComponent } from '../components/app-footer.component';
 import { AppHeaderComponent } from '../components/app-header.component';
-import { AppSidebarComponent } from '../components/app-sidebar.component';
 import { AppMobileBottomNavComponent } from '../components/app-mobile-bottom-nav.component';
 import { AppNotificationsDrawerComponent } from '../components/app-notifications-drawer.component';
+import { AppSidebarComponent } from '../components/app-sidebar.component';
 
 @Component({
   selector: 'app-shell',
@@ -18,20 +18,25 @@ import { AppNotificationsDrawerComponent } from '../components/app-notifications
     AppMobileBottomNavComponent,
     AppNotificationsDrawerComponent,
   ],
+  styleUrl: './app-shell.component.css',
   template: `
-    <div class="flex overflow-hidden min-h-screen" id="app">
-      <app-sidebar />
+    <div class="app-shell" id="app">
+      <app-sidebar class="app-shell__sidebar" />
+
       <div class="app-shell__content">
-        <app-header />
+        <app-header class="app-shell__header" />
+
         <div class="app-shell__body">
           <main class="app-shell__main">
             <router-outlet />
           </main>
-          <app-footer />
+
+          <app-footer class="app-shell__footer" />
         </div>
       </div>
-      <app-mobile-bottom-nav />
-      <app-notifications-drawer />
+
+      <app-mobile-bottom-nav class="app-shell__mobile-nav" />
+      <app-notifications-drawer class="app-shell__notifications-drawer" />
     </div>
   `,
 })

@@ -13,6 +13,9 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
   imports: [DrawerModule, ButtonModule, RouterLink, NgClass, LucideBell, LucideArrowRight, LucideDynamicIcon],
   styleUrl: './app-notifications-drawer.component.css',
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'app-notifications-drawer-host',
+  },
   template: `
     <p-drawer
       header=""
