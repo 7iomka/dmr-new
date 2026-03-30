@@ -1,7 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
 import { SiInstagramIcon, SiTelegramIcon, SiYoutubeIcon } from '@semantic-icons/simple-icons';
+import { ButtonModule } from 'primeng/button';
 
 type FooterLink = {
   label: string;
@@ -19,9 +19,11 @@ type SocialLink = {
   standalone: true,
   imports: [RouterLink, ButtonModule, SiTelegramIcon, SiInstagramIcon, SiYoutubeIcon],
   styleUrl: './app-footer.component.css',
-  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'app-footer',
+  },
   template: `
-    <footer class="app-shell__footer app-footer">
+    <footer class="app-footer__inner">
       <div class="container app-footer__container">
         <div class="app-footer__grid">
           <section class="app-footer__brand">

@@ -1,4 +1,4 @@
-@reference "../../../styles.css";
+@reference '../../../styles.css';
 
 .app-mobile-nav {
   @apply lg:hidden;
@@ -6,6 +6,10 @@
   inset-inline: 0;
   bottom: 0;
   z-index: 100;
+  display: block;
+}
+
+.app-mobile-nav__inner {
   display: flex;
   height: 3.75rem;
   border-top: 1px solid color-mix(in oklab, var(--p-surface-300, #d4d4d8) 65%, transparent);
@@ -25,7 +29,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.2rem;
-  color: #71717a;
+  @apply text-surface-500;
 }
 
 .app-mobile-nav__item[data-active='true'] {

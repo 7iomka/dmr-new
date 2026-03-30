@@ -1,8 +1,8 @@
 import { Component, inject, signal, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { LucideBriefcase, LucideCircleUser, LucideTextAlignJustify } from '@lucide/angular';
 import { MenuItem } from 'primeng/api';
 import { Menu, MenuModule } from 'primeng/menu';
-import { LucideBriefcase, LucideCircleUser, LucideTextAlignJustify } from '@lucide/angular';
 
 import { AppMobileSidebarComponent } from './app-mobile-sidebar.component';
 
@@ -19,8 +19,11 @@ import { AppMobileSidebarComponent } from './app-mobile-sidebar.component';
   ],
   styleUrl: './app-mobile-bottom-nav.component.css',
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'app-mobile-nav',
+  },
   template: `
-    <nav aria-label="Мобильная навигация" class="app-mobile-nav">
+    <nav aria-label="Мобильная навигация" class="app-mobile-nav__inner">
       <button class="app-mobile-nav__item" type="button" (click)="openSidebar()">
         <svg class="app-mobile-nav__icon" lucideTextAlignJustify></svg>
         <span class="app-mobile-nav__label">Меню</span>

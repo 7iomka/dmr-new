@@ -14,8 +14,12 @@ import { AppUserMenuComponent } from './app-user-menu.component';
     AppNotificationsButtonComponent,
     AppUserMenuComponent,
   ],
+  styleUrl: './app-header.component.css',
+  host: {
+    class: 'app-header',
+  },
   template: `
-    <header class="app-shell__header">
+    <header class="app-header__inner">
       <div class="container flex h-full items-center justify-between">
         <div class="min-w-0 text-sm font-semibold text-surface-500 dark:text-surface-400">Dashboard workspace</div>
         <div class="flex items-center gap-1.5 md:gap-2.5">

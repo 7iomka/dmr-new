@@ -1,11 +1,11 @@
-@reference "../../../styles.css";
+@reference '../../../styles.css';
 
-.app-sidebar {
-  @apply fixed inset-y-0 left-0 z-50 hidden h-screen flex-col border-r border-surface-200 bg-card lg:flex;
+:host {
+  @apply fixed inset-y-0 left-0 z-50 hidden h-screen border-r border-surface-200 bg-card lg:flex dark:border-surface-800;
+}
 
-  @variant dark {
-    @apply border-surface-800;
-  }
+.app-sidebar__inner {
+  @apply flex h-full w-full flex-col;
 }
 
 .app-sidebar__topbar {
@@ -87,11 +87,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #a1a1aa;
-
-  @variant dark {
-    color: #52525b;
-  }
+  color: var(--p-text-muted-color);
 }
 
 .app-sidebar__links {
@@ -107,7 +103,6 @@
   gap: 0.75rem;
   border-radius: 0.5rem;
   padding: 0.75rem 0.75rem 0.75rem 1rem;
-  color: #71717a;
   transition: all var(--sidebar-transition-duration) var(--sidebar-transition-timing);
 
   @apply text-surface-500 dark:text-surface-400 
@@ -136,52 +131,52 @@
 }
 
 @media (min-width: 64rem) {
-  .app-sidebar {
+  :host {
     width: var(--sidebar-width);
     transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
   }
 
-  body.sidebar-collapse .app-sidebar:hover:not(.animating) {
+  body.sidebar-collapse :host:hover:not(.animating) {
     width: var(--sidebar-default-width);
   }
 
-  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__link .app-sidebar__label,
-  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__logo-full {
+  body.sidebar-collapse :host:not(:hover) .app-sidebar__link .app-sidebar__label,
+  body.sidebar-collapse :host:not(:hover) .app-sidebar__logo-full {
     display: none;
   }
 
-  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__logo-icon {
+  body.sidebar-collapse :host:not(:hover) .app-sidebar__logo-icon {
     display: block;
   }
 
-  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__logo {
+  body.sidebar-collapse :host:not(:hover) .app-sidebar__logo {
     width: 100%;
     justify-content: center;
     padding-left: 0;
   }
 
-  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__link {
+  body.sidebar-collapse :host:not(:hover) .app-sidebar__link {
     justify-content: center;
     padding-left: 0;
     padding-right: 0;
   }
 
-  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__link-icon {
+  body.sidebar-collapse :host:not(:hover) .app-sidebar__link-icon {
     margin: 0;
   }
 
-  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__section-title {
+  body.sidebar-collapse :host:not(:hover) .app-sidebar__section-title {
     position: relative;
     min-height: 0.875rem;
     padding-inline: 0;
     text-align: center;
   }
 
-  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__section-title .app-sidebar__label {
+  body.sidebar-collapse :host:not(:hover) .app-sidebar__section-title .app-sidebar__label {
     display: none;
   }
 
-  body.sidebar-collapse .app-sidebar:not(:hover) .app-sidebar__section-title::before {
+  body.sidebar-collapse :host:not(:hover) .app-sidebar__section-title::before {
     position: absolute;
     inset-inline-start: 50%;
     inset-block-start: 50%;

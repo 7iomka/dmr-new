@@ -1,4 +1,4 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LucideChevronsLeft, LucideDynamicIcon } from '@lucide/angular';
 
@@ -10,9 +10,11 @@ import { APP_NAVIGATION, type NavItem } from '../models/navigation.model';
   standalone: true,
   imports: [RouterLink, LucideDynamicIcon, LucideChevronsLeft],
   styleUrl: './app-sidebar.component.css',
-  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'app-sidebar',
+  },
   template: `
-    <aside class="app-sidebar" id="sidebar">
+    <aside class="app-sidebar__inner" id="sidebar">
       <div class="app-sidebar__topbar">
         <a class="app-sidebar__logo" routerLink="/dashboard">
           <img

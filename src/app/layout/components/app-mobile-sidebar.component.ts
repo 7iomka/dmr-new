@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { LucideDynamicIcon, LucideX } from '@lucide/angular';
+import { LucideDynamicIcon } from '@lucide/angular';
 import { DrawerModule } from 'primeng/drawer';
 
 import { APP_NAVIGATION } from '../models/navigation.model';
@@ -8,14 +8,15 @@ import { APP_NAVIGATION } from '../models/navigation.model';
 @Component({
   selector: 'app-mobile-sidebar',
   standalone: true,
-  imports: [RouterLink, DrawerModule, LucideX, LucideDynamicIcon],
+  imports: [RouterLink, DrawerModule, LucideDynamicIcon],
   styleUrl: './app-mobile-sidebar.component.css',
   encapsulation: ViewEncapsulation.None,
   template: `
     <p-drawer
+      appendTo="body"
       class="app-mobile-drawer"
-      header=""
       position="left"
+      [closeButtonProps]="{ rounded: false, severity: 'secondary', text: true, size: 'small' }"
       [dismissible]="true"
       [modal]="true"
       [pt]="{
@@ -24,12 +25,11 @@ import { APP_NAVIGATION } from '../models/navigation.model';
         },
         content: { class: 'app-mobile-sidebar__body' },
       }"
-      [showCloseIcon]="false"
       [styleClass]="'app-mobile-sidebar'"
       [visible]="isOpen"
       (visibleChange)="onVisibleChange($event)">
       <ng-template #header>
-        <a class="app-mobile-sidebar__logo" routerLink="/dashboard" (click)="closeSidebar()">
+        <a class="app-mobile-sidebar__logo" routerLink="/" (click)="closeSidebar()">
           <img
             alt="Logo"
             class="app-mobile-sidebar__logo-image app-mobile-sidebar__logo-image--light"
@@ -39,10 +39,6 @@ import { APP_NAVIGATION } from '../models/navigation.model';
             class="app-mobile-sidebar__logo-image app-mobile-sidebar__logo-image--dark"
             src="/assets/img/logo-dark.svg" />
         </a>
-
-        <button aria-label="Закрыть меню" class="app-mobile-sidebar__close" type="button" (click)="closeSidebar()">
-          <svg class="app-mobile-sidebar__close-icon" lucideX></svg>
-        </button>
       </ng-template>
 
       @for (group of navigation; track group.title) {
