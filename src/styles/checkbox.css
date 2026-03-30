@@ -4,15 +4,6 @@
     --p-checkbox-width: 1rem;
     --p-checkbox-height: 1rem;
     --p-checkbox-border-radius: var(--radius-sm);
-  }
-}
-
-@layer components {
-  .notifications-checkbox .p-checkbox-box {
-    @apply bg-surface-200 border-surface-300 dark:bg-surface-700 dark:border-surface-600;
-  }
-
-  .notifications-checkbox.p-checkbox-checked .p-checkbox-box {
-    @apply bg-primary-500 border-primary-500;
+    --p-checkbox-icon-size: 0.75rem;
   }
 }
