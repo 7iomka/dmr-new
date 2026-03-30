@@ -14,12 +14,11 @@ import {
   LucideSearch,
   LucideSearchX,
 } from '@lucide/angular';
-import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
-import { Menu, MenuModule } from 'primeng/menu';
 
 import { FormControlTextComponent } from '../../shared/components/form-controls/form-control-text.component';
+import { AppMenuItem, MenuComponent } from '../../shared/components/menu/menu.component';
 import {
   NotificationsKnowledgeBaseService,
   NotificationSort,
@@ -36,8 +35,8 @@ import {
     CardModule,
     ButtonModule,
     CheckboxModule,
-    MenuModule,
     FormControlTextComponent,
+    MenuComponent,
     LucideBell,
     LucideBellRing,
     LucideSearchX,
@@ -126,16 +125,15 @@ export class NotificationsPageComponent {
     });
   }
 
-  protected get sortMenuItems(): MenuItem[] {
-    return this.sortOptions.map((option) => ({
+  protected readonly sortMenuItems = computed<AppMenuItem[]>(() =>
+    this.sortOptions.map((option) => ({
       label: option.label,
-      styleClass: this.sort() === option.value ? 'notifications-sort-item is-active' : 'notifications-sort-item',
-      icon: this.sort() === option.value ? 'pi pi-check' : undefined,
+      active: this.sort() === option.value,
       command: () => this.sort.set(option.value),
-    }));
-  }
+    })),
+  );
 
-  protected openSortMenu(event: Event, sortMenu: Menu): void {
+  protected openSortMenu(event: MouseEvent, sortMenu: MenuComponent): void {
     sortMenu.toggle(event);
   }
 
@@ -160,6 +158,10 @@ export class NotificationsPageComponent {
     }
 
     this.closeDetailOnMobile();
+  }
+
+  protected onCheckboxClick(event: Event): void {
+    event.stopPropagation();
   }
 
   protected onBulkToggle(id: string, checked: boolean): void {

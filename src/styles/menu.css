@@ -23,15 +23,15 @@
   :root {
     --c-menu-background: var(--color-white);
     --c-menu-border-color: var(--color-surface-200);
-    --c-menu-border-radius: var(--radius-xl);
+    --c-menu-border-radius: var(--radius-lg);
     --c-menu-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.12), 0 8px 10px -6px rgb(0 0 0 / 0.08);
 
     --c-menu-list-padding: --spacing(1);
-    --c-menu-list-gap: 0;
+    --c-menu-list-gap: --spacing(0.5);
 
-    --c-menu-item-padding: --spacing(3) --spacing(3);
+    --c-menu-item-padding: --spacing(2) --spacing(3);
     --c-menu-item-gap: --spacing(2.5);
-    --c-menu-item-border-radius: var(--radius-lg);
+    --c-menu-item-border-radius: var(--radius-md);
 
     --c-menu-item-color: var(--color-surface-800);
     --c-menu-item-focus-color: var(--color-surface-900);
@@ -71,9 +71,24 @@
   }
 
   .c-menu__item-label {
+    @apply min-w-0 flex-1;
   }
 
-  .c-menu__item-inner--danger,
+  .c-menu__item-check {
+    @apply ml-auto inline-flex shrink-0 text-primary-600 dark:text-primary-300;
+  }
+
+  .c-menu__item--active .c-menu__item-link,
+  .c-menu__item-link--active {
+    @apply bg-primary-100/80 dark:bg-primary-900/35;
+  }
+
+  .c-menu__item--active,
+  .c-menu__item-link--active {
+    @apply text-surface-900 dark:text-surface-50;
+  }
+
+  .c-menu__item--danger,
   .c-menu__item-icon--danger {
     color: var(--color-red-500);
   }
