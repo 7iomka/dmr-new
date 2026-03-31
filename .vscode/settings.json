@@ -4,6 +4,11 @@
     "php": "html"
   },
   "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.experimental.classRegex": ["[\"'`](.*?)[\"'`]"],
+  "tailwindCSS.experimental.configFile": "src/styles.css",
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
   "editor.formatOnSave": true,
 
   "prettier.embeddedLanguageFormatting": "auto",
@@ -32,10 +37,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  "tailwindCSS.experimental.classRegex": ["[\"'`](.*?)[\"'`]"],
-  "editor.quickSuggestions": {
-    "strings": "on"
-  },
   "emmet.includeLanguages": {
     "css": "css",
     "postcss": "css",
