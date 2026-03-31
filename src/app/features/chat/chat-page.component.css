@@ -2,7 +2,7 @@
 
 @layer components {
   .chat-page {
-    @apply h-full overflow-hidden;
+    @apply h-full;
   }
 
   .chat-page .p-card-body,
@@ -27,7 +27,7 @@
   }
 
   .chat-page__layout {
-    @apply grid h-full min-h-[520px] grid-cols-1 lg:min-h-[620px] lg:grid-cols-[340px_1fr];
+    @apply grid grid-cols-1 lg:grid-cols-[340px_1fr] min-h-[520px] max-h-[83vh] lg:min-h-[620px];
   }
 
   .chat-page__list-panel {
