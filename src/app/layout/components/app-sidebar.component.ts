@@ -12,9 +12,17 @@ import { APP_NAVIGATION, type NavItem } from '../models/navigation.model';
   styleUrl: './app-sidebar.component.css',
   host: {
     class: 'app-sidebar',
+    '[class.is-collapsed]': 'sidebarModeService.isCollapsed()',
   },
   template: `
-    <aside class="app-sidebar__inner" id="sidebar">
+    <button
+      aria-label="Toggle sidebar"
+      class="app-sidebar__toggle"
+      type="button"
+      (click)="sidebarModeService.toggleSidebar()">
+      <svg class="app-sidebar__toggle-icon" lucideChevronsLeft></svg>
+    </button>
+    <aside class="app-sidebar__panel">
       <div class="app-sidebar__topbar">
         <a class="app-sidebar__logo" routerLink="/">
           <img
@@ -24,14 +32,6 @@ import { APP_NAVIGATION, type NavItem } from '../models/navigation.model';
           <img alt="DMR" class="app-sidebar__logo-full app-sidebar__logo-full--dark" src="/assets/img/logo-dark.svg" />
           <img alt="DMR" class="app-sidebar__logo-icon" src="/assets/img/logo-icon-only.svg" />
         </a>
-
-        <button
-          aria-label="Toggle sidebar"
-          class="app-sidebar__toggle js-app-sidebar-toggle"
-          type="button"
-          (click)="sidebarModeService.toggleSidebar()">
-          <svg class="app-sidebar__toggle-icon" lucideChevronsLeft></svg>
-        </button>
       </div>
 
       <div class="app-sidebar__content">

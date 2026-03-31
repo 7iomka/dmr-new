@@ -1,5 +1,22 @@
 @reference '../../../styles.css';
 
+:host {
+  display: block;
+
+  --sidebar-transition-duration: 0.3s;
+  --sidebar-transition-timing: ease;
+  --sidebar-width-collapsed: 5rem;
+  --sidebar-width-expanded: 16rem;
+
+  --sidebar-width: var(--sidebar-width-expanded);
+  --sidebar-topbar-height: 5rem;
+  --sidebar-toggle-size: --spacing(7);
+}
+
+:host.app-shell--sidebar-collapse {
+  --sidebar-width: var(--sidebar-width-collapsed);
+}
+
 .app-shell {
   @apply flex min-h-screen overflow-hidden;
 }
@@ -10,6 +27,11 @@
 
 .app-shell__content {
   @apply relative flex h-screen min-w-0 flex-1 flex-col pb-15 lg:pb-0;
+
+  @variant lg {
+    padding-inline-start: var(--sidebar-width);
+    transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+  }
 }
 
 .app-shell__header {
@@ -21,16 +43,9 @@
 }
 
 .app-shell__main {
-  @apply container flex-1 space-y-6 py-6 lg:py-10;
+  @apply flex-1 space-y-6 py-6 lg:py-10;
 }
 
 .app-shell__footer {
   @apply min-h-0 shrink-0;
-}
-
-@media (min-width: 64rem) {
-  .app-shell__content {
-    padding-inline-start: var(--sidebar-width);
-    transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
-  }
 }

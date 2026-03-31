@@ -1,17 +1,51 @@
 @reference '../../../styles.css';
 
 :host {
-  @apply fixed inset-y-0 left-0 z-50 hidden h-screen border-r border-surface-200 bg-card lg:flex dark:border-surface-800;
+  @apply hidden lg:inline-flex fixed inset-y-0 left-0 z-50
+    h-screen 
+    border-r border-surface-200 bg-card dark:border-surface-800;
 }
 
-.app-sidebar__inner {
-  @apply flex h-full w-full flex-col;
+/* Toggle button lives outside the hover-sensitive panel */
+.app-sidebar__toggle {
+  @apply hidden lg:flex absolute z-20 items-center justify-center rounded-md
+    border border-surface-200 bg-surface-100 text-surface-500 transition-colors hover:bg-surface-200;
+
+  top: calc(var(--sidebar-topbar-height) / 2 - var(--sidebar-toggle-size) / 2);
+  right: calc(var(--sidebar-toggle-size) / -2);
+  width: var(--sidebar-toggle-size);
+  height: var(--sidebar-toggle-size);
+
+  @variant dark {
+    @apply border-surface-700 bg-surface-800 hover:bg-surface-700;
+  }
+}
+
+.app-sidebar__toggle-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  transition: transform var(--p-transition-duration);
+}
+
+:host(.is-collapsed) .app-sidebar__toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* Panel is the actual hover-preview area */
+.app-sidebar__panel {
+  @apply flex h-full flex-col overflow-hidden;
+  width: var(--sidebar-width);
+  transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+}
+
+/* Hovering panel temporarily expands it */
+:host(.is-collapsed) .app-sidebar__panel:hover {
+  width: var(--sidebar-width-expanded);
 }
 
 .app-sidebar__topbar {
-  position: relative;
   display: flex;
-  height: 5rem;
+  height: var(--sidebar-topbar-height);
   align-items: center;
   justify-content: space-between;
   padding-inline: 0.5rem;
@@ -24,6 +58,7 @@
   align-items: center;
   padding-left: 1rem;
   transition: all var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+
   @apply focus:outline-none;
 }
 
@@ -52,24 +87,6 @@
   display: none;
   height: 3rem;
   width: auto;
-}
-
-.app-sidebar__toggle {
-  @apply absolute -right-3.5 top-0 bottom-0 my-auto hidden h-7 w-7 items-center justify-center rounded-md border border-surface-200 bg-surface-100 text-surface-500 transition-colors lg:flex hover:bg-surface-200;
-
-  @variant dark {
-    @apply border-surface-700 bg-surface-800 hover:bg-surface-700;
-  }
-}
-
-.app-sidebar__toggle-icon {
-  width: 1.125rem;
-  height: 1.125rem;
-  transition: transform 0.3s;
-
-  .sidebar-collapse & {
-    transform: rotate(180deg);
-  }
 }
 
 .app-sidebar__content {
@@ -106,9 +123,7 @@
   padding: 0.75rem 0.75rem 0.75rem 1rem;
   transition: all var(--sidebar-transition-duration) var(--sidebar-transition-timing);
 
-  @apply text-surface-500 dark:text-surface-400 
-  hover:bg-surface-50 hover:text-surface-900 
-  dark:hover:bg-surface-800/50 dark:hover:text-white;
+  @apply text-surface-500 hover:bg-surface-50 hover:text-surface-900 dark:text-surface-400 dark:hover:bg-surface-800/50 dark:hover:text-white;
 }
 
 .app-sidebar__link[data-active='true'] {
@@ -131,60 +146,50 @@
   font-weight: 600;
 }
 
-@media (min-width: 64rem) {
-  :host {
-    width: var(--sidebar-width);
-    transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
-  }
+/* Collapsed visuals apply only when collapsed AND panel is not hovered */
+:host(.is-collapsed) .app-sidebar__panel:not(:hover) .app-sidebar__link .app-sidebar__label,
+:host(.is-collapsed) .app-sidebar__panel:not(:hover) .app-sidebar__logo-full {
+  display: none;
+}
 
-  body.sidebar-collapse :host:hover:not(.animating) {
-    width: var(--sidebar-default-width);
-  }
+:host(.is-collapsed) .app-sidebar__panel:not(:hover) .app-sidebar__logo-icon {
+  display: block;
+}
 
-  body.sidebar-collapse :host:not(:hover) .app-sidebar__link .app-sidebar__label,
-  body.sidebar-collapse :host:not(:hover) .app-sidebar__logo-full {
-    display: none;
-  }
+:host(.is-collapsed) .app-sidebar__panel:not(:hover) .app-sidebar__logo {
+  width: 100%;
+  justify-content: center;
+  padding-left: 0;
+}
 
-  body.sidebar-collapse :host:not(:hover) .app-sidebar__logo-icon {
-    display: block;
-  }
+:host(.is-collapsed) .app-sidebar__panel:not(:hover) .app-sidebar__link {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
 
-  body.sidebar-collapse :host:not(:hover) .app-sidebar__logo {
-    width: 100%;
-    justify-content: center;
-    padding-left: 0;
-  }
+:host(.is-collapsed) .app-sidebar__panel:not(:hover) .app-sidebar__link-icon {
+  margin: 0;
+}
 
-  body.sidebar-collapse :host:not(:hover) .app-sidebar__link {
-    justify-content: center;
-    padding-left: 0;
-    padding-right: 0;
-  }
+:host(.is-collapsed) .app-sidebar__panel:not(:hover) .app-sidebar__section-title {
+  position: relative;
+  min-height: 0.875rem;
+  padding-inline: 0;
+  text-align: center;
+}
 
-  body.sidebar-collapse :host:not(:hover) .app-sidebar__link-icon {
-    margin: 0;
-  }
+:host(.is-collapsed) .app-sidebar__panel:not(:hover) .app-sidebar__section-title .app-sidebar__label {
+  display: none;
+}
 
-  body.sidebar-collapse :host:not(:hover) .app-sidebar__section-title {
-    position: relative;
-    min-height: 0.875rem;
-    padding-inline: 0;
-    text-align: center;
-  }
-
-  body.sidebar-collapse :host:not(:hover) .app-sidebar__section-title .app-sidebar__label {
-    display: none;
-  }
-
-  body.sidebar-collapse :host:not(:hover) .app-sidebar__section-title::before {
-    position: absolute;
-    inset-inline-start: 50%;
-    inset-block-start: 50%;
-    display: inline-block;
-    content: '...';
-    color: currentColor;
-    font-size: inherit;
-    transform: translate(-50%, -50%);
-  }
+:host(.is-collapsed) .app-sidebar__panel:not(:hover) .app-sidebar__section-title::before {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  display: inline-block;
+  content: '...';
+  color: currentColor;
+  font-size: inherit;
+  transform: translate(-50%, -50%);
 }

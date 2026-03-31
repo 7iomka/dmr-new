@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+import { SidebarModeService } from '../../core/theme/sidebar-mode.service';
 import { AppFooterComponent } from '../components/app-footer.component';
 import { AppHeaderComponent } from '../components/app-header.component';
 import { AppMobileBottomNavComponent } from '../components/app-mobile-bottom-nav.component';
@@ -19,6 +20,9 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
     AppNotificationsDrawerComponent,
   ],
   styleUrl: './app-shell.component.css',
+  host: {
+    '[class.app-shell--sidebar-collapse]': 'sidebarModeService.isCollapsed()',
+  },
   template: `
     <div class="app-shell" id="app">
       <app-sidebar class="app-shell__sidebar" />
@@ -27,7 +31,7 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
         <app-header class="app-shell__header" />
 
         <div class="app-shell__body">
-          <main class="app-shell__main">
+          <main class="app-shell__main container">
             <router-outlet />
           </main>
 
@@ -40,4 +44,6 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
     </div>
   `,
 })
-export class AppShellComponent {}
+export class AppShellComponent {
+  protected readonly sidebarModeService = inject(SidebarModeService);
+}
