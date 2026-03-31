@@ -4,6 +4,9 @@ import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-stub-page',
+  host: {
+    class: 'app-page',
+  },
   standalone: true,
   imports: [ButtonModule, RouterLink],
   template: `

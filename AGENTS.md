@@ -32,6 +32,12 @@ When editing Angular code, follow these docs first:
 - NEVER reuse Tailwind Zinc palette (`zinc-*`)
 - ALWAYS convert colors to PrimeNG semantic tokens (`surface`, `text`, `muted`, etc.)
 - Prefer semantic tokens over raw colors in ALL cases
+- All routed page components MUST include:
+  ```ts
+  host: {
+    class: 'app-page',
+  }
+  ```
 
 ## Angular implementation rules
 

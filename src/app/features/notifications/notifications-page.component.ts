@@ -27,6 +27,9 @@ import {
 
 @Component({
   selector: 'app-notifications-page',
+  host: {
+    class: 'app-page',
+  },
   standalone: true,
   imports: [
     FormsModule,

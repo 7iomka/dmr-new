@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 import {
   LucideChevronDown,
   LucideChevronLeft,
+  LucideCirclePlus,
   LucideMessageCircle,
   LucidePaperclip,
-  LucidePlusCircle,
   LucideSendHorizontal,
   LucideSmile,
   LucideX,
@@ -44,6 +44,9 @@ type TicketTopicOption = {
 
 @Component({
   selector: 'app-chat-page',
+  host: {
+    class: 'app-page',
+  },
   standalone: true,
   imports: [
     FormsModule,
@@ -52,7 +55,7 @@ type TicketTopicOption = {
     ButtonModule,
     LucideMessageCircle,
     LucideChevronLeft,
-    LucidePlusCircle,
+    LucideCirclePlus,
     LucidePaperclip,
     LucideSmile,
     LucideSendHorizontal,
