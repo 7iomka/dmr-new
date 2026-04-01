@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { LucideMessageCircleQuestionMark } from '@lucide/angular';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 import { SidebarModeService } from '../../core/theme/sidebar-mode.service';
 import { AppFooterComponent } from '../components/app-footer.component';
@@ -21,12 +23,16 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
     AppMobileBottomNavComponent,
     AppNotificationsDrawerComponent,
     LucideMessageCircleQuestionMark,
+    ToastModule,
   ],
+  providers: [MessageService],
   styleUrl: './app-shell.component.css',
   host: {
     '[class.app-shell--sidebar-collapse]': 'sidebarModeService.isCollapsed()',
   },
   template: `
+    <p-toast position="top-right" />
+
     <div class="app-shell" id="app">
       <app-sidebar class="app-shell__sidebar" />
 

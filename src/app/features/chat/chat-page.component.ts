@@ -28,6 +28,7 @@ import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { TextareaModule } from 'primeng/textarea';
 import { PopoverModule } from 'primeng/popover';
+import { MessageService } from 'primeng/api';
 import { FormControlSelectComponent } from '../../shared/components/form-controls/form-control-select.component';
 import { FormControlShellComponent } from '../../shared/components/form-controls/form-control-shell.component';
 
@@ -82,6 +83,7 @@ export class ChatPageComponent implements AfterViewInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly messageService = inject(MessageService);
 
   private readonly listScrollTop = signal(this.readStoredListScroll());
   private readonly isMobile = signal(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
@@ -285,6 +287,11 @@ export class ChatPageComponent implements AfterViewInit {
     this.ticketMessage.set('');
     this.selectedTicketFileName.set(null);
     this.showTicketEmojiPicker.set(false);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Обращение создано',
+      detail: 'Новый диалог добавлен в список.',
+    });
 
     this.router.navigate(['/chat/conversation', targetId]);
   }
