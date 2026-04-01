@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { LucideMessageCircle } from '@lucide/angular';
+import { LucideMessageCircleQuestionMark } from '@lucide/angular';
 
 import { SidebarModeService } from '../../core/theme/sidebar-mode.service';
 import { AppFooterComponent } from '../components/app-footer.component';
@@ -15,12 +15,12 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
   imports: [
     RouterOutlet,
     RouterLink,
-    LucideMessageCircle,
     AppHeaderComponent,
     AppSidebarComponent,
     AppFooterComponent,
     AppMobileBottomNavComponent,
     AppNotificationsDrawerComponent,
+    LucideMessageCircleQuestionMark,
   ],
   styleUrl: './app-shell.component.css',
   host: {
@@ -45,7 +45,7 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
       @if (!isChatRoute()) {
         <div class="app-shell__chat-fab-wrap">
           <a aria-label="Открыть чат поддержки" class="app-shell__chat-fab" routerLink="/chat">
-            <svg aria-hidden="true" class="app-shell__chat-fab-icon" lucideMessageCircle></svg>
+            <svg aria-hidden="true" class="app-shell__chat-fab-icon" lucideMessageCircleQuestionMark></svg>
             <span class="app-shell__chat-fab-badge-wrap">
               <span class="app-shell__chat-fab-ping"></span>
               <span class="app-shell__chat-fab-badge">99</span>
