@@ -403,11 +403,18 @@ export class ChatPageComponent implements AfterViewInit {
   }
 
   private scrollMessagesToBottom(): void {
-    queueMicrotask(() => {
+    const scrollToLatest = (): void => {
       const node = this.messagesScrollContainer?.nativeElement;
-      if (node) {
-        node.scrollTop = node.scrollHeight;
+      if (!node) {
+        return;
       }
+
+      node.scrollTop = node.scrollHeight;
+    };
+
+    queueMicrotask(() => {
+      scrollToLatest();
+      requestAnimationFrame(scrollToLatest);
     });
   }
 
