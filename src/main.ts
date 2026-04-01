@@ -3,6 +3,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 import { provideLucideConfig } from '@lucide/angular';
+import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill';
 
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
@@ -37,3 +38,5 @@ bootstrapApplication(AppComponent, {
     }),
   ],
 }).catch((err) => console.error(err));
+
+polyfillCountryFlagEmojis('Twemoji Mozilla');

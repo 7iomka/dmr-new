@@ -36,6 +36,7 @@
     "@lucide/angular": "1.0.0-rc.0",
     "@primeuix/themes": "^2.0.3",
     "@semantic-icons/simple-icons": "^0.58.0",
+    "country-flag-emoji-polyfill": "^0.1.8",
     "prettier-plugin-classnames": "^0.9.0",
     "primeicons": "^7.0.0",
     "primeng": "^21.1.3",
