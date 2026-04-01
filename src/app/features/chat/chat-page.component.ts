@@ -385,6 +385,23 @@ export class ChatPageComponent implements AfterViewInit {
     });
   }
 
+  private storeListScroll(value: number): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    window.sessionStorage.setItem('chat-dialogs-scroll-top', String(value));
+  }
+
+  private readStoredListScroll(): number {
+    if (typeof window === 'undefined') {
+      return 0;
+    }
+
+    const storedValue = window.sessionStorage.getItem('chat-dialogs-scroll-top');
+    return storedValue ? Number.parseFloat(storedValue) || 0 : 0;
+  }
+
   private scrollMessagesToBottom(): void {
     queueMicrotask(() => {
       const node = this.messagesScrollContainer?.nativeElement;
