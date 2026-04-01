@@ -134,6 +134,7 @@ export class ChatPageComponent implements AfterViewInit {
   protected readonly showTicketEmojiPicker = signal(false);
 
   private generatedCounter = 0;
+  private readonly dialogsStorageKey = 'chat-dialogs-state';
 
   protected readonly activeDialog = computed(
     () => this.dialogs().find((dialog) => dialog.id === this.activeDialogId()) ?? null,
@@ -147,7 +148,9 @@ export class ChatPageComponent implements AfterViewInit {
   protected readonly cardPt = { body: { class: 'p-0' }, content: { class: 'p-0' } };
 
   constructor() {
-    this.dialogs.set(this.buildDemoDialogs());
+    const restoredDialogs = this.readStoredDialogs() ?? this.buildDemoDialogs();
+    this.generatedCounter = this.resolveGeneratedCounter(restoredDialogs);
+    this.setDialogs(restoredDialogs);
 
     this.route.url.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.applyRouteState();
@@ -282,7 +285,7 @@ export class ChatPageComponent implements AfterViewInit {
       ],
     };
 
-    this.dialogs.update((dialogs) => [newDialog, ...dialogs]);
+    this.updateDialogs((dialogs) => [newDialog, ...dialogs]);
     this.ticketTopic.set('Общий вопрос');
     this.ticketMessage.set('');
     this.selectedTicketFileName.set(null);
@@ -373,7 +376,7 @@ export class ChatPageComponent implements AfterViewInit {
 
       this.newTicketMode.set(false);
       this.activeDialogId.set(routeDialogId);
-      this.dialogs.update((dialogs) =>
+      this.updateDialogs((dialogs) =>
         dialogs.map((dialog) => (dialog.id === routeDialogId ? { ...dialog, unreadCount: 0 } : dialog)),
       );
       return;
@@ -409,6 +412,56 @@ export class ChatPageComponent implements AfterViewInit {
     return storedValue ? Number.parseFloat(storedValue) || 0 : 0;
   }
 
+  private setDialogs(dialogs: ChatDialog[]): void {
+    this.dialogs.set(dialogs);
+    this.storeDialogs(dialogs);
+  }
+
+  private updateDialogs(updateFn: (dialogs: ChatDialog[]) => ChatDialog[]): void {
+    const nextDialogs = updateFn(this.dialogs());
+    this.dialogs.set(nextDialogs);
+    this.storeDialogs(nextDialogs);
+  }
+
+  private storeDialogs(dialogs: ChatDialog[]): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    window.sessionStorage.setItem(this.dialogsStorageKey, JSON.stringify(dialogs));
+  }
+
+  private readStoredDialogs(): ChatDialog[] | null {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    const raw = window.sessionStorage.getItem(this.dialogsStorageKey);
+    if (!raw) {
+      return null;
+    }
+
+    try {
+      const parsed = JSON.parse(raw) as unknown;
+      if (!Array.isArray(parsed)) {
+        return null;
+      }
+      return parsed as ChatDialog[];
+    } catch {
+      return null;
+    }
+  }
+
+  private resolveGeneratedCounter(dialogs: ChatDialog[]): number {
+    const generatedIds = dialogs
+      .map((dialog) => dialog.id)
+      .filter((id) => id.startsWith('support-generated-'))
+      .map((id) => Number.parseInt(id.replace('support-generated-', ''), 10))
+      .filter((id) => Number.isFinite(id));
+
+    return generatedIds.length ? Math.max(...generatedIds) : 0;
+  }
+
   private scrollMessagesToBottom(): void {
     const scrollToLatest = (): void => {
       const node = this.messagesScrollContainer?.nativeElement;
@@ -426,7 +479,7 @@ export class ChatPageComponent implements AfterViewInit {
   }
 
   private pushMessage(dialogId: string, message: ChatMessage): void {
-    this.dialogs.update((dialogs) =>
+    this.updateDialogs((dialogs) =>
       dialogs.map((dialog) => {
         if (dialog.id !== dialogId) {
           return dialog;
