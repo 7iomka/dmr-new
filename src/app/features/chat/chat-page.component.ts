@@ -744,6 +744,10 @@ export class ChatPageComponent implements AfterViewInit {
   }
 
   private toIsoDate(date: Date): string {
+    if (Number.isNaN(date.getTime())) {
+      return this.startOfDay(new Date()).toISOString();
+    }
+
     return this.startOfDay(date).toISOString();
   }
 
@@ -755,7 +759,10 @@ export class ChatPageComponent implements AfterViewInit {
 
     const fallbackMessage = group.messages.at(0);
     if (fallbackMessage) {
-      return this.toIsoDate(new Date(fallbackMessage.createdAt));
+      const fallbackMessageDate = new Date(fallbackMessage.createdAt);
+      if (!Number.isNaN(fallbackMessageDate.getTime())) {
+        return this.toIsoDate(fallbackMessageDate);
+      }
     }
 
     return this.toIsoDate(new Date(Date.now() - (dialogIndex + groupIndex) * 60_000));
