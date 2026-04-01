@@ -38,7 +38,7 @@
   .chat-page__list-panel {
     @apply flex flex-col
     border-b border-surface-200 bg-card dark:border-surface-800 lg:border-r lg:border-b-0
-    min-h-90 lg:h-[70dvh] lg:min-h-130;
+    min-h-50 h-[57dvh] md:min-h-90 lg:h-[70dvh] lg:min-h-130;
   }
 
   .chat-page__list {
@@ -65,9 +65,9 @@
   }
 
   .chat-page__item-counter {
-    @apply absolute -right-1.5 -top-1.5 h-4.5 min-w-4.5
+    @apply absolute -right-1.5 -top-1.5 h-5 min-w-5
         flex items-center justify-center
-        rounded-md bg-primary
+        rounded-full bg-primary
         px-1 text-[10px] leading-none font-bold text-primary-contrast;
   }
 
@@ -144,6 +144,10 @@
     @apply pb-4;
   }
 
+  .chat-page__messages-inner {
+    @apply mt-auto flex flex-col gap-4;
+  }
+
   .chat-page__select-control {
     --p-select-background: var(--p-surface-50);
 
@@ -180,28 +184,34 @@
     @apply rounded-md bg-surface-100/95 px-3 py-1 text-xs font-semibold text-muted-color shadow-sm dark:bg-surface-800/95;
   }
 
-  .chat-page__bubble {
+  .chat-page__message {
     @apply max-w-md rounded-lg px-4 py-3;
+
+    @variant motion-safe {
+      will-change: opacity, transform;
+      transform-origin: bottom;
+      animation: chat-message-enter 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
   }
 
-  .chat-page__bubble--support {
+  .chat-page__message--support {
     @apply border border-primary-200 bg-primary-100/50 text-surface-800
       dark:bg-primary-500/10 dark:border-primary-900 dark:text-surface-100;
   }
 
-  .chat-page__bubble--mine {
+  .chat-page__message--mine {
     @apply ml-auto border border-surface-200 bg-surface-100 dark:border-surface-700 dark:bg-surface-800;
   }
 
-  .chat-page__bubble-text {
+  .chat-page__message-text {
     @apply whitespace-pre-line text-sm;
   }
 
-  .chat-page__bubble-time {
+  .chat-page__message-time {
     @apply mt-2 text-[11px] font-semibold uppercase tracking-wide text-muted-color;
   }
 
-  .chat-page__bubble--support .chat-page__bubble-time {
+  .chat-page__message--support .chat-page__message-time {
     @apply text-primary-600 dark:text-primary-500;
   }
 
@@ -271,5 +281,18 @@
     .chat-page__layout--mobile-detail-open .chat-page__detail-panel {
       @apply flex;
     }
+  }
+}
+
+@keyframes chat-message-enter {
+  0%,
+  15% {
+    opacity: 0;
+    transform: translateY(1px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

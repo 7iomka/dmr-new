@@ -16,6 +16,8 @@ export const appRoutes: Routes = [
   { path: 'investments', component: InvestmentsPageComponent },
   { path: 'notifications', component: NotificationsPageComponent },
   { path: 'chat', component: ChatPageComponent },
+  { path: 'chat/new', component: ChatPageComponent },
+  { path: 'chat/conversation/:id', component: ChatPageComponent },
   { path: 'notifications/:id', component: NotificationsPageComponent },
   { path: 'wallet', component: StubPageComponent, data: { title: 'Кошелёк' } },
   { path: 'withdrawals', component: StubPageComponent, data: { title: 'Выводы' } },

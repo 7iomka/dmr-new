@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { LucideMessageCircleQuestionMark } from '@lucide/angular';
 
 import { SidebarModeService } from '../../core/theme/sidebar-mode.service';
 import { AppFooterComponent } from '../components/app-footer.component';
@@ -13,11 +14,13 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
   standalone: true,
   imports: [
     RouterOutlet,
+    RouterLink,
     AppHeaderComponent,
     AppSidebarComponent,
     AppFooterComponent,
     AppMobileBottomNavComponent,
     AppNotificationsDrawerComponent,
+    LucideMessageCircleQuestionMark,
   ],
   styleUrl: './app-shell.component.css',
   host: {
@@ -39,6 +42,18 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
         </div>
       </div>
 
+      @if (!isChatRoute()) {
+        <div class="app-shell__chat-fab-wrap">
+          <a aria-label="Открыть чат поддержки" class="app-shell__chat-fab" routerLink="/chat">
+            <svg aria-hidden="true" class="app-shell__chat-fab-icon" lucideMessageCircleQuestionMark></svg>
+            <span class="app-shell__chat-fab-badge-wrap">
+              <span class="app-shell__chat-fab-ping"></span>
+              <span class="app-shell__chat-fab-badge">99</span>
+            </span>
+          </a>
+        </div>
+      }
+
       <app-mobile-bottom-nav class="app-shell__mobile-nav" />
       <app-notifications-drawer class="app-shell__notifications-drawer" />
     </div>
@@ -46,4 +61,9 @@ import { AppSidebarComponent } from '../components/app-sidebar.component';
 })
 export class AppShellComponent {
   protected readonly sidebarModeService = inject(SidebarModeService);
+  private readonly router = inject(Router);
+
+  protected isChatRoute(): boolean {
+    return this.router.url.startsWith('/chat');
+  }
 }

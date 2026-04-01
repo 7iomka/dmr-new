@@ -55,6 +55,7 @@ When editing Angular code, follow these docs first:
 - Use `pnpm` only.
 - Respect the package manager version declared in `package.json`.
 - Use Node.js version compatible with `.nvmrc` and `package.json` engines.
+- Do **not** commit `pnpm-lock.yaml` unless package dependencies or pnpm configuration actually changed.
 
 ## Validation (MANDATORY — NO EXCEPTIONS)
 

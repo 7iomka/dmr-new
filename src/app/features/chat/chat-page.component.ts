@@ -1,6 +1,18 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, HostListener, signal, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  computed,
+  DestroyRef,
+  ElementRef,
+  HostListener,
+  inject,
+  signal,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   LucideChevronLeft,
   LucideCirclePlus,
@@ -10,6 +22,7 @@ import {
   LucideSmile,
   LucideX,
 } from '@lucide/angular';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
@@ -18,19 +31,8 @@ import { PopoverModule } from 'primeng/popover';
 import { FormControlSelectComponent } from '../../shared/components/form-controls/form-control-select.component';
 import { FormControlShellComponent } from '../../shared/components/form-controls/form-control-shell.component';
 
-type ChatMessage = {
-  id: string;
-  text: string;
-  isMine: boolean;
-  timeLabel: string;
-};
-
-type ChatDateGroup = {
-  id: string;
-  rangeLabel: string;
-  messages: ChatMessage[];
-};
-
+type ChatMessage = { id: string; text: string; isMine: boolean; timeLabel: string };
+type ChatDateGroup = { id: string; rangeLabel: string; messages: ChatMessage[] };
 type ChatDialog = {
   id: string;
   title: string;
@@ -40,17 +42,13 @@ type ChatDialog = {
   unreadCount: number;
   groups: ChatDateGroup[];
 };
+type TicketTopicOption = { label: string; value: string };
 
-type TicketTopicOption = {
-  label: string;
-  value: string;
-};
+type ComposerKind = 'chat' | 'ticket';
 
 @Component({
   selector: 'app-chat-page',
-  host: {
-    class: 'app-page',
-  },
+  host: { class: 'app-page' },
   standalone: true,
   imports: [
     FormsModule,
@@ -74,7 +72,22 @@ type TicketTopicOption = {
   styleUrl: './chat-page.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class ChatPageComponent {
+export class ChatPageComponent implements AfterViewInit {
+  @ViewChild('messagesScrollContainer')
+  private readonly messagesScrollContainer?: ElementRef<HTMLDivElement>;
+
+  @ViewChild('dialogsScrollContainer')
+  private readonly dialogsScrollContainer?: ElementRef<HTMLDivElement>;
+
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+
+  private readonly listScrollTop = signal(this.readStoredListScroll());
+  private readonly isMobile = signal(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
+  private readonly chatCaret = signal({ start: 0, end: 0 });
+  private readonly ticketCaret = signal({ start: 0, end: 0 });
+
   protected readonly ticketTopics: TicketTopicOption[] = [
     { label: 'Техническая проблема', value: 'Техническая проблема' },
     { label: 'Счета и платежи', value: 'Счета и платежи' },
@@ -107,122 +120,8 @@ export class ChatPageComponent {
     '✅',
   ];
 
-  // protected readonly dialogs = signal<ChatDialog[]>([]);
-
-  protected readonly dialogs = signal<ChatDialog[]>([
-    {
-      id: 'support-technical',
-      title: 'Общий вопрос',
-      subtitle: 'Чат поддержки',
-      lastPreview: 'Проверяем статус транзакции и скоро ответим.',
-      lastTimeLabel: '09:43',
-      unreadCount: 0,
-      groups: [
-        {
-          id: 'g-1',
-          rangeLabel: '25.01.2025',
-          messages: [
-            {
-              id: 'm-1',
-              isMine: false,
-              text: 'Здравствуйте! Это старт диалога. Если нужна помощь — просто ответьте в этом чате.',
-              timeLabel: '14.05.2024',
-            },
-            { id: 'm-2', isMine: true, text: 'Принял, спасибо!', timeLabel: '14.05.2024' },
-          ],
-        },
-        {
-          id: 'g-2',
-          rangeLabel: '27.01.2025',
-          messages: [
-            {
-              id: 'm-3',
-              isMine: true,
-              text: 'Подскажите, где посмотреть историю начислений?',
-              timeLabel: '12.01.2026',
-            },
-            {
-              id: 'm-4',
-              isMine: false,
-              text: 'История доступна в разделе «Отчёт» — выгрузил вам свежий файл.',
-              timeLabel: '12.01.2026',
-            },
-            {
-              id: 'm-5',
-              isMine: true,
-              text: 'Увидел, спасибо. Можно ещё разбивку по месяцам?',
-              timeLabel: '12.01.2026',
-            },
-          ],
-        },
-        {
-          id: 'g-3',
-          rangeLabel: 'Сегодня',
-          messages: [
-            {
-              id: 'm-6',
-              isMine: false,
-              text: 'Поняли вас. Последние начисления добавили в отчёт по аккаунту.',
-              timeLabel: 'вчера, 19:30',
-            },
-            { id: 'm-7', isMine: true, text: 'Проверил, всё корректно 👌', timeLabel: 'вчера, 19:34' },
-            {
-              id: 'm-8',
-              isMine: false,
-              text: 'Дополнительно отправили вам файл с разбивкой по месяцам.',
-              timeLabel: 'сегодня, 09:12',
-            },
-            {
-              id: 'm-9',
-              isMine: true,
-              text: 'Файл загрузился, благодарю за оперативность.',
-              timeLabel: 'сегодня, 09:15',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 'support-notice',
-      title: 'Отчет об ошибке',
-      subtitle: 'Чат поддержки',
-      lastPreview: 'Поддержка начала диалог по безопасности аккаунта.',
-      lastTimeLabel: 'Вчера',
-      unreadCount: 2,
-      groups: [
-        {
-          id: 'g-4',
-          rangeLabel: '26.01.2025',
-          messages: [
-            {
-              id: 'm-10',
-              isMine: false,
-              text: 'Система обнаружила вход в аккаунт с нового устройства.',
-              timeLabel: '26.01.2025, 08:05',
-            },
-            { id: 'm-11', isMine: true, text: 'Подтверждаю, это был мой вход.', timeLabel: '26.01.2025, 08:07' },
-          ],
-        },
-        {
-          id: 'g-5',
-          rangeLabel: 'Сегодня',
-          messages: [
-            {
-              id: 'm-12',
-              isMine: false,
-              text: 'Поддержка инициировала диалог: зафиксирован вход с нового устройства.',
-              timeLabel: 'вчера, 18:05',
-            },
-            { id: 'm-13', isMine: true, text: 'Это был я, вход подтверждаю.', timeLabel: 'вчера, 18:07' },
-            { id: 'm-14', isMine: false, text: 'Спасибо, отметили вход как безопасный.', timeLabel: 'вчера, 18:08' },
-          ],
-        },
-      ],
-    },
-  ]);
-
-  protected readonly activeDialogId = signal<string>('support-technical');
-  protected readonly mobileDetailOpen = signal(false);
+  protected readonly dialogs = signal<ChatDialog[]>([]);
+  protected readonly activeDialogId = signal('');
   protected readonly newTicketMode = signal(false);
   protected readonly chatMessage = signal('');
   protected readonly ticketTopic = signal('Общий вопрос');
@@ -232,75 +131,84 @@ export class ChatPageComponent {
   protected readonly showEmojiPicker = signal(false);
   protected readonly showTicketEmojiPicker = signal(false);
 
+  private generatedCounter = 0;
+
+  protected readonly activeDialog = computed(
+    () => this.dialogs().find((dialog) => dialog.id === this.activeDialogId()) ?? null,
+  );
+  protected readonly mobileDetailOpen = computed(
+    () => this.isMobile() && (this.newTicketMode() || Boolean(this.activeDialogId())),
+  );
+  protected readonly showWelcome = computed(() => !this.newTicketMode() && !this.activeDialogId());
+  protected readonly hasDialogs = computed(() => this.dialogs().length > 0);
+
+  protected readonly cardPt = { body: { class: 'p-0' }, content: { class: 'p-0' } };
+
+  constructor() {
+    this.dialogs.set(this.buildDemoDialogs());
+
+    this.route.url.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+      this.applyRouteState();
+      this.restoreDialogListScroll();
+      this.scrollMessagesToBottom();
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.applyRouteState();
+    this.restoreDialogListScroll();
+    this.scrollMessagesToBottom();
+  }
+
   protected onTicketTopicChange(value: unknown): void {
     if (typeof value === 'string') {
       this.ticketTopic.set(value);
     }
   }
 
-  private generatedCounter = 0;
-
-  protected readonly activeDialog = computed(
-    () => this.dialogs().find((dialog) => dialog.id === this.activeDialogId()) ?? null,
-  );
-  protected readonly hasDialogs = computed(() => this.dialogs().length > 0);
-  protected readonly showWelcome = computed(() => !this.newTicketMode() && !this.activeDialog() && !this.hasDialogs());
-
-  protected readonly cardPt = {
-    body: { class: 'p-0 h-full' },
-    content: { class: 'p-0 h-full' },
-  };
-
-  constructor() {
-    if (window.innerWidth < 1024) {
-      this.mobileDetailOpen.set(false);
-    }
-  }
-
   protected openDialog(dialogId: string): void {
-    this.activeDialogId.set(dialogId);
-    this.newTicketMode.set(false);
-    this.showEmojiPicker.set(false);
-
-    this.dialogs.update((dialogs) =>
-      dialogs.map((dialog) => (dialog.id === dialogId ? { ...dialog, unreadCount: 0 } : dialog)),
-    );
-
-    if (window.innerWidth < 1024) {
-      this.mobileDetailOpen.set(true);
-    }
+    this.router.navigate(['/chat/conversation', dialogId]);
   }
 
   protected openNewTicket(): void {
-    this.newTicketMode.set(true);
-    this.activeDialogId.set('');
-    this.mobileDetailOpen.set(window.innerWidth < 1024);
+    this.router.navigate(['/chat/new']);
   }
 
   protected closeDetailOnMobile(): void {
-    if (window.innerWidth >= 1024) {
+    if (!this.isMobile()) {
       return;
     }
-    this.mobileDetailOpen.set(false);
+    this.router.navigate(['/chat']);
   }
 
   protected appendEmoji(emoji: string, isTicket = false): void {
-    if (isTicket) {
-      this.ticketMessage.update((message) => `${message}${emoji}`);
+    const kind: ComposerKind = isTicket ? 'ticket' : 'chat';
+    this.insertEmojiAtCaret(kind, emoji);
+  }
+
+  protected rememberCaret(event: Event, kind: ComposerKind): void {
+    const textarea = event.target as HTMLTextAreaElement;
+    const nextCaret = { start: textarea.selectionStart ?? 0, end: textarea.selectionEnd ?? 0 };
+    if (kind === 'ticket') {
+      this.ticketCaret.set(nextCaret);
       return;
     }
-    this.chatMessage.update((message) => `${message}${emoji}`);
+    this.chatCaret.set(nextCaret);
+  }
+
+  protected onDialogsScroll(event: Event): void {
+    const nextScrollTop = (event.target as HTMLDivElement).scrollTop;
+    this.listScrollTop.set(nextScrollTop);
+    this.storeListScroll(nextScrollTop);
   }
 
   protected onChatFileSelected(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
+    const file = (event.target as HTMLInputElement).files?.[0];
     this.selectedFileName.set(file?.name ?? null);
   }
 
   protected onTicketFileSelected(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
+    const file = (event.target as HTMLInputElement).files?.[0];
     this.selectedTicketFileName.set(file?.name ?? null);
   }
 
@@ -317,38 +225,29 @@ export class ChatPageComponent {
   protected submitChatMessage(): void {
     const trimmed = this.chatMessage().trim();
     const fileName = this.selectedFileName();
-    if (!trimmed && !fileName) {
-      return;
-    }
-
     const active = this.activeDialog();
-    if (!active) {
+    if ((!trimmed && !fileName) || !active) {
       return;
     }
 
     const time = this.formatTime();
     const messageText = fileName ? `📎 Файл: ${fileName}${trimmed ? `\n${trimmed}` : ''}` : trimmed;
-    const userMessage: ChatMessage = {
-      id: this.generateId('msg-user'),
-      text: messageText,
-      isMine: true,
-      timeLabel: time,
-    };
-
-    this.pushMessage(active.id, userMessage);
+    this.pushMessage(active.id, { id: this.generateId('msg-user'), text: messageText, isMine: true, timeLabel: time });
 
     this.chatMessage.set('');
     this.selectedFileName.set(null);
     this.showEmojiPicker.set(false);
 
+    this.scrollMessagesToBottom();
+
     setTimeout(() => {
-      const reply: ChatMessage = {
+      this.pushMessage(active.id, {
         id: this.generateId('msg-auto'),
         text: 'Спасибо! Автоответ: получили ваше сообщение и уже передали специалисту.',
         isMine: false,
         timeLabel: this.formatTime(),
-      };
-      this.pushMessage(active.id, reply);
+      });
+      this.scrollMessagesToBottom();
     }, 900);
   }
 
@@ -356,7 +255,6 @@ export class ChatPageComponent {
     const topic = this.ticketTopic();
     const trimmed = this.ticketMessage().trim();
     const fileName = this.selectedTicketFileName();
-
     if (!trimmed && !fileName) {
       return;
     }
@@ -377,20 +275,7 @@ export class ChatPageComponent {
         {
           id: this.generateId('group'),
           rangeLabel: 'Сегодня',
-          messages: [
-            {
-              id: this.generateId('msg'),
-              text: firstMessage,
-              isMine: true,
-              timeLabel: time,
-            },
-            {
-              id: this.generateId('msg'),
-              text: `Здравствуйте! Тема «${topic}» принята в работу. Мы скоро ответим подробнее.`,
-              isMine: false,
-              timeLabel: time,
-            },
-          ],
+          messages: [{ id: this.generateId('msg'), text: firstMessage, isMine: true, timeLabel: time }],
         },
       ],
     };
@@ -401,7 +286,7 @@ export class ChatPageComponent {
     this.selectedTicketFileName.set(null);
     this.showTicketEmojiPicker.set(false);
 
-    this.openDialog(targetId);
+    this.router.navigate(['/chat/conversation', targetId]);
   }
 
   @HostListener('document:click', ['$event'])
@@ -415,9 +300,8 @@ export class ChatPageComponent {
 
   @HostListener('window:resize')
   protected onResize(): void {
-    if (window.innerWidth >= 1024) {
-      this.mobileDetailOpen.set(false);
-    }
+    this.isMobile.set(window.innerWidth < 1024);
+    this.restoreDialogListScroll();
   }
 
   protected onChatEnter(event: Event): void {
@@ -436,6 +320,104 @@ export class ChatPageComponent {
     }
   }
 
+  private insertEmojiAtCaret(kind: ComposerKind, emoji: string): void {
+    const value = kind === 'ticket' ? this.ticketMessage() : this.chatMessage();
+    const caret = kind === 'ticket' ? this.ticketCaret() : this.chatCaret();
+    const nextValue = `${value.slice(0, caret.start)}${emoji}${value.slice(caret.end)}`;
+    const nextPos = caret.start + emoji.length;
+
+    if (kind === 'ticket') {
+      this.ticketMessage.set(nextValue);
+      this.ticketCaret.set({ start: nextPos, end: nextPos });
+      queueMicrotask(() => this.restoreCaret('ticket'));
+      return;
+    }
+
+    this.chatMessage.set(nextValue);
+    this.chatCaret.set({ start: nextPos, end: nextPos });
+    queueMicrotask(() => this.restoreCaret('chat'));
+  }
+
+  private restoreCaret(kind: ComposerKind): void {
+    const selector = kind === 'ticket' ? '#ticket-message' : '#chat-message';
+    const textarea = document.querySelector<HTMLTextAreaElement>(selector);
+    const caret = kind === 'ticket' ? this.ticketCaret() : this.chatCaret();
+    textarea?.focus();
+    textarea?.setSelectionRange(caret.start, caret.end);
+  }
+
+  private applyRouteState(): void {
+    const snapshot = this.route.snapshot;
+    const mode = snapshot.url[1]?.path ?? '';
+    const routeDialogId = snapshot.paramMap.get('id') ?? '';
+
+    if (mode === 'new') {
+      this.newTicketMode.set(true);
+      this.activeDialogId.set('');
+      return;
+    }
+
+    if (mode === 'conversation' && routeDialogId) {
+      const exists = this.dialogs().some((dialog) => dialog.id === routeDialogId);
+      if (!exists) {
+        this.router.navigate(['/chat']);
+        return;
+      }
+
+      this.newTicketMode.set(false);
+      this.activeDialogId.set(routeDialogId);
+      this.dialogs.update((dialogs) =>
+        dialogs.map((dialog) => (dialog.id === routeDialogId ? { ...dialog, unreadCount: 0 } : dialog)),
+      );
+      return;
+    }
+
+    this.newTicketMode.set(false);
+    this.activeDialogId.set('');
+  }
+
+  private restoreDialogListScroll(): void {
+    queueMicrotask(() => {
+      const node = this.dialogsScrollContainer?.nativeElement;
+      if (node) {
+        node.scrollTop = this.listScrollTop();
+      }
+    });
+  }
+
+  private storeListScroll(value: number): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    window.sessionStorage.setItem('chat-dialogs-scroll-top', String(value));
+  }
+
+  private readStoredListScroll(): number {
+    if (typeof window === 'undefined') {
+      return 0;
+    }
+
+    const storedValue = window.sessionStorage.getItem('chat-dialogs-scroll-top');
+    return storedValue ? Number.parseFloat(storedValue) || 0 : 0;
+  }
+
+  private scrollMessagesToBottom(): void {
+    const scrollToLatest = (): void => {
+      const node = this.messagesScrollContainer?.nativeElement;
+      if (!node) {
+        return;
+      }
+
+      node.scrollTop = node.scrollHeight;
+    };
+
+    queueMicrotask(() => {
+      scrollToLatest();
+      requestAnimationFrame(scrollToLatest);
+    });
+  }
+
   private pushMessage(dialogId: string, message: ChatMessage): void {
     this.dialogs.update((dialogs) =>
       dialogs.map((dialog) => {
@@ -446,16 +428,9 @@ export class ChatPageComponent {
         const groups = [...dialog.groups];
         const todayGroup = groups.at(-1);
         if (!todayGroup || todayGroup.rangeLabel !== 'Сегодня') {
-          groups.push({
-            id: this.generateId('group'),
-            rangeLabel: 'Сегодня',
-            messages: [message],
-          });
+          groups.push({ id: this.generateId('group'), rangeLabel: 'Сегодня', messages: [message] });
         } else {
-          groups[groups.length - 1] = {
-            ...todayGroup,
-            messages: [...todayGroup.messages, message],
-          };
+          groups[groups.length - 1] = { ...todayGroup, messages: [...todayGroup.messages, message] };
         }
 
         return {
@@ -466,6 +441,60 @@ export class ChatPageComponent {
         };
       }),
     );
+  }
+
+  private buildDemoDialogs(): ChatDialog[] {
+    const base: ChatDialog[] = [
+      {
+        id: 'support-technical',
+        title: 'Общий вопрос',
+        subtitle: 'Чат поддержки',
+        lastPreview: 'Проверяем статус транзакции и скоро ответим.',
+        lastTimeLabel: '09:43',
+        unreadCount: 0,
+        groups: [
+          {
+            id: 'g-1',
+            rangeLabel: 'Сегодня',
+            messages: [
+              {
+                id: 'm-1',
+                isMine: false,
+                text: 'Здравствуйте! Это старт диалога. Если нужна помощь — просто ответьте в этом чате.',
+                timeLabel: '09:30',
+              },
+            ],
+          },
+        ],
+      },
+    ];
+
+    for (let index = 1; index <= 18; index += 1) {
+      base.push({
+        id: `support-demo-${index}`,
+        title: `Диалог #${index}`,
+        subtitle: 'Чат поддержки',
+        lastPreview: `Демо-сообщение для проверки скролла списка диалогов #${index}.`,
+        lastTimeLabel: `${String((index % 12) + 10).padStart(2, '0')}:15`,
+        unreadCount: index % 4 === 0 ? 2 : 0,
+        groups: [
+          {
+            id: this.generateId('group'),
+            rangeLabel: 'Сегодня',
+            messages: [
+              {
+                id: this.generateId('msg'),
+                isMine: index % 2 === 0,
+                text: `Это демо-диалог #${index}.`,
+                timeLabel: 'сегодня',
+              },
+            ],
+          },
+        ],
+      });
+    }
+
+    return base;
   }
 
   private formatTime(): string {
