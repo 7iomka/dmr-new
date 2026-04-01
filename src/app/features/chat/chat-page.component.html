@@ -90,21 +90,6 @@
 
       @if (newTicketMode()) {
         <div class="chat-page__new-ticket">
-          <!-- <div class="chat-page__field">
-            <label class="chat-page__label" for="ticket-topic">Тема обращения</label>
-            <div class="chat-page__select-wrap">
-              <select
-                class="chat-page__select"
-                id="ticket-topic"
-                [ngModel]="ticketTopic()"
-                (ngModelChange)="ticketTopic.set($event)">
-                @for (topic of ticketTopics; track topic.value) {
-                  <option [value]="topic.value">{{ topic.label }}</option>
-                }
-              </select>
-              <svg class="chat-page__select-icon" lucideChevronDown></svg>
-            </div>
-          </div> -->
           <app-form-control-select
             inputId="ticket-topic"
             label="Тема обращения"
@@ -209,10 +194,10 @@
 
                   @for (message of group.messages; track message.id) {
                     <article
-                      class="chat-page__bubble"
-                      [ngClass]="message.isMine ? 'chat-page__bubble--mine' : 'chat-page__bubble--support'">
-                      <p class="chat-page__bubble-text">{{ message.text }}</p>
-                      <p class="chat-page__bubble-time">{{ message.timeLabel }}</p>
+                      class="chat-page__message"
+                      [ngClass]="message.isMine ? 'chat-page__message--mine' : 'chat-page__message--support'">
+                      <p class="chat-page__message-text">{{ message.text }}</p>
+                      <p class="chat-page__message-time">{{ message.timeLabel }}</p>
                     </article>
                   }
                 </section>
