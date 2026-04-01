@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, Output } from '@angular/core';
 import { AbstractControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule, SelectPassThrough } from 'primeng/select';
 
@@ -10,17 +10,19 @@ export type FormControlSelectOption = Record<string, unknown>;
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, SelectModule],
   template: `
-    <div class="c-form-control">
+    <div [class]="resolvedRootClass">
       @if (label) {
-        <label class="c-form-control__label" [for]="resolvedInputId">{{ label }}</label>
+        <label [class]="resolvedLabelClass" [for]="resolvedInputId">
+          {{ label }}
+        </label>
       }
 
       @if (usesFormGroup) {
-        <div class="c-form-control__control" [formGroup]="formGroup!">
+        <div [class]="resolvedControlClass" [formGroup]="formGroup!">
           <p-select
-            class="c-form-control__select"
             [appendTo]="'body'"
             [ariaLabel]="resolvedAriaLabel"
+            [class]="resolvedSelectClass"
             [filter]="filter"
             [filterBy]="filterBy"
             [filterPlaceholder]="filterPlaceholder"
@@ -31,9 +33,10 @@ export type FormControlSelectOption = Record<string, unknown>;
             [optionValue]="optionValue"
             [options]="options"
             [overlayOptions]="{ autoZIndex: true, baseZIndex: 1200 }"
-            [panelStyleClass]="panelStyleClass"
+            [panelStyleClass]="resolvedPanelStyleClass"
             [placeholder]="placeholder"
-            [pt]="selectPt"
+            [pt]="resolvedSelectPt"
+            [ptOptions]="{ mergeSections: true, mergeProps: true }"
             [showClear]="showClear">
             <ng-template #selectedItem let-item>
               @if (item) {
@@ -51,11 +54,11 @@ export type FormControlSelectOption = Record<string, unknown>;
           </p-select>
         </div>
       } @else {
-        <div class="c-form-control__control">
+        <div [class]="resolvedControlClass">
           <p-select
-            class="c-form-control__select"
             [appendTo]="'body'"
             [ariaLabel]="resolvedAriaLabel"
+            [class]="resolvedSelectClass"
             [filter]="filter"
             [filterBy]="filterBy"
             [filterPlaceholder]="filterPlaceholder"
@@ -65,9 +68,10 @@ export type FormControlSelectOption = Record<string, unknown>;
             [optionValue]="optionValue"
             [options]="options"
             [overlayOptions]="{ autoZIndex: true, baseZIndex: 1200 }"
-            [panelStyleClass]="panelStyleClass"
+            [panelStyleClass]="resolvedPanelStyleClass"
             [placeholder]="placeholder"
-            [pt]="selectPt"
+            [pt]="resolvedSelectPt"
+            [ptOptions]="{ mergeSections: true, mergeProps: true }"
             [showClear]="showClear"
             (ngModelChange)="onValueChange($event)">
             <ng-template #selectedItem let-item>
@@ -88,7 +92,7 @@ export type FormControlSelectOption = Record<string, unknown>;
       }
 
       @if (metaText) {
-        <div class="c-form-control__meta" [class.c-form-control__meta--error]="metaError">
+        <div [class]="resolvedMetaClass">
           {{ metaText }}
         </div>
       }
@@ -96,6 +100,8 @@ export type FormControlSelectOption = Record<string, unknown>;
   `,
 })
 export class FormControlSelectComponent {
+  private readonly hostElement = inject(ElementRef<HTMLElement>);
+
   @Input() formGroup?: FormGroup;
   @Input() controlName?: string;
   @Input() label?: string;
@@ -119,9 +125,15 @@ export class FormControlSelectComponent {
   @Input() filterPlaceholder = 'Поиск...';
   @Input() showClear = false;
 
-  @Input() panelStyleClass = 'c-form-control-select__panel';
+  @Input() rootClass?: string;
+  @Input() labelClass?: string;
+  @Input() controlClass?: string;
+  @Input() selectClass?: string;
+  @Input() metaClass?: string;
+  @Input() panelStyleClass?: string;
+  @Input() pt?: SelectPassThrough;
 
-  protected readonly selectPt: SelectPassThrough = {
+  protected readonly resolvedSelectPt: SelectPassThrough = {
     root: { class: 'c-form-control-select__root' },
     label: { class: 'c-form-control-select__label' },
     dropdown: { class: 'c-form-control-select__trigger' },
@@ -158,6 +170,34 @@ export class FormControlSelectComponent {
     return (this.ariaLabel ?? this.placeholder) || this.controlName;
   }
 
+  protected get resolvedRootClass(): string {
+    return this.joinClasses('c-form-control', this.rootClass);
+  }
+
+  protected get resolvedLabelClass(): string {
+    return this.joinClasses('c-form-control__label', this.labelClass);
+  }
+
+  protected get resolvedControlClass(): string {
+    return this.joinClasses('c-form-control__control', this.controlClass);
+  }
+
+  protected get resolvedSelectClass(): string {
+    return this.joinClasses('c-form-control__select', this.selectClass);
+  }
+
+  protected get resolvedMetaClass(): string {
+    return this.joinClasses(
+      'c-form-control__meta',
+      this.metaError ? 'c-form-control__meta--error' : null,
+      this.metaClass,
+    );
+  }
+
+  protected get resolvedPanelStyleClass(): string {
+    return this.joinClasses('c-form-control-select__panel', this.panelStyleClass);
+  }
+
   protected getLabel(option: unknown): string {
     if (option === null) {
       return '';
@@ -178,6 +218,20 @@ export class FormControlSelectComponent {
   protected onValueChange(nextValue: unknown): void {
     this.value = nextValue;
     this.valueChange.emit(nextValue);
+  }
+
+  private joinClasses(...values: unknown[]): string {
+    return values
+      .flatMap((value) => (Array.isArray(value) ? value : [value]))
+      .filter(
+        (value): value is string | number => value !== null && value !== undefined && value !== false && value !== '',
+      )
+      .map(String)
+      .join(' ');
+  }
+
+  private escapeAttributeValue(value: string): string {
+    return value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
   }
 
   private get control(): AbstractControl | null {

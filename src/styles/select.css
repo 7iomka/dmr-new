@@ -1,0 +1,14 @@
+@layer properties {
+  :root,
+  .dark {
+  }
+
+  :root {
+  }
+
+  .dark {
+  }
+}
+
+@layer components {
+}

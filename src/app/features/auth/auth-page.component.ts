@@ -25,6 +25,9 @@ import { FormControlOtpComponent } from '../../shared/components/form-controls/f
 
 @Component({
   selector: 'app-auth-page',
+  host: {
+    class: 'app-page',
+  },
   standalone: true,
   imports: [
     CommonModule,

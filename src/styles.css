@@ -4,6 +4,7 @@
 @import './styles/fonts.css';
 @import './styles/variables.css';
 @import './styles/utilities.css';
+
 @import './styles/scrollbar.css';
 @import './styles/button.css';
 @import './styles/menu.css';
@@ -12,12 +13,16 @@
 @import './styles/alert.css';
 @import './styles/dialog.css';
 @import './styles/form-controls.css';
-@import './styles/avatar.css';
 @import './styles/menu.css';
+@import './styles/select.css';
+@import './styles/avatar.css';
 @import './styles/stat-card.css';
 @import './styles/page-heading.css';
 @import './styles/pill-tabs.css';
 @import './styles/checkbox.css';
+@import './styles/popover.css';
+
+@import './styles/page.css';
 
 @source not "../old";
 
@@ -38,6 +43,11 @@
     font-family: 'TTNorms', sans-serif;
   }
 
+  body,
+  html {
+    height: 100%;
+  }
+
   button:not(:disabled),
   [role='button']:not(:disabled) {
     cursor: pointer;
@@ -52,5 +62,9 @@
   .lucide,
   svg {
     flex-shrink: 0;
+  }
+
+  router-outlet {
+    display: none;
   }
 }

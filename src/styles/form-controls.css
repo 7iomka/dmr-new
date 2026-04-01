@@ -91,11 +91,15 @@
   }
 
   .c-form-control-select__label {
-    @apply flex min-h-[inherit] items-center;
+    @apply flex min-h-[inherit] items-center text-[size:inherit];
   }
 
   .c-form-control-select__trigger {
     @apply w-10;
+  }
+
+  .c-form-control-select__option {
+    @apply text-sm;
   }
 
   /* -------------------------------------------------------------------------- */

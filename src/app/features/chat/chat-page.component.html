@@ -1,0 +1,291 @@
+<p-card class="chat-page" [pt]="cardPt">
+  <ng-template #header>
+    <header class="chat-page__header">
+      <div class="chat-page__header-main">
+        <div class="chat-page__header-icon">
+          <svg aria-hidden="true" class="w-5 h-5" lucideMessageCircle></svg>
+        </div>
+        <div class="min-w-0">
+          <h1 class="chat-page__title">Чат поддержки</h1>
+          <p class="chat-page__subtitle">Создайте обращение — мы рассмотрим его в кратчайшие сроки</p>
+        </div>
+      </div>
+    </header>
+  </ng-template>
+
+  <div class="chat-page__layout" [class.chat-page__layout--mobile-detail-open]="mobileDetailOpen()">
+    <aside class="chat-page__list-panel">
+      <div class="chat-page__list">
+        @for (dialog of dialogs(); track dialog.id) {
+          <button
+            class="chat-page__item"
+            type="button"
+            [class.chat-page__item--active]="activeDialogId() === dialog.id"
+            (click)="openDialog(dialog.id)">
+            <div class="chat-page__item-icon-wrap">
+              <svg class="w-5 h-5" lucideMessageCircle></svg>
+              @if (dialog.unreadCount > 0) {
+                <span class="chat-page__item-counter">{{ dialog.unreadCount }}</span>
+              }
+            </div>
+            <div class="chat-page__item-content">
+              <div class="chat-page__item-head">
+                <p class="chat-page__item-title">{{ dialog.title }}</p>
+                <span class="chat-page__item-time">{{ dialog.lastTimeLabel }}</span>
+              </div>
+              <p class="chat-page__item-preview">{{ dialog.lastPreview }}</p>
+            </div>
+          </button>
+        }
+
+        @if (!hasDialogs()) {
+          <div class="chat-page__empty-list">
+            <p class="text-sm font-semibold text-surface-700 dark:text-surface-200">Пока нет обращений</p>
+            <p class="mt-1 text-xs text-muted-color">Нажмите «Начать разговор», чтобы начать беседу с поддержкой.</p>
+          </div>
+        }
+      </div>
+
+      <div class="chat-page__list-footer">
+        <p-button styleClass="w-full" (onClick)="openNewTicket()">
+          <svg class="w-4 h-4" lucidePlusCircle pButtonIcon></svg>
+          <span pButtonLabel>Начать разговор</span>
+        </p-button>
+      </div>
+    </aside>
+
+    <section class="chat-page__detail-panel">
+      <div class="chat-page__detail-head">
+        <p-button
+          ariaLabel="Back"
+          class="chat-page__back lg:hidden"
+          severity="secondary"
+          styleClass="p-button-icon-only"
+          variant="outlined"
+          (onClick)="closeDetailOnMobile()">
+          <svg class="h-4 w-4" lucideChevronLeft pButtonIcon></svg>
+        </p-button>
+
+        <div class="chat-page__detail-id">
+          <div class="chat-page__detail-icon"><svg class="w-5 h-5" lucideMessageCircle></svg></div>
+          <div>
+            <p class="chat-page__detail-title">
+              {{ newTicketMode() ? 'Новое обращение' : activeDialog()?.title || 'Чат поддержки' }}
+            </p>
+            <p class="chat-page__detail-subtitle">Чат поддержки</p>
+          </div>
+        </div>
+      </div>
+
+      @if (showWelcome()) {
+        <div class="chat-page__welcome">
+          <p class="text-lg font-bold text-surface-900 dark:text-surface-0">Добро пожаловать в чат поддержки</p>
+          <p class="mt-2 text-sm text-muted-color">Выберите существующий диалог или создайте новое обращение.</p>
+          <p-button class="mt-4" (onClick)="openNewTicket()">
+            <svg class="w-4 h-4" lucidePlusCircle pButtonIcon></svg>
+            <span pButtonLabel>Начать разговор</span>
+          </p-button>
+        </div>
+      }
+
+      @if (newTicketMode()) {
+        <div class="chat-page__new-ticket">
+          <!-- <div class="chat-page__field">
+            <label class="chat-page__label" for="ticket-topic">Тема обращения</label>
+            <div class="chat-page__select-wrap">
+              <select
+                class="chat-page__select"
+                id="ticket-topic"
+                [ngModel]="ticketTopic()"
+                (ngModelChange)="ticketTopic.set($event)">
+                @for (topic of ticketTopics; track topic.value) {
+                  <option [value]="topic.value">{{ topic.label }}</option>
+                }
+              </select>
+              <svg class="chat-page__select-icon" lucideChevronDown></svg>
+            </div>
+          </div> -->
+          <app-form-control-select
+            inputId="ticket-topic"
+            label="Тема обращения"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Выберите тему обращения"
+            rootClass="chat-page__select-control"
+            [options]="ticketTopics"
+            [value]="ticketTopic()"
+            (valueChange)="onTicketTopicChange($event)" />
+
+          <app-form-control-shell inputId="ticket-message" label="Первое сообщение">
+            <div class="chat-page__composer">
+              @if (selectedTicketFileName(); as fileName) {
+                <div class="chat-page__attachment-row">
+                  <div class="chat-page__attachment-name">
+                    <svg class="w-4 h-4" lucidePaperclip></svg><span>{{ fileName }}</span>
+                  </div>
+                  <button class="chat-page__icon-button" type="button" (click)="clearTicketAttachment(ticketFileInput)">
+                    <svg class="w-4 h-4" lucideX></svg>
+                  </button>
+                </div>
+              }
+
+              <p-popover #ticketMessageEmojiPicker appendTo="body">
+                <div class="chat-page__emoji-grid">
+                  @for (emoji of emojiOptions; track emoji) {
+                    <p-button
+                      class="chat-page__emoji"
+                      severity="secondary"
+                      size="small"
+                      styleClass="p-button-icon-only"
+                      [text]="true"
+                      (onClick)="appendEmoji(emoji, true)">
+                      <span class="text-xl" pButtonIcon>{{ emoji }}</span>
+                    </p-button>
+                  }
+                </div>
+              </p-popover>
+
+              <div class="chat-page__composer-row">
+                <input #ticketFileInput hidden type="file" (change)="onTicketFileSelected($event)" />
+                <p-button
+                  severity="primary"
+                  styleClass="chat-page__icon-button p-button-icon-only"
+                  [text]="true"
+                  (onClick)="ticketFileInput.click()">
+                  <svg class="w-5 h-5" lucidePaperclip pButtonIcon></svg>
+                </p-button>
+
+                <textarea
+                  class="chat-page__textarea"
+                  id="ticket-message"
+                  pTextarea
+                  placeholder="Введите сообщение..."
+                  rows="1"
+                  spellcheck="false"
+                  [autoResize]="true"
+                  [ngModel]="ticketMessage()"
+                  (keydown)="onTicketEnter($event)"
+                  (ngModelChange)="ticketMessage.set($event)"></textarea>
+
+                <p-button
+                  severity="primary"
+                  styleClass="chat-page__icon-button p-button-icon-only"
+                  [text]="true"
+                  (onClick)="ticketMessageEmojiPicker.toggle($event)">
+                  <svg class="w-5 h-5" lucideSmile pButtonIcon></svg>
+                </p-button>
+
+                <p-divider class="chat-page__divider" layout="vertical" />
+                <p-button
+                  severity="primary"
+                  styleClass="chat-page__icon-button p-button-icon-only"
+                  [text]="true"
+                  (onClick)="submitNewTicket()">
+                  <svg class="w-5 h-5" lucideSendHorizontal pButtonIcon></svg>
+                </p-button>
+              </div>
+            </div>
+          </app-form-control-shell>
+        </div>
+      } @else {
+        <div class="chat-page__messages" [class.hidden]="!activeDialog()">
+          @if (activeDialog(); as dialog) {
+            @if (!dialog.groups.length) {
+              <div class="chat-page__empty-messages">
+                <p class="text-sm font-semibold text-surface-700 dark:text-surface-200">Сообщений пока нет</p>
+                <p class="text-xs text-muted-color">Напишите первое сообщение, чтобы начать диалог.</p>
+              </div>
+            }
+
+            @for (group of dialog.groups; track group.id) {
+              <section class="chat-page__date-group">
+                <div class="chat-page__date-sticky">
+                  <span class="chat-page__date-chip">{{ group.rangeLabel }}</span>
+                </div>
+
+                @for (message of group.messages; track message.id) {
+                  <article
+                    class="chat-page__bubble"
+                    [ngClass]="message.isMine ? 'chat-page__bubble--mine' : 'chat-page__bubble--support'">
+                    <p class="chat-page__bubble-text">{{ message.text }}</p>
+                    <p class="chat-page__bubble-time">{{ message.timeLabel }}</p>
+                  </article>
+                }
+              </section>
+            }
+          }
+        </div>
+
+        <footer class="chat-page__composer-wrap" [class.hidden]="!activeDialog()">
+          <div class="chat-page__composer">
+            @if (selectedFileName(); as fileName) {
+              <div class="chat-page__attachment-row">
+                <div class="chat-page__attachment-name">
+                  <svg class="w-4 h-4" lucidePaperclip></svg><span>{{ fileName }}</span>
+                </div>
+                <button class="chat-page__icon-button" type="button" (click)="clearChatAttachment(chatFileInput)">
+                  <svg class="w-4 h-4" lucideX></svg>
+                </button>
+              </div>
+            }
+
+            <p-popover #chatMessageEmojiPicker appendTo="body">
+              <div class="chat-page__emoji-grid">
+                @for (emoji of emojiOptions; track emoji) {
+                  <p-button
+                    class="chat-page__emoji"
+                    severity="secondary"
+                    size="small"
+                    styleClass="p-button-icon-only"
+                    [text]="true"
+                    (onClick)="appendEmoji(emoji)">
+                    <span class="text-xl" pButtonIcon>{{ emoji }}</span>
+                  </p-button>
+                }
+              </div>
+            </p-popover>
+
+            <div class="chat-page__composer-row">
+              <input #chatFileInput hidden type="file" (change)="onChatFileSelected($event)" />
+              <p-button
+                severity="primary"
+                styleClass="chat-page__icon-button p-button-icon-only"
+                [text]="true"
+                (onClick)="chatFileInput.click()">
+                <svg class="w-5 h-5" lucidePaperclip pButtonIcon></svg>
+              </p-button>
+
+              <textarea
+                class="chat-page__textarea"
+                id="chat-message"
+                pTextarea
+                placeholder="Введите сообщение..."
+                rows="1"
+                spellcheck="false"
+                [autoResize]="true"
+                [ngModel]="chatMessage()"
+                (keydown)="onChatEnter($event)"
+                (ngModelChange)="chatMessage.set($event)"></textarea>
+
+              <p-button
+                severity="primary"
+                styleClass="chat-page__icon-button p-button-icon-only"
+                [text]="true"
+                (onClick)="chatMessageEmojiPicker.toggle($event)">
+                <svg class="w-5 h-5" lucideSmile pButtonIcon></svg>
+              </p-button>
+              <p-divider class="chat-page__divider" layout="vertical" />
+              <p-button
+                severity="primary"
+                styleClass="chat-page__icon-button p-button-icon-only"
+                [text]="true"
+                (onClick)="submitChatMessage()">
+                <svg class="w-5 h-5" lucideSendHorizontal pButtonIcon></svg>
+              </p-button>
+            </div>
+          </div>
+        </footer>
+      }
+    </section>
+  </div>
+</p-card>
