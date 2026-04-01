@@ -33,14 +33,12 @@ import { FormControlSelectComponent } from '../../shared/components/form-control
 import { FormControlShellComponent } from '../../shared/components/form-controls/form-control-shell.component';
 import { CHAT_DIALOGS_STORAGE_KEY, CHAT_DIALOGS_UPDATED_EVENT } from './chat-storage.constants';
 
-type ChatMessage = { id: string; text: string; isMine: boolean; timeLabel: string };
+type ChatMessage = { id: string; text: string; isMine: boolean; timeLabel: string; occurredAt: string };
 type ChatDateGroup = { id: string; rangeLabel: string; messages: ChatMessage[] };
 type ChatDialog = {
   id: string;
   title: string;
   subtitle: string;
-  lastPreview: string;
-  lastTimeLabel: string;
   unreadCount: number;
   groups: ChatDateGroup[];
 };
@@ -236,9 +234,16 @@ export class ChatPageComponent implements AfterViewInit {
       return;
     }
 
-    const time = this.formatTime();
+    const now = new Date();
+    const time = this.formatMessageTimestamp(now);
     const messageText = fileName ? `📎 Файл: ${fileName}${trimmed ? `\n${trimmed}` : ''}` : trimmed;
-    this.pushMessage(active.id, { id: this.generateId('msg-user'), text: messageText, isMine: true, timeLabel: time });
+    this.pushMessage(active.id, {
+      id: this.generateId('msg-user'),
+      text: messageText,
+      isMine: true,
+      timeLabel: time,
+      occurredAt: now.toISOString(),
+    });
 
     this.chatMessage.set('');
     this.selectedFileName.set(null);
@@ -251,7 +256,8 @@ export class ChatPageComponent implements AfterViewInit {
         id: this.generateId('msg-auto'),
         text: 'Спасибо! Автоответ: получили ваше сообщение и уже передали специалисту.',
         isMine: false,
-        timeLabel: this.formatTime(),
+        timeLabel: this.formatMessageTimestamp(new Date()),
+        occurredAt: new Date().toISOString(),
       });
       this.scrollMessagesToBottom();
     }, 900);
@@ -267,21 +273,28 @@ export class ChatPageComponent implements AfterViewInit {
 
     this.generatedCounter += 1;
     const targetId = `support-generated-${this.generatedCounter}`;
-    const time = this.formatTime();
+    const now = new Date();
+    const time = this.formatMessageTimestamp(now);
     const firstMessage = fileName ? `📎 Файл: ${fileName}${trimmed ? `\n${trimmed}` : ''}` : trimmed;
 
     const newDialog: ChatDialog = {
       id: targetId,
       title: topic,
       subtitle: 'Чат поддержки',
-      lastPreview: trimmed || 'Прикреплен файл',
-      lastTimeLabel: time,
       unreadCount: 0,
       groups: [
         {
           id: this.generateId('group'),
           rangeLabel: 'Сегодня',
-          messages: [{ id: this.generateId('msg'), text: firstMessage, isMine: true, timeLabel: time }],
+          messages: [
+            {
+              id: this.generateId('msg'),
+              text: firstMessage,
+              isMine: true,
+              timeLabel: time,
+              occurredAt: now.toISOString(),
+            },
+          ],
         },
       ],
     };
@@ -414,12 +427,13 @@ export class ChatPageComponent implements AfterViewInit {
   }
 
   private setDialogs(dialogs: ChatDialog[]): void {
-    this.dialogs.set(dialogs);
-    this.storeDialogs(dialogs);
+    const normalized = this.sortDialogsByLastMessage(this.normalizeDialogs(dialogs));
+    this.dialogs.set(normalized);
+    this.storeDialogs(normalized);
   }
 
   private updateDialogs(updateFn: (dialogs: ChatDialog[]) => ChatDialog[]): void {
-    const nextDialogs = updateFn(this.dialogs());
+    const nextDialogs = this.sortDialogsByLastMessage(this.normalizeDialogs(updateFn(this.dialogs())));
     this.dialogs.set(nextDialogs);
     this.storeDialogs(nextDialogs);
   }
@@ -498,8 +512,6 @@ export class ChatPageComponent implements AfterViewInit {
         return {
           ...dialog,
           groups,
-          lastPreview: message.text.replace(/\n/g, ' ').slice(0, 90),
-          lastTimeLabel: this.formatTime(),
         };
       }),
     );
@@ -511,8 +523,6 @@ export class ChatPageComponent implements AfterViewInit {
         id: 'support-technical',
         title: 'Общий вопрос',
         subtitle: 'Чат поддержки',
-        lastPreview: 'Проверяем статус транзакции и скоро ответим.',
-        lastTimeLabel: '09:43',
         unreadCount: 0,
         groups: [
           {
@@ -523,7 +533,8 @@ export class ChatPageComponent implements AfterViewInit {
                 id: 'm-1',
                 isMine: false,
                 text: 'Здравствуйте! Это старт диалога. Если нужна помощь — просто ответьте в этом чате.',
-                timeLabel: '09:30',
+                timeLabel: this.formatMessageTimestamp(new Date()),
+                occurredAt: new Date().toISOString(),
               },
             ],
           },
@@ -539,14 +550,7 @@ export class ChatPageComponent implements AfterViewInit {
             {
               id: this.generateId('group'),
               rangeLabel: 'Сегодня',
-              messages: [
-                {
-                  id: this.generateId('msg'),
-                  isMine: index % 2 === 0,
-                  text: `Это демо-диалог #${index}.`,
-                  timeLabel: `${String((index % 12) + 10).padStart(2, '0')}:${index % 2 === 0 ? '05' : '35'}`,
-                },
-              ],
+              messages: [this.buildSimpleDemoMessage(index)],
             },
           ];
 
@@ -554,8 +558,6 @@ export class ChatPageComponent implements AfterViewInit {
         id: `support-demo-${index}`,
         title: `Диалог #${index}`,
         subtitle: 'Чат поддержки',
-        lastPreview: `Демо-сообщение для проверки скролла списка диалогов #${index}.`,
-        lastTimeLabel: `${String((index % 12) + 10).padStart(2, '0')}:15`,
         unreadCount: index % 4 === 0 ? 2 : 0,
         groups,
       });
@@ -564,8 +566,43 @@ export class ChatPageComponent implements AfterViewInit {
     return base;
   }
 
-  private formatTime(): string {
-    return new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+  protected getDialogPreview(dialog: ChatDialog): string {
+    const message = this.getLastMessage(dialog);
+    return message ? message.text.replace(/\n/g, ' ').slice(0, 90) : 'Нет сообщений';
+  }
+
+  protected getDialogLastLabel(dialog: ChatDialog): string {
+    const message = this.getLastMessage(dialog);
+    if (!message) {
+      return '';
+    }
+
+    return this.formatDialogListTimestamp(new Date(message.occurredAt));
+  }
+
+  private formatMessageTimestamp(date: Date): string {
+    const now = new Date();
+    if (this.isSameDay(date, now)) {
+      return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    return `${date.toLocaleDateString('ru-RU')} ${date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+  }
+
+  private formatDialogListTimestamp(date: Date): string {
+    const now = new Date();
+    if (this.isSameDay(date, now)) {
+      return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    const dayDiff = Math.floor(
+      (this.startOfDay(now).getTime() - this.startOfDay(date).getTime()) / (24 * 60 * 60 * 1000),
+    );
+    if (dayDiff >= 1 && dayDiff < 7) {
+      return date.toLocaleDateString('ru-RU', { weekday: 'long' });
+    }
+
+    return date.toLocaleDateString('ru-RU');
   }
 
   private generateId(prefix: string): string {
@@ -574,14 +611,16 @@ export class ChatPageComponent implements AfterViewInit {
 
   private buildExtendedDemoGroups(index: number): ChatDateGroup[] {
     const todayMessages: ChatMessage[] = [];
+    const now = new Date();
     for (let messageIndex = 1; messageIndex <= 12; messageIndex += 1) {
-      const hour = String(8 + (messageIndex % 10)).padStart(2, '0');
-      const minute = String((messageIndex * 7) % 60).padStart(2, '0');
+      const messageDate = new Date(now);
+      messageDate.setHours(8 + (messageIndex % 10), (messageIndex * 7) % 60, 0, 0);
       todayMessages.push({
         id: this.generateId('msg'),
         isMine: messageIndex % 2 === 0,
         text: `Демо-сообщение ${messageIndex} в диалоге #${index}.`,
-        timeLabel: `${hour}:${minute}`,
+        timeLabel: this.formatMessageTimestamp(messageDate),
+        occurredAt: messageDate.toISOString(),
       });
     }
 
@@ -598,12 +637,14 @@ export class ChatPageComponent implements AfterViewInit {
             isMine: false,
             text: `Старое сообщение в диалоге #${index}.`,
             timeLabel: `${olderDateLabel} 18:10`,
+            occurredAt: new Date(new Date(olderDate).setHours(18, 10, 0, 0)).toISOString(),
           },
           {
             id: this.generateId('msg'),
             isMine: true,
             text: `Ответ по старому сообщению в диалоге #${index}.`,
             timeLabel: `${olderDateLabel} 18:42`,
+            occurredAt: new Date(new Date(olderDate).setHours(18, 42, 0, 0)).toISOString(),
           },
         ],
       },
@@ -613,5 +654,70 @@ export class ChatPageComponent implements AfterViewInit {
         messages: todayMessages,
       },
     ];
+  }
+
+  private buildSimpleDemoMessage(index: number): ChatMessage {
+    const messageDate = new Date();
+    messageDate.setHours((index % 12) + 10, index % 2 === 0 ? 5 : 35, 0, 0);
+
+    return {
+      id: this.generateId('msg'),
+      isMine: index % 2 === 0,
+      text: `Это демо-диалог #${index}.`,
+      timeLabel: this.formatMessageTimestamp(messageDate),
+      occurredAt: messageDate.toISOString(),
+    };
+  }
+
+  private getLastMessage(dialog: ChatDialog): ChatMessage | null {
+    const group = dialog.groups.at(-1);
+    const message = group?.messages.at(-1);
+    return message ?? null;
+  }
+
+  private sortDialogsByLastMessage(dialogs: ChatDialog[]): ChatDialog[] {
+    return [...dialogs].sort((left, right) => {
+      const leftTime = this.getLastMessageTime(left);
+      const rightTime = this.getLastMessageTime(right);
+      return rightTime - leftTime;
+    });
+  }
+
+  private getLastMessageTime(dialog: ChatDialog): number {
+    const message = this.getLastMessage(dialog);
+    return message ? new Date(message.occurredAt).getTime() : 0;
+  }
+
+  private normalizeDialogs(dialogs: ChatDialog[]): ChatDialog[] {
+    return dialogs.map((dialog, dialogIndex) => ({
+      ...dialog,
+      groups: dialog.groups.map((group, groupIndex) => ({
+        ...group,
+        messages: group.messages.map((message, messageIndex) => {
+          const parsedDate = new Date((message as Partial<ChatMessage>).occurredAt ?? '');
+          const occurredAt = Number.isNaN(parsedDate.getTime())
+            ? new Date(Date.now() - (dialogIndex + groupIndex + messageIndex) * 60_000).toISOString()
+            : parsedDate.toISOString();
+
+          return {
+            ...message,
+            occurredAt,
+            timeLabel: this.formatMessageTimestamp(new Date(occurredAt)),
+          };
+        }),
+      })),
+    }));
+  }
+
+  private isSameDay(left: Date, right: Date): boolean {
+    return (
+      left.getFullYear() === right.getFullYear() &&
+      left.getMonth() === right.getMonth() &&
+      left.getDate() === right.getDate()
+    );
+  }
+
+  private startOfDay(date: Date): Date {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
   }
 }

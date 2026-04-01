@@ -31,9 +31,9 @@
             <div class="chat-page__item-content">
               <div class="chat-page__item-head">
                 <p class="chat-page__item-title">{{ dialog.title }}</p>
-                <span class="chat-page__item-time">{{ dialog.lastTimeLabel }}</span>
+                <span class="chat-page__item-time">{{ getDialogLastLabel(dialog) }}</span>
               </div>
-              <p class="chat-page__item-preview">{{ dialog.lastPreview }}</p>
+              <p class="chat-page__item-preview">{{ getDialogPreview(dialog) }}</p>
             </div>
           </button>
         }
