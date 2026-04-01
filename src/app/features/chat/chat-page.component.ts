@@ -524,51 +524,7 @@ export class ChatPageComponent implements AfterViewInit {
   }
 
   private buildDemoDialogs(): ChatDialog[] {
-    const base: ChatDialog[] = [
-      {
-        id: 'support-technical',
-        title: 'Общий вопрос',
-        subtitle: 'Чат поддержки',
-        unreadCount: 0,
-        groups: [
-          {
-            id: 'g-1',
-            date: this.toIsoDate(new Date()),
-            messages: [
-              {
-                id: 'm-1',
-                isMine: false,
-                text: 'Здравствуйте! Это старт диалога. Если нужна помощь — просто ответьте в этом чате.',
-                createdAt: new Date().toISOString(),
-              },
-            ],
-          },
-        ],
-      },
-    ];
-
-    for (let index = 1; index <= 18; index += 1) {
-      const hasExtendedThread = index <= 4;
-      const groups = hasExtendedThread
-        ? this.buildExtendedDemoGroups(index)
-        : [
-            {
-              id: this.generateId('group'),
-              date: this.toIsoDate(new Date()),
-              messages: [this.buildSimpleDemoMessage(index)],
-            },
-          ];
-
-      base.push({
-        id: `support-demo-${index}`,
-        title: `Диалог #${index}`,
-        subtitle: 'Чат поддержки',
-        unreadCount: index % 4 === 0 ? 2 : 0,
-        groups,
-      });
-    }
-
-    return base;
+    return this.mapBackendConversations(this.buildDemoBackendConversations());
   }
 
   protected getDialogPreview(dialog: ChatDialog): string {
@@ -631,60 +587,6 @@ export class ChatPageComponent implements AfterViewInit {
     return `${prefix}-${Math.random().toString(16).slice(2, 10)}`;
   }
 
-  private buildExtendedDemoGroups(index: number): ChatDateGroup[] {
-    const todayMessages: ChatMessage[] = [];
-    const now = new Date();
-    for (let messageIndex = 1; messageIndex <= 12; messageIndex += 1) {
-      const messageDate = new Date(now);
-      messageDate.setHours(8 + (messageIndex % 10), (messageIndex * 7) % 60, 0, 0);
-      todayMessages.push({
-        id: this.generateId('msg'),
-        isMine: messageIndex % 2 === 0,
-        text: `Демо-сообщение ${messageIndex} в диалоге #${index}.`,
-        createdAt: messageDate.toISOString(),
-      });
-    }
-
-    const olderDate = new Date(Date.now() - 24 * 60 * 60 * 1000);
-    return [
-      {
-        id: this.generateId('group'),
-        date: this.toIsoDate(olderDate),
-        messages: [
-          {
-            id: this.generateId('msg'),
-            isMine: false,
-            text: `Старое сообщение в диалоге #${index}.`,
-            createdAt: new Date(new Date(olderDate).setHours(18, 10, 0, 0)).toISOString(),
-          },
-          {
-            id: this.generateId('msg'),
-            isMine: true,
-            text: `Ответ по старому сообщению в диалоге #${index}.`,
-            createdAt: new Date(new Date(olderDate).setHours(18, 42, 0, 0)).toISOString(),
-          },
-        ],
-      },
-      {
-        id: this.generateId('group'),
-        date: this.toIsoDate(now),
-        messages: todayMessages,
-      },
-    ];
-  }
-
-  private buildSimpleDemoMessage(index: number): ChatMessage {
-    const messageDate = new Date();
-    messageDate.setHours((index % 12) + 10, index % 2 === 0 ? 5 : 35, 0, 0);
-
-    return {
-      id: this.generateId('msg'),
-      isMine: index % 2 === 0,
-      text: `Это демо-диалог #${index}.`,
-      createdAt: messageDate.toISOString(),
-    };
-  }
-
   private getLastMessage(dialog: ChatDialog): ChatMessage | null {
     const group = dialog.groups.at(-1);
     const message = group?.messages.at(-1);
@@ -707,21 +609,25 @@ export class ChatPageComponent implements AfterViewInit {
   private normalizeDialogs(dialogs: ChatDialog[]): ChatDialog[] {
     return dialogs.map((dialog, dialogIndex) => ({
       ...dialog,
-      groups: dialog.groups.map((group, groupIndex) => ({
-        ...group,
-        date: this.normalizeGroupDate(group, dialogIndex, groupIndex),
-        messages: group.messages.map((message, messageIndex) => {
-          const parsedDate = new Date((message as Partial<ChatMessage>).createdAt ?? '');
-          const createdAt = Number.isNaN(parsedDate.getTime())
-            ? new Date(Date.now() - (dialogIndex + groupIndex + messageIndex) * 60_000).toISOString()
-            : parsedDate.toISOString();
+      groups: dialog.groups
+        .map((group, groupIndex) => ({
+          ...group,
+          date: this.normalizeGroupDate(group, dialogIndex, groupIndex),
+          messages: group.messages
+            .map((message, messageIndex) => {
+              const parsedDate = new Date((message as Partial<ChatMessage>).createdAt ?? '');
+              const createdAt = Number.isNaN(parsedDate.getTime())
+                ? new Date(Date.now() - (dialogIndex + groupIndex + messageIndex) * 60_000).toISOString()
+                : parsedDate.toISOString();
 
-          return {
-            ...message,
-            createdAt,
-          };
-        }),
-      })),
+              return {
+                ...message,
+                createdAt,
+              };
+            })
+            .sort((left, right) => new Date(left.createdAt).getTime() - new Date(right.createdAt).getTime()),
+        }))
+        .sort((left, right) => new Date(left.date).getTime() - new Date(right.date).getTime()),
     }));
   }
 
@@ -777,26 +683,146 @@ export class ChatPageComponent implements AfterViewInit {
   private mapBackendConversations(conversations: BackendConversation[]): ChatDialog[] {
     return conversations.map((conversation) => {
       const createdAt = conversation.lastMessage?.createdDate ?? conversation.lastMessageAt;
+      const groups = this.buildThreadGroupsFromLastMessage(
+        String(conversation.id),
+        createdAt,
+        conversation.lastMessage?.content,
+      );
       return {
         id: String(conversation.id),
         title: conversation.subject || 'Диалог',
         subtitle: 'Чат поддержки',
         unreadCount: conversation.unreadCount ?? 0,
-        groups: [
-          {
-            id: this.generateId('group'),
-            date: this.toIsoDate(new Date(createdAt)),
-            messages: [
-              {
-                id: `srv-${conversation.lastMessage?.id ?? conversation.id}`,
-                text: conversation.lastMessage?.content?.trim() || 'Без текста',
-                isMine: false,
-                createdAt,
-              },
-            ],
-          },
-        ],
+        groups,
       };
     });
+  }
+
+  private buildDemoBackendConversations(): BackendConversation[] {
+    return [
+      {
+        id: 28,
+        type: 'OPERATOR_TO_OPERATOR',
+        status: 'CUSTOMER_PENDING',
+        subject: 'Предупреждение',
+        lastMessageAt: new Date().toISOString(),
+        createdDate: new Date().toISOString(),
+        lastModifiedDate: new Date().toISOString(),
+        createdBy: 'demo@invest.me',
+        lastModifiedBy: 'demo@invest.me',
+        initiatorId: 'demo-1',
+        initiatorFullName: 'Demo User',
+        initiatorEmail: 'demo@invest.me',
+        initiatorPhone: '000',
+        initiatorAvatarUrl: null,
+        messageCount: null,
+        participants: null,
+        lastMessage: { id: 206, content: 'Последнее сообщение сегодня', createdDate: new Date().toISOString() },
+        unreadCount: 2,
+      } as BackendConversation,
+      {
+        id: 27,
+        type: 'USER_TO_OPERATOR',
+        status: 'PENDING_ACCEPTANCE',
+        subject: 'Счета и платежи',
+        lastMessageAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+        createdDate: new Date().toISOString(),
+        lastModifiedDate: new Date().toISOString(),
+        createdBy: 'demo@invest.me',
+        lastModifiedBy: 'demo@invest.me',
+        initiatorId: 'demo-2',
+        initiatorFullName: 'Demo User',
+        initiatorEmail: 'demo@invest.me',
+        initiatorPhone: '000',
+        initiatorAvatarUrl: null,
+        messageCount: null,
+        participants: null,
+        lastMessage: {
+          id: 205,
+          content: 'Последнее сообщение было вчера',
+          createdDate: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+        },
+        unreadCount: 1,
+      } as BackendConversation,
+      {
+        id: 24,
+        type: 'USER_TO_OPERATOR',
+        status: 'ACTIVE',
+        subject: 'Предупреждение тест',
+        lastMessageAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+        createdDate: new Date().toISOString(),
+        lastModifiedDate: new Date().toISOString(),
+        createdBy: 'demo@invest.me',
+        lastModifiedBy: 'demo@invest.me',
+        initiatorId: 'demo-3',
+        initiatorFullName: 'Demo User',
+        initiatorEmail: 'demo@invest.me',
+        initiatorPhone: '000',
+        initiatorAvatarUrl: null,
+        messageCount: null,
+        participants: null,
+        lastMessage: {
+          id: 169,
+          content: 'Сообщение в пределах недели',
+          createdDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+        },
+        unreadCount: 0,
+      } as BackendConversation,
+      {
+        id: 22,
+        type: 'USER_TO_OPERATOR',
+        status: 'ACTIVE',
+        subject: 'Общий вопрос',
+        lastMessageAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+        createdDate: new Date().toISOString(),
+        lastModifiedDate: new Date().toISOString(),
+        createdBy: 'demo@invest.me',
+        lastModifiedBy: 'demo@invest.me',
+        initiatorId: 'demo-4',
+        initiatorFullName: 'Demo User',
+        initiatorEmail: 'demo@invest.me',
+        initiatorPhone: '000',
+        initiatorAvatarUrl: null,
+        messageCount: null,
+        participants: null,
+        lastMessage: {
+          id: 167,
+          content: 'Старое сообщение',
+          createdDate: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+        },
+        unreadCount: 0,
+      } as BackendConversation,
+    ];
+  }
+
+  private buildThreadGroupsFromLastMessage(
+    conversationId: string,
+    lastMessageAt: string,
+    lastContent?: string | null,
+  ): ChatDateGroup[] {
+    const lastDate = new Date(lastMessageAt);
+    const earlierDate = new Date(lastDate.getTime() - 90 * 60 * 1000);
+    const latestDate = new Date(lastDate.getTime());
+
+    return [
+      {
+        id: this.generateId('group'),
+        date: this.toIsoDate(lastDate),
+        messages: [
+          {
+            id: `srv-${conversationId}-1`,
+            text: `История диалога #${conversationId}`,
+            isMine: true,
+            createdAt: earlierDate.toISOString(),
+          },
+          {
+            id: `srv-${conversationId}-2`,
+            text: lastContent?.trim() || 'Без текста',
+            isMine: false,
+            createdAt: latestDate.toISOString(),
+          },
+        ],
+      },
+    ];
   }
 }
