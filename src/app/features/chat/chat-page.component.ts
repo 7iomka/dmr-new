@@ -33,8 +33,8 @@ import { FormControlSelectComponent } from '../../shared/components/form-control
 import { FormControlShellComponent } from '../../shared/components/form-controls/form-control-shell.component';
 import { CHAT_DIALOGS_STORAGE_KEY, CHAT_DIALOGS_UPDATED_EVENT } from './chat-storage.constants';
 
-type ChatMessage = { id: string; text: string; isMine: boolean; timeLabel: string; occurredAt: string };
-type ChatDateGroup = { id: string; rangeLabel: string; messages: ChatMessage[] };
+type ChatMessage = { id: string; text: string; isMine: boolean; createdAt: string };
+type ChatDateGroup = { id: string; date: string; messages: ChatMessage[] };
 type ChatDialog = {
   id: string;
   title: string;
@@ -43,6 +43,13 @@ type ChatDialog = {
   groups: ChatDateGroup[];
 };
 type TicketTopicOption = { label: string; value: string };
+type BackendConversation = {
+  id: number;
+  subject: string;
+  unreadCount: number | null;
+  lastMessageAt: string;
+  lastMessage: { id: number; content: string | null; createdDate: string } | null;
+};
 
 type ComposerKind = 'chat' | 'ticket';
 
@@ -235,14 +242,12 @@ export class ChatPageComponent implements AfterViewInit {
     }
 
     const now = new Date();
-    const time = this.formatMessageTimestamp(now);
     const messageText = fileName ? `📎 Файл: ${fileName}${trimmed ? `\n${trimmed}` : ''}` : trimmed;
     this.pushMessage(active.id, {
       id: this.generateId('msg-user'),
       text: messageText,
       isMine: true,
-      timeLabel: time,
-      occurredAt: now.toISOString(),
+      createdAt: now.toISOString(),
     });
 
     this.chatMessage.set('');
@@ -256,8 +261,7 @@ export class ChatPageComponent implements AfterViewInit {
         id: this.generateId('msg-auto'),
         text: 'Спасибо! Автоответ: получили ваше сообщение и уже передали специалисту.',
         isMine: false,
-        timeLabel: this.formatMessageTimestamp(new Date()),
-        occurredAt: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
       });
       this.scrollMessagesToBottom();
     }, 900);
@@ -274,7 +278,6 @@ export class ChatPageComponent implements AfterViewInit {
     this.generatedCounter += 1;
     const targetId = `support-generated-${this.generatedCounter}`;
     const now = new Date();
-    const time = this.formatMessageTimestamp(now);
     const firstMessage = fileName ? `📎 Файл: ${fileName}${trimmed ? `\n${trimmed}` : ''}` : trimmed;
 
     const newDialog: ChatDialog = {
@@ -285,14 +288,13 @@ export class ChatPageComponent implements AfterViewInit {
       groups: [
         {
           id: this.generateId('group'),
-          rangeLabel: 'Сегодня',
+          date: this.toIsoDate(now),
           messages: [
             {
               id: this.generateId('msg'),
               text: firstMessage,
               isMine: true,
-              timeLabel: time,
-              occurredAt: now.toISOString(),
+              createdAt: now.toISOString(),
             },
           ],
         },
@@ -462,6 +464,9 @@ export class ChatPageComponent implements AfterViewInit {
       if (!Array.isArray(parsed)) {
         return null;
       }
+      if (this.looksLikeBackendConversations(parsed)) {
+        return this.mapBackendConversations(parsed);
+      }
       return parsed as ChatDialog[];
     } catch {
       return null;
@@ -503,8 +508,9 @@ export class ChatPageComponent implements AfterViewInit {
 
         const groups = [...dialog.groups];
         const todayGroup = groups.at(-1);
-        if (!todayGroup || todayGroup.rangeLabel !== 'Сегодня') {
-          groups.push({ id: this.generateId('group'), rangeLabel: 'Сегодня', messages: [message] });
+        const messageDate = this.toIsoDate(new Date(message.createdAt));
+        if (!todayGroup || todayGroup.date !== messageDate) {
+          groups.push({ id: this.generateId('group'), date: messageDate, messages: [message] });
         } else {
           groups[groups.length - 1] = { ...todayGroup, messages: [...todayGroup.messages, message] };
         }
@@ -527,14 +533,13 @@ export class ChatPageComponent implements AfterViewInit {
         groups: [
           {
             id: 'g-1',
-            rangeLabel: 'Сегодня',
+            date: this.toIsoDate(new Date()),
             messages: [
               {
                 id: 'm-1',
                 isMine: false,
                 text: 'Здравствуйте! Это старт диалога. Если нужна помощь — просто ответьте в этом чате.',
-                timeLabel: this.formatMessageTimestamp(new Date()),
-                occurredAt: new Date().toISOString(),
+                createdAt: new Date().toISOString(),
               },
             ],
           },
@@ -549,7 +554,7 @@ export class ChatPageComponent implements AfterViewInit {
         : [
             {
               id: this.generateId('group'),
-              rangeLabel: 'Сегодня',
+              date: this.toIsoDate(new Date()),
               messages: [this.buildSimpleDemoMessage(index)],
             },
           ];
@@ -571,13 +576,21 @@ export class ChatPageComponent implements AfterViewInit {
     return message ? message.text.replace(/\n/g, ' ').slice(0, 90) : 'Нет сообщений';
   }
 
-  protected getDialogLastLabel(dialog: ChatDialog): string {
+  protected getDialogListTimestampLabel(dialog: ChatDialog): string {
     const message = this.getLastMessage(dialog);
     if (!message) {
       return '';
     }
 
-    return this.formatDialogListTimestamp(new Date(message.occurredAt));
+    return this.formatDialogListTimestamp(new Date(message.createdAt));
+  }
+
+  protected getMessageTimestampLabel(message: ChatMessage): string {
+    return this.formatMessageTimestamp(new Date(message.createdAt));
+  }
+
+  protected getGroupDateLabel(group: ChatDateGroup): string {
+    return this.formatGroupDateLabel(new Date(group.date));
   }
 
   private formatMessageTimestamp(date: Date): string {
@@ -586,23 +599,32 @@ export class ChatPageComponent implements AfterViewInit {
       return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
     }
 
-    return `${date.toLocaleDateString('ru-RU')} ${date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+    if (this.dayDiffFromToday(date) === 1) {
+      return `Вчера, ${date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+    }
+
+    return `${date.toLocaleDateString('ru-RU')}, ${date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
   }
 
   private formatDialogListTimestamp(date: Date): string {
-    const now = new Date();
-    if (this.isSameDay(date, now)) {
+    if (this.isSameDay(date, new Date())) {
       return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
     }
 
-    const dayDiff = Math.floor(
-      (this.startOfDay(now).getTime() - this.startOfDay(date).getTime()) / (24 * 60 * 60 * 1000),
-    );
-    if (dayDiff >= 1 && dayDiff < 7) {
-      return date.toLocaleDateString('ru-RU', { weekday: 'long' });
+    const dayDiff = this.dayDiffFromToday(date);
+    if (dayDiff === 1) {
+      return 'Вчера';
+    }
+    if (dayDiff > 1 && dayDiff <= 7) {
+      const dayShort = date.toLocaleDateString('ru-RU', { weekday: 'short' });
+      return dayShort.charAt(0).toUpperCase() + dayShort.slice(1);
     }
 
     return date.toLocaleDateString('ru-RU');
+  }
+
+  private formatGroupDateLabel(date: Date): string {
+    return this.isSameDay(date, new Date()) ? 'Сегодня' : date.toLocaleDateString('ru-RU');
   }
 
   private generateId(prefix: string): string {
@@ -619,38 +641,33 @@ export class ChatPageComponent implements AfterViewInit {
         id: this.generateId('msg'),
         isMine: messageIndex % 2 === 0,
         text: `Демо-сообщение ${messageIndex} в диалоге #${index}.`,
-        timeLabel: this.formatMessageTimestamp(messageDate),
-        occurredAt: messageDate.toISOString(),
+        createdAt: messageDate.toISOString(),
       });
     }
 
     const olderDate = new Date(Date.now() - 24 * 60 * 60 * 1000);
-    const olderDateLabel = olderDate.toLocaleDateString('ru-RU');
-
     return [
       {
         id: this.generateId('group'),
-        rangeLabel: olderDateLabel,
+        date: this.toIsoDate(olderDate),
         messages: [
           {
             id: this.generateId('msg'),
             isMine: false,
             text: `Старое сообщение в диалоге #${index}.`,
-            timeLabel: `${olderDateLabel} 18:10`,
-            occurredAt: new Date(new Date(olderDate).setHours(18, 10, 0, 0)).toISOString(),
+            createdAt: new Date(new Date(olderDate).setHours(18, 10, 0, 0)).toISOString(),
           },
           {
             id: this.generateId('msg'),
             isMine: true,
             text: `Ответ по старому сообщению в диалоге #${index}.`,
-            timeLabel: `${olderDateLabel} 18:42`,
-            occurredAt: new Date(new Date(olderDate).setHours(18, 42, 0, 0)).toISOString(),
+            createdAt: new Date(new Date(olderDate).setHours(18, 42, 0, 0)).toISOString(),
           },
         ],
       },
       {
         id: this.generateId('group'),
-        rangeLabel: 'Сегодня',
+        date: this.toIsoDate(now),
         messages: todayMessages,
       },
     ];
@@ -664,8 +681,7 @@ export class ChatPageComponent implements AfterViewInit {
       id: this.generateId('msg'),
       isMine: index % 2 === 0,
       text: `Это демо-диалог #${index}.`,
-      timeLabel: this.formatMessageTimestamp(messageDate),
-      occurredAt: messageDate.toISOString(),
+      createdAt: messageDate.toISOString(),
     };
   }
 
@@ -685,7 +701,7 @@ export class ChatPageComponent implements AfterViewInit {
 
   private getLastMessageTime(dialog: ChatDialog): number {
     const message = this.getLastMessage(dialog);
-    return message ? new Date(message.occurredAt).getTime() : 0;
+    return message ? new Date(message.createdAt).getTime() : 0;
   }
 
   private normalizeDialogs(dialogs: ChatDialog[]): ChatDialog[] {
@@ -693,16 +709,16 @@ export class ChatPageComponent implements AfterViewInit {
       ...dialog,
       groups: dialog.groups.map((group, groupIndex) => ({
         ...group,
+        date: this.normalizeGroupDate(group, dialogIndex, groupIndex),
         messages: group.messages.map((message, messageIndex) => {
-          const parsedDate = new Date((message as Partial<ChatMessage>).occurredAt ?? '');
-          const occurredAt = Number.isNaN(parsedDate.getTime())
+          const parsedDate = new Date((message as Partial<ChatMessage>).createdAt ?? '');
+          const createdAt = Number.isNaN(parsedDate.getTime())
             ? new Date(Date.now() - (dialogIndex + groupIndex + messageIndex) * 60_000).toISOString()
             : parsedDate.toISOString();
 
           return {
             ...message,
-            occurredAt,
-            timeLabel: this.formatMessageTimestamp(new Date(occurredAt)),
+            createdAt,
           };
         }),
       })),
@@ -719,5 +735,61 @@ export class ChatPageComponent implements AfterViewInit {
 
   private startOfDay(date: Date): Date {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  private dayDiffFromToday(date: Date): number {
+    return Math.floor(
+      (this.startOfDay(new Date()).getTime() - this.startOfDay(date).getTime()) / (24 * 60 * 60 * 1000),
+    );
+  }
+
+  private toIsoDate(date: Date): string {
+    return this.startOfDay(date).toISOString();
+  }
+
+  private normalizeGroupDate(group: ChatDateGroup, dialogIndex: number, groupIndex: number): string {
+    const parsedGroupDate = new Date(group.date);
+    if (!Number.isNaN(parsedGroupDate.getTime())) {
+      return this.toIsoDate(parsedGroupDate);
+    }
+
+    const fallbackMessage = group.messages.at(0);
+    if (fallbackMessage) {
+      return this.toIsoDate(new Date(fallbackMessage.createdAt));
+    }
+
+    return this.toIsoDate(new Date(Date.now() - (dialogIndex + groupIndex) * 60_000));
+  }
+
+  private looksLikeBackendConversations(data: unknown[]): data is BackendConversation[] {
+    return data.every(
+      (item) => typeof item === 'object' && item !== null && 'lastMessageAt' in item && 'subject' in item,
+    );
+  }
+
+  private mapBackendConversations(conversations: BackendConversation[]): ChatDialog[] {
+    return conversations.map((conversation) => {
+      const createdAt = conversation.lastMessage?.createdDate ?? conversation.lastMessageAt;
+      return {
+        id: String(conversation.id),
+        title: conversation.subject || 'Диалог',
+        subtitle: 'Чат поддержки',
+        unreadCount: conversation.unreadCount ?? 0,
+        groups: [
+          {
+            id: this.generateId('group'),
+            date: this.toIsoDate(new Date(createdAt)),
+            messages: [
+              {
+                id: `srv-${conversation.lastMessage?.id ?? conversation.id}`,
+                text: conversation.lastMessage?.content?.trim() || 'Без текста',
+                isMine: false,
+                createdAt,
+              },
+            ],
+          },
+        ],
+      };
+    });
   }
 }
