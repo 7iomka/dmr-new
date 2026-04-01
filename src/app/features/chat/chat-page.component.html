@@ -31,9 +31,9 @@
             <div class="chat-page__item-content">
               <div class="chat-page__item-head">
                 <p class="chat-page__item-title">{{ dialog.title }}</p>
-                <span class="chat-page__item-time">{{ dialog.lastTimeLabel }}</span>
+                <span class="chat-page__item-time">{{ getDialogListTimestampLabel(dialog) }}</span>
               </div>
-              <p class="chat-page__item-preview">{{ dialog.lastPreview }}</p>
+              <p class="chat-page__item-preview">{{ getDialogPreview(dialog) }}</p>
             </div>
           </button>
         }
@@ -189,7 +189,7 @@
               @for (group of dialog.groups; track group.id) {
                 <section class="chat-page__date-group">
                   <div class="chat-page__date-sticky">
-                    <span class="chat-page__date-chip">{{ group.rangeLabel }}</span>
+                    <span class="chat-page__date-chip">{{ getGroupDateLabel(group) }}</span>
                   </div>
 
                   @for (message of group.messages; track message.id) {
@@ -197,7 +197,7 @@
                       class="chat-page__message"
                       [ngClass]="message.isMine ? 'chat-page__message--mine' : 'chat-page__message--support'">
                       <p class="chat-page__message-text">{{ message.text }}</p>
-                      <p class="chat-page__message-time">{{ message.timeLabel }}</p>
+                      <p class="chat-page__message-time">{{ getMessageTimestampLabel(message) }}</p>
                     </article>
                   }
                 </section>

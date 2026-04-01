@@ -28,20 +28,19 @@ import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { TextareaModule } from 'primeng/textarea';
 import { PopoverModule } from 'primeng/popover';
+import { MessageService } from 'primeng/api';
 import { FormControlSelectComponent } from '../../shared/components/form-controls/form-control-select.component';
 import { FormControlShellComponent } from '../../shared/components/form-controls/form-control-shell.component';
+import {
+  BackendConversation,
+  ChatDateGroup,
+  ChatDialog,
+  ChatMessage,
+  isBackendConversationList,
+  mapBackendConversationsToDialogs,
+} from './chat-adapter';
+import { CHAT_DIALOGS_STORAGE_KEY, CHAT_DIALOGS_UPDATED_EVENT } from './chat-storage.constants';
 
-type ChatMessage = { id: string; text: string; isMine: boolean; timeLabel: string };
-type ChatDateGroup = { id: string; rangeLabel: string; messages: ChatMessage[] };
-type ChatDialog = {
-  id: string;
-  title: string;
-  subtitle: string;
-  lastPreview: string;
-  lastTimeLabel: string;
-  unreadCount: number;
-  groups: ChatDateGroup[];
-};
 type TicketTopicOption = { label: string; value: string };
 
 type ComposerKind = 'chat' | 'ticket';
@@ -82,6 +81,7 @@ export class ChatPageComponent implements AfterViewInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly messageService = inject(MessageService);
 
   private readonly listScrollTop = signal(this.readStoredListScroll());
   private readonly isMobile = signal(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
@@ -132,6 +132,7 @@ export class ChatPageComponent implements AfterViewInit {
   protected readonly showTicketEmojiPicker = signal(false);
 
   private generatedCounter = 0;
+  private readonly dialogsStorageKey = CHAT_DIALOGS_STORAGE_KEY;
 
   protected readonly activeDialog = computed(
     () => this.dialogs().find((dialog) => dialog.id === this.activeDialogId()) ?? null,
@@ -145,7 +146,9 @@ export class ChatPageComponent implements AfterViewInit {
   protected readonly cardPt = { body: { class: 'p-0' }, content: { class: 'p-0' } };
 
   constructor() {
-    this.dialogs.set(this.buildDemoDialogs());
+    const restoredDialogs = this.readStoredDialogs() ?? this.buildDemoDialogs();
+    this.generatedCounter = this.resolveGeneratedCounter(restoredDialogs);
+    this.setDialogs(restoredDialogs);
 
     this.route.url.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.applyRouteState();
@@ -230,9 +233,14 @@ export class ChatPageComponent implements AfterViewInit {
       return;
     }
 
-    const time = this.formatTime();
+    const now = new Date();
     const messageText = fileName ? `📎 Файл: ${fileName}${trimmed ? `\n${trimmed}` : ''}` : trimmed;
-    this.pushMessage(active.id, { id: this.generateId('msg-user'), text: messageText, isMine: true, timeLabel: time });
+    this.pushMessage(active.id, {
+      id: this.generateId('msg-user'),
+      text: messageText,
+      isMine: true,
+      createdDate: now.toISOString(),
+    });
 
     this.chatMessage.set('');
     this.selectedFileName.set(null);
@@ -245,7 +253,7 @@ export class ChatPageComponent implements AfterViewInit {
         id: this.generateId('msg-auto'),
         text: 'Спасибо! Автоответ: получили ваше сообщение и уже передали специалисту.',
         isMine: false,
-        timeLabel: this.formatTime(),
+        createdDate: new Date().toISOString(),
       });
       this.scrollMessagesToBottom();
     }, 900);
@@ -261,30 +269,40 @@ export class ChatPageComponent implements AfterViewInit {
 
     this.generatedCounter += 1;
     const targetId = `support-generated-${this.generatedCounter}`;
-    const time = this.formatTime();
+    const now = new Date();
     const firstMessage = fileName ? `📎 Файл: ${fileName}${trimmed ? `\n${trimmed}` : ''}` : trimmed;
 
     const newDialog: ChatDialog = {
       id: targetId,
       title: topic,
       subtitle: 'Чат поддержки',
-      lastPreview: trimmed || 'Прикреплен файл',
-      lastTimeLabel: time,
       unreadCount: 0,
       groups: [
         {
           id: this.generateId('group'),
-          rangeLabel: 'Сегодня',
-          messages: [{ id: this.generateId('msg'), text: firstMessage, isMine: true, timeLabel: time }],
+          date: this.toIsoDate(now),
+          messages: [
+            {
+              id: this.generateId('msg'),
+              text: firstMessage,
+              isMine: true,
+              createdDate: now.toISOString(),
+            },
+          ],
         },
       ],
     };
 
-    this.dialogs.update((dialogs) => [newDialog, ...dialogs]);
+    this.updateDialogs((dialogs) => [newDialog, ...dialogs]);
     this.ticketTopic.set('Общий вопрос');
     this.ticketMessage.set('');
     this.selectedTicketFileName.set(null);
     this.showTicketEmojiPicker.set(false);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Обращение создано',
+      detail: 'Новый диалог добавлен в список.',
+    });
 
     this.router.navigate(['/chat/conversation', targetId]);
   }
@@ -366,7 +384,7 @@ export class ChatPageComponent implements AfterViewInit {
 
       this.newTicketMode.set(false);
       this.activeDialogId.set(routeDialogId);
-      this.dialogs.update((dialogs) =>
+      this.updateDialogs((dialogs) =>
         dialogs.map((dialog) => (dialog.id === routeDialogId ? { ...dialog, unreadCount: 0 } : dialog)),
       );
       return;
@@ -402,6 +420,64 @@ export class ChatPageComponent implements AfterViewInit {
     return storedValue ? Number.parseFloat(storedValue) || 0 : 0;
   }
 
+  private setDialogs(dialogs: ChatDialog[]): void {
+    const normalized = this.sortDialogsByLastMessage(this.normalizeDialogs(dialogs));
+    this.dialogs.set(normalized);
+    this.storeDialogs(normalized);
+  }
+
+  private updateDialogs(updateFn: (dialogs: ChatDialog[]) => ChatDialog[]): void {
+    const nextDialogs = this.sortDialogsByLastMessage(this.normalizeDialogs(updateFn(this.dialogs())));
+    this.dialogs.set(nextDialogs);
+    this.storeDialogs(nextDialogs);
+  }
+
+  private storeDialogs(dialogs: ChatDialog[]): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    window.localStorage.setItem(this.dialogsStorageKey, JSON.stringify(dialogs));
+    window.dispatchEvent(new CustomEvent(CHAT_DIALOGS_UPDATED_EVENT));
+  }
+
+  private readStoredDialogs(): ChatDialog[] | null {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    const raw = window.localStorage.getItem(this.dialogsStorageKey);
+    if (!raw) {
+      return null;
+    }
+
+    try {
+      const parsed = JSON.parse(raw) as unknown;
+      if (!Array.isArray(parsed)) {
+        return null;
+      }
+      if (isBackendConversationList(parsed)) {
+        return mapBackendConversationsToDialogs(parsed, {
+          generateId: (prefix) => this.generateId(prefix),
+          toIsoDate: (date) => this.toIsoDate(date),
+        });
+      }
+      return parsed as ChatDialog[];
+    } catch {
+      return null;
+    }
+  }
+
+  private resolveGeneratedCounter(dialogs: ChatDialog[]): number {
+    const generatedIds = dialogs
+      .map((dialog) => dialog.id)
+      .filter((id) => id.startsWith('support-generated-'))
+      .map((id) => Number.parseInt(id.replace('support-generated-', ''), 10))
+      .filter((id) => Number.isFinite(id));
+
+    return generatedIds.length ? Math.max(...generatedIds) : 0;
+  }
+
   private scrollMessagesToBottom(): void {
     const scrollToLatest = (): void => {
       const node = this.messagesScrollContainer?.nativeElement;
@@ -419,7 +495,7 @@ export class ChatPageComponent implements AfterViewInit {
   }
 
   private pushMessage(dialogId: string, message: ChatMessage): void {
-    this.dialogs.update((dialogs) =>
+    this.updateDialogs((dialogs) =>
       dialogs.map((dialog) => {
         if (dialog.id !== dialogId) {
           return dialog;
@@ -427,8 +503,9 @@ export class ChatPageComponent implements AfterViewInit {
 
         const groups = [...dialog.groups];
         const todayGroup = groups.at(-1);
-        if (!todayGroup || todayGroup.rangeLabel !== 'Сегодня') {
-          groups.push({ id: this.generateId('group'), rangeLabel: 'Сегодня', messages: [message] });
+        const messageDate = this.toIsoDate(new Date(message.createdDate));
+        if (!todayGroup || todayGroup.date !== messageDate) {
+          groups.push({ id: this.generateId('group'), date: messageDate, messages: [message] });
         } else {
           groups[groups.length - 1] = { ...todayGroup, messages: [...todayGroup.messages, message] };
         }
@@ -436,72 +513,259 @@ export class ChatPageComponent implements AfterViewInit {
         return {
           ...dialog,
           groups,
-          lastPreview: message.text.replace(/\n/g, ' ').slice(0, 90),
-          lastTimeLabel: this.formatTime(),
         };
       }),
     );
   }
 
   private buildDemoDialogs(): ChatDialog[] {
-    const base: ChatDialog[] = [
-      {
-        id: 'support-technical',
-        title: 'Общий вопрос',
-        subtitle: 'Чат поддержки',
-        lastPreview: 'Проверяем статус транзакции и скоро ответим.',
-        lastTimeLabel: '09:43',
-        unreadCount: 0,
-        groups: [
-          {
-            id: 'g-1',
-            rangeLabel: 'Сегодня',
-            messages: [
-              {
-                id: 'm-1',
-                isMine: false,
-                text: 'Здравствуйте! Это старт диалога. Если нужна помощь — просто ответьте в этом чате.',
-                timeLabel: '09:30',
-              },
-            ],
-          },
-        ],
-      },
-    ];
-
-    for (let index = 1; index <= 18; index += 1) {
-      base.push({
-        id: `support-demo-${index}`,
-        title: `Диалог #${index}`,
-        subtitle: 'Чат поддержки',
-        lastPreview: `Демо-сообщение для проверки скролла списка диалогов #${index}.`,
-        lastTimeLabel: `${String((index % 12) + 10).padStart(2, '0')}:15`,
-        unreadCount: index % 4 === 0 ? 2 : 0,
-        groups: [
-          {
-            id: this.generateId('group'),
-            rangeLabel: 'Сегодня',
-            messages: [
-              {
-                id: this.generateId('msg'),
-                isMine: index % 2 === 0,
-                text: `Это демо-диалог #${index}.`,
-                timeLabel: 'сегодня',
-              },
-            ],
-          },
-        ],
-      });
-    }
-
-    return base;
+    return mapBackendConversationsToDialogs(this.buildDemoBackendConversations(), {
+      generateId: (prefix) => this.generateId(prefix),
+      toIsoDate: (date) => this.toIsoDate(date),
+    });
   }
 
-  private formatTime(): string {
-    return new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+  protected getDialogPreview(dialog: ChatDialog): string {
+    const message = this.getLastMessage(dialog);
+    return message ? message.text.replace(/\n/g, ' ').slice(0, 90) : 'Нет сообщений';
+  }
+
+  protected getDialogListTimestampLabel(dialog: ChatDialog): string {
+    const message = this.getLastMessage(dialog);
+    if (!message) {
+      return '';
+    }
+
+    return this.formatDialogListTimestamp(new Date(message.createdDate));
+  }
+
+  protected getMessageTimestampLabel(message: ChatMessage): string {
+    return this.formatMessageTimestamp(new Date(message.createdDate));
+  }
+
+  protected getGroupDateLabel(group: ChatDateGroup): string {
+    return this.formatGroupDateLabel(new Date(group.date));
+  }
+
+  private formatMessageTimestamp(date: Date): string {
+    const now = new Date();
+    if (this.isSameDay(date, now)) {
+      return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    if (this.dayDiffFromToday(date) === 1) {
+      return `Вчера, ${date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+    }
+
+    return `${date.toLocaleDateString('ru-RU')}, ${date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+  }
+
+  private formatDialogListTimestamp(date: Date): string {
+    if (this.isSameDay(date, new Date())) {
+      return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    const dayDiff = this.dayDiffFromToday(date);
+    if (dayDiff === 1) {
+      return 'Вчера';
+    }
+    if (dayDiff > 1 && dayDiff <= 7) {
+      const dayShort = date.toLocaleDateString('ru-RU', { weekday: 'short' });
+      return dayShort.charAt(0).toUpperCase() + dayShort.slice(1);
+    }
+
+    return date.toLocaleDateString('ru-RU');
+  }
+
+  private formatGroupDateLabel(date: Date): string {
+    return this.isSameDay(date, new Date()) ? 'Сегодня' : date.toLocaleDateString('ru-RU');
   }
 
   private generateId(prefix: string): string {
     return `${prefix}-${Math.random().toString(16).slice(2, 10)}`;
+  }
+
+  private getLastMessage(dialog: ChatDialog): ChatMessage | null {
+    const group = dialog.groups.at(-1);
+    const message = group?.messages.at(-1);
+    return message ?? null;
+  }
+
+  private sortDialogsByLastMessage(dialogs: ChatDialog[]): ChatDialog[] {
+    return [...dialogs].sort((left, right) => {
+      const leftTime = this.getLastMessageTime(left);
+      const rightTime = this.getLastMessageTime(right);
+      return rightTime - leftTime;
+    });
+  }
+
+  private getLastMessageTime(dialog: ChatDialog): number {
+    const message = this.getLastMessage(dialog);
+    return message ? new Date(message.createdDate).getTime() : 0;
+  }
+
+  private normalizeDialogs(dialogs: ChatDialog[]): ChatDialog[] {
+    return dialogs.map((dialog, dialogIndex) => ({
+      ...dialog,
+      groups: dialog.groups
+        .map((group, groupIndex) => ({
+          ...group,
+          date: this.normalizeGroupDate(group, dialogIndex, groupIndex),
+          messages: group.messages
+            .map((message, messageIndex) => {
+              const parsedDate = new Date((message as Partial<ChatMessage>).createdDate ?? '');
+              const createdDate = Number.isNaN(parsedDate.getTime())
+                ? new Date(Date.now() - (dialogIndex + groupIndex + messageIndex) * 60_000).toISOString()
+                : parsedDate.toISOString();
+
+              return {
+                ...message,
+                createdDate,
+              };
+            })
+            .sort((left, right) => new Date(left.createdDate).getTime() - new Date(right.createdDate).getTime()),
+        }))
+        .sort((left, right) => new Date(left.date).getTime() - new Date(right.date).getTime()),
+    }));
+  }
+
+  private isSameDay(left: Date, right: Date): boolean {
+    return (
+      left.getFullYear() === right.getFullYear() &&
+      left.getMonth() === right.getMonth() &&
+      left.getDate() === right.getDate()
+    );
+  }
+
+  private startOfDay(date: Date): Date {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  private dayDiffFromToday(date: Date): number {
+    return Math.floor(
+      (this.startOfDay(new Date()).getTime() - this.startOfDay(date).getTime()) / (24 * 60 * 60 * 1000),
+    );
+  }
+
+  private toIsoDate(date: Date): string {
+    if (Number.isNaN(date.getTime())) {
+      return this.startOfDay(new Date()).toISOString();
+    }
+
+    return this.startOfDay(date).toISOString();
+  }
+
+  private normalizeGroupDate(group: ChatDateGroup, dialogIndex: number, groupIndex: number): string {
+    const parsedGroupDate = new Date(group.date);
+    if (!Number.isNaN(parsedGroupDate.getTime())) {
+      return this.toIsoDate(parsedGroupDate);
+    }
+
+    const fallbackMessage = group.messages.at(0);
+    if (fallbackMessage) {
+      const fallbackMessageDate = new Date(fallbackMessage.createdDate);
+      if (!Number.isNaN(fallbackMessageDate.getTime())) {
+        return this.toIsoDate(fallbackMessageDate);
+      }
+    }
+
+    return this.toIsoDate(new Date(Date.now() - (dialogIndex + groupIndex) * 60_000));
+  }
+
+  private buildDemoBackendConversations(): BackendConversation[] {
+    return [
+      {
+        id: 28,
+        type: 'OPERATOR_TO_OPERATOR',
+        status: 'CUSTOMER_PENDING',
+        subject: 'Предупреждение',
+        lastMessageAt: new Date().toISOString(),
+        createdDate: new Date().toISOString(),
+        lastModifiedDate: new Date().toISOString(),
+        createdBy: 'demo@invest.me',
+        lastModifiedBy: 'demo@invest.me',
+        initiatorId: 'demo-1',
+        initiatorFullName: 'Demo User',
+        initiatorEmail: 'demo@invest.me',
+        initiatorPhone: '000',
+        initiatorAvatarUrl: null,
+        messageCount: null,
+        participants: null,
+        lastMessage: { id: 206, content: 'Последнее сообщение сегодня', createdDate: new Date().toISOString() },
+        unreadCount: 2,
+      } as BackendConversation,
+      {
+        id: 27,
+        type: 'USER_TO_OPERATOR',
+        status: 'PENDING_ACCEPTANCE',
+        subject: 'Счета и платежи',
+        lastMessageAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+        createdDate: new Date().toISOString(),
+        lastModifiedDate: new Date().toISOString(),
+        createdBy: 'demo@invest.me',
+        lastModifiedBy: 'demo@invest.me',
+        initiatorId: 'demo-2',
+        initiatorFullName: 'Demo User',
+        initiatorEmail: 'demo@invest.me',
+        initiatorPhone: '000',
+        initiatorAvatarUrl: null,
+        messageCount: null,
+        participants: null,
+        lastMessage: {
+          id: 205,
+          content: 'Последнее сообщение было вчера',
+          createdDate: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+        },
+        unreadCount: 1,
+      } as BackendConversation,
+      {
+        id: 24,
+        type: 'USER_TO_OPERATOR',
+        status: 'ACTIVE',
+        subject: 'Предупреждение тест',
+        lastMessageAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+        createdDate: new Date().toISOString(),
+        lastModifiedDate: new Date().toISOString(),
+        createdBy: 'demo@invest.me',
+        lastModifiedBy: 'demo@invest.me',
+        initiatorId: 'demo-3',
+        initiatorFullName: 'Demo User',
+        initiatorEmail: 'demo@invest.me',
+        initiatorPhone: '000',
+        initiatorAvatarUrl: null,
+        messageCount: null,
+        participants: null,
+        lastMessage: {
+          id: 169,
+          content: 'Сообщение в пределах недели',
+          createdDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+        },
+        unreadCount: 0,
+      } as BackendConversation,
+      {
+        id: 22,
+        type: 'USER_TO_OPERATOR',
+        status: 'ACTIVE',
+        subject: 'Общий вопрос',
+        lastMessageAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+        createdDate: new Date().toISOString(),
+        lastModifiedDate: new Date().toISOString(),
+        createdBy: 'demo@invest.me',
+        lastModifiedBy: 'demo@invest.me',
+        initiatorId: 'demo-4',
+        initiatorFullName: 'Demo User',
+        initiatorEmail: 'demo@invest.me',
+        initiatorPhone: '000',
+        initiatorAvatarUrl: null,
+        messageCount: null,
+        participants: null,
+        lastMessage: {
+          id: 167,
+          content: 'Старое сообщение',
+          createdDate: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+        },
+        unreadCount: 0,
+      } as BackendConversation,
+    ];
   }
 }
