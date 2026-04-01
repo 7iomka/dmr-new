@@ -31,6 +31,7 @@ import { PopoverModule } from 'primeng/popover';
 import { MessageService } from 'primeng/api';
 import { FormControlSelectComponent } from '../../shared/components/form-controls/form-control-select.component';
 import { FormControlShellComponent } from '../../shared/components/form-controls/form-control-shell.component';
+import { CHAT_DIALOGS_STORAGE_KEY, CHAT_DIALOGS_UPDATED_EVENT } from './chat-storage.constants';
 
 type ChatMessage = { id: string; text: string; isMine: boolean; timeLabel: string };
 type ChatDateGroup = { id: string; rangeLabel: string; messages: ChatMessage[] };
@@ -134,7 +135,7 @@ export class ChatPageComponent implements AfterViewInit {
   protected readonly showTicketEmojiPicker = signal(false);
 
   private generatedCounter = 0;
-  private readonly dialogsStorageKey = 'chat-dialogs-state';
+  private readonly dialogsStorageKey = CHAT_DIALOGS_STORAGE_KEY;
 
   protected readonly activeDialog = computed(
     () => this.dialogs().find((dialog) => dialog.id === this.activeDialogId()) ?? null,
@@ -428,7 +429,8 @@ export class ChatPageComponent implements AfterViewInit {
       return;
     }
 
-    window.sessionStorage.setItem(this.dialogsStorageKey, JSON.stringify(dialogs));
+    window.localStorage.setItem(this.dialogsStorageKey, JSON.stringify(dialogs));
+    window.dispatchEvent(new CustomEvent(CHAT_DIALOGS_UPDATED_EVENT));
   }
 
   private readStoredDialogs(): ChatDialog[] | null {
@@ -436,7 +438,7 @@ export class ChatPageComponent implements AfterViewInit {
       return null;
     }
 
-    const raw = window.sessionStorage.getItem(this.dialogsStorageKey);
+    const raw = window.localStorage.getItem(this.dialogsStorageKey);
     if (!raw) {
       return null;
     }
@@ -530,6 +532,24 @@ export class ChatPageComponent implements AfterViewInit {
     ];
 
     for (let index = 1; index <= 18; index += 1) {
+      const hasExtendedThread = index <= 4;
+      const groups = hasExtendedThread
+        ? this.buildExtendedDemoGroups(index)
+        : [
+            {
+              id: this.generateId('group'),
+              rangeLabel: 'Сегодня',
+              messages: [
+                {
+                  id: this.generateId('msg'),
+                  isMine: index % 2 === 0,
+                  text: `Это демо-диалог #${index}.`,
+                  timeLabel: `${String((index % 12) + 10).padStart(2, '0')}:${index % 2 === 0 ? '05' : '35'}`,
+                },
+              ],
+            },
+          ];
+
       base.push({
         id: `support-demo-${index}`,
         title: `Диалог #${index}`,
@@ -537,20 +557,7 @@ export class ChatPageComponent implements AfterViewInit {
         lastPreview: `Демо-сообщение для проверки скролла списка диалогов #${index}.`,
         lastTimeLabel: `${String((index % 12) + 10).padStart(2, '0')}:15`,
         unreadCount: index % 4 === 0 ? 2 : 0,
-        groups: [
-          {
-            id: this.generateId('group'),
-            rangeLabel: 'Сегодня',
-            messages: [
-              {
-                id: this.generateId('msg'),
-                isMine: index % 2 === 0,
-                text: `Это демо-диалог #${index}.`,
-                timeLabel: 'сегодня',
-              },
-            ],
-          },
-        ],
+        groups,
       });
     }
 
@@ -563,5 +570,48 @@ export class ChatPageComponent implements AfterViewInit {
 
   private generateId(prefix: string): string {
     return `${prefix}-${Math.random().toString(16).slice(2, 10)}`;
+  }
+
+  private buildExtendedDemoGroups(index: number): ChatDateGroup[] {
+    const todayMessages: ChatMessage[] = [];
+    for (let messageIndex = 1; messageIndex <= 12; messageIndex += 1) {
+      const hour = String(8 + (messageIndex % 10)).padStart(2, '0');
+      const minute = String((messageIndex * 7) % 60).padStart(2, '0');
+      todayMessages.push({
+        id: this.generateId('msg'),
+        isMine: messageIndex % 2 === 0,
+        text: `Демо-сообщение ${messageIndex} в диалоге #${index}.`,
+        timeLabel: `${hour}:${minute}`,
+      });
+    }
+
+    const olderDate = new Date(Date.now() - 24 * 60 * 60 * 1000);
+    const olderDateLabel = olderDate.toLocaleDateString('ru-RU');
+
+    return [
+      {
+        id: this.generateId('group'),
+        rangeLabel: olderDateLabel,
+        messages: [
+          {
+            id: this.generateId('msg'),
+            isMine: false,
+            text: `Старое сообщение в диалоге #${index}.`,
+            timeLabel: `${olderDateLabel} 18:10`,
+          },
+          {
+            id: this.generateId('msg'),
+            isMine: true,
+            text: `Ответ по старому сообщению в диалоге #${index}.`,
+            timeLabel: `${olderDateLabel} 18:42`,
+          },
+        ],
+      },
+      {
+        id: this.generateId('group'),
+        rangeLabel: 'Сегодня',
+        messages: todayMessages,
+      },
+    ];
   }
 }
