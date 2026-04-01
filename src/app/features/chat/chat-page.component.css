@@ -65,9 +65,9 @@
   }
 
   .chat-page__item-counter {
-    @apply absolute -right-1.5 -top-1.5 h-4.5 min-w-4.5
+    @apply absolute -right-1.5 -top-1.5 h-5 min-w-5
         flex items-center justify-center
-        rounded-md bg-primary
+        rounded-full bg-primary
         px-1 text-[10px] leading-none font-bold text-primary-contrast;
   }
 
@@ -142,6 +142,10 @@
 
   .chat-page__messages {
     @apply pb-4;
+  }
+
+  .chat-page__messages-inner {
+    @apply mt-auto flex flex-col gap-4;
   }
 
   .chat-page__select-control {

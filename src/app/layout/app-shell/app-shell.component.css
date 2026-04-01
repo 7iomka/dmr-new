@@ -52,3 +52,36 @@
 .app-shell__footer {
   @apply shrink-0;
 }
+
+.app-shell__chat-fab-wrap {
+  @apply pointer-events-none fixed bottom-14 right-4 z-[101] xl:bottom-8 xl:right-8;
+}
+
+.app-shell__chat-fab {
+  @apply pointer-events-auto relative flex h-10 w-10 items-center justify-center rounded-full border border-primary/25 bg-surface-0/70 text-primary shadow-sm shadow-black/10 backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md dark:bg-surface-900/60;
+}
+
+.app-shell__chat-fab-icon {
+  @apply h-4 w-4 opacity-90 transition xl:h-6 xl:w-6;
+}
+
+.app-shell__chat-fab-badge-wrap {
+  @apply absolute -right-1 -top-1;
+}
+
+.app-shell__chat-fab-ping {
+  @apply absolute inset-0 h-5 w-5 rounded-full bg-primary/35 blur-[0.5px] xl:h-6 xl:w-6;
+  animation: ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.app-shell__chat-fab-badge {
+  @apply relative inline-flex h-5 w-5 items-center justify-center rounded-full border border-surface-0/70 bg-primary text-[11px] leading-none font-bold text-primary-contrast tabular-nums shadow-sm shadow-black/10 xl:h-6 xl:w-6 xl:text-[12px] dark:border-surface-900/70;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}

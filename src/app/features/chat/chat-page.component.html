@@ -15,7 +15,7 @@
 
   <div class="chat-page__layout" [class.chat-page__layout--mobile-detail-open]="mobileDetailOpen()">
     <aside class="chat-page__list-panel">
-      <div class="chat-page__list">
+      <div #dialogsScrollContainer class="chat-page__list" (scroll)="onDialogsScroll($event)">
         @for (dialog of dialogs(); track dialog.id) {
           <button
             class="chat-page__item"
@@ -164,8 +164,11 @@
                   spellcheck="false"
                   [autoResize]="true"
                   [ngModel]="ticketMessage()"
+                  (click)="rememberCaret($event, 'ticket')"
                   (keydown)="onTicketEnter($event)"
-                  (ngModelChange)="ticketMessage.set($event)"></textarea>
+                  (keyup)="rememberCaret($event, 'ticket')"
+                  (ngModelChange)="ticketMessage.set($event)"
+                  (select)="rememberCaret($event, 'ticket')"></textarea>
 
                 <p-button
                   severity="primary"
@@ -188,32 +191,34 @@
           </app-form-control-shell>
         </div>
       } @else {
-        <div class="chat-page__messages" [class.hidden]="!activeDialog()">
-          @if (activeDialog(); as dialog) {
-            @if (!dialog.groups.length) {
-              <div class="chat-page__empty-messages">
-                <p class="text-sm font-semibold text-surface-700 dark:text-surface-200">Сообщений пока нет</p>
-                <p class="text-xs text-muted-color">Напишите первое сообщение, чтобы начать диалог.</p>
-              </div>
-            }
-
-            @for (group of dialog.groups; track group.id) {
-              <section class="chat-page__date-group">
-                <div class="chat-page__date-sticky">
-                  <span class="chat-page__date-chip">{{ group.rangeLabel }}</span>
+        <div #messagesScrollContainer class="chat-page__messages" [class.hidden]="!activeDialog()">
+          <div class="chat-page__messages-inner">
+            @if (activeDialog(); as dialog) {
+              @if (!dialog.groups.length) {
+                <div class="chat-page__empty-messages">
+                  <p class="text-sm font-semibold text-surface-700 dark:text-surface-200">Сообщений пока нет</p>
+                  <p class="text-xs text-muted-color">Напишите первое сообщение, чтобы начать диалог.</p>
                 </div>
+              }
 
-                @for (message of group.messages; track message.id) {
-                  <article
-                    class="chat-page__bubble"
-                    [ngClass]="message.isMine ? 'chat-page__bubble--mine' : 'chat-page__bubble--support'">
-                    <p class="chat-page__bubble-text">{{ message.text }}</p>
-                    <p class="chat-page__bubble-time">{{ message.timeLabel }}</p>
-                  </article>
-                }
-              </section>
+              @for (group of dialog.groups; track group.id) {
+                <section class="chat-page__date-group">
+                  <div class="chat-page__date-sticky">
+                    <span class="chat-page__date-chip">{{ group.rangeLabel }}</span>
+                  </div>
+
+                  @for (message of group.messages; track message.id) {
+                    <article
+                      class="chat-page__bubble"
+                      [ngClass]="message.isMine ? 'chat-page__bubble--mine' : 'chat-page__bubble--support'">
+                      <p class="chat-page__bubble-text">{{ message.text }}</p>
+                      <p class="chat-page__bubble-time">{{ message.timeLabel }}</p>
+                    </article>
+                  }
+                </section>
+              }
             }
-          }
+          </div>
         </div>
 
         <footer class="chat-page__composer-wrap" [class.hidden]="!activeDialog()">
@@ -264,8 +269,11 @@
                 spellcheck="false"
                 [autoResize]="true"
                 [ngModel]="chatMessage()"
+                (click)="rememberCaret($event, 'chat')"
                 (keydown)="onChatEnter($event)"
-                (ngModelChange)="chatMessage.set($event)"></textarea>
+                (keyup)="rememberCaret($event, 'chat')"
+                (ngModelChange)="chatMessage.set($event)"
+                (select)="rememberCaret($event, 'chat')"></textarea>
 
               <p-button
                 severity="primary"

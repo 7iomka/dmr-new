@@ -47,7 +47,7 @@ export const APP_NAVIGATION: NavGroup[] = [
       { label: 'Профиль', icon: LucideCircleUser, route: '/profile' },
       { label: 'Рефералы', icon: LucideUsers, route: '/referrals' },
       { label: 'Настройки', icon: LucideSettings, route: '/settings' },
-      { label: 'Чат', icon: LucideMessageCircle, route: '/chat' },
+      { label: 'Чат поддержки', icon: LucideMessageCircle, route: '/chat' },
     ],
   },
   {
