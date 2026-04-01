@@ -31,25 +31,17 @@ import { PopoverModule } from 'primeng/popover';
 import { MessageService } from 'primeng/api';
 import { FormControlSelectComponent } from '../../shared/components/form-controls/form-control-select.component';
 import { FormControlShellComponent } from '../../shared/components/form-controls/form-control-shell.component';
+import {
+  BackendConversation,
+  ChatDateGroup,
+  ChatDialog,
+  ChatMessage,
+  isBackendConversationList,
+  mapBackendConversationsToDialogs,
+} from './chat-adapter';
 import { CHAT_DIALOGS_STORAGE_KEY, CHAT_DIALOGS_UPDATED_EVENT } from './chat-storage.constants';
 
-type ChatMessage = { id: string; text: string; isMine: boolean; createdAt: string };
-type ChatDateGroup = { id: string; date: string; messages: ChatMessage[] };
-type ChatDialog = {
-  id: string;
-  title: string;
-  subtitle: string;
-  unreadCount: number;
-  groups: ChatDateGroup[];
-};
 type TicketTopicOption = { label: string; value: string };
-type BackendConversation = {
-  id: number;
-  subject: string;
-  unreadCount: number | null;
-  lastMessageAt: string;
-  lastMessage: { id: number; content: string | null; createdDate: string } | null;
-};
 
 type ComposerKind = 'chat' | 'ticket';
 
@@ -247,7 +239,7 @@ export class ChatPageComponent implements AfterViewInit {
       id: this.generateId('msg-user'),
       text: messageText,
       isMine: true,
-      createdAt: now.toISOString(),
+      createdDate: now.toISOString(),
     });
 
     this.chatMessage.set('');
@@ -261,7 +253,7 @@ export class ChatPageComponent implements AfterViewInit {
         id: this.generateId('msg-auto'),
         text: 'Спасибо! Автоответ: получили ваше сообщение и уже передали специалисту.',
         isMine: false,
-        createdAt: new Date().toISOString(),
+        createdDate: new Date().toISOString(),
       });
       this.scrollMessagesToBottom();
     }, 900);
@@ -294,7 +286,7 @@ export class ChatPageComponent implements AfterViewInit {
               id: this.generateId('msg'),
               text: firstMessage,
               isMine: true,
-              createdAt: now.toISOString(),
+              createdDate: now.toISOString(),
             },
           ],
         },
@@ -464,8 +456,11 @@ export class ChatPageComponent implements AfterViewInit {
       if (!Array.isArray(parsed)) {
         return null;
       }
-      if (this.looksLikeBackendConversations(parsed)) {
-        return this.mapBackendConversations(parsed);
+      if (isBackendConversationList(parsed)) {
+        return mapBackendConversationsToDialogs(parsed, {
+          generateId: (prefix) => this.generateId(prefix),
+          toIsoDate: (date) => this.toIsoDate(date),
+        });
       }
       return parsed as ChatDialog[];
     } catch {
@@ -508,7 +503,7 @@ export class ChatPageComponent implements AfterViewInit {
 
         const groups = [...dialog.groups];
         const todayGroup = groups.at(-1);
-        const messageDate = this.toIsoDate(new Date(message.createdAt));
+        const messageDate = this.toIsoDate(new Date(message.createdDate));
         if (!todayGroup || todayGroup.date !== messageDate) {
           groups.push({ id: this.generateId('group'), date: messageDate, messages: [message] });
         } else {
@@ -524,7 +519,10 @@ export class ChatPageComponent implements AfterViewInit {
   }
 
   private buildDemoDialogs(): ChatDialog[] {
-    return this.mapBackendConversations(this.buildDemoBackendConversations());
+    return mapBackendConversationsToDialogs(this.buildDemoBackendConversations(), {
+      generateId: (prefix) => this.generateId(prefix),
+      toIsoDate: (date) => this.toIsoDate(date),
+    });
   }
 
   protected getDialogPreview(dialog: ChatDialog): string {
@@ -538,11 +536,11 @@ export class ChatPageComponent implements AfterViewInit {
       return '';
     }
 
-    return this.formatDialogListTimestamp(new Date(message.createdAt));
+    return this.formatDialogListTimestamp(new Date(message.createdDate));
   }
 
   protected getMessageTimestampLabel(message: ChatMessage): string {
-    return this.formatMessageTimestamp(new Date(message.createdAt));
+    return this.formatMessageTimestamp(new Date(message.createdDate));
   }
 
   protected getGroupDateLabel(group: ChatDateGroup): string {
@@ -603,7 +601,7 @@ export class ChatPageComponent implements AfterViewInit {
 
   private getLastMessageTime(dialog: ChatDialog): number {
     const message = this.getLastMessage(dialog);
-    return message ? new Date(message.createdAt).getTime() : 0;
+    return message ? new Date(message.createdDate).getTime() : 0;
   }
 
   private normalizeDialogs(dialogs: ChatDialog[]): ChatDialog[] {
@@ -615,17 +613,17 @@ export class ChatPageComponent implements AfterViewInit {
           date: this.normalizeGroupDate(group, dialogIndex, groupIndex),
           messages: group.messages
             .map((message, messageIndex) => {
-              const parsedDate = new Date((message as Partial<ChatMessage>).createdAt ?? '');
-              const createdAt = Number.isNaN(parsedDate.getTime())
+              const parsedDate = new Date((message as Partial<ChatMessage>).createdDate ?? '');
+              const createdDate = Number.isNaN(parsedDate.getTime())
                 ? new Date(Date.now() - (dialogIndex + groupIndex + messageIndex) * 60_000).toISOString()
                 : parsedDate.toISOString();
 
               return {
                 ...message,
-                createdAt,
+                createdDate,
               };
             })
-            .sort((left, right) => new Date(left.createdAt).getTime() - new Date(right.createdAt).getTime()),
+            .sort((left, right) => new Date(left.createdDate).getTime() - new Date(right.createdDate).getTime()),
         }))
         .sort((left, right) => new Date(left.date).getTime() - new Date(right.date).getTime()),
     }));
@@ -665,37 +663,13 @@ export class ChatPageComponent implements AfterViewInit {
 
     const fallbackMessage = group.messages.at(0);
     if (fallbackMessage) {
-      const fallbackMessageDate = new Date(fallbackMessage.createdAt);
+      const fallbackMessageDate = new Date(fallbackMessage.createdDate);
       if (!Number.isNaN(fallbackMessageDate.getTime())) {
         return this.toIsoDate(fallbackMessageDate);
       }
     }
 
     return this.toIsoDate(new Date(Date.now() - (dialogIndex + groupIndex) * 60_000));
-  }
-
-  private looksLikeBackendConversations(data: unknown[]): data is BackendConversation[] {
-    return data.every(
-      (item) => typeof item === 'object' && item !== null && 'lastMessageAt' in item && 'subject' in item,
-    );
-  }
-
-  private mapBackendConversations(conversations: BackendConversation[]): ChatDialog[] {
-    return conversations.map((conversation) => {
-      const createdAt = conversation.lastMessage?.createdDate ?? conversation.lastMessageAt;
-      const groups = this.buildThreadGroupsFromLastMessage(
-        String(conversation.id),
-        createdAt,
-        conversation.lastMessage?.content,
-      );
-      return {
-        id: String(conversation.id),
-        title: conversation.subject || 'Диалог',
-        subtitle: 'Чат поддержки',
-        unreadCount: conversation.unreadCount ?? 0,
-        groups,
-      };
-    });
   }
 
   private buildDemoBackendConversations(): BackendConversation[] {
@@ -792,37 +766,6 @@ export class ChatPageComponent implements AfterViewInit {
         },
         unreadCount: 0,
       } as BackendConversation,
-    ];
-  }
-
-  private buildThreadGroupsFromLastMessage(
-    conversationId: string,
-    lastMessageAt: string,
-    lastContent?: string | null,
-  ): ChatDateGroup[] {
-    const lastDate = new Date(lastMessageAt);
-    const earlierDate = new Date(lastDate.getTime() - 90 * 60 * 1000);
-    const latestDate = new Date(lastDate.getTime());
-
-    return [
-      {
-        id: this.generateId('group'),
-        date: this.toIsoDate(lastDate),
-        messages: [
-          {
-            id: `srv-${conversationId}-1`,
-            text: `История диалога #${conversationId}`,
-            isMine: true,
-            createdAt: earlierDate.toISOString(),
-          },
-          {
-            id: `srv-${conversationId}-2`,
-            text: lastContent?.trim() || 'Без текста',
-            isMine: false,
-            createdAt: latestDate.toISOString(),
-          },
-        ],
-      },
     ];
   }
 }
