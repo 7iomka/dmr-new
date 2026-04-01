@@ -38,7 +38,7 @@
   .chat-page__list-panel {
     @apply flex flex-col
     border-b border-surface-200 bg-card dark:border-surface-800 lg:border-r lg:border-b-0
-    min-h-90 lg:h-[70dvh] lg:min-h-130;
+    min-h-50 h-[57dvh] md:min-h-90 lg:h-[70dvh] lg:min-h-130;
   }
 
   .chat-page__list {

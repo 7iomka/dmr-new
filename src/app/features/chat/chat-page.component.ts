@@ -142,7 +142,7 @@ export class ChatPageComponent implements AfterViewInit {
   protected readonly showWelcome = computed(() => !this.newTicketMode() && !this.activeDialogId());
   protected readonly hasDialogs = computed(() => this.dialogs().length > 0);
 
-  protected readonly cardPt = { body: { class: 'p-0 h-full' }, content: { class: 'p-0 h-full' } };
+  protected readonly cardPt = { body: { class: 'p-0' }, content: { class: 'p-0' } };
 
   constructor() {
     this.dialogs.set(this.buildDemoDialogs());
