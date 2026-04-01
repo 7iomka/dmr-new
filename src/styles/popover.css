@@ -1,0 +1,6 @@
+@layer properties {
+  :root {
+    /* Disable arrow */
+    --p-popover-gutter: 0;
+  }
+}

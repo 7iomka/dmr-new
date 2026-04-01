@@ -13,12 +13,14 @@
 @import './styles/alert.css';
 @import './styles/dialog.css';
 @import './styles/form-controls.css';
-@import './styles/avatar.css';
 @import './styles/menu.css';
+@import './styles/select.css';
+@import './styles/avatar.css';
 @import './styles/stat-card.css';
 @import './styles/page-heading.css';
 @import './styles/pill-tabs.css';
 @import './styles/checkbox.css';
+@import './styles/popover.css';
 
 @import './styles/page.css';
 
