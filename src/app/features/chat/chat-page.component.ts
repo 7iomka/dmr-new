@@ -2,7 +2,6 @@ import { NgClass } from '@angular/common';
 import { Component, computed, HostListener, signal, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-  LucideChevronDown,
   LucideChevronLeft,
   LucideCirclePlus,
   LucideMessageCircle,
@@ -12,7 +11,12 @@ import {
   LucideX,
 } from '@lucide/angular';
 import { ButtonModule } from 'primeng/button';
+import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
+import { TextareaModule } from 'primeng/textarea';
+import { PopoverModule } from 'primeng/popover';
+import { FormControlSelectComponent } from '../../shared/components/form-controls/form-control-select.component';
+import { FormControlShellComponent } from '../../shared/components/form-controls/form-control-shell.component';
 
 type ChatMessage = {
   id: string;
@@ -53,6 +57,11 @@ type TicketTopicOption = {
     NgClass,
     CardModule,
     ButtonModule,
+    DividerModule,
+    TextareaModule,
+    PopoverModule,
+    FormControlSelectComponent,
+    FormControlShellComponent,
     LucideMessageCircle,
     LucideChevronLeft,
     LucideCirclePlus,
@@ -60,7 +69,6 @@ type TicketTopicOption = {
     LucideSmile,
     LucideSendHorizontal,
     LucideX,
-    LucideChevronDown,
   ],
   templateUrl: './chat-page.component.html',
   styleUrl: './chat-page.component.css',
@@ -98,6 +106,8 @@ export class ChatPageComponent {
     '🎉',
     '✅',
   ];
+
+  // protected readonly dialogs = signal<ChatDialog[]>([]);
 
   protected readonly dialogs = signal<ChatDialog[]>([
     {
@@ -221,6 +231,12 @@ export class ChatPageComponent {
   protected readonly selectedTicketFileName = signal<string | null>(null);
   protected readonly showEmojiPicker = signal(false);
   protected readonly showTicketEmojiPicker = signal(false);
+
+  protected onTicketTopicChange(value: unknown): void {
+    if (typeof value === 'string') {
+      this.ticketTopic.set(value);
+    }
+  }
 
   private generatedCounter = 0;
 

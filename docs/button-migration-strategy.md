@@ -161,7 +161,7 @@ Import:
 import { LucideCopy } from '@lucide/angular';
 
 Usage:
-<p-button [text]="true" severity="secondary" styleClass="p-button-icon-only" ariaLabel="Copy"> <svg class="h-4 w-4" lucideCopy pButtonIcon></svg> <span pButtonLabel>Copy</span> </p-button>
+<p-button [text]="true" severity="secondary" ariaLabel="Copy"> <svg class="h-4 w-4" lucideCopy pButtonIcon></svg> <span pButtonLabel>Copy</span> </p-button>
 
 ### PrimeIcons (LEGACY, not recommended)
 

@@ -56,10 +56,15 @@
 
     <section class="chat-page__detail-panel">
       <div class="chat-page__detail-head">
-        <button class="chat-page__back lg:hidden" type="button" (click)="closeDetailOnMobile()">
-          <svg class="h-4 w-4" lucideChevronLeft></svg>
-          <span>Вернуться к списку</span>
-        </button>
+        <p-button
+          ariaLabel="Back"
+          class="chat-page__back lg:hidden"
+          severity="secondary"
+          styleClass="p-button-icon-only"
+          variant="outlined"
+          (onClick)="closeDetailOnMobile()">
+          <svg class="h-4 w-4" lucideChevronLeft pButtonIcon></svg>
+        </p-button>
 
         <div class="chat-page__detail-id">
           <div class="chat-page__detail-icon"><svg class="w-5 h-5" lucideMessageCircle></svg></div>
@@ -76,13 +81,16 @@
         <div class="chat-page__welcome">
           <p class="text-lg font-bold text-surface-900 dark:text-surface-0">Добро пожаловать в чат поддержки</p>
           <p class="mt-2 text-sm text-muted-color">Выберите существующий диалог или создайте новое обращение.</p>
-          <p-button class="mt-4" label="Начать разговор" (onClick)="openNewTicket()" />
+          <p-button class="mt-4" (onClick)="openNewTicket()">
+            <svg class="w-4 h-4" lucidePlusCircle pButtonIcon></svg>
+            <span pButtonLabel>Начать разговор</span>
+          </p-button>
         </div>
       }
 
       @if (newTicketMode()) {
         <div class="chat-page__new-ticket">
-          <div class="chat-page__field">
+          <!-- <div class="chat-page__field">
             <label class="chat-page__label" for="ticket-topic">Тема обращения</label>
             <div class="chat-page__select-wrap">
               <select
@@ -96,10 +104,19 @@
               </select>
               <svg class="chat-page__select-icon" lucideChevronDown></svg>
             </div>
-          </div>
+          </div> -->
+          <app-form-control-select
+            inputId="ticket-topic"
+            label="Тема обращения"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Выберите тему обращения"
+            rootClass="chat-page__select-control"
+            [options]="ticketTopics"
+            [value]="ticketTopic()"
+            (valueChange)="onTicketTopicChange($event)" />
 
-          <div class="chat-page__field">
-            <label class="chat-page__label" for="ticket-message">Первое сообщение</label>
+          <app-form-control-shell inputId="ticket-message" label="Первое сообщение">
             <div class="chat-page__composer">
               @if (selectedTicketFileName(); as fileName) {
                 <div class="chat-page__attachment-row">
@@ -112,44 +129,63 @@
                 </div>
               }
 
-              @if (showTicketEmojiPicker()) {
-                <div class="chat-page__emoji-picker">
+              <p-popover #ticketMessageEmojiPicker appendTo="body">
+                <div class="chat-page__emoji-grid">
                   @for (emoji of emojiOptions; track emoji) {
-                    <button class="chat-page__emoji" type="button" (click)="appendEmoji(emoji, true)">
-                      {{ emoji }}
-                    </button>
+                    <p-button
+                      class="chat-page__emoji"
+                      severity="secondary"
+                      size="small"
+                      styleClass="p-button-icon-only"
+                      [text]="true"
+                      (onClick)="appendEmoji(emoji, true)">
+                      <span class="text-xl" pButtonIcon>{{ emoji }}</span>
+                    </p-button>
                   }
                 </div>
-              }
+              </p-popover>
 
               <div class="chat-page__composer-row">
                 <input #ticketFileInput hidden type="file" (change)="onTicketFileSelected($event)" />
-                <button class="chat-page__icon-button" type="button" (click)="ticketFileInput.click()">
-                  <svg class="w-5 h-5" lucidePaperclip></svg>
-                </button>
+                <p-button
+                  severity="primary"
+                  styleClass="chat-page__icon-button p-button-icon-only"
+                  [text]="true"
+                  (onClick)="ticketFileInput.click()">
+                  <svg class="w-5 h-5" lucidePaperclip pButtonIcon></svg>
+                </p-button>
 
                 <textarea
                   class="chat-page__textarea"
                   id="ticket-message"
+                  pTextarea
                   placeholder="Введите сообщение..."
                   rows="1"
+                  spellcheck="false"
+                  [autoResize]="true"
                   [ngModel]="ticketMessage()"
                   (keydown)="onTicketEnter($event)"
                   (ngModelChange)="ticketMessage.set($event)"></textarea>
 
-                <button
-                  class="chat-page__icon-button"
-                  type="button"
-                  (click)="showTicketEmojiPicker.set(!showTicketEmojiPicker())">
-                  <svg class="w-5 h-5" lucideSmile></svg>
-                </button>
+                <p-button
+                  severity="primary"
+                  styleClass="chat-page__icon-button p-button-icon-only"
+                  [text]="true"
+                  (onClick)="ticketMessageEmojiPicker.toggle($event)">
+                  <svg class="w-5 h-5" lucideSmile pButtonIcon></svg>
+                </p-button>
 
-                <button class="chat-page__icon-button" type="button" (click)="submitNewTicket()">
-                  <svg class="w-5 h-5" lucideSendHorizontal></svg>
-                </button>
+                <p-divider class="chat-page__divider" layout="vertical" />
+                <p-button
+                  severity="primary"
+                  styleClass="chat-page__icon-button p-button-icon-only"
+                  [text]="true"
+                  (onClick)="submitNewTicket()">
+                  <svg class="w-5 h-5" lucideSendHorizontal pButtonIcon></svg>
+                </p-button>
               </div>
             </div>
-          </div>
+          </app-form-control-shell>
         </div>
       } @else {
         <div class="chat-page__messages" [class.hidden]="!activeDialog()">
@@ -193,35 +229,59 @@
               </div>
             }
 
-            @if (showEmojiPicker()) {
-              <div class="chat-page__emoji-picker">
+            <p-popover #chatMessageEmojiPicker appendTo="body">
+              <div class="chat-page__emoji-grid">
                 @for (emoji of emojiOptions; track emoji) {
-                  <button class="chat-page__emoji" type="button" (click)="appendEmoji(emoji)">{{ emoji }}</button>
+                  <p-button
+                    class="chat-page__emoji"
+                    severity="secondary"
+                    size="small"
+                    styleClass="p-button-icon-only"
+                    [text]="true"
+                    (onClick)="appendEmoji(emoji)">
+                    <span class="text-xl" pButtonIcon>{{ emoji }}</span>
+                  </p-button>
                 }
               </div>
-            }
+            </p-popover>
 
             <div class="chat-page__composer-row">
               <input #chatFileInput hidden type="file" (change)="onChatFileSelected($event)" />
-              <button class="chat-page__icon-button" type="button" (click)="chatFileInput.click()">
-                <svg class="w-5 h-5" lucidePaperclip></svg>
-              </button>
+              <p-button
+                severity="primary"
+                styleClass="chat-page__icon-button p-button-icon-only"
+                [text]="true"
+                (onClick)="chatFileInput.click()">
+                <svg class="w-5 h-5" lucidePaperclip pButtonIcon></svg>
+              </p-button>
 
               <textarea
                 class="chat-page__textarea"
+                id="chat-message"
+                pTextarea
                 placeholder="Введите сообщение..."
                 rows="1"
+                spellcheck="false"
+                [autoResize]="true"
                 [ngModel]="chatMessage()"
                 (keydown)="onChatEnter($event)"
                 (ngModelChange)="chatMessage.set($event)"></textarea>
 
-              <button class="chat-page__icon-button" type="button" (click)="showEmojiPicker.set(!showEmojiPicker())">
-                <svg class="w-5 h-5" lucideSmile></svg>
-              </button>
-
-              <button class="chat-page__icon-button" type="button" (click)="submitChatMessage()">
-                <svg class="w-5 h-5" lucideSendHorizontal></svg>
-              </button>
+              <p-button
+                severity="primary"
+                styleClass="chat-page__icon-button p-button-icon-only"
+                [text]="true"
+                (onClick)="chatMessageEmojiPicker.toggle($event)">
+                <svg class="w-5 h-5" lucideSmile pButtonIcon></svg>
+              </p-button>
+              <p-divider class="chat-page__divider" layout="vertical" />
+              <p-button
+                severity="primary"
+                styleClass="chat-page__icon-button p-button-icon-only"
+                [text]="true"
+                (onClick)="submitChatMessage()">
+                <svg class="w-5 h-5" lucideSendHorizontal pButtonIcon></svg>
+              </p-button>
             </div>
           </div>
         </footer>
