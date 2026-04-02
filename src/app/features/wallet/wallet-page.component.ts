@@ -65,6 +65,7 @@ export class WalletPageComponent {
     direction: 'desc',
   });
 
+  protected readonly activeTab = signal<string>('payments');
   protected readonly paymentExpanded = signal<Record<string, boolean>>({});
   protected readonly walletExpanded = signal<Record<number, boolean>>({});
 
@@ -107,6 +108,14 @@ export class WalletPageComponent {
     });
 
     this.loadWalletTransactions(0);
+  }
+
+  protected onTabChange(nextValue: string | number | undefined): void {
+    if (typeof nextValue !== 'string') {
+      return;
+    }
+
+    this.activeTab.set(nextValue);
   }
 
   protected onPaymentsPageChange(event: PaginatorState): void {

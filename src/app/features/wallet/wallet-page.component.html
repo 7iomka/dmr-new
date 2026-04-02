@@ -7,191 +7,196 @@
   <p-card>
     <ng-template #header>
       <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">Транзакции</h3>
+    </ng-template>
+
+    <p-tabs [value]="activeTab()" (valueChange)="onTabChange($event)">
       <app-pill-tabs-nav size="sm" theme="secondary">
         <app-pill-tab value="payments">Платежные транзакции</app-pill-tab>
         <app-pill-tab value="wallet">Wallet Transactions</app-pill-tab>
       </app-pill-tabs-nav>
-    </ng-template>
 
-    <app-pill-tabpanels>
-      <app-pill-tabpanel value="payments">
-        @if (paymentsPage(); as page) {
-          <div class="wallet-table-shell hidden lg:block">
-            <p-table styleClass="wallet-table" [tableStyle]="{ 'min-width': '76rem' }" [value]="page.content">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th (click)="sortPayments('amount')">Сумма <svg class="c-sort-icon" lucideArrowUpDown></svg></th>
-                  <th (click)="sortPayments('provider')">
-                    Провайдер <svg class="c-sort-icon" lucideArrowUpDown></svg>
-                  </th>
-                  <th (click)="sortPayments('paymentMethod')">
-                    Метод оплаты <svg class="c-sort-icon" lucideArrowUpDown></svg>
-                  </th>
-                  <th (click)="sortPayments('status')">Статус <svg class="c-sort-icon" lucideArrowUpDown></svg></th>
-                  <th>Детали оплаты</th>
-                  <th>TXID провайдера</th>
-                  <th (click)="sortPayments('createdDate')">
-                    Дата создания <svg class="c-sort-icon" lucideArrowUpDown></svg>
-                  </th>
-                  <th (click)="sortPayments('completedDate')">
-                    Дата завершения <svg class="c-sort-icon" lucideArrowUpDown></svg>
-                  </th>
-                </tr>
-              </ng-template>
+      <app-pill-tabpanels>
+        <app-pill-tabpanel value="payments">
+          @if (paymentsPage(); as page) {
+            <div class="wallet-table-shell hidden lg:block">
+              <p-table styleClass="wallet-table" [tableStyle]="{ 'min-width': '76rem' }" [value]="page.content">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th (click)="sortPayments('amount')">Сумма <svg class="c-sort-icon" lucideArrowUpDown></svg></th>
+                    <th (click)="sortPayments('provider')">
+                      Провайдер <svg class="c-sort-icon" lucideArrowUpDown></svg>
+                    </th>
+                    <th (click)="sortPayments('paymentMethod')">
+                      Метод оплаты <svg class="c-sort-icon" lucideArrowUpDown></svg>
+                    </th>
+                    <th (click)="sortPayments('status')">Статус <svg class="c-sort-icon" lucideArrowUpDown></svg></th>
+                    <th>Детали оплаты</th>
+                    <th>TXID провайдера</th>
+                    <th (click)="sortPayments('createdDate')">
+                      Дата создания <svg class="c-sort-icon" lucideArrowUpDown></svg>
+                    </th>
+                    <th (click)="sortPayments('completedDate')">
+                      Дата завершения <svg class="c-sort-icon" lucideArrowUpDown></svg>
+                    </th>
+                  </tr>
+                </ng-template>
 
-              <ng-template let-row pTemplate="body">
-                <tr>
-                  <td class="font-bold text-surface-900 dark:text-surface-50">
-                    {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
-                  </td>
-                  <td>
-                    <span class="c-badge c-badge--info">{{ providerLabel(row.provider) }}</span>
-                  </td>
-                  <td class="font-semibold">{{ paymentMethodLabel(row.paymentMethod) }}</td>
-                  <td>
-                    <span [class]="paymentStatusClass(row.status)">{{ row.status }}</span>
-                  </td>
-                  <td class="max-w-72 truncate">{{ row.paymentDetails }}</td>
-                  <td>
-                    <div class="flex items-center gap-2">
-                      <span class="max-w-32 truncate">{{ row.providerTransactionId }}</span>
-                      <button
-                        aria-label="Copy provider transaction id"
-                        pButton
-                        severity="secondary"
-                        size="small"
-                        styleClass="p-button-icon-only"
-                        text
-                        type="button"
-                        (click)="copyText(row.providerTransactionId)">
-                        <svg class="h-4 w-4" lucideCopy pButtonIcon></svg>
-                      </button>
+                <ng-template let-row pTemplate="body">
+                  <tr>
+                    <td class="font-bold text-surface-900 dark:text-surface-50">
+                      {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
+                    </td>
+                    <td>
+                      <span class="c-badge c-badge--info">{{ providerLabel(row.provider) }}</span>
+                    </td>
+                    <td class="font-semibold">{{ paymentMethodLabel(row.paymentMethod) }}</td>
+                    <td>
+                      <span [class]="paymentStatusClass(row.status)">{{ row.status }}</span>
+                    </td>
+                    <td class="max-w-72 truncate">{{ row.paymentDetails }}</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <span class="max-w-32 truncate">{{ row.providerTransactionId }}</span>
+                        <button
+                          aria-label="Copy provider transaction id"
+                          pButton
+                          severity="secondary"
+                          size="small"
+                          styleClass="p-button-icon-only"
+                          text
+                          type="button"
+                          (click)="copyText(row.providerTransactionId)">
+                          <svg class="h-4 w-4" lucideCopy pButtonIcon></svg>
+                        </button>
+                      </div>
+                    </td>
+                    <td>{{ row.createdDate | date: 'dd.MM.yyyy HH:mm' }}</td>
+                    <td>{{ row.completedDate ? (row.completedDate | date: 'dd.MM.yyyy HH:mm') : '-' }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+
+            <div class="wallet-mobile-list lg:hidden">
+              @for (row of page.content; track row.id) {
+                <article class="wallet-mobile-item">
+                  <button class="wallet-mobile-item__header" type="button" (click)="togglePaymentDetails(row.id)">
+                    <div>
+                      <p class="wallet-mobile-item__title">{{ providerLabel(row.provider) }}</p>
+                      <p class="wallet-mobile-item__meta">{{ row.createdDate | date: 'dd.MM.yyyy HH:mm' }}</p>
                     </div>
-                  </td>
-                  <td>{{ row.createdDate | date: 'dd.MM.yyyy HH:mm' }}</td>
-                  <td>{{ row.completedDate ? (row.completedDate | date: 'dd.MM.yyyy HH:mm') : '-' }}</td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </div>
+                    <div class="wallet-mobile-item__right">
+                      <p class="wallet-mobile-item__amount">
+                        {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
+                      </p>
+                      <svg
+                        class="wallet-mobile-item__chevron"
+                        lucideChevronDown
+                        [class.wallet-mobile-item__chevron--open]="paymentExpanded()[row.id]"></svg>
+                    </div>
+                  </button>
+                  @if (paymentExpanded()[row.id]) {
+                    <div class="wallet-mobile-item__details">
+                      <p><strong>Статус:</strong> {{ row.status }}</p>
+                      <p><strong>Метод:</strong> {{ paymentMethodLabel(row.paymentMethod) }}</p>
+                      <p><strong>Детали:</strong> {{ row.paymentDetails }}</p>
+                    </div>
+                  }
+                </article>
+              }
+            </div>
 
-          <div class="wallet-mobile-list lg:hidden">
-            @for (row of page.content; track row.id) {
-              <article class="wallet-mobile-item">
-                <button class="wallet-mobile-item__header" type="button" (click)="togglePaymentDetails(row.id)">
-                  <div>
-                    <p class="wallet-mobile-item__title">{{ providerLabel(row.provider) }}</p>
-                    <p class="wallet-mobile-item__meta">{{ row.createdDate | date: 'dd.MM.yyyy HH:mm' }}</p>
-                  </div>
-                  <div class="wallet-mobile-item__right">
-                    <p class="wallet-mobile-item__amount">
+            <p-paginator
+              [first]="page.page * page.size"
+              [rows]="page.size"
+              [totalRecords]="page.totalElements"
+              (onPageChange)="onPaymentsPageChange($event)" />
+          }
+        </app-pill-tabpanel>
+
+        <app-pill-tabpanel value="wallet">
+          @if (walletPage(); as page) {
+            <div class="wallet-table-shell hidden lg:block">
+              <p-table styleClass="wallet-table" [tableStyle]="{ 'min-width': '70rem' }" [value]="page.content">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th (click)="sortWalletTransactions('type')">
+                      Тип <svg class="c-sort-icon" lucideArrowUpDown></svg>
+                    </th>
+                    <th (click)="sortWalletTransactions('amount')">
+                      Сумма <svg class="c-sort-icon" lucideArrowUpDown></svg>
+                    </th>
+                    <th (click)="sortWalletTransactions('balanceAfter')">
+                      Баланс после <svg class="c-sort-icon" lucideArrowUpDown></svg>
+                    </th>
+                    <th (click)="sortWalletTransactions('referenceType')">
+                      Тип ссылки <svg class="c-sort-icon" lucideArrowUpDown></svg>
+                    </th>
+                    <th>Описание</th>
+                    <th (click)="sortWalletTransactions('createdDate')">
+                      Дата <svg class="c-sort-icon" lucideArrowUpDown></svg>
+                    </th>
+                  </tr>
+                </ng-template>
+
+                <ng-template let-row pTemplate="body">
+                  <tr>
+                    <td>
+                      <span [class]="walletTypeClass(row.type)">{{ walletTypeLabel(row.type) }}</span>
+                    </td>
+                    <td class="font-bold" [class.text-primary]="row.amount > 0" [class.text-red-500]="row.amount < 0">
                       {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
-                    </p>
-                    <svg
-                      class="wallet-mobile-item__chevron"
-                      lucideChevronDown
-                      [class.wallet-mobile-item__chevron--open]="paymentExpanded()[row.id]"></svg>
-                  </div>
-                </button>
-                @if (paymentExpanded()[row.id]) {
-                  <div class="wallet-mobile-item__details">
-                    <p><strong>Статус:</strong> {{ row.status }}</p>
-                    <p><strong>Метод:</strong> {{ paymentMethodLabel(row.paymentMethod) }}</p>
-                    <p><strong>Детали:</strong> {{ row.paymentDetails }}</p>
-                  </div>
-                }
-              </article>
-            }
-          </div>
+                    </td>
+                    <td class="font-bold text-surface-900 dark:text-surface-50">
+                      {{ row.balanceAfter | currency: row.currency : 'symbol' : '1.2-2' }}
+                    </td>
+                    <td class="font-semibold text-muted-color">{{ referenceTypeLabel(row.referenceType) }}</td>
+                    <td class="max-w-[38rem] truncate">{{ row.description }}</td>
+                    <td>{{ row.createdDate | date: 'dd.MM.yyyy' }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
 
-          <p-paginator
-            [first]="page.page * page.size"
-            [rows]="page.size"
-            [totalRecords]="page.totalElements"
-            (onPageChange)="onPaymentsPageChange($event)" />
-        }
-      </app-pill-tabpanel>
+            <div class="wallet-mobile-list lg:hidden">
+              @for (row of page.content; track row.id) {
+                <article class="wallet-mobile-item">
+                  <button class="wallet-mobile-item__header" type="button" (click)="toggleWalletDetails(row.id)">
+                    <div>
+                      <p class="wallet-mobile-item__title">{{ walletTypeLabel(row.type) }}</p>
+                      <p class="wallet-mobile-item__meta">{{ row.createdDate | date: 'dd.MM.yyyy' }}</p>
+                    </div>
+                    <div class="wallet-mobile-item__right">
+                      <p class="wallet-mobile-item__amount">
+                        {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
+                      </p>
+                      <svg
+                        class="wallet-mobile-item__chevron"
+                        lucideChevronDown
+                        [class.wallet-mobile-item__chevron--open]="walletExpanded()[row.id]"></svg>
+                    </div>
+                  </button>
+                  @if (walletExpanded()[row.id]) {
+                    <div class="wallet-mobile-item__details">
+                      <p>
+                        <strong>Баланс:</strong> {{ row.balanceAfter | currency: row.currency : 'symbol' : '1.2-2' }}
+                      </p>
+                      <p><strong>Тип ссылки:</strong> {{ referenceTypeLabel(row.referenceType) }}</p>
+                      <p><strong>Описание:</strong> {{ row.description }}</p>
+                    </div>
+                  }
+                </article>
+              }
+            </div>
 
-      <app-pill-tabpanel value="wallet">
-        @if (walletPage(); as page) {
-          <div class="wallet-table-shell hidden lg:block">
-            <p-table styleClass="wallet-table" [tableStyle]="{ 'min-width': '70rem' }" [value]="page.content">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th (click)="sortWalletTransactions('type')">
-                    Тип <svg class="c-sort-icon" lucideArrowUpDown></svg>
-                  </th>
-                  <th (click)="sortWalletTransactions('amount')">
-                    Сумма <svg class="c-sort-icon" lucideArrowUpDown></svg>
-                  </th>
-                  <th (click)="sortWalletTransactions('balanceAfter')">
-                    Баланс после <svg class="c-sort-icon" lucideArrowUpDown></svg>
-                  </th>
-                  <th (click)="sortWalletTransactions('referenceType')">
-                    Тип ссылки <svg class="c-sort-icon" lucideArrowUpDown></svg>
-                  </th>
-                  <th>Описание</th>
-                  <th (click)="sortWalletTransactions('createdDate')">
-                    Дата <svg class="c-sort-icon" lucideArrowUpDown></svg>
-                  </th>
-                </tr>
-              </ng-template>
-
-              <ng-template let-row pTemplate="body">
-                <tr>
-                  <td>
-                    <span [class]="walletTypeClass(row.type)">{{ walletTypeLabel(row.type) }}</span>
-                  </td>
-                  <td class="font-bold" [class.text-primary]="row.amount > 0" [class.text-red-500]="row.amount < 0">
-                    {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
-                  </td>
-                  <td class="font-bold text-surface-900 dark:text-surface-50">
-                    {{ row.balanceAfter | currency: row.currency : 'symbol' : '1.2-2' }}
-                  </td>
-                  <td class="font-semibold text-muted-color">{{ referenceTypeLabel(row.referenceType) }}</td>
-                  <td class="max-w-[38rem] truncate">{{ row.description }}</td>
-                  <td>{{ row.createdDate | date: 'dd.MM.yyyy' }}</td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </div>
-
-          <div class="wallet-mobile-list lg:hidden">
-            @for (row of page.content; track row.id) {
-              <article class="wallet-mobile-item">
-                <button class="wallet-mobile-item__header" type="button" (click)="toggleWalletDetails(row.id)">
-                  <div>
-                    <p class="wallet-mobile-item__title">{{ walletTypeLabel(row.type) }}</p>
-                    <p class="wallet-mobile-item__meta">{{ row.createdDate | date: 'dd.MM.yyyy' }}</p>
-                  </div>
-                  <div class="wallet-mobile-item__right">
-                    <p class="wallet-mobile-item__amount">
-                      {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
-                    </p>
-                    <svg
-                      class="wallet-mobile-item__chevron"
-                      lucideChevronDown
-                      [class.wallet-mobile-item__chevron--open]="walletExpanded()[row.id]"></svg>
-                  </div>
-                </button>
-                @if (walletExpanded()[row.id]) {
-                  <div class="wallet-mobile-item__details">
-                    <p><strong>Баланс:</strong> {{ row.balanceAfter | currency: row.currency : 'symbol' : '1.2-2' }}</p>
-                    <p><strong>Тип ссылки:</strong> {{ referenceTypeLabel(row.referenceType) }}</p>
-                    <p><strong>Описание:</strong> {{ row.description }}</p>
-                  </div>
-                }
-              </article>
-            }
-          </div>
-
-          <p-paginator
-            [first]="page.page * page.size"
-            [rows]="page.size"
-            [totalRecords]="page.totalElements"
-            (onPageChange)="onWalletPageChange($event)" />
-        }
-      </app-pill-tabpanel>
-    </app-pill-tabpanels>
+            <p-paginator
+              [first]="page.page * page.size"
+              [rows]="page.size"
+              [totalRecords]="page.totalElements"
+              (onPageChange)="onWalletPageChange($event)" />
+          }
+        </app-pill-tabpanel>
+      </app-pill-tabpanels>
+    </p-tabs>
   </p-card>
 </section>
