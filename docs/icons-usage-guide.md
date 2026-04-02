@@ -26,7 +26,7 @@ No other icon libraries are allowed.
 ## Library
 
 ```ts
-import { LucideAngularModule, Plus, X, ChevronRight } from 'lucide-angular';
+import { LucideAngularModule, LucidePlus, LucideX, LucideChevronRight } from '@lucide/angular';
 ```
 
 ---
@@ -36,7 +36,13 @@ import { LucideAngularModule, Plus, X, ChevronRight } from 'lucide-angular';
 ### Static icons (preferred)
 
 ```ts
-import { Plus } from 'lucide-angular';
+import { LucidePlus } from '@lucide/angular';
+
+@Component({
+  standalone: true,
+  imports: [LucidePlus],
+})
+export class ExampleComponent {}
 ```
 
 ```html
@@ -48,11 +54,19 @@ import { Plus } from 'lucide-angular';
 ### Dynamic icons (only when necessary)
 
 ```ts
-import { LucideAngularModule } from 'lucide-angular';
+import { LucideDynamicIcon, LucideIconData } from '@lucide/angular';
+
+@Component({
+  standalone: true,
+  imports: [LucideDynamicIcon],
+})
+export class ExampleComponent {
+  icon: LucideIconData | null = null;
+}
 ```
 
 ```html
-<lucide-icon [name]="iconName"></lucide-icon>
+<lucide-icon [img]="icon"></lucide-icon>
 ```
 
 ⚠️ Use dynamic icons only when icon is not known at build time.
@@ -77,7 +91,9 @@ Rules:
 
 ## Rules
 
-- import icons individually
+- import icons individually from `@lucide/angular`
+- Lucide icons must use the `Lucide` prefix in TypeScript imports
+- add used icons to component `imports`
 - do NOT import the whole icon set
 - do NOT wrap Lucide in custom components
 - do NOT use `<i>` tags
@@ -88,19 +104,41 @@ Rules:
 
 ### Button
 
-```html
-<p-button>
-  <svg lucidePlus class="h-4 w-4" pButtonIcon></svg>
-  <span pButtonLabel>Add</span>
-</p-button>
+```ts
+import { Component } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { LucidePlus } from '@lucide/angular';
+
+@Component({
+  standalone: true,
+  imports: [ButtonModule, LucidePlus],
+  template: `
+    <p-button>
+      <svg lucidePlus class="h-4 w-4" pButtonIcon></svg>
+      <span pButtonLabel>Add</span>
+    </p-button>
+  `,
+})
+export class ExampleComponent {}
 ```
 
 ### Icon-only button
 
-```html
-<p-button severity="secondary" size="small" styleClass="p-button-icon-only">
-  <svg lucideX class="h-4 w-4" pButtonIcon></svg>
-</p-button>
+```ts
+import { Component } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { LucideX } from '@lucide/angular';
+
+@Component({
+  standalone: true,
+  imports: [ButtonModule, LucideX],
+  template: `
+    <p-button severity="secondary" size="small" styleClass="p-button-icon-only">
+      <svg lucideX class="h-4 w-4" pButtonIcon></svg>
+    </p-button>
+  `,
+})
+export class ExampleComponent {}
 ```
 
 ---
@@ -112,7 +150,11 @@ Rules:
 ```
 
 ```ts
-import * as icons from 'lucide-angular';
+import * as icons from '@lucide/angular';
+```
+
+```ts
+import { Plus } from '@lucide/angular';
 ```
 
 ---
@@ -142,6 +184,17 @@ import { SiGithubIcon } from '@semantic-icons/simple-icons';
 ---
 
 ## Usage
+
+```ts
+import { Component } from '@angular/core';
+import { SiGithubIcon } from '@semantic-icons/simple-icons';
+
+@Component({
+  standalone: true,
+  imports: [SiGithubIcon],
+})
+export class ExampleComponent {}
+```
 
 ```html
 <svg siGithubIcon class="h-4 w-4"></svg>
@@ -191,6 +244,7 @@ Examples:
 
 - fallback only — Lucide is still primary
 - import icons individually
+- add used icons to component `imports`
 - do NOT wrap in custom components
 - do NOT mix with other icon libraries
 - do NOT use for generic UI icons
@@ -201,20 +255,41 @@ Examples:
 
 ### Brand button
 
-```html
-<p-button severity="secondary" variant="outlined">
-  <svg siTelegramIcon class="h-4.5 w-4.5" pButtonIcon></svg>
-  <span pButtonLabel>Telegram</span>
-</p-button>
+```ts
+import { Component } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { SiTelegramIcon } from '@semantic-icons/simple-icons';
+
+@Component({
+  standalone: true,
+  imports: [ButtonModule, SiTelegramIcon],
+  template: `
+    <p-button severity="secondary" variant="outlined">
+      <svg siTelegramIcon class="h-4.5 w-4.5" pButtonIcon></svg>
+      <span pButtonLabel>Telegram</span>
+    </p-button>
+  `,
+})
+export class ExampleComponent {}
 ```
 
 ### List item
 
-```html
-<div class="flex items-center gap-2">
-  <svg siGithubIcon class="h-4 w-4"></svg>
-  <span>GitHub</span>
-</div>
+```ts
+import { Component } from '@angular/core';
+import { SiGithubIcon } from '@semantic-icons/simple-icons';
+
+@Component({
+  standalone: true,
+  imports: [SiGithubIcon],
+  template: `
+    <div class="flex items-center gap-2">
+      <svg siGithubIcon class="h-4 w-4"></svg>
+      <span>GitHub</span>
+    </div>
+  `,
+})
+export class ExampleComponent {}
 ```
 
 ---
@@ -250,9 +325,7 @@ Use ONLY when:
 ## Example
 
 ```html
-<p-inputtext>
-  <i class="pi pi-search"></i>
-</p-inputtext>
+<i class="pi pi-search"></i>
 ```
 
 ---
@@ -271,13 +344,16 @@ When generating Angular UI:
 
 1. Use `@lucide/angular` by default
 2. Prefer static Lucide icons
-3. Use dynamic Lucide icons only if required
-4. If icon is missing and is brand/social → use `@semantic-icons/simple-icons`
-5. Use the `pButtonIcon` helper directive when you define svg icon inside p-button, except some cases when you have to use PrimeNG `#icon` slot
-6. Do NOT use PrimeIcons unless required
-7. Do NOT create wrapper components
-8. Do NOT guess icon names
-9. Do NOT introduce new icon libraries
+3. Lucide icons must be imported with the `Lucide` prefix
+4. Used icon directives must be added to component `imports`
+5. Use dynamic Lucide icons only if required
+6. If icon is missing and is brand/social → use `@semantic-icons/simple-icons`
+7. semantic-icons must also be added to component `imports`
+8. Use the `pButtonIcon` helper directive when you define svg icon inside p-button, except some cases when you have to use PrimeNG `#icon` slot
+9. Do NOT use PrimeIcons unless required
+10. Do NOT create wrapper components
+11. Do NOT guess icon names
+12. Do NOT introduce new icon libraries
 
 ---
 
