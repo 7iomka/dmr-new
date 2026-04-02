@@ -1,0 +1,22 @@
+@layer components {
+  .c-page-paginator {
+    @apply gap-2 border-0 bg-transparent p-0;
+  }
+
+  .c-page-paginator__pages {
+    @apply gap-2;
+  }
+
+  .c-page-paginator__page-btn,
+  .c-page-paginator__icon-btn {
+    @apply h-9 min-w-9 rounded-lg border border-surface-500 bg-transparent px-2 text-sm font-semibold text-surface-300;
+  }
+
+  .c-page-paginator__page-btn.p-paginator-page-selected {
+    @apply border-primary bg-primary text-primary-contrast;
+  }
+
+  .c-page-paginator__rows {
+    @apply h-9 rounded-lg border border-surface-500 bg-transparent;
+  }
+}

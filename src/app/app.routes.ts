@@ -6,6 +6,7 @@ import { InvestmentsPageComponent } from './features/investments/investments-pag
 import { NotificationsPageComponent } from './features/notifications/notifications-page.component';
 import { ChatPageComponent } from './features/chat/chat-page.component';
 import { StubPageComponent } from './features/stubs/stub-page.component';
+import { WalletPageComponent } from './features/wallet/wallet-page.component';
 
 export const appRoutes: Routes = [
   { path: '', component: StubPageComponent, data: { title: 'Главная (Лендинг)' } },
@@ -19,7 +20,7 @@ export const appRoutes: Routes = [
   { path: 'chat/new', component: ChatPageComponent },
   { path: 'chat/conversation/:id', component: ChatPageComponent },
   { path: 'notifications/:id', component: NotificationsPageComponent },
-  { path: 'wallet', component: StubPageComponent, data: { title: 'Кошелёк' } },
+  { path: 'wallet', component: WalletPageComponent },
   { path: 'withdrawals', component: StubPageComponent, data: { title: 'Выводы' } },
   { path: 'report', component: StubPageComponent, data: { title: 'Отчёт' } },
   { path: 'profile', component: StubPageComponent, data: { title: 'Профиль' } },
