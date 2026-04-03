@@ -7,24 +7,3 @@
 @variant dark {
   --color-card: #14171a;
 }
-
-/* Override custom properties for the PrimeUI theme */
-@layer properties {
-  :root,
-  .dark {
-  }
-
-  :root {
-    --p-primary-color: var(--p-primary-500);
-    --p-primary-contrast-color: #fff;
-    --p-primary-hover-color: var(--p-primary-600);
-    --p-primary-active-color: var(--p-primary-700);
-  }
-
-  .dark {
-    --p-primary-color: var(--p-primary-500);
-    --p-primary-contrast-color: var(--p-surface-950);
-    --p-primary-hover-color: var(--p-primary-400);
-    --p-primary-active-color: var(--p-primary-300);
-  }
-}
