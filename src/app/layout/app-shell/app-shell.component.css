@@ -47,6 +47,7 @@
 }
 
 .app-shell__main {
+  min-width: 0;
 }
 
 .app-shell__footer {
