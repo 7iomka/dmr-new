@@ -1,21 +1,21 @@
 @layer properties {
   :root {
     --c-datatable-header-padding-x: 1rem;
-    --c-datatable-header-padding-y: 0.75rem;
+    --c-datatable-header-padding-y: 1rem;
     --c-datatable-header-padding-x-lg: 1.25rem;
     --c-datatable-header-padding-y-lg: 1rem;
     --c-datatable-header-padding-x-sm: 0.5rem;
     --c-datatable-header-padding-y-sm: 0.875rem;
 
     --c-datatable-header-cell-padding-x: 1rem;
-    --c-datatable-header-cell-padding-y: 0.75rem;
+    --c-datatable-header-cell-padding-y: 1rem;
     --c-datatable-header-cell-padding-x-lg: 1.25rem;
     --c-datatable-header-cell-padding-y-lg: 1rem;
     --c-datatable-header-cell-padding-x-sm: 0.5rem;
     --c-datatable-header-cell-padding-y-sm: 0.875rem;
 
     --c-datatable-body-cell-padding-x: 1rem;
-    --c-datatable-body-cell-padding-y: 0.75rem;
+    --c-datatable-body-cell-padding-y: 1rem;
     --c-datatable-body-cell-padding-x-lg: 1.25rem;
     --c-datatable-body-cell-padding-y-lg: 1rem;
     --c-datatable-body-cell-padding-x-sm: 0.5rem;
@@ -64,7 +64,7 @@
     --p-datatable-header-cell-hover-color: var(--p-content-hover-color);
     --p-datatable-header-cell-selected-color: var(--p-highlight-color);
 
-    --p-datatable-row-color: var(--p-surface-400);
+    --p-datatable-row-color: var(--p-surface-300);
   }
 }
 /* bg-zinc-50/50 dark:bg-[#1E2023]/50 border-b border-zinc-200 dark:border-zinc-800 */
@@ -106,5 +106,9 @@
   .c-datatable-sort-label {
     @apply inline-flex items-center;
     gap: var(--c-datatable-sort-label-gap);
+  }
+
+  .p-datatable-thead > tr > th {
+    line-height: 1.2;
   }
 }
