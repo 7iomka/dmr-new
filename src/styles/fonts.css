@@ -1,43 +1,7 @@
 @font-face {
-  font-family: TTNorms;
-  src: url('/assets/fonts/TTNorms/TTNorms-Regular.eot');
-  src:
-    url('/assets/fonts/TTNorms/TTNorms-Regular.eot?#iefix') format('embedded-opentype'),
-    url('/assets/fonts/TTNorms/TTNorms-Regular.woff') format('woff'),
-    url('/assets/fonts/TTNorms/TTNorms-Regular.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'Onest';
   font-style: normal;
-}
-
-@font-face {
-  font-family: TTNorms;
-  src: url('/assets/fonts/TTNorms/TTNorms-Bold.eot');
-  src:
-    url('/assets/fonts/TTNorms/TTNorms-Bold.eot?#iefix') format('embedded-opentype'),
-    url('/assets/fonts/TTNorms/TTNorms-Bold.woff') format('woff'),
-    url('/assets/fonts/TTNorms/TTNorms-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: TTNorms;
-  src: url('/assets/fonts/TTNorms/TTNorms-Medium.eot');
-  src:
-    url('/assets/fonts/TTNorms/TTNorms-Medium.eot?#iefix') format('embedded-opentype'),
-    url('/assets/fonts/TTNorms/TTNorms-Medium.woff') format('woff'),
-    url('/assets/fonts/TTNorms/TTNorms-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: TTNorms;
-  src: url('/assets/fonts/TTNorms/TTNorms-Light.eot');
-  src:
-    url('/assets/fonts/TTNorms/TTNorms-Light.eot?#iefix') format('embedded-opentype'),
-    url('/assets/fonts/TTNorms/TTNorms-Light.woff') format('woff'),
-    url('/assets/fonts/TTNorms/TTNorms-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/Onest/Onest-VariableFont_wght.ttf') format('woff2');
 }

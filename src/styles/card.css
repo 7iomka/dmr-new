@@ -5,7 +5,10 @@
   }
 
   :root {
-    --c-card-header-bg: #ffffff;
+    --c-card-background: var(--color-card);
+    --c-card-color: var(--p-surface-900);
+    --c-card-header-background: #ffffff;
+    --c-card-border: var(--p-surface-200);
     --c-card-padding-x: 1rem;
     --c-card-padding-y: 1rem;
     --c-card-header-padding-y: 1rem;
@@ -19,23 +22,40 @@
   }
 
   .dark {
-    --c-card-header-bg: #1e2023;
+    --c-card-background: var(--color-card);
+    --c-card-header-background: #1e2023;
+    --c-card-color: var(--p-surface-50);
+    --c-card-border: var(--p-surface-800);
   }
 }
 
 @layer components {
   /* PrimeNG Card (p-card) customization block */
   .p-card {
-    @apply border border-surface-200 bg-card text-surface-900 dark:border-surface-800 dark:text-surface-50;
+    border: 1px solid var(--c-card-border);
+    background-color: var(--c-card-background);
+    color: var(--c-card-color);
   }
 
   .p-card-header {
-    @apply flex flex-wrap items-center justify-between gap-2 rounded-t-[inherit] border-b border-surface-200 dark:border-surface-800;
-    background-color: var(--c-card-header-bg);
+    @apply flex flex-wrap items-center justify-between gap-2 rounded-t-[inherit];
+
+    background-color: var(--c-card-header-background);
+    border-bottom: 1px solid var(--c-card-border);
     padding-inline: var(--c-card-padding-x);
     padding-block: var(--c-card-header-padding-y);
   }
 
+  /* Adjust datatable edge padding when inside a card with inset table variant */
+  .p-card .p-datatable[data-inset='card'] {
+    --c-datatable-header-edge-padding-start: var(--c-card-padding-x);
+    --c-datatable-header-edge-padding-end: var(--c-card-padding-x);
+    --c-datatable-edge-padding-start: var(--c-card-padding-x);
+    --c-datatable-edge-padding-end: var(--c-card-padding-x);
+    --p-datatable-row-background: var(--c-card-background);
+  }
+
+  /* Custom card body utils for padding */
   .c-card-body-inset {
     padding: var(--c-card-padding-y) var(--c-card-padding-x);
   }

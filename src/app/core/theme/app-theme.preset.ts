@@ -16,6 +16,36 @@ export const AppThemePreset = definePreset(Aura, {
       900: '{emerald.900}',
       950: '{emerald.950}',
     },
+    colorScheme: {
+      light: {
+        primary: {
+          color: '{primary.500}',
+          contrastColor: '#ffffff',
+          hoverColor: '{primary.600}',
+          activeColor: '{primary.700}',
+        },
+        // highlight: {
+        //   background: '{primary.950}',
+        //   focusBackground: '{primary.700}',
+        //   color: '#ffffff',
+        //   focusColor: '#ffffff',
+        // },
+      },
+      dark: {
+        primary: {
+          color: '{primary.500}',
+          contrastColor: '{primary.950}',
+          hoverColor: '{primary.400}',
+          activeColor: '{primary.300}',
+        },
+        // highlight: {
+        //   background: '{primary.50}',
+        //   focusBackground: '{primary.300}',
+        //   color: '{primary.950}',
+        //   focusColor: '{primary.950}',
+        // },
+      },
+    },
     borderRadius: {
       xs: 'var(--radius-xs)',
       sm: 'var(--radius-sm)',

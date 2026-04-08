@@ -1,0 +1,114 @@
+@layer properties {
+  :root {
+    --c-datatable-header-padding-x: 1rem;
+    --c-datatable-header-padding-y: 1rem;
+    --c-datatable-header-padding-x-lg: 1.25rem;
+    --c-datatable-header-padding-y-lg: 1rem;
+    --c-datatable-header-padding-x-sm: 0.5rem;
+    --c-datatable-header-padding-y-sm: 0.875rem;
+
+    --c-datatable-header-cell-padding-x: 1rem;
+    --c-datatable-header-cell-padding-y: 1rem;
+    --c-datatable-header-cell-padding-x-lg: 1.25rem;
+    --c-datatable-header-cell-padding-y-lg: 1rem;
+    --c-datatable-header-cell-padding-x-sm: 0.5rem;
+    --c-datatable-header-cell-padding-y-sm: 0.875rem;
+
+    --c-datatable-body-cell-padding-x: 1rem;
+    --c-datatable-body-cell-padding-y: 1rem;
+    --c-datatable-body-cell-padding-x-lg: 1.25rem;
+    --c-datatable-body-cell-padding-y-lg: 1rem;
+    --c-datatable-body-cell-padding-x-sm: 0.5rem;
+    --c-datatable-body-cell-padding-y-sm: 0.875rem;
+
+    --c-datatable-sort-label-gap: 0.5rem;
+    --c-datatable-sort-icon-size: var(--text-xs);
+
+    --p-datatable-header-padding: var(--c-datatable-header-padding-y) var(--c-datatable-header-padding-x);
+    --p-datatable-header-lg-padding: var(--c-datatable-header-padding-y-lg) var(--c-datatable-header-padding-x-lg);
+    --p-datatable-header-sm-padding: var(--c-datatable-header-padding-y-sm) var(--c-datatable-header-padding-x-sm);
+
+    --p-datatable-header-cell-padding: var(--c-datatable-header-cell-padding-y) var(--c-datatable-header-cell-padding-x);
+    --p-datatable-header-cell-lg-padding: var(--c-datatable-header-cell-padding-y-lg)
+      var(--c-datatable-header-cell-padding-x-lg);
+    --p-datatable-header-cell-sm-padding: var(--c-datatable-header-cell-padding-y-sm)
+      var(--c-datatable-header-cell-padding-x-sm);
+
+    --p-datatable-body-cell-padding: var(--c-datatable-body-cell-padding-y) var(--c-datatable-body-cell-padding-x);
+    --p-datatable-body-cell-lg-padding: var(--c-datatable-body-cell-padding-y-lg)
+      var(--c-datatable-body-cell-padding-x-lg);
+    --p-datatable-body-cell-sm-padding: var(--c-datatable-body-cell-padding-y-sm)
+      var(--c-datatable-body-cell-padding-x-sm);
+
+    --p-datatable-sort-icon-size: var(--c-datatable-sort-icon-size);
+  }
+
+  /* Colors */
+  :root {
+    --p-datatable-header-cell-background: --alpha(var(--p-surface-50) / 90%);
+    --p-datatable-header-cell-hover-background: var(--p-content-hover-background);
+    --p-datatable-header-cell-selected-background: var(--p-highlight-background);
+    --p-datatable-header-cell-border-color: var(--p-datatable-border-color);
+    --p-datatable-header-cell-color: var(--p-text-muted-color);
+    --p-datatable-header-cell-hover-color: var(--p-content-hover-color);
+    --p-datatable-header-cell-selected-color: var(--p-highlight-color);
+
+    --p-datatable-row-color: var(--p-surface-600);
+  }
+  .dark {
+    --p-datatable-header-cell-background: --alpha(var(--p-surface-800) / 30%);
+    --p-datatable-header-cell-hover-background: var(--p-content-hover-background);
+    --p-datatable-header-cell-selected-background: var(--p-highlight-background);
+    --p-datatable-header-cell-border-color: var(--p-datatable-border-color);
+    --p-datatable-header-cell-color: var(--p-text-muted-color);
+    --p-datatable-header-cell-hover-color: var(--p-content-hover-color);
+    --p-datatable-header-cell-selected-color: var(--p-highlight-color);
+
+    --p-datatable-row-color: var(--p-surface-300);
+  }
+}
+/* bg-zinc-50/50 dark:bg-[#1E2023]/50 border-b border-zinc-200 dark:border-zinc-800 */
+
+@layer components {
+  .p-datatable {
+    --c-datatable-edge-padding-start: var(--c-datatable-body-cell-padding-x);
+    --c-datatable-edge-padding-end: var(--c-datatable-body-cell-padding-x);
+    --c-datatable-header-edge-padding-start: var(--c-datatable-header-cell-padding-x);
+    --c-datatable-header-edge-padding-end: var(--c-datatable-header-cell-padding-x);
+
+    font-size: var(--text-sm);
+  }
+
+  .p-datatable-sm {
+    font-size: var(--text-xs);
+  }
+  .p-datatable-lg {
+    font-size: var(--text-base);
+  }
+
+  .p-datatable-table > thead > tr > th:first-child {
+    padding-inline-start: var(--c-datatable-header-edge-padding-start);
+  }
+
+  .p-datatable-table > thead > tr > th:last-child {
+    padding-inline-end: var(--c-datatable-header-edge-padding-end);
+  }
+
+  .p-datatable-table > tbody > tr > td:first-child {
+    padding-inline-start: var(--c-datatable-edge-padding-start);
+  }
+
+  .p-datatable-table > tbody > tr > td:last-child {
+    padding-inline-end: var(--c-datatable-edge-padding-end);
+  }
+
+  /* Custom sort label wrapper */
+  .c-datatable-sort-label {
+    @apply inline-flex items-center;
+    gap: var(--c-datatable-sort-label-gap);
+  }
+
+  .p-datatable-thead > tr > th {
+    line-height: 1.2;
+  }
+}

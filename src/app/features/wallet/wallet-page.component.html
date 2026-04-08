@@ -1,0 +1,299 @@
+<section class="c-page-heading">
+  <h1 class="c-page-heading__title">Кошелёк</h1>
+  <p class="c-page-heading__subtitle">Управляйте балансом, пополнениями и транзакциями.</p>
+</section>
+
+<section>
+  <p-tabs [showNavigators]="false" [value]="activeTab()" (valueChange)="onTabChange($event)">
+    <p-card [pt]="{ body: { class: 'p-0' } }">
+      <ng-template #header>
+        <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">Транзакции</h3>
+        <app-pill-tabs-nav size="sm" theme="secondary">
+          <app-pill-tab value="payments">Платежные транзакции</app-pill-tab>
+          <app-pill-tab value="wallet">Wallet Transactions</app-pill-tab>
+        </app-pill-tabs-nav>
+      </ng-template>
+
+      <app-pill-tabpanels>
+        <app-pill-tabpanel value="payments">
+          @if (paymentsPage(); as page) {
+            <div class="wallet-table-shell hidden lg:block">
+              <p-table data-inset="card" [value]="page.content">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th pSortableColumn="amount">
+                      <span class="c-datatable-sort-label">
+                        <span>Сумма</span>
+                        <p-sortIcon field="amount" />
+                      </span>
+                    </th>
+                    <th pSortableColumn="provider">
+                      <span class="c-datatable-sort-label">
+                        <span>Провайдер</span>
+                        <p-sortIcon field="provider" />
+                      </span>
+                    </th>
+                    <th pSortableColumn="paymentMethod">
+                      <span class="c-datatable-sort-label">
+                        <span>Метод оплаты</span>
+                        <p-sortIcon field="paymentMethod" />
+                      </span>
+                    </th>
+                    <th pSortableColumn="status">
+                      <span class="c-datatable-sort-label">
+                        <span>Статус</span>
+                        <p-sortIcon field="status" />
+                      </span>
+                    </th>
+                    <th>Детали оплаты</th>
+                    <th>TXID провайдера</th>
+                    <th pSortableColumn="createdDate">
+                      <span class="c-datatable-sort-label">
+                        <span>Дата создания</span>
+                        <p-sortIcon field="createdDate" />
+                      </span>
+                    </th>
+                    <th pSortableColumn="completedDate">
+                      <span class="c-datatable-sort-label">
+                        <span>Дата завершения</span>
+                        <p-sortIcon field="completedDate" />
+                      </span>
+                    </th>
+                  </tr>
+                </ng-template>
+
+                <ng-template let-row pTemplate="body">
+                  <tr>
+                    <td class="whitespace-nowrap font-bold text-surface-900 dark:text-surface-50">
+                      {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
+                    </td>
+                    <td class="whitespace-nowrap">
+                      <p-tag severity="info" [value]="providerLabel(row.provider)" />
+                    </td>
+                    <td class="font-semibold">{{ paymentMethodLabel(row.paymentMethod) }}</td>
+                    <td>
+                      <p-tag
+                        [severity]="paymentStatusMeta(row.status).severity"
+                        [value]="paymentStatusMeta(row.status).label" />
+                    </td>
+                    <td class="max-w-72 truncate">{{ row.paymentDetails }}</td>
+                    <td>
+                      <div class="flex items-center gap-0.5">
+                        <span class="max-w-32 truncate">{{ row.providerTransactionId }}</span>
+                        <button
+                          aria-label="Copy provider transaction id"
+                          class="p-button-icon-only -my-2.5"
+                          pButton
+                          severity="secondary"
+                          size="small"
+                          text
+                          type="button"
+                          (click)="copyText(row.providerTransactionId)">
+                          <svg class="h-4 w-4" lucideCopy pButtonIcon></svg>
+                        </button>
+                      </div>
+                    </td>
+                    <td>{{ row.createdDate | date: 'dd.MM.yyyy HH:mm' }}</td>
+                    <td>{{ row.completedDate ? (row.completedDate | date: 'dd.MM.yyyy HH:mm') : '-' }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+
+            <div class="wallet-mobile-list lg:hidden">
+              @for (row of page.content; track row.id) {
+                <article class="wallet-mobile-item">
+                  <button class="wallet-mobile-item__header" type="button" (click)="togglePaymentDetails(row.id)">
+                    <div class="wallet-mobile-item__main">
+                      <div [class]="paymentMobileMeta(row).iconWrapClass">
+                        <svg class="wallet-mobile-item__icon" [lucideIcon]="paymentMobileMeta(row).icon"></svg>
+                      </div>
+
+                      <div class="wallet-mobile-item__content">
+                        <p class="wallet-mobile-item__title">{{ paymentMobileMeta(row).title }}</p>
+                        <p class="wallet-mobile-item__meta">{{ row.createdDate | date: 'dd.MM.yyyy HH:mm' }}</p>
+                      </div>
+                    </div>
+
+                    <div class="wallet-mobile-item__right">
+                      <p [class]="paymentMobileMeta(row).amountClass">
+                        {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
+                      </p>
+
+                      <div class="wallet-mobile-item__details-toggle">
+                        <span class="wallet-mobile-item__details-label">ДЕТАЛИ</span>
+                        <svg
+                          class="wallet-mobile-item__chevron"
+                          lucideChevronDown
+                          [class.wallet-mobile-item__chevron--open]="paymentExpanded()[row.id]"></svg>
+                      </div>
+                    </div>
+                  </button>
+
+                  @if (paymentExpanded()[row.id]) {
+                    <div class="wallet-mobile-item__details">
+                      <div class="wallet-mobile-item__detail-grid">
+                        <span class="wallet-mobile-item__detail-label">СТАТУС:</span>
+                        <span class="wallet-mobile-item__detail-value">
+                          <p-tag
+                            [severity]="paymentStatusMeta(row.status).severity"
+                            [value]="paymentStatusMeta(row.status).label" />
+                        </span>
+
+                        <span class="wallet-mobile-item__detail-label">МЕТОД:</span>
+                        <span class="wallet-mobile-item__detail-value">
+                          {{ paymentMethodLabel(row.paymentMethod) }}
+                        </span>
+
+                        @if (row.completedDate) {
+                          <span class="wallet-mobile-item__detail-label">ЗАВЕРШЕНО:</span>
+                          <span class="wallet-mobile-item__detail-value">
+                            {{ row.completedDate | date: 'dd.MM.yyyy HH:mm' }}
+                          </span>
+                        }
+                      </div>
+
+                      <div class="wallet-mobile-item__details-divider"></div>
+
+                      <div class="wallet-mobile-item__detail-stack">
+                        <p class="wallet-mobile-item__detail-label">ДЕТАЛИ ОПЛАТЫ:</p>
+                        <p class="wallet-mobile-item__detail-text">{{ row.paymentDetails }}</p>
+                      </div>
+                    </div>
+                  }
+                </article>
+              }
+            </div>
+
+            <p-paginator
+              [first]="page.page * page.size"
+              [rows]="page.size"
+              [totalRecords]="page.totalElements"
+              (onPageChange)="onPaymentsPageChange($event)" />
+          }
+        </app-pill-tabpanel>
+
+        <app-pill-tabpanel value="wallet">
+          @if (walletPage(); as page) {
+            <div class="wallet-table-shell hidden lg:block">
+              <p-table data-inset="card" [value]="page.content">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th pSortableColumn="type">
+                      <span class="c-datatable-sort-label">
+                        <span>Тип</span>
+                        <p-sortIcon field="type" />
+                      </span>
+                    </th>
+                    <th pSortableColumn="amount">
+                      <span class="c-datatable-sort-label">
+                        <span>Сумма</span>
+                        <p-sortIcon field="amount" />
+                      </span>
+                    </th>
+                    <th pSortableColumn="balanceAfter">
+                      <span class="c-datatable-sort-label">
+                        <span>Баланс после</span>
+                        <p-sortIcon field="balanceAfter" />
+                      </span>
+                    </th>
+                    <th pSortableColumn="referenceType">
+                      <span class="c-datatable-sort-label">
+                        <span>Тип ссылки</span>
+                        <p-sortIcon field="referenceType" />
+                      </span>
+                    </th>
+                    <th>Описание</th>
+                    <th pSortableColumn="createdDate">
+                      <span class="c-datatable-sort-label">
+                        <span>Дата</span>
+                        <p-sortIcon field="createdDate" />
+                      </span>
+                    </th>
+                  </tr>
+                </ng-template>
+
+                <ng-template let-row pTemplate="body">
+                  <tr>
+                    <td>
+                      <span [class]="walletTypeClass(row.type)">{{ walletTypeLabel(row.type) }}</span>
+                    </td>
+                    <td class="font-bold" [class.text-primary]="row.amount > 0" [class.text-red-500]="row.amount < 0">
+                      {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
+                    </td>
+                    <td class="font-bold text-surface-900 dark:text-surface-50">
+                      {{ row.balanceAfter | currency: row.currency : 'symbol' : '1.2-2' }}
+                    </td>
+                    <td class="font-semibold text-muted-color">{{ referenceTypeLabel(row.referenceType) }}</td>
+                    <td class="max-w-152 truncate">{{ row.description }}</td>
+                    <td>{{ row.createdDate | date: 'dd.MM.yyyy' }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+
+            <div class="wallet-mobile-list lg:hidden">
+              @for (row of page.content; track row.id) {
+                <article class="wallet-mobile-item">
+                  <button class="wallet-mobile-item__header" type="button" (click)="toggleWalletDetails(row.id)">
+                    <div class="wallet-mobile-item__main">
+                      <div [class]="walletMobileMeta(row).iconWrapClass">
+                        <svg class="wallet-mobile-item__icon" [lucideIcon]="walletMobileMeta(row).icon"></svg>
+                      </div>
+
+                      <div class="wallet-mobile-item__content">
+                        <p class="wallet-mobile-item__title">{{ walletMobileMeta(row).title }}</p>
+                        <p class="wallet-mobile-item__meta">{{ row.createdDate | date: 'dd.MM.yyyy HH:mm' }}</p>
+                      </div>
+                    </div>
+
+                    <div class="wallet-mobile-item__right">
+                      <p [class]="walletMobileMeta(row).amountClass">
+                        {{ walletSignedAmount(row) }}
+                      </p>
+
+                      <div class="wallet-mobile-item__details-toggle">
+                        <span class="wallet-mobile-item__details-label">ДЕТАЛИ</span>
+                        <svg
+                          class="wallet-mobile-item__chevron"
+                          lucideChevronDown
+                          [class.wallet-mobile-item__chevron--open]="walletExpanded()[row.id]"></svg>
+                      </div>
+                    </div>
+                  </button>
+
+                  @if (walletExpanded()[row.id]) {
+                    <div class="wallet-mobile-item__details">
+                      <div class="wallet-mobile-item__detail-grid">
+                        <span class="wallet-mobile-item__detail-label">ТИП ССЫЛКИ:</span>
+                        <span class="wallet-mobile-item__detail-value">{{ row.referenceType }}</span>
+
+                        <span class="wallet-mobile-item__detail-label">БАЛАНС ПОСЛЕ:</span>
+                        <span class="wallet-mobile-item__detail-value">
+                          {{ row.balanceAfter | currency: row.currency : 'symbol' : '1.2-2' }}
+                        </span>
+                      </div>
+
+                      <div class="wallet-mobile-item__details-divider"></div>
+
+                      <div class="wallet-mobile-item__detail-stack">
+                        <p class="wallet-mobile-item__detail-label">ОПИСАНИЕ:</p>
+                        <p class="wallet-mobile-item__detail-text">{{ row.description }}</p>
+                      </div>
+                    </div>
+                  }
+                </article>
+              }
+            </div>
+
+            <p-paginator
+              [first]="page.page * page.size"
+              [rows]="page.size"
+              [totalRecords]="page.totalElements"
+              (onPageChange)="onWalletPageChange($event)" />
+          }
+        </app-pill-tabpanel>
+      </app-pill-tabpanels>
+    </p-card>
+  </p-tabs>
+</section>

@@ -1,10 +1,11 @@
 /* Container utility for consistent horizontal padding and max-width */
 @utility container {
   --padding-inline: --spacing(4);
-  --max-width: calc(var(--container-7xl) + var(--padding-inline) * 2);
+  --max-width: calc(90rem + var(--padding-inline) * 2);
   @variant lg {
     --padding-inline: --spacing(10);
   }
+
   width: 100%;
   margin-inline: auto;
   padding-inline: var(--padding-inline);

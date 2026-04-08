@@ -1,0 +1,147 @@
+@reference "../../../styles.css";
+
+.wallet-table-shell {
+  /* @apply overflow-x-auto; */
+}
+
+.wallet-table {
+  @apply text-sm;
+}
+
+.wallet-table .p-datatable-thead > tr > th {
+  @apply cursor-pointer whitespace-nowrap border-b border-surface-200 bg-surface-100
+    px-6 py-4 text-[11px] font-bold uppercase tracking-[0.16em] text-surface-500 dark:border-surface-800 dark:bg-surface-900 dark:text-surface-400;
+}
+
+.wallet-table .p-datatable-thead > tr > th:nth-child(5),
+.wallet-table .p-datatable-thead > tr > th:nth-child(6) {
+  @apply cursor-default;
+}
+
+.wallet-table .p-datatable-tbody > tr > td {
+  @apply border-b border-surface-200 px-6 py-5 text-sm text-surface-500 dark:border-surface-800 dark:text-surface-300;
+}
+
+.c-sort-icon {
+  @apply ml-1 inline h-3.5 w-3.5 opacity-60;
+}
+
+.wallet-mobile-list {
+  @apply divide-y divide-surface-200 dark:divide-surface-800;
+}
+
+.wallet-mobile-item {
+  @apply p-4;
+}
+
+.wallet-mobile-item__header {
+  @apply flex w-full items-start justify-between gap-3 text-left;
+}
+
+.wallet-mobile-item__main {
+  @apply flex min-w-0 items-center gap-3;
+}
+
+.wallet-mobile-item__icon-wrap {
+  @apply flex size-10 shrink-0 items-center justify-center rounded-full;
+}
+
+.wallet-mobile-item__icon-wrap--success {
+  background: var(--p-tag-success-background);
+  color: var(--p-tag-success-color);
+}
+
+.wallet-mobile-item__icon-wrap--danger {
+  background: var(--p-tag-danger-background);
+  color: var(--p-tag-danger-color);
+}
+
+.wallet-mobile-item__icon-wrap--warning {
+  background: var(--p-tag-warn-background);
+  color: var(--p-tag-warn-color);
+}
+
+.wallet-mobile-item__icon-wrap--surface {
+  background: var(--p-tag-secondary-background);
+  color: var(--p-tag-secondary-color);
+}
+
+.wallet-mobile-item__icon {
+  @apply size-5;
+}
+
+.wallet-mobile-item__content {
+  @apply min-w-0;
+}
+
+.wallet-mobile-item__title {
+  @apply text-sm font-bold text-surface-900 dark:text-surface-50;
+}
+
+.wallet-mobile-item__meta {
+  @apply mt-1 text-xs text-muted-color;
+}
+
+.wallet-mobile-item__right {
+  @apply flex shrink-0 flex-col items-end gap-1;
+}
+
+.wallet-mobile-item__amount {
+  @apply text-base font-bold text-surface-900 dark:text-surface-50;
+}
+
+.wallet-mobile-item__amount--success {
+  @apply text-primary;
+}
+
+.wallet-mobile-item__amount--danger {
+  color: var(--p-red-500);
+}
+
+.wallet-mobile-item__amount--warning {
+  @apply text-amber-500;
+}
+
+.wallet-mobile-item__details-toggle {
+  @apply flex items-center gap-0.5;
+}
+
+.wallet-mobile-item__details-label {
+  @apply text-xs font-bold uppercase tracking-wide text-surface-500 dark:text-surface-400;
+}
+
+.wallet-mobile-item__chevron {
+  @apply h-4 w-4 text-muted-color transition-transform;
+}
+
+.wallet-mobile-item__chevron--open {
+  @apply rotate-180;
+}
+
+.wallet-mobile-item__details {
+  @apply mt-4 rounded-lg border border-surface-200 bg-surface-50 p-4 text-sm dark:border-surface-800 dark:bg-surface-950;
+}
+
+.wallet-mobile-item__detail-grid {
+  @apply grid grid-cols-[minmax(0,auto)_1fr] gap-3;
+}
+
+.wallet-mobile-item__detail-label {
+  @apply text-xs font-semibold text-surface-500 dark:text-surface-400;
+}
+
+.wallet-mobile-item__detail-value {
+  @apply text-xs text-right font-bold text-surface-900 dark:text-surface-50;
+}
+
+.wallet-mobile-item__details-divider {
+  @apply my-4 h-px bg-surface-200 dark:bg-surface-800;
+}
+
+.wallet-mobile-item__detail-stack {
+  @apply space-y-3;
+}
+
+.wallet-mobile-item__detail-text {
+  @apply text-xs font-medium text-surface-700 dark:text-surface-200;
+}

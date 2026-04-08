@@ -58,8 +58,8 @@ type ContractMenuItem = AppMenuItem & {
   imports: [
     ButtonModule,
     DialogModule,
-    TagModule,
     MenuComponent,
+    TagModule,
     AppAlertComponent,
     LucideCalendarCheck2,
     LucideChevronDown,
