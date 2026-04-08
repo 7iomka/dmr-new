@@ -1,88 +1,116 @@
 @layer properties {
   :root {
     --c-pill-tabs-nav-bg: --alpha(var(--p-surface-200) / 50%);
-    --c-pill-tabs-tab-color: var(--p-text-muted-color);
-    --c-pill-tabs-tab-hover-color: var(--p-text-color);
+    --c-pill-tabs-nav-tab-color: var(--p-text-muted-color);
+    --c-pill-tabs-nav-tab-hover-color: var(--p-text-color);
 
-    --c-pill-tabs-secondary-active-bg: --alpha(var(--p-surface-300) / 70%);
-    --c-pill-tabs-secondary-active-color: var(--p-surface-950);
+    --c-pill-tabs-nav-secondary-active-bg: --alpha(var(--p-surface-300) / 70%);
+    --c-pill-tabs-nav-secondary-active-color: var(--p-surface-950);
 
-    --c-pill-tabs-primary-active-bg: var(--p-button-primary-background);
-    --c-pill-tabs-primary-active-color: var(--p-button-primary-color);
+    --c-pill-tabs-nav-primary-active-bg: var(--p-button-primary-background);
+    --c-pill-tabs-nav-primary-active-color: var(--p-button-primary-color);
   }
 
   .dark {
     --c-pill-tabs-nav-bg: --alpha(var(--p-surface-800) / 72%);
-    --c-pill-tabs-tab-color: var(--p-surface-400);
-    --c-pill-tabs-tab-hover-color: var(--p-surface-200);
+    --c-pill-tabs-nav-tab-color: var(--p-surface-400);
+    --c-pill-tabs-nav-tab-hover-color: var(--p-surface-200);
 
-    --c-pill-tabs-secondary-active-bg: var(--p-surface-700);
-    --c-pill-tabs-secondary-active-color: var(--p-text-color);
+    --c-pill-tabs-nav-secondary-active-bg: var(--p-surface-700);
+    --c-pill-tabs-nav-secondary-active-color: var(--p-text-color);
 
-    --c-pill-tabs-primary-active-bg: var(--p-button-primary-background);
-    --c-pill-tabs-primary-active-color: var(--p-button-primary-color);
+    --c-pill-tabs-nav-primary-active-bg: var(--p-button-primary-background);
+    --c-pill-tabs-nav-primary-active-color: var(--p-button-primary-color);
   }
 }
 
 @layer components {
-  .c-pill-tabs {
-    @apply w-full;
+  .c-pill-tabs-nav {
+    @apply inline-flex max-w-full;
   }
 
-  .c-pill-tabs__nav {
-    @apply inline-flex items-center rounded-lg bg-(--c-pill-tabs-nav-bg) p-1;
+  .c-pill-tabs-nav__root {
+    @apply inline-flex max-w-full items-center rounded-lg bg-(--c-pill-tabs-nav-bg) p-1;
     box-shadow: none;
   }
 
-  .c-pill-tabs .p-tablist-tab-list {
+  .c-pill-tabs-nav__viewport {
+    @apply min-w-0 max-w-full;
+  }
+
+  .c-pill-tabs-nav__tab-list {
     @apply flex items-center gap-0.5 border-none bg-transparent;
   }
 
-  .c-pill-tabs .p-tablist-active-bar {
-    @apply hidden;
+  .c-pill-tabs-nav__tab {
+    @apply m-0 inline-flex min-w-0 items-center justify-center rounded-md border border-transparent bg-transparent px-4 py-2 font-bold leading-none shadow-none;
+    color: var(--c-pill-tabs-nav-tab-color);
   }
 
-  .c-pill-tabs__tab {
-    @apply m-0 inline-flex items-center justify-center rounded-md border border-transparent bg-transparent px-4 py-2 font-bold leading-none shadow-none;
-    color: var(--c-pill-tabs-tab-color);
-  }
-
-  .c-pill-tabs--sm .c-pill-tabs__tab {
+  .c-pill-tabs-nav--sm .c-pill-tabs-nav__tab {
     @apply text-xs;
   }
 
-  .c-pill-tabs--md .c-pill-tabs__tab {
+  .c-pill-tabs-nav--md .c-pill-tabs-nav__tab {
     @apply text-sm;
   }
 
-  .c-pill-tabs__tab:not(.p-tab-active) {
+  .c-pill-tabs-nav__tab:not(.p-tab-active) {
     @apply bg-transparent;
-    color: var(--c-pill-tabs-tab-color);
+    color: var(--c-pill-tabs-nav-tab-color);
   }
 
-  .c-pill-tabs__tab:not(.p-tab-active):hover {
-    color: var(--c-pill-tabs-tab-hover-color);
+  .c-pill-tabs-nav__tab:not(.p-tab-active):hover {
+    color: var(--c-pill-tabs-nav-tab-hover-color);
   }
 
-  .c-pill-tabs--theme-primary .c-pill-tabs__tab.p-tab-active {
-    @apply bg-(--c-pill-tabs-primary-active-bg) text-(--c-pill-tabs-primary-active-color);
+  .c-pill-tabs-nav--theme-primary .c-pill-tabs-nav__tab.p-tab-active {
+    @apply bg-(--c-pill-tabs-nav-primary-active-bg) text-(--c-pill-tabs-nav-primary-active-color);
     border-color: transparent;
   }
 
-  .c-pill-tabs--theme-secondary .c-pill-tabs__tab.p-tab-active {
-    @apply bg-(--c-pill-tabs-secondary-active-bg) text-(--c-pill-tabs-secondary-active-color);
+  .c-pill-tabs-nav--theme-secondary .c-pill-tabs-nav__tab.p-tab-active {
+    @apply bg-(--c-pill-tabs-nav-secondary-active-bg) text-(--c-pill-tabs-nav-secondary-active-color);
     border-color: transparent;
   }
 
-  .c-pill-tabs__panels {
+  .c-pill-tabs-nav--behavior-scroll .c-pill-tabs-nav__viewport {
+    @apply overflow-x-auto overflow-y-hidden no-scrollbar;
+    scroll-behavior: smooth;
+  }
+
+  .c-pill-tabs-nav--behavior-scroll .c-pill-tabs-nav__tab-list {
+    @apply flex-nowrap;
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .c-pill-tabs-nav--behavior-scroll .c-pill-tabs-nav__tab {
+    @apply shrink-0;
+  }
+
+  .c-pill-tabs-nav--behavior-wrap .c-pill-tabs-nav__viewport {
+    @apply overflow-visible;
+  }
+
+  .c-pill-tabs-nav--behavior-wrap .c-pill-tabs-nav__tab-list {
+    @apply flex-wrap;
+    width: 100%;
+  }
+
+  .c-pill-tabs-nav--behavior-wrap .c-pill-tabs-nav__tab {
+    @apply grow;
+  }
+
+  .c-pill-tabpanels {
+    @apply block;
+  }
+
+  .c-pill-tabpanels__root {
     @apply m-0 block bg-transparent p-0;
   }
 
-  .c-pill-tabs__panel {
-    @apply bg-transparent p-0;
-  }
-
-  .c-pill-tabs .p-tabpanels {
-    @apply bg-transparent p-0;
+  .c-pill-tabpanels__item {
+    @apply p-0;
   }
 }

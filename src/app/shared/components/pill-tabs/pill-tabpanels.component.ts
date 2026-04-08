@@ -1,6 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, contentChildren, ViewEncapsulation } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { contentChildren } from '@angular/core';
 import { TabsModule } from 'primeng/tabs';
 import { PillTabPanelComponent } from './pill-tabpanel.component';
 
@@ -9,17 +8,17 @@ import { PillTabPanelComponent } from './pill-tabpanel.component';
   standalone: true,
   imports: [NgTemplateOutlet, TabsModule],
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'c-pill-tabpanels',
+  },
   template: `
-    <p-tabpanels class="c-pill-tabs__panels">
+    <p-tabpanels class="c-pill-tabpanels__root">
       @for (panel of panels(); track panel.value) {
-        <p-tabpanel [value]="panel.value">
-          <div class="c-pill-tabs__panel">
-            <ng-container [ngTemplateOutlet]="panel.content" />
-          </div>
+        <p-tabpanel class="c-pill-tabpanels__item" [value]="panel.value">
+          <ng-container [ngTemplateOutlet]="panel.content" />
         </p-tabpanel>
       }
     </p-tabpanels>
-    <ng-content />
   `,
 })
 export class PillTabPanelsComponent {
