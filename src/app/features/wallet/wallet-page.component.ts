@@ -1,12 +1,24 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { LucideArrowUpDown, LucideChevronDown, LucideCopy } from '@lucide/angular';
+import {
+  LucideArrowDownLeft,
+  LucideArrowUpRight,
+  LucideChevronDown,
+  LucideCircleAlert,
+  LucideCopy,
+  LucideDynamicIcon,
+  type LucideIcon,
+  LucideLock,
+  LucideShieldCheck,
+  LucideZap,
+} from '@lucide/angular';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { TabsModule } from 'primeng/tabs';
 import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
 
 import {
   PillTabComponent,
@@ -23,6 +35,31 @@ import {
   WalletTransaction,
 } from './wallet-mock-api.service';
 
+type MobileVisualTone = 'success' | 'danger' | 'warning' | 'surface';
+
+type PaymentMobileMeta = {
+  title: string;
+  amountClass: string;
+  icon: LucideIcon;
+  iconWrapClass: string;
+};
+
+type WalletMobileMeta = {
+  title: string;
+  amountClass: string;
+  icon: LucideIcon;
+  iconWrapClass: string;
+};
+
+const PAYMENT_STATUS_META = {
+  COMPLETED: { severity: 'success', label: 'Completed' },
+  CANCELED: { severity: 'danger', label: 'Canceled' },
+  FAILED: { severity: 'danger', label: 'Failed' },
+  PENDING: { severity: 'warn', label: 'Pending' },
+} as const;
+
+type PaymentStatus = keyof typeof PAYMENT_STATUS_META;
+
 @Component({
   selector: 'app-wallet-page',
   host: {
@@ -37,13 +74,14 @@ import {
     ButtonModule,
     CurrencyPipe,
     DatePipe,
-    LucideArrowUpDown,
+    LucideDynamicIcon,
     LucideChevronDown,
     LucideCopy,
     PillTabsNavComponent,
     PillTabComponent,
     PillTabPanelsComponent,
     PillTabPanelComponent,
+    TagModule,
   ],
   templateUrl: './wallet-page.component.html',
   styleUrl: './wallet-page.component.css',
@@ -132,14 +170,12 @@ export class WalletPageComponent {
     this.loadWalletTransactions(Math.floor(first / rows));
   }
 
-  protected paymentStatusClass(status: string): string {
+  protected paymentStatusMeta(status: string) {
     return (
-      {
-        COMPLETED: 'c-badge c-badge--success',
-        CANCELED: 'c-badge c-badge--danger',
-        FAILED: 'c-badge c-badge--danger',
-        PENDING: 'c-badge c-badge--warning',
-      }[status] ?? 'c-badge c-badge--muted'
+      PAYMENT_STATUS_META[status as PaymentStatus] ?? {
+        severity: 'secondary',
+        label: status,
+      }
     );
   }
 
@@ -196,6 +232,150 @@ export class WalletPageComponent {
 
   protected toggleWalletDetails(id: number): void {
     this.walletExpanded.update((state) => ({ ...state, [id]: !state[id] }));
+  }
+
+  protected paymentMobileMeta(row: PaymentTransaction): PaymentMobileMeta {
+    const tone = this.paymentTone(row);
+
+    return {
+      title: this.providerLabel(row.provider),
+      amountClass: this.amountClassByTone(tone),
+      icon: this.paymentIcon(row),
+      iconWrapClass: this.iconWrapClassByTone(tone),
+    };
+  }
+
+  protected walletMobileMeta(row: WalletTransaction): WalletMobileMeta {
+    const tone = this.walletTone(row);
+
+    return {
+      title: this.walletMobileTitle(row),
+      amountClass: this.amountClassByTone(tone),
+      icon: this.walletIcon(row),
+      iconWrapClass: this.iconWrapClassByTone(tone),
+    };
+  }
+
+  protected walletSignedAmount(row: WalletTransaction): string {
+    const absoluteAmount = Math.abs(row.amount);
+    const formattedAmount = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: row.currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(absoluteAmount);
+
+    if (row.amount > 0) {
+      return `+ ${formattedAmount}`;
+    }
+
+    if (row.amount < 0) {
+      return `- ${formattedAmount}`;
+    }
+
+    return formattedAmount;
+  }
+
+  private paymentTone(row: PaymentTransaction): MobileVisualTone {
+    if (row.status === 'COMPLETED') {
+      return 'success';
+    }
+
+    if (row.status === 'FAILED' || row.status === 'CANCELED') {
+      return 'danger';
+    }
+
+    if (row.status === 'PENDING') {
+      return 'warning';
+    }
+
+    return 'surface';
+  }
+
+  private walletTone(row: WalletTransaction): MobileVisualTone {
+    if (row.amount > 0 || row.type === 'UNBLOCKED') {
+      return 'success';
+    }
+
+    if (row.amount < 0 || row.type === 'BLOCKED') {
+      return 'danger';
+    }
+
+    return 'surface';
+  }
+
+  private paymentIcon(row: PaymentTransaction): LucideIcon {
+    if (row.status === 'FAILED' || row.status === 'CANCELED') {
+      return LucideCircleAlert;
+    }
+
+    if (row.status === 'PENDING') {
+      return LucideShieldCheck;
+    }
+
+    return LucideZap;
+  }
+
+  private walletIcon(row: WalletTransaction): LucideIcon {
+    if (row.type === 'BLOCKED') {
+      return LucideLock;
+    }
+
+    if (row.type === 'UNBLOCKED') {
+      return LucideShieldCheck;
+    }
+
+    return row.amount >= 0 ? LucideArrowDownLeft : LucideArrowUpRight;
+  }
+
+  private walletMobileTitle(row: WalletTransaction): string {
+    if (row.referenceType === 'WITHDRAWAL' || row.type === 'BLOCKED') {
+      return 'Вывод средств';
+    }
+
+    if (row.referenceType === 'TRANSFER' || row.type === 'CREDIT') {
+      return 'Пополнение счета';
+    }
+
+    if (row.referenceType === 'SHARE_PURCHASE') {
+      return 'Покупка акций';
+    }
+
+    if (row.referenceType === 'WITHDRAWAL_FEE') {
+      return 'Комиссия за вывод';
+    }
+
+    if (row.referenceType === 'INSTALLMENT_CONTRACT') {
+      return 'Оплата рассрочки';
+    }
+
+    if (row.referenceType === 'REFERRAL_COMMISSION') {
+      return 'Реферальная комиссия';
+    }
+
+    return this.walletTypeLabel(row.type);
+  }
+
+  private iconWrapClassByTone(tone: MobileVisualTone): string {
+    return (
+      {
+        success: 'wallet-mobile-item__icon-wrap wallet-mobile-item__icon-wrap--success',
+        danger: 'wallet-mobile-item__icon-wrap wallet-mobile-item__icon-wrap--danger',
+        warning: 'wallet-mobile-item__icon-wrap wallet-mobile-item__icon-wrap--warning',
+        surface: 'wallet-mobile-item__icon-wrap wallet-mobile-item__icon-wrap--surface',
+      }[tone] ?? 'wallet-mobile-item__icon-wrap wallet-mobile-item__icon-wrap--surface'
+    );
+  }
+
+  private amountClassByTone(tone: MobileVisualTone): string {
+    return (
+      {
+        success: 'wallet-mobile-item__amount wallet-mobile-item__amount--success',
+        danger: 'wallet-mobile-item__amount wallet-mobile-item__amount--danger',
+        warning: 'wallet-mobile-item__amount wallet-mobile-item__amount--warning',
+        surface: 'wallet-mobile-item__amount',
+      }[tone] ?? 'wallet-mobile-item__amount'
+    );
   }
 
   private loadPaymentTransactions(page: number): void {
