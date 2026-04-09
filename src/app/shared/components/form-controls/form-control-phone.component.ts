@@ -90,6 +90,7 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
               [overlayOptions]="{ autoZIndex: true, baseZIndex: 1200 }"
               [pt]="countrySelectPt"
               [showClear]="false"
+              [variant]="variant"
               [(ngModel)]="selectedCountryIso"
               (ngModelChange)="onCountrySelected($event)">
               <ng-template #selectedItem let-item>
@@ -134,6 +135,7 @@ export class FormControlPhoneComponent implements OnInit {
   @Input() ariaLabel?: string;
   @Input() placeholder = '';
   @Input() autocomplete?: string;
+  @Input() variant?: 'filled' | 'outlined';
 
   protected readonly countries = PHONE_COUNTRIES;
   protected readonly countryFilterBy = 'name,dialCode,iso2';

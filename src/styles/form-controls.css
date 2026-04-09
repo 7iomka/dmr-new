@@ -36,6 +36,10 @@
     @apply text-sm leading-none font-medium text-surface-700 dark:text-surface-300;
   }
 
+  .c-form-control__label--section {
+    @apply c-section-label;
+  }
+
   .c-form-control__control {
     @apply relative;
   }
@@ -274,5 +278,42 @@
 
   .c-phone-country-option__code {
     @apply text-sm text-surface-500 dark:text-surface-400;
+  }
+
+  .c-copy-control {
+    @apply block;
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /* Copy control                                                               */
+  /* -------------------------------------------------------------------------- */
+
+  .c-copy-control__box {
+    min-height: var(--c-form-control-input-min-height);
+    @apply flex items-center gap-3 focus-within:border-primary;
+  }
+
+  .c-copy-control__icon {
+    @apply size-4 shrink-0 text-surface-500;
+  }
+
+  .c-copy-control__value {
+    @apply min-w-0  whitespace-nowrap flex-1 text-sm text-surface-900 dark:text-surface-50;
+  }
+
+  .c-copy-control__value--truncate {
+    @apply overflow-hidden text-ellipsis;
+  }
+
+  .c-copy-control__value--scroll {
+    @apply overflow-x-auto;
+  }
+
+  code.c-copy-control__value {
+    @apply font-mono text-sm tracking-tight;
+  }
+
+  .c-copy-control__action {
+    @apply shrink-0;
   }
 }

@@ -73,6 +73,7 @@ export type FormControlSelectOption = Record<string, unknown>;
             [pt]="resolvedSelectPt"
             [ptOptions]="{ mergeSections: true, mergeProps: true }"
             [showClear]="showClear"
+            [variant]="variant"
             (ngModelChange)="onValueChange($event)">
             <ng-template #selectedItem let-item>
               @if (item) {
@@ -124,6 +125,8 @@ export class FormControlSelectComponent {
   @Input() filterBy = 'label';
   @Input() filterPlaceholder = 'Поиск...';
   @Input() showClear = false;
+
+  @Input() variant?: 'filled' | 'outlined';
 
   @Input() rootClass?: string;
   @Input() labelClass?: string;

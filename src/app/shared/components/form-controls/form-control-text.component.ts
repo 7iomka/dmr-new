@@ -28,7 +28,8 @@ import { InputTextModule } from 'primeng/inputtext';
           [formControlName]="controlName"
           [id]="controlName"
           [placeholder]="placeholder"
-          [type]="type" />
+          [type]="type"
+          [variant]="variant" />
       </div>
     </div>
   `,
@@ -39,6 +40,7 @@ export class FormControlTextComponent {
   @Input() label?: string;
   @Input() ariaLabel?: string;
   @Input() type: 'text' | 'email' | 'password' | 'tel' = 'text';
+  @Input() variant?: 'filled' | 'outlined';
   @Input() placeholder = '';
   @Input() autocomplete?: string;
   @Input() icon?: LucideIcon;

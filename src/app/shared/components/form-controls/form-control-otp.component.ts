@@ -17,6 +17,7 @@ import { InputOtpModule } from 'primeng/inputotp';
         [integerOnly]="true"
         [length]="length"
         [name]="name"
+        [variant]="variant"
         [(ngModel)]="modelValue" />
       @if (metaText) {
         <div class="c-form-control__meta">{{ metaText }}</div>
@@ -30,6 +31,7 @@ export class FormControlOtpComponent {
   @Input() label?: string;
   @Input() ariaLabel?: string;
   @Input() metaText?: string;
+  @Input() variant?: 'filled' | 'outlined';
   @Input() length = 6;
   @Input() value = '';
   @Output() readonly valueChange = new EventEmitter<string>();

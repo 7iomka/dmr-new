@@ -45,6 +45,7 @@ export class FormControlShellComponent {
   @Input() labelClass?: string;
   @Input() controlClass?: string;
   @Input() metaClass?: string;
+  @Input() labelVariant?: 'section' | undefined;
 
   private readonly generatedInputId = `form-control-${nextUniqueId++}`;
 
@@ -57,9 +58,12 @@ export class FormControlShellComponent {
   }
 
   protected get resolvedLabelClass(): string {
-    return this.joinClasses('c-form-control__label', this.labelClass);
+    return this.joinClasses(
+      'c-form-control__label',
+      this.labelVariant === 'section' && 'c-form-control__label--section',
+      this.labelClass,
+    );
   }
-
   protected get resolvedControlClass(): string {
     return this.joinClasses('c-form-control__control', this.controlClass);
   }

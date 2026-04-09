@@ -28,7 +28,8 @@ import { InputTextModule } from 'primeng/inputtext';
           [formControlName]="controlName"
           [id]="controlName"
           [placeholder]="placeholder"
-          [type]="isVisible ? 'text' : 'password'" />
+          [type]="isVisible ? 'text' : 'password'"
+          [variant]="variant" />
 
         <button
           class="c-form-control__icon-btn"
@@ -69,6 +70,7 @@ export class FormControlPasswordComponent {
   @Input() autocomplete = 'new-password';
   @Input() icon?: LucideIcon;
   @Input() showStrength = false;
+  @Input() variant?: 'filled' | 'outlined';
 
   protected isVisible = false;
 
