@@ -7,13 +7,9 @@
 }
 
 .c-investment-stat-card__title {
-  @apply mb-1 text-[10px] font-bold uppercase text-surface-500;
+  @apply c-section-label mb-1.5;
 }
 
 .c-investment-stat-card__value {
-  @apply text-2xl font-bold leading-none text-surface-900;
-
-  @variant dark {
-    @apply text-surface-50;
-  }
+  @apply text-2xl font-bold leading-none text-surface-900 dark:text-surface-50;
 }

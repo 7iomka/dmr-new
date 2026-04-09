@@ -30,9 +30,7 @@ import { LucideChevronRight, LucideCreditCard } from '@lucide/angular';
 
       @if (showInstallments()) {
         <div class="c-investment-shares-overview__installments-head">
-          <h4 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">
-            Активные рассрочки (2)
-          </h4>
+          <h4 class="c-card-title">Активные рассрочки (2)</h4>
           <p-button severity="secondary" size="small" variant="outlined">
             <span pButtonLabel>Управление</span>
             <svg class="h-3.5 w-3.5" lucideChevronRight pButtonIcon></svg>

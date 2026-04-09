@@ -67,4 +67,10 @@
   .c-card-body-inset-y {
     padding-block: var(--c-card-padding-y);
   }
+
+  /* Custom card elements */
+
+  .c-card-title {
+    @apply text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50;
+  }
 }

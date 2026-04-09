@@ -59,7 +59,7 @@ import { PillTabComponent, PillTabsNavComponent } from '../../shared/components/
       <p-tabs value="active" [showNavigators]="false">
         <p-card [pt]="installmentsCardPt">
           <ng-template #header>
-            <h3 class="text-sm font-bold uppercase tracking-tight text-surface-900 dark:text-surface-50">Рассрочки</h3>
+            <h3 class="c-card-title">Рассрочки</h3>
             <app-pill-tabs-nav size="sm" theme="secondary">
               <app-pill-tab value="active">Активные</app-pill-tab>
               <app-pill-tab value="closed">Закрытые</app-pill-tab>
