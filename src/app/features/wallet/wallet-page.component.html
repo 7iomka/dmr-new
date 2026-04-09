@@ -3,11 +3,82 @@
   <p class="c-page-heading__subtitle">Управляйте балансом, пополнениями и транзакциями.</p>
 </section>
 
+@if (walletOverview(); as overview) {
+  <section>
+    <p-card>
+      <div class="wallet-overview">
+        <div class="wallet-overview__address">
+          <app-form-control-copy
+            copiedToastSummary="ID кошелька скопирован"
+            iconClass="text-primary"
+            label="Адрес вашего кошелька"
+            labelVariant="section"
+            valueOverflow="scroll"
+            [code]="true"
+            [icon]="fingerprintIcon"
+            [value]="overview.walletId" />
+        </div>
+
+        <div class="wallet-overview__main">
+          <p class="c-section-label">Общий баланс</p>
+          <h2 class="wallet-overview__total">
+            {{ overview.balance | currency: overview.currency : 'symbol' : '1.2-2' }}
+          </h2>
+
+          <div class="wallet-overview__metrics">
+            <div class="wallet-overview__metric">
+              <p class="wallet-overview__metric-label">Доступный баланс:</p>
+              <p class="wallet-overview__metric-value">
+                {{ overview.availableBalance | currency: overview.currency : 'symbol' : '1.2-2' }}
+              </p>
+            </div>
+
+            <div class="wallet-overview__metric wallet-overview__metric--inline">
+              <p class="wallet-overview__metric-label">Реферальный баланс:</p>
+              <div class="wallet-overview__metric-inline">
+                <p class="wallet-overview__metric-value">
+                  {{ overview.referralBalance | currency: overview.currency : 'symbol' : '1.2-2' }}
+                </p>
+                <a pButton routerLink="/wallet/withdrawals" severity="secondary" size="small" [outlined]="true">
+                  <span pButtonLabel>Управление</span>
+                  <svg class="h-3.5 w-3.5" lucideChevronRight pButtonIcon></svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="wallet-overview__metric">
+              <p class="wallet-overview__metric-label">Заблокированный баланс:</p>
+              <p class="wallet-overview__metric-value wallet-overview__metric-value--warning">
+                {{ overview.blockedBalance | currency: overview.currency : 'symbol' : '1.2-2' }}
+              </p>
+            </div>
+          </div>
+
+          <div class="wallet-overview__actions">
+            <a pButton routerLink="/wallet/deposit" [raised]="true">
+              <svg class="h-4 w-4" lucideCirclePlus pButtonIcon></svg>
+              <span pButtonLabel>Пополнить</span>
+            </a>
+            <a pButton routerLink="/wallet/transfers/new" severity="secondary" type="button" [outlined]="true">
+              <svg class="h-4 w-4" lucideSend pButtonIcon></svg>
+              <span pButtonLabel>Перевести</span>
+            </a>
+            <a pButton routerLink="/wallet/withdrawals/new" severity="secondary" [outlined]="true">
+              <svg class="h-4 w-4" lucideArrowUpRight pButtonIcon></svg>
+              <span pButtonLabel>Вывести</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </p-card>
+  </section>
+}
+
 <section>
   <p-tabs [showNavigators]="false" [value]="activeTab()" (valueChange)="onTabChange($event)">
     <p-card [pt]="{ body: { class: 'p-0' } }">
       <ng-template #header>
-        <h3 class="text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50">Транзакции</h3>
+        <h3 class="c-card-title">Транзакции</h3>
         <app-pill-tabs-nav size="sm" theme="secondary">
           <app-pill-tab value="payments">Платежные транзакции</app-pill-tab>
           <app-pill-tab value="wallet">Wallet Transactions</app-pill-tab>

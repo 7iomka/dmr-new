@@ -42,8 +42,36 @@ export type WalletTransaction = {
   createdDate: string;
 };
 
+export type WalletOverview = {
+  walletId: string;
+  balance: number;
+  availableBalance: number;
+  blockedBalance: number;
+  currency: string;
+  status: string;
+  kycVerified: boolean;
+  kycLevel: string;
+  transfersBlocked: boolean;
+  blockedReason: string | null;
+  referralBalance: number;
+};
+
 @Injectable({ providedIn: 'root' })
 export class WalletMockApiService {
+  private readonly walletOverview: WalletOverview = {
+    walletId: 'bb8623ef-3902-4937-95e5-1e64fc6f79c4',
+    balance: 350.54,
+    availableBalance: 350.54,
+    blockedBalance: 0,
+    currency: 'USD',
+    status: 'ACTIVE',
+    kycVerified: true,
+    kycLevel: 'BASIC',
+    transfersBlocked: false,
+    blockedReason: null,
+    referralBalance: 0,
+  };
+
   private readonly paymentTransactions: PaymentTransaction[] = [
     {
       id: '3cff3382-065b-4a1c-920e-c495070ea327',
@@ -207,6 +235,10 @@ export class WalletMockApiService {
 
   getWalletTransactions(query: TableQuery): Observable<TablePage<WalletTransaction>> {
     return this.queryList(this.walletTransactions, query);
+  }
+
+  getMyWalletOverview(): Observable<WalletOverview> {
+    return of(this.walletOverview).pipe(delay(180));
   }
 
   private queryList<T extends Record<string, string | number | null>>(

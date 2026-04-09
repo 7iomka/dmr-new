@@ -1,5 +1,53 @@
 @reference "../../../styles.css";
 
+.wallet-overview {
+  @apply flex flex-col gap-6 xl:flex-row;
+}
+
+.wallet-overview__address {
+  @apply w-fit max-w-full md:max-w-md min-w-0 xl:order-1;
+}
+
+.wallet-overview__main {
+  @apply flex min-w-0 flex-1 flex-col gap-4;
+}
+
+.wallet-overview__total {
+  @apply text-3xl font-bold tracking-tight text-surface-900 dark:text-surface-50 sm:text-5xl;
+}
+
+.wallet-overview__metrics {
+  @apply mb-2 space-y-3;
+}
+
+.wallet-overview__metric {
+  @apply flex flex-col items-start gap-1 sm:flex-row sm:items-baseline sm:gap-2;
+}
+
+.wallet-overview__metric--inline {
+  @apply sm:items-center;
+}
+
+.wallet-overview__metric-label {
+  @apply c-section-label;
+}
+
+.wallet-overview__metric-value {
+  @apply text-lg font-bold text-surface-900 dark:text-surface-50;
+}
+
+.wallet-overview__metric-value--warning {
+  color: var(--p-tag-warn-color);
+}
+
+.wallet-overview__metric-inline {
+  @apply flex flex-wrap items-center gap-3;
+}
+
+.wallet-overview__actions {
+  @apply grid grid-cols-1 gap-3 sm:flex sm:flex-wrap;
+}
+
 .wallet-table-shell {
   /* @apply overflow-x-auto; */
 }

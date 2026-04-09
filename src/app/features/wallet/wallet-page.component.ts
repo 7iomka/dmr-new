@@ -5,11 +5,15 @@ import {
   LucideArrowDownLeft,
   LucideArrowUpRight,
   LucideChevronDown,
+  LucideChevronRight,
   LucideCircleAlert,
+  LucideCirclePlus,
   LucideCopy,
   LucideDynamicIcon,
+  LucideFingerprintPattern,
   type LucideIcon,
   LucideLock,
+  LucideSend,
   LucideShieldCheck,
   LucideZap,
 } from '@lucide/angular';
@@ -19,6 +23,7 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { TabsModule } from 'primeng/tabs';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
+import { RouterLink } from '@angular/router';
 
 import {
   PillTabComponent,
@@ -32,8 +37,10 @@ import {
   TablePage,
   TableQuery,
   WalletMockApiService,
+  WalletOverview,
   WalletTransaction,
 } from './wallet-mock-api.service';
+import { FormControlCopyComponent } from '../../shared/components/form-controls/form-control-copy.component';
 
 type MobileVisualTone = 'success' | 'danger' | 'warning' | 'surface';
 
@@ -76,12 +83,19 @@ type PaymentStatus = keyof typeof PAYMENT_STATUS_META;
     DatePipe,
     LucideDynamicIcon,
     LucideChevronDown,
+    LucideChevronRight,
+    LucideCirclePlus,
     LucideCopy,
+    LucideSend,
+    LucideArrowUpRight,
     PillTabsNavComponent,
     PillTabComponent,
     PillTabPanelsComponent,
     PillTabPanelComponent,
     TagModule,
+    RouterLink,
+    FormControlCopyComponent,
+    LucideArrowUpRight,
   ],
   templateUrl: './wallet-page.component.html',
   styleUrl: './wallet-page.component.css',
@@ -91,6 +105,7 @@ export class WalletPageComponent {
   private readonly walletApi = inject(WalletMockApiService);
 
   protected readonly pageSize = 4;
+  protected readonly walletOverview = signal<WalletOverview | null>(null);
   protected readonly paymentsPage = signal<TablePage<PaymentTransaction> | null>(null);
   protected readonly walletPage = signal<TablePage<WalletTransaction> | null>(null);
 
@@ -107,7 +122,10 @@ export class WalletPageComponent {
   protected readonly paymentExpanded = signal<Record<string, boolean>>({});
   protected readonly walletExpanded = signal<Record<number, boolean>>({});
 
+  protected readonly fingerprintIcon = LucideFingerprintPattern;
+
   constructor() {
+    this.loadWalletOverview();
     this.loadPaymentTransactions(0);
     this.loadWalletTransactions(0);
   }
@@ -386,6 +404,13 @@ export class WalletPageComponent {
       .getPaymentTransactions(query)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((response) => this.paymentsPage.set(response));
+  }
+
+  private loadWalletOverview(): void {
+    this.walletApi
+      .getMyWalletOverview()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((response) => this.walletOverview.set(response));
   }
 
   private loadWalletTransactions(page: number): void {
