@@ -1,0 +1,425 @@
+<section class="c-page-heading partners-page-heading">
+  <div>
+    <h1 class="c-page-heading__title">Партнёрская программа</h1>
+    <p class="c-page-heading__subtitle">Отслеживайте свои успехи и управляйте рефералами.</p>
+  </div>
+
+  <!-- TODO: Receive from api -->
+  <div class="partners-inviter">
+    <span class="partners-inviter__label">Пригласивший вас:</span>
+    <div class="partners-inviter__person">
+      <p-avatar class="partners-inviter__avatar" [label]="initials(referrerBadgeLabel())" />
+
+      <span class="partners-inviter__description">
+        <span class="partners-inviter__name">{{ referrerBadgeLabel() }}</span>
+        <span class="partners-inviter__id">ID: 42785</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<section class="grid grid-cols-1 gap-4 lg:gap-6 md:grid-cols-2 xl:grid-cols-3">
+  <p-card class="partners-summary-card partners-summary-card--income">
+    <div class="partners-summary-card__content">
+      <div class="partners-summary-card__top">
+        <p-tag class="partners-summary-card__icon-wrap">
+          <svg class="h-4 w-4" lucideDollarSign></svg>
+        </p-tag>
+        <p class="c-section-label">Доход</p>
+      </div>
+
+      <div class="partners-summary-card__body">
+        <h2 class="partners-summary-card__value">
+          {{ totalReferralEarnings() | currency: 'USD' : 'symbol' : '1.2-2' }}
+        </h2>
+
+        <div class="partners-summary-card__meta">
+          <p-tag
+            class="partners-summary-card__chip"
+            [value]="'+' + (currentMonthReferralEarnings() | currency: 'USD' : 'symbol' : '1.2-2')" />
+          <span class="partners-summary-card__muted">за текущий месяц</span>
+        </div>
+      </div>
+
+      <div class="partners-summary-card__footer">
+        <span class="partners-summary-card__footer-label">Доступно к выводу</span>
+        <span class="partners-summary-card__footer-value">
+          {{ maxWithdrawableAmount() | currency: 'USD' : 'symbol' : '1.2-2' }}
+        </span>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="partners-summary-card partners-summary-card--team">
+    <div class="partners-summary-card__content">
+      <div class="partners-summary-card__top">
+        <p-tag class="partners-summary-card__icon-wrap" severity="info">
+          <svg class="h-4 w-4" lucideUsers></svg>
+        </p-tag>
+        <p class="c-section-label">Команда</p>
+      </div>
+
+      <div class="partners-summary-card__body">
+        <h2 class="partners-summary-card__value">{{ totalDescendantsCount() }}</h2>
+        <p class="partners-summary-card__muted">
+          Активных партнёров:
+          <span class="partners-summary-card__strong">{{ activeDescendantsCount() }}</span>
+        </p>
+        <p class="partners-summary-card__muted hidden">
+          Реферальный баланс:
+          <span class="partners-summary-card__strong">
+            {{ referralBalance() | currency: 'USD' : 'symbol' : '1.2-2' }}
+          </span>
+        </p>
+      </div>
+
+      <div class="partners-summary-card__footer partners-summary-card__footer--empty">
+        <span aria-hidden="true"></span>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="partners-links-card md:col-span-2 xl:col-span-1">
+    <div class="partners-links-card__content">
+      <div>
+        <h3 class="partners-links-card__title">Приглашайте друзей</h3>
+        <p class="partners-links-card__subtitle">Получайте бонусы за каждого активного партнёра.</p>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <app-form-control-copy
+          label="Ваша ссылка (платформа)"
+          labelVariant="section"
+          valueOverflow="scroll"
+          variant="filled"
+          [value]="platformReferralLink()" />
+
+        <app-form-control-copy
+          label="Ваша ссылка (продукт)"
+          labelVariant="section"
+          valueOverflow="scroll"
+          variant="filled"
+          [value]="productReferralLink()" />
+
+        <app-form-control-copy
+          label="Код"
+          labelVariant="section"
+          valueClass="font-semibold text-primary"
+          variant="filled"
+          [code]="true"
+          [value]="referralCode()" />
+      </div>
+    </div>
+  </p-card>
+</section>
+
+<section>
+  <p-card [pt]="tableCardPt">
+    <ng-template #header>
+      <div class="partners-table-card__header">
+        <div class="partners-breadcrumbs c-card-header-inset-x">
+          <div class="partners-breadcrumbs__root">
+            <button
+              class="partners-breadcrumbs__root-btn"
+              pButton
+              severity="secondary"
+              size="small"
+              type="button"
+              [text]="true"
+              (click)="goToRoot()">
+              <svg class="h-4 w-4" lucideHouse pButtonIcon></svg>
+              <span pButtonLabel>Вы</span>
+            </button>
+          </div>
+
+          <div class="partners-breadcrumbs__wrapper">
+            <div
+              class="partners-breadcrumbs__mask partners-breadcrumbs__mask--left"
+              [class.opacity-0]="!showLeftMask()"
+              [class.partners-breadcrumbs__mask--hidden]="!showLeftMask()">
+              <button
+                class="p-button-icon-only ml-2"
+                pButton
+                severity="secondary"
+                size="small"
+                type="button"
+                [outlined]="true"
+                (click)="scrollBreadcrumbs('left')">
+                <svg class="h-4 w-4" lucideChevronLeft pButtonIcon></svg>
+              </button>
+            </div>
+
+            <div #breadcrumbContainer class="partners-breadcrumbs__path" (scroll)="onBreadcrumbScroll()">
+              @for (breadcrumb of currentPath(); track breadcrumb.id; let index = $index) {
+                <svg class="partners-breadcrumbs__divider" lucideChevronRight></svg>
+
+                <button
+                  class="partners-breadcrumbs__item"
+                  pButton
+                  severity="secondary"
+                  type="button"
+                  [text]="true"
+                  (click)="goToBreadcrumb(index)">
+                  <span class="partners-level-badge" [ngStyle]="levelBadgeStyle(breadcrumb.depthLevel)">
+                    L{{ breadcrumb.depthLevel }}
+                  </span>
+                  <span pButtonLabel>#{{ breadcrumb.legacyId }}</span>
+                </button>
+              }
+            </div>
+
+            <div
+              class="partners-breadcrumbs__mask partners-breadcrumbs__mask--right"
+              [class.opacity-0]="!showRightMask()"
+              [class.partners-breadcrumbs__mask--hidden]="!showRightMask()">
+              <button
+                class="p-button-icon-only mr-2"
+                pButton
+                severity="secondary"
+                size="small"
+                type="button"
+                [outlined]="true"
+                (click)="scrollBreadcrumbs('right')">
+                <svg class="h-4 w-4" lucideChevronRight pButtonIcon></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="partners-breadcrumbs__back">
+            <button
+              pButton
+              severity="secondary"
+              size="small"
+              type="button"
+              [disabled]="currentPath().length === 0"
+              [outlined]="true"
+              (click)="goBack()">
+              <svg class="h-4 w-4" lucideArrowLeft pButtonIcon></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="partners-table-toolbar c-card-header-inset-x c-card-header-inset-y">
+          <label class="partners-search">
+            <svg class="partners-search__icon" lucideSearch></svg>
+            <input
+              class="partners-search__input"
+              id="partners_search_input"
+              pInputText
+              placeholder="Поиск по ID, email, телефону или имени"
+              [value]="searchTerm()"
+              (input)="onSearchInput($event)" />
+          </label>
+
+          @if (referralsPage(); as page) {
+            <p-paginator
+              class="p-0"
+              [first]="page.page * page.size"
+              [rows]="page.size"
+              [showFirstLastIcon]="false"
+              [totalRecords]="page.totalElements"
+              (onPageChange)="onPaginatorChange($event)" />
+          }
+        </div>
+      </div>
+    </ng-template>
+
+    @if (referralsPage(); as page) {
+      <div class="partners-table-shell hidden lg:block">
+        <p-table class="partners-table" data-inset="card" [value]="page.content">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="legacyId" (click)="sortBy('legacyId')">
+                <span class="c-datatable-sort-label">
+                  <span>ID</span>
+                  <p-sortIcon field="legacyId" />
+                </span>
+              </th>
+              <th pSortableColumn="fullName" (click)="sortBy('fullName')">
+                <span class="c-datatable-sort-label">
+                  <span>Имя и фамилия</span>
+                  <p-sortIcon field="fullName" />
+                </span>
+              </th>
+              <th pSortableColumn="email" (click)="sortBy('email')">
+                <span class="c-datatable-sort-label">
+                  <span>Email</span>
+                  <p-sortIcon field="email" />
+                </span>
+              </th>
+              <th>Телефон</th>
+              <th class="text-center" pSortableColumn="totalDescendantsCount" (click)="sortBy('totalDescendantsCount')">
+                <span class="c-datatable-sort-label">
+                  <span>Рефералы</span>
+                  <p-sortIcon field="totalDescendantsCount" />
+                </span>
+              </th>
+              <th class="text-center" pSortableColumn="status" (click)="sortBy('status')">
+                <span class="c-datatable-sort-label">
+                  <span>Статус</span>
+                  <p-sortIcon field="status" />
+                </span>
+              </th>
+              <th>Код</th>
+              <th pSortableColumn="createdDate" (click)="sortBy('createdDate')">
+                <span class="c-datatable-sort-label">
+                  <span>Зарегистрирован</span>
+                  <p-sortIcon field="createdDate" />
+                </span>
+              </th>
+              <th class="text-right">Действия</th>
+            </tr>
+          </ng-template>
+
+          <ng-template let-row pTemplate="body">
+            <tr>
+              <td class="partners-table__id">
+                <div class="flex items-center gap-2">
+                  <span class="partners-level-badge" [ngStyle]="levelBadgeStyle(row.depthLevel)"
+                    >L{{ row.depthLevel }}</span
+                  >
+                  <span>{{ row.legacyId }}</span>
+                </div>
+              </td>
+              <td>
+                <span class="font-semibold text-surface-900 dark:text-surface-50">{{ displayName(row) }}</span>
+              </td>
+              <td>{{ row.email }}</td>
+              <td>{{ row.phone || '—' }}</td>
+              <td class="text-center">
+                <button
+                  class="partners-table__descendants"
+                  type="button"
+                  [disabled]="!canOpenBranch(row)"
+                  (click)="openReferralBranch(row)">
+                  <span>{{ row.directReferralsCount }}</span>
+                  <span class="partners-table__descendants-separator">/</span>
+                  <span>{{ row.totalDescendantsCount }}</span>
+                  @if (canOpenBranch(row)) {
+                    <svg class="h-3.5 w-3.5" lucideChevronRight></svg>
+                  }
+                </button>
+              </td>
+              <td class="text-center">
+                <p-tag [severity]="statusSeverity(row.status)" [value]="statusLabel(row.status)" />
+              </td>
+              <td>
+                <div class="partners-table__code">
+                  <code>{{ row.referralCode }}</code>
+                </div>
+              </td>
+              <td>{{ row.createdDate | date: 'dd.MM.yyyy HH:mm' }}</td>
+              <td class="text-right">
+                @if (canOpenBranch(row)) {
+                  <button
+                    class="p-button-icon-only"
+                    pButton
+                    severity="secondary"
+                    size="small"
+                    type="button"
+                    [outlined]="true"
+                    (click)="openReferralBranch(row)">
+                    <svg class="h-4 w-4" lucideChevronRight pButtonIcon></svg>
+                  </button>
+                } @else {
+                  <span>—</span>
+                }
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <div class="partners-mobile-list lg:hidden">
+        @for (row of page.content; track trackReferral($index, row)) {
+          <article class="partners-mobile-item">
+            <button class="partners-mobile-item__header" type="button" (click)="toggleMobileDetails(row.id)">
+              <div class="partners-mobile-item__main">
+                <div class="partners-mobile-item__level" [ngStyle]="levelBadgeStyle(row.depthLevel)">
+                  L{{ row.depthLevel }}
+                </div>
+
+                <div class="partners-mobile-item__content">
+                  <p class="partners-mobile-item__title">
+                    ID:
+                    <span class="font-semibold">{{ row.legacyId }}</span>
+                  </p>
+                  <p class="partners-mobile-item__meta partners-mobile-item__meta--name">{{ displayName(row) }}</p>
+                  <p class="partners-mobile-item__meta">Рефералов: {{ row.totalDescendantsCount }}</p>
+                </div>
+              </div>
+
+              <div class="partners-mobile-item__right">
+                <p-tag [severity]="statusSeverity(row.status)" [value]="statusLabel(row.status)" />
+
+                <div class="partners-mobile-item__details-toggle">
+                  <span class="partners-mobile-item__details-label">Детали</span>
+                  <svg
+                    class="partners-mobile-item__chevron"
+                    lucideChevronDown
+                    [class.partners-mobile-item__chevron--open]="mobileExpanded()[row.id]"></svg>
+                </div>
+              </div>
+            </button>
+
+            @if (mobileExpanded()[row.id]) {
+              <div class="partners-mobile-item__details">
+                <div class="partners-mobile-item__detail-grid">
+                  <span class="partners-mobile-item__detail-label">Email:</span>
+                  <span class="partners-mobile-item__detail-value">{{ row.email }}</span>
+
+                  <span class="partners-mobile-item__detail-label">Телефон:</span>
+                  <span class="partners-mobile-item__detail-value">{{ row.phone || '—' }}</span>
+
+                  <span class="partners-mobile-item__detail-label">Зарегистрирован:</span>
+                  <span class="partners-mobile-item__detail-value">{{
+                    row.createdDate | date: 'dd.MM.yyyy HH:mm'
+                  }}</span>
+
+                  <span class="partners-mobile-item__detail-label">Рефералов:</span>
+                  <span class="partners-mobile-item__detail-value">{{ referralCountLabel(row) }}</span>
+                </div>
+
+                @if (canOpenBranch(row)) {
+                  <div class="partners-mobile-item__details-divider"></div>
+
+                  <button
+                    pButton
+                    severity="primary"
+                    size="small"
+                    type="button"
+                    [fluid]="true"
+                    [outlined]="true"
+                    (click)="openReferralBranch(row)">
+                    <span pButtonLabel>Открыть структуру</span>
+                    <svg class="h-4 w-4" lucideChevronRight pButtonIcon></svg>
+                  </button>
+                }
+              </div>
+            }
+          </article>
+        }
+      </div>
+
+      @if (page.totalElements === 0) {
+        <div class="partners-empty-state">
+          <svg class="h-5 w-5" lucideUsers></svg>
+          <div>
+            <p class="partners-empty-state__title">Партнёры не найдены</p>
+            <p class="partners-empty-state__text">Попробуйте изменить запрос или вернуться к корню дерева.</p>
+          </div>
+        </div>
+      }
+
+      <p-paginator
+        class="py-4"
+        currentPageReportTemplate="Показано {first}-{last} из {totalRecords} партнеров"
+        [first]="page.page * page.size"
+        [rows]="page.size"
+        [showCurrentPageReport]="true"
+        [showFirstLastIcon]="false"
+        [totalRecords]="page.totalElements"
+        (onPageChange)="onPaginatorChange($event)" />
+    }
+  </p-card>
+</section>

@@ -6,6 +6,7 @@ import { InvestmentsPageComponent } from './features/investments/investments-pag
 import { NotificationsPageComponent } from './features/notifications/notifications-page.component';
 import { ChatPageComponent } from './features/chat/chat-page.component';
 import { StubPageComponent } from './features/stubs/stub-page.component';
+import { PartnersPageComponent } from './features/partners/partners-page.component';
 import { WalletPageComponent } from './features/wallet/wallet-page.component';
 
 export const appRoutes: Routes = [
@@ -21,10 +22,10 @@ export const appRoutes: Routes = [
   { path: 'chat/conversation/:id', component: ChatPageComponent },
   { path: 'notifications/:id', component: NotificationsPageComponent },
   { path: 'wallet', component: WalletPageComponent },
+  { path: 'partners', component: PartnersPageComponent },
   { path: 'withdrawals', component: StubPageComponent, data: { title: 'Выводы' } },
   { path: 'report', component: StubPageComponent, data: { title: 'Отчёт' } },
   { path: 'profile', component: StubPageComponent, data: { title: 'Профиль' } },
-  { path: 'referrals', component: StubPageComponent, data: { title: 'Рефералы' } },
   { path: 'settings', component: StubPageComponent, data: { title: 'Настройки' } },
   { path: 'home', component: StubPageComponent, data: { title: 'Главная' } },
   { path: 'news', component: StubPageComponent, data: { title: 'Новости' } },
