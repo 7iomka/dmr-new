@@ -43,7 +43,7 @@
   body {
     @apply bg-surface-100 text-surface-900 dark:bg-dark dark:text-surface-50 min-h-screen;
     font-variant-ligatures: none;
-    font-family: 'Onest', sans-serif;
+    font-family: 'Twemoji Mozilla', 'Onest', sans-serif;
     line-height: 1.375;
   }
 
