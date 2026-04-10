@@ -32,9 +32,17 @@
 @layer components {
   /* PrimeNG Card (p-card) customization block */
   .p-card {
+    display: flex;
+    flex-direction: column;
     border: 1px solid var(--c-card-border);
     background-color: var(--c-card-background);
     color: var(--c-card-color);
+  }
+
+  .p-card-body,
+  .p-card-content {
+    flex-grow: 1;
+    min-height: 0;
   }
 
   .p-card-header {
@@ -53,6 +61,18 @@
     --c-datatable-edge-padding-start: var(--c-card-padding-x);
     --c-datatable-edge-padding-end: var(--c-card-padding-x);
     --p-datatable-row-background: var(--c-card-background);
+  }
+  /* Custom card header utils for padding */
+  .c-card-header-inset {
+    padding: var(--c-card-header-padding-y) var(--c-card-padding-x);
+  }
+
+  .c-card-header-inset-x {
+    padding-inline: var(--c-card-padding-x);
+  }
+
+  .c-card-header-inset-y {
+    padding-block: var(--c-card-header-padding-y);
   }
 
   /* Custom card body utils for padding */

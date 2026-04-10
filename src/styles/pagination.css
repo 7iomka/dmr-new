@@ -1,6 +1,6 @@
 @layer components {
   .p-paginator {
-    @apply border-t border-surface-200 bg-transparent px-4 py-4 dark:border-surface-800;
+    @apply bg-transparent;
   }
 
   .p-paginator-content {
@@ -21,5 +21,9 @@
 
   .p-paginator-rpp-dropdown {
     @apply h-8;
+  }
+
+  .p-paginator-current {
+    @apply c-section-label me-auto shrink-0 min-w-0 basis-full text-center mb-2;
   }
 }
