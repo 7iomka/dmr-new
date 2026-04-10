@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TabsModule } from 'primeng/tabs';
-import { LucideChevronRight, LucideCirclePlus, LucideCopy } from '@lucide/angular';
+import { LucideChevronRight, LucideCirclePlus } from '@lucide/angular';
 
 import { CInvestmentBuyFormComponent } from '../investments/components/investment-buy-form/c-investment-buy-form.component';
 import { CInvestmentSharesOverviewComponent } from '../investments/components/shares-overview/c-investment-shares-overview.component';
@@ -30,7 +30,6 @@ import { FormControlCopyComponent } from '../../shared/components/form-controls/
     CardModule,
     TabsModule,
     LucideChevronRight,
-    LucideCopy,
     LucideCirclePlus,
     CInvestmentBuyFormComponent,
     CInvestmentSharesOverviewComponent,
