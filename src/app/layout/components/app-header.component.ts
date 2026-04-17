@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { AppLanguageSwitcherComponent } from './app-language-switcher.component';
 import { AppNotificationsButtonComponent } from './app-notifications-button.component';
 import { AppThemeToggleComponent } from './app-theme-toggle.component';
-import { AppUserMenuComponent } from './app-user-menu.component';
+import { AppUserAppMenuComponent } from './app-user-menu.component';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,7 @@ import { AppUserMenuComponent } from './app-user-menu.component';
     AppThemeToggleComponent,
     AppLanguageSwitcherComponent,
     AppNotificationsButtonComponent,
-    AppUserMenuComponent,
+    AppUserAppMenuComponent,
   ],
   styleUrl: './app-header.component.css',
   host: {

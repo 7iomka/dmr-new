@@ -18,7 +18,7 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 
 import { FormControlTextComponent } from '../../shared/components/form-controls/form-control-text.component';
-import { AppMenuItem, MenuComponent } from '../../shared/components/menu/menu.component';
+import { AppMenuComponent, AppMenuItem } from '../../shared/components/menu/menu.component';
 import {
   NotificationsKnowledgeBaseService,
   NotificationSort,
@@ -39,7 +39,7 @@ import {
     ButtonModule,
     CheckboxModule,
     FormControlTextComponent,
-    MenuComponent,
+    AppMenuComponent,
     LucideBell,
     LucideBellRing,
     LucideSearchX,
@@ -136,7 +136,7 @@ export class NotificationsPageComponent {
     })),
   );
 
-  protected openSortMenu(event: MouseEvent, sortMenu: MenuComponent): void {
+  protected openSortMenu(event: MouseEvent, sortMenu: AppMenuComponent): void {
     sortMenu.toggle(event);
   }
 

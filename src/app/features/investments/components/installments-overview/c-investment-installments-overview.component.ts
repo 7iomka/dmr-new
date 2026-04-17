@@ -15,7 +15,7 @@ import {
 } from '@lucide/angular';
 import { map } from 'rxjs';
 import { PillTabPanelComponent, PillTabPanelsComponent } from '../../../../shared/components/pill-tabs';
-import { type AppMenuItem, MenuComponent } from '../../../../shared/components/menu/menu.component';
+import { AppMenuComponent, type AppMenuItem } from '../../../../shared/components/menu/menu.component';
 import { AppAlertComponent } from '../../../../shared/components/alert/alert.component';
 import { FormControlSelectComponent } from '../../../../shared/components/form-controls/form-control-select.component';
 
@@ -58,7 +58,7 @@ type ContractMenuItem = AppMenuItem & {
   imports: [
     ButtonModule,
     DialogModule,
-    MenuComponent,
+    AppMenuComponent,
     TagModule,
     AppAlertComponent,
     LucideCalendarCheck2,
@@ -805,7 +805,7 @@ export class CInvestmentInstallmentsOverviewComponent implements AfterViewInit {
     return 'secondary';
   }
 
-  toggleContractMenu(event: Event, contractId: string, menu: MenuComponent): void {
+  toggleContractMenu(event: Event, contractId: string, menu: AppMenuComponent): void {
     this.selectedContractId.set(contractId);
     menu.toggle(event);
   }

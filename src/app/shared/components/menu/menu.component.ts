@@ -91,7 +91,7 @@ export type AppMenuItem = Omit<MenuItem, 'items' | 'icon'> & {
     </p-menu>
   `,
 })
-export class MenuComponent {
+export class AppMenuComponent {
   @Input() items: AppMenuItem[] = [];
   @Input() popup = true;
   @Input() menuClass = '';
