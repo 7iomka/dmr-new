@@ -38,6 +38,10 @@ export const AppThemePreset = definePreset(Aura, {
           hoverColor: '{primary.400}',
           activeColor: '{primary.300}',
         },
+        formField: {
+          borderColor: '{surface.700}',
+          hoverBorderColor: '{surface.600}',
+        },
         // highlight: {
         //   background: '{primary.50}',
         //   focusBackground: '{primary.300}',

@@ -147,7 +147,6 @@ import { FormControlOtpComponent } from '../../shared/components/form-controls/f
             <div class="auth-actions">
               <p-button type="submit" [label]="config().submitLabel ?? 'Подтвердить'" />
               <p-button
-                icon="pi pi-refresh"
                 severity="secondary"
                 type="button"
                 variant="outlined"

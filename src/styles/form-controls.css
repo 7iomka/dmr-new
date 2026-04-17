@@ -59,7 +59,6 @@
   .c-form-control__input {
     min-height: var(--c-form-control-input-min-height);
     width: 100%;
-    padding-inline-start: var(--c-form-control-icon-width);
   }
 
   .c-form-control:has(.c-form-control__icon-left) .c-form-control__input {
@@ -146,7 +145,7 @@
     @apply h-13 w-10.5 rounded-lg text-lg font-bold text-surface-900 dark:text-surface-100;
   }
 
-  .c-input-otp__field.is-filled {
+  .c-input-otp__field.p-filled {
     @apply border-primary-500/80 bg-primary-50/70 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400;
   }
 

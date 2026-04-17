@@ -7,11 +7,12 @@ import { InputOtpModule } from 'primeng/inputotp';
   standalone: true,
   imports: [FormsModule, InputOtpModule],
   template: `
-    <div class="c-form-control c-form-control--otp">
+    <div class="c-form-control c-input-otp">
       @if (label) {
         <label class="c-form-control__label" [for]="inputId">{{ label }}</label>
       }
       <p-inputotp
+        styleClass="c-form-control__input c-input-otp__field"
         [ariaLabel]="resolvedAriaLabel"
         [attr.inputId]="inputId"
         [integerOnly]="true"
