@@ -33,7 +33,7 @@ export type AppMenuItem = Omit<MenuItem, 'items' | 'icon'> & {
             tabindex="-1"
             [attr.target]="i['target'] ?? null"
             [attr.title]="i['title'] ?? null"
-            [class]="itemLinkClass(i)"
+            [class]="resolveItemLinkClass(i)"
             [fragment]="i['fragment']"
             [preserveFragment]="i['preserveFragment']"
             [queryParams]="i['queryParams']"
@@ -51,11 +51,11 @@ export type AppMenuItem = Omit<MenuItem, 'items' | 'icon'> & {
             [attr.href]="i['url']"
             [attr.target]="i['target'] ?? null"
             [attr.title]="i['title'] ?? null"
-            [class]="itemLinkClass(i)">
+            [class]="resolveItemLinkClass(i)">
             <ng-container *ngTemplateOutlet="itemInner; context: { $implicit: i }" />
           </a>
         } @else {
-          <a pRipple tabindex="-1" [attr.title]="i['title'] ?? null" [class]="itemLinkClass(i)">
+          <a pRipple tabindex="-1" [attr.title]="i['title'] ?? null" [class]="resolveItemLinkClass(i)">
             <ng-container *ngTemplateOutlet="itemInner; context: { $implicit: i }" />
           </a>
         }
@@ -97,15 +97,18 @@ export class AppMenuComponent {
   @Input() menuClass = '';
   @Input() allowPrimeIcons = false;
 
+  @Input() defaultItemClass = '';
+  @Input() defaultItemLinkClass = '';
+
   @ViewChild('menu', { static: true })
   private readonly menuRef!: Menu;
 
   readonly pt: MenuPassThrough = {
     root: { class: 'c-menu__overlay' },
     list: { class: 'c-menu__list' },
-    item: (options) => ({ class: this.itemClass(this.ptItem(options)) }),
+    item: (options) => ({ class: this.resolveItemClass(this.ptItem(options)) }),
     itemContent: { class: 'c-menu__item-content' },
-    itemLink: (options) => ({ class: this.itemLinkClass(this.ptItem(options)) }),
+    itemLink: (options) => ({ class: this.resolveItemLinkClass(this.ptItem(options)) }),
   };
 
   get model(): MenuItem[] {
@@ -134,9 +137,10 @@ export class AppMenuComponent {
     return typeof icon === 'string' && icon.trim().startsWith('pi ');
   }
 
-  itemClass(item: AppMenuItem): string {
+  resolveItemClass(item: AppMenuItem): string {
     return [
       'c-menu__item',
+      this.defaultItemClass,
       item.danger ? 'c-menu__item--danger' : '',
       item.active ? ['c-menu__item--active', item.itemActiveClass].filter(Boolean).join(' ') : '',
       item.itemClass,
@@ -145,9 +149,10 @@ export class AppMenuComponent {
       .join(' ');
   }
 
-  itemLinkClass(item: AppMenuItem): string {
+  resolveItemLinkClass(item: AppMenuItem): string {
     return [
       'p-menu-item-link c-menu__item-link',
+      this.defaultItemLinkClass,
       item.active ? ['c-menu__item-link--active', item.linkActiveClass].filter(Boolean).join(' ') : '',
       item.linkClass,
     ]

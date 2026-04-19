@@ -1,0 +1,28 @@
+@reference '../../../styles.css';
+
+.app-user-menu {
+}
+
+.app-user-menu__meta {
+  @apply flex min-w-29.5 flex-col text-left;
+}
+
+.app-user-menu__name {
+  @apply max-w-[32ch] overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-none font-bold normal-case text-surface-800 dark:text-surface-100;
+}
+
+.app-user-menu__id {
+  @apply mt-0.5 text-xs uppercase text-muted-color;
+}
+
+.app-user-menu__id-value {
+  @apply font-semibold tracking-wide text-primary;
+}
+
+.app-user-menu__chevron {
+  @apply h-4 w-4 text-muted-color;
+}
+
+.app-user-menu__item-link {
+  @apply py-2.5 font-medium;
+}

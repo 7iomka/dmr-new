@@ -48,6 +48,91 @@
   text-transform: uppercase;
 }
 
-.app-mobile-nav__profile-menu {
-  min-width: 13rem;
+.app-mobile-nav__profile-drawer {
+  @apply mx-auto w-full max-w-md overflow-hidden rounded-t-xl border-t border-surface-200 bg-card shadow-2xl dark:border-surface-800;
+  max-height: min(42rem, calc(100dvh - 1rem));
+}
+
+.app-mobile-nav__profile-drawer-header {
+  display: none;
+}
+
+.app-mobile-nav__profile-drawer-content {
+  @apply p-0 pb-3;
+  overflow-y: auto;
+}
+
+.app-mobile-nav__profile-handle {
+  @apply w-full pt-4 pb-6;
+  touch-action: none;
+  cursor: grab;
+}
+
+.app-mobile-nav__profile-handle-bar {
+  @apply mx-auto h-1.5 w-12 rounded-full bg-surface-200 dark:bg-surface-800;
+}
+
+.app-bottom-sheet--dragging {
+  cursor: grabbing;
+}
+
+.app-mobile-nav__profile-preview {
+  @apply flex items-center justify-center gap-3 px-4;
+}
+
+.app-mobile-nav__profile-avatar {
+  @apply shrink-0;
+}
+
+.app-mobile-nav__profile-meta {
+  @apply flex flex-col gap-1 text-left;
+}
+
+.app-mobile-nav__profile-name {
+  @apply mb-0.5 text-base leading-none font-bold text-surface-800 dark:text-surface-200;
+}
+
+.app-mobile-nav__profile-id {
+  @apply mt-0.5 text-sm leading-none uppercase text-muted-color;
+}
+
+.app-mobile-nav__profile-id-value {
+  @apply font-semibold tracking-wide text-primary;
+}
+
+.app-mobile-nav__profile-list {
+  @apply flex-1 space-y-2 px-4 py-5;
+}
+
+.app-mobile-nav__profile-item {
+  @apply flex w-full items-center rounded-lg bg-surface-100 px-4 py-2 text-left transition-colors hover:bg-surface-200 dark:bg-surface-800/50 dark:hover:bg-surface-700;
+}
+
+.app-mobile-nav__profile-item--danger {
+  @apply text-red-500;
+}
+
+.app-mobile-nav__profile-item-icon {
+  @apply mr-4 flex h-10 w-10 items-center justify-center rounded-full;
+}
+
+.app-mobile-nav__profile-item-icon[data-tone='primary'] {
+  background: color-mix(in srgb, var(--p-primary-color) 14%, transparent);
+  color: var(--p-primary-color);
+}
+
+.app-mobile-nav__profile-item-icon[data-tone='surface'] {
+  @apply bg-surface-900 text-surface-500 dark:bg-surface-700 dark:text-surface-400;
+}
+
+.app-mobile-nav__profile-item-icon[data-tone='danger'] {
+  @apply bg-red-500/10 text-red-500;
+}
+
+.app-mobile-nav__profile-item-icon-svg {
+  @apply h-5 w-5;
+}
+
+.app-mobile-nav__profile-item-label {
+  @apply text-sm font-medium;
 }

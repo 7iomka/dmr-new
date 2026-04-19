@@ -1,20 +1,42 @@
 import { Component, inject, signal, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { LucideBriefcase, LucideCircleUser, LucideTextAlignJustify } from '@lucide/angular';
-import { MenuItem } from 'primeng/api';
-import { Menu, MenuModule } from 'primeng/menu';
+import {
+  LucideBriefcase,
+  LucideCircleUser,
+  LucideDynamicIcon,
+  type LucideIcon,
+  LucideLogOut,
+  LucideSettings,
+  LucideTextAlignJustify,
+  LucideUser,
+} from '@lucide/angular';
+import { AvatarModule } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
+import { DrawerModule } from 'primeng/drawer';
 
 import { AppMobileSidebarComponent } from './app-mobile-sidebar.component';
+import { BottomSheetDragDismissDirective } from '../../shared/directives/bottom-sheet-drag-dismiss.directive';
+
+type MobileProfileDrawerItem = {
+  label: string;
+  icon: LucideIcon;
+  route: string | null;
+  tone: 'primary' | 'surface' | 'danger';
+};
 
 @Component({
   selector: 'app-mobile-bottom-nav',
   standalone: true,
   imports: [
     RouterLink,
-    MenuModule,
+    DrawerModule,
+    ButtonModule,
+    AvatarModule,
     LucideTextAlignJustify,
     LucideBriefcase,
     LucideCircleUser,
+    LucideDynamicIcon,
+    BottomSheetDragDismissDirective,
     AppMobileSidebarComponent,
   ],
   styleUrl: './app-mobile-bottom-nav.component.css',
@@ -34,32 +56,81 @@ import { AppMobileSidebarComponent } from './app-mobile-sidebar.component';
         <span class="app-mobile-nav__label">Инвестиции</span>
       </a>
 
-      <button class="app-mobile-nav__item" type="button" (click)="toggleProfileMenu($event, profileMenu)">
+      <button class="app-mobile-nav__item" type="button" (click)="isProfileDrawerOpen.set(true)">
         <svg class="app-mobile-nav__icon" lucideCircleUser></svg>
         <span class="app-mobile-nav__label">Профиль</span>
       </button>
     </nav>
 
-    <p-menu
-      #profileMenu
-      appendTo="body"
-      styleClass="app-mobile-nav__profile-menu"
-      [model]="profileMenuItems"
-      [popup]="true" />
+    <p-drawer
+      position="bottom"
+      [appendTo]="'body'"
+      [closable]="false"
+      [dismissible]="true"
+      [modal]="true"
+      [pt]="{
+        header: { class: 'app-mobile-nav__profile-drawer-header' },
+        root: { class: 'app-mobile-nav__profile-drawer' },
+        content: { class: 'app-mobile-nav__profile-drawer-content' },
+      }"
+      [style]="{ height: 'auto' }"
+      [visible]="isProfileDrawerOpen()"
+      (visibleChange)="isProfileDrawerOpen.set($event)">
+      <div
+        appBottomSheetDragDismiss
+        class="app-mobile-nav__profile-handle"
+        [appBottomSheetDragDismissThreshold]="100"
+        [appBottomSheetDragDismissVisible]="isProfileDrawerOpen()"
+        (appBottomSheetDragDismiss)="isProfileDrawerOpen.set(false)">
+        <div class="app-mobile-nav__profile-handle-bar"></div>
+      </div>
+
+      <div class="app-mobile-nav__profile-preview">
+        <p-avatar class="app-mobile-nav__profile-avatar" label="DW" />
+
+        <div class="app-mobile-nav__profile-meta">
+          <p class="app-mobile-nav__profile-name">Dorin Watsap</p>
+          <p class="app-mobile-nav__profile-id">ID: <span class="app-mobile-nav__profile-id-value">882194</span></p>
+        </div>
+      </div>
+
+      <div class="app-mobile-nav__profile-list">
+        @for (item of profileDrawerItems; track item.label) {
+          @if (item.route) {
+            <a class="app-mobile-nav__profile-item" [routerLink]="item.route" (click)="isProfileDrawerOpen.set(false)">
+              <span class="app-mobile-nav__profile-item-icon" [attr.data-tone]="item.tone">
+                <svg class="app-mobile-nav__profile-item-icon-svg" [lucideIcon]="item.icon"></svg>
+              </span>
+              <span class="app-mobile-nav__profile-item-label">{{ item.label }}</span>
+            </a>
+          } @else {
+            <button
+              class="app-mobile-nav__profile-item app-mobile-nav__profile-item--danger"
+              type="button"
+              (click)="logout()">
+              <span class="app-mobile-nav__profile-item-icon" [attr.data-tone]="item.tone">
+                <svg class="app-mobile-nav__profile-item-icon-svg" [lucideIcon]="item.icon"></svg>
+              </span>
+              <span class="app-mobile-nav__profile-item-label">{{ item.label }}</span>
+            </button>
+          }
+        }
+      </div>
+    </p-drawer>
 
     <app-mobile-sidebar [isOpen]="isSidebarOpen()" (isOpenChange)="onSidebarVisibleChange($event)" />
   `,
 })
 export class AppMobileBottomNavComponent {
   protected readonly isSidebarOpen = signal(false);
+  protected readonly isProfileDrawerOpen = signal(false);
 
   private readonly router = inject(Router);
 
-  protected readonly profileMenuItems: MenuItem[] = [
-    { label: 'Профиль', icon: 'pi pi-user', routerLink: '/profile' },
-    { label: 'Настройки', icon: 'pi pi-cog', routerLink: '/settings' },
-    { separator: true },
-    { label: 'Выйти', icon: 'pi pi-sign-out' },
+  protected readonly profileDrawerItems: MobileProfileDrawerItem[] = [
+    { label: 'Мой профиль', icon: LucideUser, route: '/profile', tone: 'primary' },
+    { label: 'Настройки', icon: LucideSettings, route: '/settings', tone: 'surface' },
+    { label: 'Выйти', icon: LucideLogOut, route: null, tone: 'danger' },
   ];
 
   protected openSidebar(): void {
@@ -74,7 +145,8 @@ export class AppMobileBottomNavComponent {
     return this.router.url === route;
   }
 
-  protected toggleProfileMenu(event: Event, menu: Menu): void {
-    menu.toggle(event);
+  protected logout(): void {
+    this.isProfileDrawerOpen.set(false);
+    console.log('Logout');
   }
 }

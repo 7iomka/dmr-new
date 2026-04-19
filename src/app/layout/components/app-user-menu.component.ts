@@ -1,38 +1,61 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
-import { MenuModule } from 'primeng/menu';
-import { Menu } from 'primeng/menu';
-import { MenuItem } from 'primeng/api';
-import { LucideChevronDown } from '@lucide/angular';
+
+import { LucideChevronDown, LucideLogOut, LucideSettings, LucideUser } from '@lucide/angular';
+import { AppMenuComponent, type AppMenuItem } from '../../shared/components/menu/menu.component';
 
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [ButtonModule, AvatarModule, MenuModule, LucideChevronDown],
+  imports: [ButtonModule, AvatarModule, AppMenuComponent, LucideChevronDown],
+  styleUrl: './app-user-menu.component.css',
+  encapsulation: ViewEncapsulation.None,
   template: `
     <p-button severity="secondary" variant="outlined" (onClick)="menu.toggle($event)">
       <p-avatar label="DW" />
-      <span class="hidden text-left md:flex md:min-w-29.5 md:flex-col">
-        <span class="text-sm font-bold leading-none text-surface-800 dark:text-surface-100 normal-case"
-          >Dorin Watsap</span
-        >
-        <span class="mt-0.5 text-[11px] font-bold uppercase tracking-tight text-surface-500 dark:text-surface-400"
-          >ID: 882194</span
-        >
+      <span class="app-user-menu__meta">
+        <span class="app-user-menu__name">Dorin Watsap</span>
+        <span class="app-user-menu__id"> ID: <span class="app-user-menu__id-value">882194</span> </span>
       </span>
-      <svg class="h-4 w-4 text-surface-500" lucideChevronDown pButtonIcon></svg>
+      <svg class="app-user-menu__chevron" lucideChevronDown pButtonIcon></svg>
     </p-button>
-    <p-menu #menu appendTo="body" styleClass="shell-user-menu" [model]="items" [popup]="true" />
+
+    <app-menu
+      #menu
+      appendTo="body"
+      defaultItemLinkClass="app-user-menu__item-link"
+      menuClass="app-user-menu"
+      [items]="userMenuItems"
+      [popup]="true" />
   `,
 })
-export class AppUserMenuComponent {
-  @ViewChild('menu') protected menu!: Menu;
+export class AppUserAppMenuComponent {
+  @ViewChild('menu') protected menu!: AppMenuComponent;
 
-  protected readonly items: MenuItem[] = [
-    { label: 'Профиль', icon: 'pi pi-user' },
-    { label: 'Настройки', icon: 'pi pi-cog' },
-    { separator: true },
-    { label: 'Выйти', icon: 'pi pi-sign-out', class: 'text-red-500' },
+  protected readonly userMenuItems: AppMenuItem[] = [
+    {
+      label: 'Профиль',
+      icon: LucideUser,
+      routerLink: ['/profile'],
+    },
+    {
+      label: 'Настройки',
+      icon: LucideSettings,
+      routerLink: ['/settings'],
+    },
+    {
+      separator: true,
+    },
+    {
+      label: 'Выйти',
+      icon: LucideLogOut,
+      danger: true,
+      command: () => this.logout(),
+    },
   ];
+
+  protected logout(): void {
+    console.log('Logout');
+  }
 }

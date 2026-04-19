@@ -94,6 +94,8 @@ Rules:
 - import icons individually from `@lucide/angular`
 - Lucide icons must use the `Lucide` prefix in TypeScript imports
 - add used icons to component `imports`
+- when using `[lucideIcon]`, you must import `LucideDynamicIcon` and add it to component `imports`
+- do not add static Lucide icons to component `imports` unless the template uses their directive directly (for example `lucideChevronRight`)
 - do NOT import the whole icon set
 - do NOT wrap Lucide in custom components
 - do NOT use `<i>` tags
