@@ -1,0 +1,24 @@
+@layer variables {
+  :root {
+    --p-toast-icon-size: 0.875rem;
+    --p-toast-width: 18.125rem;
+    --p-toast-summary-font-size: var(--text-sm);
+    --p-toast-blur: 30px;
+    --p-toast-close-button-width: 1.5rem;
+    --p-toast-close-button-height: 1.5rem;
+    --p-toast-close-icon-size: 0.875rem;
+
+    --c-toast-box-shadow:
+      rgba(0, 0, 0, 0.05) 0px 1px 3px 0px, rgba(0, 0, 0, 0.05) 0px 28px 23px -7px,
+      rgba(0, 0, 0, 0.04) 0px 12px 12px -7px;
+  }
+}
+
+@layer components {
+  .p-toast-message {
+    box-shadow: var(--c-toast-box-shadow);
+  }
+  .p-toast-detail:empty {
+    display: none;
+  }
+}
