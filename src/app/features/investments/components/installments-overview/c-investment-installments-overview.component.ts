@@ -380,26 +380,26 @@ type ContractMenuItem = AppMenuItem & {
       [style]="{ width: 'min(92vw, 36rem)' }"
       [(visible)]="isPlanPaymentDialogOpen">
       @if (selectedPlanPayment(); as selectedPayment) {
-        <div class="c-investment-contract-dialog__rows">
-          <div class="c-investment-contract-dialog__row">
-            <p>ID контракта</p>
-            <strong>{{ selectedPayment.contractId }}</strong>
+        <div class="c-rows">
+          <div class="c-row">
+            <div class="c-row__label">ID контракта</div>
+            <div class="c-row__value">{{ selectedPayment.contractId }}</div>
           </div>
-          <div class="c-investment-contract-dialog__row">
-            <p>Платёж</p>
-            <strong>{{ selectedPayment.payment.title }}</strong>
+          <div class="c-row">
+            <div class="c-row__label">Платёж</div>
+            <div class="c-row__value">{{ selectedPayment.payment.title }}</div>
           </div>
-          <div class="c-investment-contract-dialog__row">
-            <p>Доли</p>
-            <strong>{{ selectedPayment.payment.shares }}</strong>
+          <div class="c-row">
+            <div class="c-row__label">Доли</div>
+            <div class="c-row__value">{{ selectedPayment.payment.shares }}</div>
           </div>
-          <div class="c-investment-contract-dialog__row">
-            <p>Сумма платежа</p>
-            <strong>{{ selectedPayment.payment.amount }}</strong>
+          <div class="c-row">
+            <div class="c-row__label">Сумма платежа</div>
+            <div class="c-row__value">{{ selectedPayment.payment.amount }}</div>
           </div>
-          <div class="c-investment-contract-dialog__row">
-            <p>Баланс кошелька</p>
-            <strong>{{ planPaymentWalletBalance }}</strong>
+          <div class="c-row">
+            <div class="c-row__label">Баланс кошелька</div>
+            <div class="c-row__value">{{ planPaymentWalletBalance }}</div>
           </div>
         </div>
 
@@ -430,22 +430,22 @@ type ContractMenuItem = AppMenuItem & {
       [resizable]="false"
       [style]="{ width: 'min(92vw, 36rem)' }"
       [(visible)]="isPayAllDialogOpen">
-      <div class="c-investment-contract-dialog__rows">
-        <div class="c-investment-contract-dialog__row">
-          <p>ID контракта</p>
-          <strong>{{ contractDialogData.id }}</strong>
+      <div class="c-rows">
+        <div class="c-row">
+          <div class="c-row__label">ID контракта</div>
+          <div class="c-row__value">{{ contractDialogData.id }}</div>
         </div>
-        <div class="c-investment-contract-dialog__row">
-          <p>Доли</p>
-          <strong>{{ contractDialogData.shares }}</strong>
+        <div class="c-row">
+          <div class="c-row__label">Доли</div>
+          <div class="c-row__value">{{ contractDialogData.shares }}</div>
         </div>
-        <div class="c-investment-contract-dialog__row">
-          <p>Сумма платежа</p>
-          <strong>{{ contractDialogData.paymentAmount }}</strong>
+        <div class="c-row">
+          <div class="c-row__label">Сумма платежа</div>
+          <div class="c-row__value">{{ contractDialogData.paymentAmount }}</div>
         </div>
-        <div class="c-investment-contract-dialog__row">
-          <p>Баланс кошелька</p>
-          <strong>{{ contractDialogData.walletBalance }}</strong>
+        <div class="c-row">
+          <div class="c-row__label">Баланс кошелька</div>
+          <div class="c-row__value">{{ contractDialogData.walletBalance }}</div>
         </div>
       </div>
 
@@ -476,18 +476,18 @@ type ContractMenuItem = AppMenuItem & {
       [resizable]="false"
       [style]="{ width: 'min(92vw, 36rem)' }"
       [(visible)]="isPaySomeDialogOpen">
-      <div class="c-investment-contract-dialog__rows">
-        <div class="c-investment-contract-dialog__row">
-          <p>ID контракта</p>
-          <strong>{{ contractDialogData.id }}</strong>
+      <div class="c-rows">
+        <div class="c-row">
+          <div class="c-row__label">ID контракта</div>
+          <div class="c-row__value">{{ contractDialogData.id }}</div>
         </div>
-        <div class="c-investment-contract-dialog__row">
-          <p>Неоплаченные месяцы</p>
-          <strong>{{ contractDialogData.unpaidMonths }}</strong>
+        <div class="c-row">
+          <div class="c-row__label">Неоплаченные месяцы</div>
+          <div class="c-row__value">{{ contractDialogData.unpaidMonths }}</div>
         </div>
-        <div class="c-investment-contract-dialog__row">
-          <p>Сумма за месяц</p>
-          <strong>{{ contractDialogData.monthlyAmount }}</strong>
+        <div class="c-row">
+          <div class="c-row__label">Сумма за месяц</div>
+          <div class="c-row__value">{{ contractDialogData.monthlyAmount }}</div>
         </div>
       </div>
 
@@ -501,18 +501,18 @@ type ContractMenuItem = AppMenuItem & {
         [options]="monthsToPayOptions"
         [(value)]="selectedMonthsToPay" />
 
-      <div class="c-investment-contract-dialog__rows">
-        <div class="c-investment-contract-dialog__row">
-          <p>Доли</p>
-          <strong>{{ contractDialogData.shares }}</strong>
+      <div class="c-rows">
+        <div class="c-row">
+          <div class="c-row__label">Доли</div>
+          <div class="c-row__value">{{ contractDialogData.shares }}</div>
         </div>
-        <div class="c-investment-contract-dialog__row">
-          <p>Сумма платежа</p>
-          <strong>{{ contractDialogData.paymentAmount }}</strong>
+        <div class="c-row">
+          <div class="c-row__label">Сумма платежа</div>
+          <div class="c-row__value">{{ contractDialogData.paymentAmount }}</div>
         </div>
-        <div class="c-investment-contract-dialog__row">
-          <p>Баланс кошелька</p>
-          <strong>{{ contractDialogData.walletBalance }}</strong>
+        <div class="c-row">
+          <div class="c-row__label">Баланс кошелька</div>
+          <div class="c-row__value">{{ contractDialogData.walletBalance }}</div>
         </div>
       </div>
 
@@ -546,28 +546,28 @@ type ContractMenuItem = AppMenuItem & {
       [(visible)]="isCancelDialogOpen">
       <app-alert severity="error">Внимание: Это действие нельзя отменить</app-alert>
 
-      <div class="c-investment-contract-dialog__rows">
-        <div class="c-investment-contract-dialog__row">
-          <p>ID контракта</p>
-          <strong>{{ contractDialogData.id }}</strong>
+      <div class="c-rows">
+        <div class="c-row">
+          <div class="c-row__label">ID контракта</div>
+          <div class="c-row__value">{{ contractDialogData.id }}</div>
         </div>
-        <div class="c-investment-contract-dialog__row">
-          <p>Неоплаченные платежи</p>
-          <strong>{{ contractDialogData.unpaidMonths }}</strong>
+        <div class="c-row">
+          <div class="c-row__label">Неоплаченные платежи</div>
+          <div class="c-row__value">{{ contractDialogData.unpaidMonths }}</div>
         </div>
-        <div class="c-investment-contract-dialog__row">
-          <p>Остаток суммы</p>
-          <strong>{{ contractDialogData.paymentAmount }}</strong>
+        <div class="c-row">
+          <div class="c-row__label">Остаток суммы</div>
+          <div class="c-row__value">{{ contractDialogData.paymentAmount }}</div>
         </div>
-        <div class="c-investment-contract-dialog__row">
-          <p>Доли, которые вы сохраните</p>
-          <strong>{{ contractDialogData.preservedShares }}</strong>
+        <div class="c-row">
+          <div class="c-row__label">Доли, которые вы сохраните</div>
+          <div class="c-row__value">{{ contractDialogData.preservedShares }}</div>
         </div>
       </div>
 
       <app-alert severity="warn">
         <p>Отмена этого контракта приведет к:</p>
-        <ul class="list-disc space-y-1 pl-3 mt-1">
+        <ul class="list-disc mt-1 space-y-1 pl-3">
           <li>Отмене всех неоплаченных платежей</li>
           <li>Вы сохраните доли, полученные из оплаченных платежей</li>
           <li>Возврат средств за оплаченные суммы не производится</li>

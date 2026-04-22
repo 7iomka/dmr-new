@@ -1,0 +1,171 @@
+<section class="c-page-heading withdrawals-addresses-heading">
+  <div>
+    <h1 class="c-page-heading__title">Адреса для вывода</h1>
+    <p class="c-page-heading__subtitle">
+      Добавьте адреса, на которые вы сможете выводить средства. Перед использованием адрес необходимо подтвердить.
+    </p>
+  </div>
+
+  <div class="withdrawals-addresses-heading__action">
+    <p-button type="button" (onClick)="openAddDialog()">
+      <svg class="h-4 w-4" pButtonIcon [lucideIcon]="plusCircleIcon"></svg>
+      <span pButtonLabel>Добавить адрес</span>
+    </p-button>
+  </div>
+</section>
+
+<section class="withdrawal-addresses-grid">
+  @for (address of addresses(); track address.id) {
+    <p-card>
+      <div class="withdrawal-address-card">
+        <div class="withdrawal-address-card__header">
+          <p class="withdrawal-address-card__title">{{ address.label }}</p>
+          <p-tag [severity]="statusMeta(address).severity" [value]="statusMeta(address).label" />
+        </div>
+
+        <p class="withdrawal-address-card__meta">Сеть: {{ networkLabel(address.cryptoType) }}</p>
+        <p class="withdrawal-address-card__address">{{ address.address }}</p>
+
+        @if (isPendingVerification(address)) {
+          <app-alert severity="warn" variant="outlined">
+            <div class="withdrawal-address-card__verification-alert">
+              <span>{{ pendingVerificationMessage(address) }}</span>
+              <p-button size="small" type="button" (onClick)="openConfirmDialog(address.id)">
+                <span pButtonLabel>Верифицировать</span>
+              </p-button>
+            </div>
+          </app-alert>
+        }
+
+        @if (address.isDefault) {
+          <p-tag class="withdrawal-address-card__default-tag" value="По умолчанию" />
+        }
+
+        <div class="withdrawal-address-card__actions">
+          @if (isPendingVerification(address)) {
+            <p-button size="small" type="button" (onClick)="openConfirmDialog(address.id)">
+              <svg class="h-4 w-4" pButtonIcon [lucideIcon]="checkIcon"></svg>
+              <span pButtonLabel>Подтвердить</span>
+            </p-button>
+          }
+
+          @if (!address.isDefault) {
+            <p-button outlined severity="secondary" size="small" type="button" (onClick)="setDefault(address.id)">
+              <span pButtonLabel>Сделать по умолчанию</span>
+            </p-button>
+          }
+
+          <p-button outlined severity="danger" size="small" type="button" (onClick)="deleteAddress(address.id)">
+            <svg class="h-4 w-4" pButtonIcon [lucideIcon]="trashIcon"></svg>
+            <span pButtonLabel>Удалить</span>
+          </p-button>
+        </div>
+      </div>
+    </p-card>
+  }
+</section>
+
+<p-dialog
+  appendTo="body"
+  header="Добавить адрес для вывода"
+  [dismissableMask]="true"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+  [style]="{ width: 'min(92vw, 40rem)' }"
+  [visible]="isAddDialogOpen()"
+  (visibleChange)="onAddDialogVisibleChange($event)">
+  <div class="withdrawal-dialog__content">
+    <app-form-control-select
+      label="Сеть вывода"
+      optionValue="value"
+      [options]="networkOptions"
+      [showClear]="false"
+      [value]="addAddressForm.controls.cryptoType.value"
+      (valueChange)="onNetworkChange($event)" />
+
+    <app-alert variant="outlined" [severity]="selectedNetworkNoticeSeverity()">
+      {{ selectedNetworkNotice() }}
+    </app-alert>
+
+    <app-form-control-text
+      controlName="address"
+      label="Адрес для вывода"
+      [formGroup]="addAddressForm"
+      [placeholder]="addressPlaceholder()" />
+
+    <app-form-control-text
+      controlName="label"
+      label="Название адреса"
+      placeholder="Например, основной кошелёк"
+      [formGroup]="addAddressForm" />
+
+    <p class="c-form-control__meta">Это название видно только вам</p>
+  </div>
+
+  <ng-template #footer>
+    <p-button label="Отмена" severity="secondary" variant="outlined" (onClick)="closeAddDialog()" />
+    <p-button label="Добавить адрес" (onClick)="submitAddAddress()" />
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  appendTo="body"
+  header="Верификация криптоадреса"
+  [dismissableMask]="true"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+  [style]="{ width: 'min(92vw, 40rem)' }"
+  [visible]="confirmDialogAddressId() !== null"
+  (visibleChange)="onConfirmDialogVisibleChange($event)">
+  @if (confirmDialogAddress(); as address) {
+    <div class="withdrawal-dialog__content">
+      <div class="c-rows">
+        <div class="c-row">
+          <div class="c-row__label">Тип криптовалюты</div>
+          <div class="c-row__value">
+            <p-tag [value]="confirmDialogNetworkTag(address)" />
+          </div>
+        </div>
+
+        <div class="c-row">
+          <div class="c-row__label">Описание</div>
+          <div class="c-row__value">{{ address.label }}</div>
+        </div>
+
+        <div class="c-row">
+          <div class="c-row__label">Адрес кошелька</div>
+          <div class="c-row__value">
+            <span class="withdrawal-dialog__address-chip">{{ address.address }}</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="withdrawal-dialog__otp-copy">
+        Пожалуйста, введите 6-значный код, отправленный на вашу электронную почту
+      </p>
+
+      <app-form-control-otp
+        controlName="otp"
+        inputId="withdraw-address-otp"
+        label="Код подтверждения"
+        [center]="true"
+        [errorMessages]="otpErrorMessages"
+        [formGroup]="otpForm"
+        [metaText]="otpSentVisible() ? 'Код отправлен на вашу электронную почту.' : undefined" />
+
+      <div class="withdrawal-dialog__otp-actions">
+        <p-button link size="small" (onClick)="resendOtp()">Повторно отправить код</p-button>
+      </div>
+    </div>
+  }
+
+  <ng-template #footer>
+    <p-button label="Отмена" severity="secondary" variant="outlined" (onClick)="closeConfirmDialog()" />
+    <p-button
+      label="Подтвердить адрес"
+      [disabled]="otpForm.controls.otp.value.length !== 6"
+      (onClick)="confirmAddress()" />
+  </ng-template>
+</p-dialog>

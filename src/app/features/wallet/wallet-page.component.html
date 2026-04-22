@@ -288,7 +288,7 @@
                 <ng-template let-row pTemplate="body">
                   <tr>
                     <td>
-                      <span [class]="walletTypeClass(row.type)">{{ walletTypeLabel(row.type) }}</span>
+                      <p-tag [severity]="walletTypeSeverity(row.type)" [value]="walletTypeLabel(row.type)" />
                     </td>
                     <td class="font-bold" [class.text-primary]="row.amount > 0" [class.text-red-500]="row.amount < 0">
                       {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}

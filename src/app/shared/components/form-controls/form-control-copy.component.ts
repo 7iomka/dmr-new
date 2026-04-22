@@ -22,12 +22,12 @@ import { InputText } from 'primeng/inputtext';
   template: `
     <app-form-control-shell
       [controlClass]="resolvedControlClass"
+      [errorText]="errorText"
       [inputId]="inputId"
       [label]="label"
       [labelClass]="labelClass"
       [labelMode]="labelMode"
       [labelVariant]="labelVariant"
-      [metaError]="metaError"
       [metaText]="metaText"
       [rootClass]="rootClass">
       <div class="c-copy-control__box" pInputText [class]="resolvedBoxClass" [variant]="variant">
@@ -82,7 +82,7 @@ export class FormControlCopyComponent {
   @Input() displayValue?: string;
 
   @Input() metaText?: string;
-  @Input() metaError = false;
+  @Input() errorText?: string | null;
 
   @Input() icon?: LucideIcon;
   @Input() valueOverflow: 'truncate' | 'scroll' = 'truncate';

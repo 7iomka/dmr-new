@@ -1,0 +1,65 @@
+@reference "../../../styles.css";
+
+.withdrawals-addresses-heading {
+  @apply flex flex-col gap-3 md:flex-row md:items-end md:justify-between;
+}
+
+.withdrawals-addresses-heading__action {
+  @apply min-w-0 shrink-0;
+}
+
+.withdrawal-addresses-grid {
+  @apply grid gap-4 lg:grid-cols-2;
+}
+
+.withdrawal-address-card {
+  @apply flex h-full flex-col items-start gap-3;
+}
+
+.withdrawal-address-card__header {
+  @apply flex items-center justify-between gap-3;
+}
+
+.withdrawal-address-card__title {
+  @apply font-semibold text-surface-900 dark:text-surface-50;
+}
+
+.withdrawal-address-card__meta {
+  @apply text-xs text-muted-color;
+}
+
+.withdrawal-address-card__address {
+  @apply break-all font-mono text-xs text-surface-700 dark:text-surface-300;
+}
+
+.withdrawal-address-card__actions {
+  @apply flex flex-wrap gap-2 pt-2;
+}
+
+.withdrawal-address-card__default-tag {
+  @apply uppercase;
+}
+
+.withdrawal-address-card__verification-alert {
+  @apply flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between;
+}
+
+.withdrawal-dialog__content {
+  @apply space-y-4;
+}
+
+.withdrawal-dialog__address-chip {
+  @apply inline-block max-w-full break-all rounded-md border border-surface-200 bg-surface-50 px-3 py-1.5 font-mono text-xs text-surface-700 dark:border-surface-700 dark:bg-surface-900/40 dark:text-surface-200;
+}
+
+.withdrawal-dialog__otp-copy {
+  @apply mx-auto max-w-md text-center text-sm text-muted-color;
+}
+
+.withdrawal-dialog__otp-actions {
+  @apply flex justify-center;
+}
+
+.withdrawal-dialog__resend-link {
+  @apply border-0 bg-transparent p-0 text-lg font-medium text-primary transition-colors hover:text-primary-emphasis;
+}

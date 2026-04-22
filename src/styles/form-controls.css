@@ -44,12 +44,12 @@
     @apply relative;
   }
 
-  .c-form-control__meta {
-    @apply text-sm text-surface-500 dark:text-surface-400;
+  .c-form-control__field {
+    @apply relative;
   }
 
-  .c-form-control__meta--error {
-    @apply text-red-600 dark:text-red-400;
+  .c-form-control__meta {
+    @apply text-sm text-surface-500 dark:text-surface-400;
   }
 
   /* -------------------------------------------------------------------------- */
@@ -61,7 +61,7 @@
     width: 100%;
   }
 
-  .c-form-control:has(.c-form-control__icon-left) .c-form-control__input {
+  .c-form-control__field:has(.c-form-control__icon-left) .c-form-control__input {
     padding-inline-start: var(--c-form-control-icon-width);
   }
 
@@ -76,7 +76,7 @@
     width: var(--c-form-control-icon-width);
   }
 
-  .c-form-control:has(.c-form-control__icon-btn) .c-form-control__input--password {
+  .c-form-control__field:has(.c-form-control__icon-btn) .c-form-control__input--password {
     padding-inline-end: calc(var(--c-form-control-icon-width) + 0.5rem);
   }
 
@@ -139,6 +139,10 @@
 
   .c-input-otp {
     @apply gap-2;
+  }
+
+  .c-input-otp--center {
+    @apply items-center;
   }
 
   .c-input-otp__field {

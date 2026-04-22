@@ -197,15 +197,15 @@ export class WalletPageComponent {
     );
   }
 
-  protected walletTypeClass(type: string): string {
-    return (
-      {
-        CREDIT: 'c-badge c-badge--success',
-        DEBIT: 'c-badge c-badge--danger',
-        BLOCKED: 'c-badge c-badge--danger',
-        UNBLOCKED: 'c-badge c-badge--success',
-      }[type] ?? 'c-badge c-badge--muted'
-    );
+  protected walletTypeSeverity(type: string): 'success' | 'danger' | 'secondary' {
+    const severityMap = {
+      CREDIT: 'success',
+      DEBIT: 'danger',
+      BLOCKED: 'danger',
+      UNBLOCKED: 'success',
+    } as const;
+
+    return severityMap[type as keyof typeof severityMap] ?? 'secondary';
   }
 
   protected paymentMethodLabel(value: string): string {

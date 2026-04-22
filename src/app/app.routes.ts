@@ -8,6 +8,8 @@ import { ChatPageComponent } from './features/chat/chat-page.component';
 import { StubPageComponent } from './features/stubs/stub-page.component';
 import { PartnersPageComponent } from './features/partners/partners-page.component';
 import { WalletPageComponent } from './features/wallet/wallet-page.component';
+import { WithdrawalsPageComponent } from './features/withdrawals/withdrawals-page.component';
+import { WithdrawalAddressesPageComponent } from './features/withdrawals/withdrawal-addresses-page.component';
 
 export const appRoutes: Routes = [
   { path: '', component: StubPageComponent, data: { title: 'Главная (Лендинг)' } },
@@ -23,7 +25,9 @@ export const appRoutes: Routes = [
   { path: 'notifications/:id', component: NotificationsPageComponent },
   { path: 'wallet', component: WalletPageComponent },
   { path: 'partners', component: PartnersPageComponent },
-  { path: 'withdrawals', component: StubPageComponent, data: { title: 'Выводы' } },
+  { path: 'withdrawals', component: WithdrawalsPageComponent },
+  { path: 'withdrawals/new', component: StubPageComponent, data: { title: 'Новая заявка на вывод' } },
+  { path: 'withdrawals/addresses', component: WithdrawalAddressesPageComponent },
   { path: 'report', component: StubPageComponent, data: { title: 'Отчёт' } },
   { path: 'profile', component: StubPageComponent, data: { title: 'Профиль' } },
   { path: 'settings', component: StubPageComponent, data: { title: 'Настройки' } },

@@ -1,19 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LucideDynamicIcon, LucideEye, LucideEyeOff, type LucideIcon } from '@lucide/angular';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormControlShellComponent } from './form-control-shell.component';
+import { FormControlErrorMessages, resolveControlErrorText } from './form-control-errors';
+import { createFormControlId } from './form-control-id';
 
 @Component({
   selector: 'app-form-control-password',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, InputTextModule, LucideDynamicIcon, LucideEye, LucideEyeOff],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    LucideDynamicIcon,
+    LucideEye,
+    LucideEyeOff,
+    FormControlShellComponent,
+  ],
   template: `
-    <div class="c-form-control">
-      @if (label) {
-        <label class="c-form-control__label" [for]="controlName">{{ label }}</label>
-      }
-      <div class="c-form-control__control" [formGroup]="formGroup">
+    <app-form-control-shell [errorText]="errorText" [inputId]="resolvedInputId" [label]="label" [metaText]="metaText">
+      <div class="c-form-control__field" [formGroup]="formGroup">
         @if (icon) {
           <span class="c-form-control__icon-left">
             <svg class="h-4 w-4" [lucideIcon]="icon"></svg>
@@ -26,7 +34,7 @@ import { InputTextModule } from 'primeng/inputtext';
           [attr.aria-label]="resolvedAriaLabel"
           [attr.autocomplete]="autocomplete"
           [formControlName]="controlName"
-          [id]="controlName"
+          [id]="resolvedInputId"
           [placeholder]="placeholder"
           [type]="isVisible ? 'text' : 'password'"
           [variant]="variant" />
@@ -58,12 +66,13 @@ import { InputTextModule } from 'primeng/inputtext';
           </div>
         </div>
       }
-    </div>
+    </app-form-control-shell>
   `,
 })
 export class FormControlPasswordComponent {
   @Input({ required: true }) formGroup!: FormGroup;
   @Input({ required: true }) controlName!: string;
+  @Input() inputId?: string;
   @Input() label?: string;
   @Input() ariaLabel?: string;
   @Input() placeholder = '';
@@ -71,8 +80,11 @@ export class FormControlPasswordComponent {
   @Input() icon?: LucideIcon;
   @Input() showStrength = false;
   @Input() variant?: 'filled' | 'outlined';
+  @Input() metaText?: string;
+  @Input() errorMessages?: FormControlErrorMessages;
 
   protected isVisible = false;
+  private readonly generatedInputId = createFormControlId();
 
   protected get passwordValue(): string {
     const value = this.formGroup.get(this.controlName)?.value;
@@ -111,5 +123,17 @@ export class FormControlPasswordComponent {
     }
 
     return (this.ariaLabel ?? this.placeholder) || this.controlName;
+  }
+
+  protected get errorText(): string | null {
+    return resolveControlErrorText(this.control, this.errorMessages);
+  }
+
+  protected get resolvedInputId(): string {
+    return this.inputId ?? this.controlName ?? this.generatedInputId;
+  }
+
+  private get control(): AbstractControl | null {
+    return this.formGroup.get(this.controlName);
   }
 }

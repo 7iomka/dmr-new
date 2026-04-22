@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule, SelectPassThrough } from 'primeng/select';
+import { FormControlErrorMessages, resolveControlErrorText } from './form-control-errors';
+import { createFormControlId } from './form-control-id';
+import { FormControlShellComponent } from './form-control-shell.component';
 
 type PhoneCountryOption = {
   iso2: string;
@@ -62,15 +65,17 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
     InputGroupAddonModule,
     SelectModule,
     InputTextModule,
+    FormControlShellComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="c-form-control c-phone-control">
-      @if (label) {
-        <label class="c-form-control__label" [for]="controlName">{{ label }}</label>
-      }
-
-      <div class="c-form-control__control" [formGroup]="formGroup">
+    <app-form-control-shell
+      rootClass="c-phone-control"
+      [errorText]="errorText"
+      [inputId]="resolvedInputId"
+      [label]="label"
+      [metaText]="metaText">
+      <div class="c-form-control__field" [formGroup]="formGroup">
         <p-inputgroup class="c-phone-inputgroup">
           <p-inputgroup-addon class="c-phone-inputgroup__addon">
             <p-select
@@ -121,27 +126,31 @@ const PHONE_COUNTRIES: PhoneCountryOption[] = [
             [attr.aria-label]="resolvedAriaLabel"
             [attr.autocomplete]="autocomplete"
             [formControlName]="controlName"
-            [id]="controlName"
+            [id]="resolvedInputId"
             [placeholder]="placeholder" />
         </p-inputgroup>
       </div>
-    </div>
+    </app-form-control-shell>
   `,
 })
 export class FormControlPhoneComponent implements OnInit {
   @Input({ required: true }) formGroup!: FormGroup;
   @Input({ required: true }) controlName!: string;
+  @Input() inputId?: string;
   @Input() label?: string;
   @Input() ariaLabel?: string;
   @Input() placeholder = '';
   @Input() autocomplete?: string;
   @Input() variant?: 'filled' | 'outlined';
+  @Input() metaText?: string;
+  @Input() errorMessages?: FormControlErrorMessages;
 
   protected readonly countries = PHONE_COUNTRIES;
   protected readonly countryFilterBy = 'name,dialCode,iso2';
   protected readonly countryFilterPlaceholder = 'Поиск страны...';
 
   protected selectedCountryIso = 'RU';
+  private readonly generatedInputId = createFormControlId();
 
   protected readonly countrySelectPt: SelectPassThrough = {
     root: { class: 'c-phone-country-select__root' },
@@ -329,5 +338,17 @@ export class FormControlPhoneComponent implements OnInit {
     }
 
     return (this.ariaLabel ?? this.placeholder) || this.controlName;
+  }
+
+  protected get errorText(): string | null {
+    return resolveControlErrorText(this.abstractControl, this.errorMessages);
+  }
+
+  protected get resolvedInputId(): string {
+    return this.inputId ?? this.controlName ?? this.generatedInputId;
+  }
+
+  private get abstractControl(): AbstractControl | null {
+    return this.formGroup.get(this.controlName);
   }
 }

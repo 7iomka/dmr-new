@@ -1,0 +1,244 @@
+<section class="c-page-heading withdrawals-page-heading">
+  <div>
+    <h1 class="c-page-heading__title">Выводы</h1>
+    <p class="c-page-heading__subtitle">
+      Управляйте заявками на вывод, следите за статусами и подтверждайте адреса для вывода.
+    </p>
+  </div>
+
+  <div class="withdrawals-page-heading__actions">
+    <a pButton routerLink="/withdrawals/addresses" severity="secondary" [outlined]="true">
+      <svg class="h-4 w-4" lucideList pButtonIcon></svg>
+      <span pButtonLabel>Адреса для вывода</span>
+    </a>
+    <a pButton routerLink="/withdrawals/new">
+      <svg class="h-4 w-4" lucidePlusCircle pButtonIcon></svg>
+      <span pButtonLabel>Новая заявка на вывод</span>
+    </a>
+  </div>
+</section>
+
+@if (overview(); as data) {
+  <section class="withdrawals-summary-grid">
+    <p-card>
+      <div class="withdrawals-summary-card">
+        <p class="c-section-label">Доступно к выводу</p>
+        <p class="withdrawals-summary-card__value withdrawals-summary-card__value--primary">
+          {{ data.availableAmount | currency: data.currency : 'symbol' : '1.2-2' }}
+        </p>
+        <div>
+          <p class="c-section-label">Минимальная сумма</p>
+          <p class="withdrawals-summary-card__subvalue withdrawals-summary-card__subvalue--accent">
+            {{ data.minWithdrawalAmount | currency: data.currency : 'symbol' : '1.2-2' }}
+          </p>
+        </div>
+      </div>
+    </p-card>
+
+    <p-card>
+      <div class="withdrawals-summary-card">
+        <p class="c-section-label">Всего выведено</p>
+        <p class="withdrawals-summary-card__value">
+          {{ data.totalWithdrawn | currency: data.currency : 'symbol' : '1.2-2' }}
+        </p>
+        <div>
+          <p class="c-section-label">Общий лимит</p>
+          <p class="withdrawals-summary-card__subvalue withdrawals-summary-card__subvalue--accent">
+            {{ data.totalLimit | currency: data.currency : 'symbol' : '1.2-2' }}
+          </p>
+        </div>
+      </div>
+    </p-card>
+
+    <p-card>
+      <div class="withdrawals-summary-card">
+        <p class="c-section-label">В обработке</p>
+        <p class="withdrawals-summary-card__value withdrawals-summary-card__value--warning">
+          {{ data.pendingAmount | currency: data.currency : 'symbol' : '1.2-2' }}
+        </p>
+      </div>
+    </p-card>
+
+    <p-card>
+      <div class="withdrawals-summary-card">
+        <p class="c-section-label">Статус вывода</p>
+        <p-tag class="withdrawals-summary-card__tag" [severity]="withdrawalAvailabilitySeverity(data.canWithdraw)">
+          <span class="withdrawals-tag-content">
+            <svg
+              class="withdrawals-tag-content__icon"
+              [lucideIcon]="withdrawalAvailabilityIcon(data.canWithdraw)"></svg>
+            <span>{{ withdrawalAvailabilityText(data.canWithdraw) }}</span>
+          </span>
+        </p-tag>
+        @if (!data.canWithdraw && withdrawalBlockedReasonLabel(data.withdrawalBlockedReason); as blockedReasonLabel) {
+          <p class="withdrawals-summary-card__reason">
+            Причина блокировки:
+            <span class="withdrawals-summary-card__reason-value">{{ blockedReasonLabel }}</span>
+          </p>
+        }
+      </div>
+    </p-card>
+  </section>
+}
+
+<section>
+  @if (requestsPage(); as page) {
+    <p-card [pt]="{ body: { class: 'p-0' } }">
+      <ng-template #header>
+        <h3 class="c-card-title">История заявок на вывод</h3>
+      </ng-template>
+
+      <div class="hidden lg:block">
+        <p-table data-inset="card" [value]="page.content">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="requestedDate" (click)="sortRequests('requestedDate')">
+                <span class="c-datatable-sort-label">
+                  <span>Дата создания</span>
+                  <p-sortIcon field="requestedDate" />
+                </span>
+              </th>
+              <th pSortableColumn="amount" (click)="sortRequests('amount')">
+                <span class="c-datatable-sort-label">
+                  <span>Сумма</span>
+                  <p-sortIcon field="amount" />
+                </span>
+              </th>
+              <th pSortableColumn="fee" (click)="sortRequests('fee')">
+                <span class="c-datatable-sort-label">
+                  <span>Комиссия</span>
+                  <p-sortIcon field="fee" />
+                </span>
+              </th>
+              <th pSortableColumn="netAmount" (click)="sortRequests('netAmount')">
+                <span class="c-datatable-sort-label">
+                  <span>К получению</span>
+                  <p-sortIcon field="netAmount" />
+                </span>
+              </th>
+              <th pSortableColumn="cryptoType" (click)="sortRequests('cryptoType')">
+                <span class="c-datatable-sort-label">
+                  <span>Сеть</span>
+                  <p-sortIcon field="cryptoType" />
+                </span>
+              </th>
+              <th>Адрес назначения</th>
+              <th pSortableColumn="status" (click)="sortRequests('status')">
+                <span class="c-datatable-sort-label">
+                  <span>Статус</span>
+                  <p-sortIcon field="status" />
+                </span>
+              </th>
+              <th>Действия</th>
+            </tr>
+          </ng-template>
+
+          <ng-template let-row pTemplate="body">
+            <tr>
+              <td class="whitespace-nowrap font-bold text-surface-900 dark:text-surface-50">
+                {{ requestedDate(row) | date: 'dd.MM.yyyy HH:mm' }}
+              </td>
+              <td class="font-semibold text-surface-900 dark:text-surface-50">
+                {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
+              </td>
+              <td>{{ row.fee | currency: row.currency : 'symbol' : '1.2-2' }}</td>
+              <td class="font-bold text-primary">
+                {{ row.netAmount | currency: row.currency : 'symbol' : '1.2-2' }}
+              </td>
+              <td>{{ networkLabel(row) }}</td>
+              <td class="withdrawals-table__address">{{ destinationAddress(row) }}</td>
+              <td>
+                <p-tag [severity]="statusMeta(row.status).severity" [value]="statusMeta(row.status).label" />
+              </td>
+              <td>
+                <button pButton severity="secondary" size="small" text type="button" (click)="toggleDetails(row.id)">
+                  <span pButtonLabel>Детали</span>
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <div class="wallet-mobile-list lg:hidden">
+        @for (row of page.content; track row.id) {
+          <article class="wallet-mobile-item">
+            <button class="wallet-mobile-item__header" type="button" (click)="toggleDetails(row.id)">
+              <div class="wallet-mobile-item__main">
+                <div [class]="mobileMeta(row).iconWrapClass">
+                  <svg class="wallet-mobile-item__icon" [lucideIcon]="mobileMeta(row).icon"></svg>
+                </div>
+
+                <div class="wallet-mobile-item__content">
+                  <p class="wallet-mobile-item__title">{{ requestedDate(row) | date: 'dd.MM.yyyy HH:mm' }}</p>
+                  <p class="wallet-mobile-item__meta">
+                    Сеть:
+                    <span class="font-semibold text-surface-900 dark:text-surface-50">{{ networkLabel(row) }}</span>
+                  </p>
+                  <p class="wallet-mobile-item__meta">
+                    Сумма:
+                    <span class="font-semibold text-surface-900 dark:text-surface-50">
+                      {{ row.amount | currency: row.currency : 'symbol' : '1.2-2' }}
+                    </span>
+                  </p>
+                  <p class="wallet-mobile-item__meta">
+                    Комиссия:
+                    <span class="font-semibold text-surface-900 dark:text-surface-50">
+                      {{ row.fee | currency: row.currency : 'symbol' : '1.2-2' }}
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="wallet-mobile-item__right">
+                <p class="wallet-mobile-item__details-label">К ПОЛУЧЕНИЮ</p>
+                <p [class]="mobileMeta(row).amountClass">
+                  {{ row.netAmount | currency: row.currency : 'symbol' : '1.2-2' }}
+                </p>
+
+                <div class="wallet-mobile-item__details-toggle">
+                  <span class="wallet-mobile-item__details-label">ДЕТАЛИ</span>
+                  <svg
+                    class="wallet-mobile-item__chevron"
+                    lucideChevronDown
+                    [class.wallet-mobile-item__chevron--open]="expanded()[row.id]"></svg>
+                </div>
+              </div>
+            </button>
+
+            @if (expanded()[row.id]) {
+              <div class="wallet-mobile-item__details">
+                <div class="wallet-mobile-item__detail-grid">
+                  <span class="wallet-mobile-item__detail-label">СТАТУС:</span>
+                  <span class="wallet-mobile-item__detail-value">
+                    <p-tag [severity]="statusMeta(row.status).severity" [value]="statusMeta(row.status).label" />
+                  </span>
+
+                  <span class="wallet-mobile-item__detail-label">ID ЗАЯВКИ:</span>
+                  <span class="wallet-mobile-item__detail-value">{{ row.id }}</span>
+                </div>
+
+                <div class="wallet-mobile-item__details-divider"></div>
+
+                <div class="wallet-mobile-item__detail-stack">
+                  <p class="wallet-mobile-item__detail-label">АДРЕС НАЗНАЧЕНИЯ:</p>
+                  <p class="wallet-mobile-item__detail-text withdrawals-mobile__address">
+                    {{ destinationAddress(row) }}
+                  </p>
+                </div>
+              </div>
+            }
+          </article>
+        }
+      </div>
+
+      <p-paginator
+        class="py-4"
+        [first]="page.page * page.size"
+        [rows]="page.size"
+        [showFirstLastIcon]="false"
+        [totalRecords]="page.totalElements"
+        (onPageChange)="onPageChange($event)" />
+    </p-card>
+  }
+</section>

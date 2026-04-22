@@ -2,23 +2,27 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, inject, Input, Output } from '@angular/core';
 import { AbstractControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule, SelectPassThrough } from 'primeng/select';
+import { FormControlErrorMessages, resolveControlErrorText } from './form-control-errors';
+import { FormControlShellComponent } from './form-control-shell.component';
 
 export type FormControlSelectOption = Record<string, unknown>;
 
 @Component({
   selector: 'app-form-control-select',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, SelectModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SelectModule, FormControlShellComponent],
   template: `
-    <div [class]="resolvedRootClass">
-      @if (label) {
-        <label [class]="resolvedLabelClass" [for]="resolvedInputId">
-          {{ label }}
-        </label>
-      }
-
+    <app-form-control-shell
+      [controlClass]="controlClass"
+      [errorText]="errorText"
+      [inputId]="resolvedInputId"
+      [label]="label"
+      [labelClass]="labelClass"
+      [metaClass]="metaClass"
+      [metaText]="metaText"
+      [rootClass]="rootClass">
       @if (usesFormGroup) {
-        <div [class]="resolvedControlClass" [formGroup]="formGroup!">
+        <div class="c-form-control__field" [formGroup]="formGroup!">
           <p-select
             [appendTo]="'body'"
             [ariaLabel]="resolvedAriaLabel"
@@ -54,7 +58,7 @@ export type FormControlSelectOption = Record<string, unknown>;
           </p-select>
         </div>
       } @else {
-        <div [class]="resolvedControlClass">
+        <div class="c-form-control__field">
           <p-select
             [appendTo]="'body'"
             [ariaLabel]="resolvedAriaLabel"
@@ -91,13 +95,7 @@ export type FormControlSelectOption = Record<string, unknown>;
           </p-select>
         </div>
       }
-
-      @if (metaText) {
-        <div [class]="resolvedMetaClass">
-          {{ metaText }}
-        </div>
-      }
-    </div>
+    </app-form-control-shell>
   `,
 })
 export class FormControlSelectComponent {
@@ -119,7 +117,7 @@ export class FormControlSelectComponent {
 
   @Input() placeholder = '';
   @Input() metaText?: string;
-  @Input() metaError = false;
+  @Input() errorMessages?: FormControlErrorMessages;
 
   @Input() filter = false;
   @Input() filterBy = 'label';
@@ -173,28 +171,8 @@ export class FormControlSelectComponent {
     return (this.ariaLabel ?? this.placeholder) || this.controlName;
   }
 
-  protected get resolvedRootClass(): string {
-    return this.joinClasses('c-form-control', this.rootClass);
-  }
-
-  protected get resolvedLabelClass(): string {
-    return this.joinClasses('c-form-control__label', this.labelClass);
-  }
-
-  protected get resolvedControlClass(): string {
-    return this.joinClasses('c-form-control__control', this.controlClass);
-  }
-
   protected get resolvedSelectClass(): string {
     return this.joinClasses('c-form-control__select', this.selectClass);
-  }
-
-  protected get resolvedMetaClass(): string {
-    return this.joinClasses(
-      'c-form-control__meta',
-      this.metaError ? 'c-form-control__meta--error' : null,
-      this.metaClass,
-    );
   }
 
   protected get resolvedPanelStyleClass(): string {
@@ -221,6 +199,10 @@ export class FormControlSelectComponent {
   protected onValueChange(nextValue: unknown): void {
     this.value = nextValue;
     this.valueChange.emit(nextValue);
+  }
+
+  protected get errorText(): string | null {
+    return resolveControlErrorText(this.control, this.errorMessages);
   }
 
   private joinClasses(...values: unknown[]): string {

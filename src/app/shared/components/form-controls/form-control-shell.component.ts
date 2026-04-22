@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Message } from 'primeng/message';
 
 let nextUniqueId = 0;
 
 @Component({
   selector: 'app-form-control-shell',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Message],
   template: `
     <div [class]="resolvedRootClass">
       @if (label) {
@@ -30,6 +31,12 @@ let nextUniqueId = 0;
           {{ metaText }}
         </div>
       }
+
+      @if (errorText) {
+        <p-message severity="error" size="small" variant="simple">
+          {{ errorText }}
+        </p-message>
+      }
     </div>
   `,
 })
@@ -39,7 +46,7 @@ export class FormControlShellComponent {
   @Input() labelMode: 'for' | 'static' = 'for';
 
   @Input() metaText?: string;
-  @Input() metaError = false;
+  @Input() errorText?: string | null;
 
   @Input() rootClass?: string;
   @Input() labelClass?: string;
@@ -69,11 +76,7 @@ export class FormControlShellComponent {
   }
 
   protected get resolvedMetaClass(): string {
-    return this.joinClasses(
-      'c-form-control__meta',
-      this.metaError ? 'c-form-control__meta--error' : null,
-      this.metaClass,
-    );
+    return this.joinClasses('c-form-control__meta', this.metaClass);
   }
 
   private joinClasses(...values: unknown[]): string {

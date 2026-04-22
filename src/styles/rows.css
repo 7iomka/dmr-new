@@ -1,0 +1,16 @@
+.c-rows {
+  @apply divide-y divide-surface-200 dark:divide-surface-800
+    border-y border-surface-200 dark:border-surface-800;
+}
+
+.c-row {
+  @apply flex items-center justify-between gap-4 py-3;
+}
+
+.c-row__label {
+  @apply text-muted-color;
+}
+
+.c-row__value {
+  @apply font-semibold text-surface-900 dark:text-surface-0;
+}
