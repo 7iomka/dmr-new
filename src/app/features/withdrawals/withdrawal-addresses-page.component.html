@@ -153,11 +153,13 @@
         [center]="true"
         [errorMessages]="otpErrorMessages"
         [formGroup]="otpForm"
-        [metaText]="otpSentVisible() ? 'Код отправлен на вашу электронную почту.' : undefined" />
+        [metaText]="otpResendCountdownText() ?? undefined" />
 
-      <div class="withdrawal-dialog__otp-actions">
-        <p-button link size="small" (onClick)="resendOtp()">Повторно отправить код</p-button>
-      </div>
+      @if (otpResendSecondsLeft() === 0) {
+        <div class="withdrawal-dialog__otp-actions">
+          <p-button link size="small" (onClick)="resendOtp()">Повторно отправить код</p-button>
+        </div>
+      }
     </div>
   }
 

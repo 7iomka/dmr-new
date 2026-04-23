@@ -4,7 +4,7 @@
 }
 
 .c-row {
-  @apply flex items-center justify-between gap-4 py-3;
+  @apply flex items-center justify-between gap-4 py-3 text-sm;
 }
 
 .c-row__label {

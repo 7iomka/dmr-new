@@ -83,11 +83,12 @@ export class WithdrawalAddressesPageComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly formBuilder = inject(FormBuilder);
   private readonly api = inject(WithdrawalAddressesMockApiService);
+  private otpResendTimerId: ReturnType<typeof setInterval> | null = null;
 
   protected readonly addresses = signal<CryptoAddress[]>([]);
   protected readonly isAddDialogOpen = signal(false);
   protected readonly confirmDialogAddressId = signal<string | null>(null);
-  protected readonly otpSentVisible = signal(false);
+  protected readonly otpResendSecondsLeft = signal(0);
 
   protected readonly addAddressForm = this.formBuilder.group({
     cryptoType: this.formBuilder.nonNullable.control<CryptoAddressType>('USDT_BEP20', {
@@ -126,6 +127,10 @@ export class WithdrawalAddressesPageComponent {
   );
 
   constructor() {
+    this.destroyRef.onDestroy(() => {
+      this.clearOtpResendTimer();
+    });
+
     this.loadAddresses();
   }
 
@@ -171,18 +176,18 @@ export class WithdrawalAddressesPageComponent {
 
   protected openConfirmDialog(id: string): void {
     this.confirmDialogAddressId.set(id);
-    this.otpSentVisible.set(false);
     this.otpForm.reset({ otp: '' });
 
     this.api
       .sendCryptoAddressOtp(id)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.otpSentVisible.set(true));
+      .subscribe(() => this.startOtpResendTimer());
   }
 
   protected closeConfirmDialog(): void {
     this.confirmDialogAddressId.set(null);
-    this.otpSentVisible.set(false);
+    this.clearOtpResendTimer();
+    this.otpResendSecondsLeft.set(0);
     this.otpForm.reset({ otp: '' });
   }
 
@@ -216,16 +221,14 @@ export class WithdrawalAddressesPageComponent {
 
   protected resendOtp(): void {
     const addressId = this.confirmDialogAddressId();
-    if (!addressId) {
+    if (!addressId || this.otpResendSecondsLeft() > 0) {
       return;
     }
-
-    this.otpSentVisible.set(false);
 
     this.api
       .sendCryptoAddressOtp(addressId)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => this.otpSentVisible.set(true));
+      .subscribe(() => this.startOtpResendTimer());
   }
 
   protected setDefault(id: string): void {
@@ -285,6 +288,38 @@ export class WithdrawalAddressesPageComponent {
 
   protected confirmDialogNetworkTag(address: CryptoAddress): string {
     return address.cryptoType;
+  }
+
+  protected otpResendCountdownText(): string | null {
+    const secondsLeft = this.otpResendSecondsLeft();
+    if (secondsLeft <= 0) {
+      return null;
+    }
+
+    return `Повторно отправить код через ${secondsLeft}s`;
+  }
+
+  private startOtpResendTimer(): void {
+    this.clearOtpResendTimer();
+    this.otpResendSecondsLeft.set(300);
+
+    this.otpResendTimerId = setInterval(() => {
+      const nextValue = this.otpResendSecondsLeft() - 1;
+      if (nextValue <= 0) {
+        this.otpResendSecondsLeft.set(0);
+        this.clearOtpResendTimer();
+        return;
+      }
+
+      this.otpResendSecondsLeft.set(nextValue);
+    }, 1000);
+  }
+
+  private clearOtpResendTimer(): void {
+    if (this.otpResendTimerId) {
+      clearInterval(this.otpResendTimerId);
+      this.otpResendTimerId = null;
+    }
   }
 
   private loadAddresses(): void {
