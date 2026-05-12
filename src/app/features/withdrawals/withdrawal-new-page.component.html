@@ -1,0 +1,131 @@
+<section class="c-page-heading withdrawals-page-heading">
+  <div>
+    <h1 class="c-page-heading__title">Новая заявка на вывод</h1>
+    <p class="c-page-heading__subtitle">
+      Введите сумму, выберите подтверждённый адрес для вывода и проверьте итог перед подтверждением.
+    </p>
+  </div>
+
+  <div class="withdrawals-page-heading__actions">
+    <a pButton routerLink="/withdrawals/addresses" severity="secondary" [outlined]="true">
+      <svg class="h-4 w-4" lucideList pButtonIcon></svg>
+      <span pButtonLabel>Адреса для вывода</span>
+    </a>
+    <a pButton routerLink="/withdrawals">
+      <svg class="h-4 w-4" lucideCirclePlus pButtonIcon></svg>
+      <span pButtonLabel>История выводов</span>
+    </a>
+  </div>
+</section>
+
+@if (screenData(); as data) {
+  <section class="withdrawal-new-summary-grid">
+    <p-card>
+      <div class="withdrawal-new-summary-card">
+        <p class="c-section-label">Доступная сумма</p>
+        <p class="withdrawal-new-summary-card__value">
+          {{ data.summary.availableAmount | currency: data.summary.currency : 'symbol' : '1.2-2' }}
+        </p>
+        <p class="withdrawal-new-summary-card__meta">
+          Минимальная сумма вывода:
+          <span class="font-semibold text-surface-900 dark:text-surface-50">
+            {{ data.summary.minWithdrawalAmount | currency: data.summary.currency : 'symbol' : '1.2-2' }}
+          </span>
+        </p>
+      </div>
+    </p-card>
+
+    <p-card>
+      <div class="withdrawal-new-limit-card">
+        <div class="withdrawal-new-limit-card__icon-wrap">
+          <svg class="withdrawal-new-limit-card__icon" lucideCircleAlert></svg>
+        </div>
+        <div class="min-w-0">
+          <p class="withdrawal-new-limit-card__title">Ограничение на вывод</p>
+          <p class="withdrawal-new-limit-card__body">
+            {{ data.summary.dailyLimitLabel ?? 'Ограничений по выводу сейчас нет.' }}
+          </p>
+        </div>
+      </div>
+    </p-card>
+  </section>
+
+  <p-card>
+    <div class="withdrawal-new-form-card">
+      <form class="withdrawal-new-form" [formGroup]="form" (ngSubmit)="submit()">
+        <app-form-control-text controlName="amount" label="Сумма вывода" placeholder="0.00" [formGroup]="form" />
+
+        <div class="space-y-3">
+          <app-form-control-select
+            controlName="addressId"
+            label="Адрес для вывода"
+            optionValue="value"
+            placeholder="Выберите подтверждённый адрес"
+            [formGroup]="form"
+            [options]="verifiedAddressOptions()"
+            [showClear]="false"
+            [value]="form.controls.addressId.value"
+            (valueChange)="onAddressChange($event)" />
+
+          <p class="c-form-control__meta">Показываются только подтверждённые адреса для вывода.</p>
+
+          @if (unverifiedAddresses().length) {
+            <div class="withdrawal-new-unverified-box">
+              <span>Неподтверждённый адрес:</span>
+              <span class="withdrawal-new-unverified-box__address">
+                {{ unverifiedAddresses()[0].address }}
+              </span>
+              <a class="withdrawal-new-unverified-box__link" routerLink="/withdrawals/addresses">Подтвердить адрес</a>
+            </div>
+          }
+        </div>
+
+        @if (summaryRows(); as summary) {
+          <div class="space-y-3">
+            <h3 class="c-card-title">Комиссия и итог</h3>
+
+            <div class="c-rows">
+              <div class="c-row">
+                <div class="c-row__label">Комиссия</div>
+                <div class="c-row__value">
+                  {{ summary.fee | currency: data.summary.currency : 'symbol' : '1.2-2' }}
+                </div>
+              </div>
+
+              <div class="c-row">
+                <div class="c-row__label">К получению</div>
+                <div class="c-row__value withdrawal-new-form-card__total">
+                  {{ summary.netAmount | currency: data.summary.currency : 'symbol' : '1.2-2' }}
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <section [class]="statePanelClass()">
+          <p class="withdrawal-new-state-panel__title">{{ statePanelMeta().title }}</p>
+          <p class="withdrawal-new-state-panel__body">{{ statePanelMeta().body }}</p>
+
+          @if (statePanelMeta().actionLabel && statePanelMeta().actionLink; as actionLink) {
+            <a class="withdrawal-new-state-panel__link" [routerLink]="actionLink">{{ statePanelMeta().actionLabel }}</a>
+          }
+
+          @if (data.state === 'withdrawal_unavailable' && data.summary.withdrawalBlockedReasonLabel) {
+            <p class="withdrawal-new-state-panel__body">
+              Причина:
+              <span class="font-medium">{{ data.summary.withdrawalBlockedReasonLabel }}</span>
+            </p>
+          }
+        </section>
+
+        <div class="withdrawal-new-form-card__actions">
+          <a pButton routerLink="/withdrawals" severity="secondary" [outlined]="true">
+            <span pButtonLabel>История выводов</span>
+          </a>
+
+          <p-button label="Перейти к подтверждению" type="submit" [disabled]="!canSubmit()" />
+        </div>
+      </form>
+    </div>
+  </p-card>
+}

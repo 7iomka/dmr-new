@@ -10,6 +10,7 @@ import { PartnersPageComponent } from './features/partners/partners-page.compone
 import { WalletPageComponent } from './features/wallet/wallet-page.component';
 import { WithdrawalsPageComponent } from './features/withdrawals/withdrawals-page.component';
 import { WithdrawalAddressesPageComponent } from './features/withdrawals/withdrawal-addresses-page.component';
+import { WithdrawalNewPageComponent } from './features/withdrawals/withdrawal-new-page.component';
 
 export const appRoutes: Routes = [
   { path: '', component: StubPageComponent, data: { title: 'Главная (Лендинг)' } },
@@ -26,7 +27,7 @@ export const appRoutes: Routes = [
   { path: 'wallet', component: WalletPageComponent },
   { path: 'partners', component: PartnersPageComponent },
   { path: 'withdrawals', component: WithdrawalsPageComponent },
-  { path: 'withdrawals/new', component: StubPageComponent, data: { title: 'Новая заявка на вывод' } },
+  { path: 'withdrawals/new', component: WithdrawalNewPageComponent },
   { path: 'withdrawals/addresses', component: WithdrawalAddressesPageComponent },
   { path: 'report', component: StubPageComponent, data: { title: 'Отчёт' } },
   { path: 'profile', component: StubPageComponent, data: { title: 'Профиль' } },
