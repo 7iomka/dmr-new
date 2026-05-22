@@ -4,9 +4,9 @@
     --p-message-info-border-color: --alpha(var(--color-sky-500) / 25%);
     --p-message-info-color: var(--color-sky-600);
 
-    --p-message-success-background: --alpha(var(--color-primary-500) / 10%);
-    --p-message-success-border-color: --alpha(var(--color-primary-500) / 25%);
-    --p-message-success-color: var(--color-primary-700);
+    --p-message-success-background: --alpha(var(--p-primary-500) / 10%);
+    --p-message-success-border-color: --alpha(var(--p-primary-500) / 25%);
+    --p-message-success-color: var(--p-primary-700);
 
     --p-message-warn-background: --alpha(var(--color-amber-500) / 10%);
     --p-message-warn-border-color: --alpha(var(--color-amber-500) / 25%);
@@ -22,9 +22,9 @@
     --p-message-info-border-color: --alpha(var(--color-sky-500) / 25%);
     --p-message-info-color: var(--color-sky-300);
 
-    --p-message-success-background: --alpha(var(--color-primary-500) / 10%);
-    --p-message-success-border-color: --alpha(var(--color-primary-500) / 25%);
-    --p-message-success-color: var(--color-primary-300);
+    --p-message-success-background: --alpha(var(--p-primary-500) / 10%);
+    --p-message-success-border-color: --alpha(var(--p-primary-500) / 25%);
+    --p-message-success-color: var(--p-primary-300);
 
     --p-message-warn-background: --alpha(var(--color-amber-500) / 10%);
     --p-message-warn-border-color: --alpha(var(--color-amber-500) / 25%);

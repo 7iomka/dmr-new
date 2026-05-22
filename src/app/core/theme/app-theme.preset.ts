@@ -3,19 +3,38 @@ import Aura from '@primeuix/themes/aura';
 
 export const AppThemePreset = definePreset(Aura, {
   semantic: {
+    // 1. Указываем PrimeNG брать HSL-каналы для Primary
     primary: {
-      50: '{emerald.50}',
-      100: '{emerald.100}',
-      200: '{emerald.200}',
-      300: '{emerald.300}',
-      400: '{emerald.400}',
-      500: '{emerald.500}',
-      600: '{emerald.600}',
-      700: '{emerald.700}',
-      800: '{emerald.800}',
-      900: '{emerald.900}',
-      950: '{emerald.950}',
+      50: 'hsl(var(--hsl-primary-50))',
+      100: 'hsl(var(--hsl-primary-100))',
+      200: 'hsl(var(--hsl-primary-200))',
+      300: 'hsl(var(--hsl-primary-300))',
+      400: 'hsl(var(--hsl-primary-400))',
+      500: 'hsl(var(--hsl-primary-500))',
+      600: 'hsl(var(--hsl-primary-600))',
+      700: 'hsl(var(--hsl-primary-700))',
+      800: 'hsl(var(--hsl-primary-800))',
+      900: 'hsl(var(--hsl-primary-900))',
+      950: 'hsl(var(--hsl-primary-950))',
     },
+
+    // 2. Указываем PrimeNG брать HSL-каналы для Surface
+    // (обязательно, так как ниже в formField мы ссылаемся на {surface.700})
+    surface: {
+      0: 'hsl(var(--hsl-surface-0))',
+      50: 'hsl(var(--hsl-surface-50))',
+      100: 'hsl(var(--hsl-surface-100))',
+      200: 'hsl(var(--hsl-surface-200))',
+      300: 'hsl(var(--hsl-surface-300))',
+      400: 'hsl(var(--hsl-surface-400))',
+      500: 'hsl(var(--hsl-surface-500))',
+      600: 'hsl(var(--hsl-surface-600))',
+      700: 'hsl(var(--hsl-surface-700))',
+      800: 'hsl(var(--hsl-surface-800))',
+      900: 'hsl(var(--hsl-surface-900))',
+      950: 'hsl(var(--hsl-surface-950))',
+    },
+
     colorScheme: {
       light: {
         primary: {
