@@ -1,6 +1,0 @@
-{
-  "plugins": {
-    "@tailwindcss/postcss": {},
-    "postcss-viewport-unit-fallback": {}
-  }
-}
