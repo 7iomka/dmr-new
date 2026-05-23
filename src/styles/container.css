@@ -1,0 +1,45 @@
+@layer base {
+  :root {
+    /*
+      Container tokens.
+      Outer width includes horizontal padding.
+      Content width does not include horizontal padding.
+    */
+    --container-content-max-width: 90rem;
+    --container-padding-inline: 1rem;
+    --container-outer-max-width: calc(var(--container-content-max-width) + var(--container-padding-inline) * 2);
+
+    @screen lg {
+      --container-padding-inline: 2.5rem;
+    }
+  }
+}
+
+@layer components {
+  /* Project container with fixed content width and responsive side padding */
+  .container {
+    width: 100%;
+    max-width: var(--container-outer-max-width);
+    margin-inline: auto;
+    padding-inline: var(--container-padding-inline);
+  }
+}
+
+@layer utilities {
+  /* Width equal to the full container box, including horizontal padding */
+  .w-container {
+    width: 100%;
+    max-width: var(--container-outer-max-width);
+  }
+
+  /* Width equal to the inner container content area, excluding horizontal padding */
+  .w-container-content {
+    width: 100%;
+    max-width: var(--container-content-max-width);
+  }
+
+  /* Horizontal padding equal to the container padding */
+  .px-container {
+    padding-inline: var(--container-padding-inline);
+  }
+}

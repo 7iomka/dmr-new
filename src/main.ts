@@ -25,10 +25,7 @@ bootstrapApplication(AppComponent, {
         preset: AppThemePreset,
         options: {
           darkModeSelector: '.dark',
-          cssLayer: {
-            name: 'primeng',
-            order: 'theme, base, primeng',
-          },
+          cssLayer: false,
         },
       },
       ripple: true,
