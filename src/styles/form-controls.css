@@ -1,4 +1,4 @@
-@layer properties {
+@layer base {
   /* Prime variables override */
 
   :root,
@@ -12,8 +12,8 @@
   /* Form control tokens */
 
   :root {
-    --c-form-control-input-min-height: --spacing(11);
-    --c-form-control-icon-width: --spacing(9);
+    --c-form-control-input-min-height: 2.75rem;
+    --c-form-control-icon-width: 2.25rem;
   }
 }
 

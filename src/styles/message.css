@@ -1,37 +1,37 @@
-@layer properties {
+@layer base {
   :root {
-    --p-message-info-background: --alpha(var(--color-sky-500) / 10%);
-    --p-message-info-border-color: --alpha(var(--color-sky-500) / 25%);
+    --p-message-info-background: hsl(var(--hsl-sky-500) / 10%);
+    --p-message-info-border-color: hsl(var(--hsl-sky-500) / 25%);
     --p-message-info-color: var(--color-sky-600);
 
-    --p-message-success-background: --alpha(var(--p-primary-500) / 10%);
-    --p-message-success-border-color: --alpha(var(--p-primary-500) / 25%);
+    --p-message-success-background: hsl(var(--hsl-primary-500) / 10%);
+    --p-message-success-border-color: hsl(var(--hsl-primary-500) / 25%);
     --p-message-success-color: var(--p-primary-700);
 
-    --p-message-warn-background: --alpha(var(--color-amber-500) / 10%);
-    --p-message-warn-border-color: --alpha(var(--color-amber-500) / 25%);
+    --p-message-warn-background: hsl(var(--hsl-amber-500) / 10%);
+    --p-message-warn-border-color: hsl(var(--hsl-amber-500) / 25%);
     --p-message-warn-color: var(--color-amber-700);
 
-    --p-message-error-background: --alpha(var(--color-red-500) / 10%);
-    --p-message-error-border-color: --alpha(var(--color-red-500) / 25%);
+    --p-message-error-background: hsl(var(--hsl-red-500) / 10%);
+    --p-message-error-border-color: hsl(var(--hsl-red-500) / 25%);
     --p-message-error-color: var(--color-red-600);
   }
 
   .dark {
-    --p-message-info-background: --alpha(var(--color-sky-500) / 10%);
-    --p-message-info-border-color: --alpha(var(--color-sky-500) / 25%);
+    --p-message-info-background: hsl(var(--hsl-sky-500) / 10%);
+    --p-message-info-border-color: hsl(var(--hsl-sky-500) / 25%);
     --p-message-info-color: var(--color-sky-300);
 
-    --p-message-success-background: --alpha(var(--p-primary-500) / 10%);
-    --p-message-success-border-color: --alpha(var(--p-primary-500) / 25%);
+    --p-message-success-background: hsl(var(--hsl-primary-500) / 10%);
+    --p-message-success-border-color: hsl(var(--hsl-primary-500) / 25%);
     --p-message-success-color: var(--p-primary-300);
 
-    --p-message-warn-background: --alpha(var(--color-amber-500) / 10%);
-    --p-message-warn-border-color: --alpha(var(--color-amber-500) / 25%);
+    --p-message-warn-background: hsl(var(--hsl-amber-500) / 10%);
+    --p-message-warn-border-color: hsl(var(--hsl-amber-500) / 25%);
     --p-message-warn-color: var(--color-amber-300);
 
-    --p-message-error-background: --alpha(var(--color-red-500) / 10%);
-    --p-message-error-border-color: --alpha(var(--color-red-500) / 25%);
+    --p-message-error-background: hsl(var(--hsl-red-500) / 10%);
+    --p-message-error-border-color: hsl(var(--hsl-red-500) / 25%);
     --p-message-error-color: var(--color-red-300);
   }
 }

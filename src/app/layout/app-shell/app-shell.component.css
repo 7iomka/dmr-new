@@ -10,7 +10,7 @@
 
   --sidebar-width: var(--sidebar-width-expanded);
   --sidebar-topbar-height: 5rem;
-  --sidebar-toggle-size: --spacing(7);
+  --sidebar-toggle-size: 1.75rem;
 }
 
 :host.app-shell--sidebar-collapse {

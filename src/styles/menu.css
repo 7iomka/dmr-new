@@ -1,4 +1,4 @@
-@layer properties {
+@layer base {
   :root,
   .dark {
     --p-menu-background: var(--c-menu-background);
@@ -26,11 +26,11 @@
     --c-menu-border-radius: var(--radius-lg);
     --c-menu-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.12), 0 8px 10px -6px rgb(0 0 0 / 0.08);
 
-    --c-menu-list-padding: --spacing(1);
-    --c-menu-list-gap: --spacing(0.5);
+    --c-menu-list-padding: 0.25rem;
+    --c-menu-list-gap: 0.125rem;
 
-    --c-menu-item-padding: --spacing(2) --spacing(3);
-    --c-menu-item-gap: --spacing(2.5);
+    --c-menu-item-padding: 0.5rem 0.75rem;
+    --c-menu-item-gap: 0.625rem;
     --c-menu-item-border-radius: var(--radius-md);
 
     --c-menu-item-color: var(--p-surface-800);

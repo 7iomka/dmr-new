@@ -94,7 +94,7 @@
 :host ::ng-deep .auth-card .p-card-content {
   display: flex;
   flex-direction: column;
-  gap: --spacing(5);
+  gap: 1.25rem;
 }
 
 .auth-card-dot {

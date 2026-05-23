@@ -4,6 +4,13 @@ import PrimeUI from 'tailwindcss-primeui';
 
 const hslVar = (name: string) => `hsl(var(${name}) / <alpha-value>)`;
 
+const colorSteps = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'] as const;
+
+const hslScale = (name: string) =>
+  Object.fromEntries(colorSteps.map((step) => [step, hslVar(`--hsl-${name}-${step}`)]));
+
+const hslPalettes = (...names: string[]) => Object.fromEntries(names.map((name) => [name, hslScale(name)]));
+
 export default {
   darkMode: ['class', '[data-theme="dark"]'],
   content: ['./{src}/**/*.{html,ts}'],
@@ -39,6 +46,9 @@ export default {
         'surface-800': hslVar('--hsl-surface-800'),
         'surface-900': hslVar('--hsl-surface-900'),
         'surface-950': hslVar('--hsl-surface-950'),
+
+        // You must define them in colors.css
+        ...hslPalettes('sky', 'amber', 'red'),
       },
     },
   },

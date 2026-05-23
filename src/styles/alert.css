@@ -1,4 +1,4 @@
-@layer properties {
+@layer base {
   :root {
     --c-alert-info-border-color: var(--p-message-info-border-color);
     --c-alert-success-border-color: var(--p-message-success-border-color);

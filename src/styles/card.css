@@ -1,4 +1,4 @@
-@layer properties {
+@layer base {
   :root,
   .dark {
     --p-card-shadow: none;

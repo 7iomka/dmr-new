@@ -1,4 +1,4 @@
-@layer properties {
+@layer base {
   :root,
   .dark {
     --c-scrollbar-thumb-border-radius: 10px;

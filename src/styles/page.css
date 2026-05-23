@@ -1,11 +1,11 @@
-@layer properties {
+@layer base {
   :root {
-    --c-page-padding-y: --spacing(6);
-    --c-page-gap: --spacing(6);
+    --c-page-padding-y: 1.5rem;
+    --c-page-gap: 1.5rem;
 
     @variant lg {
-      --c-page-padding-y: --spacing(10);
-      --c-page-gap: --spacing(7);
+      --c-page-padding-y: 2.5rem;
+      --c-page-gap: 1.75rem;
     }
   }
 }
