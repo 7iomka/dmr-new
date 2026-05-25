@@ -1,21 +1,17 @@
-@layer base {
-  :root {
-    --c-page-padding-y: 1.5rem;
-    --c-page-gap: 1.5rem;
+:root {
+  --c-page-padding-y: 1.5rem;
+  --c-page-gap: 1.5rem;
 
-    @variant lg {
-      --c-page-padding-y: 2.5rem;
-      --c-page-gap: 1.75rem;
-    }
+  @screen lg {
+    --c-page-padding-y: 2.5rem;
+    --c-page-gap: 1.75rem;
   }
 }
 
-@layer components {
-  .app-page {
-    @apply flex flex-col py-(--c-page-padding-y) gap-(--c-page-gap);
-  }
+.app-page {
+  @apply flex flex-col py-[--c-page-padding-y] gap-[--c-page-gap];
+}
 
-  .app-page--flush {
-    --c-page-padding-y: 0;
-  }
+.app-page--flush {
+  --c-page-padding-y: 0;
 }

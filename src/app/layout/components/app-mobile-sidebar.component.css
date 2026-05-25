@@ -1,14 +1,12 @@
-@reference "../../../styles.css";
-
 .app-mobile-sidebar {
-  width: min(20rem, 100%) !important;
+  width: min(20rem, 100%);
   border-inline-end: 1px solid #e4e4e7;
   background: var(--p-content-background, #ffffff);
+}
 
-  @variant dark {
-    border-inline-end-color: #27272a;
-    background: var(--color-card);
-  }
+.dark .app-mobile-sidebar {
+  border-inline-end-color: #27272a;
+  background: var(--app-color-card);
 }
 
 .app-mobile-sidebar__header {
@@ -17,10 +15,10 @@
   align-items: center;
   border-bottom: 1px solid #e4e4e7;
   padding-inline: 1rem;
+}
 
-  @variant dark {
-    border-bottom-color: #27272a;
-  }
+.dark .app-mobile-sidebar__header {
+  border-bottom-color: #27272a;
 }
 
 .app-mobile-sidebar__logo {
@@ -35,18 +33,18 @@
 
 .app-mobile-sidebar__logo-image--light {
   display: none;
+}
 
-  @variant dark {
-    display: block;
-  }
+.dark .app-mobile-sidebar__logo-image--light {
+  display: block;
 }
 
 .app-mobile-sidebar__logo-image--dark {
   display: block;
+}
 
-  @variant dark {
-    display: none;
-  }
+.dark .app-mobile-sidebar__logo-image--dark {
+  display: none;
 }
 
 .app-mobile-sidebar__close {

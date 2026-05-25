@@ -1,27 +1,21 @@
-@layer utilities {
-  /* Hide scrollbars while preserving scroll behavior */
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Remove number input spinners */
-  .no-spinner {
-    -moz-appearance: textfield;
-  }
-
-  .no-spinner::-webkit-outer-spin-button,
-  .no-spinner::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  /* Muted uppercase section label */
-  .c-section-label {
-    @apply text-xs font-bold uppercase tracking-wide text-surface-500;
-  }
+/* Hide scrollbars while preserving scroll behavior */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Remove number input spinners */
+.no-spinner {
+  -moz-appearance: textfield;
+}
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Muted uppercase section label */
+.c-section-label {
+  @apply text-xs font-bold uppercase tracking-wide text-surface-500;
 }

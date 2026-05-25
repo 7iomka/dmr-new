@@ -1,29 +1,27 @@
-@layer components {
-  .p-paginator {
-    @apply bg-transparent;
-  }
+.p-paginator {
+  @apply bg-transparent;
+}
 
-  .p-paginator-content {
-    @apply flex flex-wrap items-center justify-center gap-2;
-  }
+.p-paginator-content {
+  @apply flex flex-wrap items-center justify-center gap-2;
+}
 
-  .p-paginator-page,
-  .p-paginator-first,
-  .p-paginator-prev,
-  .p-paginator-next,
-  .p-paginator-last {
-    @apply h-8 min-w-8 rounded-md border border-surface-200 bg-surface-0 text-xs font-bold text-surface-700 transition-colors dark:border-surface-700 dark:bg-surface-900 dark:text-surface-200;
-  }
+.p-paginator-page,
+.p-paginator-first,
+.p-paginator-prev,
+.p-paginator-next,
+.p-paginator-last {
+  @apply h-8 min-w-8 rounded-md border border-surface-200 bg-surface-0 text-xs font-bold text-surface-700 transition-colors dark:border-surface-700 dark:bg-surface-900 dark:text-surface-200;
+}
 
-  .p-paginator-page.p-paginator-page-selected {
-    @apply border-primary bg-primary text-primary-contrast;
-  }
+.p-paginator-page.p-paginator-page-selected {
+  @apply border-primary bg-primary text-primary-contrast;
+}
 
-  .p-paginator-rpp-dropdown {
-    @apply h-8;
-  }
+.p-paginator-rpp-dropdown {
+  @apply h-8;
+}
 
-  .p-paginator-current {
-    @apply c-section-label me-auto shrink-0 min-w-0 basis-full text-center mb-2;
-  }
+.p-paginator-current {
+  @apply text-xs font-bold uppercase tracking-wide text-surface-500 me-auto shrink-0 min-w-0 basis-full text-center mb-2;
 }

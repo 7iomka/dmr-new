@@ -1,10 +1,8 @@
-@reference '../../../styles.css';
-
 .app-user-menu {
 }
 
 .app-user-menu__meta {
-  @apply flex min-w-29.5 flex-col text-left;
+  @apply flex min-w-[118px] flex-col text-left;
 }
 
 .app-user-menu__name {

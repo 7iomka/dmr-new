@@ -1,5 +1,7 @@
 @import './styles/fonts.css';
+@import './styles/_theme-variables.css';
 @import './styles/colors.css';
+
 @import './styles/utilities.css';
 @import './styles/container.css';
 
@@ -12,7 +14,6 @@
 @import './styles/tag.css';
 @import './styles/dialog.css';
 @import './styles/form-controls.css';
-@import './styles/menu.css';
 @import './styles/select.css';
 @import './styles/avatar.css';
 @import './styles/stat-card.css';
@@ -32,18 +33,10 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --radius-xs: 0.125rem;
-    --radius-sm: 0.25rem;
-    --radius-md: 0.375rem;
-    --radius-lg: 0.5rem;
-    --radius-xl: 0.75rem;
-  }
-
   body {
     @apply bg-surface-100 text-surface-900 dark:bg-dark dark:text-surface-50 min-h-screen;
     font-variant-ligatures: none;
-    font-family: 'Twemoji Mozilla', 'Onest', sans-serif;
+    font-family: var(--font-sans);
     line-height: 1.375;
   }
 

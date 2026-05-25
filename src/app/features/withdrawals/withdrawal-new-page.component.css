@@ -1,5 +1,3 @@
-@reference "../../../styles.css";
-
 .withdrawal-new-summary-grid {
   @apply grid gap-4 md:grid-cols-2;
 }

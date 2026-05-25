@@ -1,24 +1,22 @@
-@reference '../../../styles.css';
-
 .app-mobile-nav {
-  @apply lg:hidden;
   position: fixed;
   inset-inline: 0;
   bottom: 0;
   z-index: 100;
   display: block;
+  @apply lg:hidden;
 }
 
 .app-mobile-nav__inner {
   display: flex;
   height: 3.75rem;
   border-top: 1px solid color-mix(in oklab, var(--p-surface-300, #d4d4d8) 65%, transparent);
-  background: var(--color-card);
+  background: var(--app-color-card);
+}
 
-  @variant dark {
-    border-top-color: color-mix(in oklab, #3f3f46 80%, transparent);
-    background: var(--color-card);
-  }
+.dark .app-mobile-nav__inner {
+  border-top-color: color-mix(in oklab, #3f3f46 80%, transparent);
+  background: var(--app-color-card);
 }
 
 .app-mobile-nav__item {

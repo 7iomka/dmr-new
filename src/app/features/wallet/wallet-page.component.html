@@ -27,14 +27,14 @@
 
           <div class="wallet-overview__metrics">
             <div class="wallet-overview__metric">
-              <p class="wallet-overview__metric-label">Доступный баланс:</p>
+              <p class="c-section-label wallet-overview__metric-label">Доступный баланс:</p>
               <p class="wallet-overview__metric-value">
                 {{ overview.availableBalance | currency: overview.currency : 'symbol' : '1.2-2' }}
               </p>
             </div>
 
             <div class="wallet-overview__metric wallet-overview__metric--inline">
-              <p class="wallet-overview__metric-label">Реферальный баланс:</p>
+              <p class="c-section-label wallet-overview__metric-label">Реферальный баланс:</p>
               <div class="wallet-overview__metric-inline">
                 <p class="wallet-overview__metric-value">
                   {{ overview.referralBalance | currency: overview.currency : 'symbol' : '1.2-2' }}
@@ -47,7 +47,7 @@
             </div>
 
             <div class="wallet-overview__metric">
-              <p class="wallet-overview__metric-label">Заблокированный баланс:</p>
+              <p class="c-section-label wallet-overview__metric-label">Заблокированный баланс:</p>
               <p class="wallet-overview__metric-value wallet-overview__metric-value--warning">
                 {{ overview.blockedBalance | currency: overview.currency : 'symbol' : '1.2-2' }}
               </p>

@@ -1,5 +1,3 @@
-@reference '../../../styles.css';
-
 :host {
   @apply block;
 
@@ -26,11 +24,11 @@
 }
 
 .app-shell__content {
-  @apply relative h-dvh min-w-0 flex-1 flex-col pb-15 lg:pb-0;
+  @apply relative h-dvh min-w-0 flex-1 flex-col pb-[60px] lg:pb-0;
   display: grid;
   grid-template-rows: auto 1fr;
 
-  @variant lg {
+  @screen lg {
     padding-inline-start: var(--sidebar-width);
     transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
   }
@@ -55,7 +53,7 @@
 }
 
 .app-shell__chat-fab-wrap {
-  @apply pointer-events-none fixed bottom-14 right-4 z-101 xl:bottom-8 xl:right-8;
+  @apply pointer-events-none fixed bottom-14 right-4 z-[101] xl:bottom-8 xl:right-8;
 }
 
 .app-shell__chat-fab {

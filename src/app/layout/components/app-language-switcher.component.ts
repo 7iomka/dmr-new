@@ -20,7 +20,7 @@ type LanguageOption = {
       ariaLabel="Выбор языка"
       dataKey="code"
       optionLabel="nativeLabel"
-      panelStyleClass="mt-2!"
+      panelStyleClass="!mt-2"
       scrollHeight="20rem"
       [appendTo]="'body'"
       [checkmark]="false"
@@ -142,8 +142,8 @@ export class AppLanguageSwitcherComponent {
         'text-surface-800 dark:text-surface-100',
         'hover:bg-surface-100 dark:hover:bg-surface-800/80',
         'p-focus:bg-surface-100 dark:p-focus:bg-surface-800/80',
-        'p-selected:bg-primary-100/80! p-selected:text-surface-900!',
-        'dark:p-selected:bg-primary-900/35! dark:p-selected:text-primary-100!',
+        'p-selected!: bg-primary-100/80 p-selected!: text-surface-900',
+        'dark:p-selected!: bg-primary-900/35 dark:p-selected!: text-primary-100',
       ].join(' '),
     },
   };

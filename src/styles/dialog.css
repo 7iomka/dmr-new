@@ -20,11 +20,9 @@
 .dark {
 }
 
-@layer components {
-  .p-dialog-close-button {
-    width: var(--c-button-sm-min-height);
-    height: var(--c-button-sm-min-height);
-    min-height: var(--c-button-sm-min-height) !important;
-    border-radius: var(--p-button-border-radius);
-  }
+.p-dialog-close-button {
+  width: var(--c-button-sm-min-height);
+  height: var(--c-button-sm-min-height);
+  min-height: var(--c-button-sm-min-height) !important;
+  border-radius: var(--p-button-border-radius);
 }

@@ -1,160 +1,192 @@
-@layer base {
-  :root {
-    /* =========================================================================
+/*------------------------
+ * Color token usage guide
+ *
+ * This file defines raw HSL channel variables used for alpha-safe colors.
+ *
+ * Rules:
+ * - Use resolved color tokens when no transparency is needed.
+ * - Use the matching --hsl-* channel when alpha/transparency is needed.
+ * - Tailwind colors must point to the same --hsl-* channels so utilities like
+ *   bg-red-500 and bg-red-500/40 stay consistent with PrimeNG tokens.
+ *
+ * PrimeNG primitive tokens:
+ *   color:        var(--p-red-500)
+ *   with alpha:   hsl(var(--hsl-red-500) / 40%)
+ *
+ * PrimeNG semantic tokens:
+ *   color:        var(--p-primary-color)
+ *   with alpha:   hsl(var(--hsl-primary-color) / 40%)
+ *
+ * Custom app semantic tokens:
+ *   color:        var(--app-color-card)
+ *   with alpha:   hsl(var(--hsl-app-color-card) / 40%)
+ *
+ * Naming:
+ * - --hsl-*                 raw HSL channel values
+ * - --p-*                   resolved PrimeNG theme tokens
+ * - --app-color-*           resolved custom app color tokens
+ * - --hsl-app-color-*       raw HSL channels for custom app color tokens
+ */
+
+:root {
+  /* =========================================================================
        1. Primitives
        Raw HSL channels in the H S% L% format.
        ========================================================================= */
 
-    /* Neutral colors */
-    --hsl-white: 0 0% 100%;
-    --hsl-black: 0 0% 0%;
+  /* Neutral colors */
+  --hsl-white: 0 0% 100%;
+  --hsl-black: 0 0% 0%;
 
-    /* Slate */
-    --hsl-slate-50: 210 40% 98%;
-    --hsl-slate-100: 210 40% 96%;
-    --hsl-slate-200: 214 32% 91%;
-    --hsl-slate-300: 213 27% 84%;
-    --hsl-slate-400: 215 20% 65%;
-    --hsl-slate-500: 215 16% 47%;
-    --hsl-slate-600: 215 19% 35%;
-    --hsl-slate-700: 215 25% 27%;
-    --hsl-slate-800: 217 33% 17%;
-    --hsl-slate-900: 222 47% 11%;
-    --hsl-slate-950: 226 84% 5%;
+  /* Slate */
+  --hsl-slate-50: 210 40% 98%;
+  --hsl-slate-100: 210 40% 96.1%;
+  --hsl-slate-200: 214.3 31.8% 91.4%;
+  --hsl-slate-300: 212.7 26.8% 83.9%;
+  --hsl-slate-400: 215 20.2% 65.1%;
+  --hsl-slate-500: 215.4 16.3% 46.9%;
+  --hsl-slate-600: 215.3 19.3% 34.5%;
+  --hsl-slate-700: 215.3 25% 26.7%;
+  --hsl-slate-800: 217.2 32.6% 17.5%;
+  --hsl-slate-900: 222.2 47.4% 11.2%;
+  --hsl-slate-950: 228.6 84% 4.9%;
 
-    /* Zinc */
-    --hsl-zinc-50: 0 0% 98%;
-    --hsl-zinc-100: 240 5% 96%;
-    --hsl-zinc-200: 240 6% 90%;
-    --hsl-zinc-300: 240 5% 84%;
-    --hsl-zinc-400: 240 5% 65%;
-    --hsl-zinc-500: 240 4% 46%;
-    --hsl-zinc-600: 240 5% 34%;
-    --hsl-zinc-700: 240 5% 26%;
-    --hsl-zinc-800: 240 4% 16%;
-    --hsl-zinc-900: 240 6% 10%;
-    --hsl-zinc-950: 240 10% 4%;
+  /* Zinc */
+  --hsl-zinc-50: 0 0% 98%;
+  --hsl-zinc-100: 240 4.8% 95.9%;
+  --hsl-zinc-200: 240 5.9% 90%;
+  --hsl-zinc-300: 240 4.9% 83.9%;
+  --hsl-zinc-400: 240 5% 64.9%;
+  --hsl-zinc-500: 240 3.8% 46.1%;
+  --hsl-zinc-600: 240 5.2% 33.9%;
+  --hsl-zinc-700: 240 5.3% 26.1%;
+  --hsl-zinc-800: 240 3.7% 15.9%;
+  --hsl-zinc-900: 240 5.9% 10%;
+  --hsl-zinc-950: 240 10% 3.9%;
 
-    /* Emerald */
-    --hsl-emerald-50: 152 81% 96%;
-    --hsl-emerald-100: 149 80% 90%;
-    --hsl-emerald-200: 152 76% 80%;
-    --hsl-emerald-300: 156 73% 67%;
-    --hsl-emerald-400: 158 64% 52%;
-    --hsl-emerald-500: 160 84% 39%;
-    --hsl-emerald-600: 161 94% 30%;
-    --hsl-emerald-700: 163 94% 24%;
-    --hsl-emerald-800: 163 88% 20%;
-    --hsl-emerald-900: 164 86% 16%;
-    --hsl-emerald-950: 166 91% 9%;
+  /* Emerald */
+  --hsl-emerald-50: 151.8 81% 95.9%;
+  --hsl-emerald-100: 149.3 80.4% 90%;
+  --hsl-emerald-200: 152.4 76% 80.4%;
+  --hsl-emerald-300: 156.2 71.6% 66.9%;
+  --hsl-emerald-400: 158.1 64.4% 51.6%;
+  --hsl-emerald-500: 160.1 84.1% 39.4%;
+  --hsl-emerald-600: 161.4 93.5% 30.4%;
+  --hsl-emerald-700: 162.9 93.5% 24.3%;
+  --hsl-emerald-800: 163.1 88.1% 19.8%;
+  --hsl-emerald-900: 164.2 85.7% 16.5%;
+  --hsl-emerald-950: 165.7 91.3% 9%;
 
-    /* Sky */
-    --hsl-sky-50: 204 100% 97%;
-    --hsl-sky-100: 204 94% 94%;
-    --hsl-sky-200: 201 94% 86%;
-    --hsl-sky-300: 199 95% 74%;
-    --hsl-sky-400: 198 93% 60%;
-    --hsl-sky-500: 199 89% 48%;
-    --hsl-sky-600: 200 98% 39%;
-    --hsl-sky-700: 201 96% 32%;
-    --hsl-sky-800: 201 90% 27%;
-    --hsl-sky-900: 202 80% 24%;
-    --hsl-sky-950: 204 80% 16%;
+  /* Sky */
+  --hsl-sky-50: 204 100% 97.1%;
+  --hsl-sky-100: 204 93.8% 93.7%;
+  --hsl-sky-200: 200.6 94.4% 86.1%;
+  --hsl-sky-300: 199.4 95.5% 73.9%;
+  --hsl-sky-400: 198.4 93.2% 59.6%;
+  --hsl-sky-500: 198.6 88.7% 48.4%;
+  --hsl-sky-600: 200.4 98% 39.4%;
+  --hsl-sky-700: 201.3 96.3% 32.2%;
+  --hsl-sky-800: 201 90% 27.5%;
+  --hsl-sky-900: 202 80.3% 23.9%;
+  --hsl-sky-950: 204 80.2% 15.9%;
 
-    /* Amber */
-    --hsl-amber-50: 48 100% 96%;
-    --hsl-amber-100: 48 96% 89%;
-    --hsl-amber-200: 48 97% 77%;
-    --hsl-amber-300: 46 97% 65%;
-    --hsl-amber-400: 43 96% 56%;
-    --hsl-amber-500: 38 92% 50%;
-    --hsl-amber-600: 32 95% 44%;
-    --hsl-amber-700: 26 90% 37%;
-    --hsl-amber-800: 23 82% 31%;
-    --hsl-amber-900: 22 78% 26%;
-    --hsl-amber-950: 21 92% 14%;
+  /* Amber */
+  --hsl-amber-50: 48 100% 96.1%;
+  --hsl-amber-100: 48 96.5% 88.8%;
+  --hsl-amber-200: 48 96.6% 76.7%;
+  --hsl-amber-300: 45.9 96.7% 64.5%;
+  --hsl-amber-400: 43.3 96.4% 56.3%;
+  --hsl-amber-500: 37.7 92.1% 50.2%;
+  --hsl-amber-600: 32.1 94.6% 43.7%;
+  --hsl-amber-700: 26 90.5% 37.1%;
+  --hsl-amber-800: 22.7 82.5% 31.4%;
+  --hsl-amber-900: 21.7 77.8% 26.5%;
+  --hsl-amber-950: 20.9 91.7% 14.1%;
 
-    /* Red */
-    --hsl-red-50: 0 86% 97%;
-    --hsl-red-100: 0 93% 94%;
-    --hsl-red-200: 0 96% 89%;
-    --hsl-red-300: 0 94% 82%;
-    --hsl-red-400: 0 91% 71%;
-    --hsl-red-500: 0 84% 60%;
-    --hsl-red-600: 0 72% 51%;
-    --hsl-red-700: 0 74% 42%;
-    --hsl-red-800: 0 70% 35%;
-    --hsl-red-900: 0 63% 31%;
-    --hsl-red-950: 0 75% 15%;
+  /* Red */
+  --hsl-red-50: 0 85.7% 97.3%;
+  --hsl-red-100: 0 93.3% 94.1%;
+  --hsl-red-200: 0 96.3% 89.4%;
+  --hsl-red-300: 0 93.5% 81.8%;
+  --hsl-red-400: 0 90.6% 70.8%;
+  --hsl-red-500: 0 84.2% 60.2%;
+  --hsl-red-600: 0 72.2% 50.6%;
+  --hsl-red-700: 0 73.7% 41.8%;
+  --hsl-red-800: 0 70% 35.3%;
+  --hsl-red-900: 0 62.8% 30.6%;
+  --hsl-red-950: 0 74.7% 15.5%;
 
-    /* =========================================================================
+  /* =========================================================================
        2. Semantic aliases
        ========================================================================= */
 
-    /* Surface palette. Light mode uses Slate. */
-    --hsl-surface-0: var(--hsl-white);
-    --hsl-surface-50: var(--hsl-slate-50);
-    --hsl-surface-100: var(--hsl-slate-100);
-    --hsl-surface-200: var(--hsl-slate-200);
-    --hsl-surface-300: var(--hsl-slate-300);
-    --hsl-surface-400: var(--hsl-slate-400);
-    --hsl-surface-500: var(--hsl-slate-500);
-    --hsl-surface-600: var(--hsl-slate-600);
-    --hsl-surface-700: var(--hsl-slate-700);
-    --hsl-surface-800: var(--hsl-slate-800);
-    --hsl-surface-900: var(--hsl-slate-900);
-    --hsl-surface-950: var(--hsl-slate-950);
+  /* Surface palette. Light mode uses Slate. */
+  --hsl-surface-0: var(--hsl-white);
+  --hsl-surface-50: var(--hsl-slate-50);
+  --hsl-surface-100: var(--hsl-slate-100);
+  --hsl-surface-200: var(--hsl-slate-200);
+  --hsl-surface-300: var(--hsl-slate-300);
+  --hsl-surface-400: var(--hsl-slate-400);
+  --hsl-surface-500: var(--hsl-slate-500);
+  --hsl-surface-600: var(--hsl-slate-600);
+  --hsl-surface-700: var(--hsl-slate-700);
+  --hsl-surface-800: var(--hsl-slate-800);
+  --hsl-surface-900: var(--hsl-slate-900);
+  --hsl-surface-950: var(--hsl-slate-950);
 
-    /* Primary palette */
-    --hsl-primary-50: var(--hsl-emerald-50);
-    --hsl-primary-100: var(--hsl-emerald-100);
-    --hsl-primary-200: var(--hsl-emerald-200);
-    --hsl-primary-300: var(--hsl-emerald-300);
-    --hsl-primary-400: var(--hsl-emerald-400);
-    --hsl-primary-500: var(--hsl-emerald-500);
-    --hsl-primary-600: var(--hsl-emerald-600);
-    --hsl-primary-700: var(--hsl-emerald-700);
-    --hsl-primary-800: var(--hsl-emerald-800);
-    --hsl-primary-900: var(--hsl-emerald-900);
-    --hsl-primary-950: var(--hsl-emerald-950);
+  /* Primary palette */
+  --hsl-primary-50: var(--hsl-emerald-50);
+  --hsl-primary-100: var(--hsl-emerald-100);
+  --hsl-primary-200: var(--hsl-emerald-200);
+  --hsl-primary-300: var(--hsl-emerald-300);
+  --hsl-primary-400: var(--hsl-emerald-400);
+  --hsl-primary-500: var(--hsl-emerald-500);
+  --hsl-primary-600: var(--hsl-emerald-600);
+  --hsl-primary-700: var(--hsl-emerald-700);
+  --hsl-primary-800: var(--hsl-emerald-800);
+  --hsl-primary-900: var(--hsl-emerald-900);
+  --hsl-primary-950: var(--hsl-emerald-950);
 
-    /* Primary PrimeNg aliases */
-    --hsl-primary-color: var(--hsl-primary-500);
-    --hsl-primary-hover-color: var(--hsl-primary-600);
-    --hsl-primary-active-color: var(--hsl-primary-700);
-    --hsl-primary-contrast-color: var(--hsl-white);
-  }
+  /* Primary PrimeNg aliases */
+  --hsl-primary-color: var(--hsl-primary-500);
+  --hsl-primary-hover-color: var(--hsl-primary-600);
+  --hsl-primary-active-color: var(--hsl-primary-700);
+  --hsl-primary-contrast-color: var(--hsl-white);
+}
 
-  .dark {
-    /* Surface palette. Dark mode uses Zinc. */
-    --hsl-surface-0: var(--hsl-white);
-    --hsl-surface-50: var(--hsl-zinc-50);
-    --hsl-surface-100: var(--hsl-zinc-100);
-    --hsl-surface-200: var(--hsl-zinc-200);
-    --hsl-surface-300: var(--hsl-zinc-300);
-    --hsl-surface-400: var(--hsl-zinc-400);
-    --hsl-surface-500: var(--hsl-zinc-500);
-    --hsl-surface-600: var(--hsl-zinc-600);
-    --hsl-surface-700: var(--hsl-zinc-700);
-    --hsl-surface-800: var(--hsl-zinc-800);
-    --hsl-surface-900: var(--hsl-zinc-900);
-    --hsl-surface-950: var(--hsl-zinc-950);
+.dark {
+  /* Surface palette. Dark mode uses Zinc. */
+  --hsl-surface-0: var(--hsl-white);
+  --hsl-surface-50: var(--hsl-zinc-50);
+  --hsl-surface-100: var(--hsl-zinc-100);
+  --hsl-surface-200: var(--hsl-zinc-200);
+  --hsl-surface-300: var(--hsl-zinc-300);
+  --hsl-surface-400: var(--hsl-zinc-400);
+  --hsl-surface-500: var(--hsl-zinc-500);
+  --hsl-surface-600: var(--hsl-zinc-600);
+  --hsl-surface-700: var(--hsl-zinc-700);
+  --hsl-surface-800: var(--hsl-zinc-800);
+  --hsl-surface-900: var(--hsl-zinc-900);
+  --hsl-surface-950: var(--hsl-zinc-950);
 
-    /* Primary PrimeNg aliases */
-    --hsl-primary-color: var(--hsl-primary-500);
-    --hsl-primary-hover-color: var(--hsl-primary-400);
-    --hsl-primary-active-color: var(--hsl-primary-300);
-    --hsl-primary-contrast-color: var(--hsl-primary-950);
-  }
+  /* Primary PrimeNg aliases */
+  --hsl-primary-color: var(--hsl-primary-500);
+  --hsl-primary-hover-color: var(--hsl-primary-400);
+  --hsl-primary-active-color: var(--hsl-primary-300);
+  --hsl-primary-contrast-color: var(--hsl-primary-950);
+}
 
-  /* Custom static css-only colors */
-  :root {
-    --color-card: #ffffff;
-    --color-dark: #0b0e11;
-  }
+/* Custom app colors */
 
-  .dark {
-    /* Custom static css-only colors */
-    --color-card: #14171a;
-  }
+:root {
+  --hsl-app-color-card: 0 0% 100%;
+  --hsl-app-color-dark: 210 21% 5.5%;
+
+  /* Aliases */
+  --app-color-card: hsl(var(--hsl-app-color-card));
+  --app-color-dark: hsl(var(--hsl-app-color-dark));
+}
+
+.dark {
+  --hsl-app-color-card: 210 13% 9%;
 }

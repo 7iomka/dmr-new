@@ -1,14 +1,9 @@
-@layer base {
-  :root,
-  .dark {
-  }
-
-  :root {
-  }
-
-  .dark {
-  }
+:root,
+.dark {
 }
 
-@layer components {
+:root {
+}
+
+.dark {
 }

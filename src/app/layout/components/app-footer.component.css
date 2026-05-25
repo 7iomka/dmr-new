@@ -1,5 +1,3 @@
-@reference '../../../styles.css';
-
 :host {
   @apply block;
 }
@@ -26,18 +24,18 @@
 
 .app-footer__logo-light {
   @apply hidden h-12 w-auto;
+}
 
-  @variant dark {
-    @apply block;
-  }
+:host-context(.dark) .app-footer__logo-light {
+  @apply block;
 }
 
 .app-footer__logo-dark {
   @apply h-12 w-auto;
+}
 
-  @variant dark {
-    @apply hidden;
-  }
+:host-context(.dark) .app-footer__logo-dark {
+  @apply hidden;
 }
 
 .app-footer__brand-text {
@@ -50,7 +48,7 @@
 
 .app-footer__social-icon {
   color: var(--p-text-muted-color);
-  @apply h-4.5 w-4.5;
+  @apply h-[18px] w-[18px];
 }
 
 .app-footer__social-btn:not(:hover) .app-footer__social-icon {

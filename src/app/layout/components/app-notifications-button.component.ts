@@ -23,7 +23,7 @@ import { NotificationsKnowledgeBaseService } from '../../features/notifications/
             : 'p-button-icon-only app-notifications-button__trigger'
         "
         (onClick)="store.toggleDrawer()">
-        <svg class="h-4.5 w-4.5" lucideBell pButtonIcon></svg>
+        <svg class="h-[18px] w-[18px]" lucideBell pButtonIcon></svg>
       </p-button>
 
       <span class="app-notifications-button__dot" [class.hidden]="store.unreadCount() === 0"></span>

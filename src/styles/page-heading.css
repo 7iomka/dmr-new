@@ -1,17 +1,12 @@
-@layer components {
-  .c-page-heading {
-    @apply flex flex-col gap-1 items-start;
-  }
-
-  .c-page-heading__title {
-    @apply text-2xl lg:text-3xl font-bold tracking-tight text-surface-900;
-
-    @variant dark {
-      @apply text-surface-50;
-    }
-  }
-
-  .c-page-heading__subtitle {
-    @apply text-sm font-medium text-surface-500;
-  }
+.c-page-heading {
+  @apply flex flex-col gap-1 items-start;
+}
+.c-page-heading__title {
+  @apply text-2xl lg:text-3xl font-bold tracking-tight text-surface-900;
+}
+.dark .c-page-heading__title {
+  @apply text-surface-50;
+}
+.c-page-heading__subtitle {
+  @apply text-sm font-medium text-surface-500;
 }

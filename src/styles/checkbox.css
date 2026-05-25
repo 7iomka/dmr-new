@@ -1,9 +1,7 @@
-@layer base {
-  :root,
-  .dark {
-    --p-checkbox-width: 1rem;
-    --p-checkbox-height: 1rem;
-    --p-checkbox-border-radius: var(--radius-sm);
-    --p-checkbox-icon-size: 0.75rem;
-  }
+:root,
+.dark {
+  --p-checkbox-width: 1rem;
+  --p-checkbox-height: 1rem;
+  --p-checkbox-border-radius: var(--radius-sm);
+  --p-checkbox-icon-size: 0.75rem;
 }

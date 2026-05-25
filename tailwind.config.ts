@@ -1,58 +1,155 @@
 import type { Config } from 'tailwindcss';
 import aspectRatioPlugin from '@tailwindcss/aspect-ratio';
+import defaultTheme from 'tailwindcss/defaultTheme';
 import PrimeUI from 'tailwindcss-primeui';
 
-const hslVar = (name: string) => `hsl(var(${name}) / <alpha-value>)`;
+import {
+  appPrimitivePaletteNames,
+  colorSteps,
+  hslFlatScale,
+  hslPalettes,
+  hslToken,
+  surfaceSteps,
+} from './src/app/core/theme/theme-token.helpers';
 
-const colorSteps = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'] as const;
+const withAlpha = { alpha: true } as const;
 
-const hslScale = (name: string) =>
-  Object.fromEntries(colorSteps.map((step) => [step, hslVar(`--hsl-${name}-${step}`)]));
+/**
+ * CSS variable token helper.
+ *
+ * token('text-sm') -> var(--text-sm)
+ * token('radius-lg') -> var(--radius-lg)
+ */
+const token = (name: string) => `var(--${name})`;
 
-const hslPalettes = (...names: string[]) => Object.fromEntries(names.map((name) => [name, hslScale(name)]));
+const textSize = (name: string): [string, { lineHeight: string }] => [
+  token(`text-${name}`),
+  { lineHeight: token(`text-${name}--line-height`) },
+];
+
+const opacityScale = Object.fromEntries(
+  Array.from({ length: 101 }, (_, value) => [String(value), String(value / 100)]),
+);
 
 export default {
-  darkMode: ['class', '[data-theme="dark"]'],
-  content: ['./{src}/**/*.{html,ts}'],
+  darkMode: ['class'],
+
+  content: ['./src/**/*.{html,ts}'],
+
   theme: {
+    fontFamily: {
+      sans: token('font-sans'),
+      serif: token('font-serif'),
+      mono: token('font-mono'),
+    },
+
+    fontSize: {
+      xs: textSize('xs'),
+      sm: textSize('sm'),
+      base: textSize('base'),
+      lg: textSize('lg'),
+      xl: textSize('xl'),
+      '2xl': textSize('2xl'),
+      '3xl': textSize('3xl'),
+      '4xl': textSize('4xl'),
+      '5xl': textSize('5xl'),
+      '6xl': textSize('6xl'),
+      '7xl': textSize('7xl'),
+      '8xl': textSize('8xl'),
+      '9xl': textSize('9xl'),
+    },
+
+    letterSpacing: {
+      tighter: token('tracking-tighter'),
+      tight: token('tracking-tight'),
+      normal: token('tracking-normal'),
+      wide: token('tracking-wide'),
+      wider: token('tracking-wider'),
+      widest: token('tracking-widest'),
+    },
+
+    lineHeight: {
+      ...defaultTheme.lineHeight,
+      none: '1',
+      tight: token('leading-tight'),
+      snug: token('leading-snug'),
+      normal: token('leading-normal'),
+      relaxed: token('leading-relaxed'),
+      loose: token('leading-loose'),
+    },
+
+    borderRadius: {
+      none: '0px',
+      xs: token('radius-xs'),
+      sm: token('radius-sm'),
+      DEFAULT: token('radius-sm'),
+      md: token('radius-md'),
+      lg: token('radius-lg'),
+      xl: token('radius-xl'),
+      '2xl': token('radius-2xl'),
+      '3xl': token('radius-3xl'),
+      '4xl': token('radius-4xl'),
+      full: '9999px',
+    },
+
+    boxShadow: {
+      '2xs': token('shadow-2xs'),
+      xs: token('shadow-xs'),
+      sm: token('shadow-sm'),
+      DEFAULT: token('shadow-sm'),
+      md: token('shadow-md'),
+      lg: token('shadow-lg'),
+      xl: token('shadow-xl'),
+      '2xl': token('shadow-2xl'),
+
+      // Keep the default Tailwind v3 inner shadow utility.
+      inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
+      none: 'none',
+    },
+
+    blur: {
+      none: '0',
+      0: '0',
+      xs: token('blur-xs'),
+      sm: token('blur-sm'),
+      DEFAULT: token('blur-sm'),
+      md: token('blur-md'),
+      lg: token('blur-lg'),
+      xl: token('blur-xl'),
+      '2xl': token('blur-2xl'),
+      '3xl': token('blur-3xl'),
+    },
+
     extend: {
+      opacity: opacityScale,
       colors: {
-        primary: hslVar('--hsl-primary-color'),
-        'primary-emphasis': hslVar('--hsl-primary-hover-color'),
-        'primary-emphasis-alt': hslVar('--hsl-primary-active-color'),
-        'primary-contrast': hslVar('--hsl-primary-contrast-color'),
+        // Neutral HSL channel colors.
+        white: hslToken('white', withAlpha),
+        black: hslToken('black', withAlpha),
 
-        'primary-50': hslVar('--hsl-primary-50'),
-        'primary-100': hslVar('--hsl-primary-100'),
-        'primary-200': hslVar('--hsl-primary-200'),
-        'primary-300': hslVar('--hsl-primary-300'),
-        'primary-400': hslVar('--hsl-primary-400'),
-        'primary-500': hslVar('--hsl-primary-500'),
-        'primary-600': hslVar('--hsl-primary-600'),
-        'primary-700': hslVar('--hsl-primary-700'),
-        'primary-800': hslVar('--hsl-primary-800'),
-        'primary-900': hslVar('--hsl-primary-900'),
-        'primary-950': hslVar('--hsl-primary-950'),
+        // Palette colors defined in colors.css.
+        ...hslPalettes(appPrimitivePaletteNames, withAlpha),
 
-        'surface-0': hslVar('--hsl-surface-0'),
-        'surface-50': hslVar('--hsl-surface-50'),
-        'surface-100': hslVar('--hsl-surface-100'),
-        'surface-200': hslVar('--hsl-surface-200'),
-        'surface-300': hslVar('--hsl-surface-300'),
-        'surface-400': hslVar('--hsl-surface-400'),
-        'surface-500': hslVar('--hsl-surface-500'),
-        'surface-600': hslVar('--hsl-surface-600'),
-        'surface-700': hslVar('--hsl-surface-700'),
-        'surface-800': hslVar('--hsl-surface-800'),
-        'surface-900': hslVar('--hsl-surface-900'),
-        'surface-950': hslVar('--hsl-surface-950'),
+        // PrimeUI-compatible semantic aliases.
+        primary: hslToken('primary-color', withAlpha),
+        'primary-emphasis': hslToken('primary-hover-color', withAlpha),
+        'primary-emphasis-alt': hslToken('primary-active-color', withAlpha),
+        'primary-contrast': hslToken('primary-contrast-color', withAlpha),
 
-        // You must define them in colors.css
-        ...hslPalettes('sky', 'amber', 'red'),
+        // Flat PrimeUI-compatible color names:
+        // bg-primary-500, text-surface-700, border-surface-200/50, etc.
+        ...hslFlatScale('primary', colorSteps, withAlpha),
+        ...hslFlatScale('surface', surfaceSteps, withAlpha),
+
+        // Custom app colors.
+        card: hslToken('app-color-card', withAlpha),
+        dark: hslToken('app-color-dark', withAlpha),
       },
     },
   },
+
   plugins: [aspectRatioPlugin, PrimeUI],
+
   corePlugins: {
     aspectRatio: false,
     container: false,

@@ -1,5 +1,3 @@
-@reference "../../../../../styles.css";
-
 .c-investment-shares-overview {
   @apply flex flex-col gap-6;
 }
@@ -18,10 +16,10 @@
 
 .c-investment-installment-card {
   @apply flex flex-col gap-4 rounded-lg border border-surface-200 bg-surface-50 p-4;
+}
 
-  @variant dark {
-    @apply border-surface-800 bg-surface-950/35;
-  }
+.dark .c-investment-installment-card {
+  @apply border-surface-800 bg-surface-950/35;
 }
 
 .c-investment-installment-card--danger {

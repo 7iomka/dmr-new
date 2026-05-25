@@ -14,7 +14,7 @@ import { ThemeService } from '../../core/theme/theme.service';
       [styleClass]="buttonClass()"
       (onClick)="themeService.toggleTheme()">
       <ng-template #icon>
-        <svg class="h-4.5 w-4.5" [lucideIcon]="themeToggleIcon()"></svg>
+        <svg class="h-[18px] w-[18px]" [lucideIcon]="themeToggleIcon()"></svg>
       </ng-template>
     </p-button>
   `,
