@@ -1,26 +1,78 @@
 :host {
-  @apply relative z-40 block h-16 border-b border-surface-200 bg-card lg:h-20 dark:border-surface-800;
+  position: relative;
+  z-index: 40;
+  display: block;
+  height: 4rem;
+  border-bottom: 1px solid var(--p-surface-200);
+  background: var(--app-color-card);
+
+  @mixin host-dark {
+    border-bottom-color: var(--p-surface-800);
+  }
+
+  @media (--lg) {
+    height: 5rem;
+  }
 }
 
 .app-header__inner {
-  @apply h-full;
+  height: 100%;
 }
 
 .app-header__logo {
-  @apply flex h-10 min-w-0 shrink-0 items-center lg:hidden;
+  display: flex;
+  min-width: 0;
+  height: 2.5rem;
+  flex-shrink: 0;
+  align-items: center;
+
+  @media (--lg) {
+    display: none;
+  }
 }
 
 .app-header__logo-light {
-  @apply hidden h-full w-auto dark:block;
+  display: none;
+  width: auto;
+  height: 100%;
+}
+
+:host-context(.dark) .app-header__logo-light {
+  display: block;
 }
 
 .app-header__logo-dark {
-  @apply h-full w-auto dark:hidden;
+  width: auto;
+  height: 100%;
+}
+
+:host-context(.dark) .app-header__logo-dark {
+  display: none;
 }
 
 .app-header__actions {
-  @apply ms-auto me-0 flex items-center gap-1.5 md:gap-2.5;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-inline-start: auto;
+  margin-inline-end: 0;
+
+  @media (--md) {
+    gap: 0.625rem;
+  }
 }
 .app-header__divider {
-  @apply mx-1 hidden h-10 w-px bg-surface-200 dark:bg-surface-700 lg:block;
+  display: none;
+  width: 1px;
+  height: 2.5rem;
+  margin-inline: 0.25rem;
+  background: var(--p-surface-200);
+
+  @mixin host-dark {
+    background: var(--p-surface-700);
+  }
+
+  @media (--lg) {
+    display: block;
+  }
 }

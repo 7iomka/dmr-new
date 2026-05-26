@@ -103,5 +103,6 @@
 }
 
 .app-mobile-sidebar__link[data-active='true'] {
-  @apply bg-primary/10 text-primary;
+  background: hsl(var(--hsl-primary-color) / 10%);
+  color: var(--p-primary-color);
 }

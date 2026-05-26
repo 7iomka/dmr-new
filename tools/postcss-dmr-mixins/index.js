@@ -79,6 +79,14 @@ const insertRuleAfterAnchor = (atRule, rule) => {
   anchor.parent.insertAfter(anchor, rule);
 };
 
+const createDarkSelector = (selectorPrefix, selector) => {
+  if (selectorPrefix === ':host-context(.dark)' && selector === ':host') {
+    return selectorPrefix;
+  }
+
+  return `${selectorPrefix} ${selector}`;
+};
+
 const replaceWithDeclarations = (atRule, declarations) => {
   declarations.forEach(([prop, value]) => {
     atRule.parent.insertBefore(atRule, postcss.decl({ prop, value }));
@@ -91,7 +99,7 @@ const replaceWithDarkRule = (atRule, selectorPrefix) => {
     throw atRule.error(`@mixin ${atRule.params} requires a declaration block`);
   }
 
-  insertRuleAfterAnchor(atRule, createRule(`${selectorPrefix} ${getFullSelector(atRule)}`, atRule.nodes));
+  insertRuleAfterAnchor(atRule, createRule(createDarkSelector(selectorPrefix, getFullSelector(atRule)), atRule.nodes));
   atRule.remove();
 };
 
@@ -116,7 +124,7 @@ const replaceLightDark = (atRule, selectorPrefix) => {
   atRule.parent.insertBefore(atRule, postcss.decl({ prop, value: lightValue }));
   insertRuleAfterAnchor(
     atRule,
-    createRule(`${selectorPrefix} ${getFullSelector(atRule)}`, [postcss.decl({ prop, value: darkValue })]),
+    createRule(createDarkSelector(selectorPrefix, getFullSelector(atRule)), [postcss.decl({ prop, value: darkValue })]),
   );
   atRule.remove();
 };

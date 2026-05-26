@@ -1,18 +1,66 @@
 .app-notifications-button {
-  @apply relative inline-flex;
+  position: relative;
+  display: inline-flex;
 }
 .app-notifications-button__trigger.p-button {
-  @apply !h-10 !w-10;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
 }
 .app-notifications-button__trigger--active.p-button {
-  @apply bg-primary-100 text-primary-700 border-primary-300 dark:bg-primary-900/35 dark:text-primary-200 dark:border-primary-700/60;
+  border-color: var(--p-primary-300);
+  background: var(--p-primary-100);
+  color: var(--p-primary-700);
+
+  @mixin dark {
+    border-color: hsl(var(--hsl-primary-700) / 60%);
+    background: hsl(var(--hsl-primary-900) / 35%);
+    color: var(--p-primary-200);
+  }
 }
 .app-notifications-button__dot {
-  @apply pointer-events-none absolute top-2.5 right-2.5 h-2 w-2 rounded-full bg-primary border-2 border-white dark:border-surface-900;
+  pointer-events: none;
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 2px solid var(--p-surface-0);
+  border-radius: 9999px;
+  background: var(--p-primary-color);
+
+  @mixin dark {
+    border-color: var(--p-surface-900);
+  }
 }
 .app-notifications-button__pulse {
-  @apply pointer-events-none absolute top-2.5 right-2.5 h-2 w-2 rounded-full bg-primary/35 blur-[0.5px] animate-ping;
+  pointer-events: none;
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: hsl(var(--hsl-primary-color) / 35%);
+  filter: blur(0.5px);
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 .app-notifications-button__badge {
-  @apply pointer-events-none absolute -top-1 -right-1 h-[18px] min-w-[18px] rounded-full bg-primary-500 px-1 text-center text-[10px] leading-[18px] font-bold text-white dark:bg-primary-600;
+  pointer-events: none;
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: var(--p-primary-500);
+  padding-inline: 0.25rem;
+  color: var(--p-surface-0);
+  font-size: 10px;
+  line-height: 18px;
+  font-weight: 700;
+  text-align: center;
+
+  @mixin dark {
+    background: var(--p-primary-600);
+  }
 }
