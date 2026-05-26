@@ -14,12 +14,6 @@
     --p-dialog-shadow: var(--p-overlay-modal-shadow); */
 }
 
-:root {
-}
-
-.dark {
-}
-
 .p-dialog-close-button {
   width: var(--c-button-sm-min-height);
   height: var(--c-button-sm-min-height);

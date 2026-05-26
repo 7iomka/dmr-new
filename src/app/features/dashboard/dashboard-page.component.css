@@ -32,9 +32,8 @@
 
 .dashboard-table-shell .p-datatable-thead > tr > th,
 .dashboard-table-shell .p-datatable-tbody > tr > td {
-}
-
-.dark .dashboard-table-shell .p-datatable-thead > tr > th,
-.dark .dashboard-table-shell .p-datatable-tbody > tr > td {
-  @apply bg-[#151a1f] text-surface-200;
+  @mixin dark {
+    background-color: var(--p-surface-900);
+    color: var(--p-surface-200);
+  }
 }

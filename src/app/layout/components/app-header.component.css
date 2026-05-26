@@ -35,19 +35,17 @@
   display: none;
   width: auto;
   height: 100%;
-}
-
-:host-context(.dark) .app-header__logo-light {
-  display: block;
+  @mixin host-dark {
+    display: block;
+  }
 }
 
 .app-header__logo-dark {
   width: auto;
   height: 100%;
-}
-
-:host-context(.dark) .app-header__logo-dark {
-  display: none;
+  @mixin host-dark {
+    display: none;
+  }
 }
 
 .app-header__actions {

@@ -20,10 +20,10 @@
 }
 
 :root {
-  --c-menu-background: #fff;
+  --c-menu-background: var(--p-surface-0);
   --c-menu-border-color: var(--p-surface-200);
   --c-menu-border-radius: var(--radius-lg);
-  --c-menu-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.12), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+  --c-menu-shadow: 0 10px 25px -5px hsl(var(--hsl-black) / 12%), 0 8px 10px -6px hsl(var(--hsl-black) / 8%);
 
   --c-menu-list-padding: 0.25rem;
   --c-menu-list-gap: 0.125rem;
@@ -37,18 +37,17 @@
   --c-menu-item-icon-color: var(--p-surface-500);
   --c-menu-item-icon-focus-color: var(--p-surface-600);
   --c-menu-item-focus-background: var(--p-surface-50);
-}
+  @mixin root-dark {
+    --c-menu-background: var(--p-surface-900);
+    --c-menu-border-color: var(--p-surface-800);
+    --c-menu-shadow: 0 10px 25px -5px hsl(var(--hsl-black) / 35%), 0 8px 10px -6px hsl(var(--hsl-black) / 25%);
 
-.dark {
-  --c-menu-background: var(--p-surface-900);
-  --c-menu-border-color: var(--p-surface-800);
-  --c-menu-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.35), 0 8px 10px -6px rgb(0 0 0 / 0.25);
-
-  --c-menu-item-color: var(--p-surface-100);
-  --c-menu-item-focus-color: #fff;
-  --c-menu-item-icon-color: var(--p-surface-400);
-  --c-menu-item-icon-focus-color: var(--p-surface-300);
-  --c-menu-item-focus-background: rgb(39 39 42 / 0.6);
+    --c-menu-item-color: var(--p-surface-100);
+    --c-menu-item-focus-color: var(--p-surface-0);
+    --c-menu-item-icon-color: var(--p-surface-400);
+    --c-menu-item-icon-focus-color: var(--p-surface-300);
+    --c-menu-item-focus-background: hsl(var(--hsl-surface-800) / 60%);
+  }
 }
 
 .c-menu__item-link {

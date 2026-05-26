@@ -6,7 +6,7 @@
 :root {
   --c-card-background: var(--app-color-card);
   --c-card-color: var(--p-surface-900);
-  --c-card-header-background: #ffffff;
+  --c-card-header-background: var(--p-surface-0);
   --c-card-border: var(--p-surface-200);
   --c-card-padding-x: 1rem;
   --c-card-padding-y: 1rem;
@@ -21,7 +21,7 @@
 
   @mixin root-dark {
     --c-card-background: var(--app-color-card);
-    --c-card-header-background: #1e2023;
+    --c-card-header-background: var(--app-color-card);
     --c-card-color: var(--p-surface-50);
     --c-card-border: var(--p-surface-800);
   }

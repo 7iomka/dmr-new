@@ -152,28 +152,27 @@
   --hsl-primary-hover-color: var(--hsl-primary-600);
   --hsl-primary-active-color: var(--hsl-primary-700);
   --hsl-primary-contrast-color: var(--hsl-white);
-}
+  @mixin root-dark {
+    /* Surface palette. Dark mode uses Zinc. */
+    --hsl-surface-0: var(--hsl-white);
+    --hsl-surface-50: var(--hsl-zinc-50);
+    --hsl-surface-100: var(--hsl-zinc-100);
+    --hsl-surface-200: var(--hsl-zinc-200);
+    --hsl-surface-300: var(--hsl-zinc-300);
+    --hsl-surface-400: var(--hsl-zinc-400);
+    --hsl-surface-500: var(--hsl-zinc-500);
+    --hsl-surface-600: var(--hsl-zinc-600);
+    --hsl-surface-700: var(--hsl-zinc-700);
+    --hsl-surface-800: var(--hsl-zinc-800);
+    --hsl-surface-900: var(--hsl-zinc-900);
+    --hsl-surface-950: var(--hsl-zinc-950);
 
-.dark {
-  /* Surface palette. Dark mode uses Zinc. */
-  --hsl-surface-0: var(--hsl-white);
-  --hsl-surface-50: var(--hsl-zinc-50);
-  --hsl-surface-100: var(--hsl-zinc-100);
-  --hsl-surface-200: var(--hsl-zinc-200);
-  --hsl-surface-300: var(--hsl-zinc-300);
-  --hsl-surface-400: var(--hsl-zinc-400);
-  --hsl-surface-500: var(--hsl-zinc-500);
-  --hsl-surface-600: var(--hsl-zinc-600);
-  --hsl-surface-700: var(--hsl-zinc-700);
-  --hsl-surface-800: var(--hsl-zinc-800);
-  --hsl-surface-900: var(--hsl-zinc-900);
-  --hsl-surface-950: var(--hsl-zinc-950);
-
-  /* Primary PrimeNg aliases */
-  --hsl-primary-color: var(--hsl-primary-500);
-  --hsl-primary-hover-color: var(--hsl-primary-400);
-  --hsl-primary-active-color: var(--hsl-primary-300);
-  --hsl-primary-contrast-color: var(--hsl-primary-950);
+    /* Primary PrimeNg aliases */
+    --hsl-primary-color: var(--hsl-primary-500);
+    --hsl-primary-hover-color: var(--hsl-primary-400);
+    --hsl-primary-active-color: var(--hsl-primary-300);
+    --hsl-primary-contrast-color: var(--hsl-primary-950);
+  }
 }
 
 /* Custom app colors */
@@ -185,8 +184,8 @@
   /* Aliases */
   --app-color-card: hsl(var(--hsl-app-color-card));
   --app-color-dark: hsl(var(--hsl-app-color-dark));
-}
 
-.dark {
-  --hsl-app-color-card: 210 13% 9%;
+  @mixin root-dark {
+    --hsl-app-color-card: 210 13% 9%;
+  }
 }

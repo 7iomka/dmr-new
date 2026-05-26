@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const postcss = require('postcss');
 
 const rootDir = path.resolve(__dirname, '..', '..');
 const srcDir = path.join(rootDir, 'src');
@@ -15,6 +16,10 @@ const forbiddenDirectives = [
 const applyPattern = /@apply\b/g;
 const structuralApplyPattern = /@apply[^;]*(?:\bspace-[xy]-|\bdivide-[xy](?:-|\b))/g;
 const forbiddenStructuralMixinPattern = /@(define-)?mixin\s+(?:space-[xy]|divide-[xy])\b/g;
+const forbiddenTailwindOpacityArtifactPattern =
+  /--tw-[a-z-]*opacity|hsl\(var\(--hsl-[^)]+\)\s*\/\s*var\(--tw-[a-z-]*opacity,\s*1\)\)/g;
+const forbiddenRawColorPattern = /#[0-9a-fA-F]{3,8}|\brgba?\(/g;
+const forbiddenColorMixPattern = /color-mix\(/g;
 
 const listCssFiles = (dir) => {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -38,6 +43,37 @@ const listCssFiles = (dir) => {
 
 const countMatches = (content, pattern) => Array.from(content.matchAll(pattern)).length;
 
+const splitSelectors = (selector) => selector.split(',').map((part) => part.trim());
+
+const isAllowedSharedDarkVariableRule = (rule) => {
+  const selectors = splitSelectors(rule.selector);
+
+  if (selectors.length !== 2 || !selectors.includes(':root') || !selectors.includes('.dark')) {
+    return false;
+  }
+
+  return rule.nodes?.every((node) => node.type === 'comment' || (node.type === 'decl' && node.prop.startsWith('--')));
+};
+
+const countForbiddenDarkSelectors = (content, filePath) => {
+  let count = 0;
+  const root = postcss.parse(content, { from: filePath });
+
+  root.walkRules((rule) => {
+    if (!/(^|[\s,{])(?:\.dark|:host-context\(\.dark\))\b/.test(rule.selector)) {
+      return;
+    }
+
+    if (isAllowedSharedDarkVariableRule(rule)) {
+      return;
+    }
+
+    count += 1;
+  });
+
+  return count;
+};
+
 const failures = [];
 const currentApplyCounts = {};
 const currentStructuralApplyCounts = {};
@@ -53,6 +89,14 @@ listCssFiles(srcDir).forEach((filePath) => {
       failures.push(`${relativePath}: contains ${count} ${name} directive(s)`);
     }
   });
+
+  const rawDarkSelectorCount = countForbiddenDarkSelectors(content, filePath);
+
+  if (rawDarkSelectorCount > 0) {
+    failures.push(
+      `${relativePath}: contains ${rawDarkSelectorCount} raw dark selector(s); use dark/host-dark mixins outside shared :root, .dark variable blocks`,
+    );
+  }
 
   const applyCount = countMatches(content, applyPattern);
 
@@ -73,6 +117,30 @@ listCssFiles(srcDir).forEach((filePath) => {
   if (structuralMixinCount > 0) {
     failures.push(
       `${relativePath}: contains ${structuralMixinCount} forbidden space/divide mixin directive(s); use gap or explicit separators`,
+    );
+  }
+
+  const tailwindOpacityArtifactCount = countMatches(content, forbiddenTailwindOpacityArtifactPattern);
+
+  if (tailwindOpacityArtifactCount > 0) {
+    failures.push(
+      `${relativePath}: contains ${tailwindOpacityArtifactCount} Tailwind opacity artifact(s); use direct var(--p-*) or hsl(var(--hsl-*) / <alpha>) tokens`,
+    );
+  }
+
+  const rawColorCount = countMatches(content, forbiddenRawColorPattern);
+
+  if (rawColorCount > 0) {
+    failures.push(
+      `${relativePath}: contains ${rawColorCount} raw hex/rgb color(s); use project CSS variables or hsl channel tokens`,
+    );
+  }
+
+  const colorMixCount = countMatches(content, forbiddenColorMixPattern);
+
+  if (colorMixCount > 0) {
+    failures.push(
+      `${relativePath}: contains ${colorMixCount} color-mix() value(s); use direct var(--p-*) tokens or hsl(var(--hsl-*) / <alpha>)`,
     );
   }
 

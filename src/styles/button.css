@@ -31,16 +31,17 @@
   --c-button-outlined-secondary-active-background: var(--p-surface-200);
 
   --c-button-raised-shadow-sm:
-    0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-}
+    0 1px 3px 0 var(--tw-shadow-color, hsl(var(--hsl-black) / 10%)),
+    0 1px 2px -1px var(--tw-shadow-color, hsl(var(--hsl-black) / 10%));
 
-.dark {
-  --c-button-outlined-secondary-background: hsl(var(--hsl-surface-800) / 70%);
-  --c-button-outlined-secondary-border-color: var(--p-surface-700);
-  --c-button-outlined-secondary-color: var(--p-surface-300);
-  --c-button-outlined-secondary-hover-background: var(--p-surface-800);
-  --c-button-outlined-secondary-hover-border-color: var(--p-surface-600);
-  --c-button-outlined-secondary-active-background: hsl(var(--hsl-surface-700) / 85%);
+  @mixin root-dark {
+    --c-button-outlined-secondary-background: hsl(var(--hsl-surface-800) / 70%);
+    --c-button-outlined-secondary-border-color: var(--p-surface-700);
+    --c-button-outlined-secondary-color: var(--p-surface-300);
+    --c-button-outlined-secondary-hover-background: var(--p-surface-800);
+    --c-button-outlined-secondary-hover-border-color: var(--p-surface-600);
+    --c-button-outlined-secondary-active-background: hsl(var(--hsl-surface-700) / 85%);
+  }
 }
 
 .p-button {

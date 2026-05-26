@@ -82,8 +82,10 @@
   }
 }
 
-.dark .app-notifications-drawer__item:focus-visible {
-  outline-color: var(--p-primary-400);
+.app-notifications-drawer__item:focus-visible {
+  @mixin dark {
+    outline-color: var(--p-primary-400);
+  }
 }
 
 .app-notifications-drawer__item--interactive {
@@ -94,16 +96,17 @@
   }
 }
 
-.dark .app-notifications-drawer__item--interactive:hover {
-  background: hsl(var(--hsl-surface-800) / 70%);
+.app-notifications-drawer__item--interactive:hover {
+  @mixin dark {
+    background: hsl(var(--hsl-surface-800) / 70%);
+  }
 }
 
 .app-notifications-drawer__item--unread {
   background: hsl(var(--hsl-primary-50) / 70%);
-}
-
-.dark .app-notifications-drawer__item--unread {
-  background: hsl(var(--hsl-primary-950) / 25%);
+  @mixin dark {
+    background: hsl(var(--hsl-primary-950) / 25%);
+  }
 }
 
 .app-notifications-drawer__item-main {
@@ -146,10 +149,9 @@
 .app-notifications-drawer__item--unread .app-notifications-drawer__item-title {
   color: var(--p-surface-900);
   font-weight: 700;
-}
-
-.dark .app-notifications-drawer__item--unread .app-notifications-drawer__item-title {
-  color: var(--p-surface-0);
+  @mixin dark {
+    color: var(--p-surface-0);
+  }
 }
 
 .app-notifications-drawer__item-dot {
@@ -158,10 +160,9 @@
   flex-shrink: 0;
   border-radius: 9999px;
   background: var(--p-primary-500);
-}
-
-.dark .app-notifications-drawer__item-dot {
-  background: var(--p-primary-400);
+  @mixin dark {
+    background: var(--p-primary-400);
+  }
 }
 
 .app-notifications-drawer__item-meta {
@@ -189,8 +190,7 @@
   padding: 3.5rem 1.5rem;
   color: var(--p-surface-500);
   text-align: center;
-}
-
-.dark .app-notifications-drawer__empty {
-  color: var(--p-surface-400);
+  @mixin dark {
+    color: var(--p-surface-400);
+  }
 }

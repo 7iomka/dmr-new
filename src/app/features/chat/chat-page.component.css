@@ -104,9 +104,6 @@
   @apply shrink-0 flex items-center gap-3 border-b border-surface-200 px-4 py-4 dark:border-surface-800 lg:px-5;
 }
 
-.chat-page__back {
-}
-
 .chat-page__detail-id {
   @apply flex min-w-0 items-center gap-3;
 }
@@ -146,10 +143,9 @@
 
 .chat-page__select-control {
   --p-select-background: var(--p-surface-50);
-}
-
-.dark .chat-page__select-control {
-  --p-select-background: var(--p-surface-900);
+  @mixin dark {
+    --p-select-background: var(--p-surface-900);
+  }
 }
 
 .chat-page__label {
@@ -252,9 +248,6 @@
 
 .chat-page__emoji-grid {
   @apply grid w-[300px] max-w-full grid-cols-8 gap-2;
-}
-
-.chat-page__emoji {
 }
 
 .chat-page__attachment-row {

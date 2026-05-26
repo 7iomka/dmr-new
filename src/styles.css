@@ -14,7 +14,6 @@
 @import './styles/tag.css';
 @import './styles/dialog.css';
 @import './styles/form-controls.css';
-@import './styles/select.css';
 @import './styles/avatar.css';
 @import './styles/stat-card.css';
 @import './styles/page-heading.css';
@@ -40,11 +39,10 @@
     font-variant-ligatures: none;
     font-family: var(--font-sans);
     line-height: 1.375;
-  }
-
-  .dark body {
-    background-color: var(--app-color-dark);
-    color: var(--p-surface-50);
+    @mixin dark {
+      background-color: var(--app-color-dark);
+      color: var(--p-surface-50);
+    }
   }
 
   body,

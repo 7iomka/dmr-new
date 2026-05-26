@@ -6,10 +6,9 @@
 
 :root {
   --c-scrollbar-thumb-color: var(--p-surface-300);
-}
-
-.dark {
-  --c-scrollbar-thumb-color: #27272a;
+  @mixin root-dark {
+    --c-scrollbar-thumb-color: var(--p-surface-800);
+  }
 }
 
 ::-webkit-scrollbar {

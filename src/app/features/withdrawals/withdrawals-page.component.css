@@ -45,10 +45,9 @@
 .withdrawals-summary-card__reason {
   @apply text-sm;
   color: var(--p-red-600);
-}
-
-:host-context(.dark) .withdrawals-summary-card__reason {
-  color: var(--p-red-300);
+  @mixin host-dark {
+    color: var(--p-red-300);
+  }
 }
 
 .withdrawals-summary-card__reason-value {

@@ -13,13 +13,12 @@
 .app-mobile-nav__inner {
   display: flex;
   height: 3.75rem;
-  border-top: 1px solid color-mix(in oklab, var(--p-surface-300, #d4d4d8) 65%, transparent);
+  border-top: 1px solid hsl(var(--hsl-surface-300) / 65%);
   background: var(--app-color-card);
-}
-
-.dark .app-mobile-nav__inner {
-  border-top-color: color-mix(in oklab, #3f3f46 80%, transparent);
-  background: var(--app-color-card);
+  @mixin dark {
+    border-top-color: hsl(var(--hsl-surface-700) / 80%);
+    background: var(--app-color-card);
+  }
 }
 
 .app-mobile-nav__item {
@@ -53,6 +52,8 @@
   width: 100%;
   max-width: 28rem;
   max-height: min(42rem, calc(100dvh - 1rem));
+  left: 0;
+  right: 0;
   margin-inline: auto;
   overflow: hidden;
   border-top: 1px solid var(--p-surface-200);
@@ -60,10 +61,9 @@
   border-top-right-radius: var(--radius-xl);
   background: var(--app-color-card);
   box-shadow: var(--shadow-2xl);
-}
-
-.dark .app-mobile-nav__profile-drawer {
-  border-top-color: var(--p-surface-800);
+  @mixin dark {
+    border-top-color: var(--p-surface-800);
+  }
 }
 
 .app-mobile-nav__profile-drawer-header {
@@ -89,10 +89,9 @@
   margin-inline: auto;
   border-radius: 9999px;
   background: var(--p-surface-200);
-}
-
-.dark .app-mobile-nav__profile-handle-bar {
-  background: var(--p-surface-800);
+  @mixin dark {
+    background: var(--p-surface-800);
+  }
 }
 
 .app-bottom-sheet--dragging {
@@ -124,10 +123,9 @@
   font-size: var(--text-base);
   line-height: 1;
   font-weight: 700;
-}
-
-.dark .app-mobile-nav__profile-name {
-  color: var(--p-surface-200);
+  @mixin dark {
+    color: var(--p-surface-200);
+  }
 }
 
 .app-mobile-nav__profile-id {
@@ -165,14 +163,16 @@
   &:hover {
     background: var(--p-surface-200);
   }
+
+  @mixin dark {
+    background: hsl(var(--hsl-surface-800) / 50%);
+  }
 }
 
-.dark .app-mobile-nav__profile-item {
-  background: hsl(var(--hsl-surface-800) / 50%);
-}
-
-.dark .app-mobile-nav__profile-item:hover {
-  background: var(--p-surface-700);
+.app-mobile-nav__profile-item:hover {
+  @mixin dark {
+    background: var(--p-surface-700);
+  }
 }
 
 .app-mobile-nav__profile-item--danger {
@@ -190,18 +190,17 @@
 }
 
 .app-mobile-nav__profile-item-icon[data-tone='primary'] {
-  background: color-mix(in srgb, var(--p-primary-color) 14%, transparent);
+  background: hsl(var(--hsl-primary-color) / 14%);
   color: var(--p-primary-color);
 }
 
 .app-mobile-nav__profile-item-icon[data-tone='surface'] {
   background: var(--p-surface-900);
   color: var(--p-surface-500);
-}
-
-.dark .app-mobile-nav__profile-item-icon[data-tone='surface'] {
-  background: var(--p-surface-700);
-  color: var(--p-surface-400);
+  @mixin dark {
+    background: var(--p-surface-700);
+    color: var(--p-surface-400);
+  }
 }
 
 .app-mobile-nav__profile-item-icon[data-tone='danger'] {

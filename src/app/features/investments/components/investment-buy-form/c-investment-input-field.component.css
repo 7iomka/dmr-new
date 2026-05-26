@@ -22,8 +22,8 @@
 
 .c-investment-input-field__suffix {
   @apply rounded-r-lg border border-l-0 border-surface-200 bg-surface-50 px-4 text-lg font-bold text-surface-400 flex items-center;
-}
-
-.dark .c-investment-input-field__suffix {
-  @apply border-surface-800 bg-surface-900;
+  @mixin dark {
+    border-color: var(--p-surface-800);
+    background-color: var(--p-surface-900);
+  }
 }

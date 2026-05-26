@@ -13,32 +13,26 @@
   display: none;
   height: 9rem;
   border-radius: 9999px;
-  background: color-mix(in oklab, var(--p-primary-500) 15%, transparent);
+  background: hsl(var(--hsl-primary-500) / 15%);
   filter: blur(var(--blur-3xl, 64px));
   pointer-events: none;
-}
-
-:host-context(.dark) .auth-shell-glow {
-  display: block;
+  @mixin host-dark {
+    display: block;
+  }
 }
 
 :host ::ng-deep .auth-card.p-card {
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-2xl);
-  border: 1px solid color-mix(in oklab, var(--p-surface-900) 15%, transparent);
+  border: 1px solid hsl(var(--hsl-surface-900) / 15%);
   background: var(--p-surface-0);
-  box-shadow: var(--p-card-shadow, 0 1px 3px rgba(0, 0, 0, 0.08));
-}
-
-:host-context(.dark) :host ::ng-deep .auth-card.p-card {
-  border-color: color-mix(in oklab, var(--p-surface-0) 10%, transparent);
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--p-surface-900) 88%, black) 0%,
-    color-mix(in oklab, var(--p-surface-950) 92%, black) 100%
-  );
-  box-shadow: 0 20px 46px rgba(0, 0, 0, 0.52);
+  box-shadow: var(--p-card-shadow, 0 1px 3px hsl(var(--hsl-black) / 8%));
+  @mixin host-dark {
+    border-color: hsl(var(--hsl-surface-0) / 10%);
+    background: linear-gradient(180deg, var(--p-surface-900) 0%, var(--p-surface-950) 100%);
+    box-shadow: 0 20px 46px hsl(var(--hsl-black) / 52%);
+  }
 }
 
 :host ::ng-deep .auth-card.p-card::before {
@@ -48,22 +42,11 @@
   inset-block-start: 0;
   z-index: 1;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    color-mix(in oklab, var(--p-primary-400) 70%, transparent),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, hsl(var(--hsl-primary-400) / 70%), transparent);
   pointer-events: none;
-}
-
-:host-context(.dark) :host ::ng-deep .auth-card.p-card::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    color-mix(in oklab, var(--p-primary-500) 70%, transparent),
-    transparent
-  );
+  @mixin host-dark {
+    background: linear-gradient(90deg, transparent, hsl(var(--hsl-primary-500) / 70%), transparent);
+  }
 }
 
 :host ::ng-deep .auth-card.p-card::after {
@@ -73,13 +56,12 @@
   display: none;
   z-index: 0;
   background:
-    radial-gradient(70% 75% at 100% 0%, color-mix(in oklab, var(--p-primary-500) 14%, transparent), transparent 62%),
-    radial-gradient(55% 60% at 0% 100%, color-mix(in oklab, var(--p-primary-500) 8%, transparent), transparent 70%);
+    radial-gradient(70% 75% at 100% 0%, hsl(var(--hsl-primary-500) / 14%), transparent 62%),
+    radial-gradient(55% 60% at 0% 100%, hsl(var(--hsl-primary-500) / 8%), transparent 70%);
   pointer-events: none;
-}
-
-:host-context(.dark) :host ::ng-deep .auth-card.p-card::after {
-  display: block;
+  @mixin host-dark {
+    display: block;
+  }
 }
 
 :host ::ng-deep .auth-card .p-card-body {
@@ -100,10 +82,9 @@
   display: none;
   border-radius: 9999px;
   pointer-events: none;
-}
-
-:host-context(.dark) .auth-card-dot {
-  display: block;
+  @mixin host-dark {
+    display: block;
+  }
 }
 
 .auth-card-dot-1 {
@@ -111,7 +92,7 @@
   inset-block-start: -3.5rem;
   width: 9rem;
   height: 9rem;
-  background: color-mix(in oklab, var(--p-primary-500) 20%, transparent);
+  background: hsl(var(--hsl-primary-500) / 20%);
   filter: blur(var(--blur-2xl, 40px));
 }
 
@@ -120,7 +101,7 @@
   inset-block-end: -3rem;
   width: 7rem;
   height: 7rem;
-  background: color-mix(in oklab, var(--p-primary-500) 15%, transparent);
+  background: hsl(var(--hsl-primary-500) / 15%);
   filter: blur(var(--blur-2xl, 40px));
 }
 
@@ -141,23 +122,14 @@
   width: 3rem;
   height: 3rem;
   border-radius: var(--radius-lg);
-  color: color-mix(in oklab, var(--p-primary-500) 65%, black);
-  border: 1px solid color-mix(in oklab, var(--p-primary-500) 44%, transparent);
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--p-primary-100) 90%, white),
-    color-mix(in oklab, var(--p-primary-200) 92%, white)
-  );
-}
-
-:host-context(.dark) .auth-card-icon {
-  color: color-mix(in oklab, var(--p-primary-300) 95%, white);
-  border-color: color-mix(in oklab, var(--p-primary-500) 45%, transparent);
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--p-primary-900) 46%, transparent),
-    color-mix(in oklab, var(--p-primary-950) 78%, transparent)
-  );
+  color: var(--p-primary-700);
+  border: 1px solid hsl(var(--hsl-primary-500) / 44%);
+  background: linear-gradient(180deg, var(--p-primary-100), var(--p-primary-200));
+  @mixin host-dark {
+    color: var(--p-primary-300);
+    border-color: hsl(var(--hsl-primary-500) / 45%);
+    background: linear-gradient(180deg, hsl(var(--hsl-primary-900) / 46%), hsl(var(--hsl-primary-950) / 78%));
+  }
 }
 
 .auth-title {
@@ -166,10 +138,9 @@
   line-height: 1.2;
   font-weight: 700;
   color: var(--p-surface-900);
-}
-
-:host-context(.dark) .auth-title {
-  color: var(--p-surface-0);
+  @mixin host-dark {
+    color: var(--p-surface-0);
+  }
 }
 
 .auth-subtitle {
@@ -204,11 +175,10 @@
   background: var(--p-surface-0);
   padding: 0.875rem 1rem;
   transition: all 0.2s ease;
-}
-
-:host-context(.dark) .auth-method-btn {
-  border-color: color-mix(in oklab, var(--p-surface-600) 72%, transparent);
-  background: color-mix(in oklab, var(--p-surface-900) 45%, transparent);
+  @mixin host-dark {
+    border-color: hsl(var(--hsl-surface-600) / 72%);
+    background: hsl(var(--hsl-surface-900) / 45%);
+  }
 }
 
 .auth-method-btn::before {
@@ -216,22 +186,16 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  background: linear-gradient(
-    90deg,
-    color-mix(in oklab, var(--p-primary-500) 10%, transparent),
-    color-mix(in oklab, var(--p-primary-500) 5%, transparent),
-    transparent
-  );
+  background: linear-gradient(90deg, hsl(var(--hsl-primary-500) / 10%), hsl(var(--hsl-primary-500) / 5%), transparent);
   transition: opacity 0.2s ease;
 }
 
 .auth-method-btn:hover {
   transform: translateY(-2px);
-  border-color: color-mix(in oklab, var(--p-primary-500) 65%, transparent);
-}
-
-:host-context(.dark) .auth-method-btn:hover {
-  box-shadow: 0 8px 22px color-mix(in oklab, var(--p-primary-500) 13%, transparent);
+  border-color: hsl(var(--hsl-primary-500) / 65%);
+  @mixin host-dark {
+    box-shadow: 0 8px 22px hsl(var(--hsl-primary-500) / 13%);
+  }
 }
 
 .auth-method-btn:hover::before {
@@ -239,21 +203,12 @@
 }
 
 .auth-method-btn-primary {
-  border-color: color-mix(in oklab, var(--p-primary-300) 70%, transparent);
-  background: linear-gradient(
-    90deg,
-    color-mix(in oklab, var(--p-primary-50) 100%, white),
-    color-mix(in oklab, var(--p-primary-100) 70%, white)
-  );
-}
-
-:host-context(.dark) .auth-method-btn-primary {
-  border-color: color-mix(in oklab, var(--p-primary-500) 40%, transparent);
-  background: linear-gradient(
-    90deg,
-    color-mix(in oklab, var(--p-primary-950) 35%, transparent),
-    color-mix(in oklab, var(--p-primary-900) 25%, transparent)
-  );
+  border-color: hsl(var(--hsl-primary-300) / 70%);
+  background: linear-gradient(90deg, var(--p-primary-50), var(--p-primary-100));
+  @mixin host-dark {
+    border-color: hsl(var(--hsl-primary-500) / 40%);
+    background: linear-gradient(90deg, hsl(var(--hsl-primary-950) / 35%), hsl(var(--hsl-primary-900) / 25%));
+  }
 }
 
 .auth-method-row {
@@ -279,62 +234,56 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--radius-lg);
-  border: 1px solid color-mix(in oklab, var(--p-surface-300) 70%, transparent);
-  background: color-mix(in oklab, var(--p-surface-0) 80%, transparent);
+  border: 1px solid hsl(var(--hsl-surface-300) / 70%);
+  background: hsl(var(--hsl-surface-0) / 80%);
   color: var(--p-surface-500);
-}
-
-:host-context(.dark) .auth-method-icon {
-  border-color: color-mix(in oklab, var(--p-surface-600) 66%, transparent);
-  background: color-mix(in oklab, var(--p-surface-900) 70%, transparent);
-  color: var(--p-surface-300);
+  @mixin host-dark {
+    border-color: hsl(var(--hsl-surface-600) / 66%);
+    background: hsl(var(--hsl-surface-900) / 70%);
+    color: var(--p-surface-300);
+  }
 }
 
 .auth-method-btn-primary .auth-method-title {
   color: var(--p-surface-900);
-}
-
-:host-context(.dark) .auth-method-btn-primary .auth-method-title {
-  color: var(--p-surface-0);
+  @mixin host-dark {
+    color: var(--p-surface-0);
+  }
 }
 
 .auth-method-btn-primary .auth-method-desc {
   color: var(--p-surface-600);
-}
-
-:host-context(.dark) .auth-method-btn-primary .auth-method-desc {
-  color: var(--p-surface-300);
+  @mixin host-dark {
+    color: var(--p-surface-300);
+  }
 }
 
 .auth-method-btn-primary .auth-method-icon {
-  border-color: color-mix(in oklab, var(--p-primary-300) 70%, transparent);
-  background: color-mix(in oklab, var(--p-primary-100) 90%, white);
-  color: color-mix(in oklab, var(--p-primary-700) 88%, black);
-}
-
-:host-context(.dark) .auth-method-btn-primary .auth-method-icon {
-  border-color: color-mix(in oklab, var(--p-primary-600) 50%, transparent);
-  background: color-mix(in oklab, var(--p-primary-900) 35%, transparent);
-  color: var(--p-primary-300);
+  border-color: hsl(var(--hsl-primary-300) / 70%);
+  background: var(--p-primary-100);
+  color: var(--p-primary-700);
+  @mixin host-dark {
+    border-color: hsl(var(--hsl-primary-600) / 50%);
+    background: hsl(var(--hsl-primary-900) / 35%);
+    color: var(--p-primary-300);
+  }
 }
 
 .auth-method-title {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--p-surface-900);
-}
-
-:host-context(.dark) .auth-method-title {
-  color: var(--p-surface-0);
+  @mixin host-dark {
+    color: var(--p-surface-0);
+  }
 }
 
 .auth-method-desc {
   font-size: 0.75rem;
   color: var(--p-surface-500);
-}
-
-:host-context(.dark) .auth-method-desc {
-  color: var(--p-surface-400);
+  @mixin host-dark {
+    color: var(--p-surface-400);
+  }
 }
 
 .auth-method-arrow {
@@ -342,10 +291,9 @@
   height: 1rem;
   color: var(--p-surface-400);
   transition: all 0.2s ease;
-}
-
-:host-context(.dark) .auth-method-arrow {
-  color: var(--p-surface-500);
+  @mixin host-dark {
+    color: var(--p-surface-500);
+  }
 }
 
 .auth-method-btn:hover .auth-method-arrow {
@@ -366,10 +314,9 @@
   z-index: 1;
   border-top: 1px solid var(--p-surface-200);
   padding-top: 1rem;
-}
-
-:host-context(.dark) .auth-divider {
-  border-top-color: color-mix(in oklab, var(--p-surface-700) 85%, transparent);
+  @mixin host-dark {
+    border-top-color: hsl(var(--hsl-surface-700) / 85%);
+  }
 }
 
 .auth-footer {
@@ -383,27 +330,24 @@
 .auth-muted {
   font-size: 0.875rem;
   color: var(--p-surface-500);
-}
-
-:host-context(.dark) .auth-muted {
-  color: var(--p-surface-400);
+  @mixin host-dark {
+    color: var(--p-surface-400);
+  }
 }
 
 .auth-link {
   color: var(--p-primary-600);
   text-decoration: none;
-}
-
-:host-context(.dark) .auth-link {
-  color: var(--p-primary-400);
+  @mixin host-dark {
+    color: var(--p-primary-400);
+  }
 }
 
 .auth-link:hover {
   color: var(--p-primary-700);
-}
-
-:host-context(.dark) .auth-link:hover {
-  color: var(--p-primary-300);
+  @mixin host-dark {
+    color: var(--p-primary-300);
+  }
 }
 
 .auth-otp-meta {
@@ -411,8 +355,7 @@
   z-index: 1;
   font-size: 0.75rem;
   color: var(--p-surface-500);
-}
-
-:host-context(.dark) .auth-otp-meta {
-  color: var(--p-surface-400);
+  @mixin host-dark {
+    color: var(--p-surface-400);
+  }
 }

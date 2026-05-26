@@ -73,11 +73,17 @@ const getTopLevelAnchor = (node) => {
 const createRule = (selector, nodes) => postcss.rule({ selector }).append(nodes.map((node) => node.clone()));
 
 const createDarkSelector = (selectorPrefix, selector) => {
-  if (selectorPrefix === ':host-context(.dark)' && selector === ':host') {
-    return selectorPrefix;
-  }
+  const selectors = splitArgs(selector);
 
-  return `${selectorPrefix} ${selector}`;
+  return selectors
+    .map((item) => {
+      if (selectorPrefix === ':host-context(.dark)' && item === ':host') {
+        return selectorPrefix;
+      }
+
+      return `${selectorPrefix} ${item}`;
+    })
+    .join(', ');
 };
 
 const insertRuleAfterAnchor = (atRule, rule) => {

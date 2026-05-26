@@ -1,17 +1,15 @@
 .c-rows {
   border-block: 1px solid var(--p-surface-200);
+  @mixin dark {
+    border-block-color: var(--p-surface-800);
+  }
 }
 
 .c-rows > :not(:last-child) {
   border-bottom: 1px solid var(--p-surface-200);
-}
-
-.dark .c-rows {
-  border-block-color: var(--p-surface-800);
-}
-
-.dark .c-rows > :not(:last-child) {
-  border-bottom-color: var(--p-surface-800);
+  @mixin dark {
+    border-bottom-color: var(--p-surface-800);
+  }
 }
 
 .c-row {

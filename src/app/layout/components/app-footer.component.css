@@ -44,30 +44,25 @@
   display: none;
   width: auto;
   height: 3rem;
-}
-
-:host-context(.dark) .app-footer__logo-light {
-  display: block;
+  @mixin host-dark {
+    display: block;
+  }
 }
 
 .app-footer__logo-dark {
   width: auto;
   height: 3rem;
-}
-
-:host-context(.dark) .app-footer__logo-dark {
-  display: none;
+  @mixin host-dark {
+    display: none;
+  }
 }
 
 .app-footer__brand-text {
   max-width: 24rem;
-  color: var(--p-surface-600);
   font-size: var(--text-sm);
   line-height: 1.5rem;
 
-  @mixin host-dark {
-    color: var(--p-surface-300);
-  }
+  @mixin host-light-dark color, var(--p-surface-600), var(--p-surface-300);
 }
 
 .app-footer__socials {
@@ -94,25 +89,19 @@
 }
 
 .app-footer__col-title {
-  color: var(--p-surface-900);
   font-size: var(--text-sm);
   line-height: var(--text-sm--line-height);
   font-weight: 700;
 
-  @mixin host-dark {
-    color: var(--p-surface-50);
-  }
+  @mixin host-light-dark color, var(--p-surface-900), var(--p-surface-50);
 }
 
 .app-footer__col-title-divider {
   display: block;
   width: 2rem;
   height: 1px;
-  background: var(--p-surface-300);
 
-  @mixin host-dark {
-    background: var(--p-surface-700);
-  }
+  @mixin host-light-dark background, var(--p-surface-300), var(--p-surface-700);
 }
 
 .app-footer__links {
@@ -123,22 +112,15 @@
 }
 
 .app-footer__link {
-  color: var(--p-surface-600);
   font-size: var(--text-sm);
   line-height: var(--text-sm--line-height);
   transition: color 150ms ease;
 
+  @mixin host-light-dark color, var(--p-surface-600), var(--p-surface-300);
+
   &:hover {
-    color: var(--p-primary-600);
+    @mixin host-light-dark color, var(--p-primary-600), var(--p-primary-300);
   }
-
-  @mixin host-dark {
-    color: var(--p-surface-300);
-  }
-}
-
-:host-context(.dark) .app-footer__link:hover {
-  color: var(--p-primary-300);
 }
 
 .app-footer__bottom {
@@ -151,11 +133,8 @@
 }
 
 .app-footer__copyright {
-  color: var(--p-surface-500);
   font-size: var(--text-xs);
   line-height: var(--text-xs--line-height);
 
-  @mixin host-dark {
-    color: var(--p-surface-400);
-  }
+  @mixin host-light-dark color, var(--p-surface-500), var(--p-surface-400);
 }

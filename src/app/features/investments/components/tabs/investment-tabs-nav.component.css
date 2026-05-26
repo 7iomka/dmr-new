@@ -1,9 +1,8 @@
 .c-investment-tabs__nav {
   @apply rounded-xl bg-primary/6;
-}
-
-.dark .c-investment-tabs__nav {
-  @apply bg-primary/8;
+  @mixin dark {
+    background-color: hsl(var(--hsl-primary-color) / 0.08);
+  }
 }
 
 .c-investment-tabs__list {
@@ -25,10 +24,10 @@
   line-height: 1;
 
   @apply bg-white/75;
-}
 
-.dark .c-investment-tabs__tab {
-  @apply bg-primary-950/25;
+  @mixin dark {
+    background-color: hsl(var(--hsl-primary-950) / 0.25);
+  }
 }
 
 .c-investment-tabs__tab[data-p-active='true'] {
