@@ -235,16 +235,34 @@ For PrimeNG overlays or components rendered outside the component host, componen
 
 ## Proposed PostCSS Mixins
 
-The project can add a small Mantine-like mixin layer, but it must work with `postcss.config.json`.
+The project uses `postcss-mixins` as a small Mantine-like mixin layer, and it must stay compatible with `postcss.config.json`.
 
 Rules:
 
 - JSON config cannot inline JavaScript function mixins.
-- `postcss-mixins` can be declared in JSON with options such as `mixinsDir` / `mixinsFiles`.
-- If selector-aware mixins need more control than `postcss-mixins` can provide through files, create a local package plugin, for example `tools/postcss-dmr-mixins`, and register it in `postcss.config.json`.
+- `postcss-mixins` is declared in JSON with `mixinsFiles`.
+- CSS-defined mixins are preferred for simple declaration helpers because editor tooling can discover `@define-mixin` signatures.
+- Selector-aware helpers use JavaScript function mixins loaded from `src/styles/mixins`.
 - Place any mixin plugin after `postcss-import` and before `tailwindcss/nesting`, so generated nested selectors are normalized by the existing nesting step.
 
-Target mixins:
+Current config shape:
+
+```json
+{
+  "plugins": {
+    "postcss-import": {},
+    "postcss-tailwind-media": {},
+    "postcss-mixins": {
+      "mixinsFiles": ["./src/styles/mixins/**/*.css", "./src/styles/mixins/**/*.js"]
+    },
+    "tailwindcss/nesting": {},
+    "tailwindcss": {},
+    "autoprefixer": {}
+  }
+}
+```
+
+Global dark:
 
 ```css
 .global-rule {
@@ -330,6 +348,24 @@ Should compile to a normal declaration plus the correct dark selector for the se
 
 Do not use native CSS `light-dark()` yet for app theme switching. It follows `color-scheme`, not directly `.dark`, and browser support does not match the current legacy Safari constraints.
 
+Simple helper mixins:
+
+```css
+.title {
+  @mixin truncate;
+}
+
+.description {
+  @mixin line-clamp 2;
+}
+
+.avatar {
+  @mixin size 2.5rem;
+}
+```
+
+Do not add `space-y`, `space-x`, `divide-y`, or `divide-x` mixins. Tailwind v4 changed the generated selectors for these utilities because the old selector shape had performance and compatibility drawbacks. In custom CSS, use `gap` for spacing and explicit semantic separator selectors for dividing lines.
+
 ---
 
 ## Replacing Common `@apply` Patterns
@@ -343,7 +379,7 @@ Use direct CSS for ordinary Tailwind utilities:
 - important utilities: write the property with `!important`;
 - PrimeNG overrides: write normal CSS declarations, using specificity/source order handled by the app PrimeNG style-order patch.
 
-Structural helpers need explicit CSS or mixins:
+Structural helpers need explicit CSS or supported mixins:
 
 ```css
 /* truncate */
@@ -357,18 +393,36 @@ overflow: hidden;
 -webkit-box-orient: vertical;
 -webkit-line-clamp: 2;
 
-/* divide-y */
-> :not([hidden]) ~ :not([hidden]) {
-  border-top: 1px solid var(--p-surface-200);
-}
+/* size-[2.5rem] */
+width: 2.5rem;
+height: 2.5rem;
+```
 
-/* space-y */
-> :not([hidden]) ~ :not([hidden]) {
-  margin-top: 1rem;
+For vertical spacing, use `gap`:
+
+```css
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 ```
 
-If these patterns repeat, implement them as explicit PostCSS mixins instead of reintroducing `@apply`.
+For separators, write semantic CSS:
+
+```css
+.rows > :not(:last-child) {
+  border-bottom: 1px solid var(--p-surface-200);
+}
+
+@mixin host-dark {
+  .rows > :not(:last-child) {
+    border-bottom-color: var(--p-surface-800);
+  }
+}
+```
+
+If `truncate`, `line-clamp`, or `size` repeat, use the project PostCSS mixins. Do not create Tailwind-like `space-*` or `divide-*` mixins.
 
 ---
 
@@ -377,6 +431,7 @@ If these patterns repeat, implement them as explicit PostCSS mixins instead of r
 - Do NOT add new `@apply`.
 - Do NOT add new `@screen`; use `@media (--*)`.
 - Do NOT use Tailwind v4-only CSS directives such as `@reference` or `@variant`.
+- Do NOT add `@mixin space-y`, `@mixin space-x`, `@mixin divide-y`, or `@mixin divide-x`.
 - Do NOT use `:host ::ng-deep .dark ...`.
 - Do NOT use random selector reordering hacks.
 - Do NOT rely on raw `.dark .foo` in component CSS.

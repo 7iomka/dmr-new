@@ -4,6 +4,7 @@ const path = require('path');
 const rootDir = path.resolve(__dirname, '..', '..');
 const srcDir = path.join(rootDir, 'src');
 const baseline = require('./apply-baseline.json');
+const structuralApplyBaseline = require('./structural-apply-baseline.json');
 
 const forbiddenDirectives = [
   { name: '@screen', pattern: /@screen\b/g },
@@ -12,6 +13,8 @@ const forbiddenDirectives = [
 ];
 
 const applyPattern = /@apply\b/g;
+const structuralApplyPattern = /@apply[^;]*(?:\bspace-[xy]-|\bdivide-[xy](?:-|\b))/g;
+const forbiddenStructuralMixinPattern = /@(define-)?mixin\s+(?:space-[xy]|divide-[xy])\b/g;
 
 const listCssFiles = (dir) => {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -37,6 +40,7 @@ const countMatches = (content, pattern) => Array.from(content.matchAll(pattern))
 
 const failures = [];
 const currentApplyCounts = {};
+const currentStructuralApplyCounts = {};
 
 listCssFiles(srcDir).forEach((filePath) => {
   const relativePath = path.relative(rootDir, filePath);
@@ -63,13 +67,43 @@ listCssFiles(srcDir).forEach((filePath) => {
       `${relativePath}: @apply count increased from ${allowedApplyCount} to ${applyCount}; replace new usage with direct CSS`,
     );
   }
+
+  const structuralMixinCount = countMatches(content, forbiddenStructuralMixinPattern);
+
+  if (structuralMixinCount > 0) {
+    failures.push(
+      `${relativePath}: contains ${structuralMixinCount} forbidden space/divide mixin directive(s); use gap or explicit separators`,
+    );
+  }
+
+  const structuralApplyCount = countMatches(content, structuralApplyPattern);
+
+  if (structuralApplyCount > 0) {
+    currentStructuralApplyCounts[relativePath] = structuralApplyCount;
+  }
+
+  const allowedStructuralApplyCount = structuralApplyBaseline[relativePath] || 0;
+
+  if (structuralApplyCount > allowedStructuralApplyCount) {
+    failures.push(
+      `${relativePath}: @apply space/divide count increased from ${allowedStructuralApplyCount} to ${structuralApplyCount}; use gap or explicit separators`,
+    );
+  }
 });
 
 const baselineTotal = Object.values(baseline).reduce((total, count) => total + count, 0);
 const currentTotal = Object.values(currentApplyCounts).reduce((total, count) => total + count, 0);
+const structuralBaselineTotal = Object.values(structuralApplyBaseline).reduce((total, count) => total + count, 0);
+const structuralCurrentTotal = Object.values(currentStructuralApplyCounts).reduce((total, count) => total + count, 0);
 
 if (currentTotal > baselineTotal) {
   failures.push(`total @apply count increased from ${baselineTotal} to ${currentTotal}`);
+}
+
+if (structuralCurrentTotal > structuralBaselineTotal) {
+  failures.push(
+    `total @apply space/divide count increased from ${structuralBaselineTotal} to ${structuralCurrentTotal}`,
+  );
 }
 
 if (failures.length > 0) {
@@ -78,4 +112,6 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`CSS directive guard passed. @apply migration baseline: ${currentTotal}/${baselineTotal}.`);
+console.log(
+  `CSS directive guard passed. @apply migration baseline: ${currentTotal}/${baselineTotal}; structural apply baseline: ${structuralCurrentTotal}/${structuralBaselineTotal}.`,
+);

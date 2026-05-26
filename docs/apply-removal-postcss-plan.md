@@ -44,24 +44,22 @@ If a mixin layer is added, place it after `postcss-tailwind-media` and before `t
 
 ---
 
-## Recommended Implementation
+## Current Implementation
 
-Prefer a small local plugin over a large dependency stack if selector-aware mixins become awkward with `postcss-mixins`.
+Use `postcss-mixins` as the documented mixin engine.
 
-Recommended package:
+The project keeps mixins in files because `postcss.config.json` cannot declare inline JavaScript functions. CSS-defined mixins are preferred when possible because they are readable and can be discovered by editor tooling such as `postcss-mixins-autocomplete`. Selector-aware dark-mode helpers use JavaScript function mixins loaded through `mixinsFiles`.
 
-```text
-tools/postcss-dmr-mixins
-```
-
-Recommended config:
+Current config shape:
 
 ```json
 {
   "plugins": {
     "postcss-import": {},
     "postcss-tailwind-media": {},
-    "postcss-dmr-mixins": {},
+    "postcss-mixins": {
+      "mixinsFiles": ["./src/styles/mixins/**/*.css", "./src/styles/mixins/**/*.js"]
+    },
     "tailwindcss/nesting": {},
     "tailwindcss": {},
     "autoprefixer": {},
@@ -70,14 +68,13 @@ Recommended config:
 }
 ```
 
-Why local plugin first:
+Mixin files live under:
 
-- it works cleanly with `postcss.config.json`;
-- it can transform selectors exactly for Angular/global contexts;
-- it can enforce project-specific names and fail on unsupported mixin usage;
-- it avoids depending on Tailwind internals for CSS generation.
+```text
+src/styles/mixins
+```
 
-`postcss-mixins` is still acceptable for simple reusable declaration blocks, especially structural helpers. Validate function mixin loading through `mixinsDir` before relying on it for selector transforms.
+Do not reintroduce a local PostCSS plugin unless `postcss-mixins` can no longer express a required helper through CSS mixin files or file-loaded function mixins.
 
 ---
 
@@ -223,15 +220,13 @@ Do not use native CSS `light-dark()` while `.dark` remains the source of truth a
 
 ## Structural Helper Mixins
 
-These are candidates because Tailwind utilities such as `truncate`, `line-clamp`, `divide-y`, and `space-y` are convenient but not portable through `@apply`.
+Only use structural mixins that map to simple declaration blocks.
 
 Recommended mixins:
 
 - `@mixin truncate`;
 - `@mixin line-clamp 2`;
-- `@mixin divide-y <border-value>`;
-- `@mixin space-y <margin-value>`;
-- `@mixin square <size>`;
+- `@mixin size <size>`;
 
 Example:
 
@@ -243,17 +238,9 @@ Example:
 .description {
   @mixin line-clamp 2;
 }
-
-.list {
-  @mixin divide-y var(--p-surface-200);
-
-  @mixin dark {
-    @mixin divide-y var(--p-surface-800);
-  }
-}
 ```
 
-If nested mixins inside `@mixin dark` are not practical in the chosen implementation, write explicit CSS declarations in the dark block.
+Do not add `space-y`, `space-x`, `divide-y`, or `divide-x` mixins. Tailwind v4 changed these selectors for performance and compatibility reasons. In project CSS, spacing should use `gap`, and separators should use explicit semantic selectors such as `> :not(:last-child)`.
 
 ---
 
@@ -269,6 +256,16 @@ flex-direction: column;
 align-items: center;
 justify-content: space-between;
 gap: 16px;
+```
+
+Use flex/grid `gap` instead of Tailwind-like `space-y` / `space-x` helpers:
+
+```css
+.panel-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 ```
 
 ### Spacing And Sizing
@@ -341,20 +338,51 @@ Use direct declarations. Do not wrap PrimeNG overrides in Tailwind utilities.
 
 The project controls PrimeNG style order with `AppPrimeNgUseStyle`; use specificity, source order, PassThrough classes, and `!important` only when there is a concrete PrimeNG conflict.
 
+### Separators
+
+Use explicit semantic separators instead of `divide-y` / `divide-x` helpers:
+
+```css
+.transaction-list > :not(:last-child) {
+  border-bottom: 1px solid var(--p-surface-200);
+}
+
+@mixin dark {
+  .transaction-list > :not(:last-child) {
+    border-bottom-color: var(--p-surface-800);
+  }
+}
+```
+
+In component-scoped CSS, use `host-dark`:
+
+```css
+.rows > :not(:last-child) {
+  border-bottom: 1px solid var(--p-surface-200);
+}
+
+@mixin host-dark {
+  .rows > :not(:last-child) {
+    border-bottom-color: var(--p-surface-800);
+  }
+}
+```
+
 ---
 
 ## Migration Sequence
 
-1. Add `postcss-dmr-mixins` or evaluate `postcss-mixins` with JSON-compatible `mixinsDir`.
-2. Add minimal mixins: `dark`, `host-dark`, `root-dark`, `light-dark`, `host-light-dark`.
-3. Add structural helper mixins only after the dark helpers are proven in Angular component CSS and global CSS.
+1. Keep `postcss-mixins` registered through JSON-compatible `mixinsFiles`.
+2. Keep dark helpers: `dark`, `host-dark`, `root-dark`, `light-dark`, `host-light-dark`.
+3. Keep only safe structural helper mixins: `truncate`, `line-clamp`, `size`.
 4. Convert existing `@screen` to `@media (--*)`.
 5. Convert global/root variable patterns first because they reduce repeated color overrides.
 6. Convert low-risk shared global CSS modules under `src/styles/*.css`.
 7. Convert encapsulated component CSS separately, using `host-dark` / `host-light-dark`.
 8. Convert `ViewEncapsulation.None` component CSS as global/namespaced CSS, using `dark`.
 9. Convert high-volume migrated pages last.
-10. Add lint or CI guardrails that reject new `@apply`, `@screen`, `@variant`, and `@reference` in source CSS.
+10. Replace touched `space-*` with `gap` and touched `divide-*` with explicit semantic separators.
+11. Keep lint guardrails that reject new `@apply`, `@screen`, `@variant`, `@reference`, and forbidden space/divide mixins in source CSS.
 
 Validation after each batch:
 

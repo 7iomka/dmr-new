@@ -154,7 +154,8 @@ Replacement rules:
 - typography utilities use direct CSS and variables from `src/styles/_theme-variables.css`;
 - color/dark utilities use direct CSS plus `.dark`, `:host-context(.dark)`, or future project mixins;
 - state variants become nested selectors such as `&:hover`, `&:focus-visible`, `&:disabled`;
-- structural helpers such as `truncate`, `line-clamp`, `divide-y`, and `space-y` must become direct CSS or project-owned PostCSS mixins;
+- structural helpers such as `truncate`, `line-clamp`, and `size` may use project-owned PostCSS mixins;
+- `space-y`, `space-x`, `divide-y`, and `divide-x` must not become project mixins; use `gap` for spacing and explicit `> :not(:last-child)` separators instead;
 - important utilities become direct CSS declarations with `!important`;
 - PrimeNG override selectors use direct declarations; specificity and source order are handled by app CSS order and `AppPrimeNgUseStyle`.
 
@@ -194,13 +195,14 @@ Do not redefine shared `:root` variables inside encapsulated component CSS. Move
 
 ### PostCSS Mixin Direction
 
-The project may add a small Mantine-like PostCSS helper layer for dark mode and repeated structural utilities.
+The project uses `postcss-mixins` as the documented helper layer for dark mode and safe repeated structural utilities.
 
 Because Angular CLI currently uses `postcss.config.json`, plugin configuration must be JSON-compatible:
 
 - do not rely on inline JavaScript functions inside PostCSS config;
-- if using `postcss-mixins`, configure it through `mixinsDir` or `mixinsFiles`;
-- if selector-aware mixins are easier to control in code, create a local package plugin under `tools/` and register it by package name in `postcss.config.json`.
+- configure `postcss-mixins` through `mixinsFiles`;
+- keep CSS-defined helper mixins under `src/styles/mixins` for editor autocomplete;
+- keep selector-aware dark helpers as file-loaded JavaScript function mixins.
 
 Recommended mixin names:
 
@@ -209,6 +211,13 @@ Recommended mixin names:
 - `@mixin root-dark` -> emits `.dark` for root variable overrides;
 - `@mixin light-dark <property>, <light-value>, <dark-value>` -> emits the normal property and a `.dark` override;
 - `@mixin host-light-dark <property>, <light-value>, <dark-value>` -> emits the normal property and a `:host-context(.dark)` override.
+- `@mixin truncate`, `@mixin line-clamp <lines>`, and `@mixin size <size>` -> safe CSS helper declarations.
+
+Forbidden mixin names:
+
+- `@mixin space-y`, `@mixin space-x`, `@mixin divide-y`, and `@mixin divide-x`.
+
+Tailwind v4 changed the generated selectors for space/divide utilities. In this project, do not clone those utilities into CSS mixins. Prefer flex/grid `gap`, and write semantic separator selectors with `> :not(:last-child)` when a divider is required.
 
 Do not use native CSS `light-dark()` for app theme switching while legacy Safari compatibility is required and `.dark` remains the theme source of truth.
 

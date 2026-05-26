@@ -145,10 +145,11 @@
 }
 
 .app-mobile-nav__profile-list {
+  display: flex;
   flex: 1 1 0%;
+  flex-direction: column;
+  gap: 0.5rem;
   padding: 1.25rem 1rem;
-
-  @mixin space-y 0.5rem;
 }
 
 .app-mobile-nav__profile-item {

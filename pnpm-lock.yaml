@@ -70,7 +70,7 @@ importers:
         version: 21.3.1(@angular/cli@21.2.12(@types/node@22.19.19)(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.4.0(jiti@2.7.0))(typescript@5.9.3)
       '@angular/build':
         specifier: ^21.2.3
-        version: 21.2.12(@angular/compiler-cli@21.2.14(@angular/compiler@21.2.14)(typescript@5.9.3))(@angular/compiler@21.2.14)(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.14(@angular/animations@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2)))(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@22.19.19)(chokidar@5.0.0)(jiti@2.7.0)(postcss@8.5.15)(tailwindcss@3.4.17)(tslib@2.8.1)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0)
+        version: 21.2.12(@angular/compiler-cli@21.2.14(@angular/compiler@21.2.14)(typescript@5.9.3))(@angular/compiler@21.2.14)(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.14(@angular/animations@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2)))(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@22.19.19)(chokidar@5.0.0)(jiti@2.7.0)(postcss@8.5.15)(sugarss@5.0.1(postcss@8.5.15))(tailwindcss@3.4.17)(tslib@2.8.1)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0)
       '@angular/cli':
         specifier: ^21.2.3
         version: 21.2.12(@types/node@22.19.19)(chokidar@5.0.0)
@@ -122,9 +122,9 @@ importers:
       postcss-custom-media:
         specifier: ^12.0.1
         version: 12.0.1(postcss@8.5.15)
-      postcss-dmr-mixins:
-        specifier: link:tools/postcss-dmr-mixins
-        version: link:tools/postcss-dmr-mixins
+      postcss-mixins:
+        specifier: ^12.1.2
+        version: 12.1.2(postcss@8.5.15)
       postcss-pxtorem:
         specifier: ^6.1.0
         version: 6.1.0(postcss@8.5.15)
@@ -3572,6 +3572,13 @@ packages:
     resolution:
       { integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig== }
 
+  postcss-mixins@12.1.2:
+    resolution:
+      { integrity: sha512-90pSxmZVfbX9e5xCv7tI5RV1mnjdf16y89CJKbf/hD7GyOz1FCxcYMl8ZYA8Hc56dbApTKKmU9HfvgfWdCxlwg== }
+    engines: { node: ^20.0 || ^22.0 || >=24.0 }
+    peerDependencies:
+      postcss: ^8.2.14
+
   postcss-nested@6.2.0:
     resolution:
       { integrity: sha512-HQbt28KulC5AJzG+cZtj9kvKB93CFCdLvog1WFLf1D+xmMvPGlBstkpTEZfK5+AN9hfJocyBFCNiqyS48bpgzQ== }
@@ -3601,6 +3608,13 @@ packages:
     resolution:
       { integrity: sha512-orRsuYpJVw8LdAwqqLykBj9ecS5/cRHlI5+nvTo8LcCKmzDmqVORXtOIYEEQuL9D4BxtA1lm5isAqzQZCoQ6Eg== }
     engines: { node: '>=4' }
+
+  postcss-simple-vars@7.0.1:
+    resolution:
+      { integrity: sha512-5GLLXaS8qmzHMOjVxqkk1TZPf1jMqesiI7qLhnlyERalG0sMbHIbJqrcnrpmZdKCLglHnRHoEBB61RtGTsj++A== }
+    engines: { node: '>=14.0' }
+    peerDependencies:
+      postcss: ^8.2.1
 
   postcss-value-parser@4.2.0:
     resolution:
@@ -3974,6 +3988,13 @@ packages:
       { integrity: sha512-DhuTmvZWux4H1UOnWMB3sk0sbaCVOoQZjv8u1rDoTV0HTdGem9hkAZtl4JZy8P2z4Bg0nT+YMeOFyVr4zcG5Tw== }
     engines: { node: '>=16 || 14 >=14.17' }
     hasBin: true
+
+  sugarss@5.0.1:
+    resolution:
+      { integrity: sha512-ctS5RYCBVvPoZAnzIaX5QSShK8ZiZxD5HUqSxlusvEMC+QZQIPCPOIJg6aceFX+K2rf4+SH89eu++h1Zmsr2nw== }
+    engines: { node: '>=18.0' }
+    peerDependencies:
+      postcss: ^8.3.3
 
   supports-preserve-symlinks-flag@1.0.0:
     resolution:
@@ -4468,7 +4489,7 @@ snapshots:
       '@angular/core': 21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2)
       tslib: 2.8.1
 
-  '@angular/build@21.2.12(@angular/compiler-cli@21.2.14(@angular/compiler@21.2.14)(typescript@5.9.3))(@angular/compiler@21.2.14)(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.14(@angular/animations@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2)))(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@22.19.19)(chokidar@5.0.0)(jiti@2.7.0)(postcss@8.5.15)(tailwindcss@3.4.17)(tslib@2.8.1)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0)':
+  '@angular/build@21.2.12(@angular/compiler-cli@21.2.14(@angular/compiler@21.2.14)(typescript@5.9.3))(@angular/compiler@21.2.14)(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.14(@angular/animations@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2)))(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@22.19.19)(chokidar@5.0.0)(jiti@2.7.0)(postcss@8.5.15)(sugarss@5.0.1(postcss@8.5.15))(tailwindcss@3.4.17)(tslib@2.8.1)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2102.12(chokidar@5.0.0)
@@ -4478,7 +4499,7 @@ snapshots:
       '@babel/helper-annotate-as-pure': 7.27.3
       '@babel/helper-split-export-declaration': 7.24.7
       '@inquirer/confirm': 5.1.21(@types/node@22.19.19)
-      '@vitejs/plugin-basic-ssl': 2.1.4(vite@7.3.2(@types/node@22.19.19)(jiti@2.7.0)(sass@1.97.3)(tsx@4.22.3)(yaml@2.9.0))
+      '@vitejs/plugin-basic-ssl': 2.1.4(vite@7.3.2(@types/node@22.19.19)(jiti@2.7.0)(sass@1.97.3)(sugarss@5.0.1(postcss@8.5.15))(tsx@4.22.3)(yaml@2.9.0))
       beasties: 0.4.1
       browserslist: 4.28.2
       esbuild: 0.27.3
@@ -4499,7 +4520,7 @@ snapshots:
       tslib: 2.8.1
       typescript: 5.9.3
       undici: 7.24.4
-      vite: 7.3.2(@types/node@22.19.19)(jiti@2.7.0)(sass@1.97.3)(tsx@4.22.3)(yaml@2.9.0)
+      vite: 7.3.2(@types/node@22.19.19)(jiti@2.7.0)(sass@1.97.3)(sugarss@5.0.1(postcss@8.5.15))(tsx@4.22.3)(yaml@2.9.0)
       watchpack: 2.5.1
     optionalDependencies:
       '@angular/core': 21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2)(zone.js@0.16.2)
@@ -5788,9 +5809,9 @@ snapshots:
       '@typescript-eslint/types': 8.59.4
       eslint-visitor-keys: 5.0.1
 
-  '@vitejs/plugin-basic-ssl@2.1.4(vite@7.3.2(@types/node@22.19.19)(jiti@2.7.0)(sass@1.97.3)(tsx@4.22.3)(yaml@2.9.0))':
+  '@vitejs/plugin-basic-ssl@2.1.4(vite@7.3.2(@types/node@22.19.19)(jiti@2.7.0)(sass@1.97.3)(sugarss@5.0.1(postcss@8.5.15))(tsx@4.22.3)(yaml@2.9.0))':
     dependencies:
-      vite: 7.3.2(@types/node@22.19.19)(jiti@2.7.0)(sass@1.97.3)(tsx@4.22.3)(yaml@2.9.0)
+      vite: 7.3.2(@types/node@22.19.19)(jiti@2.7.0)(sass@1.97.3)(sugarss@5.0.1(postcss@8.5.15))(tsx@4.22.3)(yaml@2.9.0)
 
   '@yarnpkg/lockfile@1.1.0': {}
 
@@ -7020,6 +7041,14 @@ snapshots:
 
   postcss-media-query-parser@0.2.3: {}
 
+  postcss-mixins@12.1.2(postcss@8.5.15):
+    dependencies:
+      postcss: 8.5.15
+      postcss-js: 4.1.0(postcss@8.5.15)
+      postcss-simple-vars: 7.0.1(postcss@8.5.15)
+      sugarss: 5.0.1(postcss@8.5.15)
+      tinyglobby: 0.2.16
+
   postcss-nested@6.2.0(postcss@8.5.15):
     dependencies:
       postcss: 8.5.15
@@ -7042,6 +7071,10 @@ snapshots:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
+
+  postcss-simple-vars@7.0.1(postcss@8.5.15):
+    dependencies:
+      postcss: 8.5.15
 
   postcss-value-parser@4.2.0: {}
 
@@ -7399,6 +7432,10 @@ snapshots:
       tinyglobby: 0.2.16
       ts-interface-checker: 0.1.13
 
+  sugarss@5.0.1(postcss@8.5.15):
+    dependencies:
+      postcss: 8.5.15
+
   supports-preserve-symlinks-flag@1.0.0: {}
 
   synckit@0.11.12:
@@ -7539,7 +7576,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite@7.3.2(@types/node@22.19.19)(jiti@2.7.0)(sass@1.97.3)(tsx@4.22.3)(yaml@2.9.0):
+  vite@7.3.2(@types/node@22.19.19)(jiti@2.7.0)(sass@1.97.3)(sugarss@5.0.1(postcss@8.5.15))(tsx@4.22.3)(yaml@2.9.0):
     dependencies:
       esbuild: 0.27.3
       fdir: 6.5.0(picomatch@4.0.4)
@@ -7552,6 +7589,7 @@ snapshots:
       fsevents: 2.3.3
       jiti: 2.7.0
       sass: 1.97.3
+      sugarss: 5.0.1(postcss@8.5.15)
       tsx: 4.22.3
       yaml: 2.9.0
 

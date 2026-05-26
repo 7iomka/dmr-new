@@ -3,7 +3,9 @@
     "postcss-import": {},
 
     "postcss-tailwind-media": {},
-    "postcss-dmr-mixins": {},
+    "postcss-mixins": {
+      "mixinsFiles": ["./src/styles/mixins/**/*.css", "./src/styles/mixins/**/*.js"]
+    },
 
     "tailwindcss/nesting": {},
     "tailwindcss": {},

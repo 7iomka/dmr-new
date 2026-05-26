@@ -5,6 +5,7 @@
   },
   "tailwindCSS.emmetCompletions": true,
   "tailwindCSS.experimental.classRegex": ["[\"'`](.*?)[\"'`]"],
+  "postcssMixinsAutocomplete.cssFilePatterns": ["src/styles/mixins/**/*.css", "src/**/*.css"],
   "editor.quickSuggestions": {
     "strings": "on"
   },

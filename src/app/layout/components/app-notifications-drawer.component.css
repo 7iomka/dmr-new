@@ -53,11 +53,12 @@
 /* List */
 
 .app-notifications-drawer__list {
+  display: flex;
   flex: 1 1 0%;
+  flex-direction: column;
+  gap: 0.5rem;
   overflow-y: auto;
   padding: 0.5rem;
-
-  @mixin space-y 0.5rem;
 }
 
 /* Item */

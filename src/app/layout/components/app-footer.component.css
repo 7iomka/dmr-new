@@ -13,7 +13,9 @@
 }
 
 .app-footer__container {
-  @mixin space-y 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .app-footer__grid {
@@ -28,7 +30,9 @@
 }
 
 .app-footer__brand {
-  @mixin space-y 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .app-footer__logo {
