@@ -120,6 +120,17 @@ export default {
       '3xl': token('blur-3xl'),
     },
 
+    screens: {
+      min: '375px',
+      xs: '414px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      lp: '1366px',
+      '2xl': '1536px',
+    },
+
     extend: {
       opacity: opacityScale,
       colors: {

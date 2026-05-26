@@ -118,21 +118,99 @@ Prefer simple PassThrough project classes when no stronger override is actually 
 
 Raise specificity, move the override to a later global stylesheet, use PT inline styles, or use `!important` only for real per-property conflicts where PrimeNG runtime CSS otherwise wins by source order or specificity.
 
-### Nested `@screen`
+### Responsive CSS
 
-Nested `@screen` is allowed in this project. CSS nesting is enabled in PostCSS before Tailwind, so this form is acceptable and preferred for readability:
+Do not add new `@screen`.
+
+Use native-looking media aliases handled by `postcss-tailwind-media`:
 
 ```css
 .selector {
-  @screen lg {
+  @media (--lg) {
     property: value;
   }
 }
 ```
 
-Avoid adding new nested `@apply` where possible. The project is gradually moving CSS from `@apply` to direct properties and CSS variables.
+This keeps breakpoints synchronized with `tailwind.config.ts` without relying on Tailwind-specific CSS directives. See `./postcss-media.md`.
 
-If existing nested `@apply` works after migration, do not rewrite it just for churn. If build fails, replace it with direct CSS inside the nested block.
+### `@apply`
+
+Do not add new `@apply` in any CSS file.
+
+Current source still contains legacy `@apply` usage from migrated pages and earlier style extraction. Treat that usage as migration debt:
+
+- if you touch a selector that already uses `@apply`, prefer replacing it with direct CSS declarations and project/PrimeNG variables when the change is reasonably scoped;
+- do not rewrite unrelated selectors only for churn;
+- do not create new semantic CSS classes whose only purpose is to wrap Tailwind utilities;
+- if a block has unclear semantics, keep Tailwind utilities directly in the Angular template until the block is extracted into a semantic class or component.
+
+The target model is: templates may use Tailwind for unclear/one-off layout, while custom CSS depends primarily on CSS variables, PrimeNG tokens, and browser CSS.
+
+Replacement rules:
+
+- layout utilities become direct CSS: `display`, `grid-template-*`, `align-items`, `justify-content`, `gap`;
+- spacing and sizing utilities become direct CSS; `px` values are allowed because `postcss-pxtorem` converts them;
+- typography utilities use direct CSS and variables from `src/styles/_theme-variables.css`;
+- color/dark utilities use direct CSS plus `.dark`, `:host-context(.dark)`, or future project mixins;
+- state variants become nested selectors such as `&:hover`, `&:focus-visible`, `&:disabled`;
+- structural helpers such as `truncate`, `line-clamp`, `divide-y`, and `space-y` must become direct CSS or project-owned PostCSS mixins;
+- important utilities become direct CSS declarations with `!important`;
+- PrimeNG override selectors use direct declarations; specificity and source order are handled by app CSS order and `AppPrimeNgUseStyle`.
+
+### Dark Mode Selectors
+
+Global CSS and `ViewEncapsulation.None` CSS:
+
+```css
+.dark .selector {
+  color: var(--p-surface-50);
+}
+```
+
+Component-scoped CSS with Angular encapsulation:
+
+```css
+:host-context(.dark) .selector {
+  color: var(--p-surface-50);
+}
+```
+
+Prefer `.dark`, not `html.dark`.
+
+For theme-aware root variables, define the default under `:root` and the override under `.dark` in a global CSS file:
+
+```css
+:root {
+  --app-example-bg: var(--p-surface-0);
+}
+
+.dark {
+  --app-example-bg: var(--p-surface-950);
+}
+```
+
+Do not redefine shared `:root` variables inside encapsulated component CSS. Move shared variables to global CSS, or intentionally use `ViewEncapsulation.None` with namespaced selectors.
+
+### PostCSS Mixin Direction
+
+The project may add a small Mantine-like PostCSS helper layer for dark mode and repeated structural utilities.
+
+Because Angular CLI currently uses `postcss.config.json`, plugin configuration must be JSON-compatible:
+
+- do not rely on inline JavaScript functions inside PostCSS config;
+- if using `postcss-mixins`, configure it through `mixinsDir` or `mixinsFiles`;
+- if selector-aware mixins are easier to control in code, create a local package plugin under `tools/` and register it by package name in `postcss.config.json`.
+
+Recommended mixin names:
+
+- `@mixin dark` -> emits `.dark &`;
+- `@mixin host-dark` -> emits `:host-context(.dark) &`;
+- `@mixin root-dark` -> emits `.dark` for root variable overrides;
+- `@mixin light-dark <property>, <light-value>, <dark-value>` -> emits the normal property and a `.dark` override;
+- `@mixin host-light-dark <property>, <light-value>, <dark-value>` -> emits the normal property and a `:host-context(.dark)` override.
+
+Do not use native CSS `light-dark()` for app theme switching while legacy Safari compatibility is required and `.dark` remains the theme source of truth.
 
 ### Custom Utility Classes
 
@@ -196,7 +274,7 @@ Current structure:
 
 - `src/styles.css` imports the split files from `src/styles/*.css`.
 - `src/styles.css` keeps its local `@layer base` block because it is in the same file as `@tailwind base`.
-- imported `src/styles/*.css` files use normal CSS rules, Tailwind utilities through `@apply`, nested `@screen`, and CSS variables, but no Tailwind `@layer`.
+- imported `src/styles/*.css` files use normal CSS rules, existing legacy `@apply`, `@media (--*)` aliases, and CSS variables, but no Tailwind `@layer`. Do not add new `@apply`; replace touched legacy `@apply` with direct declarations where reasonably scoped.
 
 ## Step 1.1. Move PrimeNG Generated Selectors Out Of Tailwind Layers
 
@@ -301,7 +379,7 @@ Rules:
 
 - Component CSS dark mode: replace with `:host-context(.dark) ...`.
 - Global CSS dark mode: replace with `.dark ...`.
-- `@variant lg`: replace with nested `@screen lg`.
+- `@variant lg`: replace with nested `@media (--lg)`.
 - `@variant motion-safe`: replace with nested/native media query:
 
 ```css
@@ -316,7 +394,7 @@ Examples:
 .card {
   border-color: var(--p-surface-200);
 
-  @screen lg {
+  @media (--lg) {
     padding: 24px;
   }
 }
