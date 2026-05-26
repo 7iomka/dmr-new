@@ -1,21 +1,56 @@
 :host {
-  @apply hidden lg:inline-flex fixed inset-y-0 left-0 z-50
-    h-screen 
-    border-r border-surface-200 bg-card dark:border-surface-800;
+  position: fixed;
+  inset-block: 0;
+  left: 0;
+  z-index: 50;
+  display: none;
+  height: 100vh;
+  border-right: 1px solid var(--p-surface-200);
+  background: var(--app-color-card);
+
+  @mixin host-dark {
+    border-right-color: var(--p-surface-800);
+  }
+
+  @media (--lg) {
+    display: inline-flex;
+  }
 }
 
 /* Toggle button lives outside the hover-sensitive panel */
 .app-sidebar__toggle {
-  @apply hidden lg:flex absolute z-20 items-center justify-center rounded-md
-    border border-surface-200 bg-surface-100 text-surface-500 transition-colors hover:bg-surface-200;
-
+  position: absolute;
   top: calc(var(--sidebar-topbar-height) / 2 - var(--sidebar-toggle-size) / 2);
   right: calc(var(--sidebar-toggle-size) / -2);
+  z-index: 20;
+  display: none;
   width: var(--sidebar-toggle-size);
   height: var(--sidebar-toggle-size);
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--p-surface-200);
+  border-radius: var(--radius-md);
+  background: var(--p-surface-100);
+  color: var(--p-surface-500);
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+
+  &:hover {
+    background: var(--p-surface-200);
+  }
+
+  @media (--lg) {
+    display: flex;
+  }
 }
 :host-context(.dark) .app-sidebar__toggle {
-  @apply border-surface-700 bg-surface-800 hover:bg-surface-700;
+  border-color: var(--p-surface-700);
+  background: var(--p-surface-800);
+}
+
+:host-context(.dark) .app-sidebar__toggle:hover {
+  background: var(--p-surface-700);
 }
 
 .app-sidebar__toggle-icon {
@@ -30,7 +65,10 @@
 
 /* Panel is the actual hover-preview area */
 .app-sidebar__panel {
-  @apply flex h-full flex-col overflow-hidden;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
   width: var(--sidebar-width);
   transition: width var(--sidebar-transition-duration) var(--sidebar-transition-timing);
 }
@@ -54,9 +92,8 @@
   flex-shrink: 0;
   align-items: center;
   padding-left: 1rem;
+  outline: none;
   transition: all var(--sidebar-transition-duration) var(--sidebar-transition-timing);
-
-  @apply focus:outline-none;
 }
 
 .app-sidebar__logo-full {
@@ -112,6 +149,8 @@
 }
 
 .app-sidebar__link {
+  @mixin host-light-dark color, var(--p-surface-500), var(--p-surface-400);
+
   display: flex;
   width: 100%;
   align-items: center;
@@ -119,12 +158,26 @@
   border-radius: 0.5rem;
   padding: 0.75rem 0.75rem 0.75rem 1rem;
   transition: all var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+}
 
-  @apply text-surface-500 hover:bg-surface-50 hover:text-surface-900 dark:text-surface-400 dark:hover:bg-surface-800/50 dark:hover:text-white;
+.app-sidebar__link:hover {
+  background: var(--p-surface-50);
+  color: var(--p-surface-900);
+}
+
+:host-context(.dark) .app-sidebar__link:hover {
+  background: hsl(var(--hsl-surface-800) / 50%);
+  color: var(--p-surface-0);
 }
 
 .app-sidebar__link[data-active='true'] {
-  @apply bg-primary-50 dark:bg-primary-800/50 text-primary-500 dark:text-primary-400;
+  background: var(--p-primary-50);
+  color: var(--p-primary-500);
+}
+
+:host-context(.dark) .app-sidebar__link[data-active='true'] {
+  background: hsl(var(--hsl-primary-800) / 50%);
+  color: var(--p-primary-400);
 }
 
 .app-sidebar__link-icon {

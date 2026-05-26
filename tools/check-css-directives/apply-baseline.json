@@ -16,9 +16,7 @@
   "src/app/features/withdrawals/withdrawal-addresses-page.component.css": 16,
   "src/app/features/withdrawals/withdrawal-new-page.component.css": 26,
   "src/app/features/withdrawals/withdrawals-page.component.css": 38,
-  "src/app/layout/components/app-mobile-bottom-nav.component.css": 21,
   "src/app/layout/components/app-notifications-drawer.component.css": 19,
-  "src/app/layout/components/app-sidebar.component.css": 7,
   "src/styles/form-controls.css": 54,
   "src/styles/pill-tabs.css": 19
 }
