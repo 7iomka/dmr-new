@@ -8,7 +8,7 @@
   --container-padding-inline: 1rem;
   --container-outer-max-width: calc(var(--container-content-max-width) + var(--container-padding-inline) * 2);
 
-  @screen lg {
+  @media (--lg) {
     --container-padding-inline: 2.5rem;
   }
 }

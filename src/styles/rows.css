@@ -1,16 +1,35 @@
 .c-rows {
-  @apply divide-y divide-surface-200 dark:divide-surface-800
-    border-y border-surface-200 dark:border-surface-800;
+  border-block: 1px solid var(--p-surface-200);
+}
+
+.c-rows > :not([hidden]) ~ :not([hidden]) {
+  border-top: 1px solid var(--p-surface-200);
+}
+
+.dark .c-rows {
+  border-block-color: var(--p-surface-800);
+}
+
+.dark .c-rows > :not([hidden]) ~ :not([hidden]) {
+  border-top-color: var(--p-surface-800);
 }
 
 .c-row {
-  @apply flex items-center justify-between gap-4 py-3 text-sm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.75rem;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
 }
 
 .c-row__label {
-  @apply text-muted-color;
+  color: var(--p-text-muted-color);
 }
 
 .c-row__value {
-  @apply font-semibold text-surface-900 dark:text-surface-0;
+  @mixin light-dark color, var(--p-surface-900), var(--p-surface-0);
+
+  font-weight: 600;
 }

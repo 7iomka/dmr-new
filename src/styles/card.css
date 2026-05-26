@@ -14,17 +14,17 @@
   --p-card-body-padding: var(--c-card-padding-y) var(--c-card-padding-x);
   --p-card-body-gap: 0;
 
-  @screen lg {
+  @media (--lg) {
     --c-card-padding-x: 1.5rem;
     --c-card-padding-y: 1.5rem;
   }
-}
 
-.dark {
-  --c-card-background: var(--app-color-card);
-  --c-card-header-background: #1e2023;
-  --c-card-color: var(--p-surface-50);
-  --c-card-border: var(--p-surface-800);
+  @mixin root-dark {
+    --c-card-background: var(--app-color-card);
+    --c-card-header-background: #1e2023;
+    --c-card-color: var(--p-surface-50);
+    --c-card-border: var(--p-surface-800);
+  }
 }
 
 /* PrimeNG Card (p-card) customization block */
@@ -62,7 +62,13 @@
 /* Custom card elements */
 
 .c-card-title {
-  @apply text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50;
+  @mixin light-dark color, var(--p-surface-900), var(--p-surface-50);
+
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
 }
 
 .p-card {

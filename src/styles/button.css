@@ -87,5 +87,7 @@
 .p-button-raised:not(.p-button-secondary):not(.p-button-info):not(.p-button-success):not(.p-button-help):not(
     .p-button-warn
   ) {
-  @apply shadow-lg shadow-primary-500/25;
+  box-shadow:
+    0 10px 15px -3px hsl(var(--hsl-primary-500) / 25%),
+    0 4px 6px -4px hsl(var(--hsl-primary-500) / 25%);
 }

@@ -69,7 +69,8 @@
 /* Custom sort label wrapper */
 
 .c-datatable-sort-label {
-  @apply inline-flex items-center;
+  display: inline-flex;
+  align-items: center;
   gap: var(--c-datatable-sort-label-gap);
 }
 

@@ -28,7 +28,7 @@
   display: grid;
   grid-template-rows: auto 1fr;
 
-  @screen lg {
+  @media (--lg) {
     padding-inline-start: var(--sidebar-width);
     transition: padding-inline-start var(--sidebar-transition-duration) var(--sidebar-transition-timing);
   }
