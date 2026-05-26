@@ -1,10 +1,5 @@
-@reference "../../../../../styles.css";
-
 .c-investment-installments {
   @apply flex flex-col gap-4;
-}
-
-.c-investment-installments__panel {
 }
 
 .c-investment-installments__desktop {
@@ -22,8 +17,7 @@
 .c-investment-installments-table__head-cell {
   @apply py-4 text-xs font-bold uppercase tracking-wide text-surface-600;
   padding-inline: var(--c-card-padding-x);
-
-  @variant dark {
+  @mixin dark {
     color: var(--p-surface-400);
   }
 }
@@ -31,18 +25,16 @@
 .c-investment-installments-table__body-cell {
   @apply border-b border-surface-200 py-5 align-top text-surface-600;
   padding-inline: var(--c-card-padding-x);
-
-  @variant dark {
-    @apply border-surface-800;
+  @mixin dark {
+    border-color: var(--p-surface-800);
     color: var(--p-surface-400);
   }
 }
 
 .c-investment-installments-table__main-row:hover .c-investment-installments-table__body-cell {
   @apply bg-surface-50/70;
-
-  @variant dark {
-    @apply bg-surface-900/20;
+  @mixin dark {
+    background-color: hsl(var(--hsl-surface-900) / 0.2);
   }
 }
 
@@ -52,9 +44,8 @@
 
 .c-investment-installments-table__id {
   @apply text-base font-bold text-surface-900;
-
-  @variant dark {
-    @apply text-surface-50;
+  @mixin dark {
+    color: var(--p-surface-50);
   }
 }
 
@@ -64,9 +55,8 @@
 
 .c-investment-installments-table__strong {
   @apply font-bold text-surface-900;
-
-  @variant dark {
-    @apply text-surface-50;
+  @mixin dark {
+    color: var(--p-surface-50);
   }
 }
 
@@ -78,17 +68,17 @@
   @apply border-b border-surface-200 bg-surface-50/70;
   padding-inline: var(--c-card-padding-x);
   @apply py-5;
-
-  @variant dark {
-    @apply border-surface-800 bg-surface-900/20;
+  @mixin dark {
+    border-color: var(--p-surface-800);
+    background-color: hsl(var(--hsl-surface-900) / 0.2);
   }
 }
 
 .c-investment-installments-plan {
   @apply rounded-xl border border-surface-200 bg-white;
-
-  @variant dark {
-    @apply border-surface-800 bg-surface-950/40;
+  @mixin dark {
+    border-color: var(--p-surface-800);
+    background-color: hsl(var(--hsl-surface-950) / 0.4);
   }
 }
 
@@ -102,17 +92,15 @@
 
 .c-investment-installments-plan-table {
   @apply w-full min-w-[700px] border-collapse text-left text-sm text-surface-600;
-
-  @variant dark {
-    @apply text-surface-300;
+  @mixin dark {
+    color: var(--p-surface-300);
   }
 }
 
 .c-investment-installments-plan-table__head-row {
   @apply border-b border-surface-200 font-bold text-surface-500;
-
-  @variant dark {
-    @apply border-surface-800;
+  @mixin dark {
+    border-color: var(--p-surface-800);
   }
 }
 
@@ -122,9 +110,8 @@
 
 .c-investment-installments-plan-table__body-row {
   @apply border-b border-surface-200/70;
-
-  @variant dark {
-    @apply border-surface-800/70;
+  @mixin dark {
+    border-color: hsl(var(--hsl-surface-800) / 0.7);
   }
 }
 
@@ -146,17 +133,16 @@
 
 .c-investment-installments-plan-table__payment-title {
   @apply font-semibold text-surface-900;
-
-  @variant dark {
-    @apply text-surface-50;
+  @mixin dark {
+    color: var(--p-surface-50);
   }
 }
 
 .c-investment-installments-plan__item {
   @apply flex flex-col gap-3 rounded-lg border border-surface-200 bg-surface-50 p-3;
-
-  @variant dark {
-    @apply border-surface-800 bg-surface-900/30;
+  @mixin dark {
+    border-color: var(--p-surface-800);
+    background-color: hsl(var(--hsl-surface-900) / 0.3);
   }
 }
 
@@ -170,17 +156,15 @@
 
 .c-investment-installments-plan__item-title {
   @apply text-xs font-bold uppercase text-surface-900;
-
-  @variant dark {
-    @apply text-surface-50;
+  @mixin dark {
+    color: var(--p-surface-50);
   }
 }
 
 .c-investment-installments-plan__item-grid {
   @apply grid grid-cols-1 gap-1 text-xs text-surface-600;
-
-  @variant dark {
-    @apply text-surface-300;
+  @mixin dark {
+    color: var(--p-surface-300);
   }
 }
 
@@ -190,9 +174,9 @@
 
 .c-investment-installments-mobile-card {
   @apply flex flex-col gap-3 border border-surface-200 bg-surface-50 p-4;
-
-  @variant dark {
-    @apply border-surface-800 bg-surface-950/35;
+  @mixin dark {
+    border-color: var(--p-surface-800);
+    background-color: hsl(var(--hsl-surface-950) / 0.35);
   }
 }
 
@@ -210,25 +194,24 @@
 
 .c-investment-installments-mobile-card__stat {
   @apply flex flex-col gap-1 rounded-lg border border-surface-200 bg-white p-3 text-xs text-surface-600;
-
-  @variant dark {
-    @apply border-surface-800 bg-surface-900/40 text-surface-300;
+  @mixin dark {
+    border-color: var(--p-surface-800);
+    background-color: hsl(var(--hsl-surface-900) / 0.4);
+    color: var(--p-surface-300);
   }
 }
 
 .c-investment-installments-mobile-card__stat strong {
   @apply font-bold text-surface-900;
-
-  @variant dark {
-    @apply text-surface-50;
+  @mixin dark {
+    color: var(--p-surface-50);
   }
 }
 
 .c-investment-installments-mobile-card__line {
   @apply text-surface-900;
-
-  @variant dark {
-    @apply text-surface-50;
+  @mixin dark {
+    color: var(--p-surface-50);
   }
 }
 
@@ -241,42 +224,39 @@
 }
 
 .c-investment-installments__empty {
-  @apply m-2 rounded-lg flex flex-col items-center justify-center min-h-50 border border-surface-200 bg-surface-50 px-6 py-8 text-center;
-
-  @variant dark {
-    @apply border-surface-800 bg-surface-950/35;
+  @apply m-2 rounded-lg flex flex-col items-center justify-center min-h-[200px] border border-surface-200 bg-surface-50 px-6 py-8 text-center;
+  @mixin dark {
+    border-color: var(--p-surface-800);
+    background-color: hsl(var(--hsl-surface-950) / 0.35);
   }
 }
 
 .c-investment-installments__empty-title {
   @apply text-sm font-bold text-surface-900;
-
-  @variant dark {
-    @apply text-surface-50;
+  @mixin dark {
+    color: var(--p-surface-50);
   }
 }
 
 .c-investment-installments__empty-subtitle {
   @apply mt-2 text-xs text-surface-500;
-
-  @variant dark {
-    @apply text-surface-400;
+  @mixin dark {
+    color: var(--p-surface-400);
   }
 }
 
 .c-investment-contract-dialog {
   @apply flex flex-col gap-4 text-sm text-surface-600;
-
-  @variant dark {
-    @apply text-surface-300;
+  @mixin dark {
+    color: var(--p-surface-300);
   }
 }
 
 .c-investment-contract-dialog__summary {
   @apply flex items-center justify-between gap-4 rounded-lg border border-surface-200 bg-surface-100 px-4 py-3 text-sm;
-
-  @variant dark {
-    @apply border-surface-700 bg-surface-800/60;
+  @mixin dark {
+    border-color: var(--p-surface-700);
+    background-color: hsl(var(--hsl-surface-800) / 0.6);
   }
 }
 
@@ -290,9 +270,8 @@
 
 .c-investment-contract-dialog__months-label {
   @apply mb-2 block font-semibold text-surface-900;
-
-  @variant dark {
-    @apply text-surface-100;
+  @mixin dark {
+    color: var(--p-surface-100);
   }
 }
 
@@ -302,9 +281,10 @@
 
 .c-investment-contract-dialog__months-select {
   @apply w-full appearance-none rounded-lg border border-surface-300 bg-surface-0 px-4 py-2.5 text-surface-700 outline-none transition-colors focus:border-primary;
-
-  @variant dark {
-    @apply border-surface-700 bg-surface-900 text-surface-200;
+  @mixin dark {
+    border-color: var(--p-surface-700);
+    background-color: var(--p-surface-900);
+    color: var(--p-surface-200);
   }
 }
 
@@ -314,9 +294,8 @@
 
 .c-investment-contract-dialog__months-hint {
   @apply mt-1 text-xs text-surface-500;
-
-  @variant dark {
-    @apply text-surface-400;
+  @mixin dark {
+    color: var(--p-surface-400);
   }
 }
 

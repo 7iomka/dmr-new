@@ -1,18 +1,15 @@
-@layer properties {
-  :root {
-    --c-pill-tabs-nav-bg: --alpha(var(--p-surface-200) / 50%);
-    --c-pill-tabs-nav-tab-color: var(--p-text-muted-color);
-    --c-pill-tabs-nav-tab-hover-color: var(--p-text-color);
+:root {
+  --c-pill-tabs-nav-bg: hsl(var(--hsl-surface-200) / 50%);
+  --c-pill-tabs-nav-tab-color: var(--p-text-muted-color);
+  --c-pill-tabs-nav-tab-hover-color: var(--p-text-color);
 
-    --c-pill-tabs-nav-secondary-active-bg: --alpha(var(--p-surface-300) / 70%);
-    --c-pill-tabs-nav-secondary-active-color: var(--p-surface-950);
+  --c-pill-tabs-nav-secondary-active-bg: hsl(var(--hsl-surface-300) / 70%);
+  --c-pill-tabs-nav-secondary-active-color: var(--p-surface-950);
 
-    --c-pill-tabs-nav-primary-active-bg: var(--p-button-primary-background);
-    --c-pill-tabs-nav-primary-active-color: var(--p-button-primary-color);
-  }
-
-  .dark {
-    --c-pill-tabs-nav-bg: --alpha(var(--p-surface-800) / 72%);
+  --c-pill-tabs-nav-primary-active-bg: var(--p-button-primary-background);
+  --c-pill-tabs-nav-primary-active-color: var(--p-button-primary-color);
+  @mixin root-dark {
+    --c-pill-tabs-nav-bg: hsl(var(--hsl-surface-800) / 72%);
     --c-pill-tabs-nav-tab-color: var(--p-surface-400);
     --c-pill-tabs-nav-tab-hover-color: var(--p-surface-200);
 
@@ -24,93 +21,127 @@
   }
 }
 
-@layer components {
-  .c-pill-tabs-nav {
-    @apply inline-flex max-w-full;
-  }
+.c-pill-tabs-nav {
+  display: inline-flex;
+  max-width: 100%;
+}
 
-  .c-pill-tabs-nav__root {
-    @apply inline-flex max-w-full items-center rounded-lg bg-(--c-pill-tabs-nav-bg) p-1;
-    box-shadow: none;
-  }
+.c-pill-tabs-nav__root {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  border-radius: var(--radius-lg);
+  background: var(--c-pill-tabs-nav-bg);
+  padding: 0.25rem;
+  box-shadow: none;
+}
 
-  .c-pill-tabs-nav__viewport {
-    @apply min-w-0 max-w-full;
-  }
+.c-pill-tabs-nav__viewport {
+  min-width: 0;
+  max-width: 100%;
+}
 
-  .c-pill-tabs-nav__tab-list {
-    @apply flex items-center gap-0.5 border-none bg-transparent;
-  }
+.c-pill-tabs-nav__tab-list {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  border: none;
+  background: transparent;
+}
 
-  .c-pill-tabs-nav__tab {
-    @apply m-0 inline-flex min-w-0 items-center justify-center rounded-md border border-transparent bg-transparent px-4 py-2 font-bold leading-none shadow-none;
-    color: var(--c-pill-tabs-nav-tab-color);
-  }
+.c-pill-tabs-nav__tab {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--c-pill-tabs-nav-tab-color);
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: none;
+}
 
-  .c-pill-tabs-nav--sm .c-pill-tabs-nav__tab {
-    @apply text-xs;
-  }
+.c-pill-tabs-nav--sm .c-pill-tabs-nav__tab {
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+}
 
-  .c-pill-tabs-nav--md .c-pill-tabs-nav__tab {
-    @apply text-sm;
-  }
+.c-pill-tabs-nav--md .c-pill-tabs-nav__tab {
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+}
 
-  .c-pill-tabs-nav__tab:not(.p-tab-active) {
-    @apply bg-transparent;
-    color: var(--c-pill-tabs-nav-tab-color);
-  }
+.c-pill-tabs-nav__tab:not(.p-tab-active) {
+  background: transparent;
+  color: var(--c-pill-tabs-nav-tab-color);
+}
 
-  .c-pill-tabs-nav__tab:not(.p-tab-active):hover {
-    color: var(--c-pill-tabs-nav-tab-hover-color);
-  }
+.c-pill-tabs-nav__tab:not(.p-tab-active):hover {
+  color: var(--c-pill-tabs-nav-tab-hover-color);
+}
 
-  .c-pill-tabs-nav--theme-primary .c-pill-tabs-nav__tab.p-tab-active {
-    @apply bg-(--c-pill-tabs-nav-primary-active-bg) text-(--c-pill-tabs-nav-primary-active-color);
-    border-color: transparent;
-  }
+.c-pill-tabs-nav--theme-primary .c-pill-tabs-nav__tab.p-tab-active {
+  border-color: transparent;
+  background: var(--c-pill-tabs-nav-primary-active-bg);
+  color: var(--c-pill-tabs-nav-primary-active-color);
+}
 
-  .c-pill-tabs-nav--theme-secondary .c-pill-tabs-nav__tab.p-tab-active {
-    @apply bg-(--c-pill-tabs-nav-secondary-active-bg) text-(--c-pill-tabs-nav-secondary-active-color);
-    border-color: transparent;
-  }
+.c-pill-tabs-nav--theme-secondary .c-pill-tabs-nav__tab.p-tab-active {
+  border-color: transparent;
+  background: var(--c-pill-tabs-nav-secondary-active-bg);
+  color: var(--c-pill-tabs-nav-secondary-active-color);
+}
 
-  .c-pill-tabs-nav--behavior-scroll .c-pill-tabs-nav__viewport {
-    @apply overflow-x-auto overflow-y-hidden no-scrollbar;
-    scroll-behavior: smooth;
-  }
+.c-pill-tabs-nav--behavior-scroll .c-pill-tabs-nav__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-  .c-pill-tabs-nav--behavior-scroll .c-pill-tabs-nav__tab-list {
-    @apply flex-nowrap;
-    width: max-content;
-    min-width: 100%;
-  }
+.c-pill-tabs-nav--behavior-scroll .c-pill-tabs-nav__viewport::-webkit-scrollbar {
+  display: none;
+}
 
-  .c-pill-tabs-nav--behavior-scroll .c-pill-tabs-nav__tab {
-    @apply shrink-0;
-  }
+.c-pill-tabs-nav--behavior-scroll .c-pill-tabs-nav__tab-list {
+  flex-wrap: nowrap;
+  width: max-content;
+  min-width: 100%;
+}
 
-  .c-pill-tabs-nav--behavior-wrap .c-pill-tabs-nav__viewport {
-    @apply overflow-visible;
-  }
+.c-pill-tabs-nav--behavior-scroll .c-pill-tabs-nav__tab {
+  flex-shrink: 0;
+}
 
-  .c-pill-tabs-nav--behavior-wrap .c-pill-tabs-nav__tab-list {
-    @apply flex-wrap;
-    width: 100%;
-  }
+.c-pill-tabs-nav--behavior-wrap .c-pill-tabs-nav__viewport {
+  overflow: visible;
+}
 
-  .c-pill-tabs-nav--behavior-wrap .c-pill-tabs-nav__tab {
-    @apply grow;
-  }
+.c-pill-tabs-nav--behavior-wrap .c-pill-tabs-nav__tab-list {
+  flex-wrap: wrap;
+  width: 100%;
+}
 
-  .c-pill-tabpanels {
-    @apply block;
-  }
+.c-pill-tabs-nav--behavior-wrap .c-pill-tabs-nav__tab {
+  flex-grow: 1;
+}
 
-  .c-pill-tabpanels__root {
-    @apply m-0 block bg-transparent p-0;
-  }
+.c-pill-tabpanels {
+  display: block;
+}
 
-  .c-pill-tabpanels__item {
-    @apply p-0;
-  }
+.c-pill-tabpanels__root {
+  display: block;
+  margin: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.c-pill-tabpanels__item {
+  padding: 0;
 }

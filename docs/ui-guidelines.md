@@ -19,6 +19,18 @@
 - Never use raw hex in components
 - Color palette details: `./color-palette-guide.md`
 
+## CSS And Tailwind
+
+- Do not add new `@apply` in custom CSS files.
+- Use direct CSS declarations with project/PrimeNG variables for semantic selectors and PrimeNG overrides.
+- Keep Tailwind utilities directly in templates for unclear or one-off layout blocks until they become semantic classes/components.
+- Do not add new `@screen`; use `@media (--*)` aliases from `postcss-tailwind-media`.
+- For dark mode in global CSS, prefer `.dark` selectors and `.dark` variable overrides.
+- For dark mode in component-scoped CSS, use `:host-context(.dark)`.
+- Root-level variables consumed by components must be theme-aware at their global source. Do not redefine shared `:root` theme variables inside encapsulated component CSS.
+- Full rules: `./tailwind-angular-dark-mode-guide.md`
+- Implementation plan: `./apply-removal-postcss-plan.md`
+
 ## Button Strategy
 
 - Follow `./button-migration-strategy.md` as the mandatory foundation strategy.

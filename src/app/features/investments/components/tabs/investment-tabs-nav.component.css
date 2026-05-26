@@ -1,10 +1,7 @@
-@reference "../../../../../styles.css";
-
 .c-investment-tabs__nav {
   @apply rounded-xl bg-primary/6;
-
-  @variant dark {
-    @apply bg-primary/8;
+  @mixin dark {
+    background-color: hsl(var(--hsl-primary-color) / 0.08);
   }
 }
 
@@ -26,9 +23,15 @@
   align-items: center;
   line-height: 1;
 
-  @apply bg-white/75 p-active:bg-(--p-button-primary-background) p-active:text-(--p-button-primary-color) p-active:border-(--p-button-primary-border-color);
+  @apply bg-white/75;
 
-  @variant dark {
-    @apply bg-primary-950/25;
+  @mixin dark {
+    background-color: hsl(var(--hsl-primary-950) / 0.25);
   }
+}
+
+.c-investment-tabs__tab[data-p-active='true'] {
+  background: var(--p-button-primary-background);
+  border-color: var(--p-button-primary-border-color);
+  color: var(--p-button-primary-color);
 }

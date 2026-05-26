@@ -1,96 +1,109 @@
-@layer properties {
-  :root,
-  .dark {
-    --p-card-shadow: none;
+:root,
+.dark {
+  --p-card-shadow: none;
+}
+
+:root {
+  --c-card-background: var(--app-color-card);
+  --c-card-color: var(--p-surface-900);
+  --c-card-header-background: var(--p-surface-0);
+  --c-card-border: var(--p-surface-200);
+  --c-card-padding-x: 1rem;
+  --c-card-padding-y: 1rem;
+  --c-card-header-padding-y: 1rem;
+  --p-card-body-padding: var(--c-card-padding-y) var(--c-card-padding-x);
+  --p-card-body-gap: 0;
+
+  @media (--lg) {
+    --c-card-padding-x: 1.5rem;
+    --c-card-padding-y: 1.5rem;
   }
 
-  :root {
-    --c-card-background: var(--color-card);
-    --c-card-color: var(--p-surface-900);
-    --c-card-header-background: #ffffff;
-    --c-card-border: var(--p-surface-200);
-    --c-card-padding-x: 1rem;
-    --c-card-padding-y: 1rem;
-    --c-card-header-padding-y: 1rem;
-    --p-card-body-padding: var(--c-card-padding-y) var(--c-card-padding-x);
-    --p-card-body-gap: 0;
-
-    @variant lg {
-      --c-card-padding-x: 1.5rem;
-      --c-card-padding-y: 1.5rem;
-    }
-  }
-
-  .dark {
-    --c-card-background: var(--color-card);
-    --c-card-header-background: #1e2023;
+  @mixin root-dark {
+    --c-card-background: var(--app-color-card);
+    --c-card-header-background: var(--app-color-card);
     --c-card-color: var(--p-surface-50);
     --c-card-border: var(--p-surface-800);
   }
 }
 
-@layer components {
-  /* PrimeNG Card (p-card) customization block */
-  .p-card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--c-card-border);
-    background-color: var(--c-card-background);
-    color: var(--c-card-color);
-  }
+/* PrimeNG Card (p-card) customization block */
 
-  .p-card-body,
-  .p-card-content {
-    flex-grow: 1;
-    min-height: 0;
-  }
+/* Adjust datatable edge padding when inside a card with inset table variant */
 
-  .p-card-header {
-    @apply flex flex-wrap items-center justify-between gap-2 rounded-t-[inherit];
+/* Custom card header utils for padding */
 
-    background-color: var(--c-card-header-background);
-    border-bottom: 1px solid var(--c-card-border);
-    padding-inline: var(--c-card-padding-x);
-    padding-block: var(--c-card-header-padding-y);
-  }
+.c-card-header-inset {
+  padding: var(--c-card-header-padding-y) var(--c-card-padding-x);
+}
 
-  /* Adjust datatable edge padding when inside a card with inset table variant */
-  .p-card .p-datatable[data-inset='card'] {
-    --c-datatable-header-edge-padding-start: var(--c-card-padding-x);
-    --c-datatable-header-edge-padding-end: var(--c-card-padding-x);
-    --c-datatable-edge-padding-start: var(--c-card-padding-x);
-    --c-datatable-edge-padding-end: var(--c-card-padding-x);
-    --p-datatable-row-background: var(--c-card-background);
-  }
-  /* Custom card header utils for padding */
-  .c-card-header-inset {
-    padding: var(--c-card-header-padding-y) var(--c-card-padding-x);
-  }
+.c-card-header-inset-x {
+  padding-inline: var(--c-card-padding-x);
+}
 
-  .c-card-header-inset-x {
-    padding-inline: var(--c-card-padding-x);
-  }
+.c-card-header-inset-y {
+  padding-block: var(--c-card-header-padding-y);
+}
 
-  .c-card-header-inset-y {
-    padding-block: var(--c-card-header-padding-y);
-  }
+/* Custom card body utils for padding */
 
-  /* Custom card body utils for padding */
-  .c-card-body-inset {
-    padding: var(--c-card-padding-y) var(--c-card-padding-x);
-  }
+.c-card-body-inset {
+  padding: var(--c-card-padding-y) var(--c-card-padding-x);
+}
 
-  .c-card-body-inset-x {
-    padding-inline: var(--c-card-padding-x);
-  }
+.c-card-body-inset-x {
+  padding-inline: var(--c-card-padding-x);
+}
 
-  .c-card-body-inset-y {
-    padding-block: var(--c-card-padding-y);
-  }
+.c-card-body-inset-y {
+  padding-block: var(--c-card-padding-y);
+}
 
-  /* Custom card elements */
+/* Custom card elements */
 
-  .c-card-title {
-    @apply text-sm font-bold uppercase tracking-wide text-surface-900 dark:text-surface-50;
-  }
+.c-card-title {
+  @mixin light-dark color, var(--p-surface-900), var(--p-surface-50);
+
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.p-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--c-card-border);
+  background-color: var(--c-card-background);
+  color: var(--c-card-color);
+}
+
+.p-card-body,
+.p-card-content {
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.p-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+
+  background-color: var(--c-card-header-background);
+  border-bottom: 1px solid var(--c-card-border);
+  padding-inline: var(--c-card-padding-x);
+  padding-block: var(--c-card-header-padding-y);
+}
+
+.p-card .p-datatable[data-inset='card'] {
+  --c-datatable-header-edge-padding-start: var(--c-card-padding-x);
+  --c-datatable-header-edge-padding-end: var(--c-card-padding-x);
+  --c-datatable-edge-padding-start: var(--c-card-padding-x);
+  --c-datatable-edge-padding-end: var(--c-card-padding-x);
+  --p-datatable-row-background: var(--c-card-background);
 }

@@ -1,0 +1,20 @@
+{
+  "src/app/features/auth/auth-page.component.css": 2,
+  "src/app/features/chat/chat-page.component.css": 56,
+  "src/app/features/dashboard/dashboard-page.component.css": 8,
+  "src/app/features/investments/components/installments-overview/c-investment-installments-overview.component.css": 80,
+  "src/app/features/investments/components/investment-buy-form/c-investment-buy-form.component.css": 15,
+  "src/app/features/investments/components/investment-buy-form/c-investment-input-field.component.css": 7,
+  "src/app/features/investments/components/investment-buy-form/c-investment-summary-card.component.css": 12,
+  "src/app/features/investments/components/investment-buy-form/c-investment-switch-card.component.css": 6,
+  "src/app/features/investments/components/shares-overview/c-investment-shares-overview.component.css": 8,
+  "src/app/features/investments/components/tabs/investment-tabpanels.component.css": 2,
+  "src/app/features/investments/components/tabs/investment-tabs-nav.component.css": 5,
+  "src/app/features/notifications/notifications-page.component.css": 50,
+  "src/app/features/partners/partners-page.component.css": 78,
+  "src/app/features/wallet/wallet-page.component.css": 39,
+  "src/app/features/withdrawals/withdrawal-addresses-page.component.css": 16,
+  "src/app/features/withdrawals/withdrawal-new-page.component.css": 26,
+  "src/app/features/withdrawals/withdrawals-page.component.css": 38,
+  "src/styles/form-controls.css": 54
+}

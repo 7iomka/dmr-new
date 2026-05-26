@@ -6,7 +6,7 @@
 
   <!-- TODO: Receive from api -->
   <div class="partners-inviter">
-    <span class="partners-inviter__label">Пригласивший вас:</span>
+    <span class="c-section-label partners-inviter__label">Пригласивший вас:</span>
     <div class="partners-inviter__person">
       <p-avatar class="partners-inviter__avatar" [label]="initials(referrerBadgeLabel())" />
 
@@ -42,7 +42,7 @@
       </div>
 
       <div class="partners-summary-card__footer">
-        <span class="partners-summary-card__footer-label">Доступно к выводу</span>
+        <span class="c-section-label partners-summary-card__footer-label">Доступно к выводу</span>
         <span class="partners-summary-card__footer-value">
           {{ maxWithdrawableAmount() | currency: 'USD' : 'symbol' : '1.2-2' }}
         </span>

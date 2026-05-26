@@ -5,7 +5,10 @@
   },
   "tailwindCSS.emmetCompletions": true,
   "tailwindCSS.experimental.classRegex": ["[\"'`](.*?)[\"'`]"],
-  "tailwindCSS.experimental.configFile": "src/styles.css",
+  "tailwindCSS.files.exclude": ["docs/**"],
+  "postcssMixinsAutocomplete.cssFilePatterns": ["src/styles/mixins/**/*.css", "src/**/*.css"],
+  "css.lint.unknownAtRules": "ignore",
+  "postcss.validate": false,
   "editor.quickSuggestions": {
     "strings": "on"
   },
@@ -36,7 +39,9 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
+  "files.associations": {
+    "*.css": "postcss"
+  },
   "emmet.includeLanguages": {
     "css": "css",
     "postcss": "css",

@@ -16,7 +16,7 @@ import { LucideChevronRight, LucideCreditCard } from '@lucide/angular';
         </div>
         <div class="c-investment-stat-card">
           <h5 class="c-investment-stat-card__title">{{ wideGrid() ? 'Стоимость портфеля' : 'Текущая стоимость' }}</h5>
-          <div class="c-investment-stat-card__value text-primary!">$ 504.00</div>
+          <div class="c-investment-stat-card__value !text-primary">$ 504.00</div>
         </div>
         <div class="c-investment-stat-card">
           <h5 class="c-investment-stat-card__title">Текущая цена доли</h5>

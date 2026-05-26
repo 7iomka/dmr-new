@@ -1,17 +1,25 @@
-@layer components {
-  .c-page-heading {
-    @apply flex flex-col gap-1 items-start;
-  }
+.c-page-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+.c-page-heading__title {
+  @mixin light-dark color, var(--p-surface-900), var(--p-surface-50);
 
-  .c-page-heading__title {
-    @apply text-2xl lg:text-3xl font-bold tracking-tight text-surface-900;
+  font-size: var(--text-2xl);
+  line-height: var(--text-2xl--line-height);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
 
-    @variant dark {
-      @apply text-surface-50;
-    }
+  @media (--lg) {
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
   }
-
-  .c-page-heading__subtitle {
-    @apply text-sm font-medium text-surface-500;
-  }
+}
+.c-page-heading__subtitle {
+  color: var(--p-surface-500);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 500;
 }

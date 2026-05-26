@@ -1,6 +1,29 @@
 {
   "plugins": {
-    "@tailwindcss/postcss": {},
-    "postcss-viewport-unit-fallback": {}
+    "postcss-import": {},
+
+    "postcss-tailwind-media": {},
+    "postcss-mixins": {
+      "mixinsFiles": ["./src/styles/mixins/**/*.css", "./src/styles/mixins/**/*.js"]
+    },
+
+    "tailwindcss/nesting": {},
+    "tailwindcss": {},
+    "autoprefixer": {},
+
+    "@csstools/postcss-is-pseudo-class": {
+      "preserve": true
+    },
+
+    "postcss-pxtorem": {
+      "rootValue": 16,
+      "unitPrecision": 5,
+      "propList": ["*", "!letter-spacing"],
+      "selectorBlackList": ["^html[^body]+body$", "^\\.container", "::-webkit-scrollbar", ":export"],
+      "replace": true,
+      "mediaQuery": false,
+      "minPixelValue": 2,
+      "exclude": false
+    }
   }
 }

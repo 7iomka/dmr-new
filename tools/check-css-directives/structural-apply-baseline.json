@@ -1,0 +1,8 @@
+{
+  "src/app/features/chat/chat-page.component.css": 2,
+  "src/app/features/notifications/notifications-page.component.css": 2,
+  "src/app/features/wallet/wallet-page.component.css": 3,
+  "src/app/features/withdrawals/withdrawal-addresses-page.component.css": 1,
+  "src/app/features/withdrawals/withdrawal-new-page.component.css": 3,
+  "src/app/features/withdrawals/withdrawals-page.component.css": 2
+}

@@ -1,21 +1,20 @@
-@layer properties {
-  :root {
-    --c-page-padding-y: --spacing(6);
-    --c-page-gap: --spacing(6);
+:root {
+  --c-page-padding-y: 1.5rem;
+  --c-page-gap: 1.5rem;
 
-    @variant lg {
-      --c-page-padding-y: --spacing(10);
-      --c-page-gap: --spacing(7);
-    }
+  @media (--lg) {
+    --c-page-padding-y: 2.5rem;
+    --c-page-gap: 1.75rem;
   }
 }
 
-@layer components {
-  .app-page {
-    @apply flex flex-col py-(--c-page-padding-y) gap-(--c-page-gap);
-  }
+.app-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--c-page-gap);
+  padding-block: var(--c-page-padding-y);
+}
 
-  .app-page--flush {
-    --c-page-padding-y: 0;
-  }
+.app-page--flush {
+  --c-page-padding-y: 0;
 }

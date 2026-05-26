@@ -1,9 +1,9 @@
-@import 'tailwindcss';
-@import 'tailwindcss-primeui';
-
 @import './styles/fonts.css';
-@import './styles/variables.css';
+@import './styles/_theme-variables.css';
+@import './styles/colors.css';
+
 @import './styles/utilities.css';
+@import './styles/container.css';
 
 @import './styles/scrollbar.css';
 @import './styles/button.css';
@@ -14,8 +14,6 @@
 @import './styles/tag.css';
 @import './styles/dialog.css';
 @import './styles/form-controls.css';
-@import './styles/menu.css';
-@import './styles/select.css';
 @import './styles/avatar.css';
 @import './styles/stat-card.css';
 @import './styles/page-heading.css';
@@ -29,24 +27,22 @@
 
 @import './styles/page.css';
 
-@source not "../old";
-
-@custom-variant dark (&:where(.dark, .dark *));
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
-  :root {
-    --radius-xs: 0.125rem;
-    --radius-sm: 0.25rem;
-    --radius-md: 0.375rem;
-    --radius-lg: 0.5rem;
-    --radius-xl: 0.75rem;
-  }
-
   body {
-    @apply bg-surface-100 text-surface-900 dark:bg-dark dark:text-surface-50 min-h-screen;
+    min-height: 100vh;
+    background-color: var(--p-surface-100);
+    color: var(--p-surface-900);
     font-variant-ligatures: none;
-    font-family: 'Twemoji Mozilla', 'Onest', sans-serif;
+    font-family: var(--font-sans);
     line-height: 1.375;
+    @mixin dark {
+      background-color: var(--app-color-dark);
+      color: var(--p-surface-50);
+    }
   }
 
   body,

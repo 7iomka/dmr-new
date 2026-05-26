@@ -1,5 +1,3 @@
-@reference "../../../styles.css";
-
 .withdrawals-page-heading {
   @apply flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between;
 }
@@ -47,8 +45,7 @@
 .withdrawals-summary-card__reason {
   @apply text-sm;
   color: var(--p-red-600);
-
-  @variant dark {
+  @mixin host-dark {
     color: var(--p-red-300);
   }
 }
@@ -66,7 +63,7 @@
 }
 
 .withdrawals-table__address {
-  @apply max-w-76 truncate font-mono text-[11px];
+  @apply max-w-[304px] truncate font-mono text-[11px];
 }
 
 .wallet-mobile-list {
