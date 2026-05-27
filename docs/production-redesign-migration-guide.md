@@ -1,6 +1,6 @@
 # Production Redesign Migration Guide
 
-This guide is an audit and rollout plan for bringing the layout, styling, class naming, PrimeNG/Tailwind approach, theme configuration, and vendor strategy from this branch into the future production Angular project represented by `../future-src-tree.md`.
+This guide is an audit and rollout plan for bringing the layout, styling, class naming, PrimeNG/Tailwind approach, theme configuration, and vendor strategy from this branch into the future production Angular project represented by `./future-src-tree.md`.
 
 The audit is based on the source tree snapshot only. Before real implementation, validate each recommendation against the actual production code, package versions, build configuration, and visual behavior.
 
