@@ -14,7 +14,7 @@ Use JavaScript mixin files only when the helper must rewrite selectors, such as 
 
 ## Supported Mixins
 
-Global dark:
+Dark selectors:
 
 ```css
 .card {
@@ -26,13 +26,11 @@ Global dark:
 }
 ```
 
-Component-scoped dark:
+The `dark` and `light-dark` mixins emit Tailwind 3 selector-mode selectors:
 
 ```css
-:host {
-  @mixin host-dark {
-    color: var(--p-surface-50);
-  }
+.card:where(.dark, .dark *) {
+  border-color: var(--p-surface-700);
 }
 ```
 
@@ -42,7 +40,7 @@ Root variable dark:
 :root {
   --app-card-bg: var(--p-surface-0);
 
-  @mixin root-dark {
+  @mixin dark {
     --app-card-bg: var(--p-surface-950);
   }
 }

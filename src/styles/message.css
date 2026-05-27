@@ -14,7 +14,8 @@
   --p-message-error-background: hsl(var(--hsl-red-500) / 10%);
   --p-message-error-border-color: hsl(var(--hsl-red-500) / 25%);
   --p-message-error-color: var(--p-red-600);
-  @mixin root-dark {
+
+  @mixin dark {
     --p-message-info-background: hsl(var(--hsl-sky-500) / 10%);
     --p-message-info-border-color: hsl(var(--hsl-sky-500) / 25%);
     --p-message-info-color: var(--p-sky-300);

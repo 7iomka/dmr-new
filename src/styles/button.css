@@ -34,7 +34,7 @@
     0 1px 3px 0 var(--tw-shadow-color, hsl(var(--hsl-black) / 10%)),
     0 1px 2px -1px var(--tw-shadow-color, hsl(var(--hsl-black) / 10%));
 
-  @mixin root-dark {
+  @mixin dark {
     --c-button-outlined-secondary-background: hsl(var(--hsl-surface-800) / 70%);
     --c-button-outlined-secondary-border-color: var(--p-surface-700);
     --c-button-outlined-secondary-color: var(--p-surface-300);

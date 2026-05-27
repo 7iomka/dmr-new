@@ -1,27 +1,77 @@
 .c-investment-input-field {
-  @apply flex flex-col gap-2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .c-investment-input-field__label {
-  @apply px-1 text-[10px] font-bold uppercase text-surface-500;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--p-surface-500);
 }
 
 .c-investment-input-field__split-wrap {
-  @apply flex;
+  display: flex;
 }
 
 .c-investment-input-field__input {
-  @apply w-full rounded-lg border border-surface-200 bg-white text-surface-900
-  dark:border-surface-800 dark:bg-surface-950/40 dark:text-surface-50
-  px-4 py-3 text-lg font-bold outline-none transition-colors focus:border-primary/50;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border-width: 1px;
+  border-color: var(--p-surface-200);
+  background-color: var(--p-surface-0);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+  font-weight: 700;
+  color: var(--p-surface-900);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  @mixin dark {
+    border-color: var(--p-surface-800);
+    background-color: hsl(var(--hsl-surface-950) / 0.4);
+    color: var(--p-surface-50);
+  }
+  &:focus {
+    border-color: hsl(var(--hsl-primary-color) / 0.5);
+
+    @mixin dark {
+      border-color: hsl(var(--hsl-primary-color) / 0.5);
+    }
+  }
 }
 
 .c-investment-input-field__input--split {
-  @apply rounded-r-none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .c-investment-input-field__suffix {
-  @apply rounded-r-lg border border-l-0 border-surface-200 bg-surface-50 px-4 text-lg font-bold text-surface-400 flex items-center;
+  display: flex;
+  align-items: center;
+  border-top-right-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  border-width: 1px;
+  border-left-width: 0px;
+  border-color: var(--p-surface-200);
+  background-color: var(--p-surface-50);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+  font-weight: 700;
+  color: var(--p-surface-400);
+
   @mixin dark {
     border-color: var(--p-surface-800);
     background-color: var(--p-surface-900);

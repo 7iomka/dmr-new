@@ -53,7 +53,7 @@
 
   --p-datatable-row-color: var(--p-surface-600);
 
-  @mixin root-dark {
+  @mixin dark {
     --p-datatable-header-cell-background: hsl(var(--hsl-surface-800) / 30%);
     --p-datatable-header-cell-hover-background: var(--p-content-hover-background);
     --p-datatable-header-cell-selected-background: var(--p-highlight-background);

@@ -167,9 +167,9 @@ Align all systems on `.dark`:
 
 - document root/body class;
 - PrimeNG `darkModeSelector`;
-- Tailwind `darkMode: ['class']`;
-- component CSS with `:host-context(.dark)`;
-- global CSS with `.dark`.
+- Tailwind `darkMode: 'selector'`;
+- component/global CSS rule overrides with project dark mixins;
+- shared root variable overrides with `.dark`.
 
 Do not support multiple dark-mode selectors during the migration unless production already depends on them. Multiple selectors make visual bugs hard to localize.
 
@@ -178,8 +178,10 @@ Do not support multiple dark-mode selectors during the migration unless producti
 Use this branch's icon hierarchy:
 
 1. Lucide for UI icons.
-2. Simple Icons for brands/platforms.
+2. Local brand SVG paths for brands/platforms.
 3. PrimeIcons only when required by PrimeNG.
+
+Brand/platform SVG paths may be copied from official brand assets or Simple Icons source material, but do not add `@semantic-icons/simple-icons` as a runtime dependency. The Angular package prebundles thousands of icons in dev mode and makes Chrome DevTools slow.
 
 FontAwesome webfonts in the future tree should be treated as legacy. Replace page by page; remove webfonts only after no templates/styles reference them.
 
@@ -309,7 +311,7 @@ Replace with PrimeNG `Select` only where form contracts and search behavior are 
 
 ### FontAwesome
 
-Treat as legacy. Replace UI icons with Lucide, but keep brand/social icons until a Simple Icons mapping is verified.
+Treat as legacy. Replace UI icons with Lucide. Replace brand/social icons with local typed SVG path maps after verifying the exact brand asset or Simple Icons path.
 
 ### Charts
 

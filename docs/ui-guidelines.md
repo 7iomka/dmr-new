@@ -25,8 +25,8 @@
 - Use direct CSS declarations with project/PrimeNG variables for semantic selectors and PrimeNG overrides.
 - Keep Tailwind utilities directly in templates for unclear or one-off layout blocks until they become semantic classes/components.
 - Do not add new `@screen`; use `@media (--*)` aliases from `postcss-tailwind-media`.
-- For dark mode in global CSS, prefer `.dark` selectors and `.dark` variable overrides.
-- For dark mode in component-scoped CSS, use `:host-context(.dark)`.
+- For dark mode in CSS rules, use the project dark mixins; they emit Tailwind selector-mode selectors.
+- Use `.dark` selectors directly only for shared root variable blocks such as `:root, .dark`.
 - Root-level variables consumed by components must be theme-aware at their global source. Do not redefine shared `:root` theme variables inside encapsulated component CSS.
 - Full rules: `./tailwind-angular-dark-mode-guide.md`
 - Implementation plan: `./apply-removal-postcss-plan.md`

@@ -76,7 +76,8 @@ host: {
 
 - Follow `./icons-usage-guide.md`.
 - Use Lucide static Angular icon directives for UI icons.
-- Use `@semantic-icons/simple-icons` only for brand/platform icons.
+- For brand/platform icons, use local typed SVG path maps copied from official brand assets or Simple Icons source material.
+- Do not install or import `@semantic-icons/simple-icons`; it prebundles thousands of icons in dev mode and slows Chrome DevTools.
 - Use PrimeIcons only when a PrimeNG API strictly requires them.
 - Do not add icon wrapper components or import whole icon sets.
 
@@ -90,8 +91,9 @@ This project uses Tailwind in the opposite way from many generic Angular ruleset
 - Component CSS should use direct CSS declarations, PrimeNG/project CSS variables, nested CSS, and semantic class names.
 - Use PrimeNG semantic tokens and project variables instead of raw colors.
 - Never use Tailwind Zinc (`zinc-*`) in new or migrated UI.
-- For dark mode in global CSS, prefer `.dark` selectors and `.dark` variable overrides.
-- For dark mode in component-scoped CSS, use `:host-context(.dark)`.
+- For dark mode in CSS rules, use the project dark mixins. They emit Tailwind 3 selector-mode selectors: `selector:where(.dark, .dark *)`.
+- Use `.dark` selectors directly only for shared root variable blocks such as `:root, .dark`.
+- For PrimeNG overlay content appended to `body` from a scoped component, use `@mixin dark` on the overlay's local class so the element keeps Angular scoping while matching the root dark class.
 - Do not use Tailwind v4 CSS-first syntax; this project is on Tailwind CSS 3.
 
 ## Folder Structure

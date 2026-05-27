@@ -19,7 +19,7 @@
     --c-card-padding-y: 1.5rem;
   }
 
-  @mixin root-dark {
+  @mixin dark {
     --c-card-background: var(--app-color-card);
     --c-card-header-background: var(--app-color-card);
     --c-card-color: var(--p-surface-50);
@@ -62,13 +62,13 @@
 /* Custom card elements */
 
 .c-card-title {
-  @mixin light-dark color, var(--p-surface-900), var(--p-surface-50);
-
   font-size: var(--text-sm);
   line-height: var(--text-sm--line-height);
   font-weight: 700;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
+
+  @mixin light-dark color, var(--p-surface-900), var(--p-surface-50);
 }
 
 .p-card {

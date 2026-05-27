@@ -1,5 +1,13 @@
 .c-investment-summary-card {
-  @apply rounded-lg border border-surface-200 bg-surface-50 p-4 flex flex-col gap-3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: var(--radius-lg);
+  border-width: 1px;
+  border-color: var(--p-surface-200);
+  background-color: var(--p-surface-50);
+  padding: 1rem;
+
   @mixin dark {
     border-color: var(--p-surface-800);
     background-color: hsl(var(--hsl-surface-950) / 0.35);
@@ -7,37 +15,58 @@
 }
 
 .c-investment-summary-card--sticky {
-  @apply xl:sticky xl:top-4;
+  @media (--xl) {
+    position: sticky;
+    top: 1rem;
+  }
 }
 
 .c-investment-summary-card__row {
-  @apply flex items-center justify-between gap-4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .c-investment-summary-card__label {
-  @apply text-[11px] font-bold uppercase tracking-wide text-surface-500;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--p-surface-500);
 }
 
 .c-investment-summary-card__value {
-  @apply text-sm font-bold tracking-tight text-surface-900;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  color: var(--p-surface-900);
+
   @mixin dark {
     color: var(--p-surface-100);
   }
 }
 
 .c-investment-summary-card__value--accent {
-  @apply text-primary;
+  color: var(--p-primary-color);
 }
 
 .c-investment-summary-card__divider {
-  @apply h-px bg-surface-200;
+  height: 1px;
+  background-color: var(--p-surface-200);
+
   @mixin dark {
     background-color: var(--p-surface-800);
   }
 }
 
 .c-investment-summary-card__total {
-  @apply text-2xl font-bold text-surface-900;
+  font-size: var(--text-2xl);
+  line-height: var(--text-2xl--line-height);
+  font-weight: 700;
+  color: var(--p-surface-900);
+
   @mixin dark {
     color: var(--p-surface-50);
   }

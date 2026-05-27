@@ -6,7 +6,8 @@
 
 :root {
   --c-scrollbar-thumb-color: var(--p-surface-300);
-  @mixin root-dark {
+
+  @mixin dark {
     --c-scrollbar-thumb-color: var(--p-surface-800);
   }
 }

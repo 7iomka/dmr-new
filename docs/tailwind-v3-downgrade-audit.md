@@ -152,7 +152,7 @@ Replacement rules:
 - layout utilities become direct CSS: `display`, `grid-template-*`, `align-items`, `justify-content`, `gap`;
 - spacing and sizing utilities become direct CSS; `px` values are allowed because `postcss-pxtorem` converts them;
 - typography utilities use direct CSS and variables from `src/styles/_theme-variables.css`;
-- color/dark utilities use direct CSS plus `.dark`, `:host-context(.dark)`, or future project mixins;
+- color/dark utilities use direct CSS plus project dark mixins that emit Tailwind selector-mode selectors;
 - state variants become nested selectors such as `&:hover`, `&:focus-visible`, `&:disabled`;
 - structural helpers such as `truncate`, `line-clamp`, and `size` may use project-owned PostCSS mixins;
 - `space-y`, `space-x`, `divide-y`, and `divide-x` must not become project mixins; use `gap` for spacing and explicit `> :not(:last-child)` separators instead;
@@ -161,18 +161,10 @@ Replacement rules:
 
 ### Dark Mode Selectors
 
-Global CSS and `ViewEncapsulation.None` CSS:
+Dark overrides use Tailwind 3 selector-mode shape:
 
 ```css
-.dark .selector {
-  color: var(--p-surface-50);
-}
-```
-
-Component-scoped CSS with Angular encapsulation:
-
-```css
-:host-context(.dark) .selector {
+.selector:where(.dark, .dark *) {
   color: var(--p-surface-50);
 }
 ```
@@ -206,11 +198,8 @@ Because Angular CLI currently uses `postcss.config.json`, plugin configuration m
 
 Recommended mixin names:
 
-- `@mixin dark` -> emits `.dark &`;
-- `@mixin host-dark` -> emits `:host-context(.dark) &`;
-- `@mixin root-dark` -> emits `.dark` for root variable overrides;
-- `@mixin light-dark <property>, <light-value>, <dark-value>` -> emits the normal property and a `.dark` override;
-- `@mixin host-light-dark <property>, <light-value>, <dark-value>` -> emits the normal property and a `:host-context(.dark)` override.
+- `@mixin dark` -> emits `&:where(.dark, .dark *)`;
+- `@mixin light-dark <property>, <light-value>, <dark-value>` -> emits the normal property and selector-mode dark override;
 - `@mixin truncate`, `@mixin line-clamp <lines>`, and `@mixin size <size>` -> safe CSS helper declarations.
 
 Forbidden mixin names:
@@ -386,8 +375,8 @@ Current count: 76 occurrences.
 
 Rules:
 
-- Component CSS dark mode: replace with `:host-context(.dark) ...`.
-- Global CSS dark mode: replace with `.dark ...`.
+- CSS rule dark mode: replace with project dark mixins.
+- Shared root variable dark mode may use `.dark` variable override blocks.
 - `@variant lg`: replace with nested `@media (--lg)`.
 - `@variant motion-safe`: replace with nested/native media query:
 
@@ -403,13 +392,13 @@ Examples:
 .card {
   border-color: var(--p-surface-200);
 
+  @mixin dark {
+    border-color: var(--p-surface-800);
+  }
+
   @media (--lg) {
     padding: 24px;
   }
-}
-
-:host-context(.dark) .card {
-  border-color: var(--p-surface-800);
 }
 ```
 

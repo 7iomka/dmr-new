@@ -21,9 +21,9 @@
 }
 
 .c-investment-stat-card__value {
-  @mixin light-dark color, var(--p-surface-900), var(--p-surface-50);
-
   font-size: var(--text-2xl);
   line-height: 1;
   font-weight: 700;
+
+  @mixin light-dark color, var(--p-surface-900), var(--p-surface-50);
 }

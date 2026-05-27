@@ -28,27 +28,50 @@
 /* -------------------------------------------------------------------------- */
 
 .c-form-control {
-  @apply relative z-10 flex flex-col gap-2;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .c-form-control__label {
-  @apply text-sm leading-none font-medium text-surface-700 dark:text-surface-300;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--p-surface-700);
+
+  @mixin dark {
+    color: var(--p-surface-300);
+  }
 }
 
 .c-form-control__label--section {
-  @apply text-xs font-bold uppercase tracking-wide text-surface-500;
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--p-surface-500);
 }
 
 .c-form-control__control {
-  @apply relative;
+  position: relative;
 }
 
 .c-form-control__field {
-  @apply relative;
+  position: relative;
 }
 
 .c-form-control__meta {
-  @apply text-sm text-surface-500 dark:text-surface-400;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  color: var(--p-surface-500);
+
+  @mixin dark {
+    color: var(--p-surface-400);
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -67,14 +90,49 @@
 }
 
 .c-form-control__icon-left {
-  @apply pointer-events-none absolute inset-y-px left-px flex items-center justify-center text-surface-400 dark:text-surface-500;
+  pointer-events: none;
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--p-surface-400);
   width: var(--c-form-control-icon-width);
   padding-inline: calc(var(--p-inputtext-padding-x) / 2);
+
+  @mixin dark {
+    color: var(--p-surface-500);
+  }
 }
 
 .c-form-control__icon-btn {
-  @apply absolute inset-y-px right-px z-10 inline-flex items-center justify-center text-surface-400 transition-colors hover:text-surface-700 dark:text-surface-500 dark:hover:text-surface-300;
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  right: 1px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--p-surface-400);
   width: var(--c-form-control-icon-width);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  &:hover {
+    color: var(--p-surface-700);
+
+    @mixin dark {
+      color: var(--p-surface-300);
+    }
+  }
+
+  @mixin dark {
+    color: var(--p-surface-500);
+  }
 }
 
 .c-form-control__field:has(.c-form-control__icon-btn) .c-form-control__input--password {
@@ -88,24 +146,31 @@
 /* -------------------------------------------------------------------------- */
 
 .c-form-control__select {
-  @apply w-full;
+  width: 100%;
 }
 
 .c-form-control-select__root {
   min-height: var(--c-form-control-input-min-height);
-  @apply w-full rounded-lg text-sm;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
 }
 
 .c-form-control-select__label {
-  @apply flex min-h-[inherit] items-center text-[length:inherit];
+  display: flex;
+  min-height: inherit;
+  align-items: center;
+  font-size: inherit;
 }
 
 .c-form-control-select__trigger {
-  @apply w-10;
+  width: 2.5rem;
 }
 
 .c-form-control-select__option {
-  @apply text-sm;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -115,27 +180,54 @@
 /* -------------------------------------------------------------------------- */
 
 .c-password-strength {
-  @apply mt-1 flex flex-col gap-2;
+  margin-top: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .c-password-strength__bars {
-  @apply grid grid-cols-4 gap-1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.25rem;
 }
 
 .c-password-strength__bar {
-  @apply h-1.5 rounded-full bg-surface-200 dark:bg-surface-800;
+  height: 0.375rem;
+  border-radius: 9999px;
+  background-color: var(--p-surface-200);
+
+  @mixin dark {
+    background-color: var(--p-surface-800);
+  }
 }
 
 .c-password-strength__bar.is-active {
-  @apply bg-primary-500/80 dark:bg-primary-400/80;
+  background-color: hsl(var(--hsl-primary-500) / 0.8);
+
+  @mixin dark {
+    background-color: hsl(var(--hsl-primary-400) / 0.8);
+  }
 }
 
 .c-password-strength__rules {
-  @apply grid gap-1 text-xs text-surface-500 dark:text-surface-400;
+  display: grid;
+  gap: 0.25rem;
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+  color: var(--p-surface-500);
+
+  @mixin dark {
+    color: var(--p-surface-400);
+  }
 }
 
 .c-password-strength__rule.is-ok {
-  @apply text-emerald-600 dark:text-emerald-400;
+  color: var(--p-emerald-600);
+
+  @mixin dark {
+    color: var(--p-emerald-400);
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -145,19 +237,36 @@
 /* -------------------------------------------------------------------------- */
 
 .c-input-otp {
-  @apply gap-2;
+  gap: 0.5rem;
 }
 
 .c-input-otp--center {
-  @apply items-center;
+  align-items: center;
 }
 
 .c-input-otp__field {
-  @apply h-[52px] w-[42px] rounded-lg text-lg font-bold text-surface-900 dark:text-surface-100;
+  height: 52px;
+  width: 42px;
+  border-radius: var(--radius-lg);
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+  font-weight: 700;
+  color: var(--p-surface-900);
+
+  @mixin dark {
+    color: var(--p-surface-100);
+  }
 }
 
 .c-input-otp__field.p-filled {
-  @apply border-primary-500/80 bg-primary-50/70 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400;
+  border-color: hsl(var(--hsl-primary-500) / 0.8);
+  background-color: hsl(var(--hsl-primary-50) / 0.7);
+  color: var(--p-primary-600);
+
+  @mixin dark {
+    background-color: hsl(var(--hsl-primary-900) / 0.2);
+    color: var(--p-primary-400);
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -187,35 +296,79 @@
 /* -------------------------------------------------------------------------- */
 
 .c-phone-country-select {
-  @apply h-full;
+  height: 100%;
 }
 
 .c-phone-country-select__root {
-  @apply h-full rounded-r-none border-0 bg-transparent text-surface-700 transition-colors dark:text-surface-200;
+  height: 100%;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-width: 0px;
+  background-color: transparent;
+  color: var(--p-surface-700);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  @mixin dark {
+    color: var(--p-surface-200);
+  }
 }
 
 .c-phone-country-select__root:hover {
-  @apply bg-surface-100 dark:bg-surface-900 border-[--p-inputtext-hover-border-color];
+  border-color: var(--p-inputtext-hover-border-color);
+  background-color: var(--p-surface-100);
+
+  @mixin dark {
+    background-color: var(--p-surface-900);
+  }
 }
 
 .c-phone-country-select__root:focus-visible {
-  @apply outline-none ring-0;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: none;
 }
 
 .c-phone-country-select__label {
-  @apply flex h-full min-w-0 items-center py-2 pl-3 pr-1 text-sm font-semibold;
+  display: flex;
+  height: 100%;
+  min-width: 0px;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.25rem;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 600;
 }
 
 .c-phone-country-select__trigger {
-  @apply h-full w-auto py-2 pl-1 pr-2;
+  height: 100%;
+  width: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.25rem;
+  padding-right: 0.5rem;
 }
 
 .c-phone-country-select__icon {
-  @apply h-[11px] w-[11px] shrink-0 text-surface-500 transition-transform duration-200 dark:text-surface-400;
+  height: 11px;
+  width: 11px;
+  flex-shrink: 0;
+  color: var(--p-surface-500);
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+
+  @mixin dark {
+    color: var(--p-surface-400);
+  }
 }
 
 .c-phone-country-select__root[aria-expanded='true'] .c-phone-country-select__icon {
-  @apply rotate-180;
+  transform: rotate(180deg);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -225,36 +378,72 @@
 /* -------------------------------------------------------------------------- */
 
 .c-phone-country-select__panel {
-  @apply overflow-hidden rounded-xl;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
 }
 
 .c-phone-country-select__header {
-  @apply border-b border-surface-200 p-0 dark:border-surface-700;
+  border-bottom-width: 1px;
+  border-color: var(--p-surface-200);
+  padding: 0px;
+
+  @mixin dark {
+    border-color: var(--p-surface-700);
+  }
 }
 
 .c-phone-country-select__filter {
-  @apply rounded-none border-none shadow-none;
+  border-radius: 0px;
+  border-style: none;
+  box-shadow: none;
 }
 
 .c-phone-country-select__list-container {
-  @apply max-h-64;
+  max-height: 16rem;
 }
 
 .c-phone-country-select__list {
-  @apply flex flex-col gap-0.5 p-1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.25rem;
 }
 
 .c-phone-country-select__option {
-  @apply rounded-md px-3 py-2.5 text-sm text-surface-800 transition-colors dark:text-surface-100;
+  border-radius: var(--radius-md);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  color: var(--p-surface-800);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+
+  @mixin dark {
+    color: var(--p-surface-100);
+  }
 }
 
 .c-phone-country-select__option:hover,
 .c-phone-country-select__option:focus-visible {
-  @apply bg-surface-100 dark:bg-surface-800;
+  background-color: var(--p-surface-100);
+
+  @mixin dark {
+    background-color: var(--p-surface-800);
+  }
 }
 
 .c-phone-country-select__option[aria-selected='true'] {
-  @apply bg-primary-100/80 text-surface-900 dark:bg-primary-900/35 dark:text-primary-100;
+  background-color: hsl(var(--hsl-primary-100) / 0.8);
+  color: var(--p-surface-900);
+
+  @mixin dark {
+    background-color: hsl(var(--hsl-primary-900) / 0.35);
+    color: var(--p-primary-100);
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -264,11 +453,16 @@
 /* -------------------------------------------------------------------------- */
 
 .c-phone-country-current {
-  @apply inline-flex min-w-0 items-center gap-2;
+  display: inline-flex;
+  min-width: 0px;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .c-phone-country-current__flag {
-  @apply text-base leading-none;
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  line-height: 1;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -278,27 +472,47 @@
 /* -------------------------------------------------------------------------- */
 
 .c-phone-country-option {
-  @apply flex w-full items-center justify-between gap-3;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .c-phone-country-option__main {
-  @apply flex min-w-0 items-center gap-3;
+  display: flex;
+  min-width: 0px;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .c-phone-country-option__flag {
-  @apply text-base leading-none;
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  line-height: 1;
 }
 
 .c-phone-country-option__name {
-  @apply min-w-0 truncate text-sm;
+  min-width: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
 }
 
 .c-phone-country-option__code {
-  @apply text-sm text-surface-500 dark:text-surface-400;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  color: var(--p-surface-500);
+
+  @mixin dark {
+    color: var(--p-surface-400);
+  }
 }
 
 .c-copy-control {
-  @apply block;
+  display: block;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -309,31 +523,52 @@
 
 .c-copy-control__box {
   min-height: var(--c-form-control-input-min-height);
-  @apply flex items-center gap-3 focus-within:border-primary;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  &:focus-within {
+    border-color: var(--p-primary-color);
+  }
 }
 
 .c-copy-control__icon {
-  @apply size-4 shrink-0 text-surface-500;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--p-surface-500);
 }
 
 .c-copy-control__value {
-  @apply min-w-0  whitespace-nowrap flex-1 text-sm text-surface-900 dark:text-surface-50;
+  min-width: 0px;
+  flex: 1 1 0%;
+  white-space: nowrap;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  color: var(--p-surface-900);
+
+  @mixin dark {
+    color: var(--p-surface-50);
+  }
 }
 
 .c-copy-control__value--truncate {
-  @apply overflow-hidden text-ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .c-copy-control__value--scroll {
-  @apply overflow-x-auto;
+  overflow-x: auto;
 }
 
 code.c-copy-control__value {
-  @apply font-mono text-sm tracking-tight;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  letter-spacing: var(--tracking-tight);
 }
 
 .c-copy-control__action {
-  @apply shrink-0;
+  flex-shrink: 0;
 }
 
 .p-inputtext {

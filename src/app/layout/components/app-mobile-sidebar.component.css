@@ -2,6 +2,7 @@
   width: min(20rem, 100%);
   border-inline-end: 1px solid var(--p-surface-200);
   background: var(--p-content-background, var(--p-surface-0));
+
   @mixin dark {
     border-inline-end-color: var(--p-surface-800);
     background: var(--app-color-card);
@@ -14,6 +15,7 @@
   align-items: center;
   border-bottom: 1px solid var(--p-surface-200);
   padding-inline: 1rem;
+
   @mixin dark {
     border-bottom-color: var(--p-surface-800);
   }
@@ -31,6 +33,7 @@
 
 .app-mobile-sidebar__logo-image--light {
   display: none;
+
   @mixin dark {
     display: block;
   }
@@ -38,6 +41,7 @@
 
 .app-mobile-sidebar__logo-image--dark {
   display: block;
+
   @mixin dark {
     display: none;
   }

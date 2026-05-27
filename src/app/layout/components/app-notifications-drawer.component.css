@@ -72,13 +72,13 @@
   text-align: left;
   transition: background-color 150ms ease;
 
+  @mixin dark {
+    background: hsl(var(--hsl-surface-900) / 45%);
+  }
+
   &:focus-visible {
     outline: 2px solid var(--p-primary-500);
     outline-offset: 2px;
-  }
-
-  @mixin dark {
-    background: hsl(var(--hsl-surface-900) / 45%);
   }
 }
 
@@ -104,6 +104,7 @@
 
 .app-notifications-drawer__item--unread {
   background: hsl(var(--hsl-primary-50) / 70%);
+
   @mixin dark {
     background: hsl(var(--hsl-primary-950) / 25%);
   }
@@ -138,17 +139,19 @@
 }
 
 .app-notifications-drawer__item-title {
-  @mixin truncate;
-  @mixin light-dark color, var(--p-surface-800), var(--p-surface-100);
-
   font-size: var(--text-sm);
   line-height: var(--text-sm--line-height);
   font-weight: 600;
+
+  @mixin truncate;
+
+  @mixin light-dark color, var(--p-surface-800), var(--p-surface-100);
 }
 
 .app-notifications-drawer__item--unread .app-notifications-drawer__item-title {
   color: var(--p-surface-900);
   font-weight: 700;
+
   @mixin dark {
     color: var(--p-surface-0);
   }
@@ -160,6 +163,7 @@
   flex-shrink: 0;
   border-radius: 9999px;
   background: var(--p-primary-500);
+
   @mixin dark {
     background: var(--p-primary-400);
   }
@@ -190,6 +194,7 @@
   padding: 3.5rem 1.5rem;
   color: var(--p-surface-500);
   text-align: center;
+
   @mixin dark {
     color: var(--p-surface-400);
   }

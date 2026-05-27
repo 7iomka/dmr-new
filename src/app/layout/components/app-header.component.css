@@ -6,7 +6,7 @@
   border-bottom: 1px solid var(--p-surface-200);
   background: var(--app-color-card);
 
-  @mixin host-dark {
+  @mixin dark {
     border-bottom-color: var(--p-surface-800);
   }
 
@@ -35,7 +35,8 @@
   display: none;
   width: auto;
   height: 100%;
-  @mixin host-dark {
+
+  @mixin dark {
     display: block;
   }
 }
@@ -43,7 +44,8 @@
 .app-header__logo-dark {
   width: auto;
   height: 100%;
-  @mixin host-dark {
+
+  @mixin dark {
     display: none;
   }
 }
@@ -66,7 +68,7 @@
   margin-inline: 0.25rem;
   background: var(--p-surface-200);
 
-  @mixin host-dark {
+  @mixin dark {
     background: var(--p-surface-700);
   }
 

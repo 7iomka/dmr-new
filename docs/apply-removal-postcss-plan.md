@@ -82,7 +82,7 @@ Do not reintroduce a local PostCSS plugin unless `postcss-mixins` can no longer 
 
 ### `@mixin dark`
 
-Use only in global CSS or `ViewEncapsulation.None` component CSS.
+Use in global CSS, `ViewEncapsulation.None` CSS, and component-scoped CSS when a rule needs a dark override.
 
 Input:
 
@@ -103,72 +103,14 @@ Output:
   color: var(--p-surface-900);
 }
 
-.dark .card {
+.card:where(.dark, .dark *) {
   color: var(--p-surface-50);
 }
 ```
-
-### `@mixin host-dark`
-
-Use in component CSS with Angular style encapsulation enabled.
-
-Input:
-
-```css
-.card {
-  color: var(--p-surface-900);
-
-  @mixin host-dark {
-    color: var(--p-surface-50);
-  }
-}
-```
-
-Output:
-
-```css
-.card {
-  color: var(--p-surface-900);
-}
-
-:host-context(.dark) .card {
-  color: var(--p-surface-50);
-}
-```
-
-### `@mixin root-dark`
-
-Use for global root variable overrides.
-
-Input:
-
-```css
-:root {
-  --app-card-bg: var(--p-surface-0);
-
-  @mixin root-dark {
-    --app-card-bg: var(--p-surface-950);
-  }
-}
-```
-
-Output:
-
-```css
-:root {
-  --app-card-bg: var(--p-surface-0);
-}
-
-.dark {
-  --app-card-bg: var(--p-surface-950);
-}
-```
-
-Use the name `root-dark`, not `dark-root`.
 
 ### `@mixin light-dark`
 
-Use for single-property light/dark pairs in global CSS or `ViewEncapsulation.None`.
+Use for single-property light/dark pairs.
 
 Input:
 
@@ -185,31 +127,7 @@ Output:
   color: var(--p-surface-900);
 }
 
-.dark .card {
-  color: var(--p-surface-50);
-}
-```
-
-### `@mixin host-light-dark`
-
-Use for single-property light/dark pairs in encapsulated component CSS.
-
-Input:
-
-```css
-.card {
-  @mixin host-light-dark color, var(--p-surface-900), var(--p-surface-50);
-}
-```
-
-Output:
-
-```css
-.card {
-  color: var(--p-surface-900);
-}
-
-:host-context(.dark) .card {
+.card:where(.dark, .dark *) {
   color: var(--p-surface-50);
 }
 ```
@@ -345,24 +263,20 @@ Use explicit semantic separators instead of `divide-y` / `divide-x` helpers:
 ```css
 .transaction-list > :not(:last-child) {
   border-bottom: 1px solid var(--p-surface-200);
-}
 
-@mixin dark {
-  .transaction-list > :not(:last-child) {
+  @mixin dark {
     border-bottom-color: var(--p-surface-800);
   }
 }
 ```
 
-In component-scoped CSS, use `host-dark`:
+Use the same `dark` mixin in component-scoped CSS:
 
 ```css
 .rows > :not(:last-child) {
   border-bottom: 1px solid var(--p-surface-200);
-}
 
-@mixin host-dark {
-  .rows > :not(:last-child) {
+  @mixin dark {
     border-bottom-color: var(--p-surface-800);
   }
 }
@@ -373,12 +287,12 @@ In component-scoped CSS, use `host-dark`:
 ## Migration Sequence
 
 1. Keep `postcss-mixins` registered through JSON-compatible `mixinsFiles`.
-2. Keep dark helpers: `dark`, `host-dark`, `root-dark`, `light-dark`, `host-light-dark`.
+2. Keep dark helpers: `dark`, `light-dark`.
 3. Keep only safe structural helper mixins: `truncate`, `line-clamp`, `size`.
 4. Convert existing `@screen` to `@media (--*)`.
 5. Convert global/root variable patterns first because they reduce repeated color overrides.
 6. Convert low-risk shared global CSS modules under `src/styles/*.css`.
-7. Convert encapsulated component CSS separately, using `host-dark` / `host-light-dark`.
+7. Convert encapsulated component CSS separately, using `dark` / `light-dark`.
 8. Convert `ViewEncapsulation.None` component CSS as global/namespaced CSS, using `dark`.
 9. Convert high-volume migrated pages last.
 10. Replace touched `space-*` with `gap` and touched `divide-*` with explicit semantic separators.

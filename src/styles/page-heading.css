@@ -5,12 +5,12 @@
   gap: 0.25rem;
 }
 .c-page-heading__title {
-  @mixin light-dark color, var(--p-surface-900), var(--p-surface-50);
-
   font-size: var(--text-2xl);
   line-height: var(--text-2xl--line-height);
   font-weight: 700;
   letter-spacing: var(--tracking-tight);
+
+  @mixin light-dark color, var(--p-surface-900), var(--p-surface-50);
 
   @media (--lg) {
     font-size: var(--text-3xl);

@@ -1,12 +1,17 @@
 .c-investment-tabs__nav {
-  @apply rounded-xl bg-primary/6;
+  border-radius: var(--radius-xl);
+  background-color: hsl(var(--hsl-primary-color) / 0.06);
+
   @mixin dark {
     background-color: hsl(var(--hsl-primary-color) / 0.08);
   }
 }
 
 .c-investment-tabs__list {
-  @apply gap-2 rounded-xl p-1 border-none;
+  gap: 0.5rem;
+  border-radius: var(--radius-xl);
+  border-style: none;
+  padding: 0.25rem;
 }
 
 .c-investment-tabs__tab {
@@ -22,8 +27,7 @@
   display: inline-flex;
   align-items: center;
   line-height: 1;
-
-  @apply bg-white/75;
+  background-color: hsl(var(--hsl-white) / 0.75);
 
   @mixin dark {
     background-color: hsl(var(--hsl-primary-950) / 0.25);

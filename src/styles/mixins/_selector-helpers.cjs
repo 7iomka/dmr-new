@@ -72,15 +72,26 @@ const getTopLevelAnchor = (node) => {
 
 const createRule = (selector, nodes) => postcss.rule({ selector }).append(nodes.map((node) => node.clone()));
 
+const appendSelectorDarkVariant = (selector) => {
+  const pseudoElementMatches = Array.from(selector.matchAll(/::(?!ng-deep\b)[a-zA-Z-]+(?:\([^)]*\))?/g));
+  const pseudoElement = pseudoElementMatches.at(-1);
+
+  if (!pseudoElement || pseudoElement.index === undefined) {
+    return `${selector}:where(.dark, .dark *)`;
+  }
+
+  return `${selector.slice(0, pseudoElement.index)}:where(.dark, .dark *)${selector.slice(pseudoElement.index)}`;
+};
+
 const createDarkSelector = (selectorPrefix, selector) => {
   const selectors = splitArgs(selector);
 
+  if (selectorPrefix === '.dark') {
+    return selectors.map((item) => appendSelectorDarkVariant(item)).join(', ');
+  }
+
   return selectors
     .map((item) => {
-      if (selectorPrefix === ':host-context(.dark)' && item === ':host') {
-        return selectorPrefix;
-      }
-
       return `${selectorPrefix} ${item}`;
     })
     .join(', ');
@@ -112,18 +123,6 @@ const replaceWithDarkRule = (atRule, selectorPrefix) => {
   removeEmptyRuleAncestors(parent);
 };
 
-const replaceRootDark = (atRule) => {
-  if (!atRule.nodes) {
-    throw atRule.error('@mixin root-dark requires a declaration block');
-  }
-
-  const rule = createRule('.dark', atRule.nodes);
-  const parent = atRule.parent;
-  atRule.parent.parent.insertAfter(atRule.parent, rule);
-  atRule.remove();
-  removeEmptyRuleAncestors(parent);
-};
-
 const replaceLightDark = (atRule, selectorPrefix, params) => {
   const args = splitArgs(params);
 
@@ -142,6 +141,5 @@ const replaceLightDark = (atRule, selectorPrefix, params) => {
 
 module.exports = {
   replaceLightDark,
-  replaceRootDark,
   replaceWithDarkRule,
 };

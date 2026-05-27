@@ -1,5 +1,6 @@
 .c-rows {
   border-block: 1px solid var(--p-surface-200);
+
   @mixin dark {
     border-block-color: var(--p-surface-800);
   }
@@ -7,6 +8,7 @@
 
 .c-rows > :not(:last-child) {
   border-bottom: 1px solid var(--p-surface-200);
+
   @mixin dark {
     border-bottom-color: var(--p-surface-800);
   }
@@ -27,7 +29,7 @@
 }
 
 .c-row__value {
-  @mixin light-dark color, var(--p-surface-900), var(--p-surface-0);
-
   font-weight: 600;
+
+  @mixin light-dark color, var(--p-surface-900), var(--p-surface-0);
 }

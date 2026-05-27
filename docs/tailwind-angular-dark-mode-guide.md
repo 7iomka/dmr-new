@@ -146,32 +146,32 @@ Do not use Tailwind v4 CSS-first syntax such as `@reference` or `@variant`; this
 
 Component CSS should use direct declarations, CSS variables, nested CSS, and `@media (--*)` aliases when needed.
 
-For normal component-local selectors with style encapsulation enabled, use `:host-context(.dark)`.
+For normal component-local selectors with style encapsulation enabled, use the project dark mixin.
 
 ```css
 .block {
   color: var(--p-text-color);
   background: var(--p-surface-0);
-}
 
-:host-context(.dark) .block {
-  background: var(--p-surface-950);
+  @mixin dark {
+    background: var(--p-surface-950);
+  }
 }
 ```
 
 Do not rely on raw `.dark .foo` inside component-scoped CSS. Angular style scoping can make those selectors behave unexpectedly.
 
-For component-owned local variables, define defaults on `:host` and dark overrides on `:host-context(.dark)`:
+For component-owned local variables, define defaults on `:host` and dark overrides through the mixin:
 
 ```css
 :host {
   --c-card-bg: var(--p-surface-0);
   --c-card-border: var(--p-surface-200);
-}
 
-:host-context(.dark) {
-  --c-card-bg: var(--p-surface-950);
-  --c-card-border: var(--p-surface-800);
+  @mixin dark {
+    --c-card-bg: var(--p-surface-950);
+    --c-card-border: var(--p-surface-800);
+  }
 }
 
 .card {
@@ -205,31 +205,64 @@ For selectors containing:
 - combinations like `:host ::ng-deep ...`;
 - deep overrides of library internals or pseudo-elements;
 
-use separate dark rules instead of nested dark variants.
+use the project dark mixin inside the target rule.
 
 Use this pattern:
 
 ```css
 :host ::ng-deep .foo {
   background: var(--p-surface-0);
-}
 
-:host-context(.dark) ::ng-deep .foo {
-  background: var(--p-surface-950);
+  @mixin dark {
+    background: var(--p-surface-950);
+  }
 }
 ```
 
-Do **not** write duplicated host selectors such as:
+Do **not** write duplicated host selectors or raw dark ancestors such as:
 
 ```css
 :host-context(.dark) :host ::ng-deep .foo {
+  background: var(--p-surface-950);
+}
+
+.dark :host ::ng-deep .foo {
   background: var(--p-surface-950);
 }
 ```
 
 Use only one host anchor.
 
-For PrimeNG overlays or components rendered outside the component host, component-scoped selectors and variables may not reach the generated DOM. Prefer global style modules or explicit PrimeNG `styleClass` / PassThrough classes for those cases.
+For PrimeNG overlays or components rendered outside the component host, component-scoped selectors and variables may not reach the generated DOM. Prefer explicit PrimeNG `styleClass` / PassThrough classes when the overlay DOM does not receive Angular's `_ngcontent` attribute.
+
+The project dark mixins intentionally mirror Tailwind 3 `darkMode: 'selector'`. They emit `selector:where(.dark, .dark *)`, not `.dark selector` and not `:host-context(.dark) selector`.
+
+This matters for overlay content rendered with `appendTo="body"` or an equivalent PrimeNG option. The overlay is no longer a descendant of the Angular component host, but local template classes can still receive Angular's `_ngcontent` attribute. A selector such as `.feature-dialog__chip[_ngcontent]:where(.dark, .dark *)` keeps component scoping while matching a root `.dark` class.
+
+```css
+.feature-dialog__chip {
+  color: var(--p-surface-700);
+
+  @mixin dark {
+    color: var(--p-surface-200);
+  }
+}
+```
+
+Do not write a local nested `&:where(.dark, .dark *)` by hand. In this PostCSS pipeline, nested selectors with comma-bearing pseudo selectors can be expanded before Angular scoping in a way that reintroduces `.dark[_ngcontent] ...`. Use the mixin so the top-level selector is generated directly.
+
+```css
+.feature-dialog__chip {
+  @mixin dark {
+    color: var(--p-surface-200);
+  }
+}
+```
+
+Before choosing a dark mixin, ask:
+
+- Is this selector in normal global/component CSS? Use `dark`.
+- Is this selector for overlay DOM appended to `body` from a scoped component? Use `dark` on the overlay's local class; do not use raw `.dark ...` selectors.
 
 ---
 
@@ -281,31 +314,7 @@ Should compile like:
   color: var(--p-surface-900);
 }
 
-.dark .global-rule {
-  color: var(--p-surface-50);
-}
-```
-
-Component-scoped dark:
-
-```css
-.local-rule {
-  color: var(--p-surface-900);
-
-  @mixin host-dark {
-    color: var(--p-surface-50);
-  }
-}
-```
-
-Should compile like:
-
-```css
-.local-rule {
-  color: var(--p-surface-900);
-}
-
-:host-context(.dark) .local-rule {
+.global-rule:where(.dark, .dark *) {
   color: var(--p-surface-50);
 }
 ```
@@ -316,7 +325,7 @@ Root-variable dark overrides:
 :root {
   --app-example-bg: var(--p-surface-0);
 
-  @mixin root-dark {
+  @mixin dark {
     --app-example-bg: var(--p-surface-950);
   }
 }
@@ -329,12 +338,10 @@ Should compile like:
   --app-example-bg: var(--p-surface-0);
 }
 
-.dark {
+:root:where(.dark, .dark *) {
   --app-example-bg: var(--p-surface-950);
 }
 ```
-
-Use the name `root-dark`, not `dark-root`.
 
 Optional property helper:
 
@@ -344,7 +351,7 @@ Optional property helper:
 }
 ```
 
-Should compile to a normal declaration plus the correct dark selector for the selected context. Because global and component dark selectors differ, prefer explicit `light-dark` and `host-light-dark` names unless the custom plugin can reliably infer file context.
+Should compile to a normal declaration plus the project selector-mode dark override.
 
 Do not use native CSS `light-dark()` yet for app theme switching. It follows `color-scheme`, not directly `.dark`, and browser support does not match the current legacy Safari constraints.
 
@@ -413,10 +420,8 @@ For separators, write semantic CSS:
 ```css
 .rows > :not(:last-child) {
   border-bottom: 1px solid var(--p-surface-200);
-}
 
-@mixin host-dark {
-  .rows > :not(:last-child) {
+  @mixin dark {
     border-bottom-color: var(--p-surface-800);
   }
 }
@@ -443,8 +448,8 @@ If `truncate`, `line-clamp`, or `size` repeat, use the project PostCSS mixins. D
 
 - **Templates** -> Tailwind utilities are fine for unclear/one-off layout.
 - **Custom CSS** -> semantic selectors with direct CSS declarations and variables.
-- **Global CSS** -> use `.dark ...` normally.
-- **Component CSS** -> use direct CSS plus `:host-context(.dark)` where dark-mode scoping matters.
-- **Deep Angular/library overrides** -> use separate `:host-context(.dark) ::ng-deep ...` rules.
+- **Global CSS** -> use direct CSS plus `@mixin dark`; shared root variable blocks may use `.dark`.
+- **Component CSS** -> use direct CSS plus `@mixin dark`.
+- **Deep Angular/library overrides** -> use `@mixin dark` inside the target rule.
 - **Responsive CSS** -> use `@media (--*)` aliases from `postcss-tailwind-media`.
 - **Reusable CSS helpers** -> use project-owned PostCSS mixins, not Tailwind `@apply`.

@@ -6,14 +6,15 @@
 }
 
 .app-user-menu__name {
-  @mixin light-dark color, var(--p-surface-800), var(--p-surface-100);
-  @mixin truncate;
-
   max-width: 32ch;
   font-size: var(--text-sm);
   line-height: 1;
   font-weight: 700;
   text-transform: none;
+
+  @mixin light-dark color, var(--p-surface-800), var(--p-surface-100);
+
+  @mixin truncate;
 }
 
 .app-user-menu__id {

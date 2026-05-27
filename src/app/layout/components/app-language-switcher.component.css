@@ -9,25 +9,29 @@
   background: var(--p-surface-50);
   color: var(--p-surface-700);
 
+  @mixin dark {
+    border-color: var(--p-surface-700);
+    background: hsl(var(--hsl-surface-800) / 70%);
+    color: var(--p-surface-300);
+  }
+
   &:not(.p-disabled):hover {
     border-color: var(--p-surface-200);
     background: var(--p-surface-100);
+
+    @mixin dark {
+      border-color: var(--p-surface-600);
+      background: var(--p-surface-800);
+    }
   }
 
   &.p-focus {
     border-color: hsl(var(--hsl-primary-color) / 45%);
     box-shadow: 0 0 0 2px hsl(var(--hsl-primary-color) / 35%);
     outline: none;
-  }
 
-  @mixin dark {
-    border-color: var(--p-surface-700);
-    background: hsl(var(--hsl-surface-800) / 70%);
-    color: var(--p-surface-300);
-
-    &:not(.p-disabled):hover {
-      border-color: var(--p-surface-600);
-      background: var(--p-surface-800);
+    @mixin dark {
+      border-color: hsl(var(--hsl-primary-color) / 45%);
     }
   }
 }
@@ -150,25 +154,24 @@
     background-color 150ms ease,
     color 150ms ease;
 
+  @mixin dark {
+    color: var(--p-surface-100);
+  }
+
   &:not(.p-disabled):hover,
   &.p-focus {
     background: var(--p-surface-100);
+
+    @mixin dark {
+      background: hsl(var(--hsl-surface-800) / 80%);
+    }
   }
 
   &.p-select-option-selected {
     background: hsl(var(--hsl-primary-100) / 80%);
     color: var(--p-surface-900);
-  }
 
-  @mixin dark {
-    color: var(--p-surface-100);
-
-    &:not(.p-disabled):hover,
-    &.p-focus {
-      background: hsl(var(--hsl-surface-800) / 80%);
-    }
-
-    &.p-select-option-selected {
+    @mixin dark {
       background: hsl(var(--hsl-primary-900) / 35%);
       color: var(--p-primary-100);
     }
@@ -203,9 +206,9 @@
 
 .app-language-switcher__option-native-label,
 .app-language-switcher__option-english-label {
-  @mixin truncate;
-
   display: block;
+
+  @mixin truncate;
 }
 
 .app-language-switcher__option-native-label {

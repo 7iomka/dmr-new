@@ -32,7 +32,8 @@ const opacityScale = Object.fromEntries(
 );
 
 export default {
-  darkMode: ['class'],
+  // darkMode: ['variant', '.dark &'],
+  darkMode: 'selector',
 
   content: ['./src/**/*.{html,ts}'],
 

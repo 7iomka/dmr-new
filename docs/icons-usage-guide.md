@@ -9,15 +9,15 @@
 
 ---
 
-## 🎯 Core Principle
+## Core Principle
 
 The project uses a **strict icon system hierarchy**:
 
 1. **Lucide** → primary icon system (UI icons)
-2. **semantic-icons (Simple Icons)** → fallback for brands/socials
+2. **Local brand SVG paths** → fallback for brands/socials
 3. **PrimeIcons** → ONLY when strictly required by PrimeNG
 
-No other icon libraries are allowed.
+No other runtime icon libraries are allowed.
 
 ---
 
@@ -69,7 +69,7 @@ export class ExampleComponent {
 <lucide-icon [img]="icon"></lucide-icon>
 ```
 
-⚠️ Use dynamic icons only when icon is not known at build time.
+Use dynamic icons only when icon is not known at build time.
 
 ---
 
@@ -161,11 +161,11 @@ import { Plus } from '@lucide/angular';
 
 ---
 
-# 2. Secondary Icon System — semantic-icons (Simple Icons)
+# 2. Secondary Icon System — Local Brand SVG Paths
 
 ## Purpose
 
-Use `@semantic-icons/simple-icons` **only when Lucide does not provide the required icon**.
+Use local SVG path data when Lucide does not provide the required brand/platform icon.
 
 This typically applies to:
 
@@ -177,49 +177,80 @@ This typically applies to:
 
 ---
 
-## Library
+## Source
 
-```ts
-import { SiGithubIcon } from '@semantic-icons/simple-icons';
-```
+There is no installed runtime package for brand/social icons.
+
+When a brand icon is required:
+
+1. Prefer the brand owner's official SVG asset when available.
+2. Otherwise use the specific SVG path from Simple Icons as source material.
+3. Copy only the needed `path d` data into app code.
+4. Keep the copied icon local to the component unless the same icon is reused in multiple places.
+
+Do **not** install or import `@semantic-icons/simple-icons`. Its Angular package prebundles thousands of icons in dev mode and makes Chrome DevTools extremely slow.
 
 ---
 
-## Usage
+## Usage: Component-Local Icon Map
 
 ```ts
 import { Component } from '@angular/core';
-import { SiGithubIcon } from '@semantic-icons/simple-icons';
 
 @Component({
   standalone: true,
-  imports: [SiGithubIcon],
+  template: `
+    <a aria-label="Telegram" href="https://telegram.org/">
+      <svg
+        aria-hidden="true"
+        class="h-4 w-4"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path [attr.d]="brandIconPath('telegram')" />
+      </svg>
+    </a>
+  `,
 })
-export class ExampleComponent {}
+export class ExampleComponent {
+  protected brandIconPath(icon: BrandIcon): string {
+    return BRAND_ICON_PATHS[icon];
+  }
+}
+
+type BrandIcon = 'telegram';
+
+const BRAND_ICON_PATHS: Record<BrandIcon, string> = {
+  telegram: '...',
+};
 ```
 
-```html
-<svg siGithubIcon class="h-4 w-4"></svg>
-```
+Use this pattern for one-off footer/social/payment logos.
 
 ---
 
-## Naming Convention
+## Usage: Shared Registry
 
-- TypeScript import: `SiGithubIcon`
-- Template usage: `siGithubIcon`
+If the same brand icon is needed in multiple components, create or extend a small local registry, for example:
 
-Rules:
+```ts
+// src/app/shared/icons/brand-icons.ts
+export type BrandIconName = 'telegram' | 'instagram' | 'youtube';
 
-- prefix → `Si`
-- suffix → `Icon`
-- template → lowerCamelCase
+export const BRAND_ICON_PATHS: Record<BrandIconName, string> = {
+  telegram: '...',
+  instagram: '...',
+  youtube: '...',
+};
+```
+
+Only add icons that are actually used by the app.
 
 ---
 
 ## When to use
 
-Use semantic-icons ONLY when:
+Use local brand SVG paths ONLY when:
 
 - icon is brand-specific
 - icon is not available in Lucide
@@ -245,9 +276,13 @@ Examples:
 ## Rules
 
 - fallback only — Lucide is still primary
-- import icons individually
-- add used icons to component `imports`
-- do NOT wrap in custom components
+- copy only the exact SVG path(s) needed
+- keep path maps typed with a string-literal union
+- use `viewBox="0 0 24 24"` unless the source asset requires another viewBox
+- use `fill="currentColor"` for monochrome brand icons unless the UI intentionally needs official brand colors
+- keep one-off icons local to the component
+- create a shared local registry only after reuse appears
+- do NOT install `@semantic-icons/simple-icons`
 - do NOT mix with other icon libraries
 - do NOT use for generic UI icons
 
@@ -260,38 +295,59 @@ Examples:
 ```ts
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { SiTelegramIcon } from '@semantic-icons/simple-icons';
 
 @Component({
   standalone: true,
-  imports: [ButtonModule, SiTelegramIcon],
+  imports: [ButtonModule],
   template: `
     <p-button severity="secondary" variant="outlined">
-      <svg siTelegramIcon class="h-4.5 w-4.5" pButtonIcon></svg>
+      <svg class="h-4.5 w-4.5" fill="currentColor" pButtonIcon viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path [attr.d]="brandIconPath('telegram')" />
+      </svg>
       <span pButtonLabel>Telegram</span>
     </p-button>
   `,
 })
-export class ExampleComponent {}
+export class ExampleComponent {
+  protected brandIconPath(icon: BrandIcon): string {
+    return BRAND_ICON_PATHS[icon];
+  }
+}
+
+type BrandIcon = 'telegram';
+
+const BRAND_ICON_PATHS: Record<BrandIcon, string> = {
+  telegram: '...',
+};
 ```
 
 ### List item
 
 ```ts
 import { Component } from '@angular/core';
-import { SiGithubIcon } from '@semantic-icons/simple-icons';
 
 @Component({
   standalone: true,
-  imports: [SiGithubIcon],
   template: `
     <div class="flex items-center gap-2">
-      <svg siGithubIcon class="h-4 w-4"></svg>
+      <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path [attr.d]="brandIconPath('github')" />
+      </svg>
       <span>GitHub</span>
     </div>
   `,
 })
-export class ExampleComponent {}
+export class ExampleComponent {
+  protected brandIconPath(icon: BrandIcon): string {
+    return BRAND_ICON_PATHS[icon];
+  }
+}
+
+type BrandIcon = 'github';
+
+const BRAND_ICON_PATHS: Record<BrandIcon, string> = {
+  github: '...',
+};
 ```
 
 ---
@@ -299,10 +355,14 @@ export class ExampleComponent {}
 ## ❌ Do NOT
 
 ```html
-<svg siChevronRightIcon></svg>
+<svg siTelegramIcon></svg>
 ```
 
-Do NOT use semantic-icons for:
+```ts
+import { SiTelegramIcon } from '@semantic-icons/simple-icons';
+```
+
+Do NOT use local brand SVG paths for:
 
 - arrows
 - navigation
@@ -335,7 +395,7 @@ Use ONLY when:
 # 4. Priority Order
 
 1. Lucide
-2. semantic-icons (only for brands/socials)
+2. Local brand SVG paths (only for brands/socials)
 3. PrimeIcons (restricted)
 
 ---
@@ -349,8 +409,8 @@ When generating Angular UI:
 3. Lucide icons must be imported with the `Lucide` prefix
 4. Used icon directives must be added to component `imports`
 5. Use dynamic Lucide icons only if required
-6. If icon is missing and is brand/social → use `@semantic-icons/simple-icons`
-7. semantic-icons must also be added to component `imports`
+6. If icon is missing and is brand/social → use a local typed SVG path map
+7. Do not install or import `@semantic-icons/simple-icons`
 8. Use the `pButtonIcon` helper directive when you define svg icon inside p-button, except some cases when you have to use PrimeNG `#icon` slot
 9. Do NOT use PrimeIcons unless required
 10. Do NOT create wrapper components
@@ -362,7 +422,7 @@ When generating Angular UI:
 ## Summary
 
 - Lucide → UI icons
-- semantic-icons → brands/socials (fallback)
+- local brand SVG paths → brands/socials (fallback)
 - PrimeIcons → rare edge cases
 
 Strict hierarchy must be preserved.

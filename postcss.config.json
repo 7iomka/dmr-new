@@ -10,11 +10,6 @@
     "tailwindcss/nesting": {},
     "tailwindcss": {},
     "autoprefixer": {},
-
-    "@csstools/postcss-is-pseudo-class": {
-      "preserve": true
-    },
-
     "postcss-pxtorem": {
       "rootValue": 16,
       "unitPrecision": 5,

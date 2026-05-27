@@ -7,7 +7,7 @@
   background: var(--app-color-card);
   padding: 3rem 0 2rem;
 
-  @mixin host-dark {
+  @mixin dark {
     border-top-color: var(--p-surface-800);
   }
 }
@@ -44,7 +44,8 @@
   display: none;
   width: auto;
   height: 3rem;
-  @mixin host-dark {
+
+  @mixin dark {
     display: block;
   }
 }
@@ -52,7 +53,8 @@
 .app-footer__logo-dark {
   width: auto;
   height: 3rem;
-  @mixin host-dark {
+
+  @mixin dark {
     display: none;
   }
 }
@@ -62,7 +64,7 @@
   font-size: var(--text-sm);
   line-height: 1.5rem;
 
-  @mixin host-light-dark color, var(--p-surface-600), var(--p-surface-300);
+  @mixin light-dark color, var(--p-surface-600), var(--p-surface-300);
 }
 
 .app-footer__socials {
@@ -93,7 +95,7 @@
   line-height: var(--text-sm--line-height);
   font-weight: 700;
 
-  @mixin host-light-dark color, var(--p-surface-900), var(--p-surface-50);
+  @mixin light-dark color, var(--p-surface-900), var(--p-surface-50);
 }
 
 .app-footer__col-title-divider {
@@ -101,7 +103,7 @@
   width: 2rem;
   height: 1px;
 
-  @mixin host-light-dark background, var(--p-surface-300), var(--p-surface-700);
+  @mixin light-dark background, var(--p-surface-300), var(--p-surface-700);
 }
 
 .app-footer__links {
@@ -116,10 +118,10 @@
   line-height: var(--text-sm--line-height);
   transition: color 150ms ease;
 
-  @mixin host-light-dark color, var(--p-surface-600), var(--p-surface-300);
+  @mixin light-dark color, var(--p-surface-600), var(--p-surface-300);
 
   &:hover {
-    @mixin host-light-dark color, var(--p-primary-600), var(--p-primary-300);
+    @mixin light-dark color, var(--p-primary-600), var(--p-primary-300);
   }
 }
 
@@ -127,7 +129,7 @@
   border-top: 1px solid var(--p-surface-200);
   padding-top: 1.5rem;
 
-  @mixin host-dark {
+  @mixin dark {
     border-top-color: var(--p-surface-800);
   }
 }
@@ -136,5 +138,5 @@
   font-size: var(--text-xs);
   line-height: var(--text-xs--line-height);
 
-  @mixin host-light-dark color, var(--p-surface-500), var(--p-surface-400);
+  @mixin light-dark color, var(--p-surface-500), var(--p-surface-400);
 }

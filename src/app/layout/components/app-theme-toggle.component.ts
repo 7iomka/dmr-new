@@ -26,5 +26,5 @@ export class AppThemeToggleComponent {
 
   protected readonly themeToggleIcon = computed(() => (this.isDark() ? LucideSun : LucideMoon));
 
-  protected readonly buttonClass = computed(() => (this.isDark() ? 'text-yellow-500' : ''));
+  protected readonly buttonClass = computed(() => (this.isDark() ? '!text-yellow-500' : ''));
 }

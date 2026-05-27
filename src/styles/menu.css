@@ -37,7 +37,8 @@
   --c-menu-item-icon-color: var(--p-surface-500);
   --c-menu-item-icon-focus-color: var(--p-surface-600);
   --c-menu-item-focus-background: var(--p-surface-50);
-  @mixin root-dark {
+
+  @mixin dark {
     --c-menu-background: var(--p-surface-900);
     --c-menu-border-color: var(--p-surface-800);
     --c-menu-shadow: 0 10px 25px -5px hsl(var(--hsl-black) / 35%), 0 8px 10px -6px hsl(var(--hsl-black) / 25%);

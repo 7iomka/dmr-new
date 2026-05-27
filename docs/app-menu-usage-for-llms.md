@@ -25,7 +25,7 @@ Using `app-menu` prevents style drift and repeated one-off templates.
 ## Icon policy
 
 1. **Primary**: Lucide icons
-2. **Secondary**: `@semantic-icons/simple-icons` via `iconTemplate` (brands, socials, payment systems, crypto, logos)
+2. **Secondary**: local brand SVG paths via `iconTemplate` (brands, socials, payment systems, crypto, logos)
 3. **Restricted**: PrimeIcons only when explicitly enabled via `[allowPrimeIcons]="true"` and only if no better alternative exists
 
 ## Important command-menu behavior
@@ -51,17 +51,21 @@ protected readonly menuItems = computed<AppMenuItem[]>(() =>
 );
 ```
 
-## Custom icon pattern (Semantic Icons)
+## Custom icon pattern (brand SVG)
 
 ```html
 <ng-template #telegramIcon>
-  <svg siTelegramIcon class="h-4 w-4"></svg>
+  <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path [attr.d]="brandIconPath('telegram')" />
+  </svg>
 </ng-template>
 ```
 
 ```ts
 { label: 'Telegram', iconTemplate: this.telegramIcon }
 ```
+
+Use the brand icon policy from `./icons-usage-guide.md`: copy only the needed SVG path from an official brand asset or Simple Icons source material, and do not install/import `@semantic-icons/simple-icons`.
 
 ## References
 

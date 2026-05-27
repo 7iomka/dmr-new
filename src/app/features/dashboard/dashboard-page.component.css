@@ -1,33 +1,75 @@
 /* Chart demo */
 .dash-chart-shell {
-  @apply rounded-lg border border-surface-200 bg-surface-0 p-5 dark:border-surface-800 dark:bg-surface-950/30;
+  border-radius: var(--radius-lg);
+  border-width: 1px;
+  border-color: var(--p-surface-200);
+  background-color: var(--p-surface-0);
+  padding: 1.25rem;
+
+  @mixin dark {
+    border-color: var(--p-surface-800);
+    background-color: hsl(var(--hsl-surface-950) / 0.3);
+  }
 }
 
 .dash-chart-legend {
-  @apply mb-4 flex items-center justify-center gap-6 text-sm font-semibold text-surface-500;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 600;
+  color: var(--p-surface-500);
 }
 
 .dash-chart-legend .dot {
-  @apply mr-2 inline-block h-3 w-3 rounded-full align-middle;
+  margin-right: 0.5rem;
+  display: inline-block;
+  height: 0.75rem;
+  width: 0.75rem;
+  border-radius: 9999px;
+  vertical-align: middle;
 }
 
 .dash-chart-legend .dot-blue {
-  @apply bg-blue-500;
+  background-color: var(--p-sky-500);
 }
 
 .dash-chart-legend .dot-green {
-  @apply bg-primary-500;
+  background-color: var(--p-primary-500);
 }
 
 .dash-chart-placeholder {
-  @apply flex h-[260px] items-center justify-center rounded-lg
-  border border-dashed border-surface-300 text-sm font-medium text-surface-500 dark:border-surface-700;
+  display: flex;
+  height: 260px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  border-width: 1px;
+  border-style: dashed;
+  border-color: var(--p-surface-300);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 500;
+  color: var(--p-surface-500);
+
+  @mixin dark {
+    border-color: var(--p-surface-700);
+  }
 }
 
 /* Table */
 .dashboard-table-shell .p-datatable-thead > tr > th,
 .dashboard-table-shell .p-datatable-tbody > tr > td {
-  @apply border-surface-200 text-sm dark:border-surface-700;
+  border-color: var(--p-surface-200);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+
+  @mixin dark {
+    border-color: var(--p-surface-700);
+  }
 }
 
 .dashboard-table-shell .p-datatable-thead > tr > th,

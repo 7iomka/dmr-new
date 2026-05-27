@@ -8,7 +8,8 @@
 
   --c-pill-tabs-nav-primary-active-bg: var(--p-button-primary-background);
   --c-pill-tabs-nav-primary-active-color: var(--p-button-primary-color);
-  @mixin root-dark {
+
+  @mixin dark {
     --c-pill-tabs-nav-bg: hsl(var(--hsl-surface-800) / 72%);
     --c-pill-tabs-nav-tab-color: var(--p-surface-400);
     --c-pill-tabs-nav-tab-hover-color: var(--p-surface-200);

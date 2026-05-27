@@ -16,7 +16,8 @@
   background: hsl(var(--hsl-primary-500) / 15%);
   filter: blur(var(--blur-3xl, 64px));
   pointer-events: none;
-  @mixin host-dark {
+
+  @mixin dark {
     display: block;
   }
 }
@@ -28,7 +29,8 @@
   border: 1px solid hsl(var(--hsl-surface-900) / 15%);
   background: var(--p-surface-0);
   box-shadow: var(--p-card-shadow, 0 1px 3px hsl(var(--hsl-black) / 8%));
-  @mixin host-dark {
+
+  @mixin dark {
     border-color: hsl(var(--hsl-surface-0) / 10%);
     background: linear-gradient(180deg, var(--p-surface-900) 0%, var(--p-surface-950) 100%);
     box-shadow: 0 20px 46px hsl(var(--hsl-black) / 52%);
@@ -44,7 +46,8 @@
   height: 1px;
   background: linear-gradient(90deg, transparent, hsl(var(--hsl-primary-400) / 70%), transparent);
   pointer-events: none;
-  @mixin host-dark {
+
+  @mixin dark {
     background: linear-gradient(90deg, transparent, hsl(var(--hsl-primary-500) / 70%), transparent);
   }
 }
@@ -59,7 +62,8 @@
     radial-gradient(70% 75% at 100% 0%, hsl(var(--hsl-primary-500) / 14%), transparent 62%),
     radial-gradient(55% 60% at 0% 100%, hsl(var(--hsl-primary-500) / 8%), transparent 70%);
   pointer-events: none;
-  @mixin host-dark {
+
+  @mixin dark {
     display: block;
   }
 }
@@ -69,7 +73,11 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  @apply p-5 sm:p-7;
+  padding: 1.25rem;
+
+  @media (--sm) {
+    padding: 1.75rem;
+  }
 }
 :host ::ng-deep .auth-card .p-card-content {
   display: flex;
@@ -82,7 +90,8 @@
   display: none;
   border-radius: 9999px;
   pointer-events: none;
-  @mixin host-dark {
+
+  @mixin dark {
     display: block;
   }
 }
@@ -125,7 +134,8 @@
   color: var(--p-primary-700);
   border: 1px solid hsl(var(--hsl-primary-500) / 44%);
   background: linear-gradient(180deg, var(--p-primary-100), var(--p-primary-200));
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-primary-300);
     border-color: hsl(var(--hsl-primary-500) / 45%);
     background: linear-gradient(180deg, hsl(var(--hsl-primary-900) / 46%), hsl(var(--hsl-primary-950) / 78%));
@@ -138,7 +148,8 @@
   line-height: 1.2;
   font-weight: 700;
   color: var(--p-surface-900);
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-surface-0);
   }
 }
@@ -175,7 +186,8 @@
   background: var(--p-surface-0);
   padding: 0.875rem 1rem;
   transition: all 0.2s ease;
-  @mixin host-dark {
+
+  @mixin dark {
     border-color: hsl(var(--hsl-surface-600) / 72%);
     background: hsl(var(--hsl-surface-900) / 45%);
   }
@@ -193,7 +205,8 @@
 .auth-method-btn:hover {
   transform: translateY(-2px);
   border-color: hsl(var(--hsl-primary-500) / 65%);
-  @mixin host-dark {
+
+  @mixin dark {
     box-shadow: 0 8px 22px hsl(var(--hsl-primary-500) / 13%);
   }
 }
@@ -205,7 +218,8 @@
 .auth-method-btn-primary {
   border-color: hsl(var(--hsl-primary-300) / 70%);
   background: linear-gradient(90deg, var(--p-primary-50), var(--p-primary-100));
-  @mixin host-dark {
+
+  @mixin dark {
     border-color: hsl(var(--hsl-primary-500) / 40%);
     background: linear-gradient(90deg, hsl(var(--hsl-primary-950) / 35%), hsl(var(--hsl-primary-900) / 25%));
   }
@@ -237,7 +251,8 @@
   border: 1px solid hsl(var(--hsl-surface-300) / 70%);
   background: hsl(var(--hsl-surface-0) / 80%);
   color: var(--p-surface-500);
-  @mixin host-dark {
+
+  @mixin dark {
     border-color: hsl(var(--hsl-surface-600) / 66%);
     background: hsl(var(--hsl-surface-900) / 70%);
     color: var(--p-surface-300);
@@ -246,14 +261,16 @@
 
 .auth-method-btn-primary .auth-method-title {
   color: var(--p-surface-900);
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-surface-0);
   }
 }
 
 .auth-method-btn-primary .auth-method-desc {
   color: var(--p-surface-600);
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-surface-300);
   }
 }
@@ -262,7 +279,8 @@
   border-color: hsl(var(--hsl-primary-300) / 70%);
   background: var(--p-primary-100);
   color: var(--p-primary-700);
-  @mixin host-dark {
+
+  @mixin dark {
     border-color: hsl(var(--hsl-primary-600) / 50%);
     background: hsl(var(--hsl-primary-900) / 35%);
     color: var(--p-primary-300);
@@ -273,7 +291,8 @@
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--p-surface-900);
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-surface-0);
   }
 }
@@ -281,7 +300,8 @@
 .auth-method-desc {
   font-size: 0.75rem;
   color: var(--p-surface-500);
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-surface-400);
   }
 }
@@ -291,7 +311,8 @@
   height: 1rem;
   color: var(--p-surface-400);
   transition: all 0.2s ease;
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-surface-500);
   }
 }
@@ -306,7 +327,11 @@
   z-index: 1;
   display: flex;
   gap: 0.75rem;
-  @apply flex-col md:flex-row;
+  flex-direction: column;
+
+  @media (--md) {
+    flex-direction: row;
+  }
 }
 
 .auth-divider {
@@ -314,7 +339,8 @@
   z-index: 1;
   border-top: 1px solid var(--p-surface-200);
   padding-top: 1rem;
-  @mixin host-dark {
+
+  @mixin dark {
     border-top-color: hsl(var(--hsl-surface-700) / 85%);
   }
 }
@@ -330,7 +356,8 @@
 .auth-muted {
   font-size: 0.875rem;
   color: var(--p-surface-500);
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-surface-400);
   }
 }
@@ -338,14 +365,16 @@
 .auth-link {
   color: var(--p-primary-600);
   text-decoration: none;
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-primary-400);
   }
 }
 
 .auth-link:hover {
   color: var(--p-primary-700);
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-primary-300);
   }
 }
@@ -355,7 +384,8 @@
   z-index: 1;
   font-size: 0.75rem;
   color: var(--p-surface-500);
-  @mixin host-dark {
+
+  @mixin dark {
     color: var(--p-surface-400);
   }
 }

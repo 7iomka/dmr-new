@@ -8,7 +8,7 @@
   border-right: 1px solid var(--p-surface-200);
   background: var(--app-color-card);
 
-  @mixin host-dark {
+  @mixin dark {
     border-right-color: var(--p-surface-800);
   }
 
@@ -36,23 +36,21 @@
     background-color 150ms ease,
     border-color 150ms ease;
 
-  &:hover {
-    background: var(--p-surface-200);
-  }
-
   @media (--lg) {
     display: flex;
   }
 
-  @mixin host-dark {
+  @mixin dark {
     border-color: var(--p-surface-700);
     background: var(--p-surface-800);
   }
-}
 
-.app-sidebar__toggle:hover {
-  @mixin host-dark {
-    background: var(--p-surface-700);
+  &:hover {
+    background: var(--p-surface-200);
+
+    @mixin dark {
+      background: var(--p-surface-700);
+    }
   }
 }
 
@@ -106,14 +104,16 @@
 
 .app-sidebar__logo-full--light {
   display: none;
-  @mixin host-dark {
+
+  @mixin dark {
     display: block;
   }
 }
 
 .app-sidebar__logo-full--dark {
   display: block;
-  @mixin host-dark {
+
+  @mixin dark {
     display: none;
   }
 }
@@ -150,8 +150,6 @@
 }
 
 .app-sidebar__link {
-  @mixin host-light-dark color, var(--p-surface-500), var(--p-surface-400);
-
   display: flex;
   width: 100%;
   align-items: center;
@@ -159,12 +157,15 @@
   border-radius: var(--radius-lg);
   padding: 0.75rem 0.75rem 0.75rem 1rem;
   transition: all var(--sidebar-transition-duration) var(--sidebar-transition-timing);
+
+  @mixin light-dark color, var(--p-surface-500), var(--p-surface-400);
 }
 
 .app-sidebar__link:hover {
   background: var(--p-surface-50);
   color: var(--p-surface-900);
-  @mixin host-dark {
+
+  @mixin dark {
     background: hsl(var(--hsl-surface-800) / 50%);
     color: var(--p-surface-0);
   }
@@ -173,7 +174,8 @@
 .app-sidebar__link[data-active='true'] {
   background: var(--p-primary-50);
   color: var(--p-primary-500);
-  @mixin host-dark {
+
+  @mixin dark {
     background: hsl(var(--hsl-primary-800) / 50%);
     color: var(--p-primary-400);
   }

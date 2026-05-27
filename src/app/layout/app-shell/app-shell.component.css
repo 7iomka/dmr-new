@@ -74,8 +74,6 @@
 }
 
 .app-shell__chat-fab {
-  @mixin host-light-dark background-color, hsl(var(--hsl-surface-0) / 70%), hsl(var(--hsl-surface-900) / 60%);
-
   pointer-events: auto;
   position: relative;
   display: flex;
@@ -92,14 +90,16 @@
     transform 150ms ease,
     box-shadow 150ms ease;
 
-  &:hover {
-    transform: translateY(-0.125rem);
-    box-shadow: var(--shadow-md);
-  }
+  @mixin light-dark background-color, hsl(var(--hsl-surface-0) / 70%), hsl(var(--hsl-surface-900) / 60%);
 
   @media (--xl) {
     width: 3rem;
     height: 3rem;
+  }
+
+  &:hover {
+    transform: translateY(-0.125rem);
+    box-shadow: var(--shadow-md);
   }
 }
 
@@ -145,7 +145,6 @@
   align-items: center;
   justify-content: center;
   border: 1px solid;
-  @mixin host-light-dark border-color, hsl(var(--hsl-surface-0) / 70%), hsl(var(--hsl-surface-900) / 70%);
 
   border-radius: 9999px;
   background: var(--p-primary-color);
@@ -155,6 +154,8 @@
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   box-shadow: var(--shadow-sm);
+
+  @mixin light-dark border-color, hsl(var(--hsl-surface-0) / 70%), hsl(var(--hsl-surface-900) / 70%);
 
   @media (--xl) {
     width: 1.5rem;
