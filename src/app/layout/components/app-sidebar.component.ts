@@ -66,6 +66,6 @@ export class AppSidebarComponent {
   private readonly router = inject(Router);
 
   protected isActive(item: NavItem): boolean {
-    return this.router.url === item.route;
+    return this.router.url === item.route || this.router.url.startsWith(`${item.route}/`);
   }
 }

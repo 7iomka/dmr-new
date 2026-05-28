@@ -80,6 +80,6 @@ export class AppMobileSidebarComponent {
   }
 
   protected isRouteActive(route: string): boolean {
-    return this.router.url === route;
+    return this.router.url === route || this.router.url.startsWith(`${route}/`);
   }
 }

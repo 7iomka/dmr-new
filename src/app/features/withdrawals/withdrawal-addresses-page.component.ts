@@ -1,7 +1,8 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LucideCheck, LucideDynamicIcon, LucidePlusCircle, LucideTrash2 } from '@lucide/angular';
+import { RouterLink } from '@angular/router';
+import { LucideCheck, LucideDynamicIcon, LucideList, LucidePlusCircle, LucideTrash2 } from '@lucide/angular';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
@@ -70,6 +71,7 @@ const OTP_ERROR_MESSAGES: FormControlErrorMessages = {
     DialogModule,
     TagModule,
     ReactiveFormsModule,
+    RouterLink,
     LucideDynamicIcon,
     AppAlertComponent,
     FormControlSelectComponent,
@@ -329,6 +331,7 @@ export class WithdrawalAddressesPageComponent {
       .subscribe((response) => this.addresses.set(response));
   }
 
+  protected readonly listIcon = LucideList;
   protected readonly plusCircleIcon = LucidePlusCircle;
   protected readonly checkIcon = LucideCheck;
   protected readonly trashIcon = LucideTrash2;

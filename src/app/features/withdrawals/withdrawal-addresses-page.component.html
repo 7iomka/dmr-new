@@ -1,4 +1,4 @@
-<section class="c-page-heading withdrawals-addresses-heading">
+<section class="c-page-heading c-page-heading--with-actions">
   <div>
     <h1 class="c-page-heading__title">Адреса для вывода</h1>
     <p class="c-page-heading__subtitle">
@@ -6,7 +6,12 @@
     </p>
   </div>
 
-  <div class="withdrawals-addresses-heading__action">
+  <div class="c-page-heading__actions">
+    <a pButton routerLink="/withdrawals" severity="secondary" [outlined]="true">
+      <svg class="h-4 w-4" pButtonIcon [lucideIcon]="listIcon"></svg>
+      <span pButtonLabel>История выводов</span>
+    </a>
+
     <p-button type="button" (onClick)="openAddDialog()">
       <svg class="h-4 w-4" pButtonIcon [lucideIcon]="plusCircleIcon"></svg>
       <span pButtonLabel>Добавить адрес</span>
