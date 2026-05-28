@@ -65,15 +65,15 @@
   z-index: 10;
   display: flex;
   min-height: 100%;
-  min-width: 0px;
+  min-width: 0;
   flex-direction: column;
   gap: 1.5rem;
 }
 
 .partners-summary-card::after {
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: 0;
+  top: 0;
   height: 7rem;
   width: 7rem;
   border-radius: 9999px;
@@ -99,7 +99,7 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  gap: 0px;
+  gap: 0;
   border-radius: var(--radius-lg);
 }
 
@@ -183,7 +183,7 @@
 
 .partners-summary-card__footer--empty {
   border-top-color: transparent;
-  padding-top: 0px;
+  padding-top: 0;
 
   @mixin dark {
     border-top-color: transparent;
@@ -216,7 +216,7 @@
 .partners-links-card::before {
   position: absolute;
   left: -2.5rem;
-  bottom: 0px;
+  bottom: 0;
   height: 7rem;
   width: 7rem;
   border-radius: 9999px;
@@ -229,7 +229,7 @@
 .partners-links-card::after {
   position: absolute;
   right: -1.5rem;
-  top: 0px;
+  top: 0;
   height: 6rem;
   width: 6rem;
   border-radius: 9999px;
@@ -305,7 +305,7 @@
   position: relative;
   display: flex;
   height: 100%;
-  min-width: 0px;
+  min-width: 0;
   flex: 1 1 0%;
   align-items: center;
   padding-left: 0.5rem;
@@ -315,7 +315,7 @@
 .partners-breadcrumbs__path {
   display: flex;
   height: 100%;
-  min-width: 0px;
+  min-width: 0;
   flex: 1 1 0%;
   align-items: center;
   gap: 0.25rem;
@@ -364,8 +364,8 @@
 .partners-breadcrumbs__mask {
   pointer-events: none;
   position: absolute;
-  top: 0px;
-  bottom: 0px;
+  top: 0;
+  bottom: 0;
   z-index: 20;
   display: flex;
   width: 120px;
@@ -389,13 +389,13 @@
 }
 
 .partners-breadcrumbs__mask--left {
-  left: 0px;
+  left: 0;
   justify-content: flex-start;
   background: linear-gradient(to right, var(--c-card-header-background) 20%, transparent);
 }
 
 .partners-breadcrumbs__mask--right {
-  right: 0px;
+  right: 0;
   justify-content: flex-end;
   background: linear-gradient(to left, var(--c-card-header-background) 20%, transparent);
 }
@@ -597,7 +597,7 @@
 
 .partners-mobile-item__main {
   display: flex;
-  min-width: 0px;
+  min-width: 0;
   gap: 0.75rem;
 }
 
@@ -615,7 +615,7 @@
 }
 
 .partners-mobile-item__content {
-  min-width: 0px;
+  min-width: 0;
 }
 
 .partners-mobile-item__title {

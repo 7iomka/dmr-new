@@ -10,7 +10,7 @@
 
 .wallet-overview__address {
   width: fit-content;
-  min-width: 0px;
+  min-width: 0;
   max-width: 100%;
 
   @media (--md) {
@@ -24,7 +24,7 @@
 
 .wallet-overview__main {
   display: flex;
-  min-width: 0px;
+  min-width: 0;
   flex: 1 1 0%;
   flex-direction: column;
   gap: 1rem;
@@ -183,7 +183,7 @@
 
 .wallet-mobile-item__main {
   display: flex;
-  min-width: 0px;
+  min-width: 0;
   align-items: center;
   gap: 0.75rem;
 }
@@ -224,7 +224,7 @@
 }
 
 .wallet-mobile-item__content {
-  min-width: 0px;
+  min-width: 0;
 }
 
 .wallet-mobile-item__title {

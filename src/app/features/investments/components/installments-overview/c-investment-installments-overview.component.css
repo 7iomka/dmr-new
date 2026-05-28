@@ -209,7 +209,7 @@
 }
 
 .c-investment-installments-plan-table__body-row:last-child {
-  border-bottom-width: 0px;
+  border-bottom-width: 0;
 }
 
 .c-investment-installments-plan-table__cell {

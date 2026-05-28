@@ -1,11 +1,11 @@
 .c-investment-tabs__panels {
-  margin: 0px;
+  margin: 0;
   display: block;
   background-color: transparent;
-  padding: 0px;
+  padding: 0;
 }
 
 .c-investment-tabs__panel {
   background-color: transparent;
-  padding: 0px;
+  padding: 0;
 }

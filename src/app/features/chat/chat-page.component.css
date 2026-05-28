@@ -1,6 +1,6 @@
 :host {
   display: flex;
-  min-height: 0px;
+  min-height: 0;
   flex: 1 1 0%;
   flex-direction: column;
 }
@@ -14,14 +14,14 @@
 .chat-page .p-card-body,
 .chat-page .p-card-content {
   display: flex;
-  min-height: 0px;
+  min-height: 0;
   flex: 1 1 0%;
   flex-direction: column;
 }
 
 .chat-page__header-main {
   display: flex;
-  min-width: 0px;
+  min-width: 0;
   align-items: center;
   gap: 0.75rem;
 }
@@ -104,7 +104,7 @@
     height: 70dvh;
     min-height: 520px;
     border-right-width: 1px;
-    border-bottom-width: 0px;
+    border-bottom-width: 0;
   }
 }
 
@@ -209,7 +209,7 @@
 }
 
 .chat-page__item-content {
-  min-width: 0px;
+  min-width: 0;
   flex: 1 1 0%;
 }
 
@@ -315,7 +315,7 @@
 
 .chat-page__detail-id {
   display: flex;
-  min-width: 0px;
+  min-width: 0;
   align-items: center;
   gap: 0.75rem;
 }
@@ -355,7 +355,7 @@
 
 .chat-page__welcome {
   display: flex;
-  min-height: 0px;
+  min-height: 0;
   flex: 1 1 0%;
   flex-direction: column;
   align-items: center;
@@ -370,7 +370,7 @@
 .chat-page__new-ticket,
 .chat-page__messages {
   display: flex;
-  min-height: 0px;
+  min-height: 0;
   flex: 1 1 0%;
   flex-direction: column;
   gap: 1rem;
@@ -670,7 +670,7 @@
 
 .chat-page__attachment-name {
   display: flex;
-  min-width: 0px;
+  min-width: 0;
   align-items: center;
   gap: 0.5rem;
   overflow: hidden;

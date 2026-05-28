@@ -52,8 +52,8 @@
 }
 
 .c-investment-input-field__input--split {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .c-investment-input-field__suffix {
@@ -62,7 +62,7 @@
   border-top-right-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-lg);
   border-width: 1px;
-  border-left-width: 0px;
+  border-left-width: 0;
   border-color: var(--p-surface-200);
   background-color: var(--p-surface-50);
   padding-left: 1rem;
