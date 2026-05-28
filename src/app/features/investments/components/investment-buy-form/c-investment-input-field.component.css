@@ -39,14 +39,14 @@
 
   @mixin dark {
     border-color: var(--p-surface-800);
-    background-color: hsl(var(--hsl-surface-950) / 0.4);
+    background-color: hsl(var(--hsl-surface-950) / 40%);
     color: var(--p-surface-50);
   }
   &:focus {
-    border-color: hsl(var(--hsl-primary-color) / 0.5);
+    border-color: hsl(var(--hsl-primary-color) / 50%);
 
     @mixin dark {
-      border-color: hsl(var(--hsl-primary-color) / 0.5);
+      border-color: hsl(var(--hsl-primary-color) / 50%);
     }
   }
 }

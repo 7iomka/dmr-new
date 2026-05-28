@@ -39,13 +39,13 @@
 
   @mixin dark {
     border-color: var(--p-surface-800);
-    background-color: hsl(var(--hsl-surface-950) / 0.35);
+    background-color: hsl(var(--hsl-surface-950) / 35%);
   }
 }
 
 .c-investment-installment-card--danger {
-  border-color: hsl(var(--hsl-red-500) / 0.2);
-  background-color: hsl(var(--hsl-red-500) / 0.05);
+  border-color: hsl(var(--hsl-red-500) / 20%);
+  background-color: hsl(var(--hsl-red-500) / 05%);
 }
 
 .c-investment-installment-card__id {

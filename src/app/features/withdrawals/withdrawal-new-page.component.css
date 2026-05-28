@@ -32,13 +32,13 @@
   gap: 0.75rem;
   border-radius: var(--radius-xl);
   border-width: 1px;
-  border-color: hsl(var(--hsl-amber-300) / 0.8);
-  background-color: hsl(var(--hsl-amber-100) / 0.8);
+  border-color: hsl(var(--hsl-amber-300) / 80%);
+  background-color: hsl(var(--hsl-amber-100) / 80%);
   padding: 1rem;
 
   @mixin dark {
-    border-color: hsl(var(--hsl-amber-500) / 0.5);
-    background-color: hsl(var(--hsl-amber-500) / 0.1);
+    border-color: hsl(var(--hsl-amber-500) / 50%);
+    background-color: hsl(var(--hsl-amber-500) / 10%);
   }
 }
 
@@ -72,10 +72,10 @@
   margin-top: 0.25rem;
   font-size: var(--text-sm);
   line-height: var(--text-sm--line-height);
-  color: hsl(var(--hsl-amber-900) / 0.9);
+  color: hsl(var(--hsl-amber-900) / 90%);
 
   @mixin dark {
-    color: hsl(var(--hsl-amber-100) / 0.9);
+    color: hsl(var(--hsl-amber-100) / 90%);
   }
 }
 
@@ -111,7 +111,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-700);
-    background-color: hsl(var(--hsl-surface-900) / 0.5);
+    background-color: hsl(var(--hsl-surface-900) / 50%);
     color: var(--p-surface-300);
   }
 }
@@ -144,7 +144,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-700);
-    background-color: hsl(var(--hsl-surface-900) / 0.5);
+    background-color: hsl(var(--hsl-surface-900) / 50%);
   }
 }
 
@@ -154,7 +154,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-700);
-    background-color: hsl(var(--hsl-surface-900) / 0.5);
+    background-color: hsl(var(--hsl-surface-900) / 50%);
   }
 }
 
@@ -164,17 +164,17 @@
 
   @mixin dark {
     border-color: var(--p-surface-700);
-    background-color: hsl(var(--hsl-surface-900) / 0.5);
+    background-color: hsl(var(--hsl-surface-900) / 50%);
   }
 }
 
 .withdrawal-new-state-panel--withdrawal-unavailable {
-  border-color: hsl(var(--hsl-red-300) / 0.8);
-  background-color: hsl(var(--hsl-red-100) / 0.8);
+  border-color: hsl(var(--hsl-red-300) / 80%);
+  background-color: hsl(var(--hsl-red-100) / 80%);
 
   @mixin dark {
-    border-color: hsl(var(--hsl-red-500) / 0.5);
-    background-color: hsl(var(--hsl-red-500) / 0.1);
+    border-color: hsl(var(--hsl-red-500) / 50%);
+    background-color: hsl(var(--hsl-red-500) / 10%);
   }
 }
 
@@ -205,10 +205,10 @@
 }
 
 .withdrawal-new-state-panel--withdrawal-unavailable .withdrawal-new-state-panel__body {
-  color: hsl(var(--hsl-red-800) / 0.9);
+  color: hsl(var(--hsl-red-800) / 90%);
 
   @mixin dark {
-    color: hsl(var(--hsl-red-200) / 0.9);
+    color: hsl(var(--hsl-red-200) / 90%);
   }
 }
 

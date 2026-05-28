@@ -1,9 +1,9 @@
 .c-investment-tabs__nav {
   border-radius: var(--radius-xl);
-  background-color: hsl(var(--hsl-primary-color) / 0.06);
+  background-color: hsl(var(--hsl-primary-color) / 06%);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-primary-color) / 0.08);
+    background-color: hsl(var(--hsl-primary-color) / 08%);
   }
 }
 
@@ -27,10 +27,10 @@
   display: inline-flex;
   align-items: center;
   line-height: 1;
-  background-color: hsl(var(--hsl-white) / 0.75);
+  background-color: hsl(var(--hsl-white) / 75%);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-primary-950) / 0.25);
+    background-color: hsl(var(--hsl-primary-950) / 25%);
   }
 }
 

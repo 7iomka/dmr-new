@@ -98,7 +98,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-700);
-    background-color: hsl(var(--hsl-surface-900) / 0.4);
+    background-color: hsl(var(--hsl-surface-900) / 40%);
     color: var(--p-surface-200);
   }
 }

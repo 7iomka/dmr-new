@@ -203,10 +203,10 @@
 }
 
 .c-password-strength__bar.is-active {
-  background-color: hsl(var(--hsl-primary-500) / 0.8);
+  background-color: hsl(var(--hsl-primary-500) / 80%);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-primary-400) / 0.8);
+    background-color: hsl(var(--hsl-primary-400) / 80%);
   }
 }
 
@@ -259,12 +259,12 @@
 }
 
 .c-input-otp__field.p-filled {
-  border-color: hsl(var(--hsl-primary-500) / 0.8);
-  background-color: hsl(var(--hsl-primary-50) / 0.7);
+  border-color: hsl(var(--hsl-primary-500) / 80%);
+  background-color: hsl(var(--hsl-primary-50) / 70%);
   color: var(--p-primary-600);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-primary-900) / 0.2);
+    background-color: hsl(var(--hsl-primary-900) / 20%);
     color: var(--p-primary-400);
   }
 }
@@ -437,11 +437,11 @@
 }
 
 .c-phone-country-select__option[aria-selected='true'] {
-  background-color: hsl(var(--hsl-primary-100) / 0.8);
+  background-color: hsl(var(--hsl-primary-100) / 80%);
   color: var(--p-surface-900);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-primary-900) / 0.35);
+    background-color: hsl(var(--hsl-primary-900) / 35%);
     color: var(--p-primary-100);
   }
 }

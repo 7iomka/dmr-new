@@ -63,10 +63,10 @@
 }
 
 .c-investment-installments-table__main-row:hover .c-investment-installments-table__body-cell {
-  background-color: hsl(var(--hsl-surface-50) / 0.7);
+  background-color: hsl(var(--hsl-surface-50) / 70%);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-surface-900) / 0.2);
+    background-color: hsl(var(--hsl-surface-900) / 20%);
   }
 }
 
@@ -108,14 +108,14 @@
 .c-investment-installments-table__plan-cell {
   border-bottom-width: 1px;
   border-color: var(--p-surface-200);
-  background-color: hsl(var(--hsl-surface-50) / 0.7);
+  background-color: hsl(var(--hsl-surface-50) / 70%);
   padding-inline: var(--c-card-padding-x);
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 
   @mixin dark {
     border-color: var(--p-surface-800);
-    background-color: hsl(var(--hsl-surface-900) / 0.2);
+    background-color: hsl(var(--hsl-surface-900) / 20%);
   }
 }
 
@@ -127,7 +127,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-800);
-    background-color: hsl(var(--hsl-surface-950) / 0.4);
+    background-color: hsl(var(--hsl-surface-950) / 40%);
   }
 }
 
@@ -189,23 +189,23 @@
 
 .c-investment-installments-plan-table__body-row {
   border-bottom-width: 1px;
-  border-color: hsl(var(--hsl-surface-200) / 0.7);
+  border-color: hsl(var(--hsl-surface-200) / 70%);
 
   @mixin dark {
-    border-color: hsl(var(--hsl-surface-800) / 0.7);
+    border-color: hsl(var(--hsl-surface-800) / 70%);
   }
 }
 
 .c-investment-installments-plan-table__body-row--current {
-  background-color: hsl(var(--hsl-white) / 0.7);
+  background-color: hsl(var(--hsl-white) / 70%);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-white) / 0.02);
+    background-color: hsl(var(--hsl-white) / 02%);
   }
 }
 
 .c-investment-installments-plan-table__body-row--highlight {
-  box-shadow: 0 0 0 2px hsl(var(--hsl-amber-400) / 0.7);
+  box-shadow: 0 0 0 2px hsl(var(--hsl-amber-400) / 70%);
 }
 
 .c-investment-installments-plan-table__body-row:last-child {
@@ -242,12 +242,12 @@
 
   @mixin dark {
     border-color: var(--p-surface-800);
-    background-color: hsl(var(--hsl-surface-900) / 0.3);
+    background-color: hsl(var(--hsl-surface-900) / 30%);
   }
 }
 
 .c-investment-installments-plan__item--highlight {
-  box-shadow: 0 0 0 2px hsl(var(--hsl-amber-400) / 0.7);
+  box-shadow: 0 0 0 2px hsl(var(--hsl-amber-400) / 70%);
 }
 
 .c-investment-installments-plan__item-head {
@@ -304,7 +304,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-800);
-    background-color: hsl(var(--hsl-surface-950) / 0.35);
+    background-color: hsl(var(--hsl-surface-950) / 35%);
   }
 }
 
@@ -342,7 +342,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-800);
-    background-color: hsl(var(--hsl-surface-900) / 0.4);
+    background-color: hsl(var(--hsl-surface-900) / 40%);
     color: var(--p-surface-300);
   }
 }
@@ -395,7 +395,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-800);
-    background-color: hsl(var(--hsl-surface-950) / 0.35);
+    background-color: hsl(var(--hsl-surface-950) / 35%);
   }
 }
 
@@ -452,7 +452,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-700);
-    background-color: hsl(var(--hsl-surface-800) / 0.6);
+    background-color: hsl(var(--hsl-surface-800) / 60%);
   }
 }
 

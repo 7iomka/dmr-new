@@ -10,7 +10,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-800);
-    background-color: hsl(var(--hsl-surface-950) / 0.35);
+    background-color: hsl(var(--hsl-surface-950) / 35%);
   }
 }
 

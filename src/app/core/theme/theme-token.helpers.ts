@@ -5,7 +5,7 @@ type HslVarOptions = {
    * Adds alpha support to the generated HSL color.
    *
    * - `true` is used for Tailwind config colors and outputs `<alpha-value>`.
-   * - A string value can be used for fixed alpha values like `0.5` or `50%`.
+   * - A string value can be used for fixed percent alpha values like `50%`.
    * - Omit this option for plain PrimeNG preset tokens.
    */
   alpha?: true | string;

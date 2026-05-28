@@ -38,7 +38,7 @@
   color: var(--p-primary-700);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-primary-900) / 0.4);
+    background-color: hsl(var(--hsl-primary-900) / 40%);
     color: var(--p-primary-300);
   }
 }
@@ -162,11 +162,11 @@
 .chat-page__item--active {
   @media (--lg) {
     border-color: var(--p-primary-200);
-    background-color: hsl(var(--hsl-primary-100) / 0.5);
+    background-color: hsl(var(--hsl-primary-100) / 50%);
 
     @mixin dark {
       border-color: var(--p-primary-900);
-      background-color: hsl(var(--hsl-primary-500) / 0.1);
+      background-color: hsl(var(--hsl-primary-500) / 10%);
     }
   }
 }
@@ -184,7 +184,7 @@
   color: var(--p-primary-700);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-primary-900) / 0.4);
+    background-color: hsl(var(--hsl-primary-900) / 40%);
     color: var(--p-primary-300);
   }
 }
@@ -331,7 +331,7 @@
   color: var(--p-primary-700);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-primary-900) / 0.4);
+    background-color: hsl(var(--hsl-primary-900) / 40%);
     color: var(--p-primary-300);
   }
 }
@@ -478,7 +478,7 @@
 
 .chat-page__date-chip {
   border-radius: var(--radius-md);
-  background-color: hsl(var(--hsl-surface-100) / 0.95);
+  background-color: hsl(var(--hsl-surface-100) / 95%);
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   padding-top: 0.25rem;
@@ -490,7 +490,7 @@
   color: var(--p-text-muted-color);
 
   @mixin dark {
-    background-color: hsl(var(--hsl-surface-800) / 0.95);
+    background-color: hsl(var(--hsl-surface-800) / 95%);
   }
 }
 
@@ -512,12 +512,12 @@
 .chat-page__message--support {
   border-width: 1px;
   border-color: var(--p-primary-200);
-  background-color: hsl(var(--hsl-primary-100) / 0.5);
+  background-color: hsl(var(--hsl-primary-100) / 50%);
   color: var(--p-surface-800);
 
   @mixin dark {
     border-color: var(--p-primary-900);
-    background-color: hsl(var(--hsl-primary-500) / 0.1);
+    background-color: hsl(var(--hsl-primary-500) / 10%);
     color: var(--p-surface-100);
   }
 }
@@ -566,7 +566,7 @@
 
   @mixin dark {
     border-color: var(--p-surface-800);
-    background-color: hsl(var(--hsl-surface-900) / 0.5);
+    background-color: hsl(var(--hsl-surface-900) / 50%);
   }
 }
 
